@@ -1,18 +1,22 @@
 """
-PowPowPow API — Serves all chain data via REST.
+PowPowPow API v1
+REST + WebSocket for all V1 data.
 """
 
 from flask import Flask, jsonify, request
 import json
 import os
+import sys
 from datetime import datetime
+
+sys.path.insert(0, '/home/box/powpowpow')
 
 app = Flask(__name__)
 
 BASE_DIR = '/home/box/powpowpow'
 CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 
-# Load all data on startup
+# Load all data
 def load_json(filename):
     path = os.path.join(CHAINS_DIR, filename)
     if os.path.exists(path):
@@ -20,155 +24,221 @@ def load_json(filename):
             return json.load(f)
     return {}
 
-# Preload data
-FUNDAMENTALS = load_json('chain_fundamentals.json')
-GITHUB_STATS = load_json('github_stats.json')
-CHAIN_STATS = load_json('real_chain_stats.json')
-MINER_REVENUE = load_json('miner_revenue.json')
+CHAIN_DATA = {}
+for coin in ['PRL', 'QUBIC', 'QUAN', 'XMR', 'KAS', 'CLORE', 'AKT', 'NOS']:
+    data = load_json(f'{coin.lower()}/{coin.lower()}_data.json')
+    if data:
+        CHAIN_DATA[coin] = data
 
-# Import data sources
-import sys
-sys.path.insert(0, BASE_DIR)
-from data_sources import DATA_SOURCES
+EXCHANGE_DATA = {
+    'gate': load_json('exchanges/gate/gate_data.json'),
+    'coinex': load_json('exchanges/coinex/coinex_data.json'),
+}
+
+FACTORS = load_json('factors/cross_chain_factors.json')
+ECONOMICS = load_json('economics/miner_economics.json')
+
+# V1 Registry
+from v1_registry import get_v1_registry
+REGISTRY = get_v1_registry()
+
+def success(data, meta=None):
+    return jsonify({
+        'status': 'ok',
+        'data': data,
+        'meta': meta or {'timestamp': datetime.now().isoformat()}
+    })
+
+def error(message, code=400):
+    return jsonify({'status': 'error', 'message': message}), code
+
+# ============================================================
+# CHAINS
+# ============================================================
+
+@app.route('/v1/chains')
+def list_chains():
+    chains = []
+    for symbol, info in REGISTRY.items():
+        data = CHAIN_DATA.get(symbol, {})
+        price = data.get('price', {})
+        price_usd = price.get('usd', 0) if isinstance(price, dict) else price
+        
+        chains.append({
+            'symbol': symbol,
+            'name': info.get('name', symbol),
+            'category': info.get('category', 'unknown'),
+            'physical_resource': info.get('physical_resource', 'unknown'),
+            'supplier_type': info.get('supplier_type', 'unknown'),
+            'price_usd': price_usd,
+        })
+    return success(chains)
+
+@app.route('/v1/chains/<symbol>')
+def get_chain(symbol):
+    symbol = symbol.upper()
+    if symbol not in REGISTRY:
+        return error(f'Unknown chain: {symbol}', 404)
+    
+    info = REGISTRY[symbol]
+    data = CHAIN_DATA.get(symbol, {})
+    
+    return success({
+        'symbol': symbol,
+        'info': info,
+        'data': data,
+    })
+
+# ============================================================
+# LIVE CARDS
+# ============================================================
+
+@app.route('/v1/cards')
+def list_cards():
+    from v1_live_cards import generate_card
+    
+    cards = {}
+    for symbol in REGISTRY:
+        data = CHAIN_DATA.get(symbol, {})
+        price = data.get('price', {})
+        
+        if price:
+            card = generate_card(symbol, price)
+            cards[symbol] = card
+    
+    return success(cards)
+
+@app.route('/v1/cards/<symbol>')
+def get_card(symbol):
+    symbol = symbol.upper()
+    from v1_live_cards import generate_card
+    
+    data = CHAIN_DATA.get(symbol, {})
+    price = data.get('price', {})
+    
+    if not price:
+        return error(f'No price data for {symbol}', 404)
+    
+    card = generate_card(symbol, price)
+    return success(card)
+
+# ============================================================
+# COMPUTE MARKETS
+# ============================================================
+
+@app.route('/v1/compute/markets')
+def compute_markets():
+    return success({
+        'akash': load_json('akt/akt_data.json'),
+        'clore': load_json('clore/clore_data.json'),
+        'nosana': load_json('nos/nos_data.json'),
+    })
+
+@app.route('/v1/compute/benchmarks')
+def compute_benchmarks():
+    return success(load_json('benchmarks/compute_benchmarks.json'))
+
+# ============================================================
+# EXCHANGES
+# ============================================================
+
+@app.route('/v1/exchanges')
+def list_exchanges():
+    return success(list(EXCHANGE_DATA.keys()))
+
+@app.route('/v1/exchanges/<exchange>/markets')
+def exchange_markets(exchange):
+    data = EXCHANGE_DATA.get(exchange, {})
+    return success(data.get('markets', {}))
+
+@app.route('/v1/exchanges/<exchange>/<symbol>/orderbook')
+def exchange_orderbook(exchange, symbol):
+    symbol = symbol.upper()
+    data = EXCHANGE_DATA.get(exchange, {})
+    orderbooks = data.get('order_books', {})
+    
+    if symbol in orderbooks:
+        return success(orderbooks[symbol])
+    return error(f'No order book for {symbol} on {exchange}', 404)
+
+@app.route('/v1/exchanges/<exchange>/<symbol>/trades')
+def exchange_trades(exchange, symbol):
+    symbol = symbol.upper()
+    data = EXCHANGE_DATA.get(exchange, {})
+    trades = data.get('trades', {})
+    
+    if symbol in trades:
+        return success(trades[symbol])
+    return error(f'No trades for {symbol} on {exchange}', 404)
+
+# ============================================================
+# METRICS
+# ============================================================
+
+@app.route('/v1/metrics/pressure/<symbol>')
+def pressure_metrics(symbol):
+    symbol = symbol.upper()
+    data = FACTORS.get(symbol, {})
+    
+    if not data:
+        return error(f'No pressure data for {symbol}', 404)
+    
+    return success(data)
+
+@app.route('/v1/metrics/resource-premium')
+def resource_premium():
+    premiums = []
+    for symbol in REGISTRY:
+        econ = ECONOMICS.get(symbol, {})
+        if econ:
+            premiums.append({
+                'chain': symbol,
+                'daily_emission_usd': econ.get('daily_emission_usd', 0),
+                'absorption_ratio': econ.get('absorption_ratio'),
+            })
+    return success(premiums)
+
+@app.route('/v1/metrics/miner-economics')
+def miner_economics():
+    return success(ECONOMICS)
+
+# ============================================================
+# FACTORS
+# ============================================================
+
+@app.route('/v1/factors')
+def factors():
+    return success(FACTORS)
+
+# ============================================================
+# HEALTH
+# ============================================================
+
+@app.route('/v1/health')
+def health():
+    return success({
+        'status': 'healthy',
+        'version': '1.0.0',
+        'chains_tracked': len(REGISTRY),
+        'exchanges_connected': len(EXCHANGE_DATA),
+        'timestamp': datetime.now().isoformat(),
+    })
 
 @app.route('/')
 def index():
-    return jsonify({
+    return success({
         'name': 'PowPowPow API',
         'version': '1.0.0',
-        'description': 'Data infrastructure for useful-compute crypto',
-        'endpoints': {
-            'chains': '/api/v1/chains',
-            'chain': '/api/v1/chains/<symbol>',
-            'fundamentals': '/api/v1/chains/<symbol>/fundamentals',
-            'mining': '/api/v1/chains/<symbol>/mining',
-            'github': '/api/v1/chains/<symbol>/github',
-            'orderbook': '/api/v1/chains/<symbol>/orderbook',
-            'predictions': '/api/v1/predictions',
-            'sources': '/api/v1/chains/<symbol>/sources',
-            'all': '/api/v1/all',
-        }
-    })
-
-@app.route('/api/v1/chains')
-def list_chains():
-    """List all tracked chains with summary."""
-    chains = []
-    for symbol, fund in FUNDAMENTALS.items():
-        market = MINER_REVENUE.get(symbol, {})
-        chains.append({
-            'symbol': symbol,
-            'name': fund.get('name'),
-            'type': fund.get('type'),
-            'consensus': fund.get('consensus'),
-            'mining_algo': fund.get('mining_algo'),
-            'max_supply': fund.get('max_supply'),
-            'daily_emission': fund.get('daily_emission'),
-            'daily_emission_usd': market.get('sell_pressure', {}).get('daily_emission_usd'),
-            'safe_trade_volume_24h': fund.get('safe_trade_volume_24h'),
-            'github_stars': fund.get('github_stars'),
-        })
-    return jsonify(chains)
-
-@app.route('/api/v1/chains/<symbol>')
-def get_chain(symbol):
-    """Get full data for a single chain."""
-    symbol = symbol.upper()
-    if symbol not in FUNDAMENTALS:
-        return jsonify({'error': f'Unknown chain: {symbol}'}), 404
-    
-    result = {
-        'symbol': symbol,
-        'fundamentals': FUNDAMENTALS.get(symbol),
-        'github': GITHUB_STATS.get(symbol),
-        'chain_stats': CHAIN_STATS.get(symbol),
-        'miner_revenue': MINER_REVENUE.get(symbol),
-        'data_sources': DATA_SOURCES.get(symbol),
-        'timestamp': datetime.now().isoformat(),
-    }
-    
-    return jsonify(result)
-
-@app.route('/api/v1/chains/<symbol>/fundamentals')
-def get_fundamentals(symbol):
-    """Get chain fundamentals."""
-    symbol = symbol.upper()
-    return jsonify(FUNDAMENTALS.get(symbol, {}))
-
-@app.route('/api/v1/chains/<symbol>/mining')
-def get_mining(symbol):
-    """Get mining economics data."""
-    symbol = symbol.upper()
-    return jsonify(MINER_REVENUE.get(symbol, {}))
-
-@app.route('/api/v1/chains/<symbol>/github')
-def get_github(symbol):
-    """Get GitHub activity data."""
-    symbol = symbol.upper()
-    return jsonify(GITHUB_STATS.get(symbol, {}))
-
-@app.route('/api/v1/chains/<symbol>/sources')
-def get_sources(symbol):
-    """Get data sources for a chain."""
-    symbol = symbol.upper()
-    sources = DATA_SOURCES.get(symbol, {})
-    return jsonify(sources)
-
-@app.route('/api/v1/predictions')
-def predictions():
-    """Simple predictions based on miner sell pressure."""
-    results = []
-    for symbol, revenue in MINER_REVENUE.items():
-        sell = revenue.get('sell_pressure', {})
-        burden = revenue.get('miner_burden', {})
-        
-        if sell.get('daily_sell_pressure_usd'):
-            daily_sell = sell['daily_sell_pressure_usd']
-            volume = revenue.get('volume_24h', 0) or 0
-            
-            if volume > 0:
-                sell_ratio = daily_sell / volume
-                if sell_ratio > 0.5:
-                    signal = 'HIGH_SELL_PRESSURE'
-                elif sell_ratio > 0.2:
-                    signal = 'MODERATE_SELL_PRESSURE'
-                else:
-                    signal = 'LOW_SELL_PRESSURE'
-            else:
-                signal = 'NO_VOLUME_DATA'
-            
-            results.append({
-                'symbol': symbol,
-                'daily_sell_pressure': daily_sell,
-                'volume_24h': volume,
-                'sell_ratio': sell_ratio if volume > 0 else None,
-                'signal': signal,
-                'dilution_pressure': burden.get('dilution_pressure'),
-                'absorption_ratio': burden.get('absorption_ratio'),
-            })
-    
-    return jsonify(results)
-
-@app.route('/api/v1/all')
-def get_all():
-    """Get everything for all chains."""
-    result = {}
-    for symbol in FUNDAMENTALS:
-        result[symbol] = {
-            'fundamentals': FUNDAMENTALS.get(symbol),
-            'github': GITHUB_STATS.get(symbol),
-            'miner_revenue': MINER_REVENUE.get(symbol),
-            'sources_count': len(DATA_SOURCES.get(symbol, {}).get('apis', [])),
-        }
-    return jsonify(result)
-
-@app.route('/api/v1/health')
-def health():
-    """Health check."""
-    return jsonify({
-        'status': 'healthy',
-        'chains_tracked': len(FUNDAMENTALS),
-        'timestamp': datetime.now().isoformat(),
+        'docs': '/v1/docs',
+        'endpoints': [
+            '/v1/chains',
+            '/v1/cards',
+            '/v1/compute/markets',
+            '/v1/exchanges',
+            '/v1/metrics/pressure/{symbol}',
+            '/v1/metrics/resource-premium',
+            '/v1/factors',
+        ]
     })
 
 if __name__ == '__main__':
