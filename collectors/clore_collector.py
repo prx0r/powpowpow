@@ -1,87 +1,82 @@
 """
-CLORE Collector
-GPU marketplace + mining.
+CLORE Collector — Append-only with auto-archive.
 """
 
 import json
 import os
-import requests
-import time
-from datetime import datetime
 import sys
+from datetime import datetime, timezone
 
 sys.path.insert(0, '/home/box/powpowpow')
-from warehouse import store_raw_event
+from core import fetch_json, store_normalized, utcnow
 
 DATA_DIR = '/home/box/powpowpow/chains/clore'
 os.makedirs(DATA_DIR, exist_ok=True)
 
-def fetch_json(url, params=None, timeout=10):
-    try:
-        resp = requests.get(url, params=params, headers={
-            'User-Agent': 'PowPowPow/1.0',
-            'Accept': 'application/json'
-        }, timeout=timeout)
-        if resp.status_code == 200:
-            return resp.json()
-    except:
-        pass
-    return None
-
 def collect_marketplace():
-    """Collect Clore GPU marketplace data."""
-    print("  [MARKETPLACE] Fetching GPU marketplace...")
+    """Collect Clore GPU marketplace — IRREVERSIBLE data."""
+    print("  [MARKETPLACE] Fetching GPU marketplace (auto-archiving)...")
     
-    data = fetch_json('https://clore.ai/api/v1/marketplace')
+    data = fetch_json(
+        url='https://clore.ai/api/v1/marketplace',
+        source_id='clore-marketplace-api',
+        chain_id='clore',
+    )
+    
     if data:
-        servers = data if isinstance(data, list) else data.get('servers', [])
+        servers = data if isinstance(data, list) else (data.get('servers', []) if data else [])
         print(f"    Servers: {len(servers)}")
         return servers
-    
-    return None
+    return []
 
 def collect_gigaspot():
-    """Collect GigaSPOT bid/ask data."""
-    print("  [GIGASPOT] Fetching bid/ask data...")
+    """Collect GigaSPOT bid/ask data — IRREVERSIBLE."""
+    print("  [GIGASPOT] Fetching bid/ask data (auto-archiving)...")
     
-    data = fetch_json('https://gigaspot-api.clore.ai/v1/servers')
+    data = fetch_json(
+        url='https://gigaspot-api.clore.ai/v1/servers',
+        source_id='clore-gigaspot-api',
+        chain_id='clore',
+    )
+    
     if data:
-        print(f"    Machines: {len(data) if isinstance(data, list) else 'N/A'}")
-        return data
-    
-    return None
+        machines = data if isinstance(data, list) else []
+        print(f"    Machines: {len(machines)}")
+        return machines
+    return []
 
 def collect_price():
     """Collect CLORE price."""
     print("  [PRICE] Fetching CLORE price...")
     
-    data = fetch_json('https://api.coingecko.com/api/v3/simple/price', params={
-        'ids': 'clore-ai',
-        'vs_currencies': 'usd',
-        'include_market_cap': 'true',
-        'include_24hr_vol': 'true'
-    })
+    data = fetch_json(
+        url='https://api.coingecko.com/api/v3/simple/price',
+        params={'ids': 'clore-ai', 'vs_currencies': 'usd', 'include_market_cap': 'true'},
+        source_id='coingecko',
+        chain_id='clore',
+    )
     
     if data and 'clore-ai' in data:
         clore = data['clore-ai']
         print(f"    CLORE: ${clore.get('usd', 'N/A')}")
         return clore
-    
     return None
 
 def collect_all():
     print(f"\n{'='*60}")
-    print(f"CLORE Collection — {datetime.now()}")
+    print(f"CLORE Collection — {utcnow()}")
     print(f"{'='*60}")
     
     results = {
-        'timestamp': datetime.now().isoformat(),
+        'observed_at': utcnow(),
+        'chain': 'clore',
         'marketplace': collect_marketplace(),
         'gigaspot': collect_gigaspot(),
         'price': collect_price(),
     }
     
-    filepath = os.path.join(DATA_DIR, 'clore_data.json')
+    # Save as latest (not historical)
+    filepath = os.path.join(DATA_DIR, 'latest.json')
     with open(filepath, 'w') as f:
         json.dump(results, f, indent=2, default=str)
     
