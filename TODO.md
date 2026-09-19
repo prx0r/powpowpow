@@ -21,6 +21,17 @@
 > schedules for CLORE/FLUX/NOS/TAO/NOCK. required_flow_v1 live
 > (9 signals; QUBIC bullish 0.91 coverage 1.15, XMR bearish 0.00).
 > MCP stdio server verified end-to-end (6 tools, live tables).
+>
+> STORAGE DOCTRINE 15:00 UTC (measured, not guessed): live burn
+> ~1.2GB/day raw+JSONL → ~60MB/day Parquet (16-30x). Tiers: hot
+> JSONL 7d (`trim_jsonl.py`, never drops uncompacted) → Parquet
+> forever (DuckDB-queryable) → derived tables forever (KBs). Chain
+> bytes (pearld) = extract-and-release, never hoarded. Off-box:
+> rclone ready at /usr/bin/rclone — needs B2/R2 remote (user
+> creates account; ~$0/mo at our scale, 10GB free covers year one).
+> Tardis seeds judged low-value going forward: our own ticks from
+> now are the moat; monthly drip continues (cheap) but no more
+> bulk backfill spend.
 
 ## 1. Money math — DONE (v2 network-share)
 
