@@ -34,7 +34,7 @@ from datetime import datetime, timezone
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import store_normalized  # noqa: E402
+from core import row_date, store_normalized  # noqa: E402
 
 CALCULATION_VERSION = "daily-state-v1"
 
@@ -77,13 +77,13 @@ def mean(xs):
 
 def build_day(chain, date):
     snaps = [r for r in read_table('orderbook_snapshot', chain)
-             if (r.get('receive_time') or '')[:10] == date]
+             if row_date(r) == date]
     ticks = [r for r in read_table('ticker', chain)
-             if (r.get('receive_time') or '')[:10] == date]
+             if row_date(r) == date]
     trades = [r for r in read_table('trade', chain)
-              if (r.get('receive_time') or '')[:10] == date]
+              if row_date(r) == date]
     gaps = [r for r in read_table('gap_event', chain)
-            if (r.get('receive_time') or r.get('at') or '')[:10] == date]
+            if row_date(r) == date]
 
     by_market = defaultdict(lambda: {'snaps': [], 'ticks': [], 'trades': []})
     for r in snaps:

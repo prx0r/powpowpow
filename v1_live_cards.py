@@ -137,6 +137,62 @@ def mining_revenue_usd_day(rig_hashrate, network_hashrate, daily_emission, price
     return rig_coins * price_usd
 
 
+def live_state_block(symbol):
+    """Latest STATE fundamentals for the card (04-spec fields).
+
+    Returns issuance/depth/absorption/7d-change block. Pool->exchange stays
+    null-disclosed until the miner graph exists. 7d changes need 8+ days of
+    STATE; until then they report null with coverage note.
+    """
+    import glob
+    rows = []
+    for f in glob.glob(os.path.join(
+            BASE_DIR, 'warehouse', 'normalized', 'daily_state',
+            'chain=*', 'date=*', 'hour=*.jsonl')):
+        with open(f) as fh:
+            for line in fh:
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if (r.get('symbol') or '').upper() == symbol.upper():
+                    rows.append(r)
+    if not rows:
+        return {'coverage': 'no STATE yet'}
+    rows.sort(key=lambda r: (r.get('date', ''), r.get('venue', '')))
+    by_date = {}
+    for r in rows:
+        d = by_date.setdefault(r.get('date'), {'bid': 0.0, 'mid': None,
+                                               'spread': [], 'trades': 0})
+        d['bid'] += r.get('bid_notional_20_mean') or 0
+        if r.get('mid_close'):
+            d['mid'] = r['mid_close']
+        if r.get('spread_bps_median') is not None:
+            d['spread'].append(r['spread_bps_median'])
+        d['trades'] += r.get('n_trades') or 0
+    dates = sorted(by_date)
+    latest = by_date[dates[-1]]
+    spread = sorted(latest['spread'])
+    block = {
+        'date': dates[-1],
+        'days_of_state': len(dates),
+        'bid_depth_top20_sum': round(latest['bid'], 2),
+        'spread_bps_median': spread[len(spread) // 2] if spread else None,
+        'trades_24h': latest['trades'],
+        'pool_to_exchange_usd_day': None,
+        'pool_to_exchange_method': 'unmeasured — needs pool/miner graph (pearld syncing)',
+    }
+    if len(dates) >= 8:
+        first, last = by_date[dates[-8]], latest
+        block['bid_depth_change_7d'] = (round((last['bid'] - first['bid']) / first['bid'], 4)
+                                        if first['bid'] else None)
+        block['mid_change_7d'] = (round((last['mid'] - first['mid']) / first['mid'], 4)
+                                  if first['mid'] and last['mid'] else None)
+    else:
+        block['change_7d'] = f'insufficient history ({len(dates)}d STATE, need 8d)'
+    return block
+
+
 def generate_card(chain, price, network_data=None, electricity=0.10):
     """Generate a profitability card with methodology + assumptions stated."""
     if isinstance(price, dict):
@@ -169,8 +225,20 @@ def generate_card(chain, price, network_data=None, electricity=0.10):
         'network': {k: net.get(k) for k in
                     ('daily_emission', 'network_hashrate', 'hashrate_source',
                      'emission_source', 'as_of', 'needs', 'gated', 'gate_reason')},
+        'fundamentals': None,  # filled below; None only if no STATE yet
         'hardware': {},
     }
+    try:
+        fb = live_state_block(chain)
+        em = net.get('daily_emission')
+        fb['miner_issuance_usd_day'] = round(em * price, 2) if em and price else None
+        bid = fb.get('bid_depth_top20_sum') or 0
+        fb['required_absorption_usd_day'] = fb['miner_issuance_usd_day']
+        fb['absorption_burden'] = (round(fb['miner_issuance_usd_day'] / bid, 3)
+                                   if fb['miner_issuance_usd_day'] and bid > 0 else None)
+        card['fundamentals'] = fb
+    except Exception as e:
+        card['fundamentals'] = {'error': f'state read failed: {str(e)[:100]}'}
 
     if net.get('gated'):
         card['status'] = 'gated'

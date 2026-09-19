@@ -24,6 +24,24 @@ def utcnow() -> str:
     """Return UTC ISO timestamp with Z suffix."""
     return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
 
+def row_date(r: Dict) -> str:
+    """Point-in-time date for a normalized row: exchange/event time wins
+    over our receive time (seeds carry old exchange times in new files)."""
+    for k in ('exchange_time', 'event_time', 'date', 'receive_time',
+              'observed_at', 'timestamp'):
+        v = r.get(k)
+        if isinstance(v, (int, float)):
+            try:
+                return datetime.fromtimestamp(
+                    v / 1e6 if v > 1e12 else (v / 1e3 if v > 1e10 else v),
+                    tz=timezone.utc).strftime('%Y-%m-%d')
+            except (ValueError, OSError, OverflowError):
+                continue
+        if isinstance(v, str) and len(v) >= 10:
+            return v[:10]
+    return ''
+
+
 def parse_event_time(ts) -> Optional[str]:
     """Parse an event timestamp from source, return UTC ISO or None."""
     if ts is None:
