@@ -163,8 +163,17 @@ def load_books(path, venue, symbol):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--include', default='', help='substring filter on filenames')
+    ap.add_argument('--exclude', default='', help='substring filter to skip')
+    args = ap.parse_args()
     done = load_loaded()
     files = sorted(f for f in os.listdir(TARDIS_DIR) if f.endswith('.csv.gz'))
+    if args.include:
+        files = [f for f in files if args.include in f]
+    if args.exclude:
+        files = [f for f in files if args.exclude not in f]
     t_total = b_total = 0
     for fn in files:
         if fn in done:
