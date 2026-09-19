@@ -3,139 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PowPowPow — compute economics, measured</title>
+<title>PowPowPow — what mining does to a coin, measured</title>
 <style>
-:root{--bg:#14161a;--bg2:#1c1f25;--bg3:#242832;--border:#2e333e;--text:#d7dce3;--dim:#8b93a1;--blue:#5aa9e6;--green:#3fd08c;--red:#e5605e;--yellow:#e6c15a;--accent:#7c6ff0}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font:14px/1.55 system-ui,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-header{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:5}
-.logo{font-weight:800;font-size:18px;letter-spacing:.5px}
-.logo span{color:var(--accent)}
-.tag{font-size:12px;color:var(--dim)}
-.health{margin-left:auto;font-size:12px;color:var(--dim);display:flex;align-items:center;gap:6px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}
-nav{display:flex;gap:4px;padding:10px 22px;border-bottom:1px solid var(--border);background:var(--bg2)}
-nav button{background:none;border:none;color:var(--dim);font-size:13px;padding:8px 14px;border-radius:6px;cursor:pointer}
-nav button.active,nav button:hover{color:var(--text);background:var(--bg3)}
-main{max-width:1100px;margin:0 auto;padding:22px}
-.tab{display:none}.tab.active{display:block}
-h2{font-size:16px;margin-bottom:12px}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;color:var(--dim);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
-td{padding:8px 10px;border-bottom:1px solid var(--border)}
-tr:hover td{background:var(--bg3)}
-.bull{color:var(--green)}.bear{color:var(--red)}.neut{color:var(--yellow)}
-select,input[type=text]{background:var(--bg3);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-size:13px}
-button.go{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:13px;cursor:pointer}
-.kv{display:grid;grid-template-columns:220px 1fr;gap:4px 12px;font-size:13px}
-.kv dt{color:var(--dim)}.kv dd{margin:0}
-pre.brief{white-space:pre-wrap;font:13px/1.6 ui-monospace,monospace;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px}
-#chatlog{max-height:420px;overflow-y:auto;margin-bottom:12px}
-.msg{margin-bottom:10px}.msg .who{font-size:11px;color:var(--dim)}
-.msg .text{background:var(--bg3);border-radius:8px;padding:8px 12px;margin-top:3px;white-space:pre-wrap}
-.msg.you .text{background:#2a2f55}
-.row{display:flex;gap:8px;margin-bottom:14px}
-.row input{flex:1}
-small.dim{color:var(--dim)}
+body{font:15px/1.6 Georgia,'Times New Roman',serif;background:#faf8f4;color:#222;max-width:860px;margin:0 auto;padding:24px 18px}
+h1{font-size:26px;margin:6px 0 2px}h1 span{color:#e35d1f}
+h2{font-size:19px;margin:30px 0 8px;border-bottom:2px solid #e35d1f;padding-bottom:4px}
+h3{font-size:15px;margin:16px 0 6px}
+.sub{color:#666;font-size:14px;margin-bottom:18px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:#666;border-bottom:2px solid #333;padding:6px 8px}
+td{padding:6px 8px;border-bottom:1px solid #ddd;font-variant-numeric:tabular-nums}
+.num{font-family:ui-monospace,Menlo,monospace;font-size:13px}
+.bull{color:#1a7a3c;font-weight:bold}.bear{color:#b3261e;font-weight:bold}.neut{color:#8a6d00;font-weight:bold}
+.box{border:1px solid #ccc;background:#fff;padding:14px 16px;margin:12px 0}
+.dim{color:#666;font-size:13px}
+select,input{font:14px Georgia,serif;padding:6px 8px;border:1px solid #999;background:#fff}
+button{font:14px Georgia,serif;padding:6px 14px;background:#e35d1f;color:#fff;border:none;cursor:pointer}
+button:hover{background:#c74e16}
+#chatlog{border:1px solid #ccc;background:#fff;padding:10px;max-height:300px;overflow-y:auto;margin-bottom:8px}
+.msg{margin-bottom:8px}.who{font-size:12px;color:#666}
+footer{margin-top:36px;font-size:12px;color:#888;border-top:1px solid #ccc;padding-top:10px}
+a{color:#e35d1f}
+pre{white-space:pre-wrap;font-size:13px}
 </style>
 </head>
 <body>
-<header>
-<div class="logo">POW<span>POW</span>POW</div>
-<div class="tag">compute economics, measured — not predicted</div>
-<div class="health"><span class="dot" id="hdot"></span><span id="htext">connecting…</span></div>
-</header>
-<nav>
-<button data-t="screen" class="active">Screener</button>
-<button data-t="coin">Coin</button>
-<button data-t="signals">Signals</button>
-<button data-t="brief">Daily brief</button>
-<button data-t="chat">Analyst chat</button>
-</nav>
-<main>
-<section class="tab active" id="t-screen">
-<h2>Fundamental screener <small class="dim">burden = one day of emission vs resting book</small></h2>
-<div class="card"><table id="screent"><thead><tr><th>Asset</th><th>Venues</th><th>Price</th><th>Emission $/d</th><th>Burden</th><th>Spread</th><th>Signal</th></tr></thead><tbody></tbody></table></div>
-</section>
-<section class="tab" id="t-coin">
+<h1>POW<span>POW</span>POW</h1>
+<div class="sub">What mining does to a coin, measured daily. No predictions, no trading calls — just the physical economy underneath the price. <span id="health">connecting…</span></div>
+
+<h2>Money supply vs the market</h2>
+<p class="dim">For each coin: how many new tokens appear per day, what they're worth, and how that compares to the orders waiting to buy them.</p>
+<table id="screent"><thead><tr><th>Coin</th><th>Price</th><th>New supply $/day</th><th>vs buy orders</th><th>Signal</th></tr></thead><tbody></tbody></table>
+
 <h2>Coin dossier</h2>
-<div class="row"><select id="coinsel"></select><button class="go" onclick="loadCoin()">Open</button></div>
+<select id="coinsel"></select> <button onclick="loadCoin()">Open</button>
 <div id="coinout"></div>
-</section>
-<section class="tab" id="t-signals">
-<h2>Signal feed <small class="dim">transformations with provenance, versioned</small></h2>
+
+<h2>Signals <span class="dim">— versioned transformations, each with its evidence</span></h2>
 <div id="sigout"></div>
-</section>
-<section class="tab" id="t-brief">
+
 <h2>Daily brief</h2>
-<div class="row"><input id="briefdate" type="text" placeholder="YYYY-MM-DD (blank = latest)"><button class="go" onclick="loadBrief()">Load</button></div>
-<pre class="brief" id="briefout">loading…</pre>
-</section>
-<section class="tab" id="t-chat">
-<h2>Analyst chat <small class="dim" id="chatvia"></small></h2>
+<pre id="briefout">loading…</pre>
+
+<h2>Ask the data</h2>
 <div id="chatlog"></div>
-<div class="row"><input id="chatq" type="text" placeholder="Ask about XMR, QUBIC, top signals…"><button class="go" onclick="ask()">Ask</button></div>
-</section>
-</main>
+<input id="chatq" type="text" size="60" placeholder="e.g. why is XMR bearish?"> <button onclick="ask()">Ask</button> <span class="dim" id="chatvia"></span>
+
+<footer>PowPowPow is a provenance-preserving record of compute economics. Every number links to its source observations. <span id="footdate"></span></footer>
+
 <script>
-const Q = new URLSearchParams(location.search);
-const TOK = Q.get('token') || '';
+const TOK = new URLSearchParams(location.search).get('token') || '';
 const api = (p, o={}) => fetch(p + (p.includes('?')?'&':'?') + 'token=' + TOK, o).then(r => r.json());
+// Core coverage only: assets with measured emission AND market depth. No TAO,
+// no thin listings — they return when their data earns a place here.
+const CORE = ['QUBIC', 'XMR', 'PRL', 'KAS', 'NOCK', 'XEL'];
 const dir = d => d === 'bullish' ? '<span class="bull">bullish</span>' : d === 'bearish' ? '<span class="bear">bearish</span>' : '<span class="neut">neutral</span>';
-document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
-  document.querySelectorAll('nav button').forEach(x => x.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-  b.classList.add('active'); document.getElementById('t-' + b.dataset.t).classList.add('active');
-});
-api('/api/health').then(h => { document.getElementById('htext').textContent = h.ok ? 'live garden' : 'degraded'; })
-  .catch(() => { document.getElementById('htext').textContent = 'offline'; document.getElementById('hdot').style.background = 'var(--red)'; });
+api('/api/health').then(h => document.getElementById('health').textContent = h.ok ? '● live' : 'degraded').catch(() => document.getElementById('health').textContent = 'offline');
+document.getElementById('footdate').textContent = new Date().toISOString().slice(0, 10);
 api('/api/factors').then(d => {
   const tb = document.querySelector('#screent tbody');
-  Object.values(d.factors || {}).sort((a,b) => (b.burden_vs_book||0) - (a.burden_vs_book||0)).forEach(f => {
-    tb.innerHTML += `<tr><td><b>${f.symbol}</b></td><td>${(f.venues||[]).join(',')}</td><td>${f.price_usd ?? '—'}</td><td>${f.issuance_usd_24h ? '$'+Math.round(f.issuance_usd_24h).toLocaleString() : '—'}</td><td>${f.burden_vs_book ?? '—'}</td><td>${f.spread_bps_median ?? '—'}</td><td>${dir(f.miner_pressure)}${f.miner_pressure_strength ? ' '+f.miner_pressure_strength : ''}</td></tr>`;
+  Object.values(d.factors || {}).filter(f => CORE.includes(f.symbol)).sort((a,b) => (b.burden_vs_book||0) - (a.burden_vs_book||0)).forEach(f => {
+    tb.innerHTML += `<tr><td><b>${f.symbol}</b></td><td class="num">${f.price_usd ?? '—'}</td><td class="num">${f.issuance_usd_24h ? '$'+Math.round(f.issuance_usd_24h).toLocaleString() : '—'}</td><td class="num">${f.burden_vs_book ?? '—'}×</td><td>${dir(f.miner_pressure)}${f.miner_pressure_strength ? ' '+f.miner_pressure_strength : ''}</td></tr>`;
   });
   const sel = document.getElementById('coinsel');
-  Object.keys(d.factors || {}).sort().forEach(s => sel.innerHTML += `<option${s==='XMR'?' selected':''}>${s}</option>`);
+  CORE.forEach(s => sel.innerHTML += `<option${s==='QUBIC'?' selected':''}>${s}</option>`);
 });
+const EXPLAIN = {
+  QUBIC: `<div class="box"><h3>Qubic in plain language</h3><p>Qubic runs in <b>weeks called epochs</b> (currently epoch <span id="q-epoch">…</span>). Inside each week the network ticks fast — millions of small computation rounds. Every week exactly <b>1 trillion QUBIC</b> is created, but most of it is immediately <b>burned</b> (destroyed): since the August 2026 halving, 78.75% burns and only ~212 billion reach the market. So when you hear "emission", the honest number is the <b>net</b> one below, not the gross trillion.</p><div id="q-nums"></div></div>',
+  XMR: `<div class="box"><h3>Monero in plain language</h3><p>Monero pays miners a flat <b>0.6 XMR per 2-minute block, forever</b> — 432 new XMR a day, no halvings. That fixed drip against the buy orders is the whole sell-pressure story: no vesting cliffs, no team unlocks, just continuous miner supply. What you see below is that daily drip valued in dollars next to resting demand, plus live fee and mining-participation telemetry.</p><div id="x-nums"></div></div>'
+};
 function loadCoin() {
   const s = document.getElementById('coinsel').value, o = document.getElementById('coinout');
   o.innerHTML = 'loading…';
-  Promise.all([api('/api/state?symbol=' + s), api('/api/signals?symbol=' + s), api('/api/cards'), api('/api/chain?symbol=' + s), api('/api/page?symbol=' + s)]).then(([st, sg, cd, ch, pg]) => {
+  Promise.all([api('/api/state?symbol=' + s), api('/api/signals?symbol=' + s), api('/api/cards'), api('/api/chain?symbol=' + s)]).then(([st, sg, cd, ch]) => {
+    let h = EXPLAIN[s] || `<h3>${s}</h3>`;
     const card = (cd.cards || {})[s] || {};
-    let h = `<div class="card"><h2>${s}</h2><div class="kv">`;
-    if (ch.network) Object.entries(ch.network).slice(0, 8).forEach(([k,v]) => h += `<dt>${k}</dt><dd>${v}</dd>`);
-    h += `</div></div>`;
-    (sg.signals || []).slice(0, 6).forEach(g => { h += `<div class="card"><b>${g.signal}</b> ${dir(g.direction)} ${g.strength} <small class="dim">${g.version} · ${g.date}</small><br><small>${(g.drivers||[]).join(' · ')}</small></div>`; });
-    (st.states || []).slice(-4).forEach(t => { h += `<div class="card"><small class="dim">${t.venue} · ${t.date}</small><br>mid ${t.mid_close} · spread ${t.spread_bps_median} · trades ${t.n_trades}</div>`; });
-    if (card.hardware) { h += `<div class="card"><b>Mining routes</b><table><thead><tr><th>HW</th><th>Rev/d</th><th>Net/d</th><th>Note</th></tr></thead><tbody>`; Object.entries(card.hardware).forEach(([k,v]) => h += `<tr><td>${k}</td><td>${v.revenue_usd_day ?? 'no estimate'}</td><td>${v.net_profit_usd_day ?? '—'}</td><td><small class="dim">${v.assumption || ''}</small></td></tr>`); h += `</tbody></table></div>`; }
-    if (pg.page) h += `<div class="card"><pre class="brief">${pg.page.slice(0, 2500)}</pre></div>`;
+    if (s === 'QUBIC' && ch.network) h = h.replace('<div id="q-nums"></div>', qubicNums(ch.network, card));
+    if (s === 'XMR' && ch.network) h = h.replace('<div id="x-nums"></div>', xmrNums(ch.network));
+    (sg.signals || []).slice(0, 6).forEach(g => { h += `<div class="box"><b>${g.signal}</b> ${dir(g.direction)} ${g.strength} <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span></div>`; });
+    const sts = (st.states || []).slice(-4);
+    if (sts.length) { h += `<h3>Market state by venue</h3><table><tr><th>Venue</th><th>Date</th><th>Price</th><th>Spread</th><th>Trades</th></tr>`; sts.forEach(t => h += `<tr><td>${t.venue}</td><td class="num">${t.date}</td><td class="num">${t.mid_close}</td><td class="num">${t.spread_bps_median}</td><td class="num">${t.n_trades}</td></tr>`); h += `</table>`; }
+    if (card.hardware) { h += `<h3>What one machine earns</h3><table><tr><th>Hardware</th><th>Revenue/day</th><th>Net/day</th><th>Note</th></tr>`; Object.entries(card.hardware).forEach(([k,v]) => h += `<tr><td>${k}</td><td class="num">${v.revenue_usd_day ?? 'no estimate yet'}</td><td class="num">${v.net_profit_usd_day ?? '—'}</td><td class="dim">${v.assumption || ''}</td></tr>`); h += `</table>`; }
     o.innerHTML = h;
   });
 }
-function loadSignals() {
-  api('/api/signals').then(d => {
-    const o = document.getElementById('sigout'); o.innerHTML = '';
-    (d.signals || []).slice(0, 40).forEach(g => { o.innerHTML += `<div class="card"><b>${g.asset}</b> ${g.signal} ${dir(g.direction)} ${g.strength} <small class="dim">${g.version} · ${g.date}</small><br><small>${(g.drivers||[]).join(' · ')}</small><br><small class="dim">${(g.assumptions||[]).join(' · ')}</small></div>`; });
-  });
+function qubicNums(n, card) {
+  const em = n.daily_emission, price = (card.price_usd || 0);
+  return `<table><tr><th>Figure</th><th>Value</th><th>What it means</th></tr>`
+    + `<tr><td>Epoch</td><td class="num">${n.epoch ?? '—'} (${(n.epoch_progress*100).toFixed(1)}% through)</td><td>weeks since launch; each week = one emission round</td></tr>`
+    + `<tr><td>Burn rate</td><td class="num">${(n.burn_rate*100).toFixed(2)}%</td><td>share of the weekly trillion destroyed before circulation</td></tr>`
+    + `<tr><td>Net new supply</td><td class="num">${em ? Math.round(em).toLocaleString() + ' QUBIC/day' : '—'}</td><td>what actually reaches sellers' hands</td></tr>`
+    + `<tr><td>Net new supply</td><td class="num">${em && price ? '$' + Math.round(em*price).toLocaleString() + '/day' : '—'}</td><td>at current price — the daily sell-pressure ceiling</td></tr></table>`
+    + `<p class="dim">Source: rpc.qubic.org tick/epoch + documented halving schedule (${n.emission_source || ''}). Gross is always 1T/week; only the burn share changes.</p>`;
 }
-function loadBrief() {
-  const d = document.getElementById('briefdate').value.trim();
-  api('/api/brief' + (d ? '?date=' + d : '')).then(b => document.getElementById('briefout').textContent = b.brief || b.error);
+function xmrNums(n) {
+  const em = 432, price = null;
+  return `<table><tr><th>Figure</th><th>Value</th><th>What it means</th></tr>`
+    + `<tr><td>Daily drip</td><td class="num">432 XMR/day</td><td>0.6 per block × 720 blocks — fixed forever</td></tr>`
+    + `<tr><td>Network hashrate</td><td class="num">${n.network_hashrate ? (n.network_hashrate/1e9).toFixed(2) + ' GH/s' : '—'}</td><td>all CPUs mining worldwide, roughly</td></tr>`
+    + `<tr><td>Fee market</td><td class="num">${n.fee_per_kb ? n.fee_per_kb/1e12 + ' XMR/kB' : '—'}</td><td>what transactors pay; compare with miner revenue</td></tr>`
+    + `<tr><td>P2Pool miners</td><td class="num">${n.p2pool_miners ? Number(n.p2pool_miners).toLocaleString() : '—'}</td><td>decentralized miners — rises when mining pays</td></tr></table>`
+    + `<p class="dim">Sources: LocalMonero stats, xmrchain.net, p2pool.observer. Flow attribution impossible by design — Monero hides sender, receiver, amount.</p>`;
 }
+api('/api/signals').then(d => {
+  const o = document.getElementById('sigout'); o.innerHTML = '';
+  (d.signals || []).filter(g => CORE.includes(g.asset)).slice(0, 30).forEach(g => { o.innerHTML += `<div class="box"><b>${g.asset}</b> ${g.signal} ${dir(g.direction)} ${g.strength} <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span></div>`; });
+});
+api('/api/brief').then(b => document.getElementById('briefout').textContent = b.brief || b.error || 'no brief yet');
 function ask() {
   const q = document.getElementById('chatq'); if (!q.value.trim()) return;
   const log = document.getElementById('chatlog');
-  log.innerHTML += `<div class="msg you"><div class="who">you</div><div class="text">${q.value}</div></div>`;
+  log.innerHTML += `<div class="msg"><div class="who">you</div><div>${q.value}</div></div>`;
   const m = q.value; q.value = '';
   api('/api/chat', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({message: m})}).then(r => {
     document.getElementById('chatvia').textContent = 'via ' + (r.via || '?');
-    log.innerHTML += `<div class="msg"><div class="who">analyst</div><div class="text">${r.reply}</div></div>`;
-    log.scrollTop = log.scrollHeight;
+    log.innerHTML += `<div class="msg"><div class="who">analyst</div><div>${r.reply}</div></div>`;
   });
 }
-document.getElementById('chatq').addEventListener('keydown', e => { if (e.key === 'Enter') ask(); });
-loadSignals(); loadBrief();
+loadCoin();
 </script>
 </body>
 </html>

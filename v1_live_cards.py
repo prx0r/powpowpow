@@ -208,6 +208,12 @@ def generate_card(chain, price, network_data=None, electricity=0.10):
         if live.get('daily_emission_delta'):
             net['daily_emission'] = live['daily_emission_delta']
             net['emission_source'] = 'measured supply delta (chains/network_state.json)'
+        elif live.get('daily_emission'):
+            # engine-computed (e.g. Qubic epoch engine) beats static seeds
+            net['daily_emission'] = live['daily_emission']
+            net['emission_source'] = live.get(
+                'emission_source', 'chains/network_state.json')
+            net['as_of'] = live.get('as_of', net.get('as_of'))
     if network_data:
         # live overrides (collector-provided); explicit wins over seed
         for k in ('daily_emission', 'network_hashrate'):

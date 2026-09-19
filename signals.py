@@ -58,7 +58,16 @@ def read_states(date, chain='venue'):
 
 
 def load_emission(symbol):
-    """Daily native emission + price lookup. Returns (emission, price, sources)."""
+    """Daily native emission lookup. Order: live network_state (engines,
+    measured deltas) -> fundamentals -> researched schedules."""
+    try:
+        live = json.load(open(os.path.join(BASE_DIR, 'chains', 'network_state.json')))
+        entry = (live.get(symbol.upper(), {}) or {})
+        for key in ('daily_emission_delta', 'daily_emission'):
+            if entry.get(key):
+                return entry[key], f"network_state.json:{symbol}.{key}"
+    except OSError:
+        pass
     try:
         fund = json.load(open(os.path.join(BASE_DIR, 'chains', 'chain_fundamentals.json')))
     except OSError:
