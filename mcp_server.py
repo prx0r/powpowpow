@@ -154,5 +154,55 @@ def get_brief(date: str = "") -> dict:
         return {'error': f'no brief for {date}'}
 
 
+@mcp.tool()
+def get_price_history(symbol: str, days: int = 90) -> dict:
+    """Daily closes + volumes (CoinGecko 365d + venue mids). The outcome
+    variable for backtests and Seesaw lag analysis."""
+    sym = symbol.upper()
+    rows = [r for r in _rows('price_history')
+            if (r.get('symbol') or '').upper() == sym]
+    rows.sort(key=lambda r: r.get('date', ''))
+    if days and len(rows) > days:
+        rows = rows[-days:]
+    mids = [{'date': r.get('date'), 'mid_close': r.get('mid_close'),
+             'venue': r.get('venue')}
+            for r in _rows('daily_state')
+            if (r.get('symbol') or '').upper() == sym and r.get('mid_close')]
+    mids.sort(key=lambda r: r['date'] or '')
+    return {'symbol': sym, 'closes': rows, 'venue_mids': mids[-days:] if days else mids}
+
+
+@mcp.tool()
+def get_health() -> dict:
+    """Garden health: what's collecting, row counts, history depth,
+    service status. Start here when asking what we actually have."""
+    import glob as _glob
+    tables = {}
+    for t in sorted(os.listdir(os.path.join(BASE_DIR, 'warehouse', 'normalized'))):
+        n = 0
+        dates = set()
+        for f in _glob.glob(os.path.join(
+                BASE_DIR, 'warehouse', 'normalized', t,
+                'chain=*', 'date=*', 'hour=*.jsonl')):
+            with open(f) as fh:
+                for line in fh:
+                    n += 1
+                    try:
+                        r = json.loads(line)
+                        d = (r.get('exchange_time') if isinstance(
+                            r.get('exchange_time'), str) else None) or r.get('date') or ''
+                        if isinstance(d, str) and len(d) >= 10:
+                            dates.add(d[:10])
+                    except ValueError:
+                        pass
+        tables[t] = {'rows': n, 'dates': len(dates),
+                     'from': min(dates) if dates else None,
+                     'to': max(dates) if dates else None}
+    return {'tables': tables,
+            'generated_at': datetime.now(timezone.utc).isoformat(),
+            'notes': 'seed JSONL dropped after Parquet compact; '
+                     'parquet/ holds Jul-Aug-Sep firsts; venue daemons live'}
+
+
 if __name__ == '__main__':
     mcp.run()

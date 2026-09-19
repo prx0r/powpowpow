@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PowPowPow — compute economics, measured</title>
+<style>
+:root{--bg:#14161a;--bg2:#1c1f25;--bg3:#242832;--border:#2e333e;--text:#d7dce3;--dim:#8b93a1;--blue:#5aa9e6;--green:#3fd08c;--red:#e5605e;--yellow:#e6c15a;--accent:#7c6ff0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:14px/1.55 system-ui,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+header{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:5}
+.logo{font-weight:800;font-size:18px;letter-spacing:.5px}
+.logo span{color:var(--accent)}
+.tag{font-size:12px;color:var(--dim)}
+.health{margin-left:auto;font-size:12px;color:var(--dim);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}
+nav{display:flex;gap:4px;padding:10px 22px;border-bottom:1px solid var(--border);background:var(--bg2)}
+nav button{background:none;border:none;color:var(--dim);font-size:13px;padding:8px 14px;border-radius:6px;cursor:pointer}
+nav button.active,nav button:hover{color:var(--text);background:var(--bg3)}
+main{max-width:1100px;margin:0 auto;padding:22px}
+.tab{display:none}.tab.active{display:block}
+h2{font-size:16px;margin-bottom:12px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--dim);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:8px 10px;border-bottom:1px solid var(--border)}
+tr:hover td{background:var(--bg3)}
+.bull{color:var(--green)}.bear{color:var(--red)}.neut{color:var(--yellow)}
+select,input[type=text]{background:var(--bg3);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-size:13px}
+button.go{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:13px;cursor:pointer}
+.kv{display:grid;grid-template-columns:220px 1fr;gap:4px 12px;font-size:13px}
+.kv dt{color:var(--dim)}.kv dd{margin:0}
+pre.brief{white-space:pre-wrap;font:13px/1.6 ui-monospace,monospace;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:18px}
+#chatlog{max-height:420px;overflow-y:auto;margin-bottom:12px}
+.msg{margin-bottom:10px}.msg .who{font-size:11px;color:var(--dim)}
+.msg .text{background:var(--bg3);border-radius:8px;padding:8px 12px;margin-top:3px;white-space:pre-wrap}
+.msg.you .text{background:#2a2f55}
+.row{display:flex;gap:8px;margin-bottom:14px}
+.row input{flex:1}
+small.dim{color:var(--dim)}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">POW<span>POW</span>POW</div>
+<div class="tag">compute economics, measured — not predicted</div>
+<div class="health"><span class="dot" id="hdot"></span><span id="htext">connecting…</span></div>
+</header>
+<nav>
+<button data-t="screen" class="active">Screener</button>
+<button data-t="coin">Coin</button>
+<button data-t="signals">Signals</button>
+<button data-t="brief">Daily brief</button>
+<button data-t="chat">Analyst chat</button>
+</nav>
+<main>
+<section class="tab active" id="t-screen">
+<h2>Fundamental screener <small class="dim">burden = one day of emission vs resting book</small></h2>
+<div class="card"><table id="screent"><thead><tr><th>Asset</th><th>Venues</th><th>Price</th><th>Emission $/d</th><th>Burden</th><th>Spread</th><th>Signal</th></tr></thead><tbody></tbody></table></div>
+</section>
+<section class="tab" id="t-coin">
+<h2>Coin dossier</h2>
+<div class="row"><select id="coinsel"></select><button class="go" onclick="loadCoin()">Open</button></div>
+<div id="coinout"></div>
+</section>
+<section class="tab" id="t-signals">
+<h2>Signal feed <small class="dim">transformations with provenance, versioned</small></h2>
+<div id="sigout"></div>
+</section>
+<section class="tab" id="t-brief">
+<h2>Daily brief</h2>
+<div class="row"><input id="briefdate" type="text" placeholder="YYYY-MM-DD (blank = latest)"><button class="go" onclick="loadBrief()">Load</button></div>
+<pre class="brief" id="briefout">loading…</pre>
+</section>
+<section class="tab" id="t-chat">
+<h2>Analyst chat <small class="dim" id="chatvia"></small></h2>
+<div id="chatlog"></div>
+<div class="row"><input id="chatq" type="text" placeholder="Ask about XMR, QUBIC, top signals…"><button class="go" onclick="ask()">Ask</button></div>
+</section>
+</main>
+<script>
+const Q = new URLSearchParams(location.search);
+const TOK = Q.get('token') || '';
+const api = (p, o={}) => fetch(p + (p.includes('?')?'&':'?') + 'token=' + TOK, o).then(r => r.json());
+const dir = d => d === 'bullish' ? '<span class="bull">bullish</span>' : d === 'bearish' ? '<span class="bear">bearish</span>' : '<span class="neut">neutral</span>';
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('nav button').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); document.getElementById('t-' + b.dataset.t).classList.add('active');
+});
+api('/api/health').then(h => { document.getElementById('htext').textContent = h.ok ? 'live garden' : 'degraded'; })
+  .catch(() => { document.getElementById('htext').textContent = 'offline'; document.getElementById('hdot').style.background = 'var(--red)'; });
+api('/api/factors').then(d => {
+  const tb = document.querySelector('#screent tbody');
+  Object.values(d.factors || {}).sort((a,b) => (b.burden_vs_book||0) - (a.burden_vs_book||0)).forEach(f => {
+    tb.innerHTML += `<tr><td><b>${f.symbol}</b></td><td>${(f.venues||[]).join(',')}</td><td>${f.price_usd ?? '—'}</td><td>${f.issuance_usd_24h ? '$'+Math.round(f.issuance_usd_24h).toLocaleString() : '—'}</td><td>${f.burden_vs_book ?? '—'}</td><td>${f.spread_bps_median ?? '—'}</td><td>${dir(f.miner_pressure)}${f.miner_pressure_strength ? ' '+f.miner_pressure_strength : ''}</td></tr>`;
+  });
+  const sel = document.getElementById('coinsel');
+  Object.keys(d.factors || {}).sort().forEach(s => sel.innerHTML += `<option${s==='XMR'?' selected':''}>${s}</option>`);
+});
+function loadCoin() {
+  const s = document.getElementById('coinsel').value, o = document.getElementById('coinout');
+  o.innerHTML = 'loading…';
+  Promise.all([api('/api/state?symbol=' + s), api('/api/signals?symbol=' + s), api('/api/cards'), api('/api/chain?symbol=' + s), api('/api/page?symbol=' + s)]).then(([st, sg, cd, ch, pg]) => {
+    const card = (cd.cards || {})[s] || {};
+    let h = `<div class="card"><h2>${s}</h2><div class="kv">`;
+    if (ch.network) Object.entries(ch.network).slice(0, 8).forEach(([k,v]) => h += `<dt>${k}</dt><dd>${v}</dd>`);
+    h += `</div></div>`;
+    (sg.signals || []).slice(0, 6).forEach(g => { h += `<div class="card"><b>${g.signal}</b> ${dir(g.direction)} ${g.strength} <small class="dim">${g.version} · ${g.date}</small><br><small>${(g.drivers||[]).join(' · ')}</small></div>`; });
+    (st.states || []).slice(-4).forEach(t => { h += `<div class="card"><small class="dim">${t.venue} · ${t.date}</small><br>mid ${t.mid_close} · spread ${t.spread_bps_median} · trades ${t.n_trades}</div>`; });
+    if (card.hardware) { h += `<div class="card"><b>Mining routes</b><table><thead><tr><th>HW</th><th>Rev/d</th><th>Net/d</th><th>Note</th></tr></thead><tbody>`; Object.entries(card.hardware).forEach(([k,v]) => h += `<tr><td>${k}</td><td>${v.revenue_usd_day ?? 'no estimate'}</td><td>${v.net_profit_usd_day ?? '—'}</td><td><small class="dim">${v.assumption || ''}</small></td></tr>`); h += `</tbody></table></div>`; }
+    if (pg.page) h += `<div class="card"><pre class="brief">${pg.page.slice(0, 2500)}</pre></div>`;
+    o.innerHTML = h;
+  });
+}
+function loadSignals() {
+  api('/api/signals').then(d => {
+    const o = document.getElementById('sigout'); o.innerHTML = '';
+    (d.signals || []).slice(0, 40).forEach(g => { o.innerHTML += `<div class="card"><b>${g.asset}</b> ${g.signal} ${dir(g.direction)} ${g.strength} <small class="dim">${g.version} · ${g.date}</small><br><small>${(g.drivers||[]).join(' · ')}</small><br><small class="dim">${(g.assumptions||[]).join(' · ')}</small></div>`; });
+  });
+}
+function loadBrief() {
+  const d = document.getElementById('briefdate').value.trim();
+  api('/api/brief' + (d ? '?date=' + d : '')).then(b => document.getElementById('briefout').textContent = b.brief || b.error);
+}
+function ask() {
+  const q = document.getElementById('chatq'); if (!q.value.trim()) return;
+  const log = document.getElementById('chatlog');
+  log.innerHTML += `<div class="msg you"><div class="who">you</div><div class="text">${q.value}</div></div>`;
+  const m = q.value; q.value = '';
+  api('/api/chat', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({message: m})}).then(r => {
+    document.getElementById('chatvia').textContent = 'via ' + (r.via || '?');
+    log.innerHTML += `<div class="msg"><div class="who">analyst</div><div class="text">${r.reply}</div></div>`;
+    log.scrollTop = log.scrollHeight;
+  });
+}
+document.getElementById('chatq').addEventListener('keydown', e => { if (e.key === 'Enter') ask(); });
+loadSignals(); loadBrief();
+</script>
+</body>
+</html>

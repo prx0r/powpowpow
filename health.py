@@ -65,7 +65,7 @@ def check_api_health():
     print(f"\n  API Health:")
     try:
         import requests
-        resp = requests.get('http://localhost:5000/api/v1/health', timeout=2)
+        resp = requests.get('http://localhost:5000/v1/health', timeout=2)
         if resp.status_code == 200:
             data = resp.json()
             print(f"    Status: {data.get('status')}")

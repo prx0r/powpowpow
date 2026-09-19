@@ -173,9 +173,12 @@ def book_stats(bids, asks):
 
 
 def poll_coinex_book(sym, market, poll_id, receive_time):
-    data = fetch_json('https://api.coinex.com/v2/spot/depth',
-                      params={'market': market, 'limit': 20, 'interval': '0'},
-                      source_id='coinex-depth', chain_id='venue')
+    res = fetch_json('https://api.coinex.com/v2/spot/depth',
+                     params={'market': market, 'limit': 20, 'interval': '0'},
+                     source_id='coinex-depth', chain_id='venue',
+                     event_type='depth_snapshot', return_result=True) or {}
+    data = res.get('parsed')
+    obs_id = res.get('observation_id')
     if not data or data.get('code') != 0:
         return False
     d = data.get('data', {}) or {}
@@ -189,7 +192,8 @@ def poll_coinex_book(sym, market, poll_id, receive_time):
         'bid_notional_20': bid_n, 'ask_notional_20': ask_n,
         'bids': bids[:20], 'asks': asks[:20],
         'snapshot_kind': 'rest_poll', 'source_role': 'raw_venue',
-    })
+        'raw_event_id': obs_id,
+    }, raw_event_id=obs_id)
     return True
 
 
@@ -214,9 +218,12 @@ def poll_coinex_ticker(sym, market, poll_id, receive_time):
 
 
 def poll_coinex_deals(sym, market, poll_id, state):
-    data = fetch_json('https://api.coinex.com/v2/spot/deals',
-                      params={'market': market, 'limit': 100},
-                      source_id='coinex-deals', chain_id='venue')
+    res = fetch_json('https://api.coinex.com/v2/spot/deals',
+                     params={'market': market, 'limit': 100},
+                     source_id='coinex-deals', chain_id='venue',
+                     event_type='trade', return_result=True) or {}
+    data = res.get('parsed')
+    obs_id = res.get('observation_id')
     if not data or data.get('code') != 0:
         return 0
     deals = data.get('data', []) or []
@@ -237,7 +244,8 @@ def poll_coinex_deals(sym, market, poll_id, state):
                 'trade_id': str(did), 'price': d.get('price'),
                 'quantity': d.get('amount'), 'aggressor_side': d.get('side'),
                 'exchange_time_ms': d.get('created_at'),
-            })
+                'raw_event_id': obs_id,
+            }, raw_event_id=obs_id)
             new += 1
     if last_id and deals and (max_id - last_id) > (new + 5):
         # ids jumped beyond what one page explains → likely missed trades
@@ -252,9 +260,12 @@ def poll_coinex_deals(sym, market, poll_id, state):
 
 
 def poll_mexc_book(sym, pair, poll_id, receive_time):
-    data = fetch_json('https://api.mexc.com/api/v3/depth',
-                      params={'symbol': pair, 'limit': 20},
-                      source_id='mexc-book', chain_id='venue')
+    res = fetch_json('https://api.mexc.com/api/v3/depth',
+                     params={'symbol': pair, 'limit': 20},
+                     source_id='mexc-book', chain_id='venue',
+                     event_type='depth_snapshot', return_result=True) or {}
+    data = res.get('parsed')
+    obs_id = res.get('observation_id')
     if not isinstance(data, dict) or 'bids' not in data:
         return False
     bids, asks = data.get('bids', []), data.get('asks', [])
@@ -267,7 +278,8 @@ def poll_mexc_book(sym, pair, poll_id, receive_time):
         'bids': bids[:20], 'asks': asks[:20],
         'venue_update_id': data.get('lastUpdateId'),
         'snapshot_kind': 'rest_poll', 'source_role': 'raw_venue',
-    })
+        'raw_event_id': obs_id,
+    }, raw_event_id=obs_id)
     return True
 
 
@@ -291,9 +303,12 @@ def poll_mexc_ticker(sym, pair, poll_id, receive_time):
 
 
 def poll_mexc_trades(sym, pair, poll_id, state):
-    data = fetch_json('https://api.mexc.com/api/v3/trades',
-                      params={'symbol': pair, 'limit': 100},
-                      source_id='mexc-trades', chain_id='venue')
+    res = fetch_json('https://api.mexc.com/api/v3/trades',
+                     params={'symbol': pair, 'limit': 100},
+                     source_id='mexc-trades', chain_id='venue',
+                     event_type='trade', return_result=True) or {}
+    data = res.get('parsed')
+    obs_id = res.get('observation_id')
     if not isinstance(data, list):
         return 0
     key = f'mexc:{sym}'
@@ -319,16 +334,20 @@ def poll_mexc_trades(sym, pair, poll_id, state):
                     'quantity': t.get('qty'), 'aggressor_side': side,
                     'exchange_time_ms': t.get('time'),
                     'venue_best_match': t.get('isBestMatch'),
-                })
+                    'raw_event_id': obs_id,
+                }, raw_event_id=obs_id)
                 new += 1
     state['last_ids'][key] = max_id if max_id != '' else last_id
     return new
 
 
 def poll_gate_book(sym, pair, poll_id, receive_time):
-    data = fetch_json('https://api.gateio.ws/api/v4/spot/order_book',
-                      params={'currency_pair': pair, 'limit': 20},
-                      source_id='gate-book', chain_id='venue')
+    res = fetch_json('https://api.gateio.ws/api/v4/spot/order_book',
+                     params={'currency_pair': pair, 'limit': 20},
+                     source_id='gate-book', chain_id='venue',
+                     event_type='depth_snapshot', return_result=True) or {}
+    data = res.get('parsed')
+    obs_id = res.get('observation_id')
     if not isinstance(data, dict) or 'bids' not in data:
         return False
     bids, asks = data.get('bids', []), data.get('asks', [])
@@ -341,7 +360,8 @@ def poll_gate_book(sym, pair, poll_id, receive_time):
         'bids': bids[:20], 'asks': asks[:20],
         'venue_update_id': data.get('update'), 'venue_current': data.get('current'),
         'snapshot_kind': 'rest_poll', 'source_role': 'raw_venue',
-    })
+        'raw_event_id': obs_id,
+    }, raw_event_id=obs_id)
     return True
 
 
@@ -364,9 +384,12 @@ def poll_gate_ticker(sym, pair, poll_id, receive_time):
 
 
 def poll_gate_trades(sym, pair, poll_id, state):
-    data = fetch_json('https://api.gateio.ws/api/v4/spot/trades',
-                      params={'currency_pair': pair, 'limit': 100},
-                      source_id='gate-trades', chain_id='venue')
+    res = fetch_json('https://api.gateio.ws/api/v4/spot/trades',
+                     params={'currency_pair': pair, 'limit': 100},
+                     source_id='gate-trades', chain_id='venue',
+                     event_type='trade', return_result=True) or {}
+    data = res.get('parsed')
+    obs_id = res.get('observation_id')
     if not isinstance(data, list):
         return 0
     key = f'gate:{sym}'
@@ -389,7 +412,8 @@ def poll_gate_trades(sym, pair, poll_id, state):
                     'exchange_time': t.get('create_time'),
                     'exchange_time_ms': t.get('create_time_ms'),
                     'venue_sequence_id': t.get('sequence_id'),
-                })
+                    'raw_event_id': obs_id,
+                }, raw_event_id=obs_id)
                 new += 1
     if last_id == '':
         state['last_ids'][key] = max_id  # baseline, no backfill

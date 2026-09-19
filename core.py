@@ -83,15 +83,33 @@ def fetch_json(
     source_id: str = 'unknown',
     chain_id: str = 'unknown',
     archive: bool = True,
+    transport: str = 'rest',
+    source_role: str = 'raw',
+    event_type: Optional[str] = None,
+    return_result: bool = False,
 ) -> Optional[Any]:
     """
     Fetch JSON with automatic raw archival.
-    
-    Every successful response is stored before parsing.
+
+    Every response (success, HTTP error, exception) is archived BEFORE
+    parsing when archive=True. Returns the parsed payload by default;
+    with return_result=True returns a FetchResult dict carrying the
+    observation lineage (observation_id, timestamps, hash) so callers
+    can thread raw_event_id into normalized rows.
     """
     observed_at = utcnow()
     request_started = datetime.now(timezone.utc)
-    
+
+    def _result(parsed, obs):
+        if return_result:
+            return {'parsed': parsed, 'observation_id': obs['observation_id'],
+                    'observed_at': obs['observed_at'],
+                    'received_at': obs['response_received'],
+                    'payload_hash': obs['payload_hash'],
+                    'source_id': source_id, 'transport': transport,
+                    'http_status': obs['http_status']}
+        return parsed
+
     try:
         resp = requests.get(
             url,
@@ -102,18 +120,19 @@ def fetch_json(
             },
             timeout=timeout
         )
-        
+
         response_received = utcnow()
-        
+
         if resp.status_code == 200:
             try:
                 parsed = resp.json()
             except:
                 parsed = resp.text
-            
+
             # Auto-archive raw response
+            obs = None
             if archive:
-                _archive_raw(
+                obs = _archive_raw(
                     chain_id=chain_id,
                     source_id=source_id,
                     endpoint=url,
@@ -124,10 +143,13 @@ def fetch_json(
                     raw_body=resp.text,
                     parsed_payload=parsed,
                     request_params=params,
+                    transport=transport,
+                    source_role=source_role,
+                    event_type=event_type,
                 )
-            
-            return parsed
-        
+
+            return _result(parsed, obs)
+
         # Archive failures too
         if archive:
             _archive_raw(
@@ -142,10 +164,16 @@ def fetch_json(
                 parsed_payload=None,
                 request_params=params,
                 quality_flags=['http_error'],
+                transport=transport,
+                source_role=source_role,
+                event_type=event_type,
             )
-        
-        return None
-    
+
+        return _result(None, {'observation_id': None, 'observed_at': observed_at,
+                              'response_received': response_received,
+                              'payload_hash': None, 'http_status': resp.status_code}) \
+            if return_result else None
+
     except Exception as e:
         # Archive errors
         if archive:
@@ -161,8 +189,14 @@ def fetch_json(
                 parsed_payload=None,
                 request_params=params,
                 quality_flags=['exception', str(type(e).__name__)],
+                transport=transport,
+                source_role=source_role,
+                event_type=event_type,
             )
-        return None
+        return _result(None, {'observation_id': None, 'observed_at': observed_at,
+                              'response_received': utcnow(),
+                              'payload_hash': None, 'http_status': 0}) \
+            if return_result else None
 
 def _archive_raw(
     chain_id: str,
@@ -176,17 +210,39 @@ def _archive_raw(
     parsed_payload: Any,
     request_params: Optional[Dict] = None,
     quality_flags: Optional[list] = None,
+    transport: str = 'rest',
+    source_role: str = 'raw',
+    event_type: Optional[str] = None,
 ):
-    """Archive raw response to append-only storage."""
+    """Archive raw response to append-only storage.
+
+    Lossless: exact response bytes are always preserved. Bodies over
+    256KB are zlib-compressed (raw_encoding='zlib-base64'); the
+    payload_hash is ALWAYS over the exact original bytes, so the stored
+    artifact reproduces and validates the hashed object. Writes are
+    atomic (tmp + rename).
+    """
+    import zlib
+    import base64
     payload_hash = canonical_hash(raw_body)
     event_id = raw_event_id(source_id, endpoint, observed_at, payload_hash)
-    
+
+    raw_bytes = raw_body.encode('utf-8') if isinstance(raw_body, str) else bytes(raw_body)
+    if len(raw_bytes) > 262144:
+        stored_payload = base64.b64encode(zlib.compress(raw_bytes, 6)).decode('ascii')
+        raw_encoding = 'zlib-base64'
+    else:
+        stored_payload = raw_body
+        raw_encoding = 'utf-8'
+
     observation = {
         'observation_id': event_id,
         'network_id': chain_id,
         'source_id': source_id,
-        'source_type': 'rest',
-        'source_role': 'raw',
+        'transport': transport,
+        'source_type': transport,  # legacy alias, same value
+        'source_role': source_role,
+        'event_type': event_type,
         'endpoint': endpoint,
         'request_params': request_params or {},
         'event_time': event_time,
@@ -194,7 +250,9 @@ def _archive_raw(
         'response_received': response_received,
         'http_status': http_status,
         'raw_content_type': 'application/json',
-        'raw_payload': raw_body[:10000],  # Truncate very large
+        'raw_payload': stored_payload,
+        'raw_encoding': raw_encoding,
+        'raw_bytes': len(raw_bytes),
         'parsed_payload': parsed_payload,
         'payload_hash': payload_hash,
         'source_version': None,
@@ -203,17 +261,20 @@ def _archive_raw(
         'quality_flags': quality_flags or [],
     }
     
-    # Append to chain directory
+    # Append to chain directory (atomic: tmp + rename, so ENOSPC or
+    # kill can never leave a half-written observation behind).
     chain_dir = os.path.join(RAW_DIR, chain_id)
     os.makedirs(chain_dir, exist_ok=True)
-    
+
     filename = f"{event_id}.json"
     filepath = os.path.join(chain_dir, filename)
-    
-    with open(filepath, 'w') as f:
+    tmp_path = filepath + '.tmp'
+
+    with open(tmp_path, 'w') as f:
         json.dump(observation, f, indent=2, default=str)
-    
-    return filepath
+    os.replace(tmp_path, filepath)
+
+    return {'filepath': filepath, **observation}
 
 # ============================================================
 # STORE NORMALIZED WITH LINEAGE
