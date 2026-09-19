@@ -39,19 +39,23 @@ from core import row_date, store_normalized  # noqa: E402
 CALCULATION_VERSION = "daily-state-v1"
 
 
-def read_table(table, chain):
-    rows = []
+def iter_table(table, chain, date):
+    """Stream rows for one date. Prefilters on the raw line (exchange/
+    receive timestamps are ISO strings containing the date) so GB-scale
+    tables never fully load into RAM."""
     for f in glob.glob(os.path.join(
             BASE_DIR, 'warehouse', 'normalized', table,
             f'chain={chain}', 'date=*', 'hour=*.jsonl')):
         with open(f) as fh:
             for line in fh:
-                if line.strip():
-                    try:
-                        rows.append(json.loads(line))
-                    except json.JSONDecodeError:
-                        continue
-    return rows
+                if date not in line[:400]:
+                    continue
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if row_date(r) == date:
+                    yield r
 
 
 def fnum(x):
@@ -75,71 +79,106 @@ def mean(xs):
     return sum(xs) / len(xs) if xs else None
 
 
-def build_day(chain, date):
-    snaps = [r for r in read_table('orderbook_snapshot', chain)
-             if row_date(r) == date]
-    ticks = [r for r in read_table('ticker', chain)
-             if row_date(r) == date]
-    trades = [r for r in read_table('trade', chain)
-              if row_date(r) == date]
-    gaps = [r for r in read_table('gap_event', chain)
-            if row_date(r) == date]
+def new_acc():
+    return {'n_sn': 0, 'open_t': None, 'open_m': None, 'close_t': None,
+            'close_m': None, 'hi': None, 'lo': None, 'spreads': [],
+            'bid_sum': 0.0, 'bid_n': 0, 'ask_sum': 0.0, 'ask_n': 0,
+            'n_tk': 0, 'last_tick': {}, 'last_tick_t': '',
+            'n_tr': 0, 'vol': 0.0, 'buy': 0.0, 'sell': 0.0,
+            'cov_first': None, 'cov_last': None, 'polls': set()}
 
-    by_market = defaultdict(lambda: {'snaps': [], 'ticks': [], 'trades': []})
-    for r in snaps:
-        by_market[(r.get('venue'), r.get('symbol'))]['snaps'].append(r)
-    for r in ticks:
+
+def build_day(chain, date):
+    acc = {}
+    gaps = {}
+    for r in iter_table('orderbook_snapshot', chain, date):
+        key = (r.get('venue'), r.get('symbol'))
+        if not key[0] or not key[1]:
+            continue
+        a = acc.setdefault(key, new_acc())
+        t = r.get('exchange_time') or r.get('receive_time') or ''
+        m = fnum(r.get('mid'))
+        a['n_sn'] += 1
+        if m is not None:
+            if a['open_t'] is None or t < a['open_t']:
+                a['open_t'], a['open_m'] = t, m
+            if a['close_t'] is None or t >= a['close_t']:
+                a['close_t'], a['close_m'] = t, m
+            a['hi'] = m if a['hi'] is None or m > a['hi'] else a['hi']
+            a['lo'] = m if a['lo'] is None or m < a['lo'] else a['lo']
+        sp = fnum(r.get('spread_bps'))
+        if sp is not None:
+            a['spreads'].append(sp)
+        b = fnum(r.get('bid_notional_20'))
+        if b is not None:
+            a['bid_sum'] += b
+            a['bid_n'] += 1
+        k = fnum(r.get('ask_notional_20'))
+        if k is not None:
+            a['ask_sum'] += k
+            a['ask_n'] += 1
+        rt = r.get('receive_time') or ''
+        if a['cov_first'] is None or rt < a['cov_first']:
+            a['cov_first'] = rt
+        if a['cov_last'] is None or rt > a['cov_last']:
+            a['cov_last'] = rt
+        if r.get('poll_id') is not None:
+            a['polls'].add(r['poll_id'])
+    for r in iter_table('ticker', chain, date):
         if isinstance(r.get('tickers'), list):
-            continue  # safetrade ws tick bundle handled below
-        by_market[(r.get('venue'), r.get('symbol'))]['ticks'].append(r)
-    for r in trades:
-        by_market[(r.get('venue'), r.get('symbol'))]['trades'].append(r)
+            continue  # safetrade ws tick bundle
+        key = (r.get('venue'), r.get('symbol'))
+        if not key[0] or not key[1]:
+            continue
+        a = acc.setdefault(key, new_acc())
+        a['n_tk'] += 1
+        t = r.get('receive_time') or ''
+        if t >= a['last_tick_t']:
+            a['last_tick_t'] = t
+            a['last_tick'] = r
+    for r in iter_table('trade', chain, date):
+        key = (r.get('venue'), r.get('symbol'))
+        if not key[0] or not key[1]:
+            continue
+        a = acc.setdefault(key, new_acc())
+        a['n_tr'] += 1
+        q, p = fnum(r.get('quantity')), fnum(r.get('price'))
+        if q is not None and p is not None:
+            n = q * p
+            a['vol'] += n
+            side = (r.get('aggressor_side') or '').lower()
+            if side == 'buy':
+                a['buy'] += n
+            elif side == 'sell':
+                a['sell'] += n
+    for r in iter_table('gap_event', chain, date):
+        key = (r.get('venue'), r.get('symbol'))
+        gaps[key] = gaps.get(key, 0) + 1
 
     states = []
-    for (venue, symbol), g in sorted(by_market.items()):
-        if not venue or not symbol:
-            continue
-        sn = sorted(g['snaps'], key=lambda r: r.get('receive_time', ''))
-        mids = [fnum(r.get('mid')) for r in sn]
-        mids_nn = [m for m in mids if m is not None]
-        spreads = [fnum(r.get('spread_bps')) for r in sn]
-        tks = sorted(g['ticks'], key=lambda r: r.get('receive_time', ''))
-        trs = g['trades']
-        vols, buys, sells = [], 0.0, 0.0
-        for t in trs:
-            q = fnum(t.get('quantity'))
-            p = fnum(t.get('price'))
-            if q is not None and p is not None:
-                vols.append(q * p)
-                side = (t.get('aggressor_side') or '').lower()
-                if side == 'buy':
-                    buys += q * p
-                elif side == 'sell':
-                    sells += q * p
-        last_tick = tks[-1] if tks else {}
+    for (venue, symbol), a in sorted(acc.items()):
         state = {
             'venue': venue, 'symbol': symbol, 'date': date,
             'calculation_version': CALCULATION_VERSION,
-            'n_snapshots': len(sn),
-            'n_tickers': len(tks),
-            'n_trades': len(trs),
-            'mid_open': mids_nn[0] if mids_nn else None,
-            'mid_high': max(mids_nn) if mids_nn else None,
-            'mid_low': min(mids_nn) if mids_nn else None,
-            'mid_close': mids_nn[-1] if mids_nn else None,
-            'spread_bps_median': median(spreads),
-            'bid_notional_20_mean': mean([fnum(r.get('bid_notional_20')) for r in sn]),
-            'ask_notional_20_mean': mean([fnum(r.get('ask_notional_20')) for r in sn]),
-            'trade_notional_sum': sum(vols) if vols else 0.0,
-            'trade_buy_notional': buys,
-            'trade_sell_notional': sells,
-            'last_price': fnum(last_tick.get('last')),
-            'day_volume': fnum(last_tick.get('volume')),
-            'coverage_first': sn[0].get('receive_time') if sn else None,
-            'coverage_last': sn[-1].get('receive_time') if sn else None,
-            'poll_ids': sorted({r.get('poll_id') for r in sn if r.get('poll_id') is not None}),
-            'gap_events': sum(1 for e in gaps
-                              if e.get('venue') == venue and e.get('symbol') == symbol),
+            'n_snapshots': a['n_sn'],
+            'n_tickers': a['n_tk'],
+            'n_trades': a['n_tr'],
+            'mid_open': a['open_m'],
+            'mid_high': a['hi'],
+            'mid_low': a['lo'],
+            'mid_close': a['close_m'],
+            'spread_bps_median': median(a['spreads']),
+            'bid_notional_20_mean': (a['bid_sum'] / a['bid_n']) if a['bid_n'] else None,
+            'ask_notional_20_mean': (a['ask_sum'] / a['ask_n']) if a['ask_n'] else None,
+            'trade_notional_sum': a['vol'],
+            'trade_buy_notional': a['buy'],
+            'trade_sell_notional': a['sell'],
+            'last_price': fnum(a['last_tick'].get('last')),
+            'day_volume': fnum(a['last_tick'].get('volume')),
+            'coverage_first': a['cov_first'],
+            'coverage_last': a['cov_last'],
+            'poll_ids': sorted(a['polls']),
+            'gap_events': gaps.get((venue, symbol), 0),
             'revision': 0,
         }
         states.append(state)
