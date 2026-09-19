@@ -10,10 +10,11 @@ import sys
 from datetime import datetime
 import pandas as pd
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
-CHAINS_DIR = '/home/box/powpowpow/chains'
-EXPORT_DIR = '/home/box/powpowpow/exports'
+CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
+EXPORT_DIR = os.path.join(BASE_DIR, 'exports')
 os.makedirs(EXPORT_DIR, exist_ok=True)
 
 def load_json(filename):

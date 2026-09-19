@@ -1,3 +1,4 @@
+import os
 """
 PowPowPow — Universal Chain Schema
 Normalized schema for all chain data regardless of source.

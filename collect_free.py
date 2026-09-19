@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 import sys
 
-DATA_DIR = '/home/box/powpowpow/historical_data'
+DATA_DIR = os.path.join(BASE_DIR, 'historical_data')
 os.makedirs(DATA_DIR, exist_ok=True)
 
 # Free APIs (no key required)

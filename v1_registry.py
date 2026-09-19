@@ -1,3 +1,4 @@
+import os
 """
 V1 Registry — Single source of truth.
 8 systems with strict miner telemetry.

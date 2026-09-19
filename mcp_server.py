@@ -8,7 +8,8 @@ import os
 import sys
 from datetime import datetime
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
 # MCP Server Implementation
 # This exposes PowPowPow data as tools for AI agents
@@ -119,7 +120,7 @@ def get_chain_status(symbol):
         return {"error": f"Unknown chain: {symbol}"}
     
     # Load data
-    data_file = f'/home/box/powpowpow/chains/{symbol.lower()}/{symbol.lower()}_data.json'
+    data_file = f'{BASE_DIR}/chains/{symbol.lower()}/{symbol.lower()}_data.json'
     data = {}
     if os.path.exists(data_file):
         with open(data_file) as f:
@@ -140,7 +141,7 @@ def get_mining_profitability(chain, hardware, electricity_cost=0.10):
     from v1_live_cards import generate_card
     
     # Load price
-    data_file = f'/home/box/powpowpow/chains/{chain.lower()}/{chain.lower()}_data.json'
+    data_file = f'{BASE_DIR}/chains/{chain.lower()}/{chain.lower()}_data.json'
     data = {}
     if os.path.exists(data_file):
         with open(data_file) as f:
@@ -167,7 +168,7 @@ def get_best_mining_option(hardware, electricity_cost=0.10):
     
     # Load all prices
     for chain in ['PRL', 'XMR', 'KAS', 'QUAN']:
-        data_file = f'/home/box/powpowpow/chains/{chain.lower()}/{chain.lower()}_data.json'
+        data_file = f'{BASE_DIR}/chains/{chain.lower()}/{chain.lower()}_data.json'
         data = {}
         if os.path.exists(data_file):
             with open(data_file) as f:
@@ -198,7 +199,7 @@ def get_compute_market_prices(gpu_class=None):
     import json
     
     # Load compute benchmark data
-    data_file = '/home/box/powpowpow/chains/benchmarks/compute_benchmarks.json'
+    data_file = os.path.join(BASE_DIR, 'chains', 'benchmarks', 'compute_benchmarks.json')
     if os.path.exists(data_file):
         with open(data_file) as f:
             data = json.load(f)
@@ -209,7 +210,7 @@ def get_compute_market_prices(gpu_class=None):
 def get_pressure_metrics(symbol):
     import json
     
-    factors_file = '/home/box/powpowpow/chains/factors/cross_chain_factors.json'
+    factors_file = os.path.join(BASE_DIR, 'chains', 'factors', 'cross_chain_factors.json')
     if os.path.exists(factors_file):
         with open(factors_file) as f:
             factors = json.load(f)
@@ -223,7 +224,7 @@ def compare_chains(chains, hardware=None):
     results = []
     
     for chain in chains:
-        data_file = f'/home/box/powpowpow/chains/{chain.lower()}/{chain.lower()}_data.json'
+        data_file = f'{BASE_DIR}/chains/{chain.lower()}/{chain.lower()}_data.json'
         data = {}
         if os.path.exists(data_file):
             with open(data_file) as f:
@@ -245,7 +246,7 @@ def compare_chains(chains, hardware=None):
 def get_resource_premium(chain):
     import json
     
-    econ_file = '/home/box/powpowpow/chains/economics/miner_economics.json'
+    econ_file = os.path.join(BASE_DIR, 'chains', 'economics', 'miner_economics.json')
     if os.path.exists(econ_file):
         with open(econ_file) as f:
             economics = json.load(f)
@@ -258,7 +259,7 @@ def get_all_live_cards():
     
     cards = {}
     for chain in ['PRL', 'QUBIC', 'QUAN', 'XMR', 'KAS']:
-        data_file = f'/home/box/powpowpow/chains/{chain.lower()}/{chain.lower()}_data.json'
+        data_file = f'{BASE_DIR}/chains/{chain.lower()}/{chain.lower()}_data.json'
         data = {}
         if os.path.exists(data_file):
             with open(data_file) as f:

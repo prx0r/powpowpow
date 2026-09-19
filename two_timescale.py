@@ -10,7 +10,8 @@ import numpy as np
 from datetime import datetime, timedelta
 from collections import defaultdict
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 from pressure import PressureEquation
 
 class TwoTimescaleModel:

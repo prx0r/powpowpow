@@ -7,13 +7,13 @@ from flask import Flask, jsonify, request
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
 app = Flask(__name__)
 
-BASE_DIR = '/home/box/powpowpow'
 CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 
 # Load all data
@@ -38,15 +38,15 @@ EXCHANGE_DATA = {
 FACTORS = load_json('factors/cross_chain_factors.json')
 ECONOMICS = load_json('economics/miner_economics.json')
 
-# V1 Registry
-from v1_registry import get_v1_registry
-REGISTRY = get_v1_registry()
+# V1 Registry — single source of truth for the 8-system V1 universe
+from v1_registry import get_v1
+REGISTRY = get_v1()
 
 def success(data, meta=None):
     return jsonify({
         'status': 'ok',
         'data': data,
-        'meta': meta or {'timestamp': datetime.now().isoformat()}
+        'meta': meta or {'timestamp': datetime.now(timezone.utc).isoformat()}
     })
 
 def error(message, code=400):

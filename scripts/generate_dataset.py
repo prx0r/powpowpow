@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
-CHAINS_DIR = '/home/box/powpowpow/chains'
+CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 DATA_DIR = '/home/box/safetrade/tracked'
 
 def load_coin_data(coin):

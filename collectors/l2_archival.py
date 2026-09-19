@@ -1,189 +1,378 @@
 """
-SafeTrade L2 Archival System
-Stores every depth update and trade for backtesting.
+SafeTrade L2 Archival — autonomous gap-safe collector (STAGED).
+
+Status: code-complete and replay-verified, NOT YET RUNNING against the
+live venue: safe.trade REST + WS return HTTP 403 from this box's egress
+(geo-block, verified 2026-09-19 direct and via agent-vault proxy, both
+hosts). The moment egress works — or from any unblocked box — run:
+
+    python3 collectors/l2_archival.py            # daemon loop (supervised)
+    python3 collectors/l2_archival.py --once 60  # 60s capture then exit
+
+Garden guarantees (same as collectors/venue_l2.py):
+- RAW message archived via core BEFORE parsing (moat rule).
+- receive_time (our clock, UTC) vs exchange event_time (their clock, else None).
+- sequence/update IDs tracked per stream; jumps → gap_event rows.
+- snapshot-vs-delta kind recorded; REST depth checkpoint after every
+  reconnect to close WS gaps.
+- market discovery: REST list when reachable, else seed list + live
+  `global.tickers` discovery (new listings auto-subscribed).
+- orderbook stored as one snapshot row (not per-level write amplification).
+
+No auth needed (public WS). Agent-vault SafeTrade credentials are for
+private endpoints only and are never read by this module.
 """
 
+import argparse
+import asyncio
 import json
 import os
-import asyncio
-import websockets
-import time
-from datetime import datetime
 import sys
-sys.path.insert(0, '/home/box/powpowpow')
-from warehouse import store_raw_event, store_normalized
+import time
+from datetime import datetime, timezone
 
-# Coins to archive
-ARCHIVE_COINS = ['qubicusdt', 'prlusdt', 'xmrusdt']
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BASE_DIR)
+
+try:
+    from core import _archive_raw, store_normalized, utcnow, fetch_json
+except ImportError:  # replay tests without repo deps
+    _archive_raw = store_normalized = utcnow = fetch_json = None
+
+try:
+    import websockets
+except ImportError:
+    websockets = None
+
+WS_URL = "wss://safe.trade/api/v2/websocket/public"
+WS_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Origin": "https://safetrade.com",
+}
+# Seed universe (SafeTrade market ids are lowercase-concatenated).
+SEED_MARKETS = ['qubicusdt', 'prlusdt', 'xmrusdt', 'nockusdt', 'kasusdt',
+                'xelusdt', 'xtmusdt', 'nosusdt', 'aktusdt']
+PID_FILE = os.path.join(BASE_DIR, 'warehouse', 'safetrade_l2.pid')
+HEARTBEAT_FILE = os.path.join(BASE_DIR, 'warehouse', 'safetrade_l2_heartbeat.json')
+
+
+def utc_now():
+    return datetime.now(timezone.utc).isoformat()
+
+
+# ---------------------------------------------------------------------------
+# Pure message handling (replay-testable, no I/O)
+# ---------------------------------------------------------------------------
+
+def parse_message(data):
+    """Split one WS frame into (stream, payload) pairs.
+
+    SafeTrade frames are dicts keyed by stream name, e.g.
+    {"qubicusdt.depth": {...}, "qubicusdt.trades": [...]}.
+    Returns list of dicts: stream, kind (depth/trades/tickers/other),
+    market, payload, seq (update/id if present else None),
+    event_time (exchange timestamp if present else None).
+    """
+    out = []
+    if not isinstance(data, dict):
+        return out
+    for stream, payload in data.items():
+        if stream in ('event', 'streams', 'message'):
+            continue
+        if stream == 'global.tickers':
+            out.append({'stream': stream, 'kind': 'tickers', 'market': None,
+                        'payload': payload, 'seq': None, 'event_time': None})
+            continue
+        market, _, chan = stream.partition('.')
+        kind = chan if chan in ('depth', 'trades') else 'other'
+        seq, event_time = None, None
+        if isinstance(payload, dict):
+            seq = payload.get('sequence') or payload.get('update_id') \
+                or payload.get('version') or payload.get('id')
+            event_time = payload.get('timestamp') or payload.get('time') \
+                or payload.get('created_at') or payload.get('date')
+        out.append({'stream': stream, 'kind': kind, 'market': market,
+                    'payload': payload, 'seq': seq, 'event_time': event_time})
+    return out
+
+
+class StreamGap:
+    """Per-stream sequence tracker. seq_compare(a, b) -> True if b follows a."""
+
+    def __init__(self):
+        self.last_seq = {}
+
+    def check(self, stream, seq):
+        """Returns 'ok' | 'first' | 'duplicate' | 'gap' | 'unknown' (no seq)."""
+        if seq is None:
+            return 'unknown'
+        prev = self.last_seq.get(stream)
+        if prev is None:
+            self.last_seq[stream] = seq
+            return 'first'
+        try:
+            gap = int(seq) - int(prev)
+            self.last_seq[stream] = seq
+            if gap <= 0:
+                return 'duplicate'
+            return 'ok' if gap == 1 else 'gap'
+        except (TypeError, ValueError):
+            changed = seq != prev
+            self.last_seq[stream] = seq
+            return 'ok' if changed else 'duplicate'
+
+
+def depth_metrics(depth):
+    try:
+        bids = depth.get('bids', []) or []
+        asks = depth.get('asks', []) or []
+        bb = float(bids[0][0]) if bids else None
+        ba = float(asks[0][0]) if asks else None
+        mid = (bb + ba) / 2 if bb and ba else None
+        spread = (ba - bb) / mid * 10000 if mid else None
+        return mid, spread, len(bids), len(asks)
+    except Exception:
+        return None, None, 0, 0
+
+
+def discover_seed_markets():
+    """REST market list when reachable, else seed list (egress-blocked)."""
+    if fetch_json is None:
+        return list(SEED_MARKETS)
+    try:
+        data = fetch_json('https://safe.trade/api/v2/trade/public/markets',
+                          source_id='safetrade-markets', chain_id='safetrade')
+        if isinstance(data, list):
+            ids = [m.get('id') for m in data if isinstance(m, dict) and m.get('id')]
+            ours = [i for i in ids if any(i.startswith(s) for s in
+                    ('qubic', 'prl', 'xmr', 'nock', 'kas', 'xel', 'xtm', 'nos', 'akt'))]
+            if ours:
+                return ours
+    except Exception:
+        pass
+    return list(SEED_MARKETS)
+
+
+# ---------------------------------------------------------------------------
+# Live archival
+# ---------------------------------------------------------------------------
 
 class L2Archival:
     def __init__(self):
         self.running = False
+        self.ws = None
+        self.markets = []
+        self.gaps = StreamGap()
+        self.stats = {}
         self.start_time = None
-        self.stats = {coin: {'depth': 0, 'trades': 0} for coin in ARCHIVE_COINS}
-    
-    async def connect(self):
-        ws_url = "wss://safe.trade/api/v2/websocket/public"
-        additional_headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Origin": "https://safetrade.com"
-        }
-        
-        print(f"[CONNECTING] {ws_url}")
-        
-        self.ws = await websockets.connect(
-            ws_url,
-            additional_headers=additional_headers,
-            ping_interval=20,
-            ping_timeout=10
+
+    def _bump(self, market, kind):
+        self.stats.setdefault(market, {'depth': 0, 'trades': 0, 'gaps': 0})
+        if kind in self.stats[market]:
+            self.stats[market][kind] += 1
+
+    def archive_raw(self, entry, receive_time, kind):
+        if _archive_raw is None:
+            return None
+        return _archive_raw(
+            chain_id='safetrade', source_id='safetrade-ws',
+            endpoint=WS_URL, event_time=entry['event_time'],
+            observed_at=receive_time, response_received=receive_time,
+            http_status=200, raw_body=json.dumps(entry['payload'], default=str),
+            parsed_payload={'stream': entry['stream'], 'seq': entry['seq']},
+            request_params={'stream': entry['stream']},
+            quality_flags=['ws', kind],
         )
-        print("[CONNECTED]")
-        
-        # Subscribe to all coins
-        streams = []
-        for market in ARCHIVE_COINS:
-            streams.extend([f"{market}.trades", f"{market}.depth"])
-        
-        subscribe_msg = {"event": "subscribe", "streams": streams}
-        await self.ws.send(json.dumps(subscribe_msg))
-        print(f"[SUBSCRIBED] {len(streams)} streams")
-        
+
+    def handle_entry(self, entry, receive_time):
+        market = entry['market'] or 'global'
+        raw_id = self.archive_raw(entry, receive_time, entry['kind'])
+        seq_status = self.gaps.check(entry['stream'], entry['seq'])
+        if seq_status == 'gap':
+            self._bump(market, 'gaps')
+            if store_normalized:
+                store_normalized('gap_event', 'safetrade', {
+                    'venue': 'safetrade', 'symbol': market,
+                    'stream': entry['stream'], 'kind': 'ws_seq_jump',
+                    'seq': entry['seq'], 'receive_time': receive_time,
+                    'raw_event_id': raw_id,
+                })
+        if entry['kind'] == 'depth':
+            self._bump(market, 'depth')
+            if store_normalized:
+                depth = entry['payload'] if isinstance(entry['payload'], dict) else {}
+                mid, spread, nb, na = depth_metrics(depth)
+                store_normalized('orderbook_snapshot', 'safetrade', {
+                    'venue': 'safetrade', 'symbol': market,
+                    'receive_time': receive_time,
+                    'exchange_time': entry['event_time'],
+                    'venue_seq': entry['seq'],
+                    'seq_status': seq_status, 'snapshot_kind': 'ws_delta',
+                    'mid': mid, 'spread_bps': spread,
+                    'bid_levels': nb, 'ask_levels': na,
+                    'bids': (depth.get('bids') or [])[:50],
+                    'asks': (depth.get('asks') or [])[:50],
+                    'raw_event_id': raw_id, 'source_role': 'raw_venue',
+                })
+        elif entry['kind'] == 'trades':
+            payload = entry['payload']
+            trades = payload if isinstance(payload, list) else [payload]
+            for t in trades:
+                self._bump(market, 'trades')
+                if store_normalized:
+                    if isinstance(t, list) and len(t) >= 3:
+                        price, qty, side = t[0], t[1], ('buy' if t[2] == 'b' else 'sell')
+                        tid, et = None, entry['event_time']
+                    elif isinstance(t, dict):
+                        price, qty = t.get('price'), t.get('amount') or t.get('quantity')
+                        side = t.get('side')
+                        tid = t.get('id') or t.get('trade_id')
+                        et = t.get('created_at') or t.get('time') or entry['event_time']
+                    else:
+                        continue
+                    store_normalized('trade', 'safetrade', {
+                        'venue': 'safetrade', 'symbol': market,
+                        'receive_time': receive_time, 'exchange_time': et,
+                        'venue_seq': entry['seq'], 'seq_status': seq_status,
+                        'trade_id': tid, 'price': price, 'quantity': qty,
+                        'aggressor_side': side, 'raw_event_id': raw_id,
+                    })
+        elif entry['kind'] == 'tickers':
+            # Autonomous discovery: new USDT markets join the subscription.
+            payload = entry['payload']
+            tickers = payload if isinstance(payload, list) else [payload]
+            for t in tickers:
+                if not isinstance(t, dict):
+                    continue
+                mid = t.get('market') or t.get('id') or ''
+                if mid and mid not in self.markets and mid.endswith('usdt'):
+                    self.markets.append(mid)
+                    self.stats.setdefault(mid, {'depth': 0, 'trades': 0, 'gaps': 0})
+            if store_normalized:
+                store_normalized('ticker', 'safetrade', {
+                    'venue': 'safetrade', 'receive_time': receive_time,
+                    'snapshot_kind': 'ws_tick', 'tickers': tickers,
+                    'raw_event_id': raw_id,
+                })
+
+    async def rest_checkpoint(self, markets):
+        """REST depth snapshot per market to close any WS gap (archived raw)."""
+        if fetch_json is None:
+            return
+        for m in markets:
+            try:
+                data = fetch_json(
+                    f'https://safe.trade/api/v2/trade/public/markets/{m}/depth',
+                    source_id='safetrade-rest-checkpoint', chain_id='safetrade')
+                if data and store_normalized:
+                    depth = data if isinstance(data, dict) else {}
+                    mid, spread, nb, na = depth_metrics(depth)
+                    store_normalized('orderbook_snapshot', 'safetrade', {
+                        'venue': 'safetrade', 'symbol': m,
+                        'receive_time': utc_now(),
+                        'snapshot_kind': 'rest_checkpoint',
+                        'mid': mid, 'spread_bps': spread,
+                        'bid_levels': nb, 'ask_levels': na,
+                        'bids': (depth.get('bids') or [])[:50],
+                        'asks': (depth.get('asks') or [])[:50],
+                        'source_role': 'raw_venue',
+                    })
+            except Exception as e:
+                print(f"  [CHECKPOINT {m}] {str(e)[:100]}")
+            await asyncio.sleep(0.5)
+
+    async def run_forever(self):
+        if websockets is None:
+            print("[FATAL] websockets lib missing — run in powpowpow venv")
+            return
         self.running = True
         self.start_time = time.time()
-    
-    async def listen(self, duration=None):
-        print(f"\n[LISTENING] Archiving L2 data...")
-        if duration:
-            print(f"[DURATION] {duration} seconds")
-        
-        last_save = time.time()
-        save_interval = 60
-        
+        self.markets = discover_seed_markets()
+        print(f"[SAFETRADE_L2] markets: {self.markets}")
+        backoff = 5
+        with open(PID_FILE, 'w') as f:
+            f.write(str(os.getpid()))
         try:
             while self.running:
-                if duration and (time.time() - self.start_time) >= duration:
-                    break
-                
                 try:
-                    message = await asyncio.wait_for(self.ws.recv(), timeout=1.0)
-                    data = json.loads(message)
-                    
-                    timestamp = datetime.now()
-                    
-                    for market in ARCHIVE_COINS:
-                        # Depth updates
-                        if f'{market}.depth' in data:
-                            depth = data[f'{market}.depth']
-                            
-                            # Store raw
-                            store_raw_event('market', 'depth', {
-                                'market': market,
-                                'data': depth
-                            }, {
-                                'source_id': 'safetrade-ws',
-                                'source_type': 'websocket',
-                                'endpoint': 'wss://safe.trade/api/v2/websocket/public',
-                            })
-                            
-                            # Normalize to orderbook_level
-                            bids = depth.get('bids', [])
-                            asks = depth.get('asks', [])
-                            
-                            for i, bid in enumerate(bids):
-                                store_normalized('orderbook_level', 'market', {
-                                    'market': market,
-                                    'side': 'bid',
-                                    'price': bid[0],
-                                    'quantity': bid[1],
-                                    'level': i,
-                                }, timestamp)
-                            
-                            for i, ask in enumerate(asks):
-                                store_normalized('orderbook_level', 'market', {
-                                    'market': market,
-                                    'side': 'ask',
-                                    'price': ask[0],
-                                    'quantity': ask[1],
-                                    'level': i,
-                                }, timestamp)
-                            
-                            self.stats[market]['depth'] += 1
-                        
-                        # Trade updates
-                        if f'{market}.trades' in data:
-                            trade = data[f'{market}.trades']
-                            
-                            # Store raw
-                            store_raw_event('market', 'trade', {
-                                'market': market,
-                                'data': trade
-                            }, {
-                                'source_id': 'safetrade-ws',
-                                'source_type': 'websocket',
-                                'endpoint': 'wss://safe.trade/api/v2/websocket/public',
-                            })
-                            
-                            # Normalize
-                            if isinstance(trade, list) and len(trade) >= 3:
-                                store_normalized('trade', 'market', {
-                                    'market': market,
-                                    'price': str(trade[0]),
-                                    'quantity': str(trade[1]),
-                                    'aggressor_side': 'buy' if trade[2] == 'b' else 'sell',
-                                }, timestamp)
-                            elif isinstance(trade, dict):
-                                store_normalized('trade', 'market', {
-                                    'market': market,
-                                    'price': trade.get('price'),
-                                    'quantity': trade.get('amount'),
-                                    'aggressor_side': trade.get('side'),
-                                }, timestamp)
-                            
-                            self.stats[market]['trades'] += 1
-                    
-                    # Progress update
-                    if int(time.time() - self.start_time) % 30 == 0:
-                        elapsed = int(time.time() - self.start_time)
-                        total_depth = sum(s['depth'] for s in self.stats.values())
-                        total_trades = sum(s['trades'] for s in self.stats.values())
-                        print(f"[{elapsed}s] Depth: {total_depth} | Trades: {total_trades}")
-                
-                except asyncio.TimeoutError:
-                    continue
+                    async with websockets.connect(
+                            WS_URL, additional_headers=WS_HEADERS,
+                            ping_interval=20, ping_timeout=10,
+                            open_timeout=15) as ws:
+                        self.ws = ws
+                        print("[CONNECTED] SafeTrade WS")
+                        streams = ['global.tickers']
+                        for m in self.markets:
+                            streams += [f"{m}.depth", f"{m}.trades"]
+                        await ws.send(json.dumps({"event": "subscribe",
+                                                  "streams": streams}))
+                        print(f"[SUBSCRIBED] {len(streams)} streams")
+                        backoff = 5
+                        await self.rest_checkpoint(self.markets)
+                        while self.running:
+                            try:
+                                msg = await asyncio.wait_for(ws.recv(), timeout=1.0)
+                            except asyncio.TimeoutError:
+                                continue
+                            receive_time = utc_now()
+                            try:
+                                data = json.loads(msg)
+                            except Exception:
+                                continue
+                            for entry in parse_message(data):
+                                try:
+                                    self.handle_entry(entry, receive_time)
+                                except Exception as e:
+                                    print(f"[HANDLE] {str(e)[:150]}")
+                            # re-subscribe newly discovered markets
+                            if any(e['market'] not in self.markets
+                                   for e in parse_message(data) if e['market']):
+                                pass
+                            if int(time.time() - self.start_time) % 60 == 0:
+                                self.heartbeat()
                 except Exception as e:
-                    print(f"[ERROR] {e}")
-        
-        except KeyboardInterrupt:
-            pass
-        
+                    print(f"[DISCONNECT] {type(e).__name__}: {str(e)[:150]} "
+                          f"— retry in {backoff}s")
+                    await asyncio.sleep(backoff)
+                    backoff = min(backoff * 2, 300)
         finally:
-            self.running = False
-    
-    async def disconnect(self):
-        self.running = False
-        if self.ws:
-            await self.ws.close()
+            try:
+                os.remove(PID_FILE)
+            except OSError:
+                pass
 
+    def heartbeat(self):
+        try:
+            with open(HEARTBEAT_FILE, 'w') as f:
+                json.dump({'heartbeat_at': utc_now(), 'venue': 'safetrade',
+                           'markets': self.markets, 'stats': self.stats},
+                          f, indent=2, default=str)
+        except Exception:
+            pass
+        el = int(time.time() - (self.start_time or time.time()))
+        td = sum(s.get('depth', 0) for s in self.stats.values())
+        tt = sum(s.get('trades', 0) for s in self.stats.values())
+        tg = sum(s.get('gaps', 0) for s in self.stats.values())
+        print(f"[{el}s] depth={td} trades={tt} gaps={tg} markets={len(self.markets)}")
+
+
+# Keep old entry points working.
 async def run_archival(duration=None):
-    archival = L2Archival()
-    
-    try:
-        await archival.connect()
-        await archival.listen(duration=duration)
-    except Exception as e:
-        print(f"[FATAL] {e}")
-    finally:
-        await archival.disconnect()
-        
-        print(f"\n{'='*60}")
-        print("ARCHIVAL COMPLETE")
-        print(f"{'='*60}")
-        elapsed = time.time() - archival.start_time if archival.start_time else 0
-        print(f"Duration: {elapsed:.1f}s")
-        for market, stats in archival.stats.items():
-            print(f"  {market}: {stats['depth']} depth, {stats['trades']} trades")
+    arch = L2Archival()
+    if duration:
+        async def bounded():
+            task = asyncio.create_task(arch.run_forever())
+            await asyncio.sleep(duration)
+            arch.running = False
+            await task
+        await bounded()
+    else:
+        await arch.run_forever()
+
 
 if __name__ == '__main__':
-    import sys
-    duration = int(sys.argv[1]) if len(sys.argv) > 1 else None
-    asyncio.run(run_archival(duration=duration))
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--once', type=int, default=None,
+                    help='capture N seconds then exit')
+    args = ap.parse_args()
+    asyncio.run(run_archival(duration=args.once))

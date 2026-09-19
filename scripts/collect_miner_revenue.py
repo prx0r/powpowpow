@@ -8,7 +8,7 @@ import os
 import requests
 from datetime import datetime
 
-CHAINS_DIR = '/home/box/powpowpow/chains'
+CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 
 # Known miner wallet patterns and exchange deposit addresses
 MINER_WALLETS = {

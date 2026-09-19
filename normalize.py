@@ -8,11 +8,12 @@ import os
 import glob
 from datetime import datetime
 import sys
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 from warehouse import store_normalized, read_normalized
 
-RAW_DIR = '/home/box/powpowpow/warehouse/raw'
-NORMALIZED_DIR = '/home/box/powpowpow/warehouse/normalized'
+RAW_DIR = os.path.join(BASE_DIR, 'warehouse', 'raw')
+NORMALIZED_DIR = os.path.join(BASE_DIR, 'warehouse', 'normalized')
 
 def normalize_chain_snapshots():
     """Normalize chain snapshot data from raw events."""

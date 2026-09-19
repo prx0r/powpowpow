@@ -8,7 +8,7 @@ import os
 import requests
 from datetime import datetime
 
-DATA_DIR = '/home/box/powpowpow/chains'
+DATA_DIR = os.path.join(BASE_DIR, 'chains')
 os.makedirs(DATA_DIR, exist_ok=True)
 
 # Mining data sources (APIs or chain explorers)

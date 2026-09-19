@@ -9,7 +9,7 @@ import requests
 from datetime import datetime
 
 DATA_DIR = '/home/box/safetrade/tracked'
-METRICS_DIR = '/home/box/powpowpow/data'
+METRICS_DIR = os.path.join(BASE_DIR, 'data')
 
 os.makedirs(METRICS_DIR, exist_ok=True)
 

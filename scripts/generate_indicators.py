@@ -10,7 +10,7 @@ import pandas as pd
 from datetime import datetime
 
 DATA_DIR = '/home/box/safetrade/tracked'
-OUTPUT_DIR = '/home/box/powpowpow/chains'
+OUTPUT_DIR = os.path.join(BASE_DIR, 'chains')
 
 def calculate_advanced_indicators(ohlcv_df, depth_df=None):
     """Calculate advanced technical indicators."""

@@ -8,9 +8,10 @@ import os
 import sys
 from datetime import datetime, timedelta
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
-BASE_DIR = '/home/box/powpowpow'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WAREHOUSE_DIR = os.path.join(BASE_DIR, 'warehouse')
 CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 
@@ -78,7 +79,7 @@ def check_collector_health():
     """Check if collectors are running."""
     print(f"\n  Collector Health:")
     
-    pid_file = '/home/box/powpowpow/daemon.pid'
+    pid_file = os.path.join(BASE_DIR, 'daemon.pid')
     if os.path.exists(pid_file):
         with open(pid_file) as f:
             pid = int(f.read().strip())

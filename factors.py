@@ -8,9 +8,10 @@ import os
 import sys
 from datetime import datetime
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
-CHAINS_DIR = '/home/box/powpowpow/chains'
+CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 FACTORS_DIR = os.path.join(CHAINS_DIR, 'factors')
 os.makedirs(FACTORS_DIR, exist_ok=True)
 

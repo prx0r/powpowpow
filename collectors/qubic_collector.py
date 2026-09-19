@@ -5,42 +5,23 @@ Pulls from official Qubic RPC and static registry.
 
 import json
 import os
-import requests
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 import sys
-sys.path.insert(0, '/home/box/powpowpow')
-from warehouse import store_raw_event, store_normalized
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BASE_DIR)
+from core import fetch_json, store_normalized, utcnow
 
 BASE_URL = 'https://rpc.qubic.org/v1'
 STATIC_URL = 'https://static.qubic.org/v1'
 
-def fetch_json(url, params=None, timeout=15):
-    """Fetch JSON from endpoint."""
-    try:
-        resp = requests.get(url, params=params, headers={
-            'User-Agent': 'PowPowPow/1.0',
-            'Accept': 'application/json'
-        }, timeout=timeout)
-        if resp.status_code == 200:
-            return resp.json()
-    except Exception as e:
-        print(f"  Error fetching {url}: {e}")
-    return None
 
 def collect_tick_info():
     """Collect current tick information."""
     print("  [TICK] Fetching tick info...")
     
-    data = fetch_json(f'{BASE_URL}/tick-info')
+    data = fetch_json(f'{BASE_URL}/tick-info', source_id='qubic-rpc', chain_id='qubic')
     if data:
-        # Store raw
-        store_raw_event('qubic', 'tick_info', data, {
-            'source_id': 'qubic-rpc',
-            'source_type': 'rpc',
-            'endpoint': f'{BASE_URL}/tick-info',
-        })
-        
         # Normalize
         tick_data = data.get('tick', data)
         store_normalized('chain_snapshot', 'qubic', {
@@ -61,13 +42,8 @@ def collect_status():
     """Collect node status."""
     print("  [STATUS] Fetching node status...")
     
-    data = fetch_json(f'{BASE_URL}/status')
+    data = fetch_json(f'{BASE_URL}/status', source_id='qubic-rpc', chain_id='qubic')
     if data:
-        store_raw_event('qubic', 'status', data, {
-            'source_id': 'qubic-rpc',
-            'source_type': 'rpc',
-            'endpoint': f'{BASE_URL}/status',
-        })
         
         print(f"    Version: {data.get('version')}")
         print(f"    Peers: {data.get('numberOfConnectedPeers')}")
@@ -79,14 +55,8 @@ def collect_static_data():
     """Collect static registry data."""
     print("  [STATIC] Fetching static registry...")
     
-    data = fetch_json(f'{STATIC_URL}/general/data/')
+    data = fetch_json(f'{STATIC_URL}/general/data/', source_id='qubic-static', chain_id='qubic')
     if data:
-        store_raw_event('qubic', 'static_registry', data, {
-            'source_id': 'qubic-static',
-            'source_type': 'rest',
-            'endpoint': f'{STATIC_URL}/general/data/',
-        })
-        
         # Extract useful info
         if isinstance(data, dict):
             contracts = data.get('contracts', [])
@@ -104,13 +74,8 @@ def collect_epoch_info():
     """Collect epoch information."""
     print("  [EPOCH] Fetching epoch info...")
     
-    data = fetch_json(f'{BASE_URL}/epoch-info')
+    data = fetch_json(f'{BASE_URL}/epoch-info', source_id='qubic-rpc', chain_id='qubic')
     if data:
-        store_raw_event('qubic', 'epoch_info', data, {
-            'source_id': 'qubic-rpc',
-            'source_type': 'rpc',
-            'endpoint': f'{BASE_URL}/epoch-info',
-        })
         
         print(f"    Epoch: {data.get('epoch')}")
         print(f"    Start tick: {data.get('startTick')}")
@@ -124,13 +89,8 @@ def collect_contract_flows():
     print("  [CONTRACTS] Fetching contract data...")
     
     # Try to get contract state
-    data = fetch_json(f'{BASE_URL}/contracts')
+    data = fetch_json(f'{BASE_URL}/contracts', source_id='qubic-rpc', chain_id='qubic')
     if data:
-        store_raw_event('qubic', 'contracts', data, {
-            'source_id': 'qubic-rpc',
-            'source_type': 'rpc',
-            'endpoint': f'{BASE_URL}/contracts',
-        })
         
         if isinstance(data, list):
             print(f"    Contracts: {len(data)}")
@@ -143,7 +103,7 @@ def collect_contract_flows():
 def collect_all():
     """Collect all QUBIC data."""
     print(f"\n{'='*60}")
-    print(f"QUBIC Data Collection — {datetime.now()}")
+    print(f"QUBIC Data Collection — {utcnow()}")
     print(f"{'='*60}")
     
     results = {}

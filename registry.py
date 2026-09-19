@@ -1,3 +1,4 @@
+import os
 """
 PowPowPow Canonical Registry V1
 16 systems with machine-readable supplier telemetry.

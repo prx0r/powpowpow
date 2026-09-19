@@ -12,7 +12,7 @@ import requests
 from datetime import datetime, timezone
 from typing import Optional, Dict, Any
 
-BASE_DIR = '/home/box/powpowpow'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RAW_DIR = os.path.join(BASE_DIR, 'warehouse', 'raw')
 os.makedirs(RAW_DIR, exist_ok=True)
 
