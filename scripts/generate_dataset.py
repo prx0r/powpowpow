@@ -49,37 +49,24 @@ def load_coin_data(coin):
     return result
 
 def create_features(data, coin):
-    """Create ML features from all data sources."""
+    """Create ML features from all data sources.
+    
+    IMPORTANT: L2 and GitHub features are NOT included in historical datasets
+    because they are point-in-time snapshots, not historical time series.
+    Pasting today's values onto historical rows creates lookahead bias.
+    
+    These features should only be used going forward as genuine point-in-time
+    observations accumulate in the warehouse.
+    """
     if 'indicators' not in data:
         return None
     
     df = data['indicators'].copy()
     
-    # Add GitHub activity as features
-    if 'github' in data:
-        gh = data['github']
-        df['github_stars'] = gh.get('total_stars', 0)
-        df['github_forks'] = gh.get('total_forks', 0)
-        df['github_commits_7d'] = gh.get('total_commits_7d', 0)
-        df['github_devs'] = gh.get('active_developers', 0)
-    
-    # Add depth features if available
-    if 'depth' in data and data['depth']:
-        depth = data['depth']
-        if len(depth) > 0:
-            latest = depth[-1]
-            bids = latest.get('bids', [])
-            asks = latest.get('asks', [])
-            
-            bid_vol = sum(float(b[1]) for b in bids) if bids else 0
-            ask_vol = sum(float(a[1]) for a in asks) if asks else 0
-            total = bid_vol + ask_vol
-            
-            df['l2_bid_volume'] = bid_vol
-            df['l2_ask_volume'] = ask_vol
-            df['l2_imbalance'] = (bid_vol - ask_vol) / total if total else 0
-            df['l2_num_bids'] = len(bids)
-            df['l2_num_asks'] = len(asks)
+    # L2 and GitHub features intentionally excluded from historical datasets.
+    # See 08_missing_data_layers_research.md and the data integrity diagnostic.
+    # TODO: Once warehouse has genuine point-in-time L2/GitHub history,
+    # join them by timestamp instead of broadcasting today's snapshot.
     
     # Create target: next day return
     if 'close' in df.columns:
