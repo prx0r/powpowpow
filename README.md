@@ -12,7 +12,12 @@ We only track systems where we can measure:
 - What they earn
 - How that changes over time
 
-## Canonical Universe V1 — 16 Systems
+## Canonical Universe V1 — 8 systems (single source of truth: `v1_registry.py`)
+
+> Runtime truth is `v1_registry.py` (PRL, QUBIC, QUAN, XMR, KAS, CLORE,
+> AKT, NOS). The 16-system research universe in `registry.py` /
+> `canonical.md` / `04_canonical_universe_v1.md` is the candidate pool —
+> systems graduate to V1 when machine-readable supplier telemetry exists.
 
 ### Compute / Useful Work
 | Coin | Resource | Supplier |

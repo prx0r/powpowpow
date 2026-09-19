@@ -1,7 +1,11 @@
 import os
 """
-PowPowPow Canonical Registry V1
-16 systems with machine-readable supplier telemetry.
+PowPowPow research-universe registry (candidate pool, NOT runtime truth).
+
+Runtime truth is v1_registry.get_v1() — 8 systems with verified
+machine-readable supplier telemetry. Entries here graduate to V1 when
+their telemetry is wired. Known warts: a QUAN2 duplicate key (old
+double-listing, do not add more); prefer QUAN.
 """
 
 REGISTRY = {

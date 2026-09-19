@@ -1,6 +1,7 @@
 """
-Gate.io Exchange Collector
-L2 order book + trades for V1 coins.
+Gate.io Exchange Collector — SUPERSEDED for L2 by collectors/venue_l2.py
+(continuous, gap-safe, raw-archived). Kept for one-shot market discovery
+checks only. Do not build on its overwrite-style gate_data.json output.
 """
 
 import json

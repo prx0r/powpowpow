@@ -1,53 +1,76 @@
 # PowPowPow — product-readiness work list
 
-> Review 2026-09-19. The pressure equation is correct algebra over empty
-> inputs. Fix the money math first; everything compounds on it.
+> Review 2026-09-19 eve. Money math + pipes + first signals are landed.
+> The garden clock started 2026-09-19 (venue L2 live, STATE daily).
+> SafeTrade is code-ready but egress-blocked (geo-403); venue-of-truth
+> weighting waits on it.
 
-## 1. Money math (blocks everything)
+## 1. Money math — DONE (v2 network-share)
 
-- [ ] `v1_live_cards.py`: replace magic `yield_per_th` / `yield_per_h`
-  constants with network-share revenue
-  (`rig_hashrate / network_hashrate × emission × price`). KAS yields
-  (`50`) currently price a single rig at $3.3B/day — recompute or remove.
-- [ ] `economics.py`: revenue formula missing network-share term; fix
-  dimensions before any signal reads it.
-- [ ] Sell methodology per coin to replace hardcoded `sell_fraction`
-  (0.5/0.6/0.7 across `economics.py` / `factors.py`). State assumptions
-  on every signal until miner-flow measurement exists.
-- [ ] Electricity as input, not `ELECTRICITY = 0.10` constant.
-- [ ] Hardware specs measured (hashrate/power/cost with source + date),
-  not specced.
+- [x] `v1_live_cards.py`: network-share revenue, KAS gated, electricity
+  as input, hardware specs carry source + date, assumptions on every card.
+- [x] `economics.py`: fixed dimensions, sell methodology disclosed per
+  coin, no hidden 0.6.
+- [x] `factors.py`: rebuilt from daily STATE; sell_fraction=null with
+  methodology flag until miner-flow measurement exists.
+- [ ] Remaining: replace seeded hashrate/emission estimates with live
+  collector values (pearld, monerod, kaspa, qubic RPC).
 
-## 2. Pipes (blocks time series)
+## 2. Pipes — mostly done, collection live
 
-- [ ] Replace all `/home/box/powpowpow` paths (30+ files) with
-  repo-relative `BASE_DIR`. Nothing runs off-box until this lands.
-- [ ] Collapse storage to `core.py` only; delete/redirect `warehouse.py`
-  + `v1_pipeline.py` duplicates and naive-timestamp
-  `v1_collector_base.py`.
-- [ ] Migrate every collector to auto-archiving `fetch_json`
-  (only clore done). PRL first (own pearld canonical, PearlTrack labels).
-- [ ] L2 archival gap-safe: exchange event time vs receive time,
-  sequence IDs, snapshot-vs-delta, REST checkpoints.
-- [ ] Daemon fixed + running so warehouse fills. Backtester needs
-  ~90 days of daily factors; the clock starts when this ships.
-- [ ] README 16-coin universe → `v1_registry.py` 8 systems (PR1 item 12).
+- [x] Repo-relative `BASE_DIR` everywhere (was 100+ `/home/box` hardcodes).
+- [x] Storage collapsed to `core.py`; `warehouse.py` + `v1_pipeline.py`
+  are compat shims; `v1_collector_base.py` UTC + canonical hashing.
+- [x] PRL + Qubic + XMR migrated to auto-archiving `fetch_json`.
+  PearlTrack marked derived/labels with classification provenance.
+- [x] L2 archival gap-safe (both venues): event vs receive time, seq IDs,
+  snapshot-vs-delta, REST checkpoints, raw-before-parse.
+- [x] Daemon supervised (systemd `pow-venue-l2`, restart+linger) AND
+  daily STATE timer (`pow-daily-state` 00:30 UTC). Full-plant `daemon.py`
+  rewritten but not yet unit-ized.
+- [x] README points at `v1_registry.py` 8-system truth; `registry.py` is
+  the labeled candidate pool.
+- [ ] Migrate remaining ~15 one-shot chain collectors to `core.fetch_json`.
+- [ ] Unit-ize full `daemon.py` (chain collectors + api + safetrade-l2)
+  under systemd once SafeTrade egress exists.
 
-## 3. Fundamental signals (no TA, confidence bands printed)
+## 3. Fundamental signals — v1 live
 
-- [ ] Emission value/day per coin from chain data.
-- [ ] Real bid depth from archiving order book.
-- [ ] Pressure ratios (creation / realization / absorption) with
-  assumptions on the signal. Content MCP already emits this shape.
+- [x] `signals.py` `miner_pressure_v1`: cross-sectional burden z-score
+  with drivers, evidence record IDs, assumptions, version. Refuses on
+  thin cross-section. First output: XMR bearish 0.66, QUBIC bullish 0.80.
+- [x] Emission value/day (fundamentals) + real bid depth (archived books).
+- [ ] Realization component needs pool→miner→exchange flow (pearld +
+  miner graph). Until then v1 scores structural burden only — disclosed.
+- [ ] `pressure.py` / `ofi.py` / `two_timescale.py` still run on stale
+  file inputs; rewire them onto STATE + derived_signal tables.
 
-## 4. Backtester (after warehouse fills)
+## 4. Backtester — scaffold live, history growing
 
-- [ ] Daily factor time series (not snapshots) → event studies on
-  halvings / difficulty changes / listings. Candle replay is out
-  of scope; fundamentals only.
+- [x] `backtest.py`: forwards-by-signal-bucket on daily_state; honestly
+  refuses until 2+ days (clock started 2026-09-19).
+- [x] Trade backfill: +3,488 timestamped trades via venue pagination
+  (`scripts/backfill_trades.py`). Books unrecoverable — live only.
+- [x] Tardis check: Gate.io history exists for KAS/CLORE/FLUX/AKT;
+  MEXC for KAS/CLORE/FLUX/NOCK/NOS. No PRL/QUBIC/XMR anywhere.
+  First-of-month CSVs free — pull KAS/CLORE/FLUX/NOCK/NOS seeds next.
+- [ ] Event studies once `chains/events/` fills + 30d STATE.
 
-## 5. Autoassigner (last — highest liability)
+## 5. Knowledge compiler — seed live
+
+- [x] `scripts/compile_coins.py` → `pages/<SYM>.md` from registry +
+  STATE + signals + factors. 15 pages. Rerun anytime.
+
+## 6. SafeTrade (blocked on egress, ready to run)
+
+- [x] `collectors/l2_archival.py` gap-safe, replay-verified
+  (parse/gap/discovery/backfill-proof). Needs unblocked box or proxy;
+  rsync `warehouse/` back here.
+- [x] Vault creds verified retrievable; signed requests still geo-403
+  (IP-level block, auth can't fix).
+
+## 7. Autoassigner (last — highest liability)
 
 - [ ] Needs 3 + 4 with a track record, measured hardware benchmarks,
   and bounded-grant execution (products.md). Ship when signals
-  have scars.
+  have scars. Not started — correct order.
