@@ -282,6 +282,25 @@ class Handler(BaseHTTPRequestHandler):
                    if (r.get('coin') or '').upper() == sym]
             out.sort(key=lambda r: (r.get('date', ''), r.get('hardware', '')))
             return self._send({'symbol': sym, 'cards': out[-200:]})
+        if u.path == '/api/ops':
+            import subprocess as _sp
+            ops = {'heartbeats': {}, 'services': {}}
+            for name in ('venue_l2_heartbeat.json', 'venue_ws_heartbeat.json',
+                         'chain_state_heartbeat.json'):
+                try:
+                    ops['heartbeats'][name] = json.load(open(os.path.join(
+                        ROOT, 'warehouse', name)))
+                except OSError:
+                    pass
+            for svc in ('pow-venue-l2', 'pow-venue-ws', 'pow-chain-state',
+                        'pow-pearld', 'pow-site'):
+                try:
+                    r = _sp.run(['systemctl', '--user', 'is-active', svc + '.service'],
+                                capture_output=True, text=True, timeout=5)
+                    ops['services'][svc] = r.stdout.strip()
+                except Exception:
+                    ops['services'][svc] = 'unknown'
+            return self._send(ops)
         if u.path == '/api/chain':
             sym = arg('symbol').upper()
             try:
