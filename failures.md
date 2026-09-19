@@ -43,8 +43,10 @@
   Homepage is a Next.js SPA with **zero `/api/*` references** in HTML —
   no discoverable API surface.
 - `prlscan.com` + `/api/v1/network`: SPA HTML, no API.
-- Unblocks: own `pearld` node (binary + sync; separate task). Until then
-  PRL has venue L2 + static emission only, and `miner_flow` stays empty.
+- Unblocked 2026-09-19: `pearld` v1.4.8 linux-amd64 binary runs;
+  own node syncing under systemd `pow-pearld` (target height 115,530 at
+  start, `--addrindex` on for future miner-graph queries). Until sync
+  completes, PRL has venue L2 + static emission only.
 
 ## 4. Qubic RPC — 2 endpoints, rest doesn't exist
 

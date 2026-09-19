@@ -161,6 +161,71 @@ def build_signals(date):
     return out
 
 
+FLOW_VERSION = "flow_pressure_v1"
+
+
+def build_flow_signals(date):
+    """flow_pressure_v1: measured venue trade flow vs resting book.
+
+    absorption = buy_notional / sell_notional (24h, cross-venue).
+    sell_load  = sell_notional / bid_notional_20 (can the book take it?).
+    Direction from cross-sectional z of net-flow-imbalance; strength
+    logistic. Disclosed: venue flow only (CoinEx+Gate), NOT miner-attributed.
+    """
+    states = read_states(date) + read_states(date, 'safetrade')
+    agg = {}
+    for s in states:
+        sym = (s.get('symbol') or '').upper()
+        a = agg.setdefault(sym, {'buy': 0.0, 'sell': 0.0, 'bid': 0.0,
+                                 'trades': 0, 'records': []})
+        a['buy'] += s.get('trade_buy_notional') or 0
+        a['sell'] += s.get('trade_sell_notional') or 0
+        a['bid'] += s.get('bid_notional_20_mean') or 0
+        a['trades'] += s.get('n_trades') or 0
+        if s.get('record_id'):
+            a['records'].append(s['record_id'])
+    scored = []
+    for sym, a in agg.items():
+        tot = a['buy'] + a['sell']
+        if tot <= 0 or a['trades'] < 5:
+            continue
+        imb = (a['buy'] - a['sell']) / tot
+        sell_load = a['sell'] / a['bid'] if a['bid'] > 0 else None
+        scored.append({'symbol': sym, 'imb': imb, 'sell_load': sell_load,
+                       'buy': a['buy'], 'sell': a['sell'],
+                       'records': a['records'], 'trades': a['trades']})
+    if len(scored) < 4:
+        print(f"[FLOW {date}] insufficient cross-section ({len(scored)}) — refusing")
+        return []
+    zs = zscore([s['imb'] for s in scored])
+    out = []
+    for s, z in zip(scored, zs):
+        direction = 'bullish' if z > 0.5 else ('bearish' if z < -0.5 else 'neutral')
+        strength = round(logistic(abs(z) - 0.5) if direction != 'neutral'
+                         else logistic(abs(z)) * 0.5, 3)
+        sig = {
+            'asset': s['symbol'], 'signal': 'flow_pressure',
+            'version': FLOW_VERSION, 'calculation_version': CALCULATION_VERSION,
+            'direction': direction, 'strength': strength,
+            'imbalance_z': round(z, 3),
+            'drivers': [f"buy_notional={s['buy']:,.0f}",
+                        f"sell_notional={s['sell']:,.0f}",
+                        f"sell_load_vs_book={s['sell_load']:.2f}x"
+                        if s['sell_load'] else "sell_load_vs_book=n/a"],
+            'evidence': {'daily_state_records': s['records']},
+            'assumptions': ['venue trade flow only (CoinEx+Gate); not '
+                            'miner-attributed until pool graph exists',
+                            'thin-history: single-day flow window'],
+            'confidence': 'medium' if s['trades'] > 100 else 'low-data',
+            'generated_at': datetime.now(timezone.utc).isoformat(),
+            'date': date,
+        }
+        out.append(sig)
+        store_normalized('derived_signal', 'venue', sig, event_time=date)
+    out.sort(key=lambda s: s['imbalance_z'])
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--date', default=None)
@@ -168,9 +233,14 @@ def main():
     date = args.date or datetime.now(timezone.utc).strftime('%Y-%m-%d')
     sigs = build_signals(date)
     for s in sigs:
-        print(f"  {s['asset']:6} {s['direction']:8} {s['strength']:.2f} "
-              f"z={s['burden_z']:+.2f} | {' '.join(s['drivers'])}")
+        print(f"  {s['asset']:6} {s['signal']:14} {s['direction']:8} {s['strength']:.2f} "
+              f"z={s.get('burden_z', s.get('imbalance_z')):+.2f} | {' '.join(s['drivers'])}")
     print(f"[SIGNALS {date}] {len(sigs)} signals ({SIGNAL_VERSION})")
+    flows = build_flow_signals(date)
+    for s in flows:
+        print(f"  {s['asset']:6} {s['signal']:14} {s['direction']:8} {s['strength']:.2f} "
+              f"z={s['imbalance_z']:+.2f} | {' '.join(s['drivers'])}")
+    print(f"[FLOW {date}] {len(flows)} signals ({FLOW_VERSION})")
 
 
 if __name__ == '__main__':
