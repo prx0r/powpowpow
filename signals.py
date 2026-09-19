@@ -64,7 +64,16 @@ def load_emission(symbol):
     except OSError:
         fund = {}
     e = (fund.get(symbol, {}) or {}).get('daily_emission')
-    return e, f"chain_fundamentals.json:{symbol}.daily_emission"
+    if e:
+        return e, f"chain_fundamentals.json:{symbol}.daily_emission"
+    try:
+        from emission import estimate as emission_estimate
+        est, prov = emission_estimate(symbol)
+        if est:
+            return est, f"emission.py:{symbol} ({prov.get('source', '')} [{prov.get('confidence', '')}])"
+    except Exception:
+        pass
+    return None, "unknown"
 
 
 def zscore(xs):
@@ -226,6 +235,78 @@ def build_flow_signals(date):
     return out
 
 
+REQ_VERSION = "required_flow_v1"
+
+
+def build_required_signals(date):
+    """required_flow_v1: how much buying the day needed to stand still.
+
+    required = emission_usd + sell_notional - buy_notional (floored 0).
+    coverage = buy / (emission_usd + sell). Bearish when buying covered
+    little of the structural + realized load. Limit-order add/cancel flow
+    is unmeasured at daily grain — disclosed, not faked.
+    """
+    states = read_states(date) + read_states(date, 'safetrade')
+    agg = {}
+    for s in states:
+        sym = (s.get('symbol') or '').upper()
+        a = agg.setdefault(sym, {'buy': 0.0, 'sell': 0.0, 'closes': [],
+                                 'records': [], 'trades': 0})
+        a['buy'] += s.get('trade_buy_notional') or 0
+        a['sell'] += s.get('trade_sell_notional') or 0
+        if s.get('mid_close'):
+            a['closes'].append(s['mid_close'])
+        if s.get('record_id'):
+            a['records'].append(s['record_id'])
+        a['trades'] += s.get('n_trades') or 0
+    scored = []
+    for sym, a in agg.items():
+        emission, esrc = load_emission(sym)
+        price = a['closes'][-1] if a['closes'] else None
+        if not emission or not price or a['trades'] < 5:
+            continue
+        em_usd = emission * price
+        required = max(0.0, em_usd + a['sell'] - a['buy'])
+        denom = em_usd + a['sell']
+        coverage = a['buy'] / denom if denom > 0 else None
+        scored.append({'symbol': sym, 'required': required,
+                       'coverage': coverage, 'em_usd': em_usd,
+                       'buy': a['buy'], 'sell': a['sell'],
+                       'records': a['records'], 'esrc': esrc,
+                       'trades': a['trades']})
+    if len(scored) < 4:
+        print(f"[REQ {date}] insufficient cross-section ({len(scored)}) — refusing")
+        return []
+    covs = [s['coverage'] for s in scored if s['coverage'] is not None]
+    zs = zscore(covs)
+    out = []
+    for s, z in zip([x for x in scored if x['coverage'] is not None], zs):
+        direction = 'bullish' if z > 0.5 else ('bearish' if z < -0.5 else 'neutral')
+        strength = round(logistic(abs(z) - 0.5) if direction != 'neutral'
+                         else logistic(abs(z)) * 0.5, 3)
+        sig = {
+            'asset': s['symbol'], 'signal': 'required_flow',
+            'version': REQ_VERSION, 'calculation_version': CALCULATION_VERSION,
+            'direction': direction, 'strength': strength,
+            'coverage_z': round(z, 3),
+            'drivers': [f"required_buy_usd={s['required']:,.0f}",
+                        f"coverage={s['coverage']:.2f}",
+                        f"emission_usd={s['em_usd']:,.0f}"],
+            'evidence': {'daily_state_records': s['records'],
+                         'emission_source': s['esrc']},
+            'assumptions': ['miner sells proxied by full emission (upper bound); '
+                            'realization unmeasured',
+                            'limit add/cancel flow unmeasured at daily grain'],
+            'confidence': 'medium' if s['trades'] > 100 else 'low-data',
+            'generated_at': datetime.now(timezone.utc).isoformat(),
+            'date': date,
+        }
+        out.append(sig)
+        store_normalized('derived_signal', 'venue', sig, event_time=date)
+    out.sort(key=lambda s: s['coverage_z'])
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--date', default=None)
@@ -241,6 +322,11 @@ def main():
         print(f"  {s['asset']:6} {s['signal']:14} {s['direction']:8} {s['strength']:.2f} "
               f"z={s['imbalance_z']:+.2f} | {' '.join(s['drivers'])}")
     print(f"[FLOW {date}] {len(flows)} signals ({FLOW_VERSION})")
+    reqs = build_required_signals(date)
+    for s in reqs:
+        print(f"  {s['asset']:6} {s['signal']:14} {s['direction']:8} {s['strength']:.2f} "
+              f"z={s['coverage_z']:+.2f} | {' '.join(s['drivers'])}")
+    print(f"[REQ {date}] {len(reqs)} signals ({REQ_VERSION})")
 
 
 if __name__ == '__main__':

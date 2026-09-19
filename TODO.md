@@ -13,6 +13,14 @@
 > live (12 symbols). pearld v1.4.8 syncing fresh under systemd
 > (data dir cleared during disk triage, resync ~2h). Monthly tardis
 > drip timer armed. Release/commit history: 213+240 rows, 12 repos.
+>
+> PROGRESS 14:30 UTC: XMR stack (localmonero + xmrchain fees/mempool +
+> p2pool miners/hashrate) and Qubic demand totals (2.015B txns via
+> analytics) wired into chain poller. KAS supply-delta FIXED to rate
+> form (was 5-min-delta bug); AKT supply sampling live. emission.py
+> schedules for CLORE/FLUX/NOS/TAO/NOCK. required_flow_v1 live
+> (9 signals; QUBIC bullish 0.91 coverage 1.15, XMR bearish 0.00).
+> MCP stdio server verified end-to-end (6 tools, live tables).
 
 ## 1. Money math — DONE (v2 network-share)
 

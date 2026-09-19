@@ -1,306 +1,158 @@
 """
-PowPowPow MCP Server
-Exposes data as Model Context Protocol for AI agents.
+PowPowPow MCP server — the garden outlet for agents.
+
+Tools read live warehouse tables (STATE, derived signals, factors,
+live cards, briefs), never stale snapshots. Every answer carries
+provenance (record IDs, versions, dates).
+
+Transport: MCP stdio (FastMCP). Run:
+    /home/ubuntu/.venvs/powpowpow/bin/python mcp_server.py
+Wire into any MCP client as a stdio server with that command.
 """
 
+import glob
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
 
-# MCP Server Implementation
-# This exposes PowPowPow data as tools for AI agents
+from mcp.server.fastmcp import FastMCP  # noqa: E402
 
-MCP_SERVER = {
-    "name": "powpowpow",
-    "version": "1.0.0",
-    "description": "Physical economics of mineable/compute crypto",
-    "tools": [
-        {
-            "name": "get_chain_status",
-            "description": "Get current status of a blockchain (hashrate, difficulty, price, etc)",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "symbol": {"type": "string", "description": "Chain symbol (PRL, QUBIC, XMR, etc)"}
-                },
-                "required": ["symbol"]
-            }
-        },
-        {
-            "name": "get_mining_profitability",
-            "description": "Calculate mining profitability for a specific hardware on a chain",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "chain": {"type": "string", "description": "Chain symbol"},
-                    "hardware": {"type": "string", "description": "Hardware model (H100, RTX_4090, etc)"},
-                    "electricity_cost": {"type": "number", "description": "Electricity cost in $/kWh"}
-                },
-                "required": ["chain", "hardware"]
-            }
-        },
-        {
-            "name": "get_best_mining_option",
-            "description": "Find the most profitable mining option for a given hardware",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "hardware": {"type": "string", "description": "Hardware model"},
-                    "electricity_cost": {"type": "number", "description": "Electricity cost in $/kWh"}
-                },
-                "required": ["hardware"]
-            }
-        },
-        {
-            "name": "get_compute_market_prices",
-            "description": "Get current GPU rental prices from Akash, Clore, Nosana",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "gpu_class": {"type": "string", "description": "GPU class (h100, a100, rtx4090)"}
-                }
-            }
-        },
-        {
-            "name": "get_pressure_metrics",
-            "description": "Get sell pressure and absorption metrics for a chain",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "symbol": {"type": "string", "description": "Chain symbol"}
-                },
-                "required": ["symbol"]
-            }
-        },
-        {
-            "name": "compare_chains",
-            "description": "Compare mining economics across multiple chains",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "chains": {"type": "array", "items": {"type": "string"}, "description": "List of chain symbols"},
-                    "hardware": {"type": "string", "description": "Hardware model to compare"}
-                },
-                "required": ["chains"]
-            }
-        },
-        {
-            "name": "get_resource_premium",
-            "description": "Calculate resource premium (mining revenue vs external rental)",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "chain": {"type": "string", "description": "Chain symbol"}
-                },
-                "required": ["chain"]
-            }
-        },
-        {
-            "name": "get_all_live_cards",
-            "description": "Get profitability cards for all V1 chains",
-            "inputSchema": {
-                "type": "object",
-                "properties": {}
-            }
-        }
-    ]
-}
+mcp = FastMCP("powpowpow")
 
-# Tool implementations
-def get_chain_status(symbol):
-    from v1_registry import get_v1_coin
-    import json
-    
-    coin = get_v1_coin(symbol.upper())
-    if not coin:
-        return {"error": f"Unknown chain: {symbol}"}
-    
-    # Load data
-    data_file = f'{BASE_DIR}/chains/{symbol.lower()}/{symbol.lower()}_data.json'
-    data = {}
-    if os.path.exists(data_file):
-        with open(data_file) as f:
-            data = json.load(f)
-    
-    price = data.get('price', {})
-    price_usd = price.get('usd', 0) if isinstance(price, dict) else price
-    
-    return {
-        'symbol': symbol.upper(),
-        'name': coin.get('name'),
-        'physical_resource': coin.get('physical_resource'),
-        'price_usd': price_usd,
-        'data': data
-    }
 
-def get_mining_profitability(chain, hardware, electricity_cost=0.10):
-    from v1_live_cards import generate_card
-    
-    # Load price
-    data_file = f'{BASE_DIR}/chains/{chain.lower()}/{chain.lower()}_data.json'
-    data = {}
-    if os.path.exists(data_file):
-        with open(data_file) as f:
-            data = json.load(f)
-    
-    price = data.get('price', {})
-    price_usd = price.get('usd', 0) if isinstance(price, dict) else price
-    
-    if not price_usd:
-        return {"error": f"No price data for {chain}"}
-    
-    card = generate_card(chain, price_usd)
-    
-    if hardware in card.get('hardware', {}):
-        return card['hardware'][hardware]
+def _rows(table):
+    rows = []
+    for chain in ('venue', 'safetrade'):
+        for f in glob.glob(os.path.join(
+                BASE_DIR, 'warehouse', 'normalized', table,
+                f'chain={chain}', 'date=*', 'hour=*.jsonl')):
+            with open(f) as fh:
+                for line in fh:
+                    try:
+                        rows.append(json.loads(line))
+                    except ValueError:
+                        continue
+    return rows
+
+
+def _latest(rows, key, date=None):
+    best = {}
+    for r in rows:
+        k = r.get(key, '')
+        if date and (r.get('date') or '') != date:
+            continue
+        stamp = r.get('generated_at') or r.get('date', '') or r.get('receive_time', '')
+        if k and (k not in best or stamp > best[k][0]):
+            best[k] = (stamp, r)
+    return {k: v[1] for k, v in best.items()}
+
+
+@mcp.tool()
+def get_asset_state(symbol: str, date: str = "") -> dict:
+    """Current (or date-specific) economic state per venue: mid, spread,
+    depth, trade flow, coverage. The garden's core object."""
+    out = [r for r in _rows('daily_state')
+           if r.get('symbol', '').upper() == symbol.upper()
+           and (not date or r.get('date') == date)]
+    out.sort(key=lambda r: (r.get('date', ''), r.get('venue', '')))
+    return {'symbol': symbol.upper(), 'states': out,
+            'as_of': datetime.now(timezone.utc).isoformat()}
+
+
+@mcp.tool()
+def get_signals(symbol: str = "", date: str = "") -> dict:
+    """Derived signals (miner_pressure, flow_pressure, required_flow) with
+    drivers, evidence record IDs, assumptions, versions."""
+    rows = _rows('derived_signal')
+    if symbol:
+        rows = [r for r in rows if r.get('asset', '').upper() == symbol.upper()]
+    if date:
+        rows = [r for r in rows if r.get('date') == date]
     else:
-        return {"error": f"Hardware {hardware} not found for {chain}"}
+        rows = list(_latest(rows, 'asset').values()) if not symbol else rows
+    return {'signals': rows}
 
-def get_best_mining_option(hardware, electricity_cost=0.10):
+
+@mcp.tool()
+def get_factors(date: str = "") -> dict:
+    """Cross-venue factor table: issuance, burden vs book, spreads, flow,
+    joined signal directions."""
+    try:
+        fac = json.load(open(os.path.join(
+            BASE_DIR, 'chains', 'factors', 'cross_chain_factors.json')))
+    except OSError:
+        fac = {}
+    return {'factors': fac,
+            'note': 'sell_fraction unmeasured; see sell_methodology per row'}
+
+
+@mcp.tool()
+def compare_compute_routes(hardware: str = "RTX_4090",
+                           electricity: float = 0.10) -> dict:
+    """Cheapest acceptable use of a GPU right now: mine vs rent routes
+    with expected net/day. Rental asks are seeded samples until
+    marketplace feeds recover."""
     from v1_live_cards import generate_card
-    
-    best = None
-    best_profit = float('-inf')
-    
-    # Load all prices
-    for chain in ['PRL', 'XMR', 'KAS', 'QUAN']:
-        data_file = f'{BASE_DIR}/chains/{chain.lower()}/{chain.lower()}_data.json'
-        data = {}
-        if os.path.exists(data_file):
-            with open(data_file) as f:
-                data = json.load(f)
-        
-        price = data.get('price', {})
-        price_usd = price.get('usd', 0) if isinstance(price, dict) else price
-        
-        if price_usd:
-            card = generate_card(chain, price_usd)
-            if hardware in card.get('hardware', {}):
-                hw = card['hardware'][hardware]
-                profit = hw.get('net_profit_usd_day', 0)
-                
-                if profit > best_profit:
-                    best_profit = profit
-                    best = {
-                        'chain': chain,
-                        'hardware': hardware,
-                        'profit_usd_day': profit,
-                        'revenue_usd_day': hw.get('revenue_usd_day', 0),
-                        'electricity_usd_day': hw.get('electricity_usd_day', 0),
-                    }
-    
-    return best or {"error": f"No profitability data found for {hardware}"}
+    try:
+        prices = {}
+        for r in _rows('daily_state'):
+            if r.get('mid_close') and r.get('symbol') not in prices:
+                prices[r['symbol']] = r['mid_close']
+        out = {}
+        for coin in ('PRL', 'XMR', 'QUAN', 'CLORE', 'AKT', 'NOS'):
+            try:
+                card = generate_card(coin, prices.get(coin, 0),
+                                     electricity=electricity)
+                hw = (card.get('hardware') or {}).get(hardware)
+                if hw:
+                    out[coin] = hw
+            except Exception as e:
+                out[coin] = {'error': str(e)[:100]}
+        return {'hardware': hardware, 'routes': out,
+                'methodology': 'rig/network * emission * price; rental = ask*24 @100% util'}
+    except Exception as e:
+        return {'error': str(e)[:200]}
 
-def get_compute_market_prices(gpu_class=None):
-    import json
-    
-    # Load compute benchmark data
-    data_file = os.path.join(BASE_DIR, 'chains', 'benchmarks', 'compute_benchmarks.json')
-    if os.path.exists(data_file):
-        with open(data_file) as f:
-            data = json.load(f)
-        return data
-    
-    return {"error": "No compute benchmark data available"}
 
-def get_pressure_metrics(symbol):
-    import json
-    
-    factors_file = os.path.join(BASE_DIR, 'chains', 'factors', 'cross_chain_factors.json')
-    if os.path.exists(factors_file):
-        with open(factors_file) as f:
-            factors = json.load(f)
-        return factors.get(symbol.upper(), {"error": f"No pressure data for {symbol}"})
-    
-    return {"error": "No factor data available"}
+@mcp.tool()
+def get_miner_pressure(symbol: str) -> dict:
+    """Miner-pressure evidence bundle for one asset: latest signals,
+    factor row, chain telemetry pointers."""
+    sym = symbol.upper()
+    signals = [r for r in _rows('derived_signal') if r.get('asset') == sym]
+    signals.sort(key=lambda r: r.get('generated_at', ''), reverse=True)
+    try:
+        fac = json.load(open(os.path.join(
+            BASE_DIR, 'chains', 'factors', 'cross_chain_factors.json'))).get(sym)
+    except OSError:
+        fac = None
+    try:
+        net = json.load(open(os.path.join(
+            BASE_DIR, 'chains', 'network_state.json'))).get(sym)
+    except OSError:
+        net = None
+    return {'asset': sym, 'signals': signals[:6], 'factor': fac,
+            'network': net}
 
-def compare_chains(chains, hardware=None):
-    from v1_live_cards import generate_card
-    
-    results = []
-    
-    for chain in chains:
-        data_file = f'{BASE_DIR}/chains/{chain.lower()}/{chain.lower()}_data.json'
-        data = {}
-        if os.path.exists(data_file):
-            with open(data_file) as f:
-                data = json.load(f)
-        
-        price = data.get('price', {})
-        price_usd = price.get('usd', 0) if isinstance(price, dict) else price
-        
-        if price_usd:
-            card = generate_card(chain, price_usd)
-            results.append({
-                'chain': chain,
-                'price_usd': price_usd,
-                'hardware': card.get('hardware', {})
-            })
-    
-    return results
 
-def get_resource_premium(chain):
-    import json
-    
-    econ_file = os.path.join(BASE_DIR, 'chains', 'economics', 'miner_economics.json')
-    if os.path.exists(econ_file):
-        with open(econ_file) as f:
-            economics = json.load(f)
-        return economics.get(chain.upper(), {"error": f"No economics data for {chain}"})
-    
-    return {"error": "No economics data available"}
+@mcp.tool()
+def get_brief(date: str = "") -> dict:
+    """Latest (or dated) PowDaily brief: signal board, movers, flow watch."""
+    if not date:
+        files = sorted(glob.glob(os.path.join(BASE_DIR, 'briefs', '*.md')))
+        if not files:
+            return {'error': 'no briefs yet'}
+        date = os.path.splitext(os.path.basename(files[-1]))[0]
+    try:
+        return {'date': date,
+                'brief': open(os.path.join(BASE_DIR, 'briefs', f'{date}.md')).read()}
+    except OSError:
+        return {'error': f'no brief for {date}'}
 
-def get_all_live_cards():
-    from v1_live_cards import generate_card
-    
-    cards = {}
-    for chain in ['PRL', 'QUBIC', 'QUAN', 'XMR', 'KAS']:
-        data_file = f'{BASE_DIR}/chains/{chain.lower()}/{chain.lower()}_data.json'
-        data = {}
-        if os.path.exists(data_file):
-            with open(data_file) as f:
-                data = json.load(f)
-        
-        price = data.get('price', {})
-        price_usd = price.get('usd', 0) if isinstance(price, dict) else price
-        
-        if price_usd:
-            cards[chain] = generate_card(chain, price_usd)
-    
-    return cards
 
-# Tool dispatcher
-TOOLS = {
-    'get_chain_status': get_chain_status,
-    'get_mining_profitability': get_mining_profitability,
-    'get_best_mining_option': get_best_mining_option,
-    'get_compute_market_prices': get_compute_market_prices,
-    'get_pressure_metrics': get_pressure_metrics,
-    'compare_chains': compare_chains,
-    'get_resource_premium': get_resource_premium,
-    'get_all_live_cards': get_all_live_cards,
-}
-
-def handle_tool_call(tool_name, arguments):
-    if tool_name in TOOLS:
-        func = TOOLS[tool_name]
-        return func(**arguments)
-    return {"error": f"Unknown tool: {tool_name}"}
-
-# MCP Server entry point
 if __name__ == '__main__':
-    import sys
-    
-    if len(sys.argv) > 1:
-        # CLI mode - test a tool
-        tool = sys.argv[1]
-        args = json.loads(sys.argv[2]) if len(sys.argv) > 2 else {}
-        result = handle_tool_call(tool, args)
-        print(json.dumps(result, indent=2, default=str))
-    else:
-        # Print server info
-        print(json.dumps(MCP_SERVER, indent=2))
+    mcp.run()

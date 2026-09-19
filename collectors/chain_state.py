@@ -71,6 +71,25 @@ def poll_qubic(ns):
             'peers': status.get('numberOfConnectedPeers'),
             'source_role': 'canonical', 'source_id': 'qubic-rpc'})
         ok += 1
+    # analytics.qubic.li: network demand totals (deltas = demand growth)
+    qli = fetch_json('https://analytics.qubic.li/api/stats',
+                     source_id='qubic-analytics', chain_id='qubic')
+    if qli and isinstance(qli, dict):
+        store_normalized('network_demand', 'qubic', {
+            'tick': qli.get('latestTick'), 'epoch': qli.get('currentEpoch'),
+            'total_transactions': qli.get('totalTransactions'),
+            'total_transfers': qli.get('totalTransfers'),
+            'total_volume': qli.get('totalVolume'),
+            'source_role': 'derived', 'source_id': 'qubic-analytics'})
+        ns.setdefault('QUBIC', {}).update({
+            'demand_tick': qli.get('latestTick'),
+            'demand_epoch': qli.get('currentEpoch'),
+            'total_transactions': qli.get('totalTransactions'),
+            'total_transfers': qli.get('totalTransfers'),
+            'total_volume': qli.get('totalVolume'),
+            'demand_source': 'analytics.qubic.li (day deltas = demand growth)',
+            'as_of': utcnow()})
+        ok += 1
     return ok
 
 
@@ -95,6 +114,45 @@ def poll_xmr(ns):
               'hashrate_source': 'localmonero 1 poll (H/s as reported)',
               'height': data.get('height'), 'difficulty': data.get('difficulty'),
               'as_of': utcnow()})
+    # xmrchain.net: fee market + mempool pressure + canonical difficulty
+    net = fetch_json('https://xmrchain.net/api/networkinfo',
+                     source_id='xmrchain', chain_id='xmr')
+    if net and isinstance(net.get('data'), dict):
+        nd = net['data']
+        e['fee_per_kb'] = nd.get('fee_per_kb')
+        e['fee_estimate'] = nd.get('fee_estimate')
+        e['block_size_median'] = nd.get('block_size_median')
+        e['hf_version'] = nd.get('current_hf_version')
+        e['fee_source'] = 'xmrchain.net/api/networkinfo'
+        store_normalized('fee_market', 'xmr', {
+            'fee_per_kb': nd.get('fee_per_kb'),
+            'fee_estimate': nd.get('fee_estimate'),
+            'block_size_median': nd.get('block_size_median'),
+            'difficulty': nd.get('difficulty'),
+            'source_role': 'derived', 'source_id': 'xmrchain'})
+    pool = fetch_json('https://xmrchain.net/api/mempool?limit=1',
+                      source_id='xmrchain', chain_id='xmr')
+    if pool and isinstance(pool.get('data'), dict):
+        txs = pool['data'].get('txs', [])
+        e['mempool_txs_sampled'] = len(txs)
+        store_normalized('mempool_snapshot', 'xmr', {
+            'txs_in_page': len(txs),
+            'source_role': 'derived', 'source_id': 'xmrchain'})
+    # p2pool: decentralized supply-response telemetry (miners + hashrate)
+    p2p = fetch_json('https://p2pool.observer/api/pool/stats',
+                     source_id='p2pool-observer', chain_id='xmr')
+    if p2p and isinstance(p2p.get('pool_statistics'), dict):
+        ps = p2p['pool_statistics']
+        e['p2pool_hashrate'] = ps.get('hashRate')
+        e['p2pool_miners'] = ps.get('miners')
+        e['p2pool_last_block'] = ps.get('lastBlockFound')
+        e['p2pool_source'] = 'p2pool.observer (decentralized mining share)'
+        store_normalized('pool_snapshot', 'xmr', {
+            'pool': 'p2pool', 'hashrate': ps.get('hashRate'),
+            'miners': ps.get('miners'),
+            'last_block': ps.get('lastBlockFound'),
+            'total_blocks': ps.get('totalBlocksFound'),
+            'source_role': 'derived', 'source_id': 'p2pool-observer'})
     return 1
 
 
@@ -119,17 +177,67 @@ def poll_kas(ns):
               'price_usd': prv, 'circulating_supply': supply,
               'supply_source': 'api.kaspa.org (for day-over-day emission delta)',
               'as_of': utcnow()})
-    # Supply-delta emission: needs yesterday's supply; compute when present.
+    # Supply-delta emission rate: needs two supply points separated in
+    # time. Rate = delta/dt annualized to per-day. Requires dt > 1h.
+    now_ts = time.time()
     prev = e.get('prev_supply')
-    if prev and supply:
+    prev_ts = e.get('prev_supply_ts')
+    if prev and prev_ts and supply:
         try:
-            e['daily_emission_delta'] = float(supply) - float(prev)
-            e['emission_source'] = 'circulating-supply day delta (measured)'
-            ok += 1
+            dt = now_ts - float(prev_ts)
+            if dt > 3600:
+                rate = (float(supply) - float(prev)) / dt * 86400
+                if rate > 0:
+                    e['daily_emission_delta'] = round(rate, 2)
+                    e['emission_source'] = (
+                        'circulating-supply delta rate (measured, '
+                        f'{dt/3600:.1f}h window)')
+                    ok += 1
         except (TypeError, ValueError):
             pass
-    e['prev_supply'] = supply
+    if not e.get('prev_supply_ts') or not prev:
+        e['prev_supply'] = supply
+        e['prev_supply_ts'] = now_ts
+    # else: keep widening the window; rate accuracy grows with dt.
     return ok + (1 if hrv else 0)
+
+
+def poll_akt(ns):
+    """AKT: circulating supply sampling (Cosmos dynamic inflation has no
+    clean schedule — emission comes from supply-delta rate like KAS)."""
+    sup = fetch_json('https://supply.akash.pub/circulating',
+                     source_id='akash-supply', chain_id='akt')
+    try:
+        supply = float(sup) if not isinstance(sup, dict) else None
+    except (TypeError, ValueError):
+        supply = None
+    if supply is None:
+        return 0
+    store_normalized('chain_snapshot', 'akt', {
+        'circulating_supply': supply,
+        'source_role': 'canonical-ish', 'source_id': 'akash-supply'})
+    e = ns.setdefault('AKT', {})
+    now_ts = time.time()
+    prev, prev_ts = e.get('prev_supply'), e.get('prev_supply_ts')
+    ok = 0
+    if prev and prev_ts:
+        try:
+            dt = now_ts - float(prev_ts)
+            if dt > 3600:
+                rate = (supply - float(prev)) / dt * 86400
+                if rate > 0:
+                    e['daily_emission_delta'] = round(rate, 2)
+                    e['emission_source'] = ('akash supply-delta rate '
+                                            f'(measured, {dt/3600:.1f}h window)')
+                    ok = 1
+        except (TypeError, ValueError):
+            pass
+    if not e.get('prev_supply_ts') or not prev:
+        e['prev_supply'] = supply
+        e['prev_supply_ts'] = now_ts
+    e.update({'circulating_supply': supply, 'as_of': utcnow(),
+              'supply_source': 'supply.akash.pub/circulating'})
+    return ok + 1
 
 
 def poll_nock(ns):
@@ -160,7 +268,7 @@ def poll_nock(ns):
 def run_pass(ns):
     stats = {}
     for name, fn in (('qubic', poll_qubic), ('xmr', poll_xmr),
-                     ('kas', poll_kas), ('nock', poll_nock)):
+                     ('kas', poll_kas), ('akt', poll_akt), ('nock', poll_nock)):
         try:
             stats[name] = fn(ns)
         except Exception as e:
