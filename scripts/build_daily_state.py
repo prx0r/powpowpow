@@ -110,10 +110,20 @@ def build_day(chain, date):
         if sp is not None:
             a['spreads'].append(sp)
         b = fnum(r.get('bid_notional_20'))
+        if b is None and isinstance(r.get('bids'), list):
+            try:
+                b = sum(float(p) * float(q) for p, q in r['bids'][:20])
+            except (ValueError, TypeError, IndexError):
+                b = None
         if b is not None:
             a['bid_sum'] += b
             a['bid_n'] += 1
         k = fnum(r.get('ask_notional_20'))
+        if k is None and isinstance(r.get('asks'), list):
+            try:
+                k = sum(float(p) * float(q) for p, q in r['asks'][:20])
+            except (ValueError, TypeError, IndexError):
+                k = None
         if k is not None:
             a['ask_sum'] += k
             a['ask_n'] += 1

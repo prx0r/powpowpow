@@ -147,11 +147,17 @@ def load_books(path, venue, symbol):
                     except ValueError:
                         pass
             et = us_to_iso(row.get('timestamp'))
+            try:
+                b20 = sum(float(p) * float(q) for p, q in bids[:20])
+                a20 = sum(float(p) * float(q) for p, q in asks[:20])
+            except ValueError:
+                b20, a20 = None, None
             bulk_put('orderbook_snapshot', 'venue', {
                 'venue': venue, 'symbol': symbol, 'market': row.get('symbol'),
                 'receive_time': us_to_iso(row.get('local_timestamp')) or et,
                 'exchange_time': et, 'mid': mid, 'spread_bps': spread,
-                **bands, 'bid_levels': len(bids), 'ask_levels': len(asks),
+                **bands, 'bid_notional_20': b20, 'ask_notional_20': a20,
+                'bid_levels': len(bids), 'ask_levels': len(asks),
                 'bids': bids, 'asks': asks,
                 'snapshot_kind': 'tardis_seed',
                 'source_role': 'tardis_seed',
