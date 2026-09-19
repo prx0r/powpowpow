@@ -3,288 +3,219 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>powpowpow — mining economics console</title>
+<title>powpowpow</title>
 <style>
-:root{--bg:#fff;--bg2:#f0f0f0;--bg3:#e2e2e2;--border:#111;--text:#111;--dim:#555}
+:root{--bg:#fff;--bg2:#f0f0f0;--bg3:#ddd;--border:#111;--dim:#555}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font:13px/1.5 Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column}
-.titlebar{height:32px;background:#111;color:#fff;display:flex;align-items:center;padding:0 14px;font-size:12px;font-weight:700;letter-spacing:1px}
-.titlebar .right{margin-left:auto;font-weight:400;color:#bbb;display:flex;gap:12px;align-items:center}
-.main{flex:1;display:flex;overflow:hidden}
-.activity{width:52px;background:#111;display:flex;flex-direction:column;align-items:center;padding-top:6px;flex-shrink:0}
-.activity .icon{width:52px;padding:11px 0;text-align:center;cursor:pointer;color:#888;font-size:11px;font-weight:900;border-left:5px solid transparent;line-height:1.25}
-.activity .icon:hover{color:#fff;background:#222}
-.activity .icon.active{color:#fff;background:#222;border-left-color:#fff}
-.activity .icon .badge{display:block;font-size:9px;font-weight:400}
-.sidebar{width:250px;background:var(--bg2);border-right:3px solid #111;display:flex;flex-direction:column;overflow:hidden;flex-shrink:0}
-.sidebar-header{padding:9px 12px;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:900;border-bottom:3px solid #111}
-.sidebar-content{flex:1;overflow-y:auto;padding:8px}
-.kv{font-size:12px;margin-bottom:10px}.kv .k{color:var(--dim);font-size:10px;text-transform:uppercase}.kv .v{font:700 15px ui-monospace,monospace}
-.sidebtn{display:block;width:100%;text-align:left;background:#fff;border:2px solid #111;font-weight:700;font-size:12px;padding:7px 10px;margin-bottom:6px;cursor:pointer}
-.sidebtn:hover{background:#111;color:#fff}
-.editor-area{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
-.tabs{display:flex;background:var(--bg2);border-bottom:3px solid #111;overflow-x:auto;flex-shrink:0}
-.tab{padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;border-right:2px solid #111;color:#555;white-space:nowrap}
-.tab.active{background:#fff;color:#111}
-.editor{flex:1;overflow-y:auto;padding:18px 22px;max-width:960px}
-.bottom-panel{height:170px;border-top:3px solid #111;background:var(--bg2);display:flex;flex-direction:column;flex-shrink:0}
-.bottom-tabs{display:flex;border-bottom:2px solid #111;padding:0 8px}
-.bottom-tab{padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;color:#555;text-transform:uppercase}
-.bottom-tab.active{color:#111;text-decoration:underline;text-underline-offset:4px}
-.bottom-content{flex:1;overflow-y:auto;padding:6px 14px;font:11.5px/1.5 ui-monospace,monospace}
-.chat-panel{width:330px;border-left:3px solid #111;display:flex;flex-direction:column;background:var(--bg2);position:relative;flex-shrink:0}
-.chat-divider{width:6px;cursor:col-resize;position:absolute;left:-4px;top:0;bottom:0;z-index:10}
-.chat-divider:hover,.chat-divider.dragging{background:#111}
-.chat-messages{flex:1;overflow-y:auto;padding:12px}
-.chat-msg{margin-bottom:8px;font-size:12.5px}
-.chat-msg .who{font-size:10px;color:var(--dim);text-transform:uppercase}
-.chat-msg .text{margin-top:2px;padding:7px 10px;border:2px solid #111;background:#fff;word-break:break-word}
-.chat-msg.you .text{background:#111;color:#fff}
-.chat-input{display:flex;border-top:3px solid #111;padding:8px}
-.chat-input input{flex:1;border:2px solid #111;padding:7px 10px;font-size:12px;min-width:0}
-.chat-input button{margin-left:6px;background:#111;color:#fff;border:none;padding:7px 14px;font-weight:900;cursor:pointer}
-h1{font-size:22px;margin-bottom:2px}h2{font-size:15px;margin:22px 0 8px;padding-bottom:4px;border-bottom:3px solid #111}
-.sub{color:#555;font-size:12.5px;margin-bottom:12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:12px 0}
-.stat{border:3px solid #111;padding:10px 12px;background:#fff}
-.stat .k{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:.5px}
-.stat .v{font:700 19px ui-monospace,monospace;margin-top:2px}
-.stat .n{font-size:11px;color:#555}
-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0}
-th{text-align:left;font-size:10.5px;text-transform:uppercase;color:#555;border-bottom:3px solid #111;padding:6px 8px}
-td{padding:6px 8px;border-bottom:1px solid #999;font-variant-numeric:tabular-nums}
-.num{font-family:ui-monospace,monospace;font-size:12px}
-canvas.graph{width:100%;height:170px;border:3px solid #111;background:#fff;margin:8px 0}
-.box{border:2px solid #111;padding:9px 11px;margin:8px 0;background:#f4f4f4;font-size:12.5px}
-.dim{color:#555;font-size:11.5px}
-select{font:13px Arial;padding:6px;border:2px solid #111;background:#fff}
-pre.brief{white-space:pre-wrap;font-size:12.5px}
+body{font:13px/1.5 Arial,sans-serif;background:var(--bg);color:#111;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.titlebar{height:30px;background:#111;color:#fff;display:flex;align-items:center;padding:0 14px;font:700 11px/1 Arial;letter-spacing:1px}
+.titlebar .r{margin-left:auto;font-weight:400;color:#aaa;display:flex;gap:12px}
+.body{flex:1;display:flex;overflow:hidden}
+.rail{width:48px;background:#111;display:flex;flex-direction:column;padding-top:4px;flex-shrink:0}
+.rail .i{width:48px;padding:10px 0;text-align:center;cursor:pointer;color:#666;font:900 9px/1 Arial;border-left:4px solid transparent}
+.rail .i:hover{color:#fff;background:#222}
+.rail .i.a{color:#fff;border-left-color:#fff}
+.rail .b{display:block;font:400 8px/1 Arial;margin-top:2px}
+.sb{width:240px;background:var(--bg2);border-right:2px solid #111;display:flex;flex-direction:column;flex-shrink:0}
+.sb-h{padding:8px 10px;font:900 10px/1 Arial;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid #111}
+.sb-c{flex:1;overflow-y:auto;padding:6px}
+.kv{font-size:11.5px;margin-bottom:8px}.k{color:#777;font-size:9.5px;text-transform:uppercase}.v{font:700 14px ui-monospace,monospace}
+.btn{display:block;width:100%;text-align:left;background:#fff;border:2px solid #111;font:700 11px Arial;padding:6px 8px;margin-bottom:5px;cursor:pointer}
+.btn:hover{background:#111;color:#fff}
+.ed{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.tabs{display:flex;background:var(--bg2);border-bottom:2px solid #111;flex-shrink:0}
+.tab{padding:7px 14px;font:700 11px Arial;cursor:pointer;border-right:2px solid #111;color:#777}
+.tab.a{background:#fff;color:#111}
+.edc{flex:1;overflow-y:auto;padding:16px 20px;max-width:940px}
+.bp{height:150px;border-top:2px solid #111;background:var(--bg2);display:flex;flex-direction:column;flex-shrink:0}
+.bt{display:flex;border-bottom:1px solid #999;padding:0 6px}
+.bt div{padding:5px 10px;font:700 9px Arial;cursor:pointer;color:#777;text-transform:uppercase}
+.bt div.a{color:#111;text-decoration:underline}
+.bc{flex:1;overflow-y:auto;padding:4px 12px;font:11px/1.5 ui-monospace,monospace}
+.cp{width:310px;border-left:2px solid #111;display:flex;flex-direction:column;background:var(--bg2);flex-shrink:0}
+.cd{height:100%;width:5px;position:absolute;left:-3px;cursor:col-resize;z-index:10}
+.ch{padding:7px 10px;font:900 10px/1 Arial;border-bottom:2px solid #111}
+.cm{flex:1;overflow-y:auto;padding:10px}
+.msg{margin-bottom:6px;font-size:12px}.msg .w{font-size:9px;color:#777;text-transform:uppercase}
+.msg .t{margin-top:1px;padding:5px 8px;border:2px solid #111;background:#fff}
+.msg.y .t{background:#111;color:#fff}
+.ci{display:flex;border-top:2px solid #111;padding:7px}
+.ci input{flex:1;border:2px solid #111;padding:5px 8px;font-size:11px}
+.ci button{margin-left:5px;background:#111;color:#fff;border:none;padding:5px 12px;font:700 10px Arial}
+h1{font:700 20px/1.1 Arial;margin-bottom:2px}
+h2{font:700 14px/1 Arial;margin:18px 0 6px;padding-bottom:3px;border-bottom:2px solid #111}
+.sub{color:var(--dim);font-size:11.5px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:10px 0}
+.st{border:2px solid #111;padding:8px 10px;background:#fff}
+.st .k{font:900 9px/1 Arial;color:#777;text-transform:uppercase;letter-spacing:.5px}
+.st .v{font:700 17px ui-monospace,monospace;margin-top:2px}
+.st .n{font-size:10px;color:#777}
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin:8px 0}
+th{text-align:left;font:700 9px/1 Arial;color:#777;border-bottom:2px solid #111;padding:5px 7px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:5px 7px;border-bottom:1px solid #999;font-variant-numeric:tabular-nums}
+canvas.g{width:100%;height:150px;border:2px solid #111;background:#fff;margin:6px 0}
+.box{border:2px solid #111;padding:7px 9px;margin:6px 0;background:#f5f5f5;font-size:11.5px}
+.dim{color:#777;font-size:10.5px}
+pre{white-space:pre-wrap;font-size:11.5px;border:2px solid #111;padding:10px;background:#f5f5f5}
 </style>
 </head>
 <body>
-<div class="titlebar"><span>POWPOWPOW&nbsp;&nbsp;·&nbsp;&nbsp;MINING ECONOMICS CONSOLE</span><span class="right"><span id="clock"></span><span id="health">…</span></span></div>
-<div class="main">
-<div class="activity" id="rail"></div>
-<div class="sidebar"><div class="sidebar-header" id="sbtitle">Screener</div><div class="sidebar-content" id="sbbody"></div></div>
-<div class="editor-area">
+<div class="titlebar"><span>POWPOWPOW</span><span class="r"><span id="clk"></span><span id="health">…</span></span></div>
+<div class="body">
+<div class="rail" id="rail"></div>
+<div class="sb"><div class="sb-h" id="sht">SCREENER</div><div class="sb-c" id="sbc"></div></div>
+<div class="ed">
 <div class="tabs" id="tabs"></div>
-<div class="editor" id="editor"></div>
-<div class="bottom-panel"><div class="bottom-tabs"><div class="bottom-tab active" data-b="ops">Garden ops</div><div class="bottom-tab" data-b="signals">Signals</div><div class="bottom-tab" data-b="runs">Collectors</div></div><div class="bottom-content" id="bottom"></div></div>
+<div class="edc" id="ed"></div>
+<div class="bp"><div class="bt"><div class="a" data-b="ops">OPS</div><div class="b" data-b="sig">SIGNALS</div></div><div class="bc" id="bot"></div></div>
 </div>
-<div class="chat-panel" id="chatpanel"><div class="chat-divider" id="chatdiv"></div>
-<div class="sidebar-header">Analyst <span class="dim" id="chatvia"></span></div>
-<div class="chat-messages" id="chatlog"></div>
-<div class="chat-input"><input id="chatq" placeholder="Ask about XMR, Qubic…"><button onclick="ask()">→</button></div>
-</div>
+<div class="cp"><div class="cd" id="cd"></div><div class="ch">ANALYST <span class="dim" id="cv"></span></div><div class="cm" id="cl"></div><div class="ci"><input id="cq" placeholder="ask about XMR or Qubic…"><button onclick="ask()">→</button></div></div>
 </div>
 <script>
-const TOK = new URLSearchParams(location.search).get('token') || '';
-function api(m, p, b, ms=30000) {
-  const c = new AbortController(), t = setTimeout(() => c.abort(), ms);
-  return fetch(p + '?token=' + encodeURIComponent(TOK), {method: m, headers: {'Content-Type': 'application/json'}, body: b ? JSON.stringify(b) : undefined, signal: c.signal}).finally(() => clearTimeout(t)).then(r => r.json());
-}
-const GET = p => api('GET', p);
-const CORE = [['HOME','home'],['QUBIC','Qubic'],['XMR','Monero'],['PRL','Pearl'],['KAS','Kaspa'],['NOCK','Nock'],['XEL','Xelis'],['BRIEF','Brief']];
-const dir = d => d === 'bullish' ? '▲ BULL' : d === 'bearish' ? '▼ BEAR' : '— FLAT';
-const SUBS = ['Overview', 'Market', 'Mining', 'Signals'];
-let VIEW = 'home', SUB = 'Overview', FACTORS = {};
-setInterval(() => document.getElementById('clock').textContent = new Date().toISOString().slice(11, 19) + 'Z', 1000);
-
-// Rail
-const rail = document.getElementById('rail');
-CORE.concat([['CHAT','Chat']]).forEach(([v, label]) => {
-  const d = document.createElement('div');
-  d.className = 'icon' + (v === 'home' ? ' active' : '');
-  d.innerHTML = label.slice(0, 5).toUpperCase() + `<span class="badge">${v === 'home' ? '⌂' : v === 'CHAT' ? '?' : v.slice(0,3)}</span>`;
-  d.title = label; d.onclick = () => go(v);
-  d.dataset.v = v; rail.appendChild(d);
-});
-function go(v) {
-  document.querySelectorAll('#rail .icon').forEach(i => i.classList.toggle('active', i.dataset.v === v));
-  if (v === 'CHAT') { document.getElementById('chatq').focus(); return; }
-  VIEW = v; SUB = 'Overview'; render();
-}
-function tabs(list, cur, fn) {
-  document.getElementById('tabs').innerHTML = list.map(t => `<div class="tab${t===cur?' active':''}" data-t="${t}">${t.toUpperCase()}</div>`).join('');
-  document.querySelectorAll('#tabs .tab').forEach(el => el.onclick = () => fn(el.dataset.t));
-}
-
-// Graphs
-function line(id, series, label) {
-  const c = document.getElementById(id); if (!c) return;
-  const x = c.getContext('2d'), W = c.width = c.offsetWidth * 2, H = c.height = 340;
-  x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
-  const vs = series.map(p => p[1]).filter(v => v != null);
-  if (!vs.length) { x.fillStyle = '#555'; x.font = '24px Arial'; x.fillText('no data yet', 20, 60); return; }
-  let mn = Math.min(...vs), mx = Math.max(...vs);
-  if (mn === mx) { mn *= 0.99; mx *= 1.01; }
-  x.strokeStyle = '#111'; x.lineWidth = 4; x.beginPath();
-  series.forEach((p, i) => { if (p[1] == null) return;
-    const px = 12 + i / (series.length - 1) * (W - 24);
-    const py = H - 24 - (p[1] - mn) / (mx - mn) * (H - 60);
-    i === 0 ? x.moveTo(px, py) : x.lineTo(px, py); });
-  x.stroke(); x.fillStyle = '#111'; x.font = 'bold 22px monospace';
-  x.fillText(label || ('last ' + vs[vs.length-1]), 14, 36);
-}
-function bars(id, series) {
-  const c = document.getElementById(id); if (!c) return;
-  const x = c.getContext('2d'), W = c.width = c.offsetWidth * 2, H = c.height = 340;
-  x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
-  const mx = Math.max(1e-12, ...series.map(p => Math.abs(p[1] || 0)));
-  const bw = (W - 24) / Math.max(1, series.length);
-  series.forEach((p, i) => { const v = p[1] || 0, h = Math.abs(v) / mx * (H/2 - 24);
-    x.fillStyle = v >= 0 ? '#111' : '#999';
-    v >= 0 ? x.fillRect(12 + i*bw, H/2 - h, Math.max(2, bw-4), h) : x.fillRect(12 + i*bw, H/2, Math.max(2, bw-4), h); });
-  x.fillStyle = '#111'; x.fillRect(0, H/2 - 2, W, 4);
-}
-
-// Views
-async function render() {
-  if (VIEW === 'home') return home();
-  if (VIEW === 'brief') return brief();
-  return coin(VIEW);
-}
-async function home() {
-  document.getElementById('sbtitle').textContent = 'Screener';
-  tabs([], '', () => {});
-  const d = await GET('/api/factors'); FACTORS = d.factors || {};
-  const rows = CORE.filter(c => c[0] !== 'home').map(c => FACTORS[c[0]]).filter(Boolean);
-  document.getElementById('sbbody').innerHTML = rows.map(f =>
-    `<button class="sidebtn" onclick="go('${f.symbol}')">${f.symbol}<br><span class="dim">${dir(f.miner_pressure)} ${f.miner_pressure_strength ?? ''}</span></button>`).join('');
-  let h = `<h1>Money supply vs the market</h1><div class="sub">Fresh tokens per day, valued, against resting buy orders. Measured — provenance on every number.</div>`;
-  h += `<table><tr><th>Coin</th><th>Price</th><th>New $/day</th><th>Burden</th><th>Signal</th></tr>`;
-  rows.sort((a,b) => (b.burden_vs_book||0) - (a.burden_vs_book||0)).forEach(f => {
-    h += `<tr><td><b>${f.symbol}</b></td><td class="num">${f.price_usd ?? '—'}</td><td class="num">${f.issuance_usd_24h ? '$'+Math.round(f.issuance_usd_24h).toLocaleString() : '—'}</td><td class="num">${f.burden_vs_book ?? '—'}×</td><td>${dir(f.miner_pressure)}</td></tr>`;
-  });
-  document.getElementById('editor').innerHTML = h + `</table>`;
-}
-const DOSSIER = {
-  QUBIC: 'Qubic mints <b>1 trillion QUBIC every week</b> (one epoch). Most burns immediately: since Aug 2026, <b>78.75%</b> is destroyed and ~212B reach the market (~30.4B/day). Epoch numbers below are weeks since launch.',
-  XMR: 'Monero pays <b>0.6 XMR per 2-minute block, forever</b> — 432/day, no halvings, no unlocks. Flows are unknowable by design, so this page shows the drip against resting demand instead of tracing wallets.',
-  PRL: 'Pearl pays GPUs for AI computation; mining is the by-product. 500k PRL/day at schedule. Miner-to-exchange flow is unmeasured until our node syncs — burdens here are structural.',
-  KAS: 'High-throughput PoW control asset. Emission measured from circulating-supply deltas; hashrate units still confirming.',
-  NOCK: 'ZK proof-of-work, young chain. Proof-rate and upgrade events tracked; economics still maturing.',
-  XEL: 'Private DAG, thin books. Coverage is venue microstructure plus static emission.'};
-async function coin(sym) {
-  document.getElementById('sbtitle').textContent = sym;
-  tabs(SUBS, SUB, s => { SUB = s; coinBody(sym); });
-  const f = (FACTORS[sym]) || (await GET('/api/factors')).factors?.[sym] || {};
-  if (!FACTORS[sym]) FACTORS = (await GET('/api/factors')).factors || {};
-  document.getElementById('sbbody').innerHTML =
-    `<div class="kv"><div class="k">Price</div><div class="v">${f.price_usd ?? '—'}</div></div>
-     <div class="kv"><div class="k">New supply $/d</div><div class="v">${f.issuance_usd_24h ? '$'+Math.round(f.issuance_usd_24h).toLocaleString() : '—'}</div></div>
-     <div class="kv"><div class="k">Burden</div><div class="v">${f.burden_vs_book ?? '—'}×</div></div>
-     <div class="kv"><div class="k">Signal</div><div class="v">${dir(f.miner_pressure)} ${f.miner_pressure_strength ?? ''}</div></div>
-     <button class="sidebtn" onclick="SUB='Signals';coinBody('${sym}')">Why this signal →</button>`;
-  coinBody(sym);
-}
-async function coinBody(sym) {
-  const ed = document.getElementById('editor'); ed.innerHTML = 'loading…';
-  const [st, sg, cd, ch, an] = await Promise.all([
-    GET('/api/state?symbol=' + sym), GET('/api/signals?symbol=' + sym),
-    GET('/api/cards'), GET('/api/chain?symbol=' + sym), GET('/api/analysis?symbol=' + sym)]);
-  const card = (cd.cards || {})[sym] || {}, net = ch.network || {};
-  let h = `<h1>${sym}</h1><div class="sub">${{QUBIC:'useful proof-of-work · weekly epochs',XMR:'privacy PoW · fixed drip',PRL:'GPU useful-work',KAS:'industrial PoW control',NOCK:'ZK proof-of-work',XEL:'private DAG'}[sym] || ''}</div>`;
-  if (SUB === 'Overview') {
-    h += `<div class="grid">${stat('Price', num(card.price_usd), 'venue mids')}${stat('Signal', (((sg.signals||[])[0]||{}).direction || '—') + ' ' + (((sg.signals||[])[0]||{}).strength ?? ''), 'top signal')}`;
-    if (sym === 'QUBIC') h += stat('Net supply', net.daily_emission ? (net.daily_emission/1e9).toFixed(1)+'B/d' : '—', `burn ${(net.burn_rate*100||0).toFixed(2)}%`) + stat('Epoch', net.epoch ? `${net.epoch} (${(net.epoch_progress*100||0).toFixed(1)}%)` : '—', `${net.computors||'—'} computors`);
-    if (sym === 'XMR') h += stat('Drip', '432/d', 'forever') + stat('Hashrate', net.network_hashrate ? (net.network_hashrate/1e9).toFixed(2)+' GH/s' : '—', `${net.p2pool_miners ? Number(net.p2pool_miners).toLocaleString()+' p2pool' : ''}`);
-    h += `</div><h2>Price — 1 year</h2><canvas class="graph" id="g-px"></canvas><h2>What this means</h2><div class="box">${DOSSIER[sym] || ''}</div>`;
-    ed.innerHTML = h;
-    const ph = await GET('/api/history?symbol=' + sym);
-    line('g-px', (ph.closes || []).map(r => [r.date, r.close]), 'last $' + (((ph.closes||[]).pop()||{}).close ?? '—'));
-    if (sym === 'XMR' && an.analysis && an.analysis.logprice_logdiff_corr != null)
-      ed.innerHTML += `<div class="box"><b>Seesaw:</b> log-price/log-difficulty corr ${an.analysis.logprice_logdiff_corr} (${an.analysis.corr_n} pts).</div>`;
+const T=new URLSearchParams(location.search).get('token')||'';
+const G=(p)=>fetch(p+'?token='+encodeURIComponent(T)).then(r=>r.json());
+const P=(p,b)=>fetch(p+'?token='+encodeURIComponent(T),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
+const DIR=d=>d==='bullish'?'BULL':'bearish'?'BEAR':'FLAT';
+const CORE=[['HOME','home'],['QUBIC','Qubic'],['XMR','Monero'],['PRL','Pearl'],['KAS','Kaspa'],['NOCK','Nock'],['XEL','Xelis']];
+const NAMES={QUBIC:'QUBIC',XMR:'MONERO',PRL:'PEARL',KAS:'KASPA',NOCK:'NOCK',XEL:'XELIS'};
+let V='home',S='Overview';
+setInterval(()=>{const e=document.getElementById('clk');if(e)e.textContent=new Date().toISOString().slice(11,19)+'Z'},1000);
+// rail
+const rail=document.getElementById('rail');
+CORE.concat([['CHAT','Chat']]).forEach(([id,label])=>{
+  const d=document.createElement('div');d.className='i'+(id==='home'?' a':'');
+  d.innerHTML=label.slice(0,4).toUpperCase()+(id==='CHAT'?'<span class="b">💬</span>':'<span class="b">'+id+'</span>');
+  d.onclick=()=>go(id);d.dataset.v=id;rail.appendChild(d);});
+function go(v){document.querySelectorAll('.rail .i').forEach(i=>i.classList.toggle('a',i.dataset.v===v));
+if(v==='CHAT'){document.getElementById('cq').focus();return;}V=v;S='Overview';render();}
+function tabs(list,cur,fn){document.getElementById('tabs').innerHTML=list.map(t=>`<div class="tab${t===cur?' a':''}" data-t="${t}">${t}</div>`).join('');
+document.querySelectorAll('#tabs .tab').forEach(el=>el.onclick=()=>fn(el.dataset.t));}
+// graph
+function line(id,s,l){const c=document.getElementById(id);if(!c)return;const x=c.getContext('2d'),W=c.width=c.offsetWidth*2,H=c.height=300;
+x.fillStyle='#fff';x.fillRect(0,0,W,H);const vs=s.map(p=>p[1]).filter(v=>v!=null);
+if(!vs.length){x.fillStyle='#555';x.font='20px Arial';x.fillText('no data',15,50);return;}
+let mn=Math.min(...vs),mx=Math.max(...vs);if(mn===mx){mn*=.99;mx*=1.01;}
+x.strokeStyle='#111';x.lineWidth=3;x.beginPath();
+s.forEach((p,i)=>{if(p[1]==null)return;const px=10+i/(s.length-1)*(W-20),py=H-18-(p[1]-mn)/(mx-mn)*(H-40);i?x.lineTo(px,py):x.moveTo(px,py);});
+x.stroke();x.fillStyle='#111';x.font='bold 18px monospace';x.fillText(l||('last '+vs[vs.length-1]),10,28);}
+function bars(id,s){const c=document.getElementById(id);if(!c)return;const x=c.getContext('2d'),W=c.width=c.offsetWidth*2,H=c.height=300;
+x.fillStyle='#fff';x.fillRect(0,0,W,H);const mx=Math.max(1e-12,...s.map(p=>Math.abs(p[1]||0)));
+const bw=W/Math.max(1,s.length);s.forEach((p,i)=>{const v=p[1]||0,h=Math.abs(v)/mx*(H/2-18);
+x.fillStyle=v>=0?'#111':'#999';v>=0?x.fillRect(i*bw+2,H/2-h,bw-4,h):x.fillRect(i*bw+2,H/2,bw-4,h);});
+x.fillStyle='#111';x.fillRect(0,H/2-1,W,3);}
+// stat helper
+function S(k,v,n){return`<div class="st"><div class="k">${k}</div><div class="v">${v}</div><div class="n">${n||''}</div></div>`;}
+function N(v){return v==null?'—':v<1?v.toPrecision(3):Number(v).toLocaleString(undefined,{maximumFractionDigits:2});}
+function $(v){return v==null?'—':'$'+Number(v).toLocaleString(undefined,{maximumFractionDigits:v<1?6:0});}
+let FACT={};
+async function render(){if(V==='home')return home();if(V==='brief')return brief();return coin(V);}
+async function home(){
+  document.getElementById('sht').textContent='SCREENER';document.getElementById('sbc').innerHTML='loading…';tabs([],'',()=>{});
+  const d=await G('/api/factors');FACT=d.factors||{};
+  const rows=CORE.filter(c=>c[0]!=='home').map(c=>FACT[c[0]]).filter(Boolean);
+  document.getElementById('sbc').innerHTML=rows.sort((a,b)=>(b.burden_vs_book||0)-(a.burden_vs_book||0)).map(f=>
+    `<button class="btn" onclick="go('${f.symbol}')">${f.symbol}<br><span class="dim">${DIR(f.miner_pressure)} ${f.miner_pressure_strength??''}</span></button>`).join('');
+  let h=`<h1>MONEY SUPPLY VS THE MARKET</h1><div class="sub">Fresh tokens per day, valued, against resting top-20 buy orders. Measured — provenance on every number.</div>`;
+  h+=`<table><tr><th>COIN</th><th>PRICE</th><th>NEW $/DAY</th><th>BURDEN</th><th>SIGNAL</th></tr>`;
+  rows.sort((a,b)=>(b.burden_vs_book||0)-(a.burden_vs_book||0)).forEach(f=>{
+    h+=`<tr><td><b>${f.symbol}</b></td><td>${$(f.price_usd)}</td><td>${f.issuance_usd_24h?'$'+Math.round(f.issuance_usd_24h).toLocaleString():'—'}</td><td>${f.burden_vs_book??'—'}×</td><td>${DIR(f.miner_pressure)}</td></tr>`;});
+  document.getElementById('ed').innerHTML=h+`</table><div class="box">Burden = one day of fresh-supply value ÷ resting top-20 bids. Over 1× means the visible book can't absorb a single day of printing.</div>`;}
+const DOSS={QUBIC:'Qubic mints 1 trillion per week. Since Aug 2026, 78.75% burns immediately — only ~212B reach the market (~30.4B/day). Epochs are weeks since launch. Burn share doubles every ~52 epochs.',
+XMR:'0.6 XMR per 2-minute block, forever. 432/day, no halvings, no unlocks. Who sells is unknowable — amounts, senders, receivers all hidden.',
+PRL:'500k PRL/day. Mining pays for AI inference. 50% more GPU miners = 50% less for each; supply response is observable.',
+KAS:'10 blocks/sec, industrial ASIC PoW. Control asset for comparing against useful-work chains.',
+NOCK:'ZK proof-of-work. Young chain. Proof-rate and upgrade events tracked.',
+XEL:'Private DAG, thin books.'};
+const SUBS=['Overview','Market','Mining','Signals'];
+async function coin(sym){
+  document.getElementById('sht').textContent=NAMES[sym]||sym;
+  tabs(SUBS,S,s=>{S=s;coinBody(sym);});
+  if(!FACT[sym]){const d=await G('/api/factors');FACT=d.factors||{};}
+  const f=FACT[sym]||{};
+  document.getElementById('sbc').innerHTML=
+    `<div class="kv"><div class="k">PRICE</div><div class="v">${$(f.price_usd)}</div></div>`+
+    `<div class="kv"><div class="k">NEW $/DAY</div><div class="v">${f.issuance_usd_24h?'$'+Math.round(f.issuance_usd_24h).toLocaleString():'—'}</div></div>`+
+    `<div class="kv"><div class="k">BURDEN</div><div class="v">${f.burden_vs_book??'—'}×</div></div>`+
+    `<div class="kv"><div class="k">SIGNAL</div><div class="v">${DIR(f.miner_pressure)} ${f.miner_pressure_strength??''}</div></div>`+
+    `<button class="btn" onclick="S='Signals';coinBody('${sym}')">WHY →</button>`;
+  coinBody(sym);}
+async function coinBody(sym){
+  const ed=document.getElementById('ed');ed.innerHTML='loading…';
+  const[st,sg,cd,ch,an]=await Promise.all([G(`/api/state?symbol=${sym}`),G(`/api/signals?symbol=${sym}`),G('/api/cards'),G(`/api/chain?symbol=${sym}`),G(`/api/analysis?symbol=${sym}`)]);
+  const card=(cd.cards||{})[sym]||{},net=ch.network||{};
+  let h=`<h1>${NAMES[sym]||sym}</h1><div class="sub">${DOSS[sym]||''}</div>`;
+  if(S==='Overview'){
+    h+=`<div class="grid">`;
+    h+=S('PRICE',$(card.price_usd),'venue mids');
+    const sig=(sg.signals||[])[0];
+    h+=S('SIGNAL',sig?`${sig.direction} ${sig.strength}`:'—',sig?`${sig.signal} ${sig.version}`:'no data');
+    if(sym==='QUBIC'){
+      h+=S('NET SUPPLY',net.daily_emission?(net.daily_emission/1e9).toFixed(1)+'B/d':'—',`burn ${(net.burn_rate*100||0).toFixed(2)}%`);
+      h+=S('EPOCH',net.epoch?`${net.epoch} (${(net.epoch_progress*100||0).toFixed(1)}%)`:'—',`${net.computors||'—'} computors, ${net.doge_tasks||'—'} doge tasks`);
+    }
+    if(sym==='XMR'){
+      h+=S('DRIP','432 XMR/d','0.6/block × 720, forever');
+      h+=S('HASHRATE',net.network_hashrate?(net.network_hashrate/1e9).toFixed(2)+' GH/s':'—',`${net.p2pool_miners?Number(net.p2pool_miners).toLocaleString()+' p2pool miners':''}`);
+      h+=S('FEE RATE',net.fee_per_kb?(net.fee_per_kb/1e12)+' XMR/kB':'—','what transactors pay');
+    }
+    if(sym==='PRL'){
+      h+=S('SUPPLY','500K/d','GPU proof-of-useful-work');
+      h+=S('BUYERS',net.p2pool_miners?Number(net.p2pool_miners).toLocaleString():'—','venue buyers');
+    }
+    h+=`</div><h2>PRICE — 1 YEAR</h2><canvas class="g" id="g-px"></canvas>`;
+    h+=`<h2>WHAT THIS MEANS</h2><div class="box">${DOSS[sym]||''}</div>`;
+    if(sym==='XMR'&&an.analysis) h+=`<div class="box"><b>Seesaw:</b> log-price/log-difficulty corr ${an.analysis.logprice_logdiff_corr??'—'} (${an.analysis.corr_n??0} pts). Price ${an.analysis.price_30d_pct?((an.analysis.price_30d_pct*100).toFixed(1)+'%'):'—'} 30d.</div>`;
+    ed.innerHTML=h;
+    const ph=await G(`/api/history?symbol=${sym}`);line('g-px',(ph.closes||[]).map(r=>[r.date,r.close]),'last $'+(((ph.closes||[]).pop()||{}).close??'—'));
   }
-  if (SUB === 'Market') {
-    const sts = (st.states || []).slice(-8);
-    h += `<table><tr><th>Venue</th><th>Date</th><th>Mid</th><th>Spread</th><th>Trades</th><th>Buy $</th><th>Sell $</th></tr>`;
-    sts.forEach(t => h += `<tr><td>${t.venue}</td><td class="num">${t.date}</td><td class="num">${t.mid_close}</td><td class="num">${t.spread_bps_median}</td><td class="num">${t.n_trades}</td><td class="num">${Math.round(t.trade_buy_notional||0)}</td><td class="num">${Math.round(t.trade_sell_notional||0)}</td></tr>`);
-    h += `</table><h2>Net daily flow</h2><canvas class="graph" id="g-fl"></canvas>`;
-    ed.innerHTML = h;
-    const fl = {};
-    (st.states || []).forEach(t => { const k = (t.venue||'') + ' ' + (t.date||''); fl[k] = (fl[k]||0) + ((t.trade_buy_notional||0) - (t.trade_sell_notional||0)); });
-    bars('g-fl', Object.entries(fl));
+  if(S==='Market'){
+    const sts=(st.states||[]).slice(-8);
+    h+=`<table><tr><th>VENUE</th><th>DATE</th><th>MID</th><th>SPREAD</th><th>TRADES</th><th>BUY $</th><th>SELL $</th></tr>`;
+    sts.forEach(t=>h+=`<tr><td>${t.venue}</td><td>${t.date}</td><td>${t.mid_close}</td><td>${t.spread_bps_median}</td><td>${t.n_trades}</td><td>${Math.round(t.trade_buy_notional||0)}</td><td>${Math.round(t.trade_sell_notional||0)}</td></tr>`);
+    h+=`</table><h2>NET FLOW</h2><canvas class="g" id="g-fl"></canvas>`;
+    ed.innerHTML=h;
+    const fl={};(st.states||[]).forEach(t=>{const k=t.venue+' '+t.date;fl[k]=(fl[k]||0)+((t.trade_buy_notional||0)-(t.trade_sell_notional||0));});
+    bars('g-fl',Object.entries(fl));}
+  if(S==='Mining'){
+    if(card.hardware){h+=`<table><tr><th>HARDWARE</th><th>REV/D</th><th>NET/D</th><th>NOTE</th></tr>`;Object.entries(card.hardware).forEach(([k,v])=>h+=`<tr><td>${k}</td><td>${v.revenue_usd_day??'no estimate'}</td><td>${v.net_profit_usd_day??'—'}</td><td><span class="dim">${v.assumption||''}</span></td></tr>`);h+=`</table>`;}
+    const chh=await G(`/api/cards_history?symbol=${sym}`);
+    const bh={};(chh.cards||[]).forEach(r=>{(bh[r.hardware]=bh[r.hardware]||[]).push([r.date,r.net_profit_usd_day]);});
+    const fw=Object.entries(bh)[0];
+    if(fw)h+=`<h2>MARGIN — ${fw[0]}</h2><canvas class="g" id="g-mg"></canvas>`;
+    ed.innerHTML=h;
+    if(fw)line('g-mg',fw[1],'');
   }
-  if (SUB === 'Mining') {
-    if (card.hardware) { h += `<table><tr><th>Hardware</th><th>Rev/d</th><th>Net/d</th><th>Note</th></tr>`; Object.entries(card.hardware).forEach(([k,v]) => h += `<tr><td>${k}</td><td class="num">${v.revenue_usd_day ?? 'no estimate'}</td><td class="num">${v.net_profit_usd_day ?? '—'}</td><td class="dim">${v.assumption || ''}</td></tr>`); h += `</table>`; }
-    const chh = await GET('/api/cards_history?symbol=' + sym);
-    const byHw = {};
-    (chh.cards || []).forEach(r => { (byHw[r.hardware] = byHw[r.hardware] || []).push([r.date, r.net_profit_usd_day]); });
-    const first = Object.entries(byHw)[0];
-    if (first) h += `<h2>Net profit — ${first[0]}</h2><canvas class="graph" id="g-mg"></canvas>`;
-    ed.innerHTML = h;
-    if (first) line('g-mg', first[1], '');
-  }
-  if (SUB === 'Signals') {
-    (sg.signals || []).slice(0, 12).forEach(g => { h += `<div class="box"><b>${g.signal}</b> ${dir(g.direction)} ${g.strength} <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span><br><span class="dim">assumes: ${(g.assumptions||[]).join(' · ')}</span></div>`; });
-    if (!(sg.signals || []).length) h += `<div class="box">No signals — unmeasured inputs stay missing here.</div>`;
-    ed.innerHTML = h;
-  }
-}
-function stat(k, v, n) { return `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div><div class="n">${n||''}</div></div>`; }
-function num(v) { return v == null ? '—' : (v < 1 ? v.toPrecision(3) : Number(v).toLocaleString(undefined, {maximumFractionDigits: 2})); }
-async function brief() {
-  document.getElementById('sbtitle').textContent = 'Brief';
-  document.getElementById('sbbody').innerHTML = '';
-  tabs([], '', () => {});
-  const b = await GET('/api/brief');
-  document.getElementById('editor').innerHTML = `<h1>Daily brief</h1><pre>${(b.brief || b.error || 'none').replace(/</g, '&lt;')}</pre>`;
-}
-// Bottom panel: ops log + signal tail + collector heartbeat
-async function bottom(which) {
-  document.querySelectorAll('.bottom-tab').forEach(t => t.classList.toggle('active', t.dataset.b === which));
-  const el = document.getElementById('bottom'); el.innerHTML = '';
-  const line = (t, c) => el.innerHTML += `<div>${t}</div>`;
-  if (which === 'ops' || which === 'runs') {
-    try {
-      const d = await GET('/api/ops');
-      Object.entries(d.services || {}).forEach(([s, st]) => line(`[${s}] ${st}`));
-      Object.entries(d.heartbeats || {}).forEach(([f, hb]) => line(`[${f}] poll=${hb.poll_id ?? hb.poll ?? '?'} books=${hb.books ?? '?'} err=${hb.errors ?? '?'}`));
-    } catch (e) { line('ops unreachable'); }
-  }
-  if (which === 'signals') {
-    const d = await GET('/api/signals');
-    (d.signals || []).slice(0, 10).forEach(g => line(`[${g.asset} ${g.signal}] ${g.direction} ${g.strength}`));
-  }
-}
-document.querySelectorAll('.bottom-tab').forEach(t => t.onclick = () => bottom(t.dataset.b));
-// Chat with waiting dots + tool footer (qpbot pattern)
-function cmsg(who, text, id) {
-  const d = document.createElement('div'); d.className = 'chat-msg ' + (who === 'you' ? 'you' : '');
-  if (id) d.id = id;
-  d.innerHTML = `<div class="who">${who}</div><div class="text">${text.replace(/</g, '&lt;').replace(/\n/g, '<br>')}</div>`;
-  const log = document.getElementById('chatlog'); log.appendChild(d); log.scrollTop = 1e9;
-  return d;
-}
-let _pt = null;
-async function ask() {
-  const q = document.getElementById('chatq'); if (!q.value.trim()) return;
-  cmsg('you', q.value); const m = q.value; q.value = '';
-  const id = 'm' + Date.now(); cmsg('…', 'asking the garden.', id);
-  _pt = setInterval(() => { const el = document.getElementById(id); if (!el) return clearInterval(_pt);
-    const t = el.querySelector('.text').textContent, dots = (t.match(/(\.*)$/) || [''])[0];
-    el.querySelector('.text').textContent = dots.length < 6 ? t + '.' : t.replace(/\.+$/, ''); }, 700);
-  try {
-    const r = await api('POST', '/api/chat', {message: m}, 120000);
-    clearInterval(_pt);
-    const el = document.getElementById(id); if (el) el.remove();
-    cmsg('analyst', r.reply + ((r.tools_called || []).length ? `\n\n[tools: ${r.tools_called.join(', ')}]` : ''));
-  } catch (e) { clearInterval(_pt); const el = document.getElementById(id); if (el) el.querySelector('.text').textContent = 'Error: ' + e.message; }
-  const cv = document.getElementById('chatvia'); if (cv) cv.textContent = '';
-}
-document.getElementById('chatq').addEventListener('keydown', e => { if (e.key === 'Enter') ask(); });
-// Resizable chat (qpbot pattern)
-(function() {
-  const div = document.createElement('div'); div.className = 'chat-divider'; div.id = 'chatdiv';
-  const panel = document.querySelector('.chat-panel'); panel.prepend(div);
-  let drag = false, sx, sw;
-  div.addEventListener('mousedown', e => { drag = true; sx = e.clientX; sw = panel.offsetWidth; e.preventDefault(); });
-  document.addEventListener('mousemove', e => { if (!drag) return; panel.style.width = Math.max(220, Math.min(620, sw - (e.clientX - sx))) + 'px'; });
-  document.addEventListener('mouseup', () => drag = false);
-})();
-api('/api/health').then(h => document.getElementById('health').textContent = h.ok ? '● LIVE' : 'down').catch(() => document.getElementById('health').textContent = 'offline');
-home(); bottom('ops');
+  if(S==='Signals'){
+    (sg.signals||[]).slice(0,12).forEach(g=>{h+=`<div class="box"><b>${g.signal}</b> ${DIR(g.direction)} ${g.strength} <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span></div>`;});
+    if(!(sg.signals||[]).length)h+=`<div class="box">No signals — unmeasured inputs stay missing here.</div>`;
+    ed.innerHTML=h;}}
+async function brief(){document.getElementById('sht').textContent='BRIEF';document.getElementById('sbc').innerHTML='';tabs([],'',()=>{});
+const b=await G('/api/brief');document.getElementById('ed').innerHTML=`<h1>DAILY BRIEF</h1><pre>${(b.brief||b.error||'none').replace(/</g,'&lt;')}</pre>`;}
+// bottom panel
+let _bot='ops';
+async function bot(which){_bot=which;document.querySelectorAll('.bt div').forEach(d=>d.classList.toggle('a',d.dataset.b===which));
+const el=document.getElementById('bot');el.innerHTML='loading…';
+try{const d=await G('/api/ops');el.innerHTML='';if(which==='ops'){
+  Object.entries(d.services||{}).forEach(([s,v])=>el.innerHTML+=`<div>[${s}] ${v}</div>`);
+  Object.entries(d.heartbeats||{}).forEach(([f,h])=>el.innerHTML+=`<div>[${f}] poll=${h.poll_id??h.poll||'?'} books=${h.books??'?'} trades=${h.trades??'?'} err=${h.errors??'?'}</div>`);}
+if(which==='sig'){const d=await G('/api/signals');el.innerHTML='';(d.signals||[]).slice(0,10).forEach(g=>el.innerHTML+=`<div>[${g.asset} ${g.signal}] ${g.direction} ${g.strength}</div>`);}}catch(e){el.innerHTML=`<div>error: ${e.message}</div>`;}}
+function autoRefreshBot(){setInterval(()=>bot(_bot),60000);}
+document.querySelectorAll('.bt div').forEach(d=>d.onclick=()=>bot(d.dataset.b));
+// chat
+function cm(w,t,id){const d=document.createElement('div');d.className='msg '+(w==='you'?'y':'');if(id)d.id=id;d.innerHTML=`<div class="w">${w}</div><div class="t">${t.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>`;const c=document.getElementById('cl');c.appendChild(d);c.scrollTop=1e9;return d;}
+let _pt=null;async function ask(){const q=document.getElementById('cq');if(!q.value.trim())return;
+cm('you',q.value);const m=q.value;q.value='';const id='m'+Date.now();cm('…','asking the garden.',id);
+_pt=setInterval(()=>{const e=document.getElementById(id);if(!e)return clearInterval(_pt);const t=e.querySelector('.t').textContent,d=(t.match(/(\.*)$/)||[''])[0];e.querySelector('.t').textContent=d.length<5?t+'.':t.replace(/\.+$/,'');},600);
+try{const r=await P('/api/chat',{message:m},120000);clearInterval(_pt);const e=document.getElementById(id);if(e)e.remove();
+cm('analyst',r.reply+((r.tools_called||[]).length?`\n\n[tools: ${r.tools_called.join(', ')}]`:''));}catch(e){clearInterval(_pt);const el=document.getElementById(id);if(el)el.querySelector('.t').textContent='Error: '+e.message;}}
+document.getElementById('cq').addEventListener('keydown',e=>{if(e.key==='Enter')ask();});
+// resizable chat
+(function(){const cd=document.getElementById('cd');const p=document.querySelector('.cp');let d=false,sx,sw;
+cd.addEventListener('mousedown',e=>{d=true;sx=e.clientX;sw=p.offsetWidth;e.preventDefault();});
+document.addEventListener('mousemove',e=>{if(!d)return;p.style.width=Math.max(200,Math.min(500,sw-(e.clientX-sx)))+'px';});
+document.addEventListener('mouseup',()=>d=false);})();
+G('/api/health').then(h=>document.getElementById('health').textContent=h.ok?'● LIVE':'down').catch(()=>document.getElementById('health').textContent='off');
+home();bot('ops');autoRefreshBot();
 </script>
 </body>
 </html>

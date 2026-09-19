@@ -31,12 +31,22 @@ TOKEN = os.environ.get('POW_SITE_TOKEN', secrets.token_urlsafe(24))
 PORT = int(os.environ.get('POW_SITE_PORT', '8795'))
 STATIC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
 
-SYS_PROMPT = """You are the PowPowPow analyst, explaining where AI, compute,
-energy, crypto and physical bottlenecks intersect. You answer from the
-garden data pasted with each question (STATE, signals with drivers and
-evidence, factors). Rules: explain mechanics and evidence, never give
-financial recommendations or buy/sell calls. If data is missing, say
-exactly what is unmeasured. Be concise and concrete with numbers."""
+SYS_PROMPT = """You are the PowPowPow analyst — a data terminal for mining economics.
+You explain where AI, compute, energy, crypto and physical bottlenecks intersect.
+
+RULES:
+1. Answer from the garden evidence pasted with each question.
+2. Never give financial recommendations or buy/sell calls.
+3. If data is missing, say exactly what is unmeasured.
+4. Be concise. Numbers, not essays.
+5. When asked about a coin, lead with the money math: emission, burn, burden, spread, flow.
+6. Explain jargon: "burden" = one day of fresh supply value vs resting bids.
+   "spread" = gap between best buy and sell in basis points.
+   "flow" = aggressive buy minus sell in a window.
+7. For Qubic: emphasize epoch = 7-day week, burn share = 78.75% since Aug 2026,
+   gross = 1T/week constant, net = what reaches market. Computors earn rewards.
+8. For XMR: 0.6 XMR per 2-min block forever = 432/day, no halvings.
+   Pool flows hidden by design — we measure drip vs demand, not wallet labels."""
 
 
 def _rows(table):
@@ -65,27 +75,45 @@ def _rows(table):
 
 
 def _garden_context(symbol=''):
-    """Compact evidence pack for the chat model."""
+    """Focused evidence pack for the chat model (QUBIC/XMR deep, others lean)."""
     sym = symbol.upper()
-    states = [r for r in _rows('daily_state')
-              if (not sym or (r.get('symbol') or '').upper() == sym)]
-    states.sort(key=lambda r: (r.get('date', ''), r.get('venue', '')))
+    # Always include the latest signal + factor row for context
     sigs = [r for r in _rows('derived_signal')
             if (not sym or (r.get('asset') or '').upper() == sym)]
+    sigs.sort(key=lambda r: r.get('generated_at', ''), reverse=True)
+    sig = sigs[0] if sigs else {}
     try:
         fac = json.load(open(os.path.join(
             ROOT, 'chains', 'factors', 'cross_chain_factors.json')))
-        if sym:
-            fac = {sym: fac.get(sym)}
+        fac = fac.get(sym, {})
     except OSError:
         fac = {}
-    return {'states': states[-12:], 'signals': sigs[-12:], 'factors': fac}
+    try:
+        net = json.load(open(os.path.join(
+            ROOT, 'chains', 'network_state.json'))).get(sym, {})
+    except OSError:
+        net = {}
+    return {
+        'symbol': sym,
+        'signal': sig,
+        'factor': fac,
+        'network': net,
+    }
 
 
 def _chat(message):
-    ctx = _garden_context()
-    prompt = (f"Garden evidence (latest STATE, signals, factors):\n"
-              f"{json.dumps(ctx, default=str)[:6000]}\n\nQuestion: {message}")
+    # Auto-detect which coin the question is about for focused context
+    msg_lower = message.lower()
+    sym = ''
+    for s in ['qubic', 'xmr', 'monero', 'prl', 'pearl', 'kas', 'kaspa',
+              'nock', 'nockchain', 'xel', 'xelis']:
+        if s in msg_lower:
+            sym = s.upper().replace('MONERO', 'XMR').replace('PEARL', 'PRL').replace('KASPA', 'KAS').replace('NOCKCHAIN', 'NOCK').replace('XELIS', 'XEL')
+            break
+    ctx = _garden_context(sym)
+    prompt = (f"Garden evidence:\n"
+              f"{json.dumps(ctx, default=str)[:4000]}\n\n"
+              f"Question: {message}")
     try:
         from agentcom.pi_agent import chat as pi_chat
         r = pi_chat(prompt, system_prompt=SYS_PROMPT)
@@ -93,7 +121,6 @@ def _chat(message):
         return {'reply': reply, 'via': 'pi-harness/opencode-go',
                 'tools_called': r.get('tools_called', [])}
     except Exception as e:
-        # Data-only fallback: answer from tables, no LLM.
         return {'reply': _data_answer(message, ctx),
                 'via': f'data-fallback (harness down: {str(e)[:100]})',
                 'tools_called': []}
@@ -101,21 +128,21 @@ def _chat(message):
 
 def _data_answer(message, ctx):
     m = message.lower()
-    for s in ctx['signals']:
-        if s.get('asset', '').lower() in m:
-            return (f"{s['asset']} {s['signal']} ({s.get('version')}): "
-                    f"{s.get('direction')} {s.get('strength')}. Drivers: "
-                    f"{'; '.join(s.get('drivers', []))}. Assumptions: "
-                    f"{'; '.join(s.get('assumptions', [])[:2])}")
-    top = sorted(ctx['signals'], key=lambda s: s.get('strength', 0) or 0,
-                 reverse=True)[:5]
-    if top and any(w in m for w in ('signal', 'top', 'screener', 'today')):
-        return 'Strongest signals: ' + '; '.join(
-            f"{s['asset']} {s['signal']} {s['direction']} {s['strength']}"
-            for s in top)
-    return ('I answer from garden tables (STATE, signals, factors). '
-            'Ask about an asset (e.g. XMR, QUBIC) or "top signals". '
-            'The LLM harness is unreachable right now.')
+    sym = ctx.get('symbol', '')
+    net = ctx.get('network', {})
+    sig = ctx.get('signal', {})
+    if sym == 'QUBIC' and net:
+        em = net.get('daily_emission')
+        net_str = f"{em/1e9:.1f}B/d" if em else 'unknown'
+        return (f"QUBIC: epoch {net.get('epoch')} ({net.get('epoch_progress',0)*100:.1f}%), "
+                f"burn {net.get('burn_rate',0)*100:.2f}%, "
+                f"net {net_str}. "
+                f"{net.get('computors',0)} computors, {net.get('doge_tasks','?')} doge tasks. "
+                f"{net.get('total_transactions',0):,} transactions.")
+    if sig:
+        return f"{sym}: {sig.get('signal')} {sig.get('direction')} {sig.get('strength')}. Drivers: {', '.join(sig.get('drivers', []))}."
+    return (f'No deep data for "{sym}" yet. Try QUBIC or XMR.' if sym else
+            'Ask about a specific coin: QUBIC, XMR, PRL, KAS, NOCK, XEL.')
 
 
 def _analysis(symbol):
@@ -147,15 +174,21 @@ def _analysis(symbol):
         # joint correlation where dates overlap
         pmap = dict(prices)
         pairs = [(pmap[d], df) for d, df in diffs if d in pmap and pmap[d]]
+        a['difficulty_range'] = f"{diffs[0][0]} → {diffs[-1][0]}"
         if len(pairs) >= 5:
             import math
             xs = [math.log(p) for p, _ in pairs]
             ys = [math.log(d) for _, d in pairs]
-            mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
-            num = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
-            den = math.sqrt(sum((x - mx) ** 2 for x in xs) * sum((y - my) ** 2 for y in ys))
-            a['logprice_logdiff_corr'] = round(num / den, 3) if den else None
-            a['corr_n'] = len(pairs)
+            # Filter out same-day pairs (correlation needs spread across days)
+            unique_dates = sorted(set(d for d, _ in diffs))
+            if len(unique_dates) >= 2:
+                mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+                num = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+                den = math.sqrt(sum((x - mx) ** 2 for x in xs) * sum((y - my) ** 2 for y in ys))
+                a['logprice_logdiff_corr'] = round(num / den, 3) if den else None
+                a['corr_n'] = len(pairs)
+            else:
+                a['corr_note'] = 'all difficulty readings on same day — need multi-day history'
         a['method'] = ('price 365d (CoinGecko) vs difficulty (localmonero '
                        'polls, accumulates daily)')
     elif symbol == 'QUBIC':
@@ -282,6 +315,40 @@ class Handler(BaseHTTPRequestHandler):
                    if (r.get('coin') or '').upper() == sym]
             out.sort(key=lambda r: (r.get('date', ''), r.get('hardware', '')))
             return self._send({'symbol': sym, 'cards': out[-200:]})
+        if u.path == '/api/state_series':
+            sym = arg('symbol').upper()
+            rows = [r for r in _rows('daily_state')
+                    if (r.get('symbol') or '').upper() == sym]
+            rows.sort(key=lambda r: (r.get('date', ''), r.get('venue', '')))
+            # Aggregate cross-venue per date: burden, spread, flow
+            by_date = {}
+            for r in rows:
+                d = r.get('date', '')
+                a = by_date.setdefault(d, {'burden': 0, 'bid': 0, 'spread': [],
+                                            'buy': 0, 'sell': 0, 'trades': 0,
+                                            'n': 0, 'venues': []})
+                a['bid'] += r.get('bid_notional_20_mean') or 0
+                if r.get('spread_bps_median') is not None:
+                    a['spread'].append(r['spread_bps_median'])
+                a['buy'] += r.get('trade_buy_notional') or 0
+                a['sell'] += r.get('trade_sell_notional') or 0
+                a['trades'] += r.get('n_trades') or 0
+                a['n'] += 1
+                a['venues'].append(r.get('venue'))
+            series = []
+            for d in sorted(by_date):
+                a = by_date[d]
+                import statistics as _st
+                spread = _st.median(a['spread']) if a['spread'] else None
+                imb = (a['buy'] - a['sell']) / (a['buy'] + a['sell']) if (a['buy'] + a['sell']) > 0 else None
+                series.append({'date': d, 'spread': spread, 'buy': a['buy'],
+                               'sell': a['sell'], 'imbalance': imb, 'trades': a['trades'],
+                               'venues': a['venues']})
+            return self._send({'symbol': sym, 'series': series})
+        if u.path == '/api/epoch_series':
+            rows = _rows('qubic_epoch')
+            rows.sort(key=lambda r: (r.get('epoch', 0), r.get('observed_at', '')))
+            return self._send({'rows': rows[-30:]})
         if u.path == '/api/ops':
             import subprocess as _sp
             ops = {'heartbeats': {}, 'services': {}}
