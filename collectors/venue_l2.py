@@ -103,10 +103,30 @@ def discover_gate():
     return markets
 
 
+def discover_mexc():
+    """MEXC has no cheap all-markets probe with status; probe universe
+    symbols directly (archived raw each)."""
+    markets = {}
+    for sym in UNIVERSE:
+        pair = f'{sym}USDT'
+        try:
+            d = fetch_json('https://api.mexc.com/api/v3/ticker/24hr',
+                           params={'symbol': pair},
+                           source_id='mexc-discover', chain_id='venue')
+            if isinstance(d, dict) and d.get('symbol') == pair:
+                markets[sym] = {'venue': 'mexc', 'market': pair,
+                                'base': sym, 'quote': 'USDT'}
+        except Exception:
+            continue
+        time.sleep(0.2)
+    return markets
+
+
 def refresh_universe(state):
     """Re-discover; log listings/delistings as universe events (survivor-bias log)."""
     found = {}
-    for venue, fn in (('coinex', discover_coinex), ('gate', discover_gate)):
+    for venue, fn in (('coinex', discover_coinex), ('gate', discover_gate),
+                      ('mexc', discover_mexc)):
         try:
             for sym, m in fn().items():
                 found.setdefault(sym, {})[venue] = m
@@ -231,6 +251,80 @@ def poll_coinex_deals(sym, market, poll_id, state):
     return new
 
 
+def poll_mexc_book(sym, pair, poll_id, receive_time):
+    data = fetch_json('https://api.mexc.com/api/v3/depth',
+                      params={'symbol': pair, 'limit': 20},
+                      source_id='mexc-book', chain_id='venue')
+    if not isinstance(data, dict) or 'bids' not in data:
+        return False
+    bids, asks = data.get('bids', []), data.get('asks', [])
+    mid, spread_bps, bid_n, ask_n = book_stats(bids, asks)
+    store_normalized('orderbook_snapshot', 'venue', {
+        'venue': 'mexc', 'symbol': sym, 'market': pair,
+        'poll_id': poll_id, 'receive_time': receive_time,
+        'mid': mid, 'spread_bps': spread_bps,
+        'bid_notional_20': bid_n, 'ask_notional_20': ask_n,
+        'bids': bids[:20], 'asks': asks[:20],
+        'venue_update_id': data.get('lastUpdateId'),
+        'snapshot_kind': 'rest_poll', 'source_role': 'raw_venue',
+    })
+    return True
+
+
+def poll_mexc_ticker(sym, pair, poll_id, receive_time):
+    data = fetch_json('https://api.mexc.com/api/v3/ticker/24hr',
+                      params={'symbol': pair},
+                      source_id='mexc-ticker', chain_id='venue')
+    if not isinstance(data, dict) or data.get('symbol') != pair:
+        return False
+    store_normalized('ticker', 'venue', {
+        'venue': 'mexc', 'symbol': sym, 'market': pair,
+        'poll_id': poll_id, 'receive_time': receive_time,
+        'last': data.get('lastPrice'), 'open': data.get('openPrice'),
+        'high': data.get('highPrice'), 'low': data.get('lowPrice'),
+        'volume': data.get('volume'), 'value': data.get('quoteVolume'),
+        'price_change': data.get('priceChange'),
+        'price_change_pct': data.get('priceChangePercent'),
+        'bid': data.get('bidPrice'), 'ask': data.get('askPrice'),
+    })
+    return True
+
+
+def poll_mexc_trades(sym, pair, poll_id, state):
+    data = fetch_json('https://api.mexc.com/api/v3/trades',
+                      params={'symbol': pair, 'limit': 100},
+                      source_id='mexc-trades', chain_id='venue')
+    if not isinstance(data, list):
+        return 0
+    key = f'mexc:{sym}'
+    last_id = state['last_ids'].get(key, '')
+    new = 0
+    max_id = last_id
+    for t in data:
+        if not isinstance(t, dict):
+            continue
+        tid = str(t.get('id', ''))
+        if not tid:
+            continue
+        if max_id == '' or tid > str(max_id):
+            max_id = tid
+        if last_id == '' or tid > str(last_id):
+            if last_id != '':
+                # isBuyerMaker=true means the buyer was maker -> taker sold
+                side = 'sell' if t.get('isBuyerMaker') else 'buy'
+                store_normalized('trade', 'venue', {
+                    'venue': 'mexc', 'symbol': sym, 'market': pair,
+                    'poll_id': poll_id, 'receive_time': utcnow(),
+                    'trade_id': tid, 'price': t.get('price'),
+                    'quantity': t.get('qty'), 'aggressor_side': side,
+                    'exchange_time_ms': t.get('time'),
+                    'venue_best_match': t.get('isBestMatch'),
+                })
+                new += 1
+    state['last_ids'][key] = max_id if max_id != '' else last_id
+    return new
+
+
 def poll_gate_book(sym, pair, poll_id, receive_time):
     data = fetch_json('https://api.gateio.ws/api/v4/spot/order_book',
                       params={'currency_pair': pair, 'limit': 20},
@@ -337,6 +431,14 @@ def run_pass(state, cadence_note=''):
                     stats['tickers'] += 1
                 time.sleep(0.3)
                 stats['trades'] += poll_coinex_deals(m['base'], m['market'], poll_id, state)
+            elif m['venue'] == 'mexc':
+                if poll_mexc_book(m['base'], m['market'], poll_id, rt):
+                    stats['books'] += 1
+                time.sleep(0.3)
+                if poll_mexc_ticker(m['base'], m['market'], poll_id, rt):
+                    stats['tickers'] += 1
+                time.sleep(0.3)
+                stats['trades'] += poll_mexc_trades(m['base'], m['market'], poll_id, state)
             else:
                 if poll_gate_book(m['base'], m['market'], poll_id, rt):
                     stats['books'] += 1
@@ -361,12 +463,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--once', action='store_true')
     ap.add_argument('--cadence', type=int, default=30)
+    ap.add_argument('--rediscover', action='store_true',
+                    help='force market discovery refresh at start')
     args = ap.parse_args()
     for sig in (signal.SIGINT, signal.SIGTERM):
         signal.signal(sig, handle_signal)
 
     state = load_state()
-    if not state.get('markets') or \
+    if args.rediscover or not state.get('markets') or \
             (time.time() - os.path.getmtime(STATE_FILE) if os.path.exists(STATE_FILE) else 1e9) > 3600:
         print("[DISCOVERY] refreshing market universe...")
         state = refresh_universe(state)

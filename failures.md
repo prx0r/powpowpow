@@ -38,6 +38,13 @@
 
 ## 3. PRL chain/pool telemetry — dry from here
 
+DOCTRINE (2026-09-19): chain bytes are not the moat — any peer
+re-serves them. `pearld/data` (full chain + addrindex, ~6GB at
+tip) was deleted twice during disk triage at zero information loss;
+resync is ~2h. When the pool graph build starts: sync → extract
+pool/miner/exchange flows into warehouse tables → drop chain data.
+Hoard only what cannot be reconstructed (L2 books, polls, derived).
+
 - `https://rpc.pearlresearch.ai` (pearld JSON-RPC `get_info`): **timeout**.
 - PearlTrack `GET /api/v1/{network,blocks,pools,transfers}`: **all 404**.
   Homepage is a Next.js SPA with **zero `/api/*` references** in HTML —

@@ -1,6 +1,10 @@
 """
-XMR (Monero) Collector
-CPU mining security benchmark.
+XMR (Monero) Collector — one-shot price/stats snapshot.
+
+NOTE: chains/xmr/xmr_data.json output is legacy overwrite style,
+superseded by collectors/chain_state.py normalized tables (fee_market,
+mempool_snapshot, pool_snapshot, chain_snapshot). Kept for manual
+spot-checks only.
 """
 
 import json
