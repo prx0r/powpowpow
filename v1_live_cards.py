@@ -20,6 +20,17 @@ sys.path.insert(0, BASE_DIR)
 
 CALCULATION_VERSION = "2.0.0-network-share"
 
+NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
+
+
+def live_overrides():
+    """Live chain-state overrides (chains/network_state.json). Returns {} if absent."""
+    try:
+        with open(NETSTATE_FILE) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
 # ---------------------------------------------------------------------------
 # Network state — seeded estimates with provenance. Replace with live
 # collector values as pipes land. `None` means unknown: no revenue computed.
@@ -133,6 +144,14 @@ def generate_card(chain, price, network_data=None, electricity=0.10):
     price = float(price or 0)
 
     net = dict(NETWORK.get(chain, {}))
+    for live in (live_overrides().get(chain, {}),):
+        if live.get('network_hashrate'):
+            net['network_hashrate'] = live['network_hashrate']
+            net['hashrate_source'] = live.get('hashrate_source', 'chains/network_state.json')
+            net['as_of'] = live.get('as_of')
+        if live.get('daily_emission_delta'):
+            net['daily_emission'] = live['daily_emission_delta']
+            net['emission_source'] = 'measured supply delta (chains/network_state.json)'
     if network_data:
         # live overrides (collector-provided); explicit wins over seed
         for k in ('daily_emission', 'network_hashrate'):

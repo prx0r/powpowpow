@@ -5,35 +5,23 @@ GPU compute marketplace.
 
 import json
 import os
-import requests
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
-from warehouse import store_raw_event
+from core import fetch_json, store_normalized, utcnow
 
 DATA_DIR = os.path.join(BASE_DIR, 'chains', 'nos')
 os.makedirs(DATA_DIR, exist_ok=True)
 
-def fetch_json(url, params=None, timeout=10):
-    try:
-        resp = requests.get(url, params=params, headers={
-            'User-Agent': 'PowPowPow/1.0',
-            'Accept': 'application/json'
-        }, timeout=timeout)
-        if resp.status_code == 200:
-            return resp.json()
-    except:
-        pass
-    return None
 
 def collect_markets():
     """Collect Nosana GPU markets."""
     print("  [MARKETS] Fetching GPU markets...")
     
-    data = fetch_json('https://api.nosana.io/markets')
+    data = fetch_json('https://api.nosana.io/markets', source_id='legacy', chain_id='venue')
     if data:
         print(f"    Markets: {len(data) if isinstance(data, list) else 'N/A'}")
         return data
@@ -44,7 +32,7 @@ def collect_hosts():
     """Collect Nosana hosts."""
     print("  [HOSTS] Fetching host data...")
     
-    data = fetch_json('https://api.nosana.io/hosts')
+    data = fetch_json('https://api.nosana.io/hosts', source_id='legacy', chain_id='venue')
     if data:
         print(f"    Hosts: {len(data) if isinstance(data, list) else 'N/A'}")
         return data
