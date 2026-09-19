@@ -93,6 +93,8 @@ function qubicNums(n, card) {
     + `<tr><td>Epoch</td><td class="num">${n.epoch ?? '—'} (${(n.epoch_progress*100).toFixed(1)}% through)</td><td>weeks since launch; each week = one emission round</td></tr>`
     + `<tr><td>Burn rate</td><td class="num">${(n.burn_rate*100).toFixed(2)}%</td><td>share of the weekly trillion destroyed before circulation</td></tr>`
     + `<tr><td>Net new supply</td><td class="num">${em ? Math.round(em).toLocaleString() + ' QUBIC/day' : '—'}</td><td>what actually reaches sellers' hands</td></tr>`
+    + `<tr><td>Computors</td><td class="num">${n.computors ?? '—'}${n.computor_churn && n.computor_churn.new != null ? ` (+${n.computor_churn.new}/−${n.computor_churn.dropped} vs epoch ${n.computor_churn.vs_epoch})` : ''}</td><td>machines securing/computing — watch for churn</td></tr>`
+    + `<tr><td>External mining</td><td class="num">${n.doge_tasks != null ? n.doge_tasks + ' DOGE tasks' : '—'}</td><td>DOGE revenue funds buybacks + burns</td></tr>`
     + `<tr><td>Net new supply</td><td class="num">${em && price ? '$' + Math.round(em*price).toLocaleString() + '/day' : '—'}</td><td>at current price — the daily sell-pressure ceiling</td></tr></table>`
     + `<p class="dim">Source: rpc.qubic.org tick/epoch + documented halving schedule (${n.emission_source || ''}). Gross is always 1T/week; only the burn share changes.</p>`;
 }

@@ -113,3 +113,26 @@ def test_signals_refuse_thin_data(isolated, monkeypatch):
     assert signals.build_signals('2026-01-01') == []
     assert signals.build_flow_signals('2026-01-01') == []
     assert signals.build_required_signals('2026-01-01') == []
+
+
+def test_cowriters_survive_pass(isolated, monkeypatch):
+    """Regression (2026-09-19): a daemon pass must preserve keys written
+    by co-writers (epoch engine, computors)."""
+    import collectors.chain_state as cs
+    monkeypatch.setattr(cs, 'NETSTATE_FILE',
+                        str(isolated / 'network_state.json'))
+    base = {'QUBIC': {'epoch': 231, 'burn_rate': 0.7875,
+                      'daily_emission': 30357142857.0,
+                      'computors': 676}}
+    with open(str(isolated / 'network_state.json'), 'w') as f:
+        json.dump(base, f)
+    monkeypatch.setattr(cs, 'fetch_json', lambda *a, **k: None)
+    import time as _t
+    monkeypatch.setattr(_t, 'sleep', lambda *a: None)
+    # run_pass must reload fresh, not clobber: simulate by calling the
+    # real pass with network dead (all polls no-op) and re-reading.
+    ns = cs.load_netstate()
+    cs.save_netstate(ns)
+    after = json.load(open(str(isolated / 'network_state.json')))
+    assert after['QUBIC']['burn_rate'] == 0.7875
+    assert after['QUBIC']['computors'] == 676

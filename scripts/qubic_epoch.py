@@ -66,6 +66,9 @@ def main():
                         source_id='qubic-rpc', chain_id='qubic')
     ti = (tick or {}).get('tickInfo', tick or {})
     epoch, cur, initial = ti.get('epoch'), ti.get('tick'), ti.get('initialTick')
+    if not epoch or not cur:
+        print("[QUBIC] tick-info unreachable, skipping (no Nones written)")
+        return
 
     per_epoch = (status or {}).get('lastProcessedTicksPerEpoch', {}) or {}
     vals = sorted(per_epoch.values())
@@ -115,7 +118,8 @@ def main():
     os.replace(NETSTATE_FILE + '.tmp', NETSTATE_FILE)
 
     print(f"[QUBIC] epoch={epoch} tick={cur} progress={progress} "
-          f"rate={tick_rate}/s burn={burn} net_day={net_day and round(net_day):,}")
+          f"rate={tick_rate}/s burn={burn} "
+          f"net_day={round(net_day) if net_day else None:,}")
 
 
 if __name__ == '__main__':

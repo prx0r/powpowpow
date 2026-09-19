@@ -56,7 +56,24 @@ Hoard only what cannot be reconstructed (L2 books, polls, derived).
   wiped once during disk triage (43MB free); resyncing fresh ~14:10 UTC,
   ~2h pace. Until sync completes, PRL has venue L2 + static emission only.
 
-## 4. Qubic RPC — 2 endpoints, rest doesn't exist
+## 4. Qubic RPC — archive Query API found, computors captured
+
+- **qubic.tools: dead** (DNS does not resolve). **qubic.it: dead**
+  (connection reset). Neither is a live resource; ignore both.
+- Public RPC surface really is tick-info + status only — BUT the
+  official archive Query API at `rpc.qubic.org/query/v1` was missed
+  earlier: `getLastProcessedTick`, `getProcessedTickIntervals`,
+  `getComputorListsForEpoch` (POST), `getTickData`, transactions,
+  `getEventLogs` (beta). Computor set captured 2026-09-19
+  (`scripts/qubic_computors.py`, 676 identities epoch 231, churn
+  tracked). Remaining: per-epoch burn aggregation (heavy tick
+  scans), exchange labels (static registry 403).
+- **doge-stats.qubic.org/dispatcher.json LIVE**: active_tasks +
+  per-computor shares → external DOGE-mining revenue leg captured.
+- **explorer.qubic.li/epochs/{n}**: rich per-epoch pages but SPA with
+  no JSON API — use archive Query API instead.
+- guardians.qubic.org node sync overview: candidate health feed,
+  not yet collected.
 
 - Live: `/v1/tick-info` (tick 80792768, epoch 231), `/v1/status`
   (19KB, includes per-epoch tick map — epoch history reconstructable).

@@ -266,6 +266,14 @@ def poll_nock(ns):
 
 
 def run_pass(ns):
+    """One pass over all chains. Callers must pass a FRESHLY LOADED ns
+    each time (never a long-lived in-memory copy) — other writers
+    (epoch engine, computors) update the same file, and saving a stale
+    copy would silently delete their keys (lost-update bug, found
+    2026-09-19). Runtime-only baselines (prev_supply) live in RUNTIME
+    and are merged in here."""
+    for sym, base in RUNTIME.items():
+        ns.setdefault(sym, {}).update(base)
     stats = {}
     for name, fn in (('qubic', poll_qubic), ('xmr', poll_xmr),
                      ('kas', poll_kas), ('akt', poll_akt), ('nock', poll_nock)):
@@ -274,8 +282,17 @@ def run_pass(ns):
         except Exception as e:
             stats[name] = f'ERR {str(e)[:100]}'
         time.sleep(1)
+    for sym in ('KAS', 'AKT'):
+        e = ns.get(sym, {})
+        if e.get('prev_supply') is not None:
+            RUNTIME[sym] = {'prev_supply': e['prev_supply'],
+                            'prev_supply_ts': e.get('prev_supply_ts')}
     save_netstate(ns)
     return stats
+
+
+# Runtime-only baselines, never persisted directly (merged per pass).
+RUNTIME = {}
 
 
 def main():
@@ -287,7 +304,7 @@ def main():
     for sig in (signal.SIGINT, signal.SIGTERM):
         signal.signal(sig, lambda *_: globals().update(RUNNING=False))
 
-    ns = load_state = load_netstate()
+    ns = load_netstate()
     if args.once:
         print(run_pass(ns))
         return
@@ -296,7 +313,8 @@ def main():
     print(f"[CHAIN_STATE] loop cadence={args.cadence}s pid={os.getpid()}")
     try:
         while RUNNING:
-            stats = run_pass(ns)
+            stats = run_pass(load_netstate())  # fresh each pass: never
+            # overwrite co-writers (epoch engine, computors)
             with open(HEARTBEAT_FILE, 'w') as f:
                 json.dump({'heartbeat_at': utcnow(), 'mode': 'daemon',
                            'stats': stats}, f, indent=2, default=str)
