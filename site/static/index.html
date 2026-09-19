@@ -72,6 +72,11 @@ pre{white-space:pre-wrap;font-size:11.5px;border:2px solid #111;padding:10px;bac
 <div class="cp"><div class="cd" id="cd"></div><div class="ch">ANALYST</div><div class="cm" id="cl"></div><div class="ci"><input id="cq" placeholder="ask about Qubic or Monero…"><button onclick="ask()">→</button></div></div>
 </div>
 <script>
+/* STYLE NOTE:
+   Black / grey / white only. No color except meaning.
+   Chunky borders (2px), monospace numbers, dense data tables.
+   Old-school terminal feel. No gradients, no rounded corners, no emojis in content.
+   Keep this forever — it IS the PowPowPow style. */
 const T=new URLSearchParams(location.search).get('token')||'';
 const G=(p)=>fetch(p+'?token='+encodeURIComponent(T)).then(r=>r.json());
 const P=(p,b)=>fetch(p+'?token='+encodeURIComponent(T),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
@@ -110,12 +115,12 @@ async function home(){
   const rows=CORE.filter(c=>c[0]!=='home').map(c=>FACT[c[0]]).filter(Boolean);
   document.getElementById('sbc').innerHTML=rows.sort((a,b)=>(b.burden_vs_book||0)-(a.burden_vs_book||0)).map(f=>
     `<button class="btn" onclick="go('${f.symbol}')">${f.symbol}<br><span class="dim">${N(f.burden_vs_book)}x burden</span></button>`).join('');
-  let h=`<h1>MONEY SUPPLY VS THE MARKET</h1><div class="sub">Fresh tokens per day, valued, against resting top-20 buy orders. No opinions — just measured economics.</div>`;
-  h+=`<table><tr><th>COIN</th><th>PRICE</th><th>NEW $/DAY</th><th>BURDEN</th><th>DAY BURNED %</th></tr>`;
+  let h=`<h1>MONEY SUPPLY VS THE MARKET</h1><div class="sub">Fresh tokens per day, valued, against resting top-20 buy orders.</div>`;
+  h+=`<table><tr><th>COIN</th><th>PRICE</th><th>NEW $/DAY</th><th>BURDEN</th></tr>`;
   rows.sort((a,b)=>(b.burden_vs_book||0)-(a.burden_vs_book||0)).forEach(f=>{
-    h+=`<tr><td><b>${f.symbol}</b></td><td>${$(f.price_usd)}</td><td>${f.issuance_usd_24h?'$'+Math.round(f.issuance_usd_24h).toLocaleString():'—'}</td><td>${f.burden_vs_book??'—'}×</td><td>—</td></tr>`;});
-  document.getElementById('ed').innerHTML=h+`</table><div class="box">Burden = one day of fresh-supply value ÷ resting top-20 bids. Over 1× means the visible book can't absorb a single day of printing.</div>`;}
-const SUBS=['Overview','Market','Mining','Signals','Analytics'];
+    h+=`<tr><td><b>${f.symbol}</b></td><td>${$(f.price_usd)}</td><td>${f.issuance_usd_24h?'$'+Math.round(f.issuance_usd_24h).toLocaleString():'—'}</td><td>${f.burden_vs_book??'—'}×</td></tr>`;});
+  document.getElementById('ed').innerHTML=h+`</table>`;}
+const SUBS=['Overview','Epoch','Flow','Mining','Signals'];
 async function coin(sym){
   document.getElementById('sht').textContent=sym;
   tabs(SUBS,S,s=>{S=s;coinBody(sym);});
@@ -132,66 +137,77 @@ async function coinBody(sym){
     G(`/api/state?symbol=${sym}`),G(`/api/signals?symbol=${sym}`),G('/api/cards'),
     G(`/api/chain?symbol=${sym}`),G(`/api/analysis?symbol=${sym}`),
     G(`/api/analytics?symbol=${sym}`).catch(()=>({}))]);
-  const card=(cd.cards||{})[sym]||{},net=ch.network||{},analytics=ax.analysis||ax;
+  const card=(cd.cards||{})[sym]||{},net=ch.network||{},ax2=ax.analysis||ax;
   let h=`<h1>${sym}</h1>`;
   if(S==='Overview'){
     h+=`<div class="grid">`;
     h+=S('PRICE',$(card.price_usd),'venue mids');
-    if(sym==='QUBIC'&&analytics.network){
-      const n=analytics.network;
-      h+=S('NET SUPPLY',n.daily_emission?(n.daily_emission/1e9).toFixed(1)+'B/d':'—',`burn ${((n.burn_rate||0)*100).toFixed(2)}% of 1T/week`);
-      h+=S('EPOCH',n.epoch?`${n.epoch} (${((n.epoch_progress||0)*100).toFixed(1)}%)`:'—',`${n.computors||'?'} computors`);
-      h+=S('TICK RATE',n.tick_rate?`${n.tick_rate.toFixed(1)}/s`:'—',`${(n.ticks_per_epoch||0).toLocaleString()} ticks/epoch`);
-      h+=S('DEMAND',n.total_transactions?n.total_transactions.toLocaleString():'—','total transactions');
-      h+=S('DOGE TASKS',n.doge_tasks??'—','external mining revenue');
+    if(sym==='QUBIC'){
+      h+=S('NET/DAY',ax2.emission?((ax2.emission.daily_emission||0)/1e9).toFixed(1)+'B QU':'—',`burn ${((ax2.network||{}).burn_rate||0)*100}%`);
+      h+=S('BURDEN',ax2.emission&&ax2.emission.burden_vs_book?ax2.emission.burden_vs_book+'x':'—','emission vs top-20 bids');
+      h+=S('EPOCH',net.epoch?`${net.epoch} (${((net.epoch_progress||0)*100).toFixed(1)}%)`:'—',`${net.computors||'?'} computors`);
+      h+=S('TICKS/s',net.tick_rate?N(net.tick_rate):'—',`${(net.ticks_per_epoch||0).toLocaleString()}/epoch`);
+      h+=S('TX TOTAL',net.total_transactions?net.total_transactions.toLocaleString():'—','all time');
+      h+=S('DOGE TASKS',net.doge_tasks??'—','external mining revenue');
     }
     if(sym==='XMR'){
-      h+=S('EMISSION','432 XMR/day','0.6 per block × 720, forever');
-      h+=S('HASHRATE',analytics.network&&analytics.network.hashrate?(analytics.network.hashrate/1e9).toFixed(1)+' GH/s':'—','all CPU miners worldwide');
-      h+=S('P2POOL',analytics.network.p2pool?analytics.network.p2pool.miners.toLocaleString()+' miners':'—',analytics.network.p2pool?`hashrate ${(analytics.network.hashrate/1e9).toFixed(1)} GH/s`:'' );
-      h+=S('FEE RATE',analytics.network.fee_per_kb?(analytics.network.fee_per_kb/1e12)+' XMR/kB':'—','what transactors pay');
+      h+=S('EMISSION','432 XMR/day','0.6/block x 720, forever');
+      h+=S('HASHRATE',ax2.network&&ax2.network.hashrate?(ax2.network.hashrate/1e9).toFixed(1)+' GH/s':'—','p2pool+pool miners');
+      h+=S('P2POOL',ax2.network.p2pool?ax2.network.p2pool.miners.toLocaleString()+' miners':'—','');
+      h+=S('FEE RATE',ax2.network.fee_per_kb?(ax2.network.fee_per_kb/1e12)+' XMR/kB':'—','what transactors pay');
+      h+=S('365D POS',ax2.price_position_365d.percentile+'th',ax2.price_position_365d.range);
     }
-    h+=`</div><h2>PRICE — 1 YEAR</h2><canvas class="g" id="g-px"></canvas>`;
+    h+=`</div><h2>PRICE 365D</h2><canvas class="g" id="g-px"></canvas>`;
     ed.innerHTML=h;
     const ph=await G(`/api/history?symbol=${sym}`);line('g-px',(ph.closes||[]).map(r=>[r.date,r.close]),'last $'+(((ph.closes||[]).pop()||{}).close??'—'));
   }
-  if(S==='Market'){
-    const sts=(st.states||[]).slice(-8);
-    h+=`<table><tr><th>VENUE</th><th>DATE</th><th>MID</th><th>SPREAD</th><th>TRADES</th><th>BUY $</th><th>SELL $</th></tr>`;
-    sts.forEach(t=>h+=`<tr><td>${t.venue}</td><td>${t.date}</td><td>${t.mid_close}</td><td>${t.spread_bps_median}</td><td>${t.n_trades}</td><td>${Math.round(t.trade_buy_notional||0)}</td><td>${Math.round(t.trade_sell_notional||0)}</td></tr>`);
-    h+=`</table><h2>NET FLOW BY VENUE</h2><canvas class="g" id="g-fl"></canvas>`;
+  if(S==='Epoch'&&sym==='QUBIC'){
+    h+=`<div class="grid">`;
+    h+=S('EPOCH',net.epoch,`${((net.epoch_progress||0)*100).toFixed(1)}% complete`);
+    h+=S('TICKS',net.tick?net.tick.toLocaleString():'—',`${(net.tick_rate||0).toFixed(1)}/sec`);
+    h+=S('COMPUTORS',net.computors??'—',`${ax2.computor_economics?(ax2.computor_economics.reward_per_computor/1e9).toFixed(2)+'B QU/epoch':''}`);
+    h+=S('BURN',`${((net.burn_rate||0)*100).toFixed(2)}%`,`of 1T gross/week`);
+    h+=`</div><h2>EPOCH PROGRESS</h2><canvas class="g" id="g-ep"></canvas>`;
+    h+=`<h2>52-WEEK RETURNS (epoch-equivalent)</h2><table><tr><th>PERIOD</th><th>RETURN</th><th>FROM</th><th>TO</th></tr>`;
+    (ax2.epoch_returns||[]).slice(0,15).forEach(r=>{h+=`<tr><td>${r.from} → ${r.to}</td><td>${r.return_pct}%</td><td>$${r.price_from.toFixed(8)}</td><td>$${r.price_to.toFixed(8)}</td></tr>`;});
+    h+=`</table>`;
     ed.innerHTML=h;
-    const fl={};(st.states||[]).forEach(t=>{const k=t.venue+' '+t.date;fl[k]=(fl[k]||0)+((t.trade_buy_notional||0)-(t.trade_sell_notional||0));});
-    bars('g-fl',Object.entries(fl));}
+    line('g-ep',(ax2.epoch_returns||[]).map(r=>[r.from,r.return_pct]),'7d return %');
+  }
+  if(S==='Flow'){
+    const sts=(st.states||[]).slice(-10);
+    h+=`<table><tr><th>VENUE</th><th>DATE</th><th>MID</th><th>SPREAD</th><th>TRADES</th><th>BUY $</th><th>SELL $</th></tr>`;
+    sts.forEach(t=>h+=`<tr><td>${t.venue}</td><td>${t.date}</td><td>${t.mid_close??'—'}</td><td>${t.spread_bps_median??'—'}</td><td>${t.n_trades}</td><td>${Math.round(t.trade_buy_notional||0)}</td><td>${Math.round(t.trade_sell_notional||0)}</td></tr>`);
+    h+=`</table><h2>NET FLOW BY VENUE</h2><canvas class="g" id="g-fl"></canvas>`;
+    h+=`<h2>2B DEMAND TRANSACTIONS</h2><div class="box">${net.total_transactions?net.total_transactions.toLocaleString()+' total transactions, '+net.total_transfers.toLocaleString()+' transfers' : 'loading'}</div>`;
+    ed.innerHTML=h;
+    const fl={};(st.states||[]).forEach(t=>{const k=t.venue;t.fl_net=(t.trade_buy_notional||0)-(t.trade_sell_notional||0);fl[k]=(fl[k]||0)+t.fl_net;});
+    bars('g-fl',Object.entries(fl));
+  }
   if(S==='Mining'){
-    if(card.hardware){h+=`<table><tr><th>HARDWARE</th><th>REV/D</th><th>NET/D</th><th>NOTE</th></tr>`;Object.entries(card.hardware).forEach(([k,v])=>h+=`<tr><td>${k}</td><td>${v.revenue_usd_day??'no estimate'}</td><td>${v.net_profit_usd_day??'—'}</td><td><span class="dim">${v.assumption||''}</span></td></tr>`);h+=`</table>`;}
-    ed.innerHTML=h;}
+    h+=`<div class="grid">`;
+    h+=S('NET SUPPLY',ax2.emission?((ax2.emission.daily_emission||0)/1e9).toFixed(1)+'B QU/day':'—','what reaches market after burn');
+    h+=S('EMISSION USD',ax2.emission.daily_emission_usd?'$'+Math.round(ax2.emission.daily_emission_usd).toLocaleString():'—','at current price');
+    h+=S('COMPUTOR EARNINGS',ax2.computor_economics?(ax2.computor_economics.reward_per_computor/1e9).toFixed(2)+'B QU':'—','per epoch per computor');
+    h+=`</div><h2>COMPUTOR ECONOMICS</h2>`;
+    h+=`<table><tr><th>METRIC</th><th>VALUE</th></tr>`;
+    h+=`<tr><td>Gross per epoch</td><td>1,000,000,000,000 QU</td></tr>`;
+    h+=`<tr><td>Burn rate</td><td>${((net.burn_rate||0)*100).toFixed(2)}%</td></tr>`;
+    h+=`<tr><td>Net per epoch</td><td>${(ax2.computor_economics.net_per_epoch/1e9).toFixed(2)}B QU</td></tr>`;
+    h+=`<tr><td>Computors</td><td>${net.computors}</td></tr>`;
+    h+=`<tr><td>Net per computor/epoch</td><td>${(ax2.computor_economics.reward_per_computor/1e9).toFixed(2)}B QU</td></tr>`;
+    h+=`<tr><td>Net per computor/day</td><td>${(ax2.computor_economics.reward_per_computor_per_day/1e9).toFixed(2)}B QU</td></tr>`;
+    h+=`<tr><td>DOGE mining tasks</td><td>${net.doge_tasks}</td></tr>`;
+    h+=`</table><h2>SUPPLY PROJECTION (52 weeks)</h2><canvas class="g" id="g-sup"></canvas>`;
+    h+=`<h2>PRICE 365D DISTRIBUTION</h2>`;
+    const pr=ax2.price_range_365d||{};h+=`<div class="grid">${S('LOW',$(pr.low),'('+pr.low_date+')')}${S('HIGH',$(pr.high),'('+pr.high_date+')')}${S('NOW',$(pr.current),'')}</div>`;
+    ed.innerHTML=h;
+    line('g-sup',(ax2.supply_curve||[]).map(r=>[r.week+'w',(r.net/1e12)]),'net trillions');
+  }
   if(S==='Signals'){
     (sg.signals||[]).slice(0,12).forEach(g=>{h+=`<div class="box"><b>${g.signal}</b> <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span></div>`;});
     if(!(sg.signals||[]).length)h+=`<div class="box">No signals — unmeasured inputs stay missing here.</div>`;
     ed.innerHTML=h;}
-  if(S==='Analytics'){
-    h+=`<h2>Analytics</h2>`;
-    if(sym==='QUBIC'&&analytics.computed_at){
-      h+=`<div class="grid">`;
-      h+=S('EMISSION $/DAY',analytics.emission.daily_emission_usd?'$'+Math.round(analytics.emission.daily_emission_usd).toLocaleString():'—','fresh supply valued at current price');
-      h+=S('BURDEN',analytics.emission.burden_vs_book?analytics.emission.burden_vs_book+'x':'—','emission ÷ top-20 bids');
-      h+=S('COMPUTORS',analytics.network.computors?'676':'—',`reward/epoch ${(analytics.computor_economics.reward_per_computor/1e9).toFixed(2)}B`);
-      h+=`</div><h2>52-WEEK EPOCH RETURNS</h2><table><tr><th>WEEK</th><th>RETURN</th><th>FROM</th><th>TO</th></tr>`;
-      (analytics.epoch_returns||[]).slice(0,12).forEach(r=>{h+=`<tr><td>${r.from} → ${r.to}</td><td>${r.return_pct}%</td><td>$${r.price_from.toFixed(8)}</td><td>$${r.price_to.toFixed(8)}</td></tr>`;});
-      h+=`</table><h2>SUPPLY PROJECTION (52 WEEKS)</h2><canvas class="g" id="g-sup"></canvas><h2>PRICE 365D DISTRIBUTION</h2>`;
-      const pr=analytics.price_range_365d||{};h+=`<div class="grid">${S('LOW',$(pr.low),'('+pr.low_date+')')}${S('HIGH',$(pr.high),'('+pr.high_date+')')}${S('CURRENT',$(pr.current),'')}</div>`;
-    }
-    if(sym==='XMR'&&analytics.computed_at){
-      h+=`<div class="grid">`;
-      h+=S('EMISSION $/DAY','$'+analytics.emission.daily_emission_usd.toLocaleString(),analytics.emission.daily_emission+' XMR');
-      h+=S('365D PERCENTILE',analytics.price_position_365d.percentile+'th',analytics.price_position_365d.range);
-      h+=S('P2POOL MINERS',analytics.network.p2pool.miners.toLocaleString(),`${(analytics.network.hashrate/1e9).toFixed(1)} GH/s`);
-      h+=`</div><h2>MINER COST BENCHMARK</h2><div class="dim">What electricity price makes a Ryzen 9 mine XMR profitably?</div><table><tr><th>$/kWh</th><th>DAY COST</th><th>BREAKEVEN XMR</th></tr>`;
-      (analytics.miner_cost_benchmark||[]).forEach(r=>{h+=`<tr><td>${r.electricity_usd_kwh.toFixed(2)}</td><td>$${r.daily_total_cost}</td><td>${r.breakeven_xmr_price?'$'+r.breakeven_xmr_price:'—'}</td></tr>`;});
-      h+=`</table>`;}
-    ed.innerHTML=h;
-    if(sym==='QUBIC'&&analytics.supply_curve)line('g-sup',(analytics.supply_curve||[]).map(r=>[r.week+'w',(r.net/1e12)]),'trillions net');}
 }
 async function brief(){document.getElementById('sht').textContent='BRIEF';tabs([],'',()=>{});
 const b=await G('/api/brief');document.getElementById('ed').innerHTML=`<h1>DAILY BRIEF</h1><pre>${(b.brief||b.error||'none').replace(/</g,'&lt;')}</pre>`;}
@@ -199,7 +215,7 @@ let _bot='ops';async function bot(which){_bot=which;document.querySelectorAll('.
 const el=document.getElementById('bot');el.innerHTML='loading…';
 try{const d=await G('/api/ops');el.innerHTML='';if(which==='ops'){
   Object.entries(d.services||{}).forEach(([s,v])=>el.innerHTML+=`<div>[${s}] ${v}</div>`);
-  Object.entries(d.heartbeats||{}).forEach(([f,h])=>el.innerHTML+=`<div>[${f}] poll=${h.poll_id??h.poll||'?'} books=${h.books??'?'} trades=${h.trades??'?'} err=${h.errors??'?'}</div>`);}
+  Object.entries(d.heartbeats||{}).forEach(([f,h])=>el.innerHTML+=`<div>[${f}] poll=${h.poll_id??'?'} books=${h.books??'?'} trades=${h.trades??'?'} err=${h.errors??'?'}</div>`);}
 if(which==='sig'){const d=await G('/api/signals');el.innerHTML='';(d.signals||[]).slice(0,10).forEach(g=>el.innerHTML+=`<div>[${g.asset} ${g.signal}] ${g.direction} ${g.strength}</div>`);}}catch(e){el.innerHTML=`<div>error: ${e.message}</div>`;}}
 function autoRefreshBot(){setInterval(()=>bot(_bot),60000);}
 document.querySelectorAll('.bt div').forEach(d=>d.onclick=()=>bot(d.dataset.b));
