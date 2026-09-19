@@ -349,6 +349,13 @@ class Handler(BaseHTTPRequestHandler):
             rows = _rows('qubic_epoch')
             rows.sort(key=lambda r: (r.get('epoch', 0), r.get('observed_at', '')))
             return self._send({'rows': rows[-30:]})
+        if u.path == '/api/analytics':
+            sym = arg('symbol').upper()
+            f = os.path.join(ROOT, 'warehouse', f'{sym.lower()}_analytics.json')
+            try:
+                return self._send(json.load(open(f)))
+            except (OSError, ValueError):
+                return self._send({'error': f'no analytics for {sym} (run scripts/{sym.lower()}_analytics.py)'}, code=404)
         if u.path == '/api/ops':
             import subprocess as _sp
             ops = {'heartbeats': {}, 'services': {}}
