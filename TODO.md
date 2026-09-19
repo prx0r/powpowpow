@@ -4,6 +4,15 @@
 > The garden clock started 2026-09-19 (venue L2 live, STATE daily).
 > SafeTrade is code-ready but egress-blocked (geo-403); venue-of-truth
 > weighting waits on it.
+>
+> PROGRESS 14:10 UTC: Tardis free seeds (54 files, Jul/Aug/Sep firsts)
+> loaded for KAS/CLORE/FLUX/AKT/NOCK/NOS → STATE/signals/factors/
+> backtest run over 4 days of history. Seed JSONL compacted 8GB→253MB
+> Parquet (25-30x) and dropped; disk recovered 43MB→9.4GB. Streaming
+> STATE builder (100-400MB RSS, was OOM at 2.6GB). flow_pressure_v1
+> live (12 symbols). pearld v1.4.8 syncing fresh under systemd
+> (data dir cleared during disk triage, resync ~2h). Monthly tardis
+> drip timer armed. Release/commit history: 213+240 rows, 12 repos.
 
 ## 1. Money math — DONE (v2 network-share)
 

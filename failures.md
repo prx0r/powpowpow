@@ -45,8 +45,9 @@
 - `prlscan.com` + `/api/v1/network`: SPA HTML, no API.
 - Unblocked 2026-09-19: `pearld` v1.4.8 linux-amd64 binary runs;
   own node syncing under systemd `pow-pearld` (target height 115,530 at
-  start, `--addrindex` on for future miner-graph queries). Until sync
-  completes, PRL has venue L2 + static emission only.
+  start, `--addrindex` on for future miner-graph queries). Data dir
+  wiped once during disk triage (43MB free); resyncing fresh ~14:10 UTC,
+  ~2h pace. Until sync completes, PRL has venue L2 + static emission only.
 
 ## 4. Qubic RPC — 2 endpoints, rest doesn't exist
 
