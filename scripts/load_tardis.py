@@ -24,12 +24,45 @@ from datetime import datetime, timezone
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import store_normalized  # noqa: E402
+from core import utcnow  # noqa: E402 (bulk writer below matches store_normalized format)
 
 TARDIS_DIR = os.path.join(BASE_DIR, 'warehouse', 'tardis')
 LOADED_FILE = os.path.join(TARDIS_DIR, '_loaded.json')
 
 VENUE_MAP = {'gate-io': 'gate', 'mexc': 'mexc'}
+
+# Bulk buffer: (table, chain, date, hour) -> rows. Per-row
+# store_normalized does open/append/close (~ms each); seeds are millions
+# of rows, so we write each hour-file once. Format matches core exactly.
+BULK = {}
+BULK_FLUSH_ROWS = 200000
+
+
+def bulk_put(table, chain_id, data, event_time=None):
+    observed_at = utcnow()
+    hour_key = (event_time or observed_at)[:13]  # YYYY-MM-DDTHH
+    date, hour = hour_key[:10], hour_key[11:13]
+    key = (table, chain_id, date, hour)
+    BULK.setdefault(key, []).append({
+        'record_id': f"{chain_id}_{table}_{observed_at}",
+        'raw_event_id': None, 'network_id': chain_id,
+        'event_time': event_time, 'observed_at': observed_at,
+        'normalized_at': observed_at, 'schema_name': table,
+        'schema_version': '1.0', 'normalizer_version': '1.0.0', **data})
+    if sum(len(v) for v in BULK.values()) >= BULK_FLUSH_ROWS:
+        flush_bulk()
+
+
+def flush_bulk():
+    from collections import defaultdict
+    for (table, chain_id, date, hour), rows in list(BULK.items()):
+        d = os.path.join(BASE_DIR, 'warehouse', 'normalized', table,
+                         f'chain={chain_id}', f'date={date}')
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, f'hour={hour}.jsonl'), 'a') as fh:
+            for r in rows:
+                fh.write(json.dumps(r, default=str) + '\n')
+        del BULK[(table, chain_id, date, hour)]
 
 
 def sym_of(venue, symbol):
@@ -65,7 +98,7 @@ def load_trades(path, venue, symbol):
     with gzip.open(path, 'rt') as fh:
         for row in csv.DictReader(fh):
             et = us_to_iso(row.get('timestamp'))
-            store_normalized('trade', 'venue', {
+            bulk_put('trade', 'venue', {
                 'venue': venue, 'symbol': symbol,
                 'market': row.get('symbol'),
                 'receive_time': us_to_iso(row.get('local_timestamp')) or et,
@@ -76,7 +109,7 @@ def load_trades(path, venue, symbol):
                 'snapshot_kind': 'tardis_seed',
                 'source_role': 'tardis_seed',
                 'tardis_file': os.path.basename(path),
-            })
+            }, event_time=et)
             n += 1
     return n
 
@@ -114,7 +147,7 @@ def load_books(path, venue, symbol):
                     except ValueError:
                         pass
             et = us_to_iso(row.get('timestamp'))
-            store_normalized('orderbook_snapshot', 'venue', {
+            bulk_put('orderbook_snapshot', 'venue', {
                 'venue': venue, 'symbol': symbol, 'market': row.get('symbol'),
                 'receive_time': us_to_iso(row.get('local_timestamp')) or et,
                 'exchange_time': et, 'mid': mid, 'spread_bps': spread,
@@ -123,8 +156,9 @@ def load_books(path, venue, symbol):
                 'snapshot_kind': 'tardis_seed',
                 'source_role': 'tardis_seed',
                 'tardis_file': os.path.basename(path),
-            })
+            }, event_time=et)
             n += 1
+    flush_bulk()
     return n
 
 
@@ -168,6 +202,7 @@ def main():
             print(f"  {fn}: {n:,} rows -> {venue}:{symbol}")
         except Exception as e:
             print(f"  ERR {fn}: {str(e)[:150]}")
+    flush_bulk()
     print(f"[TARDIS] +{t_total:,} trades, +{b_total:,} snapshots")
 
 
