@@ -22,6 +22,16 @@
 > (9 signals; QUBIC bullish 0.91 coverage 1.15, XMR bearish 0.00).
 > MCP stdio server verified end-to-end (6 tools, live tables).
 >
+> SITE 16:10 UTC: consumer fork live at pow.moltwork.com (token gate,
+> loopback :8795, systemd). Coverage-gated display (QUBIC/XMR/PRL/KAS/
+> NOCK/XEL only — TAO + thin listings hidden until data earns them).
+> Austere B/W single-file UI: left coin rail, per-coin home dash with
+> canvas graphs (price 1y, flow bars, margin history), subtabs
+> (Overview/Market/Mining/Signals), plain-language dossiers.
+> New: /api/analysis (XMR price↔difficulty Seesaw, Qubic epoch-equiv
+> returns), /api/history, /api/cards_history. Nightly card snapshots
+> → margin history table (miner_card).
+>
 > STORAGE DOCTRINE 15:00 UTC (measured, not guessed): live burn
 > ~1.2GB/day raw+JSONL → ~60MB/day Parquet (16-30x). Tiers: hot
 > JSONL 7d (`trim_jsonl.py`, never drops uncompacted) → Parquet

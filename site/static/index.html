@@ -3,126 +3,222 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PowPowPow — what mining does to a coin, measured</title>
+<title>PowPowPow — mining economics, measured</title>
 <style>
-body{font:15px/1.6 Georgia,'Times New Roman',serif;background:#faf8f4;color:#222;max-width:860px;margin:0 auto;padding:24px 18px}
-h1{font-size:26px;margin:6px 0 2px}h1 span{color:#e35d1f}
-h2{font-size:19px;margin:30px 0 8px;border-bottom:2px solid #e35d1f;padding-bottom:4px}
-h3{font-size:15px;margin:16px 0 6px}
-.sub{color:#666;font-size:14px;margin-bottom:18px}
-table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
-th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:#666;border-bottom:2px solid #333;padding:6px 8px}
-td{padding:6px 8px;border-bottom:1px solid #ddd;font-variant-numeric:tabular-nums}
-.num{font-family:ui-monospace,Menlo,monospace;font-size:13px}
-.bull{color:#1a7a3c;font-weight:bold}.bear{color:#b3261e;font-weight:bold}.neut{color:#8a6d00;font-weight:bold}
-.box{border:1px solid #ccc;background:#fff;padding:14px 16px;margin:12px 0}
-.dim{color:#666;font-size:13px}
-select,input{font:14px Georgia,serif;padding:6px 8px;border:1px solid #999;background:#fff}
-button{font:14px Georgia,serif;padding:6px 14px;background:#e35d1f;color:#fff;border:none;cursor:pointer}
-button:hover{background:#c74e16}
-#chatlog{border:1px solid #ccc;background:#fff;padding:10px;max-height:300px;overflow-y:auto;margin-bottom:8px}
-.msg{margin-bottom:8px}.who{font-size:12px;color:#666}
-footer{margin-top:36px;font-size:12px;color:#888;border-top:1px solid #ccc;padding-top:10px}
-a{color:#e35d1f}
-pre{white-space:pre-wrap;font-size:13px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:14px/1.5 Arial,Helvetica,sans-serif;background:#fff;color:#111;display:flex;min-height:100vh}
+#rail{width:190px;background:#111;color:#fff;flex-shrink:0;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+#rail .brand{padding:16px;font-weight:900;font-size:17px;letter-spacing:1px;border-bottom:3px solid #fff}
+#rail button{background:none;border:none;color:#bbb;font:700 13px Arial;text-align:left;padding:12px 16px;cursor:pointer;border-left:6px solid transparent}
+#rail button:hover{color:#fff;background:#222}
+#rail button.active{color:#fff;background:#222;border-left-color:#fff}
+#rail .foot{margin-top:auto;padding:12px 16px;font-size:11px;color:#777}
+#main{flex:1;padding:26px 30px;max-width:980px}
+h1{font-size:24px;margin-bottom:4px}h2{font-size:17px;margin:26px 0 8px;padding-bottom:5px;border-bottom:3px solid #111}
+h3{font-size:14px;margin:14px 0 6px}
+.sub{color:#555;font-size:13px;margin-bottom:14px}
+.subtabs{margin:14px 0}
+.subtabs button{background:#eee;border:2px solid #111;color:#111;font-weight:700;font-size:12px;padding:6px 12px;margin-right:6px;cursor:pointer}
+.subtabs button.active{background:#111;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:12px 0}
+.stat{border:2px solid #111;padding:10px 12px;background:#fff}
+.stat .k{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:.5px}
+.stat .v{font:700 20px ui-monospace,Menlo,monospace;margin-top:2px}
+.stat .n{font-size:11px;color:#555}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{text-align:left;font-size:11px;text-transform:uppercase;color:#555;border-bottom:3px solid #111;padding:6px 8px}
+td{padding:6px 8px;border-bottom:1px solid #ccc;font-variant-numeric:tabular-nums}
+.num{font-family:ui-monospace,Menlo,monospace;font-size:12.5px}
+canvas.graph{width:100%;height:180px;border:2px solid #111;background:#fff;margin:8px 0}
+.bull{font-weight:900;color:#111;background:#111;color:#fff;padding:1px 6px}.bear{font-weight:900;border:2px solid #111;padding:0 5px}.neut{color:#555;font-weight:700}
+.box{border:2px solid #111;padding:10px 12px;margin:8px 0;background:#f4f4f4}
+.dim{color:#555;font-size:12px}
+select,input{font:14px Arial;padding:7px;border:2px solid #111;background:#fff}
+button.go{background:#111;color:#fff;border:none;font-weight:700;padding:8px 16px;cursor:pointer}
+#chatlog{border:2px solid #111;padding:10px;height:300px;overflow-y:auto;margin-bottom:8px;background:#f4f4f4}
+pre{white-space:pre-wrap;font-size:13px;border:2px solid #111;padding:14px;background:#f4f4f4}
 </style>
 </head>
 <body>
-<h1>POW<span>POW</span>POW</h1>
-<div class="sub">What mining does to a coin, measured daily. No predictions, no trading calls — just the physical economy underneath the price. <span id="health">connecting…</span></div>
-
-<h2>Money supply vs the market</h2>
-<p class="dim">For each coin: how many new tokens appear per day, what they're worth, and how that compares to the orders waiting to buy them.</p>
-<table id="screent"><thead><tr><th>Coin</th><th>Price</th><th>New supply $/day</th><th>vs buy orders</th><th>Signal</th></tr></thead><tbody></tbody></table>
-
-<h2>Coin dossier</h2>
-<select id="coinsel"></select> <button onclick="loadCoin()">Open</button>
-<div id="coinout"></div>
-
-<h2>Signals <span class="dim">— versioned transformations, each with its evidence</span></h2>
-<div id="sigout"></div>
-
-<h2>Daily brief</h2>
-<pre id="briefout">loading…</pre>
-
-<h2>Ask the data</h2>
-<div id="chatlog"></div>
-<input id="chatq" type="text" size="60" placeholder="e.g. why is XMR bearish?"> <button onclick="ask()">Ask</button> <span class="dim" id="chatvia"></span>
-
-<footer>PowPowPow is a provenance-preserving record of compute economics. Every number links to its source observations. <span id="footdate"></span></footer>
-
+<div id="rail">
+<div class="brand">POWPOWPOW</div>
+<button data-v="home" class="active">HOME</button>
+<button data-v="QUBIC">QUBIC</button>
+<button data-v="XMR">MONERO</button>
+<button data-v="PRL">PEARL</button>
+<button data-v="KAS">KASPA</button>
+<button data-v="NOCK">NOCK</button>
+<button data-v="XEL">XELIS</button>
+<button data-v="brief">BRIEF</button>
+<button data-v="chat">CHAT</button>
+<div class="foot" id="health">…</div>
+</div>
+<div id="main"></div>
 <script>
 const TOK = new URLSearchParams(location.search).get('token') || '';
 const api = (p, o={}) => fetch(p + (p.includes('?')?'&':'?') + 'token=' + TOK, o).then(r => r.json());
-// Core coverage only: assets with measured emission AND market depth. No TAO,
-// no thin listings — they return when their data earns a place here.
 const CORE = ['QUBIC', 'XMR', 'PRL', 'KAS', 'NOCK', 'XEL'];
-const dir = d => d === 'bullish' ? '<span class="bull">bullish</span>' : d === 'bearish' ? '<span class="bear">bearish</span>' : '<span class="neut">neutral</span>';
-api('/api/health').then(h => document.getElementById('health').textContent = h.ok ? '● live' : 'degraded').catch(() => document.getElementById('health').textContent = 'offline');
-document.getElementById('footdate').textContent = new Date().toISOString().slice(0, 10);
-api('/api/factors').then(d => {
-  const tb = document.querySelector('#screent tbody');
-  Object.values(d.factors || {}).filter(f => CORE.includes(f.symbol)).sort((a,b) => (b.burden_vs_book||0) - (a.burden_vs_book||0)).forEach(f => {
-    tb.innerHTML += `<tr><td><b>${f.symbol}</b></td><td class="num">${f.price_usd ?? '—'}</td><td class="num">${f.issuance_usd_24h ? '$'+Math.round(f.issuance_usd_24h).toLocaleString() : '—'}</td><td class="num">${f.burden_vs_book ?? '—'}×</td><td>${dir(f.miner_pressure)}${f.miner_pressure_strength ? ' '+f.miner_pressure_strength : ''}</td></tr>`;
+const NAMES = {QUBIC: 'Qubic', XMR: 'Monero', PRL: 'Pearl', KAS: 'Kaspa', NOCK: 'Nockchain', XEL: 'Xelis'};
+const M = document.getElementById('main');
+const dir = d => d === 'bullish' ? '<span class="bull">BULL</span>' : d === 'bearish' ? '<span class="bear">BEAR</span>' : '<span class="neut">FLAT</span>';
+const fmt$ = v => v == null ? '—' : '$' + Number(v).toLocaleString(undefined, {maximumFractionDigits: v < 1 ? 8 : 0});
+let FACTORS = {}, SUB = 'home';
+
+function line(id, series, opts={}) {
+  const c = document.getElementById(id), x = c.getContext('2d');
+  const W = c.width = c.offsetWidth * 2, H = c.height = 360;
+  x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
+  const vs = series.map(p => p[1]).filter(v => v != null);
+  if (!vs.length) { x.fillStyle = '#555'; x.font = '24px Arial'; x.fillText('no data yet', 20, 60); return; }
+  let mn = Math.min(...vs), mx = Math.max(...vs);
+  if (mn === mx) { mn *= 0.99; mx *= 1.01; }
+  x.strokeStyle = '#111'; x.lineWidth = 3; x.beginPath();
+  series.forEach((p, i) => {
+    if (p[1] == null) return;
+    const px = 10 + i / (series.length - 1) * (W - 20);
+    const py = H - 20 - (p[1] - mn) / (mx - mn) * (H - 50);
+    i === 0 ? x.moveTo(px, py) : x.lineTo(px, py);
   });
-  const sel = document.getElementById('coinsel');
-  CORE.forEach(s => sel.innerHTML += `<option${s==='QUBIC'?' selected':''}>${s}</option>`);
-});
-const EXPLAIN = {
-  QUBIC: `<div class="box"><h3>Qubic in plain language</h3><p>Qubic runs in <b>weeks called epochs</b> (currently epoch <span id="q-epoch">…</span>). Inside each week the network ticks fast — millions of small computation rounds. Every week exactly <b>1 trillion QUBIC</b> is created, but most of it is immediately <b>burned</b> (destroyed): since the August 2026 halving, 78.75% burns and only ~212 billion reach the market. So when you hear "emission", the honest number is the <b>net</b> one below, not the gross trillion.</p><div id="q-nums"></div></div>',
-  XMR: `<div class="box"><h3>Monero in plain language</h3><p>Monero pays miners a flat <b>0.6 XMR per 2-minute block, forever</b> — 432 new XMR a day, no halvings. That fixed drip against the buy orders is the whole sell-pressure story: no vesting cliffs, no team unlocks, just continuous miner supply. What you see below is that daily drip valued in dollars next to resting demand, plus live fee and mining-participation telemetry.</p><div id="x-nums"></div></div>'
-};
-function loadCoin() {
-  const s = document.getElementById('coinsel').value, o = document.getElementById('coinout');
-  o.innerHTML = 'loading…';
-  Promise.all([api('/api/state?symbol=' + s), api('/api/signals?symbol=' + s), api('/api/cards'), api('/api/chain?symbol=' + s)]).then(([st, sg, cd, ch]) => {
-    let h = EXPLAIN[s] || `<h3>${s}</h3>`;
-    const card = (cd.cards || {})[s] || {};
-    if (s === 'QUBIC' && ch.network) h = h.replace('<div id="q-nums"></div>', qubicNums(ch.network, card));
-    if (s === 'XMR' && ch.network) h = h.replace('<div id="x-nums"></div>', xmrNums(ch.network));
-    (sg.signals || []).slice(0, 6).forEach(g => { h += `<div class="box"><b>${g.signal}</b> ${dir(g.direction)} ${g.strength} <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span></div>`; });
-    const sts = (st.states || []).slice(-4);
-    if (sts.length) { h += `<h3>Market state by venue</h3><table><tr><th>Venue</th><th>Date</th><th>Price</th><th>Spread</th><th>Trades</th></tr>`; sts.forEach(t => h += `<tr><td>${t.venue}</td><td class="num">${t.date}</td><td class="num">${t.mid_close}</td><td class="num">${t.spread_bps_median}</td><td class="num">${t.n_trades}</td></tr>`); h += `</table>`; }
-    if (card.hardware) { h += `<h3>What one machine earns</h3><table><tr><th>Hardware</th><th>Revenue/day</th><th>Net/day</th><th>Note</th></tr>`; Object.entries(card.hardware).forEach(([k,v]) => h += `<tr><td>${k}</td><td class="num">${v.revenue_usd_day ?? 'no estimate yet'}</td><td class="num">${v.net_profit_usd_day ?? '—'}</td><td class="dim">${v.assumption || ''}</td></tr>`); h += `</table>`; }
-    o.innerHTML = h;
+  x.stroke();
+  x.fillStyle = '#111'; x.font = '22px monospace';
+  x.fillText(opts.last || ('last ' + vs[vs.length-1]), 14, 34);
+  if (opts.min) { x.fillStyle = '#555'; x.fillText(opts.min, 14, H - 8); }
+}
+function bars(id, series) {
+  const c = document.getElementById(id), x = c.getContext('2d');
+  const W = c.width = c.offsetWidth * 2, H = c.height = 360;
+  x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
+  const mx = Math.max(1e-12, ...series.map(p => Math.abs(p[1] || 0)));
+  const bw = (W - 20) / series.length;
+  series.forEach((p, i) => {
+    const v = p[1] || 0, h = Math.abs(v) / mx * (H / 2 - 20);
+    x.fillStyle = v >= 0 ? '#111' : '#999';
+    const cx = 10 + i * bw;
+    v >= 0 ? x.fillRect(cx, H/2 - h, Math.max(1, bw - 3), h) : x.fillRect(cx, H/2, Math.max(1, bw - 3), h);
   });
+  x.fillStyle = '#111'; x.fillRect(0, H/2 - 2, W, 4);
 }
-function qubicNums(n, card) {
-  const em = n.daily_emission, price = (card.price_usd || 0);
-  return `<table><tr><th>Figure</th><th>Value</th><th>What it means</th></tr>`
-    + `<tr><td>Epoch</td><td class="num">${n.epoch ?? '—'} (${(n.epoch_progress*100).toFixed(1)}% through)</td><td>weeks since launch; each week = one emission round</td></tr>`
-    + `<tr><td>Burn rate</td><td class="num">${(n.burn_rate*100).toFixed(2)}%</td><td>share of the weekly trillion destroyed before circulation</td></tr>`
-    + `<tr><td>Net new supply</td><td class="num">${em ? Math.round(em).toLocaleString() + ' QUBIC/day' : '—'}</td><td>what actually reaches sellers' hands</td></tr>`
-    + `<tr><td>Computors</td><td class="num">${n.computors ?? '—'}${n.computor_churn && n.computor_churn.new != null ? ` (+${n.computor_churn.new}/−${n.computor_churn.dropped} vs epoch ${n.computor_churn.vs_epoch})` : ''}</td><td>machines securing/computing — watch for churn</td></tr>`
-    + `<tr><td>External mining</td><td class="num">${n.doge_tasks != null ? n.doge_tasks + ' DOGE tasks' : '—'}</td><td>DOGE revenue funds buybacks + burns</td></tr>`
-    + `<tr><td>Net new supply</td><td class="num">${em && price ? '$' + Math.round(em*price).toLocaleString() + '/day' : '—'}</td><td>at current price — the daily sell-pressure ceiling</td></tr></table>`
-    + `<p class="dim">Source: rpc.qubic.org tick/epoch + documented halving schedule (${n.emission_source || ''}). Gross is always 1T/week; only the burn share changes.</p>`;
+
+async function home() {
+  const d = await api('/api/factors');
+  FACTORS = d.factors || {};
+  const rows = CORE.map(s => FACTORS[s]).filter(Boolean);
+  let h = `<h1>Compute money, daily</h1><div class="sub">How much new supply each network prints vs the orders waiting to buy it. Measured, with sources.</div>`;
+  h += `<table><tr><th>Coin</th><th>Price</th><th>New supply $/day</th><th>Burden</th><th>Spread</th><th>Signal</th></tr>`;
+  rows.sort((a,b) => (b.burden_vs_book||0) - (a.burden_vs_book||0)).forEach(f => {
+    h += `<tr><td><b>${f.symbol}</b></td><td class="num">${f.price_usd ?? '—'}</td><td class="num">${f.issuance_usd_24h ? '$'+Math.round(f.issuance_usd_24h).toLocaleString() : '—'}</td><td class="num">${f.burden_vs_book ?? '—'}×</td><td class="num">${f.spread_bps_median ?? '—'}</td><td>${dir(f.miner_pressure)}${f.miner_pressure_strength ? ' '+f.miner_pressure_strength : ''}</td></tr>`;
+  });
+  M.innerHTML = h + `</table><p class="dim">Burden = one day of fresh-volume value divided by resting top-20 bids. Over 1× means a full day of printing outweighs the visible book.</p>`;
 }
-function xmrNums(n) {
-  const em = 432, price = null;
-  return `<table><tr><th>Figure</th><th>Value</th><th>What it means</th></tr>`
-    + `<tr><td>Daily drip</td><td class="num">432 XMR/day</td><td>0.6 per block × 720 blocks — fixed forever</td></tr>`
-    + `<tr><td>Network hashrate</td><td class="num">${n.network_hashrate ? (n.network_hashrate/1e9).toFixed(2) + ' GH/s' : '—'}</td><td>all CPUs mining worldwide, roughly</td></tr>`
-    + `<tr><td>Fee market</td><td class="num">${n.fee_per_kb ? n.fee_per_kb/1e12 + ' XMR/kB' : '—'}</td><td>what transactors pay; compare with miner revenue</td></tr>`
-    + `<tr><td>P2Pool miners</td><td class="num">${n.p2pool_miners ? Number(n.p2pool_miners).toLocaleString() : '—'}</td><td>decentralized miners — rises when mining pays</td></tr></table>`
-    + `<p class="dim">Sources: LocalMonero stats, xmrchain.net, p2pool.observer. Flow attribution impossible by design — Monero hides sender, receiver, amount.</p>`;
+const SUBS = ['Overview', 'Market', 'Mining', 'Signals'];
+async function coin(sym) {
+  M.innerHTML = `<h1>${NAMES[sym] || sym}</h1><div class="sub" id="csub">loading…</div><div class="subtabs">${SUBS.map((s,i) => `<button data-s="${s}" class="${i===0?'active':''}">${s.toUpperCase()}</button>`).join('')}</div><div id="cbody"></div>`;
+  M.querySelectorAll('.subtabs button').forEach(b => b.onclick = () => { M.querySelectorAll('.subtabs button').forEach(x => x.classList.remove('active')); b.classList.add('active'); SUB = b.dataset.s; coinBody(sym); });
+  SUB = 'Overview'; coinBody(sym);
 }
-api('/api/signals').then(d => {
-  const o = document.getElementById('sigout'); o.innerHTML = '';
-  (d.signals || []).filter(g => CORE.includes(g.asset)).slice(0, 30).forEach(g => { o.innerHTML += `<div class="box"><b>${g.asset}</b> ${g.signal} ${dir(g.direction)} ${g.strength} <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span></div>`; });
-});
-api('/api/brief').then(b => document.getElementById('briefout').textContent = b.brief || b.error || 'no brief yet');
+async function coinBody(sym) {
+  const o = document.getElementById('cbody'); o.innerHTML = 'loading…';
+  const [st, sg, cd, ch, an, pg] = await Promise.all([
+    api('/api/state?symbol=' + sym), api('/api/signals?symbol=' + sym),
+    api('/api/cards'), api('/api/chain?symbol=' + sym),
+    api('/api/analysis?symbol=' + sym), api('/api/page?symbol=' + sym)]);
+  const card = (cd.cards || {})[sym] || {};
+  const net = ch.network || {};
+  document.getElementById('csub').textContent = {QUBIC: 'useful proof-of-work · weekly epochs · burns most of what it prints', XMR: 'flat 0.6 XMR per block forever · privacy means flows stay hidden', PRL: 'GPU proof-of-useful-work · miners paid for AI computation', KAS: 'high-throughput PoW control · the industrial benchmark', NOCK: 'ZK proof-of-work · young chain', XEL: 'private DAG · small caps, wide books'}[sym] || '';
+  let h = '';
+  if (SUB === 'Overview') {
+    h += `<div class="grid">`;
+    h += stat('Price', num(card.price_usd), 'venue mids');
+    const sig = (sg.signals || [])[0];
+    h += stat('Signal', sig ? `${sig.direction} ${sig.strength}` : '—', sig ? `${sig.signal} ${sig.version}` : 'insufficient data');
+    if (sym === 'QUBIC') {
+      h += stat('Net new supply', net.daily_emission ? (net.daily_emission/1e9).toFixed(1) + 'B/d' : '—', `burn ${(net.burn_rate*100||0).toFixed(2)}% of 1T/week`);
+      h += stat('Epoch', net.epoch ? `${net.epoch} (${(net.epoch_progress*100).toFixed(1)}%)` : '—', `${net.computors || '—'} computors`);
+    }
+    if (sym === 'XMR') {
+      h += stat('Daily drip', '432 XMR', '0.6/block × 720, forever');
+      h += stat('Hashrate', net.network_hashrate ? (net.network_hashrate/1e9).toFixed(2) + ' GH/s' : '—', `${net.p2pool_miners ? Number(net.p2pool_miners).toLocaleString() + ' p2pool miners' : ''}`);
+    }
+    h += `</div>`;
+    h += `<h2>Price — 1 year</h2><canvas class="graph" id="g-price"></canvas>`;
+    h += dossier(sym, net);
+    const ph = await api('/api/history?symbol=' + sym);
+    const px = (ph.closes || []).map(r => [r.date, r.close]);
+    line('g-price', px, {last: 'last $' + (px.length ? px[px.length-1][1] : '—')});
+    if (sym === 'XMR' && an.analysis && an.analysis.logprice_logdiff_corr != null)
+      h = `<div class="box"><b>Seesaw check:</b> log-price vs log-difficulty correlation ${an.analysis.logprice_logdiff_corr} over ${an.analysis.corr_n} joint points. Miners follow price with a lag — that lag is the trade.</div>` + h;
+  }
+  if (SUB === 'Market') {
+    const sts = (st.states || []).slice(-8);
+    h += `<h2>Venue state</h2><table><tr><th>Venue</th><th>Date</th><th>Mid</th><th>Spread bps</th><th>Trades</th><th>Buy $</th><th>Sell $</th></tr>`;
+    sts.forEach(t => h += `<tr><td>${t.venue}</td><td class="num">${t.date}</td><td class="num">${t.mid_close}</td><td class="num">${t.spread_bps_median}</td><td class="num">${t.n_trades}</td><td class="num">${Math.round(t.trade_buy_notional||0)}</td><td class="num">${Math.round(t.trade_sell_notional||0)}</td></tr>`);
+    h += `</table><h2>Net daily flow by venue</h2><canvas class="graph" id="g-flow"></canvas>`;
+    const fl = {};
+    (st.states || []).forEach(t => { const k = t.venue + ' ' + t.date; fl[k] = (fl[k]||0) + ((t.trade_buy_notional||0) - (t.trade_sell_notional||0)); });
+    bars('g-flow', Object.entries(fl)); // drawn after insert below
+    h += `<div id="flowholder"></div>`;
+  }
+  if (SUB === 'Mining') {
+    if (card.hardware) { h += `<h2>One machine</h2><table><tr><th>Hardware</th><th>Revenue/d</th><th>Net/d</th><th>Note</th></tr>`; Object.entries(card.hardware).forEach(([k,v]) => h += `<tr><td>${k}</td><td class="num">${v.revenue_usd_day ?? 'no estimate yet'}</td><td class="num">${v.net_profit_usd_day ?? '—'}</td><td class="dim">${v.assumption || ''}</td></tr>`); h += `</table>`; }
+    const chh = await api('/api/cards_history?symbol=' + sym);
+    const byHw = {};
+    (chh.cards || []).forEach(r => { (byHw[r.hardware] = byHw[r.hardware] || []).push([r.date, r.net_profit_usd_day]); });
+    const first = Object.entries(byHw)[0];
+    if (first) { h += `<h2>Net profit history — ${first[0]}</h2><canvas class="graph" id="g-margin"></canvas>`; }
+    h += `<div id="marginholder" data-hw="${first ? first[0] : ''}"></div>`;
+  }
+  if (SUB === 'Signals') {
+    (sg.signals || []).slice(0, 12).forEach(g => { h += `<div class="box"><b>${g.signal}</b> ${dir(g.direction)} ${g.strength} <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span><br><span class="dim">assumes: ${(g.assumptions||[]).join(' · ')}</span></div>`; });
+    if (!(sg.signals || []).length) h += `<div class="box">No signals — insufficient measured inputs. See assumptions on other coins for what's missing.</div>`;
+  }
+  o.innerHTML = h;
+  if (SUB === 'Market') {
+    const fl = {};
+    (st.states || []).forEach(t => { const k = (t.venue||'') + ' ' + (t.date||''); fl[k] = (fl[k]||0) + ((t.trade_buy_notional||0) - (t.trade_sell_notional||0)); });
+    bars('g-flow', Object.entries(fl));
+  }
+  if (SUB === 'Mining') {
+    const mh = document.getElementById('marginholder');
+    if (mh && mh.dataset.hw) {
+      const chh = await api('/api/cards_history?symbol=' + sym);
+      const s = chh.cards.filter(r => r.hardware === mh.dataset.hw).map(r => [r.date, r.net_profit_usd_day]);
+      line('g-margin', s, {});
+    }
+  }
+}
+function stat(k, v, n) { return `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div><div class="n">${n||''}</div></div>`; }
+function num(v) { return v == null ? '—' : (v < 1 ? v.toPrecision(3) : Number(v).toLocaleString(undefined, {maximumFractionDigits: 2})); }
+function dossier(sym, net) {
+  if (sym === 'QUBIC') return `<h2>How Qubic money works</h2><div class="box">Qubic mints <b>1 trillion QUBIC every week</b> (one epoch). Then it destroys most of it: since the August 2026 halving, <b>78.75% burns</b> and ~212 billion reach the market — about <b>30.4 billion a day</b>. Epoch ${net.epoch || '—'} is ${(net.epoch_progress*100||0).toFixed(1)}% through. ${net.computors || '—'} computor machines share the rewards. Burns, not halvings of gross output, are what tighten supply here.</div>`;
+  if (sym === 'XMR') return `<h2>How Monero money works</h2><div class="box">Monero pays <b>0.6 XMR per block, every 2 minutes, forever</b> — 432 new XMR daily, no halvings, no team unlocks. At current prices that drip is the market's permanent headwind. Who sells it is unknowable by design: amounts, senders and receivers are all hidden, so this page shows the drip against resting demand instead of pretending to trace wallets.</div>`;
+  if (sym === 'PRL') return `<h2>How Pearl money works</h2><div class="box">Pearl pays GPUs for AI computation — mining is the by-product. 500,000 PRL a day at current schedule. The key question is how much miners send to exchanges; our own node is syncing to measure exactly that. Until then, burden ratios here are structural, not observed selling.</div>`;
+  return '';
+}
+async function brief() {
+  const b = await api('/api/brief');
+  M.innerHTML = `<h1>Daily brief</h1><pre>${(b.brief || b.error || 'none').replace(/</g, '&lt;')}</pre>`;
+}
+async function chat() {
+  M.innerHTML = `<h1>Ask the data</h1><div class="sub" id="chatvia"></div><div id="chatlog" style="border:2px solid #111;padding:10px;height:320px;overflow-y:auto;margin-bottom:8px"></div><input id="chatq" size="60" placeholder="e.g. why is XMR bearish?"> <button class="go" onclick="ask()">Ask</button>`;
+  document.getElementById('chatq').addEventListener('keydown', e => { if (e.key === 'Enter') ask(); });
+}
 function ask() {
-  const q = document.getElementById('chatq'); if (!q.value.trim()) return;
+  const q = document.getElementById('chatq'); if (!q || !q.value.trim()) return;
   const log = document.getElementById('chatlog');
-  log.innerHTML += `<div class="msg"><div class="who">you</div><div>${q.value}</div></div>`;
+  log.innerHTML += `<div><b>you:</b> ${q.value}</div>`;
   const m = q.value; q.value = '';
   api('/api/chat', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({message: m})}).then(r => {
     document.getElementById('chatvia').textContent = 'via ' + (r.via || '?');
-    log.innerHTML += `<div class="msg"><div class="who">analyst</div><div>${r.reply}</div></div>`;
+    log.innerHTML += `<div style="margin:8px 0"><b>analyst:</b> ${r.reply}</div>`;
   });
 }
-loadCoin();
+const VIEWS = {home, brief, chat, QUBIC: () => coin('QUBIC'), XMR: () => coin('XMR'), PRL: () => coin('PRL'), KAS: () => coin('KAS'), NOCK: () => coin('NOCK'), XEL: () => coin('XEL')};
+document.querySelectorAll('#rail button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#rail button').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); (VIEWS[b.dataset.v] || home)();
+});
+api('/api/health').then(h => document.getElementById('health').textContent = h.ok ? '● LIVE GARDEN' : 'degraded').catch(() => document.getElementById('health').textContent = 'offline');
+home();
 </script>
 </body>
 </html>

@@ -118,6 +118,62 @@ def _data_answer(message, ctx):
             'The LLM harness is unreachable right now.')
 
 
+def _analysis(symbol):
+    """Per-asset derived analysis (Seesaw loops, epoch returns).
+
+    XMR: price vs difficulty (30d changes + correlation over joint
+    history). QUBIC: trailing 7d epoch-equivalent returns from CG
+    closes (exact epoch boundaries pending tick-map history).
+    """
+    out = {'symbol': symbol, 'analysis': {}}
+    if symbol == 'XMR':
+        prices = sorted(
+            ((r.get('date'), r.get('close_usd')) for r in _rows('price_history')
+             if (r.get('symbol') or '').upper() == 'XMR' and r.get('close_usd')),
+            key=lambda x: x[0] or '')
+        diffs = sorted(
+            ((r.get('observed_at', '')[:10], r.get('difficulty')) for r in _rows('chain_snapshot')
+             if r.get('difficulty') and float(r['difficulty']) > 1e6),
+            key=lambda x: x[0])
+        a = out['analysis']
+        if len(prices) >= 31:
+            a['price_30d_pct'] = round((prices[-1][1] - prices[-31][1]) / prices[-31][1], 4)
+        if len(diffs) >= 2:
+            a['difficulty_latest'] = diffs[-1][1]
+            first, last = diffs[0][1], diffs[-1][1]
+            a['difficulty_change'] = round((last - first) / first, 4) if first else None
+            a['difficulty_window'] = f"{diffs[0][0]} → {diffs[-1][0]}"
+            a['difficulty_points'] = len(diffs)
+        # joint correlation where dates overlap
+        pmap = dict(prices)
+        pairs = [(pmap[d], df) for d, df in diffs if d in pmap and pmap[d]]
+        if len(pairs) >= 5:
+            import math
+            xs = [math.log(p) for p, _ in pairs]
+            ys = [math.log(d) for _, d in pairs]
+            mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+            num = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+            den = math.sqrt(sum((x - mx) ** 2 for x in xs) * sum((y - my) ** 2 for y in ys))
+            a['logprice_logdiff_corr'] = round(num / den, 3) if den else None
+            a['corr_n'] = len(pairs)
+        a['method'] = ('price 365d (CoinGecko) vs difficulty (localmonero '
+                       'polls, accumulates daily)')
+    elif symbol == 'QUBIC':
+        closes = sorted(
+            ((r.get('date'), r.get('close_usd')) for r in _rows('price_history')
+             if (r.get('symbol') or '').upper() == 'QUBIC' and r.get('close_usd')),
+            key=lambda x: x[0] or '')
+        weeks = []
+        for i in range(7, min(len(closes), 7 * 12), 7):
+            a, b = closes[-i - 7][1], closes[-i][1]
+            weeks.append(round((b - a) / a, 4) if a else None)
+        out['analysis'] = {
+            'epoch_equiv_weekly_returns': list(reversed(weeks)),
+            'method': ('trailing 7d windows (exact epoch boundaries pending '
+                       'tick-map history); latest first')}
+    return out
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = 'PowSite/1.0'
 
@@ -210,6 +266,22 @@ class Handler(BaseHTTPRequestHandler):
                     os.path.join(ROOT, 'pages', f'{sym}.md')).read()})
             except OSError:
                 return self._send({'error': f'no page {sym}'}, code=404)
+        if u.path == '/api/analysis':
+            return self._send(_analysis(arg('symbol').upper()))
+        if u.path == '/api/history':
+            sym = arg('symbol').upper()
+            out = [r for r in _rows('price_history')
+                   if (r.get('symbol') or '').upper() == sym]
+            out.sort(key=lambda r: r.get('date', ''))
+            return self._send({'symbol': sym, 'closes': [
+                {'date': r.get('date'), 'close': r.get('close_usd'),
+                 'volume': r.get('volume_usd')} for r in out]})
+        if u.path == '/api/cards_history':
+            sym = arg('symbol').upper()
+            out = [r for r in _rows('miner_card')
+                   if (r.get('coin') or '').upper() == sym]
+            out.sort(key=lambda r: (r.get('date', ''), r.get('hardware', '')))
+            return self._send({'symbol': sym, 'cards': out[-200:]})
         if u.path == '/api/chain':
             sym = arg('symbol').upper()
             try:
