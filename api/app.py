@@ -9,7 +9,13 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-DATA_DIR = '/home/box/safetrade/tracked'
+import glob
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Legacy flat-file dir (old /home/box tracker) still honored via env;
+# default is the warehouse normalized tables written by venue_l2.
+DATA_DIR = os.environ.get('SAFETRADE_TRACKED_DIR', '')
 
 COINS = {
     'QUBIC': {'name': 'Qubic', 'type': 'useful-compute', 'market': 'qubicusdt'},
@@ -25,12 +31,35 @@ COINS = {
 }
 
 def load_latest_depth(coin):
-    files = [f for f in os.listdir(DATA_DIR) if f.startswith(f'{coin}_depth') and f.endswith('.json')]
-    if not files:
-        return None
-    with open(os.path.join(DATA_DIR, sorted(files)[-1])) as f:
-        data = json.load(f)
-    return data[-1] if data else None
+    # 1. Legacy flat files if a tracked dir is configured
+    if DATA_DIR and os.path.isdir(DATA_DIR):
+        files = [f for f in os.listdir(DATA_DIR)
+                 if f.startswith(f'{coin}_depth') and f.endswith('.json')]
+        if files:
+            with open(os.path.join(DATA_DIR, sorted(files)[-1])) as f:
+                data = json.load(f)
+            return data[-1] if isinstance(data, list) and data else data
+    # 2. Warehouse: latest orderbook_snapshot for this symbol, any venue
+    best = None
+    for chain in ('venue', 'safetrade'):
+        for f in glob.glob(os.path.join(
+                BASE_DIR, 'warehouse', 'normalized', 'orderbook_snapshot',
+                f'chain={chain}', 'date=*', 'hour=*.jsonl')):
+            with open(f) as fh:
+                for line in fh:
+                    try:
+                        r = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+                    if (r.get('symbol') or '').upper() != coin:
+                        continue
+                    if best is None or r.get('receive_time', '') > best.get('receive_time', ''):
+                        best = r
+    if best:
+        return {'bids': best.get('bids', []), 'asks': best.get('asks', []),
+                'timestamp': best.get('receive_time'),
+                'venue': best.get('venue'), 'mid': best.get('mid')}
+    return None
 
 @app.route('/')
 def index():
@@ -162,7 +191,12 @@ def predictions():
 
 @app.route('/api/v1/status')
 def status():
-    files = len([f for f in os.listdir(DATA_DIR) if f.endswith('.json')]) if os.path.exists(DATA_DIR) else 0
+    files = 0
+    for chain in ('venue', 'safetrade'):
+        snap_dir = os.path.join(BASE_DIR, 'warehouse', 'normalized', 'orderbook_snapshot', f'chain={chain}')
+        if os.path.isdir(snap_dir):
+            for _root, _dirs, _fs in os.walk(snap_dir):
+                files += sum(1 for _f in _fs if _f.endswith('.jsonl'))
     return jsonify({
         'collector': 'running',
         'coins_tracked': len(COINS),

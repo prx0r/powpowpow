@@ -159,7 +159,8 @@ def poll_coinex_book(sym, market, poll_id, receive_time):
     if not data or data.get('code') != 0:
         return False
     d = data.get('data', {}) or {}
-    bids, asks = d.get('bids', []), d.get('asks', [])
+    book = d.get('depth', d) if isinstance(d, dict) else {}
+    bids, asks = book.get('bids', []), book.get('asks', [])
     mid, spread_bps, bid_n, ask_n = book_stats(bids, asks)
     store_normalized('orderbook_snapshot', 'venue', {
         'venue': 'coinex', 'symbol': sym, 'market': market,
