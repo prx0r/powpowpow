@@ -1,0 +1,1001 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id O3Mqr13FM3eP
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 17:06:23 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=d7moM4u7OWULXkY0M+Zfku70iXG4omfrlZwKkTUTrtydAXtOTgmJGqRsNQnnhBD4Zhz8/ne1d
+	2BlOhjRXw+nriNk3hY/nzU1Ab0TN/k0CDcvfTPGCe7H5cXzXKOUTVRj7cYyS6gdcxv/aD5NL2S2
+	rhCxfOTN+gEZTQHLw86s5BNwGBjRBgkdVPNQSnL4ExAHy0h4pM5aL/A/OpBHOnFgD/r8Ls8jEnj
+	co5b2fXqO/YOfAifUjo98pLhZeLFbgsJmSknCifA29M9o6Andfv3kNntcfD8ojp2okmaX4zJF9r
+	loOiZkRUCWIJ6eHqccdmD2x0OgJ5GH7H431MTw+PXupg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789664783; x=1790269583; bh=4P5Yl9Ta
+	14o8qB2yxgV4/7dqT8ViacYVKrxojTVuACA=; b=guf7lWumOvof/h1POIKM8seBg1FMo7TQ0ve
+	zm+WE7ZSztpCCJkda5MFc2D4ENn4mNsL436mimR/KjVDGAYtXCbl5vQ2sOwUp4inci0e7MyyW+i
+	2mrq/eqNL5+alt1ngqBPahI6gxw46d3eNOOQsNMSSyWyvR8ZNoZBUVL2KyNan4IvU1mjPB9DZFi
+	2F1llJ9SrwSh40mRZnJFoTpR/oCb40HOCl83yVTSwucUmouGMcD0yeO/hUzgNhygU/MO5dSan38
+	CYSoGWsUT9KXvuVzy/THrnJRmsyjfZtJFrb3N4RDrVNi6qvwj0d4lojuErwuF5WdvAJAM2I0fMH
+	jEQ7Kig==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Da8fx+GK;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Da8fx+GK;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-67109935888so1030031d50.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 10:06:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789664783; cv=none;
+        d=google.com; s=arc-20260327;
+        b=WJd0n2AtC9M53TCXbZogjwsz3EmrZISMwg3BPtN1bmEw8R7iDFDju6yW65wOFd9oXb
+         anyGemqmRQ2e3hpSDiyKmw+116BkBs/57LUsbtwnJnFFRfIpv6ReKoh7yLm7u+NYq/Ug
+         AyQOAOFMADilZSGFK5L4SHN+8TPRSy58omLDBRw9GgnJQprpsFNbdK0xo9GbcX+2WjEE
+         iGKlDwBTHJOgfPL+UPXzIiwC8AMcnta5QGBoLorfXfgzW8AvWjFjcd9E8grneGgwEnP5
+         F4zAmveK5SqatpDcM18rxjbvEDtiASAabpAcWfuRT/g0AhGUrgX78qqRHCYIHSW39fAj
+         BKWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=4P5Yl9Ta14o8qB2yxgV4/7dqT8ViacYVKrxojTVuACA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=SRH/E/+zWTXrDh+qK1Xq/E+icR+iewQlp+z8J9GKVremrQBkCriJ15Sr09/1gUDF+6
+         uNxIh1SlPPHuM1ckr5Y3bLJmjglqd94ZXK+RPM47QFmRxXhkAaZH9/rOX1QlxSUfXb7v
+         gZra8w1mJn2i6eZxDIrGMwnbpmKlUVyGEuTNOKh7gq8nGjYtUigXzF89xfnfuSXXwK/n
+         PAhD72qbYrFc6+AF50pYKfPOgRAxhfUyjAsQR8ll2FGXDkJsYTEqjgBwxiPuPf6FS8U/
+         GshLSs/ch2rLNWhaBI5PUaXU6cBjiGPbfEnJ3zalT/5VkOjQVE81+StZ3qd6Bq5SA8g4
+         oJjw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789664783; x=1790269583; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=4P5Yl9Ta14o8qB2yxgV4/7dqT8ViacYVKrxojTVuACA=;
+        b=Da8fx+GKOI6K3CpIVfArCWnul5kuYmtrOsG/oG6yyhSAo1eZ0ByL5aXU9e0wgtkTSt
+         JE7P1vxVbhdONXPDIMcd6KLO8GmhjwiTWiNLuKeX6Btei35HJtRBIy3DzUims7bqvNRT
+         8/ymgnMLGPtYwYpmCSGwPip0aK0RPZZUEXdiDWnkHYeKd5CLTHbwddfNQKWvHRMavGMS
+         HXrkqjICe3069sZ5Auvp+tBC1D5UEzGhZUjnRSY6vE+Am5IrgEqhYE/iqwSFiXImFtt7
+         JeEz21GPjscIusS2Cpw/a4Q2VzEG1l6ShTyTmkzWMAFiZFHEsFkSGQcdcBmc0LaWEy+x
+         hqug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789664783; x=1790269583;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=4P5Yl9Ta14o8qB2yxgV4/7dqT8ViacYVKrxojTVuACA=;
+        b=Chyu+HG1bw3zsJhgcCEduzu0QWUUQwARYmNizDiXIWeBOoineY7rozTD26PzprXehI
+         fqb2UCilm7ABi7cbbUR5vN4+ehGLqKNu+6Yizg+waCuEkG1xNc4ibrigUfcoRIwCfFl4
+         brtWR2XqjHuled15iYPWr5RRZToUKuwmLaSPApS+cwZIK/vEWfIX7xVn14adptH4FNq4
+         udmnWm8KudSFBxzM3T3z3ONPuYfpaGFFQ3+Xq9eytT4DghG0PQMwQk/gVXQ5UDfbNi7G
+         l1B9XI3Y+fSgSBhAG9XWwwm1vardP8SkziI8xlEuao1DSYoXTU2mT5IJP1iVXaAUk9za
+         1jjw==
+X-Gm-Message-State: AFuF++nJ6nyy7q5Cmt5K4Wkpg3X10pnP9GpkEV8kVXkiSJw+jfwPQcvO
+	RZPm9zIjX53iEjCKupJ8XEofBYYNAcblU/RrtrEC1dsj9e2F3UHEoTxT8MQY5NVNwBd5k7ZfBNj
+	qCJrcpBZq9QWOLvdS7o/e6MvOEWbXutZwzQ==
+X-Gm-Gg: AYBFou1pmnHdy0gclWQ1XxtKPpE1HrRrAl7HdmAq3EnK/BsDCI8Th7xwUbGMgYaa8m9
+	Rp8RYHQmG5iPdPWCQ1iqZuKia9HMwhCsdh33+HMgAdpFY4At4e/dhbAGnf8eaO6N65RT+8/aHId
+	rsBRQtW4kEQu4eJ9+7iIvmwOfaKYWF5rZrnXSsYFoxQtHgVLTOBAgKbObwGP5BVHAU9nbhIof/6
+	KAulYsxoP+YGAhgvq+n7lO1D/2+vEl3ApF6a4q6vhwND032HEfDRWXM16rtCptrB1CWoe9h85Dz
+	FgZY8ZHSSPC012ZLhTiJTB+jB2QHQ7kDEQKJIqYOONiep2s2HeHzRbH/sllIibQivAHaw+Tev1Z
+	widLye+WSgmxBZ17N3uuwkeuRlJTYyazM6DTo6LxU/vw5XqkGUH1ZudkGpUAnq1V1FKxkdlFH
+X-Received: by 2002:a05:690e:118d:b0:671:70d2:5289 with SMTP id
+ 956f58d0204a3-67175429e9amr674548d50.76.1789664782376; Thu, 17 Sep 2026
+ 10:06:22 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:06:21 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:06:21 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 12:06:21 -0500
+X-Gm-Features: AcwNN1XgMHUqbDe9LLwp6reW3cMPlj1mgZTRK-f0mujfbEfrSuPLCadalpHew_s
+Message-ID: <CAPdrGe=NQYXo0BFuskO2u3Xsbdr67VDt7jWtTKXJz9DLG2nKSQ@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail_peer_review_2=2F4_=E2=80=94_rebuild_QP_kernel=2C_ProofSp?=
+	=?UTF-8?Q?ecs=2C_evidence_=2B_receipts_correctly?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000009ee3f3065bb0cde0"
+
+--0000000000009ee3f3065bb0cde0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Continue from part 1. This part is about making QP itself legitimate.
+
+CORE PRINCIPLE
+
+A QP effect is valid only when ALL of these are independently pinned and
+replayable:
+ContractRoot exact Claim authenticated Evidence pinned deterministic Judge
+programs required Gates independent Authority deterministic Transition
+signed TransitionReceipt durable append-only settlement independent Replay
+
+The current code has the names, but several are still placeholders. Fix
+semantics before adding more adapters.
+
+   1. MAKE PROOFSPEC A REAL LOADED CONTRACT
+
+Today proofspecs/*.json are not one uniform executable contract.
+Examples such as account_owned.v1.json and oauth_authorized.v1.json omit
+fields required by the TypeScript ProofSpec interface. Several hashes are
+human labels like:
+"sha256:judgeAccountAuthenticated"
+
+rather than actual SHA-256 digests. bundle_hash is often empty.
+
+Required:
+
+   - define ProofSpecSchema with runtime validation (Zod/Valibot/etc.).
+   - every ProofSpec MUST have exactly the same required structural fields.
+   - load specs at startup/build into a registry indexed by ContractRoot
+   and spec_id/version.
+   - reject malformed or incomplete specs.
+   - reject unknown judge/gate ids.
+   - reject duplicate ids.
+   - reject placeholder/non-hex hashes.
+   - canonicalize spec and compute ContractRoot from the actual complete
+   bytes.
+   - never mutate a loaded spec.
+
+Suggested shape:
+ProofSpec { protocol: "qp/1" spec_id version claim_schema_hash
+evidence_schema_hash judges: JudgeRef[] actuality_dag gates: GateRef[]
+freshness provenance_policy independence_policy transition_program_hash
+authority_policy_hash? proof_requirement }
+
+   1. PROGRAM REGISTRY, NOT FUNCTION ARRAYS SUPPLIED BY CALLER
+
+replayReceipt currently accepts judges: JudgeFn[] and only checks their
+COUNT against spec.judges. The code comment itself admits source-hash
+verification is not implemented.
+
+That is not a proof.
+
+Required:
+
+   - compile/build every judge/gate/transition/probe into a ProgramBundle.
+   - ProgramBundle identity =3D hash(source bytes + runtime identity + conf=
+ig
+   + dependency lock/version).
+   - ProofSpec references exact bundle_hash.
+   - QP resolves bundle hash from trusted ProgramRegistry.
+   - caller does NOT supply an arbitrary judge function.
+   - if referenced bundle missing or hash differs -> UNKNOWN/invalid proof,
+   never fallback.
+
+judge count matches must be deleted as a security claim.
+
+   1. ACTUALITY_DAG MUST BE EXECUTED FROM THE SPEC
+
+Current replay ignores spec.actuality_dag and computes a simple AND of
+whichever judge functions the caller passed.
+
+Required:
+
+   - define a small explicit DAG language, e.g. nodes:
+      - JUDGE(id)
+      - AND(children)
+      - OR(children)
+      - NOT(child) only if you truly need it
+      - THRESHOLD only if formally justified
+   - validate acyclic graph at spec load.
+   - evaluate exactly the graph committed in ContractRoot.
+   - missing required node -> UNKNOWN/invalid settlement.
+
+Never let runtime call order silently define truth semantics.
+
+   1. EVIDENCE MUST BE CONTENT-ADDRESSED AND SELF-CHECKING
+
+Current replay checks that metadata fields exist and checks freshness, but
+it does NOT verify:
+
+   - sha256(response_payload) =3D=3D response_hash
+   - evidence id matches canonical evidence content
+   - evidence.claim_id =3D=3D claim.id
+   - collector program/runtime is allowed by the ProofSpec
+   - normalized_payload_hash is actually derived from normalization
+   - signature/signer when required
+   - independence-group policy
+
+Implement one constructor:
+makeEvidence(input, collectorIdentity) -> Evidence
+
+It computes everything. Callers do not hand-author IDs/hashes.
+
+Evidence ID should commit to at least:
+
+   - protocol/schema version
+   - claim_id
+   - class
+   - observed_at
+   - source + locator
+   - collector bundle hash/runtime hash
+   - request hash
+   - response hash
+   - normalized payload hash
+   - nonce/challenge
+   - independence group
+
+Do not use Date.now()/random labels as evidence identity.
+
+Replay must recompute all derivable hashes and fail closed.
+
+   1. FRESHNESS MUST BE STRICT
+
+Current replay does:
+const maxAge =3D spec.freshness[e.class] || 3600
+
+Unknown evidence classes silently receive a one-hour policy. That allows
+uncontracted evidence into a proof.
+
+Required:
+
+   - evidence class absent from spec freshness/provenance policy -> reject.
+   - invalid observed_at -> reject.
+   - evidence from the future beyond clock-skew tolerance -> reject.
+   - freshness evaluated against receipt.settled_at, not Date.now().
+   - each judge must declare which classes it consumes.
+
+UNKNOWN is for unavailable/ambiguous world information. Malformed evidence
+is not a factual FALSE; it is invalid proof input.
+
+   1. CLAIM MUST BE BOUND TO CONTRACTROOT
+
+replayReceipt verifies receipt.contract_root and receipt.claim_id, but does
+not verify:
+claim.contract_root =3D=3D=3D computeContractRoot(spec)
+
+Add it.
+
+Also validate the claim subject against the proof spec=E2=80=99s claim sche=
+ma. No
+generic Record<string,string> should bypass schema.
+
+   1. JUDGE AND GATE RESULT ROOTS MUST COMMIT TO FULL RESULTS
+
+Current roots hash only:
+judge_id + actuality gate_id + result
+
+That excludes reasons, evidence_ids and judge bundle hash.
+
+Canonical root leaves should be full result objects:
+JudgeResult { judge_id bundle_hash actuality reasons evidence_ids }
+GateResult { gate_id result evidence_ids proof/details }
+
+Sort deterministically or use spec-defined order.
+
+   1. REQUIRED GATES MUST MATCH EXACT SPEC
+
+Do not only search for required gate ids among arbitrary runtime results.
+
+At settlement:
+
+   - resolve exact gate bundle hashes from ProgramRegistry.
+   - execute gates in spec order.
+   - no undeclared gate may decide truth.
+   - missing required gate -> invalid/UNKNOWN.
+   - duplicate result ids -> invalid.
+
+
+   1. FIX THE EFFECT GATEWAY=E2=80=99S FUNDAMENTAL SEMANTICS
+
+qp/effects.ts currently has several critical shortcuts:
+
+A. required_claims is never checked.
+B. ProofSpec is optional.
+C. readback callback returns exists, and exists=3Dtrue directly becomes TRU=
+E.
+D. no actual judge or gate runs.
+E. readback function is caller-supplied and therefore part of the untrusted
+effect request path.
+F. contract_root is generated using computeReceiptHash(spec as any) or
+empty string.
+G. claim_id is an ad-hoc string rather than Claim.id.
+H. state_before_root is constant hash(=E2=80=9Cstate:before=E2=80=9D).
+I. state_after_root is just hash({action, settled}), not canonical state
+transition.
+J. prev_receipt_hash is constant hash(=E2=80=9Cprev=E2=80=9D).
+K. qp_signature is empty.
+L. transition/collector program hashes are hashes of labels like
+=E2=80=9Ceffect-gateway=E2=80=9D, not program bytes.
+
+Replace executeEffect signature with something closer to:
+executeEffect({ principal, proposal, grantId, effectSpecId })
+
+QP internally resolves:
+
+   - authenticated principal
+   - durable grant
+   - EffectSpec
+   - ProofSpec/ContractRoot
+   - prerequisite settled claims
+   - trusted adapter program
+   - trusted readback/probe program
+   - judges/gates
+   - transition program
+   - signer
+
+The MCP caller must not inject executable functions.
+
+   1. DEFINE EFFECTSPEC
+
+ProofSpec says how a resulting claim is proven. EffectSpec should say how
+an allowed world mutation is attempted.
+
+Suggested:
+EffectSpec { id: "cf.domain.register/v1" action payload_schema_hash
+adapter_bundle_hash readback_probe_bundle_hash resulting_claim_spec_id
+authority_policy_hash idempotency_strategy reconciliation_strategy }
+
+Hash EffectSpec too. Proposal references exact EffectSpec root.
+
+   1. PREPARE BEFORE EXECUTE =E2=80=94 CRASH-SAFE EFFECT JOURNAL
+
+Current code consumes in-memory grant then calls provider. A Worker crash
+after provider success but before readback loses the settlement path.
+
+Use durable phases:
+PROPOSED -> AUTHORIZED -> PREPARED (persist effect_attempt + idempotency
+key) -> EXECUTING -> EXECUTED_UNVERIFIED -> PROVEN_TRUE | PROVEN_FALSE |
+UNKNOWN_RECONCILE
+
+Before external call, atomically persist:
+
+   - proposal root
+   - grant id / reserved use
+   - idempotency key
+   - EffectSpec root
+   - expected resulting claim
+   - started_at
+
+After provider call, persist raw response hash/provider transaction id
+BEFORE readback.
+
+A retry must reuse the same idempotency key / reconcile instead of spending
+twice.
+
+   1. RECEIPTS MUST BE REAL
+
+A TransitionReceipt should commit to:
+
+   - protocol
+   - transition type
+   - ContractRoot
+   - EffectSpec root where applicable
+   - Claim id
+   - state_before_root
+   - proposal_root
+   - evidence_root
+   - full judge-results root
+   - full gate-results root
+   - actuality
+   - authority id + authority root
+   - transition program bundle hash
+   - state_after_root
+   - run metadata/program hashes
+   - previous receipt/event root
+   - settled_at
+   - receipt_hash
+   - QP signer key id
+   - QP signature over receipt_hash/domain-separated bytes
+
+Replay MUST verify signature from trusted QP signer registry.
+
+Do not market =E2=80=9Ccryptographic proof=E2=80=9D while qp_signature is e=
+mpty.
+
+   1. STATE TRANSITION MUST BE RECOMPUTABLE
+
+Kernel status says state transition is fixed, but replay currently returns
+receipt.state_after_root without recomputing it.
+
+Implement:
+transition(stateBefore, claim, actuality, proposal, authority) ->
+stateAfter
+
+Transition program is content-addressed and committed in ProofSpec.
+Replay loads state_before, re-executes transition and checks
+state_after_root.
+
+Canonical state should be an append-only projection of settled
+claims/receipts, not task flags.
+
+   1. RECEIPT CHAIN MUST ACTUALLY CHAIN
+
+prev_receipt_hash cannot be sha256(=E2=80=9Cprev=E2=80=9D).
+Use durable head per scope/tenant/claim ledger. On settle:
+
+   - read previous head
+   - insert receipt referencing head
+   - atomically update head
+   - append event hash
+
+Replay can then verify chain continuity.
+
+   1. MOVE QP MIGRATION INTO THE REAL MIGRATION PATH
+
+wrangler.toml uses:
+migrations_dir =3D "migrations"
+
+But QP schema is in qp/migrations/0001_qp_core.sql.
+It is therefore not part of the configured D1 migration stream.
+
+Move/version it as something like:
+migrations/0004_qp_core.sql
+
+Then implement QPStore over those actual tables.
+
+Do not leave qp_contracts/claims/evidence/grants/receipts/events as
+documentation-only tables.
+
+   1. AUTHORITY STORAGE
+
+Replace consumedNonces Set with D1 state.
+
+Use conditional atomic update semantics such as:
+UPDATE qp_grants SET uses =3D uses + 1, status =3D CASE WHEN uses + 1 >=3D
+max_uses THEN 'consumed' ELSE status END WHERE grant_id =3D ? AND status =
+=3D
+'active' AND uses < max_uses AND expires_at > ?
+
+Then require exactly one affected row.
+
+Tie reservation to effect_attempt in the same durable operation/batch
+strategy as supported by D1.
+
+   1. CLEAN UP DUPLICATE QP SYSTEMS
+
+There are still at least three proof models:
+
+   - src/capacity.ts legacy CapacityProof/pass boolean
+   - mcp/interface.ts acom/0.1 QPReceipt/proof levels/PASS-FAIL
+   - qp/kernel.ts qp/1 Actuality/TransitionReceipt
+
+Delete or archive the first two from runtime.
+
+mcp/domain.ts currently simulates execution and manufactures acom/0.1 proof
+receipts. It must not coexist with production QP.
+
+There should be ONE proof type and ONE settlement kernel.
+
+   1. FIX EMAIL CLAIM SEMANTICS
+
+BUILD-NOTES now says infrastructure verification is =E2=80=9Cstronger than =
+a single
+email receipt.=E2=80=9D That is a category error.
+
+They prove different propositions:
+
+   - email_infrastructure_configured(domain): MX/routing/worker/mailbox
+   configuration appears correct.
+   - email_receives(address): a fresh independently originated nonce
+   actually arrived at exact address.
+
+For email_receives, the existing ProofSpec is correct to require the
+round-trip. Infrastructure alone can never establish TRUE.
+
+Fix qp/probes/email-roundtrip.ts too:
+
+   - response_payload must contain canonical observation payload.
+   - response_hash must be SHA256(response_payload), not raw JSON.
+   - judge must parse response_payload, never response_hash.
+   - evidence IDs content-address the full evidence.
+   - poll exact mailbox A.
+   - independent sender identity recorded.
+   - raw message hash/message id/timestamps bound.
+
+
+   1. DOMAIN CLAIM SEMANTICS
+
+Use this exact chain:
+domain_available(D) -> authorized effect domain.purchase(D, quote) ->
+purchase_accepted(D, provider_txn) -> domain_owned(D, expected_account) ->
+dns_configured(D, expected_records)
+
+Each has separate evidence and ProofSpec.
+
+Do not let a failed availability lookup prove ownership.
+
+   1. SOCIAL PROOF SEMANTICS
+
+Keep these separate:
+
+   - account_exists(platform, public_id) [public existence]
+   - account_owned(platform, account_id, principal) [authenticated me
+   binding]
+   - handle_bound(platform, account_id, handle)
+   - oauth_authorized(platform, account_id, scopes)
+   - can_post(platform, account_id, scope/capability)
+   - post_exists(platform, post_id)
+   - post_matches(post_id, artifact/content metadata)
+
+The current YouTube OAuth evidence generator omits access_token from
+response_payload while judgeOAuthAuthorized looks for access_token, so that
+judge/evidence pair is internally inconsistent. More importantly,
+access-token existence should not itself be the proof: use provider
+introspection/authenticated mine=3Dtrue + verified scopes.
+
+Part 3 gives the exact implementation sequence and test matrix. Do not skip
+ahead to more platform adapters before this kernel can prove one effect
+end-to-end.
+
+--0000000000009ee3f3065bb0cde0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Continue from part 1. This part is about making QP itself legitimate.</p=
+>
+<p>CORE PRINCIPLE</p>
+<p>A QP effect is valid only when ALL of these are independently pinned and=
+ replayable:</p>
+
+<code>ContractRoot
+exact Claim
+authenticated Evidence
+pinned deterministic Judge programs
+required Gates
+independent Authority
+deterministic Transition
+signed TransitionReceipt
+durable append-only settlement
+independent Replay
+</code>
+<p>The current code has the names, but several are still placeholders. Fix =
+semantics before adding more adapters.</p>
+<ol>
+<li>MAKE PROOFSPEC A REAL LOADED CONTRACT</li>
+</ol>
+<p>Today proofspecs/*.json are not one uniform executable contract.<br>
+Examples such as account_owned.v1.json and oauth_authorized.v1.json omit fi=
+elds required by the TypeScript ProofSpec interface. Several hashes are hum=
+an labels like:</p>
+
+<code>&quot;sha256:judgeAccountAuthenticated&quot;
+</code>
+<p>rather than actual SHA-256 digests. bundle_hash is often empty.</p>
+<p>Required:</p>
+<ul>
+<li>define <code>ProofSpecSchema</code> with runtime validation (Zod/Valibo=
+t/etc.).</li>
+<li>every ProofSpec MUST have exactly the same required structural fields.<=
+/li>
+<li>load specs at startup/build into a registry indexed by ContractRoot and=
+ spec_id/version.</li>
+<li>reject malformed or incomplete specs.</li>
+<li>reject unknown judge/gate ids.</li>
+<li>reject duplicate ids.</li>
+<li>reject placeholder/non-hex hashes.</li>
+<li>canonicalize spec and compute ContractRoot from the actual complete byt=
+es.</li>
+<li>never mutate a loaded spec.</li>
+</ul>
+<p>Suggested shape:</p>
+
+<code>ProofSpec {
+  protocol: &quot;qp/1&quot;
+  spec_id
+  version
+  claim_schema_hash
+  evidence_schema_hash
+  judges: JudgeRef[]
+  actuality_dag
+  gates: GateRef[]
+  freshness
+  provenance_policy
+  independence_policy
+  transition_program_hash
+  authority_policy_hash?
+  proof_requirement
+}
+</code>
+<ol>
+<li>PROGRAM REGISTRY, NOT FUNCTION ARRAYS SUPPLIED BY CALLER</li>
+</ol>
+<p>replayReceipt currently accepts <code>judges: JudgeFn[]</code> and only =
+checks their COUNT against spec.judges. The code comment itself admits sour=
+ce-hash verification is not implemented.</p>
+<p>That is not a proof.</p>
+<p>Required:</p>
+<ul>
+<li>compile/build every judge/gate/transition/probe into a ProgramBundle.</=
+li>
+<li>ProgramBundle identity =3D hash(source bytes + runtime identity + confi=
+g + dependency lock/version).</li>
+<li>ProofSpec references exact bundle_hash.</li>
+<li>QP resolves bundle hash from trusted ProgramRegistry.</li>
+<li>caller does NOT supply an arbitrary judge function.</li>
+<li>if referenced bundle missing or hash differs -&gt; UNKNOWN/invalid proo=
+f, never fallback.</li>
+</ul>
+<p><code>judge count matches</code> must be deleted as a security claim.</p=
+>
+<ol>
+<li>ACTUALITY_DAG MUST BE EXECUTED FROM THE SPEC</li>
+</ol>
+<p>Current replay ignores <code>spec.actuality_dag</code> and computes a si=
+mple AND of whichever judge functions the caller passed.</p>
+<p>Required:</p>
+<ul>
+<li>define a small explicit DAG language, e.g. nodes:
+<ul>
+<li>JUDGE(id)</li>
+<li>AND(children)</li>
+<li>OR(children)</li>
+<li>NOT(child) only if you truly need it</li>
+<li>THRESHOLD only if formally justified</li>
+</ul>
+</li>
+<li>validate acyclic graph at spec load.</li>
+<li>evaluate exactly the graph committed in ContractRoot.</li>
+<li>missing required node -&gt; UNKNOWN/invalid settlement.</li>
+</ul>
+<p>Never let runtime call order silently define truth semantics.</p>
+<ol>
+<li>EVIDENCE MUST BE CONTENT-ADDRESSED AND SELF-CHECKING</li>
+</ol>
+<p>Current replay checks that metadata fields exist and checks freshness, b=
+ut it does NOT verify:</p>
+<ul>
+<li><code>sha256(response_payload) =3D=3D response_hash</code></li>
+<li>evidence id matches canonical evidence content</li>
+<li>evidence.claim_id =3D=3D <a href=3D"http://claim.id">claim.id</a></li>
+<li>collector program/runtime is allowed by the ProofSpec</li>
+<li>normalized_payload_hash is actually derived from normalization</li>
+<li>signature/signer when required</li>
+<li>independence-group policy</li>
+</ul>
+<p>Implement one constructor:</p>
+
+<code>makeEvidence(input, collectorIdentity) -&gt; Evidence
+</code>
+<p>It computes everything. Callers do not hand-author IDs/hashes.</p>
+<p>Evidence ID should commit to at least:</p>
+<ul>
+<li>protocol/schema version</li>
+<li>claim_id</li>
+<li>class</li>
+<li>observed_at</li>
+<li>source + locator</li>
+<li>collector bundle hash/runtime hash</li>
+<li>request hash</li>
+<li>response hash</li>
+<li>normalized payload hash</li>
+<li>nonce/challenge</li>
+<li>independence group</li>
+</ul>
+<p>Do not use Date.now()/random labels as evidence identity.</p>
+<p>Replay must recompute all derivable hashes and fail closed.</p>
+<ol>
+<li>FRESHNESS MUST BE STRICT</li>
+</ol>
+<p>Current replay does:</p>
+
+<code>const maxAge =3D spec.freshness[e.class] || 3600
+</code>
+<p>Unknown evidence classes silently receive a one-hour policy. That allows=
+ uncontracted evidence into a proof.</p>
+<p>Required:</p>
+<ul>
+<li>evidence class absent from spec freshness/provenance policy -&gt; rejec=
+t.</li>
+<li>invalid observed_at -&gt; reject.</li>
+<li>evidence from the future beyond clock-skew tolerance -&gt; reject.</li>
+<li>freshness evaluated against receipt.settled_at, not Date.now().</li>
+<li>each judge must declare which classes it consumes.</li>
+</ul>
+<p>UNKNOWN is for unavailable/ambiguous world information. Malformed eviden=
+ce is not a factual FALSE; it is invalid proof input.</p>
+<ol>
+<li>CLAIM MUST BE BOUND TO CONTRACTROOT</li>
+</ol>
+<p>replayReceipt verifies receipt.contract_root and receipt.claim_id, but d=
+oes not verify:</p>
+
+<code>claim.contract_root =3D=3D=3D computeContractRoot(spec)
+</code>
+<p>Add it.</p>
+<p>Also validate the claim subject against the proof spec=E2=80=99s claim s=
+chema. No generic Record&lt;string,string&gt; should bypass schema.</p>
+<ol>
+<li>JUDGE AND GATE RESULT ROOTS MUST COMMIT TO FULL RESULTS</li>
+</ol>
+<p>Current roots hash only:</p>
+
+<code>judge_id + actuality
+gate_id + result
+</code>
+<p>That excludes reasons, evidence_ids and judge bundle hash.</p>
+<p>Canonical root leaves should be full result objects:</p>
+
+<code>JudgeResult {
+  judge_id
+  bundle_hash
+  actuality
+  reasons
+  evidence_ids
+}
+
+GateResult {
+  gate_id
+  result
+  evidence_ids
+  proof/details
+}
+</code>
+<p>Sort deterministically or use spec-defined order.</p>
+<ol>
+<li>REQUIRED GATES MUST MATCH EXACT SPEC</li>
+</ol>
+<p>Do not only search for required gate ids among arbitrary runtime results=
+.</p>
+<p>At settlement:</p>
+<ul>
+<li>resolve exact gate bundle hashes from ProgramRegistry.</li>
+<li>execute gates in spec order.</li>
+<li>no undeclared gate may decide truth.</li>
+<li>missing required gate -&gt; invalid/UNKNOWN.</li>
+<li>duplicate result ids -&gt; invalid.</li>
+</ul>
+<ol>
+<li>FIX THE EFFECT GATEWAY=E2=80=99S FUNDAMENTAL SEMANTICS</li>
+</ol>
+<p>qp/effects.ts currently has several critical shortcuts:</p>
+<p>A. <code>required_claims</code> is never checked.<br>
+B. ProofSpec is optional.<br>
+C. readback callback returns <code>exists</code>, and <code>exists=3Dtrue</=
+code> directly becomes TRUE.<br>
+D. no actual judge or gate runs.<br>
+E. readback function is caller-supplied and therefore part of the untrusted=
+ effect request path.<br>
+F. contract_root is generated using <code>computeReceiptHash(spec as any)</=
+code> or empty string.<br>
+G. claim_id is an ad-hoc string rather than Claim.id.<br>
+H. state_before_root is constant hash(=E2=80=9Cstate:before=E2=80=9D).<br>
+I. state_after_root is just hash({action, settled}), not canonical state tr=
+ansition.<br>
+J. prev_receipt_hash is constant hash(=E2=80=9Cprev=E2=80=9D).<br>
+K. qp_signature is empty.<br>
+L. transition/collector program hashes are hashes of labels like =E2=80=9Ce=
+ffect-gateway=E2=80=9D, not program bytes.</p>
+<p>Replace executeEffect signature with something closer to:</p>
+
+<code>executeEffect({
+  principal,
+  proposal,
+  grantId,
+  effectSpecId
+})
+</code>
+<p>QP internally resolves:</p>
+<ul>
+<li>authenticated principal</li>
+<li>durable grant</li>
+<li>EffectSpec</li>
+<li>ProofSpec/ContractRoot</li>
+<li>prerequisite settled claims</li>
+<li>trusted adapter program</li>
+<li>trusted readback/probe program</li>
+<li>judges/gates</li>
+<li>transition program</li>
+<li>signer</li>
+</ul>
+<p>The MCP caller must not inject executable functions.</p>
+<ol>
+<li>DEFINE EFFECTSPEC</li>
+</ol>
+<p>ProofSpec says how a resulting claim is proven. EffectSpec should say ho=
+w an allowed world mutation is attempted.</p>
+<p>Suggested:</p>
+
+<code>EffectSpec {
+  id: &quot;cf.domain.register/v1&quot;
+  action
+  payload_schema_hash
+  adapter_bundle_hash
+  readback_probe_bundle_hash
+  resulting_claim_spec_id
+  authority_policy_hash
+  idempotency_strategy
+  reconciliation_strategy
+}
+</code>
+<p>Hash EffectSpec too. Proposal references exact EffectSpec root.</p>
+<ol>
+<li>PREPARE BEFORE EXECUTE =E2=80=94 CRASH-SAFE EFFECT JOURNAL</li>
+</ol>
+<p>Current code consumes in-memory grant then calls provider. A Worker cras=
+h after provider success but before readback loses the settlement path.</p>
+<p>Use durable phases:</p>
+
+<code>PROPOSED
+  -&gt; AUTHORIZED
+  -&gt; PREPARED (persist effect_attempt + idempotency key)
+  -&gt; EXECUTING
+  -&gt; EXECUTED_UNVERIFIED
+  -&gt; PROVEN_TRUE | PROVEN_FALSE | UNKNOWN_RECONCILE
+</code>
+<p>Before external call, atomically persist:</p>
+<ul>
+<li>proposal root</li>
+<li>grant id / reserved use</li>
+<li>idempotency key</li>
+<li>EffectSpec root</li>
+<li>expected resulting claim</li>
+<li>started_at</li>
+</ul>
+<p>After provider call, persist raw response hash/provider transaction id B=
+EFORE readback.</p>
+<p>A retry must reuse the same idempotency key / reconcile instead of spend=
+ing twice.</p>
+<ol>
+<li>RECEIPTS MUST BE REAL</li>
+</ol>
+<p>A TransitionReceipt should commit to:</p>
+<ul>
+<li>protocol</li>
+<li>transition type</li>
+<li>ContractRoot</li>
+<li>EffectSpec root where applicable</li>
+<li>Claim id</li>
+<li>state_before_root</li>
+<li>proposal_root</li>
+<li>evidence_root</li>
+<li>full judge-results root</li>
+<li>full gate-results root</li>
+<li>actuality</li>
+<li>authority id + authority root</li>
+<li>transition program bundle hash</li>
+<li>state_after_root</li>
+<li>run metadata/program hashes</li>
+<li>previous receipt/event root</li>
+<li>settled_at</li>
+<li>receipt_hash</li>
+<li>QP signer key id</li>
+<li>QP signature over receipt_hash/domain-separated bytes</li>
+</ul>
+<p>Replay MUST verify signature from trusted QP signer registry.</p>
+<p>Do not market =E2=80=9Ccryptographic proof=E2=80=9D while qp_signature i=
+s empty.</p>
+<ol>
+<li>STATE TRANSITION MUST BE RECOMPUTABLE</li>
+</ol>
+<p>Kernel status says state transition is fixed, but replay currently retur=
+ns receipt.state_after_root without recomputing it.</p>
+<p>Implement:</p>
+
+<code>transition(stateBefore, claim, actuality, proposal, authority) -&gt; =
+stateAfter
+</code>
+<p>Transition program is content-addressed and committed in ProofSpec.<br>
+Replay loads state_before, re-executes transition and checks state_after_ro=
+ot.</p>
+<p>Canonical state should be an append-only projection of settled claims/re=
+ceipts, not task flags.</p>
+<ol>
+<li>RECEIPT CHAIN MUST ACTUALLY CHAIN</li>
+</ol>
+<p>prev_receipt_hash cannot be sha256(=E2=80=9Cprev=E2=80=9D).<br>
+Use durable head per scope/tenant/claim ledger. On settle:</p>
+<ul>
+<li>read previous head</li>
+<li>insert receipt referencing head</li>
+<li>atomically update head</li>
+<li>append event hash</li>
+</ul>
+<p>Replay can then verify chain continuity.</p>
+<ol>
+<li>MOVE QP MIGRATION INTO THE REAL MIGRATION PATH</li>
+</ol>
+<p>wrangler.toml uses:</p>
+
+<code>migrations_dir =3D &quot;migrations&quot;
+</code>
+<p>But QP schema is in <code>qp/migrations/0001_qp_core.sql</code>.<br>
+It is therefore not part of the configured D1 migration stream.</p>
+<p>Move/version it as something like:</p>
+
+<code>migrations/0004_qp_core.sql
+</code>
+<p>Then implement QPStore over those actual tables.</p>
+<p>Do not leave qp_contracts/claims/evidence/grants/receipts/events as docu=
+mentation-only tables.</p>
+<ol>
+<li>AUTHORITY STORAGE</li>
+</ol>
+<p>Replace consumedNonces Set with D1 state.</p>
+<p>Use conditional atomic update semantics such as:</p>
+
+<code>UPDATE qp_grants
+SET uses =3D uses + 1,
+    status =3D CASE WHEN uses + 1 &gt;=3D max_uses THEN &#39;consumed&#39; =
+ELSE status END
+WHERE grant_id =3D ?
+  AND status =3D &#39;active&#39;
+  AND uses &lt; max_uses
+  AND expires_at &gt; ?
+</code>
+<p>Then require exactly one affected row.</p>
+<p>Tie reservation to effect_attempt in the same durable operation/batch st=
+rategy as supported by D1.</p>
+<ol>
+<li>CLEAN UP DUPLICATE QP SYSTEMS</li>
+</ol>
+<p>There are still at least three proof models:</p>
+<ul>
+<li>src/capacity.ts legacy CapacityProof/pass boolean</li>
+<li>mcp/interface.ts <code>acom/0.1</code> QPReceipt/proof levels/PASS-FAIL=
+</li>
+<li>qp/kernel.ts <code>qp/1</code> Actuality/TransitionReceipt</li>
+</ul>
+<p>Delete or archive the first two from runtime.</p>
+<p>mcp/domain.ts currently simulates execution and manufactures acom/0.1 pr=
+oof receipts. It must not coexist with production QP.</p>
+<p>There should be ONE proof type and ONE settlement kernel.</p>
+<ol>
+<li>FIX EMAIL CLAIM SEMANTICS</li>
+</ol>
+<p>BUILD-NOTES now says infrastructure verification is =E2=80=9Cstronger th=
+an a single email receipt.=E2=80=9D That is a category error.</p>
+<p>They prove different propositions:</p>
+<ul>
+<li>email_infrastructure_configured(domain): MX/routing/worker/mailbox conf=
+iguration appears correct.</li>
+<li>email_receives(address): a fresh independently originated nonce actuall=
+y arrived at exact address.</li>
+</ul>
+<p>For <code>email_receives</code>, the existing ProofSpec is correct to re=
+quire the round-trip. Infrastructure alone can never establish TRUE.</p>
+<p>Fix qp/probes/email-roundtrip.ts too:</p>
+<ul>
+<li>response_payload must contain canonical observation payload.</li>
+<li>response_hash must be SHA256(response_payload), not raw JSON.</li>
+<li>judge must parse response_payload, never response_hash.</li>
+<li>evidence IDs content-address the full evidence.</li>
+<li>poll exact mailbox A.</li>
+<li>independent sender identity recorded.</li>
+<li>raw message hash/message id/timestamps bound.</li>
+</ul>
+<ol>
+<li>DOMAIN CLAIM SEMANTICS</li>
+</ol>
+<p>Use this exact chain:</p>
+
+<code>domain_available(D)
+  -&gt; authorized effect domain.purchase(D, quote)
+  -&gt; purchase_accepted(D, provider_txn)
+  -&gt; domain_owned(D, expected_account)
+  -&gt; dns_configured(D, expected_records)
+</code>
+<p>Each has separate evidence and ProofSpec.</p>
+<p>Do not let a failed availability lookup prove ownership.</p>
+<ol>
+<li>SOCIAL PROOF SEMANTICS</li>
+</ol>
+<p>Keep these separate:</p>
+<ul>
+<li>account_exists(platform, public_id) [public existence]</li>
+<li>account_owned(platform, account_id, principal) [authenticated <code>me<=
+/code> binding]</li>
+<li>handle_bound(platform, account_id, handle)</li>
+<li>oauth_authorized(platform, account_id, scopes)</li>
+<li>can_post(platform, account_id, scope/capability)</li>
+<li>post_exists(platform, post_id)</li>
+<li>post_matches(post_id, artifact/content metadata)</li>
+</ul>
+<p>The current YouTube OAuth evidence generator omits access_token from res=
+ponse_payload while judgeOAuthAuthorized looks for <code>access_token</code=
+>, so that judge/evidence pair is internally inconsistent. More importantly=
+, access-token existence should not itself be the proof: use provider intro=
+spection/authenticated <code>mine=3Dtrue</code> + verified scopes.</p>
+<p>Part 3 gives the exact implementation sequence and test matrix. Do not s=
+kip ahead to more platform adapters before this kernel can prove one effect=
+ end-to-end.</p>
+
+--0000000000009ee3f3065bb0cde0--

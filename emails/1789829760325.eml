@@ -1,0 +1,1578 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id AOdG3FLMaFr0
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 14:56:00 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=UNsmAk0v/ff19Cu0zE+ZWF+vAXx00EKFLFTN+ybdAGrO81W0elC34e86TnPSgZZ55Nqq4wXL0
+	gr/Br9WEWRnW0O6jch1LsdF6u52UpbC9LxboIpADUxs0cXEXeTTgyVVPIBiM9SHbcBEtwAgdIGI
+	GvgxmtO059vLzzRe7sJ/8Ip5/Ut4UDpPnOklu3U9/js9ixzJxd3lj9if5ox1kgICqN0FkFe7TPS
+	/D7veSDGbzRKRRHme/24JVKOi8QPlZW0iK7deKlA3Hg/l/LSS8TBzDMTUFtn5PP97FtFZCeLAuw
+	hyniEpezxJth6LlOrLLZPqt/1/8UasmXWqShz40c3lIQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789829760; x=1790434560; bh=GWFKn/9N
+	p6GduGkT47RB7L2UH5YOYVJA7EuQTnHWyYY=; b=Uu92xknY5YirM+9VIOqG1M4FYoNcLjkvcAa
+	Zsk6NZkkxQELFMWqcgRd/TVkEwp0InIoP9u8BvfKQP08gSiBM97PHBvMHxuyKjzAepVXcZhcV2V
+	1zPQF3w4KnwFGgQ5H0i+shqBxPHXXs169yQjGSeN1UyT7NYmkzq5HPjDbHLRt+Hqzph5uhWy+wd
+	5zL9lOUAGetLjocuwjvDzkfnIxF/UFe8bd+2HIEJpn8OP0XcsJE6p2RnXz4odOo4OHlZCdd5zkl
+	81Wt3hSwQzbl/izflwOUYucQI01DoaoUzEgtXPUWr6auERtSZDh2u85xvPatuv5xb5h4Fh0SLp0
+	NSeRoqA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mz3xUSu6;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mz3xUSu6;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab20f4bso1702223d50.0
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 07:56:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789829760; cv=none;
+        d=google.com; s=arc-20260327;
+        b=JFcc3LMjwHvnkyPzsDRa1yy5w4UYYY/uU0+oyWk+m5P+JfYovdZ0sDIe5iRRmSG41F
+         2GmxXH2X59aO0Pb7wwDI26wbBz3GeJEdu3muvaRD/Wlqr+JuMt5ZOV+3o5WiHGHUwPJF
+         If8YZ7HL18kutS6l6XwupPt72v6Ei2wFx6rWmymSyqWwIwHl8KyaWgoR54jdwshWBrfB
+         fKH7NJrR5/b2xFnStum176vwcyiCStqadZq1XGiVXtLSuct9gfXrhbzLrTiIi4xAHRyN
+         6sg5nh+yT6zAY5bs5oUOohqoM7ZpkL8htsrjH/M34/6zEWEcI3dNJQ1LGmsRKbThcBk/
+         hvbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=GWFKn/9Np6GduGkT47RB7L2UH5YOYVJA7EuQTnHWyYY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=lRhHxH8KiP0teU9jaPJ+NbB9yjKDMMrbKxUqPQdFtq/abUg2WwFmFxqmSLe1yjCpn4
+         +v1UE0hccB6MxBAfw6TsNar4/ByP0BpmVZyIK/6J6RWtItJfu/DHvLkuQxzedAMYa/G3
+         +t9zJsYOA1wMacnod9HXK5XwOnhNOG2rzNzXDfBKYa8AzGvEwDeDmXsxGnYxJqYEbVUm
+         YisfCiojOyHMS+9S7mL7VV3scXaoCo1iKGJdH4NiCH7YVMyc7zwCggF+C7fYPkosSJUY
+         U1Ge69uW1kz3MvOYWbfW7PSRPyqMv1oCa/KVZz6MmWfVZSQWNQAk/0l50gDtnEiM+2Mt
+         O7zw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789829760; x=1790434560; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=GWFKn/9Np6GduGkT47RB7L2UH5YOYVJA7EuQTnHWyYY=;
+        b=mz3xUSu6VM8AcOy6/RyzaoDCaoubpUH3tNcKEbUDbW+X9M00bQqC15TdAwluwSwpIt
+         DwDaxhzHFFvt5gFwMENRkDzNcTVAsT4e5Pq+ISoVqPPzRt3FPA7zidku6hhzL+lttvxR
+         EKssVvo+NXKaA1xmokrRRTa+6FA9ouxnIMK5628IbMD0T+XzOBBKrGJVE+gJKbLJVbMs
+         CksB6EdaUGsF+ZMwHtE6Ok/6jotB+x+MfHWoVMErhTVMSvzo48EjUdFxXVWCMjvmBHWz
+         pmJqq888dg58h2NWNliT5Uoj1W7CNLkHTux26+KsLeSUt7lzP0vjR4T5FYIlivghrAeJ
+         2cCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789829760; x=1790434560;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=GWFKn/9Np6GduGkT47RB7L2UH5YOYVJA7EuQTnHWyYY=;
+        b=DqRNK9gSiVratgq0omX4OnUwEiFcNZHza8vmqJErxVmtBos2xf6Et33p1QiOaZEoiJ
+         EH3kExtrHyIX9Yhcgc/07npJwQdH9w/5+8aWE5h0DwbKYs9XIViKl3I3JlT84NuFT/Ba
+         z7IimRYzK4/aaTeCJe3esKSwuW6/NJl5xMPcHYyfggapGLlnjeAZVWsqFJgjIAoV+aLy
+         voDyBz0o9J+Z1wLc4N9Tsn2MfwB8zoKlhX4KKuLPdzu7hHDukwZcWcF4gd6K1tazLScF
+         gJ9bmaGs9nUlBGuBrBiQ55eGPholFj1t+48EwnBWMs/vyR5WFnwWjaHwT+OC/cCs20iM
+         ZZWQ==
+X-Gm-Message-State: AFuF++mltHMbMhLxa3oWLWjfJvrMSuzT6shDg/9hSKJHv5SnLJ1febYV
+	USyngroNRjZTIEJbmmOuPDSk1wd0sHvIKz4JUSm2LiNakbx5+Rn5j3YCRcxK92H8CiNHoNecRAL
+	xKK2zSoIY5Gaesu9wcSboyGKoq0ETQfhSrg==
+X-Gm-Gg: AYBFou1xbnRDPFQNdKw5+y7MKVPEP+V2z2xVFwJObE2ELlGtRWUlu1bIGZPZRtINy6x
+	qhtTSaNOV7rjvwylA9xBYoqT3fMY8JlIEHPKgThoP04ozSxESEmi/BOtYz42AuslS8zOTKIdzCp
+	Azn8SRxSqijIBC6TxQ/w6SgxSPsCXZwFFoflC2+LzVSwIMA18Q/wJxftPgfRZ6Cdf0hjEnvxd28
+	QBSJd30rkWEXR1Z0YdL8DUrzxC+pjePs3iI9o6raTWPntMDYncaziCmVAYdPEiOKjeWZCtdpgdW
+	fzTzE7nYNRKX0+7FHyMUK74Jnf4wSjT+v42zPJao2Mx0zgH6aUmVtQAXKbvPJgsTjSTOSdTxAvm
+	RC8OgJ9VzIt22jBfDucMY6ROb858jg4tL2pjWZs9juc7fpJaBCEh638ACq33tVxacFsCOOzn7
+X-Received: by 2002:a05:690e:144b:b0:671:6dfc:de9b with SMTP id
+ 956f58d0204a3-6717fc7eab4mr1822188d50.3.1789829759353; Sat, 19 Sep 2026
+ 07:55:59 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 09:55:57 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 09:55:57 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 09:55:57 -0500
+X-Gm-Features: AcwNN1X_nbT5TDrqMKkNpRSeQZkwBfvDgtpYXlJsKK1eivvCwECbqPYYTXDQowg
+Message-ID: <CAPdrGemAevCYba6_eUQQd0ywaAuKb6zCzYBq5enHS7fuH=Rs9Q@mail.gmail.com>
+Subject: =?UTF-8?Q?PowPowPow_=E2=80=94_Complete_GitHub_Peer_Review_=2B_Canonica?=
+	=?UTF-8?Q?l_Dev_Instructions?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000003c6e0065bd737f2"
+
+--00000000000003c6e0065bd737f2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PowPowPow =E2=80=94 GitHub Peer Review + Canonical Dev Instructions
+
+Repo reviewed: prx0r/powpowpow
+Review date: 19 Sep 2026
+Executive conclusion
+
+The thesis is strong and the repo already contains the right conceptual
+primitives: point-in-time collection, irreversible-feed prioritization,
+resource/supplier modeling, provenance, bitemporal timestamps,
+recoverability, and a product flywheel from observe =E2=86=92 decide =E2=86=
+=92 execute =E2=86=92
+receipt.
+
+The codebase is not yet a reliable data garden. It is currently two
+overlapping implementations:
+
+   1. Original prototype stack: warehouse.py, schema.py, v1_pipeline.py,
+   old collectors, api.py, pressure/ML files.
+   2. Newer P0 archival stack: core.py, quality.py, updated v1_registry.py,
+   partially migrated collectors.
+
+Do NOT add more coins, dashboards, ML, content, or execution yet. First
+collapse the repo to one trustworthy ingestion/lineage system and prove one
+end-to-end historical-state pipeline.
+
+Core invariant:
+
+Every derived fact must be reproducible from immutable raw bytes plus a
+versioned transformation.
+
+If that is not true, it is not yet PowPowPow data.
+1. Critical findings P0-1 =E2=80=94 raw archive is not lossless
+
+core.py currently stores raw_payload as only the first 10,000 characters.
+
+That destroys exact source responses above 10 KB. The hash is calculated
+from the full body, while the archived body is truncated, so the stored
+artifact cannot reproduce or validate the object whose hash it claims to
+represent.
+
+Fix immediately:
+
+   - store exact response bytes untruncated;
+   - compress large responses;
+   - use content-addressed blob storage where useful;
+   - store metadata + hash + raw URI separately.
+
+Never truncate raw input.
+P0-2 =E2=80=94 lineage is designed but usually broken
+
+store_normalized() accepts raw_event_id, but fetch_json() returns only
+parsed data. Collectors therefore cannot naturally connect:
+
+raw observation =E2=86=92 normalized row =E2=86=92 exact source observation
+
+Change the transport contract so fetch_json() returns a structured
+FetchResult containing:
+
+   - observation_id
+   - observed_at
+   - received_at
+   - source_id
+   - status
+   - raw_uri
+   - payload_hash
+   - parsed payload
+
+Every normalizer must require one or more observation IDs.
+P0-3 =E2=80=94 bitemporal time exists in schema, not yet consistently in da=
+ta
+
+The P0 commit correctly introduced event_time + observed_at, but
+fetch_json() generally stores event_time =3D null and current collectors
+rarely extract source time.
+
+Canonical times:
+
+   - event_time: on-chain/exchange/source time
+   - observed_at: when collection began
+   - received_at: when response/message arrived
+   - normalized_at: transformation time
+
+Ban ambiguous generic timestamp fields from canonical models.
+
+If a source truly has no event time, leave it null and record
+observation_only time semantics. Never silently substitute observed time.
+P0-4 =E2=80=94 collector migration is incomplete
+
+The latest P0 commit changed core.py, quality.py, v1_registry.py and
+clore_collector.py.
+
+Key collectors still use old direct requests wrappers and warehouse.py:
+
+   - QUBIC
+   - PRL
+   - XMR
+   - SafeTrade L2
+   - Gate
+   - CoinEx
+
+Rule: no collector may call requests/httpx/websocket/RPC/GraphQL/gRPC
+directly outside the canonical transport layer.
+
+Delete duplicate fetch helpers after migration.
+P0-5 =E2=80=94 provenance type can be false
+
+core.py hard-codes source_type =3D rest inside the raw archive. Legacy
+wrappers also discard important event semantics.
+
+Preserve:
+
+   - transport_type: rest | websocket | json_rpc | grpc | graphql | git |
+   file
+   - event_type: trade | depth_delta | depth_snapshot | block | tick |
+   provider_snapshot etc.
+   - source_role: canonical | secondary | enrichment | benchmark
+   - source_id
+   - source/protocol version when available.
+
+P0-6 =E2=80=94 SafeTrade L2 is not gap-safe
+
+collectors/l2_archival.py still lacks the protections already demanded by
+pr1.md:
+
+   - exchange event timestamp
+   - receive timestamp
+   - update/sequence ID
+   - snapshot-vs-delta flag
+   - gap detection
+   - periodic REST checkpoint
+   - deterministic reconstruction
+   - reconnect/resync semantics
+
+It also uses naive local datetime.
+
+This is one of the most irreversible feeds in the garden and should be the
+strongest collector.
+
+Acceptance test: kill the websocket for 30 seconds, reconnect, and prove
+the system either reconstructs from a checkpoint or explicitly records an
+unrecoverable gap. It must never silently continue a corrupted book.
+P0-7 =E2=80=94 daemon.py does not actually supervise continuous collection
+
+It launches QUBIC and PRL once; it does not reschedule them at the
+configured five-minute interval.
+
+start_normalizer() only sets a timestamp. normalize_data() is never
+scheduled.
+
+Also:
+
+   - stdout/stderr pipes are never drained and can deadlock;
+   - no child restart supervision;
+   - no exponential backoff;
+   - no persisted scheduler state;
+   - no PID file although health.py expects one;
+   - multiple config intervals are unused.
+
+Replace it with a real scheduler/supervisor.
+P0-8 =E2=80=94 current backtest export is not a backtest dataset
+
+export_backtest_dataset() merges current cross-sectional factor/economics
+CSVs by symbol. It does not create historical point-in-time rows, forward
+returns, experiment versions or walk-forward splits.
+
+Canonical backtest rows should include:
+
+   - as_of_time
+   - network_id
+   - metric_version
+   - signal_definition_version
+   - feature_snapshot_id
+   - price_at_t
+   - 1d/7d/30d/90d forward returns
+   - max adverse excursion
+   - BTC-relative return
+   - regime
+   - data_available_at
+
+All features must satisfy observed_at <=3D as_of_time.
+P0-9 =E2=80=94 observation, signal and opinion are still collapsing togethe=
+r
+
+pressure.py and two_timescale.py contain heuristic regime rules presented
+as predictions.
+
+factors.py silently defaults sell_fraction to 0.6 when missing. That is
+unacceptable for a provenance-first dataset: an assumption can appear as a
+measured fact.
+
+Enforce the ladder:
+
+OBSERVATION
+=E2=86=92 METRIC
+=E2=86=92 SIGNAL
+=E2=86=92 HYPOTHESIS
+=E2=86=92 BACKTEST RESULT
+=E2=86=92 DECISION
+
+Assumptions belong in an explicit versioned assumption_set with references.
+
+Move pressure/regime heuristics under experiments until reproducibly tested=
+.
+P0-10 =E2=80=94 documented first-party source policy is not implemented
+
+The docs correctly specify:
+
+   - PRL: own pearld is canonical; PearlTrack is enrichment.
+   - XMR: own monerod is canonical.
+   - QUBIC: official RPC/static sources first.
+
+Current implementation:
+
+   - PRL is PearlTrack-centric.
+   - XMR uses LocalMonero + CoinGecko.
+   - QUBIC still uses old transport/storage.
+
+Bring implementation in line with the source hierarchy before more derived
+metrics.
+2. Structural debt to remove
+
+There are overlapping versions of core concepts:
+
+   - schema.py vs v1_schema.py
+   - registry.py vs v1_registry.py
+   - warehouse.py vs v1_pipeline.py vs core.py
+   - api.py vs api/app.py vs api_v2.py
+   - several custom fetch helpers
+   - README 16-system universe vs V1 eight-system registry
+   - old XEL/XTM/technical-indicator artifacts vs current PowPowPow thesis
+
+Choose one canonical implementation and delete/archive the rest.
+
+There must be exactly:
+
+   - one registry
+   - one observation model
+   - one transport layer
+   - one raw store
+   - one normalization interface
+   - one metric engine
+   - one active API surface.
+
+README is stale. pr1.md says V1 is eight systems and v1_registry.py should
+be source of truth. Make that true.
+3. Repository hygiene and reproducibility
+
+The repo currently contains generated bytecode/data artifacts such as:
+
+   - *pycache* files
+   - generated CSVs
+   - generated JSON datasets
+   - sample warehouse files
+   - historical/export outputs
+
+pr1.md already says raw history should not live in Git.
+
+Fix:
+
+   1. purge generated warehouse/data/bytecode from Git tracking;
+   2. expand .gitignore;
+   3. retain only tiny deterministic fixtures in tests/fixtures;
+   4. add manifest/checksum handling for external data;
+   5. never use Git as production datastore.
+
+Add:
+
+   - pyproject.toml
+   - locked dependencies
+   - explicit Python version
+   - package/CLI entry points
+   - environment-based config
+   - no sys.path.insert(=E2=80=9C/home/box/powpowpow=E2=80=9D)
+   - no hard-coded /home/box paths.
+
+4. Target architecture
+
+Refactor toward:
+src/powpowpow/ config.py ids.py registry.py models/ observation.py
+normalized.py metric.py hypothesis.py experiment.py receipt.py transport/
+http.py websocket.py jsonrpc.py grpc.py storage/ raw.py parquet.py
+catalog.py collectors/ safetrade.py clore.py qubic.py prl.py xmr.py
+normalize/ market.py qubic.py prl.py xmr.py metrics/ miner_economics.py
+resource_premium.py supply_elasticity.py subsidy_dependence.py
+opportunity_cost.py signals/ definitions.py backtest/ dataset.py
+event_study.py runner.py quality/ telemetry.py gaps.py freshness.py api/
+mcp/ tests/ fixtures/ unit/ integration/
+
+Recommended local-first storage:
+
+Raw:
+
+   - exact raw bytes
+   - append-only
+   - compressed
+   - content-addressed where useful
+
+Normalized:
+
+   - Parquet partitioned by schema/network/date
+   - PyArrow for writes
+   - DuckDB for analytical queries
+
+High-frequency L2:
+
+   - micro-batch to Parquet every 10=E2=80=9360 seconds
+   - do not write millions of individual filesystem records.
+
+Catalog:
+
+   - DuckDB or SQLite for source registry, collector runs, observation
+   manifest, schema versions, transformations, hypotheses, backtests and
+   quality incidents.
+
+This remains cheap and VPS-friendly.
+5. Canonical object model
+
+Do not make coin the primary identity.
+
+Use stable IDs such as:
+
+   - network_id =3D monero-mainnet
+   - asset_id =3D XMR
+   - resource_id =3D randomx-cpu-hash
+   - venue_id =3D safetrade
+   - hardware_id =3D nvidia-rtx-4090
+   - source_id =3D monerod-local
+
+Ticker symbols are presentation metadata.
+
+Persistent objects:
+
+   - Source
+   - Observation
+   - Entity
+   - Snapshot
+   - Transformation
+   - MetricDefinition
+   - MetricValue
+   - Claim
+   - EvidenceEdge
+   - Hypothesis
+   - Experiment
+   - Outcome
+   - Decision
+   - ExecutionReceipt
+   - Feedback
+
+Every derived object must carry:
+
+   - definition_id
+   - definition_version
+   - computed_at
+   - input IDs
+   - code/build version
+   - units
+   - quality/confidence metadata where relevant.
+
+6. Build order Milestone 0 =E2=80=94 freeze scope
+
+No new networks.
+No new dashboard.
+No new ML.
+No allocator/executor.
+No generic sentiment/news.
+No technical-analysis expansion.
+Milestone 1 =E2=80=94 one ingestion kernel
+
+Implement one transport/archive API and migrate every collector.
+
+Definition of done:
+
+   - no direct requests.get in collectors
+   - every successful and failed request creates an observation record
+   - exact raw bytes preserved
+   - every normalized row has lineage
+   - all times UTC-aware
+   - hash round-trip tests pass.
+
+Milestone 2 =E2=80=94 irreversible feeds first
+
+Priority:
+
+   1. SafeTrade L2/trades
+   2. Clore/Akash/Nosana supply and pricing
+   3. any other non-reconstructable resource-market feeds
+
+Implement sequence/gap handling, reconnect policy, checkpoints and
+collector-run telemetry.
+Milestone 3 =E2=80=94 canonical first-party chain feeds
+
+QUBIC:
+
+   - official RPC
+   - tick/epoch/computor history
+   - emission/burn/contract events
+   - exact source event times
+
+PRL:
+
+   - own pearld canonical collector
+   - PearlTrack enrichment only
+   - classification_source/version/confidence on labels
+
+XMR:
+
+   - own monerod
+   - block/difficulty/emission/fee/security-budget series
+   - no fake address-flow analytics
+
+Then QUAN/KAS.
+Milestone 4 =E2=80=94 historical state layer
+
+Create deterministic:
+
+   - resource_state
+   - network_state
+   - market_state
+   - supplier_state
+   - hardware_state
+
+Each snapshot includes event/valid time, observation time, lineage, schema
+version and quality state.
+
+This is the actual garden.
+Milestone 5 =E2=80=94 versioned metrics
+
+Start only with:
+
+   - miner margin
+   - resource premium
+   - subsidy dependence
+   - supply elasticity
+   - issuance pressure
+   - liquidity-adjusted miner pressure
+   - compute opportunity cost
+
+Metric runs must be reproducible from IDs.
+Milestone 6 =E2=80=94 hypothesis/backtest engine
+
+Explicit hypothesis example:
+HYP_MINER_PRESSURE_001 statement: elevated miner pressure predicts lower 7d
+BTC-relative return metric_definition: miner_pressure_v1 horizon: 7d
+
+Backtester outputs:
+
+   - occurrence count
+   - 1d/7d/30d/90d returns
+   - BTC-relative returns
+   - volatility
+   - max adverse excursion
+   - regime slices
+   - confidence intervals
+   - walk-forward result
+   - exact dataset/version hash.
+
+No bullish/bearish score unless a tested mapping defines the number.
+Milestone 7 =E2=80=94 read-only API and real MCP
+
+Current mcp_server.py is a tool manifest/dispatcher, not a full MCP
+transport server.
+
+After warehouse integrity is proven, expose:
+
+   - pow_get_state
+   - pow_get_metric
+   - pow_explain_metric
+   - pow_get_evidence
+   - pow_compare_resource_routes
+   - pow_get_hypothesis
+   - pow_run_backtest
+   - pow_get_data_quality
+
+Every response returns provenance IDs.
+
+Current api.py caches JSON at process import and can serve stale data
+forever. Replace with dynamic queries against canonical current state.
+Milestone 8 =E2=80=94 content
+
+Content is downstream.
+
+Generate from:
+
+   - largest state changes
+   - historical extremes
+   - price/fundamental divergence
+   - new hypothesis confirmations/failures
+   - compute route flips
+
+Every headline must link to a computed claim and evidence DAG.
+Milestone 9 =E2=80=94 allocator/execution
+
+Only after economic predictions are calibrated.
+
+observe =E2=86=92 compare =E2=86=92 recommend =E2=86=92 bounded grant =E2=
+=86=92 execute =E2=86=92 receipt =E2=86=92
+realized outcome =E2=86=92 calibration
+
+Keep execution out of the measurement core.
+7. File-level actions
+
+core.py
+
+   - remove truncation
+   - return observation metadata
+   - preserve source/event types
+   - capture request-start/receive times
+   - atomic writes
+   - compression/storage abstraction
+
+warehouse.py / v1_pipeline.py
+
+   - deprecate after migration
+   - do not maintain three stores
+
+schema.py / v1_schema.py
+
+   - replace with one typed model package
+   - include stable IDs, units, provenance
+
+v1_registry.py
+
+   - keep as source of truth
+   - define each feed with source_id, source_role, transport, endpoint,
+   recoverability, priority, cadence, time semantics and parser version
+
+collectors/l2_archival.py
+
+   - rewrite first
+   - sequence-aware event log
+   - checkpoints
+   - reconnect/resync
+   - explicit gap state
+
+collectors/qubic_collector.py
+
+   - migrate to canonical transport and lineage
+
+collectors/prl_collector.py
+
+   - split canonical pearld and PearlTrack enrichment
+
+collectors/xmr_collector.py
+
+   - replace LocalMonero canonical dependency with monerod JSON-RPC
+
+daemon.py
+
+   - real async scheduler/supervisor
+   - retries/backoff
+   - persisted last-run state
+   - restart failed tasks
+   - collector health
+   - clean shutdown
+   - no unread pipes
+
+quality.py
+
+   - measure expected cadence, not merely successful calls / attempted call=
+s
+   - coverage should represent missing expected intervals/events
+
+health.py
+
+   - fix API route mismatch: it checks /api/v1/health while api.py exposes
+   /v1/health
+   - remove stale hard-coded universe
+   - do not expect PID file unless daemon creates it
+
+api.py
+
+   - no import-time data cache
+   - no Flask debug in service mode
+   - query canonical current state dynamically
+
+mcp_server.py
+
+   - mark prototype
+   - implement actual MCP transport later
+
+pressure.py / two_timescale.py / ML_OPPORTUNITIES.md
+
+   - move to experiments/legacy until validated
+   - PowPowPow core is physical/resource causality, not TA prediction
+
+factors.py
+
+   - delete silent sell_fraction =3D 0.6 default
+   - missing measured data stays missing
+   - assumptions are explicit versioned inputs
+
+events.py
+
+   - current file is an event-type registry, not an event tracker
+   - rename until real detection exists
+
+export.py
+
+   - rename current output as snapshots
+   - build true point-in-time historical dataset generation
+
+README / QUICKSTART
+
+   - one canonical thesis
+   - eight-system V1 registry
+   - actual running components
+   - integrity invariants
+   - feed status
+   - commands that actually work
+   - remove stale 16-system/old SafeTrade ML confusion
+
+8. Tests required before new features
+
+   1. Raw round-trip: archive exact fixture bytes and verify SHA256.
+   2. Lineage: every normalized row resolves to source observations.
+   3. Time semantics: event/observed/received times remain distinct and UTC=
+.
+   4. Replay: delete normalized state and regenerate identical normalized
+   hashes from raw.
+   5. Schema evolution: same raw input can be normalized by v1 and v2
+   side-by-side.
+   6. L2 gap test: drop a sequence and ensure gap is detected.
+   7. Reconnect test: kill websocket, reconnect, checkpoint-resync.
+   8. Source-role test: enrichment cannot overwrite canonical facts.
+   9. Point-in-time test: reject feature inputs observed after as_of_time.
+   10. Missing-data test: no default assumption becomes measured data.
+   11. Collector contract fixtures: source format changes fail loudly.
+   12. 24h daemon soak test: no deadlocked pipes, leaked handles or silent
+   collector death.
+
+CI:
+
+   - pytest
+   - ruff
+   - type checker
+   - package/import smoke test
+   - fixture replay test
+
+9. Garden V1 definition of done
+
+Do not call V1 complete until:
+
+   - one canonical package/install path exists
+   - no hard-coded /home/box imports
+   - raw archive is lossless and append-only
+   - normalized rows have full lineage
+   - all timestamps are UTC/bitemporal-correct
+   - SafeTrade L2 is gap-aware
+   - first-party QUBIC/PRL/XMR feeds run continuously
+   - Clore/Akash/Nosana irreversible resource data is archived continuously
+   - collector health/coverage is measurable
+   - raw can deterministically replay into normalized state
+   - DuckDB can query historical snapshots
+   - at least one metric is versioned/reproducible
+   - at least one hypothesis is point-in-time backtested
+   - API/MCP exposes provenance
+   - generated data and bytecode are removed from Git
+   - tests/CI pass
+
+First complete end-to-end demonstration:
+raw source =E2=86=92 observation ID =E2=86=92 normalized state =E2=86=92 me=
+tric v1 =E2=86=92 hypothesis v1
+=E2=86=92 historical backtest =E2=86=92 API/MCP query =E2=86=92 evidence/pr=
+ovenance explanation
+
+Do this for ONE canonical claim before expanding.
+
+Suggested claim:
+
+For hardware class H at time T, protocol/network A offered net economic
+return X versus external compute route B, using observed resource price,
+power benchmark, protocol reward and market price, all reproducible from
+source observations.
+
+That single claim exercises almost the entire PowPowPow thesis.
+10. Preserve these existing ideas
+
+Do not lose:
+
+   - Seesaw inclusion filter
+   - irreversible/reconstructable feed classification
+   - raw-before-normalized architecture
+   - network_id instead of ticker identity
+   - supplier/resource framing
+   - compute benchmark indices
+   - PRL entity graph concept
+   - QUBIC epoch/computor history
+   - XMR as mature PoW control
+   - execution receipts as future proprietary outcome data
+   - content/API/MCP as outlets, not the garden itself
+
+Canonical README sentence:
+
+PowPowPow is a continuously growing, provenance-preserving historical model
+of how computational resources are valued, allocated and transformed into
+economic output.
+
+Everything merged should make that historical model richer, more
+reproducible, or more useful.
+
+--00000000000003c6e0065bd737f2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PowPowPow =E2=80=94 GitHub Peer Review + Canonical Dev Instructions
+<p>Repo reviewed: prx0r/powpowpow<br>
+Review date: 19 Sep 2026</p>
+
+Executive conclusion
+<p>The thesis is strong and the repo already contains the right conceptual =
+primitives: point-in-time collection, irreversible-feed prioritization, res=
+ource/supplier modeling, provenance, bitemporal timestamps, recoverability,=
+ and a product flywheel from observe =E2=86=92 decide =E2=86=92 execute =E2=
+=86=92 receipt.</p>
+<p>The codebase is not yet a reliable data garden. It is currently two over=
+lapping implementations:</p>
+<ol>
+<li>Original prototype stack: warehouse.py, schema.py, v1_pipeline.py, old =
+collectors, api.py, pressure/ML files.</li>
+<li>Newer P0 archival stack: core.py, quality.py, updated v1_registry.py, p=
+artially migrated collectors.</li>
+</ol>
+<p>Do NOT add more coins, dashboards, ML, content, or execution yet. First =
+collapse the repo to one trustworthy ingestion/lineage system and prove one=
+ end-to-end historical-state pipeline.</p>
+<p>Core invariant:</p>
+<blockquote>
+<p>Every derived fact must be reproducible from immutable raw bytes plus a =
+versioned transformation.</p>
+</blockquote>
+<p>If that is not true, it is not yet PowPowPow data.</p>
+
+
+
+1. Critical findings
+
+P0-1 =E2=80=94 raw archive is not lossless
+<p>core.py currently stores raw_payload as only the first 10,000 characters=
+.</p>
+<p>That destroys exact source responses above 10 KB. The hash is calculated=
+ from the full body, while the archived body is truncated, so the stored ar=
+tifact cannot reproduce or validate the object whose hash it claims to repr=
+esent.</p>
+<p>Fix immediately:</p>
+<ul>
+<li>store exact response bytes untruncated;</li>
+<li>compress large responses;</li>
+<li>use content-addressed blob storage where useful;</li>
+<li>store metadata + hash + raw URI separately.</li>
+</ul>
+<p>Never truncate raw input.</p>
+
+P0-2 =E2=80=94 lineage is designed but usually broken
+<p>store_normalized() accepts raw_event_id, but fetch_json() returns only p=
+arsed data. Collectors therefore cannot naturally connect:</p>
+<p>raw observation =E2=86=92 normalized row =E2=86=92 exact source observat=
+ion</p>
+<p>Change the transport contract so fetch_json() returns a structured Fetch=
+Result containing:</p>
+<ul>
+<li>observation_id</li>
+<li>observed_at</li>
+<li>received_at</li>
+<li>source_id</li>
+<li>status</li>
+<li>raw_uri</li>
+<li>payload_hash</li>
+<li>parsed payload</li>
+</ul>
+<p>Every normalizer must require one or more observation IDs.</p>
+
+P0-3 =E2=80=94 bitemporal time exists in schema, not yet consistently in da=
+ta
+<p>The P0 commit correctly introduced event_time + observed_at, but fetch_j=
+son() generally stores event_time =3D null and current collectors rarely ex=
+tract source time.</p>
+<p>Canonical times:</p>
+<ul>
+<li>event_time: on-chain/exchange/source time</li>
+<li>observed_at: when collection began</li>
+<li>received_at: when response/message arrived</li>
+<li>normalized_at: transformation time</li>
+</ul>
+<p>Ban ambiguous generic timestamp fields from canonical models.</p>
+<p>If a source truly has no event time, leave it null and record observatio=
+n_only time semantics. Never silently substitute observed time.</p>
+
+P0-4 =E2=80=94 collector migration is incomplete
+<p>The latest P0 commit changed core.py, quality.py, v1_registry.py and clo=
+re_collector.py.</p>
+<p>Key collectors still use old direct requests wrappers and warehouse.py:<=
+/p>
+<ul>
+<li>QUBIC</li>
+<li>PRL</li>
+<li>XMR</li>
+<li>SafeTrade L2</li>
+<li>Gate</li>
+<li>CoinEx</li>
+</ul>
+<p>Rule: no collector may call requests/httpx/websocket/RPC/GraphQL/gRPC di=
+rectly outside the canonical transport layer.</p>
+<p>Delete duplicate fetch helpers after migration.</p>
+
+P0-5 =E2=80=94 provenance type can be false
+<p>core.py hard-codes source_type =3D rest inside the raw archive. Legacy w=
+rappers also discard important event semantics.</p>
+<p>Preserve:</p>
+<ul>
+<li>transport_type: rest | websocket | json_rpc | grpc | graphql | git | fi=
+le</li>
+<li>event_type: trade | depth_delta | depth_snapshot | block | tick | provi=
+der_snapshot etc.</li>
+<li>source_role: canonical | secondary | enrichment | benchmark</li>
+<li>source_id</li>
+<li>source/protocol version when available.</li>
+</ul>
+
+P0-6 =E2=80=94 SafeTrade L2 is not gap-safe
+<p>collectors/l2_archival.py still lacks the protections already demanded b=
+y pr1.md:</p>
+<ul>
+<li>exchange event timestamp</li>
+<li>receive timestamp</li>
+<li>update/sequence ID</li>
+<li>snapshot-vs-delta flag</li>
+<li>gap detection</li>
+<li>periodic REST checkpoint</li>
+<li>deterministic reconstruction</li>
+<li>reconnect/resync semantics</li>
+</ul>
+<p>It also uses naive local datetime.</p>
+<p>This is one of the most irreversible feeds in the garden and should be t=
+he strongest collector.</p>
+<p>Acceptance test: kill the websocket for 30 seconds, reconnect, and prove=
+ the system either reconstructs from a checkpoint or explicitly records an =
+unrecoverable gap. It must never silently continue a corrupted book.</p>
+
+P0-7 =E2=80=94 daemon.py does not actually supervise continuous collection
+<p>It launches QUBIC and PRL once; it does not reschedule them at the confi=
+gured five-minute interval.</p>
+<p>start_normalizer() only sets a timestamp. normalize_data() is never sche=
+duled.</p>
+<p>Also:</p>
+<ul>
+<li>stdout/stderr pipes are never drained and can deadlock;</li>
+<li>no child restart supervision;</li>
+<li>no exponential backoff;</li>
+<li>no persisted scheduler state;</li>
+<li>no PID file although health.py expects one;</li>
+<li>multiple config intervals are unused.</li>
+</ul>
+<p>Replace it with a real scheduler/supervisor.</p>
+
+P0-8 =E2=80=94 current backtest export is not a backtest dataset
+<p>export_backtest_dataset() merges current cross-sectional factor/economic=
+s CSVs by symbol. It does not create historical point-in-time rows, forward=
+ returns, experiment versions or walk-forward splits.</p>
+<p>Canonical backtest rows should include:</p>
+<ul>
+<li>as_of_time</li>
+<li>network_id</li>
+<li>metric_version</li>
+<li>signal_definition_version</li>
+<li>feature_snapshot_id</li>
+<li>price_at_t</li>
+<li>1d/7d/30d/90d forward returns</li>
+<li>max adverse excursion</li>
+<li>BTC-relative return</li>
+<li>regime</li>
+<li>data_available_at</li>
+</ul>
+<p>All features must satisfy observed_at &lt;=3D as_of_time.</p>
+
+P0-9 =E2=80=94 observation, signal and opinion are still collapsing togethe=
+r
+<p>pressure.py and two_timescale.py contain heuristic regime rules presente=
+d as predictions.</p>
+<p>factors.py silently defaults sell_fraction to 0.6 when missing. That is =
+unacceptable for a provenance-first dataset: an assumption can appear as a =
+measured fact.</p>
+<p>Enforce the ladder:</p>
+<p>OBSERVATION<br>
+=E2=86=92 METRIC<br>
+=E2=86=92 SIGNAL<br>
+=E2=86=92 HYPOTHESIS<br>
+=E2=86=92 BACKTEST RESULT<br>
+=E2=86=92 DECISION</p>
+<p>Assumptions belong in an explicit versioned assumption_set with referenc=
+es.</p>
+<p>Move pressure/regime heuristics under experiments until reproducibly tes=
+ted.</p>
+
+P0-10 =E2=80=94 documented first-party source policy is not implemented
+<p>The docs correctly specify:</p>
+<ul>
+<li>PRL: own pearld is canonical; PearlTrack is enrichment.</li>
+<li>XMR: own monerod is canonical.</li>
+<li>QUBIC: official RPC/static sources first.</li>
+</ul>
+<p>Current implementation:</p>
+<ul>
+<li>PRL is PearlTrack-centric.</li>
+<li>XMR uses LocalMonero + CoinGecko.</li>
+<li>QUBIC still uses old transport/storage.</li>
+</ul>
+<p>Bring implementation in line with the source hierarchy before more deriv=
+ed metrics.</p>
+
+
+
+2. Structural debt to remove
+<p>There are overlapping versions of core concepts:</p>
+<ul>
+<li>schema.py vs v1_schema.py</li>
+<li>registry.py vs v1_registry.py</li>
+<li>warehouse.py vs v1_pipeline.py vs core.py</li>
+<li>api.py vs api/app.py vs api_v2.py</li>
+<li>several custom fetch helpers</li>
+<li>README 16-system universe vs V1 eight-system registry</li>
+<li>old XEL/XTM/technical-indicator artifacts vs current PowPowPow thesis</=
+li>
+</ul>
+<p>Choose one canonical implementation and delete/archive the rest.</p>
+<p>There must be exactly:</p>
+<ul>
+<li>one registry</li>
+<li>one observation model</li>
+<li>one transport layer</li>
+<li>one raw store</li>
+<li>one normalization interface</li>
+<li>one metric engine</li>
+<li>one active API surface.</li>
+</ul>
+<p>README is stale. pr1.md says V1 is eight systems and v1_registry.py shou=
+ld be source of truth. Make that true.</p>
+
+
+
+3. Repository hygiene and reproducibility
+<p>The repo currently contains generated bytecode/data artifacts such as:</=
+p>
+<ul>
+<li><strong>pycache</strong> files</li>
+<li>generated CSVs</li>
+<li>generated JSON datasets</li>
+<li>sample warehouse files</li>
+<li>historical/export outputs</li>
+</ul>
+<p>pr1.md already says raw history should not live in Git.</p>
+<p>Fix:</p>
+<ol>
+<li>purge generated warehouse/data/bytecode from Git tracking;</li>
+<li>expand .gitignore;</li>
+<li>retain only tiny deterministic fixtures in tests/fixtures;</li>
+<li>add manifest/checksum handling for external data;</li>
+<li>never use Git as production datastore.</li>
+</ol>
+<p>Add:</p>
+<ul>
+<li>pyproject.toml</li>
+<li>locked dependencies</li>
+<li>explicit Python version</li>
+<li>package/CLI entry points</li>
+<li>environment-based config</li>
+<li>no sys.path.insert(=E2=80=9C/home/box/powpowpow=E2=80=9D)</li>
+<li>no hard-coded /home/box paths.</li>
+</ul>
+
+
+
+4. Target architecture
+<p>Refactor toward:</p>
+
+<code>src/powpowpow/
+  config.py
+  ids.py
+  registry.py
+
+  models/
+    observation.py
+    normalized.py
+    metric.py
+    hypothesis.py
+    experiment.py
+    receipt.py
+
+  transport/
+    http.py
+    websocket.py
+    jsonrpc.py
+    grpc.py
+
+  storage/
+    raw.py
+    parquet.py
+    catalog.py
+
+  collectors/
+    safetrade.py
+    clore.py
+    qubic.py
+    prl.py
+    xmr.py
+
+  normalize/
+    market.py
+    qubic.py
+    prl.py
+    xmr.py
+
+  metrics/
+    miner_economics.py
+    resource_premium.py
+    supply_elasticity.py
+    subsidy_dependence.py
+    opportunity_cost.py
+
+  signals/
+    definitions.py
+
+  backtest/
+    dataset.py
+    event_study.py
+    runner.py
+
+  quality/
+    telemetry.py
+    gaps.py
+    freshness.py
+
+  api/
+  mcp/
+
+tests/
+  fixtures/
+  unit/
+  integration/
+</code>
+<p>Recommended local-first storage:</p>
+<p>Raw:</p>
+<ul>
+<li>exact raw bytes</li>
+<li>append-only</li>
+<li>compressed</li>
+<li>content-addressed where useful</li>
+</ul>
+<p>Normalized:</p>
+<ul>
+<li>Parquet partitioned by schema/network/date</li>
+<li>PyArrow for writes</li>
+<li>DuckDB for analytical queries</li>
+</ul>
+<p>High-frequency L2:</p>
+<ul>
+<li>micro-batch to Parquet every 10=E2=80=9360 seconds</li>
+<li>do not write millions of individual filesystem records.</li>
+</ul>
+<p>Catalog:</p>
+<ul>
+<li>DuckDB or SQLite for source registry, collector runs, observation manif=
+est, schema versions, transformations, hypotheses, backtests and quality in=
+cidents.</li>
+</ul>
+<p>This remains cheap and VPS-friendly.</p>
+
+
+
+5. Canonical object model
+<p>Do not make coin the primary identity.</p>
+<p>Use stable IDs such as:</p>
+<ul>
+<li>network_id =3D monero-mainnet</li>
+<li>asset_id =3D XMR</li>
+<li>resource_id =3D randomx-cpu-hash</li>
+<li>venue_id =3D safetrade</li>
+<li>hardware_id =3D nvidia-rtx-4090</li>
+<li>source_id =3D monerod-local</li>
+</ul>
+<p>Ticker symbols are presentation metadata.</p>
+<p>Persistent objects:</p>
+<ul>
+<li>Source</li>
+<li>Observation</li>
+<li>Entity</li>
+<li>Snapshot</li>
+<li>Transformation</li>
+<li>MetricDefinition</li>
+<li>MetricValue</li>
+<li>Claim</li>
+<li>EvidenceEdge</li>
+<li>Hypothesis</li>
+<li>Experiment</li>
+<li>Outcome</li>
+<li>Decision</li>
+<li>ExecutionReceipt</li>
+<li>Feedback</li>
+</ul>
+<p>Every derived object must carry:</p>
+<ul>
+<li>definition_id</li>
+<li>definition_version</li>
+<li>computed_at</li>
+<li>input IDs</li>
+<li>code/build version</li>
+<li>units</li>
+<li>quality/confidence metadata where relevant.</li>
+</ul>
+
+
+
+6. Build order
+
+Milestone 0 =E2=80=94 freeze scope
+<p>No new networks.<br>
+No new dashboard.<br>
+No new ML.<br>
+No allocator/executor.<br>
+No generic sentiment/news.<br>
+No technical-analysis expansion.</p>
+
+Milestone 1 =E2=80=94 one ingestion kernel
+<p>Implement one transport/archive API and migrate every collector.</p>
+<p>Definition of done:</p>
+<ul>
+<li>no direct requests.get in collectors</li>
+<li>every successful and failed request creates an observation record</li>
+<li>exact raw bytes preserved</li>
+<li>every normalized row has lineage</li>
+<li>all times UTC-aware</li>
+<li>hash round-trip tests pass.</li>
+</ul>
+
+Milestone 2 =E2=80=94 irreversible feeds first
+<p>Priority:</p>
+<ol>
+<li>SafeTrade L2/trades</li>
+<li>Clore/Akash/Nosana supply and pricing</li>
+<li>any other non-reconstructable resource-market feeds</li>
+</ol>
+<p>Implement sequence/gap handling, reconnect policy, checkpoints and colle=
+ctor-run telemetry.</p>
+
+Milestone 3 =E2=80=94 canonical first-party chain feeds
+<p>QUBIC:</p>
+<ul>
+<li>official RPC</li>
+<li>tick/epoch/computor history</li>
+<li>emission/burn/contract events</li>
+<li>exact source event times</li>
+</ul>
+<p>PRL:</p>
+<ul>
+<li>own pearld canonical collector</li>
+<li>PearlTrack enrichment only</li>
+<li>classification_source/version/confidence on labels</li>
+</ul>
+<p>XMR:</p>
+<ul>
+<li>own monerod</li>
+<li>block/difficulty/emission/fee/security-budget series</li>
+<li>no fake address-flow analytics</li>
+</ul>
+<p>Then QUAN/KAS.</p>
+
+Milestone 4 =E2=80=94 historical state layer
+<p>Create deterministic:</p>
+<ul>
+<li>resource_state</li>
+<li>network_state</li>
+<li>market_state</li>
+<li>supplier_state</li>
+<li>hardware_state</li>
+</ul>
+<p>Each snapshot includes event/valid time, observation time, lineage, sche=
+ma version and quality state.</p>
+<p>This is the actual garden.</p>
+
+Milestone 5 =E2=80=94 versioned metrics
+<p>Start only with:</p>
+<ul>
+<li>miner margin</li>
+<li>resource premium</li>
+<li>subsidy dependence</li>
+<li>supply elasticity</li>
+<li>issuance pressure</li>
+<li>liquidity-adjusted miner pressure</li>
+<li>compute opportunity cost</li>
+</ul>
+<p>Metric runs must be reproducible from IDs.</p>
+
+Milestone 6 =E2=80=94 hypothesis/backtest engine
+<p>Explicit hypothesis example:</p>
+
+<code>HYP_MINER_PRESSURE_001
+statement:
+  elevated miner pressure predicts lower 7d BTC-relative return
+metric_definition:
+  miner_pressure_v1
+horizon:
+  7d
+</code>
+<p>Backtester outputs:</p>
+<ul>
+<li>occurrence count</li>
+<li>1d/7d/30d/90d returns</li>
+<li>BTC-relative returns</li>
+<li>volatility</li>
+<li>max adverse excursion</li>
+<li>regime slices</li>
+<li>confidence intervals</li>
+<li>walk-forward result</li>
+<li>exact dataset/version hash.</li>
+</ul>
+<p>No bullish/bearish score unless a tested mapping defines the number.</p>
+
+Milestone 7 =E2=80=94 read-only API and real MCP
+<p>Current mcp_server.py is a tool manifest/dispatcher, not a full MCP tran=
+sport server.</p>
+<p>After warehouse integrity is proven, expose:</p>
+<ul>
+<li>pow_get_state</li>
+<li>pow_get_metric</li>
+<li>pow_explain_metric</li>
+<li>pow_get_evidence</li>
+<li>pow_compare_resource_routes</li>
+<li>pow_get_hypothesis</li>
+<li>pow_run_backtest</li>
+<li>pow_get_data_quality</li>
+</ul>
+<p>Every response returns provenance IDs.</p>
+<p>Current api.py caches JSON at process import and can serve stale data fo=
+rever. Replace with dynamic queries against canonical current state.</p>
+
+Milestone 8 =E2=80=94 content
+<p>Content is downstream.</p>
+<p>Generate from:</p>
+<ul>
+<li>largest state changes</li>
+<li>historical extremes</li>
+<li>price/fundamental divergence</li>
+<li>new hypothesis confirmations/failures</li>
+<li>compute route flips</li>
+</ul>
+<p>Every headline must link to a computed claim and evidence DAG.</p>
+
+Milestone 9 =E2=80=94 allocator/execution
+<p>Only after economic predictions are calibrated.</p>
+<p>observe =E2=86=92 compare =E2=86=92 recommend =E2=86=92 bounded grant =
+=E2=86=92 execute =E2=86=92 receipt =E2=86=92 realized outcome =E2=86=92 ca=
+libration</p>
+<p>Keep execution out of the measurement core.</p>
+
+
+
+7. File-level actions
+<p>core.py</p>
+<ul>
+<li>remove truncation</li>
+<li>return observation metadata</li>
+<li>preserve source/event types</li>
+<li>capture request-start/receive times</li>
+<li>atomic writes</li>
+<li>compression/storage abstraction</li>
+</ul>
+<p>warehouse.py / v1_pipeline.py</p>
+<ul>
+<li>deprecate after migration</li>
+<li>do not maintain three stores</li>
+</ul>
+<p>schema.py / v1_schema.py</p>
+<ul>
+<li>replace with one typed model package</li>
+<li>include stable IDs, units, provenance</li>
+</ul>
+<p>v1_registry.py</p>
+<ul>
+<li>keep as source of truth</li>
+<li>define each feed with source_id, source_role, transport, endpoint, reco=
+verability, priority, cadence, time semantics and parser version</li>
+</ul>
+<p>collectors/l2_archival.py</p>
+<ul>
+<li>rewrite first</li>
+<li>sequence-aware event log</li>
+<li>checkpoints</li>
+<li>reconnect/resync</li>
+<li>explicit gap state</li>
+</ul>
+<p>collectors/qubic_collector.py</p>
+<ul>
+<li>migrate to canonical transport and lineage</li>
+</ul>
+<p>collectors/prl_collector.py</p>
+<ul>
+<li>split canonical pearld and PearlTrack enrichment</li>
+</ul>
+<p>collectors/xmr_collector.py</p>
+<ul>
+<li>replace LocalMonero canonical dependency with monerod JSON-RPC</li>
+</ul>
+<p>daemon.py</p>
+<ul>
+<li>real async scheduler/supervisor</li>
+<li>retries/backoff</li>
+<li>persisted last-run state</li>
+<li>restart failed tasks</li>
+<li>collector health</li>
+<li>clean shutdown</li>
+<li>no unread pipes</li>
+</ul>
+<p>quality.py</p>
+<ul>
+<li>measure expected cadence, not merely successful calls / attempted calls=
+</li>
+<li>coverage should represent missing expected intervals/events</li>
+</ul>
+<p>health.py</p>
+<ul>
+<li>fix API route mismatch: it checks /api/v1/health while api.py exposes /=
+v1/health</li>
+<li>remove stale hard-coded universe</li>
+<li>do not expect PID file unless daemon creates it</li>
+</ul>
+<p>api.py</p>
+<ul>
+<li>no import-time data cache</li>
+<li>no Flask debug in service mode</li>
+<li>query canonical current state dynamically</li>
+</ul>
+<p>mcp_server.py</p>
+<ul>
+<li>mark prototype</li>
+<li>implement actual MCP transport later</li>
+</ul>
+<p>pressure.py / two_timescale.py / ML_OPPORTUNITIES.md</p>
+<ul>
+<li>move to experiments/legacy until validated</li>
+<li>PowPowPow core is physical/resource causality, not TA prediction</li>
+</ul>
+<p>factors.py</p>
+<ul>
+<li>delete silent sell_fraction =3D 0.6 default</li>
+<li>missing measured data stays missing</li>
+<li>assumptions are explicit versioned inputs</li>
+</ul>
+<p>events.py</p>
+<ul>
+<li>current file is an event-type registry, not an event tracker</li>
+<li>rename until real detection exists</li>
+</ul>
+<p>export.py</p>
+<ul>
+<li>rename current output as snapshots</li>
+<li>build true point-in-time historical dataset generation</li>
+</ul>
+<p>README / QUICKSTART</p>
+<ul>
+<li>one canonical thesis</li>
+<li>eight-system V1 registry</li>
+<li>actual running components</li>
+<li>integrity invariants</li>
+<li>feed status</li>
+<li>commands that actually work</li>
+<li>remove stale 16-system/old SafeTrade ML confusion</li>
+</ul>
+
+
+
+8. Tests required before new features
+<ol>
+<li>Raw round-trip: archive exact fixture bytes and verify SHA256.</li>
+<li>Lineage: every normalized row resolves to source observations.</li>
+<li>Time semantics: event/observed/received times remain distinct and UTC.<=
+/li>
+<li>Replay: delete normalized state and regenerate identical normalized has=
+hes from raw.</li>
+<li>Schema evolution: same raw input can be normalized by v1 and v2 side-by=
+-side.</li>
+<li>L2 gap test: drop a sequence and ensure gap is detected.</li>
+<li>Reconnect test: kill websocket, reconnect, checkpoint-resync.</li>
+<li>Source-role test: enrichment cannot overwrite canonical facts.</li>
+<li>Point-in-time test: reject feature inputs observed after as_of_time.</l=
+i>
+<li>Missing-data test: no default assumption becomes measured data.</li>
+<li>Collector contract fixtures: source format changes fail loudly.</li>
+<li>24h daemon soak test: no deadlocked pipes, leaked handles or silent col=
+lector death.</li>
+</ol>
+<p>CI:</p>
+<ul>
+<li>pytest</li>
+<li>ruff</li>
+<li>type checker</li>
+<li>package/import smoke test</li>
+<li>fixture replay test</li>
+</ul>
+
+
+
+9. Garden V1 definition of done
+<p>Do not call V1 complete until:</p>
+<ul>
+<li>one canonical package/install path exists</li>
+<li>no hard-coded /home/box imports</li>
+<li>raw archive is lossless and append-only</li>
+<li>normalized rows have full lineage</li>
+<li>all timestamps are UTC/bitemporal-correct</li>
+<li>SafeTrade L2 is gap-aware</li>
+<li>first-party QUBIC/PRL/XMR feeds run continuously</li>
+<li>Clore/Akash/Nosana irreversible resource data is archived continuously<=
+/li>
+<li>collector health/coverage is measurable</li>
+<li>raw can deterministically replay into normalized state</li>
+<li>DuckDB can query historical snapshots</li>
+<li>at least one metric is versioned/reproducible</li>
+<li>at least one hypothesis is point-in-time backtested</li>
+<li>API/MCP exposes provenance</li>
+<li>generated data and bytecode are removed from Git</li>
+<li>tests/CI pass</li>
+</ul>
+<p>First complete end-to-end demonstration:</p>
+
+<code>raw source
+=E2=86=92 observation ID
+=E2=86=92 normalized state
+=E2=86=92 metric v1
+=E2=86=92 hypothesis v1
+=E2=86=92 historical backtest
+=E2=86=92 API/MCP query
+=E2=86=92 evidence/provenance explanation
+</code>
+<p>Do this for ONE canonical claim before expanding.</p>
+<p>Suggested claim:</p>
+<blockquote>
+<p>For hardware class H at time T, protocol/network A offered net economic =
+return X versus external compute route B, using observed resource price, po=
+wer benchmark, protocol reward and market price, all reproducible from sour=
+ce observations.</p>
+</blockquote>
+<p>That single claim exercises almost the entire PowPowPow thesis.</p>
+
+
+
+10. Preserve these existing ideas
+<p>Do not lose:</p>
+<ul>
+<li>Seesaw inclusion filter</li>
+<li>irreversible/reconstructable feed classification</li>
+<li>raw-before-normalized architecture</li>
+<li>network_id instead of ticker identity</li>
+<li>supplier/resource framing</li>
+<li>compute benchmark indices</li>
+<li>PRL entity graph concept</li>
+<li>QUBIC epoch/computor history</li>
+<li>XMR as mature PoW control</li>
+<li>execution receipts as future proprietary outcome data</li>
+<li>content/API/MCP as outlets, not the garden itself</li>
+</ul>
+<p>Canonical README sentence:</p>
+<blockquote>
+<p>PowPowPow is a continuously growing, provenance-preserving historical mo=
+del of how computational resources are valued, allocated and transformed in=
+to economic output.</p>
+</blockquote>
+<p>Everything merged should make that historical model richer, more reprodu=
+cible, or more useful.</p>
+
+--00000000000003c6e0065bd737f2--

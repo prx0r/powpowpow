@@ -1,0 +1,444 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id fjqAfMqK78Ek
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 22:38:30 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=WJzv0piZ15PXQFGr+6mH4+wwzTLFI2DkSjvgGr4oyPM1+mDrY5nQ2129+l/tDwFTYEL2lXRs9
+	oassJ21PlMIb7Q+jjWGB7/oUAxkmOXjmZ9wsp5z0TpcGbm5gqmqnkQhAZfSQwTSFIJ0zKm76ULv
+	dS3dMcsZN+5lGiKo7OLKJGrsfoX0gZ1u8z6XgtJK0CjanYCXULxZHVJMebpKiLYjOl2/DSLk52s
+	FcEyq23yfFu9wgU8iLQHaIjW/Y0zHj22QOz2w4+hs6DGmmfV82n5brDoE3TAY3+/6TCrJRbAsNH
+	cR2nrUyH/uA8UVYZcCa/FP65EW854fnWcnKBmz5Pjh7w==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789771110; x=1790375910; bh=oG+as9Si
+	WbPnZFy25yuF2I4E39VDA0oEJeLl2OMpWBk=; b=HJhJH+kEWbmAPBqZnaT2xq3wll3zAJQbXxx
+	3yZlmAAXQWkQuai6LsVkDv9z0zjuvRUteys4C/RxpS0lpVwmKzVtevYMZYbNBOp5IQV2+S8dpkT
+	U8HIY7I+Ed6YzVhtMsvzyDuiChYNq9qnkHZno72cAdX1spLVDl1mJT6bOfvZuiesAY8Fz+ICxZW
+	HK7SbV0S+sqWU+q7zVyjpia7SsFdb+wVbbSFesE6k3dXQT4nQdudlcl+SJNS7FsvidhZOHomzmI
+	OO++513zTrkWD0Qk1z692g65ajQnvhDle8u9s9jzSBU22iIMbXEkdAMnqejgwodBsnwxL7Om01H
+	Y5gRdDw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=lCFgfcNu;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=lCFgfcNu;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-8961cca9193so16043537b3.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 15:38:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789771110; cv=none;
+        d=google.com; s=arc-20260327;
+        b=s7kykQWSSOkPs2jomwi0cGogNpxmxpp16Teajzq9Bnr7+s/3SBAU8w0rVI0MkyP28w
+         byIgXGF7mAYgjRheqRyfu1c+o+HL9Q0RYzcrWcN8OFgYaZekurDxelfTS7gdJLEUenZt
+         yoeqWqwe/lyhs84SSOp7hCsgZGBm4Q1ge8YrA4qnEM/QaFH0QaGJYvrZAvfeuYABZ7wa
+         93ycazsy3WvLVoaIu3xaGS2gWTIkGli6pxMYykFpmyU5AP4pi9jpSJHeIQq3gOV4r3n8
+         ltOi/NA4zsdu2ARGbDYd5wOOfS5e05fVwXM3WmP0dVNoNJRbu69ApU8CDmLih8CPX+v4
+         oiHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=oG+as9SiWbPnZFy25yuF2I4E39VDA0oEJeLl2OMpWBk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Payowq8OZs34p0f/rAAwd7P3tWDNjCEv6dMz0TDDL0rkuR4yweEvOWMOPfwkbqVfr5
+         RJud3V7p+bVeBJYOLufPbQjNYd4GnrdtGZcAjqELIffUbT6/Tc+geEJaP7PgqyzOoXMv
+         oWohF1/FY+5WCIJumbI2WaMAJp8VDFkpuaGzmbvC8dNWzCA2FWRVE70Li/5UGb65Klqo
+         4V1/N0gWMOcXw6oA/NS1MetrYdxHj6JJDQ9x03hC79Q5jtCY2TniE+dVr/dz6Hjjmu6D
+         rnva70/PkDv2lNGo2N2JjWRdGvSg4sM2TFANXYIHJhIoGlnT5dDNEufpz0ay/VR5zxgp
+         aIZg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789771110; x=1790375910; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=oG+as9SiWbPnZFy25yuF2I4E39VDA0oEJeLl2OMpWBk=;
+        b=lCFgfcNuCx0g1YieMvcqVabgnKb8SVDRN/3BBoaVyGnlihXJGl52kl+q/XOgupCIf4
+         jouafscdZIS+VhZFGswNa30BFfcktEykPx6A0e/xgZ9bKnr2tkYBDv9j5eCbh3X9WYMU
+         Nqvdomnk3fOXpMgSemPzHRETJsntwkD8uCN7oeTVru5lLlx3JDFEEFZj1ivzbJhwod1d
+         ZceSjE8Ygx/O7tqPL4BuFAPFxqY5QAqTuEmx3+KXk0RF4BIO4bjL5xxqyOqi3EZMsNPB
+         iNBvrbzqNYbC6QBFEElUDel2tcVOLLhhMDnbEvluysBVn/JvIjwv5b2FmnLltJRhn3xm
+         qNSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789771110; x=1790375910;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=oG+as9SiWbPnZFy25yuF2I4E39VDA0oEJeLl2OMpWBk=;
+        b=Yd/oLoQi4ZOIk22s7Ug2vvXFWjI3BnbF6yaxl0VSMl9Hi4wugRur9SHKTes4CJLRCp
+         Yf1NDGoT2hfO1fq5R/R9D5o/8Kdayy3CiDyvYp1HgJPYQWb3ZjEqEaU53vslEbPMDUCJ
+         B9TyKanzn1VTCCmQ7msY1MVAau03E0lV4ftTgH/r39R2bO5EmfCehZ+V68uPcElVAqJ3
+         9g2NnDadVjR+6+3dJvM+RrmRUKFlSS+LbGpykw53tQ7+zeRuYJfVNUlzHN5aTlpFCfPL
+         MSunRoxal5CCwjpQVxej0aPn27O7zoUZMmzmKmpilKzWZ4qEv50a1q6dj0SXuWlkUmyO
+         x1rA==
+X-Gm-Message-State: AFuF++l2IsZEZaOfDNkiPr+OnmbHIOFwm88jkKSkXAO+DlMQGQdM7nlj
+	d3dYMG5wcCOwDDZrWk8paE1WAzb4ybhViqjf8w10K2ONVcnHqcCQJPZ3xGTc678pK57+5yeUIFn
+	zxam0L1g5LVtd2qqTvc++qDo05HyAO25tOQ==
+X-Gm-Gg: AYBFou1IM7Q7U2I9Ubn3U1woqxFgyhMrN4yWlxZ6BBeG/WOvj6wlO0JOK4YWm2sFUe+
+	dtZpjmFUisWdFI3ugp4Ji4f2ZBdd4UgzmrcoIrxhoTqCXzuarMUv5mPmWXPFX19b1hVM97LNRws
+	xu97p5AZn5VZu9zWTm4grXWQjz7e2o5kSet2OeQLPcisGhg29ujKDKJtEi+ESVDooF7urcCIRhC
+	v7bcagG5ZySp3L4Ltj+OqHgUIj19NMo5afhirrawPxdqoza9n4G1NkAjPnOw7vQtmgMcpi4UIi+
+	dc4eXGstTfGyzr4wQNCJCeSgyR3XDq1QwHbOeCnN2tQqCBYgIiUH/mb9+mkC4n/UCGNEQxgffNM
+	ERn9logChgYEtrBnKYHr/SCU4Fdfa0JCJx1CfR6xfV9BOQlVnhIjzHv8GIgPbEHZIdxOi8kqdIx
+	ohxyET/d9g
+X-Received: by 2002:a05:690c:4026:b0:88f:df4:1c8e with SMTP id
+ 00721157ae682-89734fac889mr24454497b3.22.1789771109356; Fri, 18 Sep 2026
+ 15:38:29 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 17:38:27 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 17:38:27 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 17:38:27 -0500
+X-Gm-Features: AcwNN1UY10FXtQyB-N9oxMElKELBmZA1iOf2rZXSN8_IRV1cjvCB9UMTivunLR0
+Message-ID: <CAPdrGen84f40vds6LVokRL91vPxyfqy_Bhg8qV5kpfY3KoQpgA@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D19_05=3A37_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+STATE
+Checked prior SENT `Roast.pet Viral Formats =E2=80=94` reports through
+2026-09-19 04:38 and excluded semantic repeats. Fresh evidence checked
+across current TikTok/Reels/Shorts trend trackers, meme-format
+trackers and broader short-form mechanics. This run favors mechanics
+that can use original audio/visual assets rather than copying
+protected clips.
+
+1) PET BAD-DREAM RESET
+Current evidence/source: SocialPilot=E2=80=99s Sep 10=E2=80=9324 Reels trac=
+ker calls
+the =E2=80=9CBad Dream=E2=80=9D original-audio gag Rising (~4K posts): show=
+ a product
+apparently suffering a disaster, then reveal it safe because it was
+only a bad dream.
+https://www.socialpilot.co/blog/instagram-reels-trends
+Why viewers watch: escalating dread followed by an instant relief/reversal =
+beat.
+Core mechanic: Show the protagonist=E2=80=99s nightmare scenario as real, t=
+hen
+hard-reset to safety =E2=80=94 except the pet=E2=80=99s nightmare is hilari=
+ously
+trivial.
+Pet protagonist: Archie dreams the treat cupboard is empty / the
+vacuum has become sentient / Dad has shut the bedroom door; smash cut
+to Archie waking, checking the feared object, and visibly relaxing.
+Best use: social clip, birthday card QR, =E2=80=9Cpet fears=E2=80=9D mini-s=
+eries.
+Exact 15=E2=80=9345 sec template: 0=E2=80=933s peaceful sleeping pet + =E2=
+=80=9CArchie had the
+same nightmare again=E2=80=9D; 3=E2=80=9313s cinematic nightmare: EMPTY TRE=
+AT CUPBOARD
+/ VACUUM APPROACHING; 13=E2=80=9316s impact/black; 16=E2=80=9322s pet wakes=
+; 22=E2=80=9330s
+rushes to verify treats; 30=E2=80=9334s =E2=80=9Cwe=E2=80=99re safe=E2=80=
+=9D; optional final sting:
+vacuum switches on.
+Hook/on-screen: =E2=80=9CArchie=E2=80=99s recurring nightmare is getting wo=
+rse.=E2=80=9D
+Assets: sleeping/neutral pet image, fear/trigger field, favorite
+thing, nightmare backgrounds, wake-up transition, original suspense +
+relief SFX.
+Complexity: MEDIUM.
+Novelty: Different from documentary/prophecy formats: reversal is
+explicitly dream=E2=86=92reality and can encode each pet=E2=80=99s irration=
+al fear.
+VERDICT: MAKE TEMPLATE NOW.
+
+2) PET MONEY-CAN=E2=80=99T-BUY-HAPPINESS RECEIPT
+Current evidence/source: Reels =E2=80=9CMoney Can=E2=80=99t Buy You Happine=
+ss=E2=80=9D
+original-audio format is Rising at ~125K Reels in September, built
+around the setup followed by a value reveal.
+https://www.socialpilot.co/blog/instagram-reels-trends
+Why viewers watch: familiar moral statement gets punctured by a
+concrete, funny counterexample.
+Core mechanic: State an earnest clich=C3=A9, then quantify the
+embarrassingly cheap thing that actually purchases the protagonist=E2=80=99=
+s
+happiness.
+Pet protagonist: =E2=80=9CMoney can=E2=80=99t buy happiness.=E2=80=9D =E2=
+=86=92 =E2=80=9CCounterpoint: =C2=A31.20
+chicken.=E2=80=9D =E2=86=92 pet transforms from miserable to transcendent; =
+calculate
+happiness-per-pound.
+Best use: birthday/card, social clip, mug/T-shirt (=E2=80=9CHAPPINESS:
+=C2=A31.20=E2=80=9D), gift bundle.
+Exact template: 0=E2=80=934s solemn pet portrait + clich=C3=A9; 4=E2=80=938=
+s =E2=80=9CArchie
+disagrees=E2=80=9D; 8=E2=80=9315s reveal favorite snack/object + exact pric=
+e; 15=E2=80=9325s
+before/after reaction; 25=E2=80=9332s fake economics card: =E2=80=9CROI +8,=
+400% /
+dignity =E2=88=92100%=E2=80=9D; 32=E2=80=9336s product/legal-style close.
+Hook: =E2=80=9CScientists said money can=E2=80=99t buy happiness. Archie ha=
+s submitted
+evidence.=E2=80=9D
+Assets: favorite thing, approximate price, before/after pet photos,
+simple finance overlay.
+Complexity: LOW.
+Novelty: Uses quantified customer-specific value rather than the prior
+generic expense/business formats.
+VERDICT: MAKE TEMPLATE NOW.
+
+3) PET FAILURE COMMENTATOR / =E2=80=9CWILL HE PERFORM?=E2=80=9D
+Current evidence/source: Anijam=E2=80=99s September YouTube Shorts tracker
+reports the =E2=80=9CWill He Perform When He Has Money Right In Front Of Hi=
+m=E2=80=9D
+fail mechanic crossing into Shorts with 53K+ uses, especially
+sports/stunt failures.
+https://www.anijam.ai/blog/youtube-shorts-trends/
+Why viewers watch: the setup creates a tiny sporting question and
+forces viewers to stay for success/failure.
+Core mechanic: Turn one mundane attempt into a high-stakes performance
+test, then overreact to the result.
+Pet protagonist: treat placed 30cm away / toy catch / jump onto sofa /
+recall challenge; broadcaster asks whether this supposed elite athlete
+can perform under pressure; pet fails spectacularly or succeeds for
+the wrong reason.
+Best use: social clip, sports card, birthday =E2=80=9Ccareer highlights.=E2=
+=80=9D
+Exact template: 0=E2=80=934s freeze frame + =E2=80=9CCAN HE DO IT WHEN IT M=
+ATTERS?=E2=80=9D;
+4=E2=80=938s player card with absurd stats; 8=E2=80=9318s attempt in slow
+motion/generated recreation; 18=E2=80=9323s failure; 23=E2=80=9332s telestr=
+ator replay
+with arrows; 32=E2=80=9338s analyst verdict: =E2=80=9CQuestions must now be=
+ asked
+about the =C2=A314m contract.=E2=80=9D
+Hook: =E2=80=9C=C2=A314 million contract. One treat. No excuses.=E2=80=9D
+Assets: pet image/video, one ability/failure anecdote, sports
+lower-third, scoreboard, replay/telestrator system, original
+commentary.
+Complexity: MEDIUM.
+Novelty: Unlike general sports commentary/starting-lineup, this is a
+single binary skill-test + forensic replay engine.
+VERDICT: MAKE TEMPLATE NOW.
+
+4) PET AURA CREDIT SCORE
+Current evidence/source: September #aura tracking shows 118M views in
+one regional TikTok trend snapshot and specifically identifies ironic
+=E2=80=9Caura levels=E2=80=9D/aura checks as a comedy use.
+https://discotok.com/en/blog/spain-tiktok-trending-hashtags-september-2026-=
+20260901
+Why viewers watch: arbitrary social status becomes a game with instant
+numeric judgment.
+Core mechanic: Every action earns or destroys an invisible status score.
+Pet protagonist: maintain Archie=E2=80=99s persistent Aura balance: catches
+treat +400; walks into glass door =E2=88=929,000; steals roast chicken
++12,000; gets frightened by own fart =E2=88=9240,000.
+Best use: collectible card, birthday/yearly recap, social series,
+T-shirt with Aura rating.
+Exact template: 0=E2=80=933s =E2=80=9CARCHIE AURA AUDIT=E2=80=9D; 3=E2=80=
+=939s glamorous portrait +
+starting score; 9=E2=80=9314s incident 1 + floating score delta; 14=E2=80=
+=9320s
+incident 2; 20=E2=80=9327s catastrophic lore incident; 27=E2=80=9334s final=
+ animated
+credit-rating gauge; 34=E2=80=9338s =E2=80=9CCurrent status: Aura Insolvent=
+.=E2=80=9D
+Hook: =E2=80=9CWe audited Archie=E2=80=99s aura. The results are financiall=
+y concerning.=E2=80=9D
+Assets: 3 incidents, prestige/failure labels, persistent score ledger,
+meter animation.
+Complexity: LOW.
+Novelty: Turns pet lore into a longitudinal score rather than a
+one-off rating/tier list.
+VERDICT: TEST.
+
+5) PET TERRIBLE-ADVICE MANUAL
+Current evidence/source: the =E2=80=9CThings To Say=E2=80=9D ironic-advice =
+format
+launched in August and is described as dominant in late-summer
+TikTok/Reels, with an early example reaching 1.7M+ views; mechanism is
+straight-faced advice guaranteed to sabotage an interaction.
+https://meme.com/memes/things-to-say
+Why viewers watch: rapid anticipation =E2=80=94 each supposedly helpful lin=
+e
+is worse than the last.
+Core mechanic: Present catastrophically bad social advice with total
+instructional confidence.
+Pet protagonist: =E2=80=9CThings to say to Archie while he is eating=E2=80=
+=9D: =E2=80=9CCan I
+have some?=E2=80=9D / =E2=80=9CDrop it.=E2=80=9D / =E2=80=9CWhat=E2=80=99s =
+the vacuum doing behind you?=E2=80=9D / pet
+reaction escalates after each line. Or invert it: =E2=80=9CThings Archie sa=
+ys
+when meeting your parents.=E2=80=9D
+Best use: carousel, social clip, fridge magnet/card, pet-owner handbook.
+Exact template: 0=E2=80=933s tutorial title; 3=E2=80=937s authoritative hos=
+t/pet
+headshot; 7=E2=80=9325s 4 bad lines, each followed by pet reaction/risk met=
+er;
+25=E2=80=9331s final catastrophic line based on private lore; 31=E2=80=9335=
+s
+=E2=80=9CRoast.pet does not endorse this guidance.=E2=80=9D
+Hook: =E2=80=9C4 things you should DEFINITELY say to Archie while he=E2=80=
+=99s eating.=E2=80=9D
+Assets: trigger/context field, 4 generated bad-advice lines, pet
+reaction poses, instructional UI.
+Complexity: LOW.
+Novelty: Distinct from Reasons-To lists: the comedy is adversarial
+instructional sabotage and can become a pet-specific survival manual.
+VERDICT: MAKE TEMPLATE NOW.
+
+6) PET NPC DIALOGUE TREE
+Current evidence/source: Current short-form analysis continues to
+favor repeatable, recognizable, remixable formats; gaming remains a
+major TikTok content category, while September #gaming tracking shows
+>100M views in a regional snapshot.
+https://discotok.com/en/blog/spain-tiktok-trending-hashtags-september-2026-=
+20260901
+; https://www.shopify.com/blog/tiktok-trends
+Why viewers watch: viewers understand game-choice grammar instantly
+and mentally choose an option before seeing the consequence.
+Core mechanic: Give the viewer 3 dialogue choices; every choice
+triggers a pet-specific response and hidden consequence.
+Pet protagonist: Approach Archie guarding sofa. [A] =E2=80=9CGood boy=E2=80=
+=9D =E2=86=92
+neutral. [B] =E2=80=9CMove please=E2=80=9D =E2=86=92 hostility +20. [C] =E2=
+=80=9CChicken?=E2=80=9D =E2=86=92 companion
+recruited instantly.
+Best use: Pog.pet interactive QR, social clip, collectible/RPG card.
+Exact template: 0=E2=80=934s game establishing shot =E2=80=9CARCHIE =E2=80=
+=94 LVL 9 SOFA
+GUARDIAN=E2=80=9D; 4=E2=80=9310s three dialogue options; 10=E2=80=9313s cur=
+sor chooses
+apparently sensible answer; 13=E2=80=9322s pet response; 22=E2=80=9330s sta=
+tus effects
+appear; 30=E2=80=9338s secret fourth option unlocked from private lore (=E2=
+=80=9CSay
+Grandma is here=E2=80=9D) =E2=86=92 absurd instant transformation.
+Hook: =E2=80=9CYou have encountered Archie. Choose carefully.=E2=80=9D
+Assets: pet behavioral rules, trigger phrase, game UI, 3 poses,
+consequence generator.
+Complexity: MEDIUM.
+Novelty: Unlike earlier RPG character-select/victory screens, this
+makes the recipient/viewer interact with the pet=E2=80=99s behavioral model=
+.
+VERDICT: TEST =E2=80=94 especially for Pog.pet.
+
+7) PET ROMANTICIZE-THE-UNROMANTIC
+Current evidence/source: Reels=E2=80=99 current =E2=80=9CKiss of Life=E2=80=
+=9D wave is Rising
+at ~450K Reels and is being used to cinematic-romanticize ordinary
+routines. https://www.socialpilot.co/blog/instagram-reels-trends
+Why viewers watch: beautiful cinematic language creates comic tension
+when the subject is objectively disgusting or pathetic.
+Core mechanic: Shoot an ugly mundane behavior as if it were a luxury
+perfume/fine-dining film.
+Pet protagonist: slow-motion macro of Archie licking condensation off
+a bin / selecting a muddy stick / circling 11 times before pooping;
+breathy luxury VO describes =E2=80=9Ca discerning palate.=E2=80=9D
+Best use: premium birthday video, fake advert/poster, framed print, social =
+clip.
+Exact template: 0=E2=80=935s black screen + luxury title; 5=E2=80=9315s imm=
+aculate
+slow shots of pet; 15=E2=80=9325s sensual VO reveals increasingly grim
+behavior; 25=E2=80=9332s hero product shot of stolen sock/stick; 32=E2=80=
+=9338s fake
+brand lockup: =E2=80=9CARCHIE. Eau de Wet Dog.=E2=80=9D
+Hook: =E2=80=9CFor the dog who refuses ordinary luxury.=E2=80=9D
+Assets: pet image, one gross habit/object, luxury typography,
+macro-style generated shots, original ambient score/VO.
+Complexity: MEDIUM.
+Novelty: Not merely fake advert =E2=80=94 formal mechanism is maximal
+aesthetic prestige applied to the customer=E2=80=99s least prestigious pet
+behavior.
+VERDICT: TEST.
+
+8) PET REALITY-CHECK BTS: =E2=80=9CWHAT THE FAMILY THINKS WE MADE / WHAT
+ACTUALLY HAPPENED=E2=80=9D
+Current evidence/source: TikTok=E2=80=99s 2026 =E2=80=9CReali-Tea=E2=80=9D =
+shift favors
+unfiltered process and messy attempts; September format analysis says
+behind-the-scenes and failed first attempts can compete with polished
+output. https://www.anijam.ai/blog/tiktok-trends/
+Why viewers watch: reveal of the ugly process feels authentic and
+gives the polished final image a second joke.
+Core mechanic: Show the glamorous fictional pet asset, then expose the
+embarrassing source photo / family direction that produced it.
+Pet protagonist: first show Archie as emperor; hard cut to customer
+upload: Archie half-asleep, tongue out, owner=E2=80=99s note =E2=80=9Cmake =
+him look
+majestic but he eats tissues.=E2=80=9D Then return to finished hero shot.
+Best use: Roast.pet organic acquisition ads, customer share clip,
+before/after carousel.
+Exact template: 0=E2=80=935s polished 3D/cinematic pet hero + =E2=80=9CWhat=
+ Grandma
+receives=E2=80=9D; 5=E2=80=938s record-scratch; 8=E2=80=9320s ugly source p=
+hoto +
+questionnaire snippets; 20=E2=80=9328s intermediate absurd attempts; 28=E2=
+=80=9336s
+finished product; 36=E2=80=9340s =E2=80=9CUpload the worst photo. We=E2=80=
+=99ll handle it.=E2=80=9D
+Hook: =E2=80=9CThe photo they gave us vs the gift we sent back.=E2=80=9D
+Assets: actual upload, questionnaire snippets, final generated output,
+process UI.
+Complexity: LOW once production pipeline exists.
+Novelty: This is a Roast.pet acquisition/content format, not another
+fictional roleplay format; it turns the creation pipeline itself into
+comedy and proof.
+VERDICT: MAKE TEMPLATE NOW.
+
+TOP 3 FORMATS TO TEMPLATE THIS HOUR
+1. PET BAD-DREAM RESET =E2=80=94 clean reversal, strong current Reels signa=
+l,
+endlessly parameterizable from fear + favorite thing.
+2. PET FAILURE COMMENTATOR =E2=80=94 strong retention structure and directl=
+y
+converts private anecdotes into a sports-grade replay.
+3. PET TERRIBLE-ADVICE MANUAL =E2=80=94 near-zero production cost, currentl=
+y
+proven list mechanic, excellent carousel/video/card reuse.
+
+EASIEST TO AUTOMATE END-TO-END
+PET TERRIBLE-ADVICE MANUAL. Inputs can be only pet name + one
+trigger/context + 1=E2=80=933 photos. Text generation, reaction crops, risk
+meter, subtitles and VO are deterministic.
+
+HIGHEST SHAREABILITY POTENTIAL
+PET FAILURE COMMENTATOR. It gives the family a specific question with
+an answer (=E2=80=9Ccan Archie actually catch?=E2=80=9D), builds suspense, =
+and the
+replay makes a known household failure feel like a televised event.
+
+WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+PET NPC DIALOGUE TREE. Don=E2=80=99t stop at rendering an RPG card: encode =
+3=E2=80=935
+actual behavioral rules for the animal and let the gift recipient
+converse with a tiny deterministic simulation of their pet. The video
+is the trailer; Pog.pet can be the playable version.
+
+PRODUCT/ONBOARDING DELTA
+Add structured fields: `irrational_fear`, `happiness_purchase`,
+`approx_price`, `failed_skill`, `aura_high`, `aura_low`,
+`dangerous_phrase`, `secret_trigger`, `gross_luxury_habit`. These
+variables each drive multiple templates and keep the comedy anchored
+to information only the family knows.
+
+SOURCE LINKS
+TikTok September format tracker: https://www.socialpilot.co/blog/tiktok-tre=
+nds
+Instagram Reels Sep 10=E2=80=9324 tracker:
+https://www.socialpilot.co/blog/instagram-reels-trends
+YouTube Shorts September tracker:
+https://www.anijam.ai/blog/youtube-shorts-trends/
+TikTok September mechanics/strategy: https://www.anijam.ai/blog/tiktok-tren=
+ds/
+Things To Say format: https://meme.com/memes/things-to-say
+September aura/gaming snapshot:
+https://discotok.com/en/blog/spain-tiktok-trending-hashtags-september-2026-=
+20260901

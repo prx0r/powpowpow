@@ -1,0 +1,450 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id JzdFv5gZHqUE
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 04:23:39 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=gE5M2AQEP8wKDP9edjujFGZOLF0b6BjcZHtNn6UzazyLRvVkuNtlmkZjIQzkDLh1R6xRDLRaN
+	Hfd6lmwKQa8cxplUoMWfTigI6gkLIMa2hsvMjt6RFYJzbCg+o/k2EVI8BHxueww9EKaYxW7HJrA
+	Bix5abuKE7BEVyfped+X0SQkDfjpVB+gJh+hA4AGBHIRy3wquigTqHgmWpoSxI5/beAVlgYBUUe
+	GUv9Lo9zZ6RjLCJI70m5La6kqXU6GBomOxp8Xg4CJuQdT8WNR78TJazDrobG440j8p7/mQsrupx
+	u/QsVOlK5GnOxkUnIdCq5JIg6FyOLsF1PTLSfFycT7ww==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789791819; x=1790396619; bh=B+CkNr3E
+	ff8EkqCk82SpWWYK8JnApdP4cjiGKwbe4q8=; b=N9jis9vOv/5w28eBxtHLE6Oew60KuCjXw/y
+	T8HfGoZ1QzRg3U6obhu6PV3sKU65/AK/995ue5M31FO/MLZKlnBpKldFyhug7nGZlDtzaTerQK2
+	WzviXyOYQzfAu4GxNncMS2/mThpPk7iD3/yeK1kjXn6BmI0IS0qJWB/l5/4FjA1z5lRY8FDZ/pS
+	7Ex23N/QYD0ZOjSlZPV8RdLkkLx1COh1irt1d/+QjeCw2+oJ/swC/fZ4ZfIt0Xlokw+ulZ38G0j
+	GSugin0OEZaP0dJkGtSihazhUIV5e/DQBJRFjK1RwwnQBpfjwyosnIdKHV/nREX4qqi9xhCFKHS
+	fc//mhA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SQp1GVmd;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SQp1GVmd;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4aac92dbso1293766d50.2
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 21:23:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789791819; cv=none;
+        d=google.com; s=arc-20260327;
+        b=FUdzX8fPd2V49yhv1PimXsNfWoUJpkhoyprEOtEcb4aGpDl9Ut/myFFCPEroHaEZHg
+         h4zOr5bMfbT2RCd5KEht0BrIlN/UTUqM4r3GSY3rhTnE/ZU5+/JkC6iDFkFjViQZdPkC
+         CgyCUU7fj0yPdyroURqEWN7L6RdRH5XBII1RR1DvwspBACOb79cAeuMacEzUZw0QLYgW
+         eah5S0f3XlTsYcPk1CpyPQ5tjN8G+HiWNhSDUzYcQu7h/7vwjFpYJNOzGGz2f/MDi4Ws
+         1fRmyTz+BQ3tSEAGyqTEol1tILC8L/tefmM/v7YOlREcYnCVN9TmhS3yY2cg1C+MyHQp
+         Z0hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=B+CkNr3Eff8EkqCk82SpWWYK8JnApdP4cjiGKwbe4q8=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=BqHBA8Ey7yKWc+uy7CObT1TdTM+IkSemqg4CvXFI5ZWCp5lLergB8g8DIlXX9827En
+         PNu5R65yD9spWhYuc3YxqkRR9KZsq8+mrrptLYXsd+zZMODQLmy5t+3eS9aQS0e9VWPE
+         nfJc+wK2O6NWGGwkkhV/NBVwjZu9ccc5WciK8iQedEC20QnOezJ1sv9Iu7FO+Q3KCszz
+         67vpsQL3jajq9HQoUhY0KXm52mKEazyjs3o72TsUQzT/C59ZNdvahaCh6ssHvJQUUZz2
+         40l/HslXUuylRZ2BjJmMUi31VrRegVsnVVHpcnYgaq3JNhHkLmPVSP7bytkRWlWW3zAt
+         jKsw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789791819; x=1790396619; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=B+CkNr3Eff8EkqCk82SpWWYK8JnApdP4cjiGKwbe4q8=;
+        b=SQp1GVmd4eI91JSbdlsFSBu0YPxd3SzCvSnOaiyAuU3XvJv+SrVk2BKUWngiNayudK
+         +D5BaUmfrfbqbjexEdsKjcvfs3hMyOgUkZ1RwY4oOU3p3pbe7cVyJrsb4vzJ/1c8PQOL
+         1AsbT769BTvrJf44gO8MfLIpxsdfens550/JcuqJYJAoFHqb0ZJv1JZX0cJJoqX98gfq
+         E/Ob2svLFYUDVvEfz2gMcvkbqznf3EuI3F8DThNtk0nofX8afceX2CW9ySscEInrDoD1
+         P3Md3mnjXHoA8Roy5VV3pDalB2pii2RcH0sJOmeFGtZCYv1ioE/1QFVhxV/51guTCnqw
+         fGOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789791819; x=1790396619;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=B+CkNr3Eff8EkqCk82SpWWYK8JnApdP4cjiGKwbe4q8=;
+        b=RUhDyn4PJeFcFhN/RgaJ3y6lsRveKkVKjfQSCe+OpX6VJI7f1d7o3F71oa8vOgD4xC
+         vaTNVEm66V8vfotdq3z0BqgTZCYuYjKKB5e0v/lqPXEwkK8R9g2BeGZlbyRdyKj8trUb
+         hgYRcP7XcE/ZsQCArU1jlS6yqokhELsAiqcB5tg+wOG8FwkQVcHGGy+zg5Ij7d9ZB38u
+         bkojjFNjCoeBgILjRWJmq+cd2kMVVeP8uvFxQ/Yzts1afrHHNmhp/aTXl+6K2MzWdqJm
+         BxRIrqgeVQ4qpetjE7qp22UGym64iqX3MK44kjXNEKjldNv83fZewOMw9sBkgM+aAyR6
+         jTdQ==
+X-Gm-Message-State: AFuF++lapvJHbl7Bi6lf1rGltRp6YCNMNzvJDwXAyX7pFlU3oE29gtzf
+	ktKJOF/rQzRLEjlvh0Acz17XL9w3SHmDT0Y6c3Z0bnSwza3t4U3eRYMZwT03HVGTmO2sxWjQtzO
+	RhwBdCYsbZhZZWua2UGPxk1HljMtmQLJq8g==
+X-Gm-Gg: AYBFou20IDtUc4PftOUYctRqmRafPwDH0g+djD0q8ky7Ksn2KkHWdswy/wXAQH2a3wG
+	+PeRLoO9CA2vY4FvyPwx4LMmqMwgWW39U+77swAF+VGRt2CmBbGhdhbD2ZTuTkMdVJWs/rGx2Np
+	srdfwY3sDEq16KD2k0/oJg/LkHZ561VOEfHzOYqazdaXamo1Ypo1OoMN84Ic3Q3YPycBpC8R06R
+	GGJtqSJm1EaWcEKJphCnaiatVfFdeXsfehE0IDaBoF9aP1ophIc3+4J3Mq/e1nrmJEfbqJvIVfR
+	XE8YQPqAD5xMq24P3wEn47NK7EQV5WhfdcRoZ4SYg1r3C8D8OA2wb+lXmSBXwLibJQ1UP+Kz5I8
+	vhFvLAbIYCTBkY1v7NskdEPzrtZ0GWyNxc00mxiLBGy9cge1OKd0D2gWcAnA7itjoB8dT8RmjQw
+	==
+X-Received: by 2002:a05:690e:4199:b0:671:16e9:6a5 with SMTP id
+ 956f58d0204a3-6717fc91c9bmr1180337d50.26.1789791819048; Fri, 18 Sep 2026
+ 21:23:39 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 23:23:38 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 23:23:38 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 23:23:38 -0500
+X-Gm-Features: AcwNN1URYBGWUKNIqqhqkQhBez9TwIWVRoLXDjIKevAwHi6Zq7AuYG-pkamH99A
+Message-ID: <CAPdrGem-m8gD4p9sMRnY-u1ExB-3QFC+8RezNfts3oyt4rKsLQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D19_11=3A2?=
+	=?UTF-8?Q?2_Asia=2FPhnom=5FPenh_=E2=80=94_4_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000098a982065bce61c5"
+
+--00000000000098a982065bce61c5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 4 useful new finds
+
+Screened 25+ plausible candidates across pet cutout/matting, generated
+sprites, editable media layouts, WebAR, captions, identity QA and commerce
+tooling; prior-run finds were deduplicated. Four new projects are worth
+retaining.
+1) lightScout/light-converter =E2=80=94 REUSE NOW / FORK
+
+URL: https://github.com/lightScout/light-converter
+Creator: lightScout
+Activity: crawled Sep 19, 2026; current project
+License: MIT code; BiRefNet model MIT; IS-Net/DIS Apache-2.0
+
+Roast.pet step solved: customer pet photo =E2=86=92 robust transparent cuto=
+ut,
+especially difficult low-contrast fur, with a built-in manual rescue path.
+
+Why this is stronger than the generic browser background removers already
+found: it automatically runs a second CLAHE contrast-enhanced pass when the
+first mask is uncertain, then applies guided-filter edge refinement, hole
+filling and speckle cleanup. It also has batch processing, restore/erase
+brushes, IndexedDB persistence, model caching and ZIP export.
+
+Install/demo route: clone, npm install, npm run models, npm run dev. WebGPU
+uses fp16 BiRefNet; WASM fallback uses int8 IS-Net.
+Dependencies/hardware: modern browser; WebGPU preferred, WASM fallback;
+one-time model build uses Python/ONNX tooling.
+Evidence: runnable browser implementation, explicit model
+provenance/licenses, batch/edit workflow, uncertainty-triggered second pass=
+.
+Work replaced: most cutout worker UI, fallback logic, edge cleanup, caching
+and human rescue tooling.
+Integration: LOW-MEDIUM. Maintenance risk: LOW-MEDIUM.
+Exact experiment: run 100 real Etsy-style pet photos through Light
+Converter and BG0: white dog/white wall, black cat/dark sofa, grass/fur,
+whiskers, cropped ears, clutter. Record fully automatic pass rate, rescue
+time, edge quality and weak-laptop latency. If the CLAHE fallback
+materially reduces human intervention, fork its processing pipeline.
+2) SeeleAI/CookSprite =E2=80=94 COPY WORKFLOW / BENCHMARK
+
+URL: https://github.com/SeeleAI/CookSprite
+Creator: SeeleAI
+Activity: crawled Sep 19, 2026
+License: verify repository/model licenses before embedding
+
+Roast.pet step solved: generated static pet assets =E2=86=92 individually
+regenerable frames through an agent-friendly typed workflow rather than
+rerolling a whole sheet.
+
+CookSprite separates model/inference, typed workflow and frontend/agent
+CLI. Its useful Roast.pet idea is that frames are atomic operations:
+generate, preview, pixel-fix and regenerate individual frames, then export
+ordinary PNG sprite sheets. It also supports a GPU-free stub path and
+ComfyUI export.
+
+Install/API/demo route: repository provides inference HTTP boundary, typed
+workflow graph, web toolbox and agent CLI.
+Dependencies/hardware: backend-dependent; architecture permits local/docker
+inference and a stub path.
+Evidence: runnable repo with explicit ABI-decoupled layers and
+individual-frame regeneration.
+Work replaced: custom agent-to-image-model orchestration and much of the
+regenerate-one-bad-asset workflow.
+Integration: MEDIUM. Maintenance risk: MEDIUM.
+Exact experiment: model Roast.pet=E2=80=99s approved pet package as 7 atomi=
+c
+operations: neutral, blink, side-eye, recoil, A/E/O mouths. Deliberately
+fail one mouth and verify only that node reruns while approved outputs
+remain immutable.
+3) realZachi/shotluma =E2=80=94 COPY EDITABLE-DESIGN MECHANISM
+
+URL: https://github.com/realZachi/shotluma
+Creator: realZachi
+Activity: crawled Sep 14, 2026
+License: verify before code reuse
+
+Roast.pet step solved: agent-created listing/social graphics that remain
+editable instead of becoming opaque generated bitmaps.
+
+Shotluma is a local-first browser canvas where the AI drives the same
+normal editor operations a human uses. Text, gradients, shapes and mockups
+remain real selectable layers; a single element can be revised without
+regenerating the entire design.
+
+Route: browser editor; projects local-first; agent can use local Codex/CLI
+or provider key.
+Dependencies/hardware: browser; no image-generation GPU required for layout
+itself.
+Evidence: current working editor with editable artboards and exact-size
+export.
+Work replaced: a custom agent graphics editor and the brittle pattern of
+asking an image model to render typography/layout.
+Integration: MEDIUM if reused; LOW if only copying its tool-call design.
+Exact experiment: reproduce the canonical ROAST/Netflix-style card using
+only editable operations: background, pet cutout, podium, headline, footer.
+Then have an agent change only headline/pet image across 20 orders. Compare
+failure rate against HTML templates.
+
+Verdict: COPY EDITABLE-DESIGN MECHANISM. HTML remains the likely production
+primitive, but this is a strong rescue/manual-editor pattern.
+4) eigdoyr/mockymax =E2=80=94 COPY MASK ARCHITECTURE
+
+URL: https://github.com/eigdoyr/mockymax/blob/main/README.md
+Creator: eigdoyr
+Status: v0.2.5 alpha; 14 scenes
+License: verify before source reuse
+
+Roast.pet step solved: one canonical product photograph =E2=86=92 reusable
+compositing template with occlusions and perspective already baked into a
+mask.
+
+MockyMax represents each scene as a background plus alpha mask defining the
+insertion surface. That naturally handles rounded corners, partial
+visibility and foreground occlusion; its masks can be bootstrapped
+automatically with SAM and hand-refined once.
+
+Route: browser compositor.
+Dependencies/hardware: ordinary browser for composition; SAM/Fal is only
+needed to bootstrap masks.
+Evidence: 14 shipped scenes and a working alpha-mask architecture.
+Work replaced: repeated manual Photoshop masking for every product photo
+and complicated per-order geometry.
+Integration: LOW if we copy the artifact format.
+Exact experiment: take five real Roast.pet product photos (card front, card
+angle, framed poster, shirt, phone/AR), create one alpha/occlusion mask per
+scene, then swap in 100 customer artworks. Compare against homography-only
+placement on cards and shirts.
+
+Verdict: COPY MASK ARCHITECTURE. The useful artifact is simply scene.jpg +
+placement transform + mask.png.
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+   1. A pet-cutout rescue editor: Light Converter already combines
+   BiRefNet, uncertainty fallback, guided edges and brushes.
+   2. Whole-sheet regeneration logic: use atomic frame/row workflows like
+   CookSprite/VexJoy.
+   3. AI-rendered typography/layout: keep graphics as editable HTML/canvas
+   operations.
+   4. Per-order Photoshop product masking: make each product photograph a
+   reusable background + transform + alpha/occlusion mask.
+   5. Yet another generic background-removal model: benchmark the existing
+   candidates and freeze one winner.
+
+Most surprising hobby project
+
+Light Converter. The automatic second CLAHE pass when a first segmentation
+mask is uncertain is exactly the sort of tiny, practical mechanism that may
+matter more for messy customer uploads than changing the segmentation model=
+.
+Fastest integration win
+
+Clone Light Converter and run the same difficult 50=E2=80=93100 pet-photo b=
+enchmark
+against BG0. This can settle the cutout stack without touching the rest of
+Roast.pet.
+Repo/author worth following
+
+lightScout/light-converter. It is focused on the unglamorous production
+details=E2=80=94uncertainty fallback, edge refinement, batching, local pers=
+istence
+and manual rescue=E2=80=94that determine whether a customer-upload pipeline
+actually works cheaply.
+Architecture delta
+
+The upload boundary should probably become:
+customer photos =E2=86=92 local/batch BiRefNet =E2=86=92 uncertainty-trigge=
+red contrast
+retry =E2=86=92 deterministic edge cleanup =E2=86=92 optional brush rescue =
+=E2=86=92 canonical
+transparent pet =E2=86=92 immutable identity bank.
+
+Generation should never be asked to solve background cleanup, and
+downstream Roast.pet workers should never see the original messy upload
+unless the cutout stage explicitly fails.
+
+--00000000000098a982065bce61c5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 4 useful new finds
+<p>Screened 25+ plausible candidates across pet cutout/matting, generated s=
+prites, editable media layouts, WebAR, captions, identity QA and commerce t=
+ooling; prior-run finds were deduplicated. Four new projects are worth reta=
+ining.</p>
+
+1) lightScout/light-converter =E2=80=94 REUSE NOW / FORK
+<p>URL: <a href=3D"https://github.com/lightScout/light-converter">https://g=
+ithub.com/lightScout/light-converter</a><br>
+Creator: lightScout<br>
+Activity: crawled Sep 19, 2026; current project<br>
+License: MIT code; BiRefNet model MIT; IS-Net/DIS Apache-2.0</p>
+<p>Roast.pet step solved: customer pet photo =E2=86=92 robust transparent c=
+utout, especially difficult low-contrast fur, with a built-in manual rescue=
+ path.</p>
+<p>Why this is stronger than the generic browser background removers alread=
+y found: it automatically runs a second CLAHE contrast-enhanced pass when t=
+he first mask is uncertain, then applies guided-filter edge refinement, hol=
+e filling and speckle cleanup. It also has batch processing, restore/erase =
+brushes, IndexedDB persistence, model caching and ZIP export.</p>
+<p>Install/demo route: clone, npm install, npm run models, npm run dev. Web=
+GPU uses fp16 BiRefNet; WASM fallback uses int8 IS-Net.<br>
+Dependencies/hardware: modern browser; WebGPU preferred, WASM fallback; one=
+-time model build uses Python/ONNX tooling.<br>
+Evidence: runnable browser implementation, explicit model provenance/licens=
+es, batch/edit workflow, uncertainty-triggered second pass.<br>
+Work replaced: most cutout worker UI, fallback logic, edge cleanup, caching=
+ and human rescue tooling.<br>
+Integration: LOW-MEDIUM. Maintenance risk: LOW-MEDIUM.<br>
+Exact experiment: run 100 real Etsy-style pet photos through Light Converte=
+r and BG0: white dog/white wall, black cat/dark sofa, grass/fur, whiskers, =
+cropped ears, clutter. Record fully automatic pass rate, rescue time, edge =
+quality and weak-laptop latency. If the CLAHE fallback materially reduces h=
+uman intervention, fork its processing pipeline.</p>
+
+2) SeeleAI/CookSprite =E2=80=94 COPY WORKFLOW / BENCHMARK
+<p>URL: <a href=3D"https://github.com/SeeleAI/CookSprite">https://github.co=
+m/SeeleAI/CookSprite</a><br>
+Creator: SeeleAI<br>
+Activity: crawled Sep 19, 2026<br>
+License: verify repository/model licenses before embedding</p>
+<p>Roast.pet step solved: generated static pet assets =E2=86=92 individuall=
+y regenerable frames through an agent-friendly typed workflow rather than r=
+erolling a whole sheet.</p>
+<p>CookSprite separates model/inference, typed workflow and frontend/agent =
+CLI. Its useful Roast.pet idea is that frames are atomic operations: genera=
+te, preview, pixel-fix and regenerate individual frames, then export ordina=
+ry PNG sprite sheets. It also supports a GPU-free stub path and ComfyUI exp=
+ort.</p>
+<p>Install/API/demo route: repository provides inference HTTP boundary, typ=
+ed workflow graph, web toolbox and agent CLI.<br>
+Dependencies/hardware: backend-dependent; architecture permits local/docker=
+ inference and a stub path.<br>
+Evidence: runnable repo with explicit ABI-decoupled layers and individual-f=
+rame regeneration.<br>
+Work replaced: custom agent-to-image-model orchestration and much of the re=
+generate-one-bad-asset workflow.<br>
+Integration: MEDIUM. Maintenance risk: MEDIUM.<br>
+Exact experiment: model Roast.pet=E2=80=99s approved pet package as 7 atomi=
+c operations: neutral, blink, side-eye, recoil, A/E/O mouths. Deliberately =
+fail one mouth and verify only that node reruns while approved outputs rema=
+in immutable.</p>
+
+3) realZachi/shotluma =E2=80=94 COPY EDITABLE-DESIGN MECHANISM
+<p>URL: <a href=3D"https://github.com/realZachi/shotluma">https://github.co=
+m/realZachi/shotluma</a><br>
+Creator: realZachi<br>
+Activity: crawled Sep 14, 2026<br>
+License: verify before code reuse</p>
+<p>Roast.pet step solved: agent-created listing/social graphics that remain=
+ editable instead of becoming opaque generated bitmaps.</p>
+<p>Shotluma is a local-first browser canvas where the AI drives the same no=
+rmal editor operations a human uses. Text, gradients, shapes and mockups re=
+main real selectable layers; a single element can be revised without regene=
+rating the entire design.</p>
+<p>Route: browser editor; projects local-first; agent can use local Codex/C=
+LI or provider key.<br>
+Dependencies/hardware: browser; no image-generation GPU required for layout=
+ itself.<br>
+Evidence: current working editor with editable artboards and exact-size exp=
+ort.<br>
+Work replaced: a custom agent graphics editor and the brittle pattern of as=
+king an image model to render typography/layout.<br>
+Integration: MEDIUM if reused; LOW if only copying its tool-call design.<br=
+>
+Exact experiment: reproduce the canonical ROAST/Netflix-style card using on=
+ly editable operations: background, pet cutout, podium, headline, footer. T=
+hen have an agent change only headline/pet image across 20 orders. Compare =
+failure rate against HTML templates.</p>
+<p>Verdict: COPY EDITABLE-DESIGN MECHANISM. HTML remains the likely product=
+ion primitive, but this is a strong rescue/manual-editor pattern.</p>
+
+4) eigdoyr/mockymax =E2=80=94 COPY MASK ARCHITECTURE
+<p>URL: <a href=3D"https://github.com/eigdoyr/mockymax/blob/main/README.md"=
+>https://github.com/eigdoyr/mockymax/blob/main/README.md</a><br>
+Creator: eigdoyr<br>
+Status: v0.2.5 alpha; 14 scenes<br>
+License: verify before source reuse</p>
+<p>Roast.pet step solved: one canonical product photograph =E2=86=92 reusab=
+le compositing template with occlusions and perspective already baked into =
+a mask.</p>
+<p>MockyMax represents each scene as a background plus alpha mask defining =
+the insertion surface. That naturally handles rounded corners, partial visi=
+bility and foreground occlusion; its masks can be bootstrapped automaticall=
+y with SAM and hand-refined once.</p>
+<p>Route: browser compositor.<br>
+Dependencies/hardware: ordinary browser for composition; SAM/Fal is only ne=
+eded to bootstrap masks.<br>
+Evidence: 14 shipped scenes and a working alpha-mask architecture.<br>
+Work replaced: repeated manual Photoshop masking for every product photo an=
+d complicated per-order geometry.<br>
+Integration: LOW if we copy the artifact format.<br>
+Exact experiment: take five real Roast.pet product photos (card front, card=
+ angle, framed poster, shirt, phone/AR), create one alpha/occlusion mask pe=
+r scene, then swap in 100 customer artworks. Compare against homography-onl=
+y placement on cards and shirts.</p>
+<p>Verdict: COPY MASK ARCHITECTURE. The useful artifact is simply scene.jpg=
+ + placement transform + mask.png.</p>
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+<ol>
+<li>A pet-cutout rescue editor: Light Converter already combines BiRefNet, =
+uncertainty fallback, guided edges and brushes.</li>
+<li>Whole-sheet regeneration logic: use atomic frame/row workflows like Coo=
+kSprite/VexJoy.</li>
+<li>AI-rendered typography/layout: keep graphics as editable HTML/canvas op=
+erations.</li>
+<li>Per-order Photoshop product masking: make each product photograph a reu=
+sable background + transform + alpha/occlusion mask.</li>
+<li>Yet another generic background-removal model: benchmark the existing ca=
+ndidates and freeze one winner.</li>
+</ol>
+
+Most surprising hobby project
+<p>Light Converter. The automatic second CLAHE pass when a first segmentati=
+on mask is uncertain is exactly the sort of tiny, practical mechanism that =
+may matter more for messy customer uploads than changing the segmentation m=
+odel.</p>
+
+Fastest integration win
+<p>Clone Light Converter and run the same difficult 50=E2=80=93100 pet-phot=
+o benchmark against BG0. This can settle the cutout stack without touching =
+the rest of Roast.pet.</p>
+
+Repo/author worth following
+<p>lightScout/light-converter. It is focused on the unglamorous production =
+details=E2=80=94uncertainty fallback, edge refinement, batching, local pers=
+istence and manual rescue=E2=80=94that determine whether a customer-upload =
+pipeline actually works cheaply.</p>
+
+Architecture delta
+<p>The upload boundary should probably become:<br>
+customer photos =E2=86=92 local/batch BiRefNet =E2=86=92 uncertainty-trigge=
+red contrast retry =E2=86=92 deterministic edge cleanup =E2=86=92 optional =
+brush rescue =E2=86=92 canonical transparent pet =E2=86=92 immutable identi=
+ty bank.</p>
+<p>Generation should never be asked to solve background cleanup, and downst=
+ream Roast.pet workers should never see the original messy upload unless th=
+e cutout stage explicitly fails.</p>
+
+--00000000000098a982065bce61c5--

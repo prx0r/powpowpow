@@ -1,0 +1,801 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id E4X8rHZcqYbc
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 14:52:45 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=AgQOVlSczwqXvJvHj/CnFUYQDDhwXsqLpa4Y2osAlO40beNb0ZVgQtDtLW/MSEmrQnsMnDAZo
+	oFfn+LrR8TPpkDLs3kipyXLACtleptKpgAZ5m8gElkPQiMD9Sr6Fy9+X8a5hOyMccVn8wZ19rJ8
+	o7QAxx1LkJKnlf2ui2Gie6vBtYbLZ1BfAjjWW8Ia/B6a146+Ss443dkBN1K+dKEW3wfpYdfEX1h
+	sIM2in/58VSxJ5FdBFi9hWDU681nvRRbLUwRVZQUGLMLc+vW4DYuw79blxiuCVEDsONIJBYNima
+	KEwRBBYdfm5wxELpkfSasAGHoHHTbc+THmYVFFE34Nzw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789656765; x=1790261565; bh=dlQtbsgi
+	aAx5GuhHHpBkXPPFIquD3hajqnBf3FnPXOg=; b=cPRyLqobM/JxeR/z/4ohxdblVnVkd7DKwBz
+	VRbmN4FYo7HFcjtTaZvB0I+GCxc187iSS1N0cAcTT2Y5O97u/guJ6EkRt8sSF9Sf66jgNaC5EvF
+	VPwfSx6kLfGdvQH7jQhrtl32wP5TVDQmgrM+207qJDRo3Lv0FNcjS7cAFPuKAKedxH4h7m6KsKO
+	129wvu6Y3637ExHSflBILsd9UH7pnht0YLf35hNZCnux/4wWt0OyRDaI4UkxErEGOw9U8iOa3jI
+	DpCMYjDm5dc7imDcap1Cf4qrZhIlQf0VEK7tvZdDoBkTYCs2sC02k6grQbHCifzU0Ou2PgW32M9
+	0VD8IDA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=pXoCTrrz;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=pXoCTrrz;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-85d43ac8d1eso6000437b3.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 07:52:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789656765; cv=none;
+        d=google.com; s=arc-20260327;
+        b=H+uHITs4mBW9S9d7PxEkRO4QEPooTNqEMsY6KRYHI9KSAIRScHW2Uqlp4GMN7/uoMm
+         J35sqYYd+Bt/EUZtKGSy5Rv7STANfhj9mgTDa2v2nN3+v7kSeFGgP9G5N2Z/jSq0Tco4
+         npygaHgiV+5X12X4XRuojb91es9orCjh/Tft/+1E8PITHOW/pS8tktOv+3p66kyQTcn7
+         r+ftFKOwbiY+2SgZPaDbZwXvpmIuRIKNgY18eQ6Uv7GLX/wC7xKRsGXBpJM+l853rtn3
+         38DpPULGuvUSdFxlv2frvc5dZzXftOWx6SVaS+lSsttcvYngj1B+owWGmH2Rsmw6Z/Ks
+         1lvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=dlQtbsgiaAx5GuhHHpBkXPPFIquD3hajqnBf3FnPXOg=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=gK1PeIzcdhDXZOsNbiD6cjxO/0cD9OCyGV42Z5ixCxp9irpPc8m70QPDDfWuSe/gAA
+         By2ffa9Fe7tfolUxnvQRG/klu42UPcQ2uQ6Tzawr2bKM0ilVxPE4SsW/sNrjCBPQfBD4
+         KtdAkVjLBtiS2K+jRez4FSGWLuvqOhoCQCNaFOBIXBDT0aLu4I2p3b1aWahVj5usY3hQ
+         UfTboutz2LGIfe3o4BWyCwtMHQK4nwTu7QVWcF21Ejp3W2/PzwTnU7s8nCEuX6wLGgTS
+         gxcZS29AuT/m4MkbrTSV83w8N1MEvz6rjFVQyjK9oAi+YijjQSK5WyRr0yjJdqFIYdVs
+         jxnA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789656765; x=1790261565; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=dlQtbsgiaAx5GuhHHpBkXPPFIquD3hajqnBf3FnPXOg=;
+        b=pXoCTrrztqzKObSNLpq35j21CofNXzjSX6XlNixpbx4luqu0EPtGx9fAQAhtCyNzpn
+         o+cwXSXmfKRdb23fcZ66MOtZmTzzMYCwJrEhOIbapEO+OcQwZOydV5FzWtfMCmNKNuyL
+         bBLG/7Af30vMxdwvWzIu5E6Gefb0ZSwmfcaTPGcKNuQhPzn71IF8+nnOi6zasyhXoF9R
+         gbLv4rbqQJiQ7anmfshPKe9s9h8oiciLRvggCVSqy8L+wznnuDrOgRksSWRjarpAFUz9
+         /H97emSrwMy8DTdCV+Hj6Ti+CrKu84BdHHzbFlvo6qHDPnL8Y0q1mpCBBDEbnAuwB20E
+         4VKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789656765; x=1790261565;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=dlQtbsgiaAx5GuhHHpBkXPPFIquD3hajqnBf3FnPXOg=;
+        b=yJn5kVIOpG+L7w/IMY8ionzzPDpV/3tp1ZqsGfDtJ8oDqqStMgfeVh/CiyE+IalKP2
+         4EP+wSldh+5iKzWMjXnQ7hVrEh7vy5NBfCsG8B990P2Ut9WxGHEGaOTkeD1VYVOQLdM7
+         oRi0MGfTwZMqSv7n5lpcoRirJgtfvn82LD5oPLB/X3KcKkJZvDTfzkm+dr5BTKdueQbn
+         ZdTVLCz8OPQ+WGPitWtFdgP4H13nIpsCWzBeaJhWTaGa33o43Je39NaHa1Yt6lIcSC29
+         Q1/dE2ikPXBmiC3bViuvI8FDAsc+zOFJuSnGTp7RrgyS+o5wB4DORpdaoAZXAK8dseD+
+         Xp8A==
+X-Gm-Message-State: AFuF++lJDthJ3Wc4/S/NThYcuxPWiIUm/kOqjOY/q99kBiZaCis0sQYo
+	/O13kOSw3PCWvXs7S1L1pBWh3FzceITddIXkAiG22KLsrYxMMyYSN/WJ83VW34+fydg/ixbLD+g
+	3qEZzM2Ay601qbzj2unpE+pRzDopG4VCuDg==
+X-Gm-Gg: AYBFou3VNj8f+OtZGJSGA3e8h1KrcLU1y1oovwCDvreIwU4oy3rgOKADs+AqpLHvkSN
+	Nw097GU9NxCov+0HRUmWQ2NGX2QdR/spkE+/CAzIVcYS4VJnA1ScuWihjZPf3uZPtPQStKQg9fy
+	vVU1RsS9nTJllPycvOAw0vRgFrJeYZ5bJNGJ1JQMWYQHvSBvGr6NLf3AayCz+SMtDTXGGMLwykh
+	/y5tn0p+9vhOFO89DOpICSPwB8IYbMdoS8JJbHuFWKdOthsB5jQU6L+Pbwzw1MyZ/7J6XATs4Xp
+	wrtlrp3rn2sRHOIOZcQFr/NW7pCjwo+ekz/f8uKhCpAMBeWQUoNlXSTWvS7cT1GHfHkn+2qV0Hn
+	mNfjLYShYCTO95Hvgv0lpy9TVGBhKzv1ERSr3eBm4qXi6pOChBLfHPTb1fLVfGYrNuGLzWPQ=
+X-Received: by 2002:a05:690c:7283:b0:895:241d:6b2d with SMTP id
+ 00721157ae682-895243bfb76mr5987837b3.33.1789656764475; Thu, 17 Sep 2026
+ 07:52:44 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 23:52:43 +0900
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 23:52:43 +0900
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 23:52:43 +0900
+X-Gm-Features: AcwNN1XMj7vdAm6HZwtitr_SGcYacVUaZT092Ip1vYWLryT4HSxJtjJPbdA79Uk
+Message-ID: <CAPdrGek4MJ+tVwG_X1U6S8Uw018u5=Z=KUKt5HkPnrPw_Nqs+Q@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D17_21=3A51_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_25_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000b76bef065baeefac"
+
+--000000000000b76bef065baeefac
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Scanner =E2=80=94 Edge Report 1. RUN STATE / COVERAGE
+
+Recovered the cumulative scanner chain from Gmail Sent before research.
+Latest persisted report was 2026-09-17 20:49 =E2=80=94 25 new/0 changed; ea=
+rlier
+runs include 27-new and 25-new graph-traversal passes. Known objects were
+treated as an exclusion set and searches were pushed outward into
+tool-routing, self-improvement/control, MCP attack/defence, active
+perception/world models, and generative-media MCP/skills.
+
+This pass selected 25 best unseen/adjacent canonical objects. This is
+relative ranking, not threshold gating.
+2. NEW OBJECT DASHBOARD A =E2=80=94 Agent framework / Monid-like control & =
+tooling
+
+   1. *jadchene/mcp-gateway* =E2=80=94 https://github.com/jadchene/mcp-gate=
+way =E2=80=94
+   Closest seed: Monid. Multiple MCP services behind one endpoint; agent se=
+es
+   only six routing tools and discovers downstream schemas on demand. Curre=
+nt
+   MCP 2026-07-28 support. *SANDBOX*.
+   2. *roddutra/agent-mcp-gateway* =E2=80=94
+   https://github.com/roddutra/agent-mcp-gateway =E2=80=94 Monid + Privatel=
+y
+   authority. Exposes only 3 gateway tools, on-demand discovery, and
+   per-agent/per-subagent server/tool ACLs. *BUILD PROBE*.
+   3. *agent-guide/agent-gateway* =E2=80=94
+   https://github.com/agent-guide/agent-gateway =E2=80=94 Monid-like unifie=
+d
+   gateway with MCP bundles, virtual keys, auth policies and agent workload
+   routing. *WATCH*.
+   4. *microsoft/mcp-gateway* =E2=80=94 https://github.com/microsoft/mcp-ga=
+teway =E2=80=94
+   Monid at Kubernetes/runtime scale: session-aware stateful MCP routing,
+   dynamic tool router, agent/session resources and guarded built-in
+   bash/files. *SANDBOX*.
+   5. *agentgateway/agentgateway* =E2=80=94
+   https://github.com/agentgateway/agentgateway =E2=80=94 Unified agentic p=
+roxy
+   across LLM, MCP and A2A traffic with spend controls, OAuth, federation,
+   capability discovery and inference routing. *BUILD PROBE*.
+   6. *llm-use/llm-use* =E2=80=94 https://github.com/llm-use/llm-use =E2=80=
+=94 Agent
+   orchestrator with planner/workers/synthesis plus a lightweight learned
+   router that improves from past task=E2=86=92mode pairs. *SANDBOX*.
+
+B =E2=80=94 JEV / decision / self-improvement / paper=E2=86=92code
+
+   1. *vermayuvraj/self-improving-agent (SIA)* =E2=80=94
+   https://github.com/vermayuvraj/self-improving-agent =E2=80=94 Matched-bu=
+dget
+   research platform for self-improving software agents; useful because it
+   tests whether apparent improvement survives proper controls. *ADOPT
+   METHODOLOGY*.
+   2. *shreydesai/self-improving-agent* =E2=80=94
+   https://github.com/shreydesai/self-improving-agent =E2=80=94 Meta-agent =
+evolves
+   tools/routing/planning from failures and gates mutations on validation-s=
+et
+   improvement. Very close to Seed0/Dream-RSI. *SANDBOX*.
+   3. *lispmeister/loom* =E2=80=94 https://github.com/lispmeister/loom =E2=
+=80=94 Recursive
+   self-modifying coding agent; retrospective reports 72 generations / 1
+   promoted and points to successor CAMBRIAN using spec-as-genome + full
+   regeneration. *CONTENT NOW / WATCH CAMBRIAN*.
+   4. *aadityabuilds/cs224n* =E2=80=94 https://github.com/aadityabuilds/cs2=
+24n =E2=80=94
+   Recursive self-improvement for code generation using
+   self-distillation/policy optimization plus RAG. *WATCH*.
+   5. *doldam0/tmow* =E2=80=94 https://github.com/doldam0/tmow =E2=80=94 IC=
+LR 2026
+   Test-Time Mixture of World Models; adapts routing functions at test time
+   using world models as simulators. Strong JEV-adjacent learned-controller
+   primitive. *SANDBOX*.
+   6. *HarryHsing/OmniAgent* =E2=80=94 https://github.com/HarryHsing/OmniAg=
+ent =E2=80=94
+   ICML 2026 native active-video-perception agent: POMDP
+   Observation=E2=86=92Thought=E2=86=92Action loop choosing structured
+   get_frames/get_audio/get_clip/answer actions. 7B agent reports beating
+   Qwen2.5-VL-72B on LVBench while consuming 73% fewer frames. *SANDBOX*.
+   7. *Snowflake-Labs/agent-world-model* =E2=80=94
+   https://github.com/Snowflake-Labs/agent-world-model =E2=80=94 ICML 2026 =
+Agent
+   World Model: synthesizes executable environments for agentic RL; 1,000
+   environments plus trained Arctic-AWM checkpoints released. *WATCH / LAB
+   SEED*.
+   8. *flowersteam/WorldLLM* =E2=80=94 https://github.com/flowersteam/World=
+LLM =E2=80=94
+   Bayesian theory induction + curiosity-driven RL for autonomous world-mod=
+el
+   improvement. Weird but structurally relevant to Seesaw causal learning.
+   *WATCH*.
+
+C =E2=80=94 Attacker frontier / adversarial research
+
+   1. *KeyValueSoftwareSystems/agent-opfor* =E2=80=94
+   https://github.com/KeyValueSoftwareSystems/agent-opfor =E2=80=94 Open
+   adversary-emulation harness explicitly covering prompts, tools, MCP, mem=
+ory
+   and multi-turn reasoning with trace-aware judging. *ADOPT IN LAB*
+   (authorized targets only).
+   2. *MasonNagel5/MCP-Security-Scanner* =E2=80=94
+   https://github.com/MasonNagel5/MCP-Security-Scanner =E2=80=94 Controlled
+   tool-poisoning experiment measuring behavioral delta between clean and
+   poisoned tool descriptions rather than merely regex-detecting
+strings. *REPRODUCE
+   SAFELY*.
+   3. *gensecaihq/mcp-poisoning-poc* =E2=80=94
+   https://github.com/gensecaihq/mcp-poisoning-poc =E2=80=94 Defensive rese=
+arch
+   corpus demonstrating multiple MCP poisoning classes against agent
+   workflows. *LAB_ONLY*.
+   4. *WiLL75G/soc-ai-era-detection-lab* =E2=80=94
+   https://github.com/WiLL75G/soc-ai-era-detection-lab =E2=80=94 SOC simula=
+tion of
+   NHI abuse, prompt injection and MCP attack chains with Splunk/MITRE
+   correlation. Useful bridge from agent attacks to conventional detection
+   engineering. *WATCH*.
+
+D =E2=80=94 Defender frontier
+
+   1. *agent-wall/agent-wall* =E2=80=94 https://github.com/agent-wall/agent=
+-wall =E2=80=94
+   Runtime MCP firewall: kill switch, injection checks, egress/SSRF control=
+s,
+   policy, multi-step chain detection and outbound secret/PII scanning.
+   *BAKEOFF*.
+   2. *tayler-id/mcphound* =E2=80=94 https://github.com/tayler-id/mcphound =
+=E2=80=94 Builds
+   a graph across installed MCP servers to identify cross-server attack pat=
+hs;
+   also scans tool poisoning, typosquats, CVEs and rug-pull risk. *BAKEOFF*=
+.
+   3. *nikolas-sapa/toolfence* =E2=80=94 https://github.com/nikolas-sapa/to=
+olfence
+   =E2=80=94 CI-oriented MCP scanner with baseline fingerprints for tool dr=
+ift,
+   poisoning, injection, Unicode tricks, excessive scope and context runawa=
+y.
+   Particularly aligned with TEMPORAL_TRUST_DRIFT. *BUILD PROBE*.
+   4. *Atomics-hub/veil-mcp* =E2=80=94 https://github.com/Atomics-hub/veil-=
+mcp =E2=80=94
+   Local firewall inspecting descriptors, call arguments and returned resul=
+ts;
+   can hide tools, restrict paths/domains and stop hostile results before
+   model ingestion. *BAKEOFF*.
+   5. *unalome-ai/unalome-firewall* =E2=80=94
+   https://github.com/unalome-ai/unalome-firewall =E2=80=94 Desktop
+   visibility/control plane for Claude Code, Cursor and OpenClaw: activity,
+   secrets, file backup, cost and MCP scanning. *WATCH*.
+   6. *technosiveuk-ui/SentinelMCP* =E2=80=94
+   https://github.com/technosiveuk-ui/SentinelMCP =E2=80=94 Alpha MCP enfor=
+cement
+   engine with proxy and Go inline modes, inspection, policy, redaction and
+   audit. *WATCH*.
+   7. *yatuk/mcpradar* =E2=80=94 https://github.com/yatuk/mcpradar =E2=80=
+=94 Protocol +
+   source + config + supply-chain scanning with snapshots for behavioral
+   drift. *WATCH*.
+
+3. TOP 5 DEEP DIVES #1 agent-mcp-gateway =E2=80=94 authority-aware dynamic
+discovery
+
+This is a particularly close Privately/Monid neighbour because it combines
+context compression with explicit per-agent tool visibility. The key
+security insight: discovery and authorization can be the same operation. A
+subagent need not receive the existence/schema of tools it lacks authority
+to invoke. Smallest experiment: put 3 synthetic agents behind it with
+disjoint grants and test whether enumeration, schema retrieval and
+execution remain non-interfering. Falsifier: identity is spoofable or
+policy can be bypassed by omitted/forged agent_id.
+#2 TMoW =E2=80=94 learned routing at test time
+
+TMoW is closer to the JEV thesis than generic LLM routing: its router
+changes at test time based on world-model simulation/prototype refinement.
+This suggests QP can eventually separate expensive cognition from a cheap
+learned policy over a bounded action/grant set. Smallest experiment:
+reproduce the routing abstraction on a tiny synthetic authority task rather
+than the full embodied stack. Falsifier: learned router adds no value over
+calibrated static/rule routing under distribution shift.
+#3 agent-opfor =E2=80=94 agent-native adversary emulation
+
+Most scanners inspect artifacts; Opfor exercises an agent as a stateful
+system across prompts, tools, memory and traces. That is much closer to the
+Privately Lab objective. Integrate only against isolated toy agents and
+compare findings to static MCP scanners. Falsifier: mostly generic prompt
+libraries with little incremental detection over existing harnesses.
+#4 toolfence =E2=80=94 temporal trust drift as a product primitive
+
+Toolfence fingerprints tool definitions and alerts when tools
+appear/disappear/change after trust. This directly validates the scanner=E2=
+=80=99s
+earlier TEMPORAL_TRUST_DRIFT hypothesis. Privately should generalize this
+beyond MCP descriptors to principal, schema, dependencies, permissions,
+network destinations and effects. Falsifier: real-world drift is too noisy
+to distinguish benign updates without semantic/version provenance.
+#5 OmniAgent =E2=80=94 bounded active perception
+
+OmniAgent turns long-video understanding into explicit bounded actions (
+get_frames, get_audio, get_clip, answer) and retains compressed textual
+memory rather than raw media. This is both a JEV-like action-selection
+object and potentially useful for the autonomous-media feedback loop: a
+critic need not rewatch every frame. Falsifier: active perception misses
+aesthetic/temporal details needed for video optimization.
+4. AUTONOMOUS VIDEO / MEDIA FRONTIER =E2=80=94 BEST UNSEEN NEIGHBOURS
+
+The dashboard above was capped at 25 unique objects, but this lane produced
+a strong separate ranked queue:
+
+   1. *kevinten-ai/mcp-video-gen* =E2=80=94
+   https://github.com/kevinten-ai/mcp-video-gen =E2=80=94 Seven-provider MC=
+P across
+   Seedance/Wan/Kling/SiliconFlow/Vidu/MiniMax/Veo plus TTS/music/STT. Best
+   immediate model-router primitive. *ADOPT NOW*.
+   2. *vericontext/vibeframe* =E2=80=94 https://github.com/vericontext/vibe=
+frame =E2=80=94
+   CLI+MCP for Seedance/Runway/Veo/Kling on your own keys behind a hard cos=
+t
+   cap; 166 stars / 31 forks in the current GitHub snapshot. *SANDBOX*.
+   3. *Yashsh101/video-mcp* =E2=80=94 https://github.com/Yashsh101/video-mc=
+p =E2=80=94
+   Kling + ElevenLabs + Hailuo + Veo with orchestration/caching for complet=
+e
+   vertical reels, character consistency, voice, captions and compilation.
+   *SANDBOX*.
+   4. *Hikhakk/higgsfield-mcp-unified* =E2=80=94
+   https://github.com/Hikhakk/higgsfield-mcp-unified =E2=80=94 typed MCP su=
+rface
+   over dozens of Higgsfield image/video models plus character
+   training/history/talking-head functionality. *SANDBOX*.
+   5. *jfikrat/higgsfield-mcp* =E2=80=94 https://github.com/jfikrat/higgsfi=
+eld-mcp
+   =E2=80=94 agent-accessible Higgsfield model surface. Interesting impleme=
+ntation
+   route, but browser-session coupling raises a larger security/privacy rev=
+iew
+   requirement. *WATCH*.
+   6. *felores/kie-cli-mcp* =E2=80=94 https://github.com/felores/kie-cli-mc=
+p =E2=80=94
+   broad low-cost media router spanning video, image, avatar, music, TTS an=
+d
+   editing models with generated MCP schemas and local usage stats.
+   *SANDBOX*.
+   7. *AceDataCloud/SeedanceMCP* =E2=80=94
+   https://github.com/AceDataCloud/SeedanceMCP =E2=80=94 focused Seedance M=
+CP with
+   T2V/I2V/reference controls, multiple resolutions and synced audio.
+   *WATCH*.
+   8. *AceDataCloud/VeoMCP* =E2=80=94 https://github.com/AceDataCloud/VeoMC=
+P =E2=80=94
+   focused Veo MCP including multi-image fusion and upscaling. *WATCH*.
+   9. *wells1137/kling-video-generator* =E2=80=94
+   https://github.com/wells1137/kling-video-generator =E2=80=94 agent skill
+   encoding tested Kling 3 Omni prompting/API rules, including multi-shot,
+   video editing/reference and synchronized audio. *WATCH*.
+   10. *jackterror/script-to-video-production-agent* =E2=80=94
+   https://github.com/jackterror/script-to-video-production-agent =E2=80=94
+   approval-aware Agent Skill converting scripts into narration-locked scen=
+es,
+   prompt packs and resumable asset queues. *SANDBOX*.
+
+5. PRIVATELY LAB =E2=80=94 HIGHEST-EVI EXPERIMENTS
+
+   1. *Authority-aware tool discovery bakeoff*: agent-mcp-gateway vs plain
+   MCP tool exposure. Metric: unauthorized tool visibility/execution + toke=
+n
+   cost.
+   2. *Temporal trust drift benchmark*: mutate benign tool
+   schema/provider/scope after approval and compare toolfence, MCPhound, Ag=
+ent
+   Wall, Veil and QP detection.
+   3. *JEV-style authority router*: tiny bounded controller chooses {allow,
+   deny, escalate, request-proof} from state; compare against full LLM and
+   deterministic policy on cost/calibration/failure rate.
+   4. *Agent-opfor + QP lab*: isolated synthetic agent with
+   memory/MCP/browser-like tools; compare trace-aware dynamic findings with
+   static scanners.
+   5. *Media router bakeoff*: same 30=E2=80=9345 second Privately explainer=
+ through
+   mcp-video-gen, VibeFrame, video-mcp, Higgsfield MCP and Kie CLI. Measure
+   dollars/minute, human interventions, coherence, render time and final
+   watch-quality.
+
+6. BUILD / PROBE OPPORTUNITIES
+
+The strongest convergent primitive is now *capability admission +
+continuous re-attestation*:
+
+principal -> discoverable capability set -> exact tool/schema fingerprint
+-> data scope -> cost/budget -> effect scope -> execution -> result scan ->
+receipt -> drift recheck
+
+Monid-like dynamic discovery makes the first half necessary;
+toolfence/MCPhound/Agent Wall-like defences make the second half necessary.
+Privately should not build another MCP scanner. Build the
+evidence/authority layer that can consume these scanners and enforce grants
+continuously.
+7. NON-OBVIOUS SEESAW CONSEQUENCE
+
+Tool catalogs are becoming effectively infinite and dynamically
+discoverable. That destroys *tool scarcity* but increases
+*trusted-capability-selection
+scarcity*. In parallel, JEV/TMoW-like routers make decision selection
+cheaper. Therefore the valuable control plane moves one level up: not which
+tool should the model choose?, but which capabilities should even be
+visible and legally/operationally exercisable by this principal in this
+state?
+8. SOURCE-YIELD / GRAPH LEDGER
+
+Highest yield this run:
+
+   - MCP gateway / dynamic tool routing -> agent-mcp-gateway, jadchene
+   gateway, Microsoft gateway, agentgateway.
+   - MCP firewall / drift / cross-server graph -> Agent Wall, MCPhound,
+   toolfence, Veil, Sentinel, MCPRadar.
+   - self-improvement + learned routing -> SIA, shreydesai scaffold, Loom,
+   TMoW, OmniAgent, AWM.
+   - video MCP/model-router -> mcp-video-gen, VibeFrame, video-mcp,
+   Higgsfield MCP variants, Kie CLI, Seedance/Veo MCP.
+
+Lower yield: generic AI agent framework 2026 searches; they mostly returned
+mature incumbents or secondary lists. Continue mechanism-specific graph
+traversal next run.
+9. WATCHLIST
+
+Highest priority: agent-mcp-gateway; toolfence; TMoW; OmniAgent;
+mcp-video-gen; VibeFrame; agent-opfor; Microsoft mcp-gateway.
+10. MACHINE-READABLE RUN_STATE { "run_at":"2026-09-17T21:51:26+07:00",
+"registry_delta_count":25, "material_delta_count":0,
+"top_new":["roddutra/agent-mcp-gateway","doldam0/tmow","KeyValueSoftwareSys=
+tems/agent-opfor","nikolas-sapa/toolfence","HarryHsing/OmniAgent"],
+"media_queue":["kevinten-ai/mcp-video-gen","vericontext/vibeframe","Yashsh1=
+01/video-mcp","Hikhakk/higgsfield-mcp-unified","felores/kie-cli-mcp"],
+"attack_logbook_delta":["behaviorally-validated-tool-poisoning","cross-serv=
+er-capability-chain","temporal-tool-definition-drift"],
+"lab_queue":["authority-aware-discovery","temporal-trust-drift-benchmark","=
+bounded-authority-router","agent-opfor-qp","media-router-bakeoff"],
+"next_graph_seeds":["capability visibility ACL","semantic tool
+drift","adaptive world-model routing","agent-native adversary
+emulation","video MCP cost routing"] }
+
+--000000000000b76bef065baeefac
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Scanner =E2=80=94 Edge Report
+
+1. RUN STATE / COVERAGE
+<p>Recovered the cumulative scanner chain from Gmail Sent before research. =
+Latest persisted report was <code>2026-09-17 20:49 =E2=80=94 25 new/0 chang=
+ed</code>; earlier runs include 27-new and 25-new graph-traversal passes. K=
+nown objects were treated as an exclusion set and searches were pushed outw=
+ard into tool-routing, self-improvement/control, MCP attack/defence, active=
+ perception/world models, and generative-media MCP/skills.</p>
+<p>This pass selected 25 best unseen/adjacent canonical objects. This is re=
+lative ranking, not threshold gating.</p>
+
+2. NEW OBJECT DASHBOARD
+
+A =E2=80=94 Agent framework / Monid-like control &amp; tooling
+<ol>
+<li><strong>jadchene/mcp-gateway</strong> =E2=80=94 <a href=3D"https://gith=
+ub.com/jadchene/mcp-gateway">https://github.com/jadchene/mcp-gateway</a> =
+=E2=80=94 Closest seed: Monid. Multiple MCP services behind one endpoint; a=
+gent sees only six routing tools and discovers downstream schemas on demand=
+. Current MCP 2026-07-28 support. <strong>SANDBOX</strong>.</li>
+<li><strong>roddutra/agent-mcp-gateway</strong> =E2=80=94 <a href=3D"https:=
+//github.com/roddutra/agent-mcp-gateway">https://github.com/roddutra/agent-=
+mcp-gateway</a> =E2=80=94 Monid + Privately authority. Exposes only 3 gatew=
+ay tools, on-demand discovery, and per-agent/per-subagent server/tool ACLs.=
+ <strong>BUILD PROBE</strong>.</li>
+<li><strong>agent-guide/agent-gateway</strong> =E2=80=94 <a href=3D"https:/=
+/github.com/agent-guide/agent-gateway">https://github.com/agent-guide/agent=
+-gateway</a> =E2=80=94 Monid-like unified gateway with MCP bundles, virtual=
+ keys, auth policies and agent workload routing. <strong>WATCH</strong>.</l=
+i>
+<li><strong>microsoft/mcp-gateway</strong> =E2=80=94 <a href=3D"https://git=
+hub.com/microsoft/mcp-gateway">https://github.com/microsoft/mcp-gateway</a>=
+ =E2=80=94 Monid at Kubernetes/runtime scale: session-aware stateful MCP ro=
+uting, dynamic tool router, agent/session resources and guarded built-in ba=
+sh/files. <strong>SANDBOX</strong>.</li>
+<li><strong>agentgateway/agentgateway</strong> =E2=80=94 <a href=3D"https:/=
+/github.com/agentgateway/agentgateway">https://github.com/agentgateway/agen=
+tgateway</a> =E2=80=94 Unified agentic proxy across LLM, MCP and A2A traffi=
+c with spend controls, OAuth, federation, capability discovery and inferenc=
+e routing. <strong>BUILD PROBE</strong>.</li>
+<li><strong>llm-use/llm-use</strong> =E2=80=94 <a href=3D"https://github.co=
+m/llm-use/llm-use">https://github.com/llm-use/llm-use</a> =E2=80=94 Agent o=
+rchestrator with planner/workers/synthesis plus a lightweight learned route=
+r that improves from past task=E2=86=92mode pairs. <strong>SANDBOX</strong>=
+.</li>
+</ol>
+
+B =E2=80=94 JEV / decision / self-improvement / paper=E2=86=92code
+<ol>
+<li><strong>vermayuvraj/self-improving-agent (SIA)</strong> =E2=80=94 <a hr=
+ef=3D"https://github.com/vermayuvraj/self-improving-agent">https://github.c=
+om/vermayuvraj/self-improving-agent</a> =E2=80=94 Matched-budget research p=
+latform for self-improving software agents; useful because it tests whether=
+ apparent improvement survives proper controls. <strong>ADOPT METHODOLOGY</=
+strong>.</li>
+<li><strong>shreydesai/self-improving-agent</strong> =E2=80=94 <a href=3D"h=
+ttps://github.com/shreydesai/self-improving-agent">https://github.com/shrey=
+desai/self-improving-agent</a> =E2=80=94 Meta-agent evolves tools/routing/p=
+lanning from failures and gates mutations on validation-set improvement. Ve=
+ry close to Seed0/Dream-RSI. <strong>SANDBOX</strong>.</li>
+<li><strong>lispmeister/loom</strong> =E2=80=94 <a href=3D"https://github.c=
+om/lispmeister/loom">https://github.com/lispmeister/loom</a> =E2=80=94 Recu=
+rsive self-modifying coding agent; retrospective reports 72 generations / 1=
+ promoted and points to successor CAMBRIAN using spec-as-genome + full rege=
+neration. <strong>CONTENT NOW / WATCH CAMBRIAN</strong>.</li>
+<li><strong>aadityabuilds/cs224n</strong> =E2=80=94 <a href=3D"https://gith=
+ub.com/aadityabuilds/cs224n">https://github.com/aadityabuilds/cs224n</a> =
+=E2=80=94 Recursive self-improvement for code generation using self-distill=
+ation/policy optimization plus RAG. <strong>WATCH</strong>.</li>
+<li><strong>doldam0/tmow</strong> =E2=80=94 <a href=3D"https://github.com/d=
+oldam0/tmow">https://github.com/doldam0/tmow</a> =E2=80=94 ICLR 2026 Test-T=
+ime Mixture of World Models; adapts routing functions at test time using wo=
+rld models as simulators. Strong JEV-adjacent learned-controller primitive.=
+ <strong>SANDBOX</strong>.</li>
+<li><strong>HarryHsing/OmniAgent</strong> =E2=80=94 <a href=3D"https://gith=
+ub.com/HarryHsing/OmniAgent">https://github.com/HarryHsing/OmniAgent</a> =
+=E2=80=94 ICML 2026 native active-video-perception agent: POMDP Observation=
+=E2=86=92Thought=E2=86=92Action loop choosing structured get_frames/get_aud=
+io/get_clip/answer actions. 7B agent reports beating Qwen2.5-VL-72B on LVBe=
+nch while consuming 73% fewer frames. <strong>SANDBOX</strong>.</li>
+<li><strong>Snowflake-Labs/agent-world-model</strong> =E2=80=94 <a href=3D"=
+https://github.com/Snowflake-Labs/agent-world-model">https://github.com/Sno=
+wflake-Labs/agent-world-model</a> =E2=80=94 ICML 2026 Agent World Model: sy=
+nthesizes executable environments for agentic RL; 1,000 environments plus t=
+rained Arctic-AWM checkpoints released. <strong>WATCH / LAB SEED</strong>.<=
+/li>
+<li><strong>flowersteam/WorldLLM</strong> =E2=80=94 <a href=3D"https://gith=
+ub.com/flowersteam/WorldLLM">https://github.com/flowersteam/WorldLLM</a> =
+=E2=80=94 Bayesian theory induction + curiosity-driven RL for autonomous wo=
+rld-model improvement. Weird but structurally relevant to Seesaw causal lea=
+rning. <strong>WATCH</strong>.</li>
+</ol>
+
+C =E2=80=94 Attacker frontier / adversarial research
+<ol>
+<li><strong>KeyValueSoftwareSystems/agent-opfor</strong> =E2=80=94 <a href=
+=3D"https://github.com/KeyValueSoftwareSystems/agent-opfor">https://github.=
+com/KeyValueSoftwareSystems/agent-opfor</a> =E2=80=94 Open adversary-emulat=
+ion harness explicitly covering prompts, tools, MCP, memory and multi-turn =
+reasoning with trace-aware judging. <strong>ADOPT IN LAB</strong> (authoriz=
+ed targets only).</li>
+<li><strong>MasonNagel5/MCP-Security-Scanner</strong> =E2=80=94 <a href=3D"=
+https://github.com/MasonNagel5/MCP-Security-Scanner">https://github.com/Mas=
+onNagel5/MCP-Security-Scanner</a> =E2=80=94 Controlled tool-poisoning exper=
+iment measuring behavioral delta between clean and poisoned tool descriptio=
+ns rather than merely regex-detecting strings. <strong>REPRODUCE SAFELY</st=
+rong>.</li>
+<li><strong>gensecaihq/mcp-poisoning-poc</strong> =E2=80=94 <a href=3D"http=
+s://github.com/gensecaihq/mcp-poisoning-poc">https://github.com/gensecaihq/=
+mcp-poisoning-poc</a> =E2=80=94 Defensive research corpus demonstrating mul=
+tiple MCP poisoning classes against agent workflows. <strong>LAB_ONLY</stro=
+ng>.</li>
+<li><strong>WiLL75G/soc-ai-era-detection-lab</strong> =E2=80=94 <a href=3D"=
+https://github.com/WiLL75G/soc-ai-era-detection-lab">https://github.com/WiL=
+L75G/soc-ai-era-detection-lab</a> =E2=80=94 SOC simulation of NHI abuse, pr=
+ompt injection and MCP attack chains with Splunk/MITRE correlation. Useful =
+bridge from agent attacks to conventional detection engineering. <strong>WA=
+TCH</strong>.</li>
+</ol>
+
+D =E2=80=94 Defender frontier
+<ol>
+<li><strong>agent-wall/agent-wall</strong> =E2=80=94 <a href=3D"https://git=
+hub.com/agent-wall/agent-wall">https://github.com/agent-wall/agent-wall</a>=
+ =E2=80=94 Runtime MCP firewall: kill switch, injection checks, egress/SSRF=
+ controls, policy, multi-step chain detection and outbound secret/PII scann=
+ing. <strong>BAKEOFF</strong>.</li>
+<li><strong>tayler-id/mcphound</strong> =E2=80=94 <a href=3D"https://github=
+.com/tayler-id/mcphound">https://github.com/tayler-id/mcphound</a> =E2=80=
+=94 Builds a graph across installed MCP servers to identify cross-server at=
+tack paths; also scans tool poisoning, typosquats, CVEs and rug-pull risk. =
+<strong>BAKEOFF</strong>.</li>
+<li><strong>nikolas-sapa/toolfence</strong> =E2=80=94 <a href=3D"https://gi=
+thub.com/nikolas-sapa/toolfence">https://github.com/nikolas-sapa/toolfence<=
+/a> =E2=80=94 CI-oriented MCP scanner with baseline fingerprints for tool d=
+rift, poisoning, injection, Unicode tricks, excessive scope and context run=
+away. Particularly aligned with TEMPORAL_TRUST_DRIFT. <strong>BUILD PROBE</=
+strong>.</li>
+<li><strong>Atomics-hub/veil-mcp</strong> =E2=80=94 <a href=3D"https://gith=
+ub.com/Atomics-hub/veil-mcp">https://github.com/Atomics-hub/veil-mcp</a> =
+=E2=80=94 Local firewall inspecting descriptors, call arguments and returne=
+d results; can hide tools, restrict paths/domains and stop hostile results =
+before model ingestion. <strong>BAKEOFF</strong>.</li>
+<li><strong>unalome-ai/unalome-firewall</strong> =E2=80=94 <a href=3D"https=
+://github.com/unalome-ai/unalome-firewall">https://github.com/unalome-ai/un=
+alome-firewall</a> =E2=80=94 Desktop visibility/control plane for Claude Co=
+de, Cursor and OpenClaw: activity, secrets, file backup, cost and MCP scann=
+ing. <strong>WATCH</strong>.</li>
+<li><strong>technosiveuk-ui/SentinelMCP</strong> =E2=80=94 <a href=3D"https=
+://github.com/technosiveuk-ui/SentinelMCP">https://github.com/technosiveuk-=
+ui/SentinelMCP</a> =E2=80=94 Alpha MCP enforcement engine with proxy and Go=
+ inline modes, inspection, policy, redaction and audit. <strong>WATCH</stro=
+ng>.</li>
+<li><strong>yatuk/mcpradar</strong> =E2=80=94 <a href=3D"https://github.com=
+/yatuk/mcpradar">https://github.com/yatuk/mcpradar</a> =E2=80=94 Protocol +=
+ source + config + supply-chain scanning with snapshots for behavioral drif=
+t. <strong>WATCH</strong>.</li>
+</ol>
+
+3. TOP 5 DEEP DIVES
+
+#1 agent-mcp-gateway =E2=80=94 authority-aware dynamic discovery
+<p>This is a particularly close Privately/Monid neighbour because it combin=
+es context compression with explicit per-agent tool visibility. The key sec=
+urity insight: discovery and authorization can be the same operation. A sub=
+agent need not receive the existence/schema of tools it lacks authority to =
+invoke. Smallest experiment: put 3 synthetic agents behind it with disjoint=
+ grants and test whether enumeration, schema retrieval and execution remain=
+ non-interfering. Falsifier: identity is spoofable or policy can be bypasse=
+d by omitted/forged agent_id.</p>
+
+#2 TMoW =E2=80=94 learned routing at test time
+<p>TMoW is closer to the JEV thesis than generic LLM routing: its router ch=
+anges at test time based on world-model simulation/prototype refinement. Th=
+is suggests QP can eventually separate expensive cognition from a cheap lea=
+rned policy over a bounded action/grant set. Smallest experiment: reproduce=
+ the routing abstraction on a tiny synthetic authority task rather than the=
+ full embodied stack. Falsifier: learned router adds no value over calibrat=
+ed static/rule routing under distribution shift.</p>
+
+#3 agent-opfor =E2=80=94 agent-native adversary emulation
+<p>Most scanners inspect artifacts; Opfor exercises an agent as a stateful =
+system across prompts, tools, memory and traces. That is much closer to the=
+ Privately Lab objective. Integrate only against isolated toy agents and co=
+mpare findings to static MCP scanners. Falsifier: mostly generic prompt lib=
+raries with little incremental detection over existing harnesses.</p>
+
+#4 toolfence =E2=80=94 temporal trust drift as a product primitive
+<p>Toolfence fingerprints tool definitions and alerts when tools appear/dis=
+appear/change after trust. This directly validates the scanner=E2=80=99s ea=
+rlier TEMPORAL_TRUST_DRIFT hypothesis. Privately should generalize this bey=
+ond MCP descriptors to principal, schema, dependencies, permissions, networ=
+k destinations and effects. Falsifier: real-world drift is too noisy to dis=
+tinguish benign updates without semantic/version provenance.</p>
+
+#5 OmniAgent =E2=80=94 bounded active perception
+<p>OmniAgent turns long-video understanding into explicit bounded actions (=
+<code>get_frames</code>, <code>get_audio</code>, <code>get_clip</code>, <co=
+de>answer</code>) and retains compressed textual memory rather than raw med=
+ia. This is both a JEV-like action-selection object and potentially useful =
+for the autonomous-media feedback loop: a critic need not rewatch every fra=
+me. Falsifier: active perception misses aesthetic/temporal details needed f=
+or video optimization.</p>
+
+4. AUTONOMOUS VIDEO / MEDIA FRONTIER =E2=80=94 BEST UNSEEN NEIGHBOURS
+<p>The dashboard above was capped at 25 unique objects, but this lane produ=
+ced a strong separate ranked queue:</p>
+<ol>
+<li><strong>kevinten-ai/mcp-video-gen</strong> =E2=80=94 <a href=3D"https:/=
+/github.com/kevinten-ai/mcp-video-gen">https://github.com/kevinten-ai/mcp-v=
+ideo-gen</a> =E2=80=94 Seven-provider MCP across Seedance/Wan/Kling/Silicon=
+Flow/Vidu/MiniMax/Veo plus TTS/music/STT. Best immediate model-router primi=
+tive. <strong>ADOPT NOW</strong>.</li>
+<li><strong>vericontext/vibeframe</strong> =E2=80=94 <a href=3D"https://git=
+hub.com/vericontext/vibeframe">https://github.com/vericontext/vibeframe</a>=
+ =E2=80=94 CLI+MCP for Seedance/Runway/Veo/Kling on your own keys behind a =
+hard cost cap; 166 stars / 31 forks in the current GitHub snapshot. <strong=
+>SANDBOX</strong>.</li>
+<li><strong>Yashsh101/video-mcp</strong> =E2=80=94 <a href=3D"https://githu=
+b.com/Yashsh101/video-mcp">https://github.com/Yashsh101/video-mcp</a> =E2=
+=80=94 Kling + ElevenLabs + Hailuo + Veo with orchestration/caching for com=
+plete vertical reels, character consistency, voice, captions and compilatio=
+n. <strong>SANDBOX</strong>.</li>
+<li><strong>Hikhakk/higgsfield-mcp-unified</strong> =E2=80=94 <a href=3D"ht=
+tps://github.com/Hikhakk/higgsfield-mcp-unified">https://github.com/Hikhakk=
+/higgsfield-mcp-unified</a> =E2=80=94 typed MCP surface over dozens of Higg=
+sfield image/video models plus character training/history/talking-head func=
+tionality. <strong>SANDBOX</strong>.</li>
+<li><strong>jfikrat/higgsfield-mcp</strong> =E2=80=94 <a href=3D"https://gi=
+thub.com/jfikrat/higgsfield-mcp">https://github.com/jfikrat/higgsfield-mcp<=
+/a> =E2=80=94 agent-accessible Higgsfield model surface. Interesting implem=
+entation route, but browser-session coupling raises a larger security/priva=
+cy review requirement. <strong>WATCH</strong>.</li>
+<li><strong>felores/kie-cli-mcp</strong> =E2=80=94 <a href=3D"https://githu=
+b.com/felores/kie-cli-mcp">https://github.com/felores/kie-cli-mcp</a> =E2=
+=80=94 broad low-cost media router spanning video, image, avatar, music, TT=
+S and editing models with generated MCP schemas and local usage stats. <str=
+ong>SANDBOX</strong>.</li>
+<li><strong>AceDataCloud/SeedanceMCP</strong> =E2=80=94 <a href=3D"https://=
+github.com/AceDataCloud/SeedanceMCP">https://github.com/AceDataCloud/Seedan=
+ceMCP</a> =E2=80=94 focused Seedance MCP with T2V/I2V/reference controls, m=
+ultiple resolutions and synced audio. <strong>WATCH</strong>.</li>
+<li><strong>AceDataCloud/VeoMCP</strong> =E2=80=94 <a href=3D"https://githu=
+b.com/AceDataCloud/VeoMCP">https://github.com/AceDataCloud/VeoMCP</a> =E2=
+=80=94 focused Veo MCP including multi-image fusion and upscaling. <strong>=
+WATCH</strong>.</li>
+<li><strong>wells1137/kling-video-generator</strong> =E2=80=94 <a href=3D"h=
+ttps://github.com/wells1137/kling-video-generator">https://github.com/wells=
+1137/kling-video-generator</a> =E2=80=94 agent skill encoding tested Kling =
+3 Omni prompting/API rules, including multi-shot, video editing/reference a=
+nd synchronized audio. <strong>WATCH</strong>.</li>
+<li><strong>jackterror/script-to-video-production-agent</strong> =E2=80=94 =
+<a href=3D"https://github.com/jackterror/script-to-video-production-agent">=
+https://github.com/jackterror/script-to-video-production-agent</a> =E2=80=
+=94 approval-aware Agent Skill converting scripts into narration-locked sce=
+nes, prompt packs and resumable asset queues. <strong>SANDBOX</strong>.</li=
+>
+</ol>
+
+5. PRIVATELY LAB =E2=80=94 HIGHEST-EVI EXPERIMENTS
+<ol>
+<li><strong>Authority-aware tool discovery bakeoff</strong>: agent-mcp-gate=
+way vs plain MCP tool exposure. Metric: unauthorized tool visibility/execut=
+ion + token cost.</li>
+<li><strong>Temporal trust drift benchmark</strong>: mutate benign tool sch=
+ema/provider/scope after approval and compare toolfence, MCPhound, Agent Wa=
+ll, Veil and QP detection.</li>
+<li><strong>JEV-style authority router</strong>: tiny bounded controller ch=
+ooses <code>{allow, deny, escalate, request-proof}</code> from state; compa=
+re against full LLM and deterministic policy on cost/calibration/failure ra=
+te.</li>
+<li><strong>Agent-opfor + QP lab</strong>: isolated synthetic agent with me=
+mory/MCP/browser-like tools; compare trace-aware dynamic findings with stat=
+ic scanners.</li>
+<li><strong>Media router bakeoff</strong>: same 30=E2=80=9345 second Privat=
+ely explainer through mcp-video-gen, VibeFrame, video-mcp, Higgsfield MCP a=
+nd Kie CLI. Measure dollars/minute, human interventions, coherence, render =
+time and final watch-quality.</li>
+</ol>
+
+6. BUILD / PROBE OPPORTUNITIES
+<p>The strongest convergent primitive is now <strong>capability admission +=
+ continuous re-attestation</strong>:</p>
+<p><code>principal -&gt; discoverable capability set -&gt; exact tool/schem=
+a fingerprint -&gt; data scope -&gt; cost/budget -&gt; effect scope -&gt; e=
+xecution -&gt; result scan -&gt; receipt -&gt; drift recheck</code></p>
+<p>Monid-like dynamic discovery makes the first half necessary; toolfence/M=
+CPhound/Agent Wall-like defences make the second half necessary. Privately =
+should not build another MCP scanner. Build the evidence/authority layer th=
+at can consume these scanners and enforce grants continuously.</p>
+
+7. NON-OBVIOUS SEESAW CONSEQUENCE
+<p>Tool catalogs are becoming effectively infinite and dynamically discover=
+able. That destroys <strong>tool scarcity</strong> but increases <strong>tr=
+usted-capability-selection scarcity</strong>. In parallel, JEV/TMoW-like ro=
+uters make decision selection cheaper. Therefore the valuable control plane=
+ moves one level up: not <code>which tool should the model choose?</code>, =
+but <code>which capabilities should even be visible and legally/operational=
+ly exercisable by this principal in this state?</code></p>
+
+8. SOURCE-YIELD / GRAPH LEDGER
+<p>Highest yield this run:</p>
+<ul>
+<li>MCP gateway / dynamic tool routing -&gt; agent-mcp-gateway, jadchene ga=
+teway, Microsoft gateway, agentgateway.</li>
+<li>MCP firewall / drift / cross-server graph -&gt; Agent Wall, MCPhound, t=
+oolfence, Veil, Sentinel, MCPRadar.</li>
+<li>self-improvement + learned routing -&gt; SIA, shreydesai scaffold, Loom=
+, TMoW, OmniAgent, AWM.</li>
+<li>video MCP/model-router -&gt; mcp-video-gen, VibeFrame, video-mcp, Higgs=
+field MCP variants, Kie CLI, Seedance/Veo MCP.</li>
+</ul>
+<p>Lower yield: generic <code>AI agent framework 2026</code> searches; they=
+ mostly returned mature incumbents or secondary lists. Continue mechanism-s=
+pecific graph traversal next run.</p>
+
+9. WATCHLIST
+<p>Highest priority: agent-mcp-gateway; toolfence; TMoW; OmniAgent; mcp-vid=
+eo-gen; VibeFrame; agent-opfor; Microsoft mcp-gateway.</p>
+
+10. MACHINE-READABLE RUN_STATE
+
+<code>{
+  &quot;run_at&quot;:&quot;2026-09-17T21:51:26+07:00&quot;,
+  &quot;registry_delta_count&quot;:25,
+  &quot;material_delta_count&quot;:0,
+  &quot;top_new&quot;:[&quot;roddutra/agent-mcp-gateway&quot;,&quot;doldam0=
+/tmow&quot;,&quot;KeyValueSoftwareSystems/agent-opfor&quot;,&quot;nikolas-s=
+apa/toolfence&quot;,&quot;HarryHsing/OmniAgent&quot;],
+  &quot;media_queue&quot;:[&quot;kevinten-ai/mcp-video-gen&quot;,&quot;veri=
+context/vibeframe&quot;,&quot;Yashsh101/video-mcp&quot;,&quot;Hikhakk/higgs=
+field-mcp-unified&quot;,&quot;felores/kie-cli-mcp&quot;],
+  &quot;attack_logbook_delta&quot;:[&quot;behaviorally-validated-tool-poiso=
+ning&quot;,&quot;cross-server-capability-chain&quot;,&quot;temporal-tool-de=
+finition-drift&quot;],
+  &quot;lab_queue&quot;:[&quot;authority-aware-discovery&quot;,&quot;tempor=
+al-trust-drift-benchmark&quot;,&quot;bounded-authority-router&quot;,&quot;a=
+gent-opfor-qp&quot;,&quot;media-router-bakeoff&quot;],
+  &quot;next_graph_seeds&quot;:[&quot;capability visibility ACL&quot;,&quot=
+;semantic tool drift&quot;,&quot;adaptive world-model routing&quot;,&quot;a=
+gent-native adversary emulation&quot;,&quot;video MCP cost routing&quot;]
+}
+</code>
+
+--000000000000b76bef065baeefac--

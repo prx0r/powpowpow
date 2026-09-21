@@ -1,0 +1,1190 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id K4dgFWWVRXYq
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 13:00:20 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=DYjzXTG6CsJnxXxjSGbKQa5b63bBXwOXUq816lKZYh8KjwBabjhAko0ssLUQj17bGJoY6PDK+
+	uWFdKNuu6EtchhwK14+LPBXFqoE7lKgeCHH6E7sgVZTivgSY6yPCaDbU+kfzTwjq3xbtSktfAyP
+	TXaBZmFH28rMshyu8nNRlwfBMKqbdxY0ILFE2JRItFYk1+SOkTB9MxJvEr8S67MGDAdo/QW93o8
+	J2Wzpsiriwl/xr2d+c4AaBXb0ngv0xoSKrunxK4bfbvDN1r8prEvv0umcBbUbBfxjhYw0PHMju1
+	KXvJRfnGAaWFGG6tjgz17ci4BxZXfr7vCjQ5aDNjFHAQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789822820; x=1790427620; bh=vSkIt3y5
+	zceGDYj8m9rAP2mVBMmLVMNHw0VxA9lcSpk=; b=FEkhv1Ff0zcWwO05L+vvZb1Hbo7+p/6VnmQ
+	+c7doivrfrEXaHLFNOCALGgXcFNzIs/y3Q34aqygMg08Uufz+Ltv1QLPuWoF6oD/9QgFOIDYoPY
+	GW09pDSpRbj9Z+kFCwM52etWl/wx9w8CaqINDcgA0s8gO+ZXBZcncyrV1Xy1A8oBwUgAFeGxbPO
+	tl8O7W72gJ95JD0b+sio51oajBwAamNwyIv8aMBC3HKemglRYf6QHasfOtkvxSx9F3i6ZGRQPOy
+	3Fu/vVSBhHFRg2sBKRoBdEiS6TiFdBkTmiYTg+zka9srAAxh8Xs7JJTHtexI8KVLJOYV7DdRFKN
+	gFkxqpw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=gEhydpEe;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=gEhydpEe;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4aac92dbso1445764d50.2
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 06:00:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789822820; cv=none;
+        d=google.com; s=arc-20260327;
+        b=LlpqgPyYYXVNTRpRitWs+pG/SP4gO+w4bIKBoQhJflprh7940vHUmh/SecMklnmGK4
+         ZMGFnGqsC7SycQ5TSQWGKlqQxoEvMIui/lnfJRXpU5gNXfA63it8a3iBHQi8XtNS8a9H
+         5t1xMROquvFL8+gUa88sljjVL/RBgpMdU6WwVAtv1mudIX4voDvu9UQyAbyydBkkTLeT
+         SHe22C8QMOwG+aiZegCZYxwDKr/2oqOSn5T/zXaHM013O0VhLAVKvH5Ui5AZbVogDyEl
+         QewuWntHcgftoAh4jd4nMKKdufCLIYLKAfoTAF7kTwSPc+MhtGdsLQcsicD5S8QJqURf
+         Ws5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=vSkIt3y5zceGDYj8m9rAP2mVBMmLVMNHw0VxA9lcSpk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=AhfUGFyh4js/DuMNFb57RnOnfTIqXuAFNDLRL2G5K4svdCbBPtTmqE0KNkBlw/Pcml
+         CnD8RYRrvG6jyeSgBjbQyWe8HrgI11Y0J1+wSe5o/TlcHKrLZxVVi2imAcXmPZCv2UKM
+         Z23FTN9qKYjtxiTq/Y18QOc5bBTilmjKiW/IgFIE3InG0O1e0bmskr96eljMA2cX4gO6
+         TxA7dMjKzLBGy9Q/JapL3PMr6m49fgq/nHQEh4M4+vPdRIHz2utqr4XnLzn+kA0Aa7ZM
+         Y6m4b/BGtcaWNrjZgHE44GZN/8jcfOduUZd8YHQ4YUGGYdKYPUoheA7H6LJiCOWwk8xC
+         zYlA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789822820; x=1790427620; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=vSkIt3y5zceGDYj8m9rAP2mVBMmLVMNHw0VxA9lcSpk=;
+        b=gEhydpEeQVt/bhliciyCz/zRMVx3658Xk3rqOQyYuEDpdEKyfZLra9FLQBGAaXHiAs
+         xbdfXNDX7NDLOoi+ZIaQ4v7CappZwMvZCoM9wbe4LLFCfnVFk6930My/PaqLotO7oOQ6
+         +NNe14DboDzEhlShj9GsEsmTxijw933DbyUOKwieswZ09RLFGoe7KZN1xlK6e1A3x6Bh
+         SqnnzwAsy3Wf33Bz1mmKZ1p2zK+sXWo1ZCx+n8At/Uh8Bqw0CjIpglbKJZbMf2FDaTNv
+         j0KpRpESc/ntc/LQm2/uLs617dEFABeG2AyQaGQdfC5iw1ChWon/vqPdexpSG6Knbe/S
+         1zmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789822820; x=1790427620;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=vSkIt3y5zceGDYj8m9rAP2mVBMmLVMNHw0VxA9lcSpk=;
+        b=FJAfgrzeAsgslKrSR0HZi7GpeAr1UBg8LBLjnnqpQDSJYF8YgMojinML6DxlWiyIdJ
+         frwap4UrjclwehxR7r0S4nMpCpS5QllxnZKe58rr/AWUjp3/5+QHux42SPaWqLEjxbQk
+         PYBKXUauQ16IT6ZkYLQbYHnsxQrBsuAaduYZGiOV1tQnNkQPExEcYvETCdwK1HumTAsz
+         2Kt+9q0Re0jFu1LfFYUBAQvh0mivRWEfNxzwjxCz7mP2bfhAZ2CW4pIeMAWLV4Ofwv8a
+         IO4ekWlzFivUPP/fwa6Ps1VYw3cZio57kYTKaldSfiLXziSrLIcOpqqu758hiqhLN9eh
+         nXbg==
+X-Gm-Message-State: AFuF++m+94xBcZewjCBoBFpj6cV74blEP7iTdlGHwFqFmTzX0y9GE73h
+	gWqHemp5EhAFYv177LkZn+MtkZ9eBTlDmKHtnZW8Sn2hwFdKTAMNWzvw7+7ZaftNXvYELmKW0DN
+	nkRU3H47UzuHFLddhh8bzZ7M/LOvGzCxnQQ==
+X-Gm-Gg: AYBFou2wZr/F3BETp1xHystBvpIcnpa70sTg1ZZbuOX//SvR7J5ykiv0NB3hzSsLslX
+	06ID5iPVjYIMtRnJXEDz8AeIlYPpP/XF5RewIeStavtwEgENKrVawVbVQXEPTeb8x624vRGL1wx
+	zM1vujRLv6EiB3iXAzxryxnKBzSs8KBeWGUYznyFKCybBBNAcdh6u6lnkZ9cappRHc9TjJW6pMI
+	BBcsKc312uvwMLrIoCcraQlR6xWN7SsyK2qs2xaf+7Oshqh9MtdoMlur98IeuVHNG4/+ZAMgkG3
+	qL3qu16U3I7yToeKW3ZLf7uUOfZtYoX87sJjnDKRRZqSLiI8+W3tafRYbem+yFCj/c7f55DHw4n
+	xjtWQivX4UOo/GMifNyPu7/iYHZXuiI2T6wTpKOC0GDjrzdfuHY6r2xuJRQv+ZDQDcBWGmjRN
+X-Received: by 2002:a05:690e:1189:b0:66f:c1be:a650 with SMTP id
+ 956f58d0204a3-6717fdbe567mr2001196d50.66.1789822818983; Sat, 19 Sep 2026
+ 06:00:18 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 08:00:18 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 08:00:18 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 08:00:18 -0500
+X-Gm-Features: AcwNN1UQUsi-jV8S4Td0zfGRdu9HNuTXcW2RAKxa_aHUQdy8fBnEtJlSw1akqPI
+Message-ID: <CAPdrGek5u4H-HQVypOLwC1Z66KO=_PD52hJ4M_-fzofgSmZ0ag@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_=E2=80=94_10_Templates_=2B_Xmas_Pack_=2B_Jev_=2B_MCP_=2B?=
+	=?UTF-8?Q?_GitHub_Clone_Stack?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet / FunnyLabs =E2=80=94 Templates, Christmas Sprint, Jev + MCP + Cl=
+one Stack
+
+BOTTOM LINE
+
+Use roast.pet as the consumer brand and Etsy store.
+
+Do not rename the first store to funnylab.cards or hoomer.cards.
+
+My ranking:
+
+1. roast.pet =E2=80=94 best consumer wedge now
+   - instantly understandable
+   - strong visual identity
+   - personalization makes sense immediately
+   - can carry much broader humour through the pet's voice
+   - does not sound like infrastructure
+
+2. funnylab.cards =E2=80=94 useful as an internal/research label, but too
+clinical for the store and too narrow if FunnyLabs later includes
+stand-up, avatars and agent humour.
+
+3. hoomer.cards =E2=80=94 memorable, but ambiguous and the name itself need=
+s
+explaining. Keep it as a possible later comedy brand, not the first
+commercial surface.
+
+Architecture:
+
+ROAST.PET =3D consumer identity
+FUNNYLABS =3D research/testing loop
+FUNNY MCP =3D reusable agent interface
+MUSE =3D context + user intent
+ETSY =3D discovery/checkout
+PRODIGI =3D print/fulfilment
+
+
+IMPORTANT JEV CORRECTION
+
+Jev is TypeSafe AI's System One decision model. It is not an
+avatar/video generator.
+
+This is actually ideal for us.
+
+Use generative models for:
+- writing joke candidates
+- image generation
+- personalized copy
+
+Use Jev for cheap/fast typed decisions:
+- which template fits this context?
+- which humour mode fits this user?
+- which of 5 candidates is most relevant?
+- is this topical reference likely to land?
+- mild / roast / savage?
+- card / shirt / digital?
+- does the joke depend too much on context?
+- does it feel generic?
+- is the joke legible in one glance?
+- should we use current news or evergreen?
+
+Jev input:
+
+state =3D {
+  recipient context,
+  Muse-provided humour/context summary,
+  pet description,
+  occasion,
+  candidate jokes,
+  available templates,
+  current topical hooks
+}
+
+questions =3D {
+  bestTemplate: choice(...),
+  bestCandidate: choice(...),
+  edge: score(...),
+  topicalFit: score(...),
+  personalFit: score(...),
+  clarity: score(...),
+  genericness: score(...),
+  shouldUsePersonalContext: noul(...)
+}
+
+Jev returns typed decisions/probabilities. Code routes deterministically.
+
+The LLM should still generate the joke. Jev should be the
+router/ranker, not the comedian.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+INITIAL SPRINT: MAKE TEN GOOD CARDS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Do not build FunnyLabs first.
+
+Do not automate everything.
+
+Goal:
+10 designed Roast.pet card families live on Etsy, ready to accept a
+pet photo + small amount of context, render correctly, and go to
+Prodigi.
+
+One good joke family should be reusable as:
+- physical card
+- digital card
+- shirt
+- mug/poster later
+- social image
+- short video later
+
+The unit is the COMEDY TEMPLATE, not the SKU.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+TEN MASTER TEMPLATE FAMILIES
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+1. HUMAN CRISIS / PET PRIORITY
+
+Visual:
+Human visibly worried / reading news / staring at laptop.
+Pet is relaxed.
+
+Mechanism:
+serious human concern vs trivial animal priority.
+
+Examples:
+Human: "What if AGI replaces my job?"
+Pet thought: "Does AGI know where the chicken is?"
+
+Human: "The economy is collapsing."
+Dog: "Walk?"
+
+Christmas:
+Human: "AI has automated the entire economy by Christmas."
+Pet: "Does the robot make gravy?"
+
+Products:
+card / shirt / digital / social.
+
+
+2. PET STAND-UP
+
+Visual:
+Pet at mic, comedy club / podium.
+
+Mechanism:
+pet has observed owner for years and finally gets five minutes.
+
+Personalization:
+pet photo
+recipient name
+1=E2=80=933 facts
+mild / roast / savage
+
+Examples:
+"Tom says he's building the future. I watched him lose his charger for
+three hours."
+
+Christmas:
+"Christmas at ours is magical. Dad drinks wine and starts explaining
+Bitcoin to Nan."
+
+This is also the bridge into FunnyLabs / Pogtown stand-up.
+
+
+3. BREAKING NEWS
+
+Visual:
+news channel / emergency bulletin.
+
+Mechanism:
+trivial or embarrassing recipient behavior treated as national emergency.
+
+Examples:
+BREAKING:
+LOCAL MAN EXPLAINS AGI FOR FOURTH CONSECUTIVE HOUR
+Dog reportedly "looking for another family."
+
+Christmas:
+BREAKING:
+10 MILLION HUMANOID ROBOTS DISABLED IN OVERNIGHT SANTA RAID
+
+BREAKING:
+NORTH POLE CONFIRMS LABRADOR ATE EVIDENCE
+
+Reusable for every current event.
+
+
+4. PET PERFORMANCE REVIEW
+
+Visual:
+corporate HR document / scorecard.
+
+Categories:
+Food delivery
+Walk provision
+Punctuality
+Leadership
+Emotional stability
+
+Example:
+Leadership: 2/10
+"Frequently says 'one second' then stares at laptop for 45 minutes."
+
+Christmas:
+Annual Review:
+"Failed to provide turkey at required service level."
+
+
+5. PET THERAPIST
+
+Visual:
+pet behind therapist desk / clinical report.
+
+Mechanism:
+pet calmly diagnoses owner.
+
+Examples:
+Diagnosis:
+"Believes reading AI Twitter counts as employment."
+
+Christmas:
+"Seasonal condition: buys everyone presents except the organism that
+lives with him."
+
+
+6. PET SEARCH HISTORY
+
+Visual:
+search engine / browser history.
+
+Examples:
+"can I legally change owner"
+"why does human say walk then put shoes on for 20 minutes"
+"how much chicken can dog inherit"
+
+AGI:
+"will robot remember second breakfast"
+
+Christmas:
+"is santa edible"
+"reindeer territorial rights"
+"how to remove tinsel from digestive tract"
+
+
+7. PET COMPLAINT DEPARTMENT
+
+Visual:
+formal complaint / tribunal / customer support ticket.
+
+Example:
+COMPLAINT #00491
+Issue:
+Owner has used phrase "after this call" 17 times.
+
+Requested resolution:
+Chicken.
+
+Christmas:
+Complaint:
+Tree occupies previous zoomies corridor.
+
+
+8. OWNER VS PET / TWO PANEL
+
+Visual:
+split-screen.
+
+Left:
+human concern.
+
+Right:
+pet interpretation.
+
+AGI:
+Human: "What happens after superintelligence?"
+Pet: "Probably breakfast."
+
+Christmas:
+Human: "We need to make this Christmas meaningful."
+Cat: "Destroy tree."
+
+
+9. OFFICIAL INCIDENT REPORT
+
+Visual:
+government/police/workplace report.
+
+Birthday:
+"Incident: Daniel has reached 35 despite repeated warnings."
+
+Pet evidence:
+"The dog has declined to comment."
+
+Christmas:
+"Incident: unidentified bearded male entered property through chimney.
+Dog security response: none."
+
+
+10. WILDCARD ROAST
+
+Etsy listing:
+"Upload your pet. Tell us about them. We'll choose the funniest format."
+
+This is the future Humour Module in miniature.
+
+V0:
+human reviews the input and picks one of the 9 structures manually.
+
+Later:
+Jev chooses template and ranks joke candidates.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+CHRISTMAS: MAKE THIS THE FIRST SEASONAL PACK
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Christmas should not be a separate architecture.
+
+It is just a TOPICAL PACK injected into the same templates.
+
+Christmas concepts to make immediately:
+
+A. SANTA SEES THE ROBOT AND LEAVES
+Scene:
+Santa arrives, sees humanoid robot doing household tasks, slowly backs out.
+
+Lines:
+"Even Santa knows when he's been automated."
+or
+"Right. Looks like you've got this."
+
+Personalized:
+swap family/pet into scene.
+
+
+B. SANTA VS AGI =E2=80=94 BREAKING NEWS
+"BREAKING: 10 million robots taken offline by unexplained sleigh-based atta=
+ck."
+
+Pet reporter can appear at bottom.
+
+
+C. ELF REDUNDANCY NOTICE
+Fake corporate memo:
+"North Pole announces restructuring following agent deployment."
+
+Pet's concern:
+"Does severance include treats?"
+
+
+D. PET SECURITY FAILURE
+"STRANGER ENTERED HOME VIA CHIMNEY.
+DOG ACCEPTED BISCUIT.
+INVESTIGATION CLOSED."
+
+
+E. CHRISTMAS PERFORMANCE REVIEW
+Pet reviews human's Christmas:
+Turkey: adequate
+Walks: unacceptable
+Wrapping: embarrassing
+Guest selection: questionable
+
+
+F. HUMAN SENTIMENT / PET FOOD
+Human:
+"Christmas is about family."
+
+Dog:
+"Turkey."
+
+
+G. CAT VS CHRISTMAS TREE
+Government incident report:
+"Decorative structure destroyed less than 14 minutes after deployment."
+
+
+H. SANTA READS OWNER SEARCH HISTORY
+Santa looking horrified while pet looks smug.
+
+
+I. AI CHRISTMAS CARD
+Human:
+"Will Christmas still feel human after AGI?"
+
+Pet:
+"You bought this card from an AI."
+
+
+J. PET NORTH POLE COMPLAINT
+Pet writes directly to Santa:
+"Requesting replacement owner. Current unit misses scheduled feeding window=
+s."
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+STATIC + PERSONALIZED + DIGITAL
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Every strong template should support three tiers.
+
+STATIC
+Fixed joke.
+Cheap impulse purchase.
+Fastest to publish.
+
+PERSONALIZED
+Same visual structure.
+Swap pet photo/name/fact.
+
+WILDCARD
+Buyer gives context.
+We choose/rewrite the joke.
+
+And every design can produce:
+
+card
+shirt
+digital image
+social image
+
+Do not build separate creative pipelines for each.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+RENDERING =E2=80=94 CHEAPEST / SIMPLEST TECH
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+For static cards, do not require Bannerbear.
+
+Self-owned renderer:
+
+1. Satori
+   React/JSX-like components =E2=86=92 SVG.
+
+2. resvg-js
+   SVG =E2=86=92 high-resolution PNG.
+
+3. Sharp
+   photo crop
+   masking
+   compositing
+   resize
+   print asset prep
+
+This means a card is literally a React component:
+
+<PetStandup
+  pet=3D{image}
+  headline=3D{headline}
+  punchline=3D{punchline}
+/>
+
+Render at the exact Prodigi required dimensions.
+
+Benefits:
+- no per-render SaaS dependency
+- templates live in Git
+- easy versioning
+- easy tests
+- one template can render arbitrary text/photos
+- easy to expose through MCP
+
+Use Creatomate later when the SAME template needs:
+- animated social version
+- video
+- captions
+- motion
+- character clip
+
+Creatomate can render both images and videos from reusable
+templates/RenderScript, so it is ideal as the motion adapter rather
+than the core print dependency.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PRODIGI
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Prodigi is the factory.
+
+Use their REST v4 API directly.
+
+Needed operations only:
+
+get product / dimensions
+quote order
+create order
+get order
+callbacks/tracking
+
+Their sandbox does not fulfil or charge orders, so test there first.
+
+Do NOT build a generic POD router in sprint one.
+
+One card SKU.
+One integration.
+One country flow first if necessary.
+
+Provider interface:
+
+interface FulfilmentProvider {
+  quote(spec): Promise<Quote>
+  order(spec): Promise<Order>
+  getOrder(id): Promise<OrderStatus>
+}
+
+Prodigi implements it.
+
+If Moonpig/Printify/Gelato become useful later, implement the same interfac=
+e.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ETSY
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Use Etsy Open API v3 directly.
+
+Do not depend on an old third-party SDK.
+
+Current personalization supports up to five typed questions, including
+text, dropdown and file uploads.
+
+Canonical Roast.pet personalization:
+
+1. Upload your pet
+2. Who is this for?
+3. Occasion
+4. Tell us 1=E2=80=933 things about them
+5. Roast level: Mild / Roast / Savage
+
+That is enough.
+
+The buyer should NOT have to write the joke.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+THE MCP
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Keep the MCP tiny.
+
+Muse should not see Etsy/Prodigi/rendering internals.
+
+Use the current official MCP TypeScript SDK v2.
+
+Public tools:
+
+1. funny.list_templates
+
+Input:
+occasion?
+product?
+topical?
+
+Output:
+available template families + required inputs
+
+
+2. funny.create_concepts
+
+Input:
+recipient
+occasion
+pet
+context_summary
+humour_level
+topical_context?
+
+Operation:
+LLM generates 3=E2=80=935 different joke candidates.
+Jev ranks/routes them.
+
+Output:
+candidate concepts + recommended candidate/template
+
+
+3. funny.preview_card
+
+Input:
+template_id
+pet_asset
+copy
+
+Operation:
+Satori =E2=86=92 SVG =E2=86=92 resvg PNG =E2=86=92 Sharp prep
+
+Output:
+preview asset + print asset
+
+
+4. funny.quote_card
+
+Input:
+destination
+card_spec
+
+Operation:
+Prodigi Quote
+
+Output:
+price / shipping options
+
+
+5. funny.order_card
+
+Input:
+approved render
+recipient shipping data
+shipping method
+
+Operation:
+Prodigi order
+
+Output:
+order id / status
+
+
+6. funny.create_card
+
+High-level convenience tool.
+
+Input:
+recipient
+occasion
+context
+pet photo
+humour level
+destination
+budget/deadline
+
+It internally:
+generate =E2=86=92 Jev choose =E2=86=92 render =E2=86=92 quote =E2=86=92 re=
+turn preview
+
+IMPORTANT:
+Do not automatically place a paid order without the user confirming
+the final preview/price.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+HOW MUSE USES IT
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+User:
+"Shit, I need a funny Christmas card for James tomorrow. Use my dog.
+He thinks AI will replace everyone and supports Arsenal."
+
+Muse already has conversational context.
+
+Muse sends a MINIMIZED context object:
+
+{
+  recipient: "James",
+  relationship: "friend",
+  relevant_facts: [
+    "obsessed with AGI",
+    "supports Arsenal"
+  ],
+  pet: uploaded image,
+  occasion: "Christmas",
+  humour_level: "savage",
+  deadline: "...",
+  use_topical_humour: true
+}
+
+Do not pass raw chat history.
+
+The MCP returns:
+- template
+- joke
+- preview
+- quote
+
+Muse shows it.
+User approves.
+Then order.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+JEV INSIDE THE MCP
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Example decisions after LLM generates 5 candidates:
+
+bestTemplate:
+Choice:
+- thought_bubble
+- standup
+- breaking_news
+- performance_review
+- therapist
+- search_history
+- complaint
+- split_panel
+- incident_report
+
+bestCandidate:
+Choice:
+- c1
+- c2
+- c3
+- c4
+- c5
+
+edgeFit:
+Score:
+- too mild
+- good
+- borderline
+- too far
+
+specificity:
+Score:
+- generic
+- somewhat personal
+- unmistakably personal
+
+instantClarity:
+Score:
+- confusing
+- understandable
+- immediate
+
+topicalFit:
+Score:
+- forced
+- relevant
+- perfect
+
+Use hard thresholds:
+if confidence low =E2=86=92 ask Muse / human.
+if high =E2=86=92 route automatically.
+
+This is the correct place for Jev.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+FUNNYLABS =E2=80=94 AFTER THE STORE IS LIVE
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+FunnyLabs is the data garden.
+
+Do not let it block sprint one.
+
+Reuse /killella concepts:
+
+Comedian
+=E2=86=92 immutable ActVersion
+=E2=86=92 Appearance
+=E2=86=92 reaction/performance data
+=E2=86=92 patch
+=E2=86=92 next version
+
+The experiment unit:
+
+character
+=C3=97 joke
+=C3=97 delivery
+=C3=97 topic
+=C3=97 format
+
+Controlled tests:
+
+A. SAME SET, THREE CHARACTERS
+- depressed dog
+- manic goblin
+- corporate robot
+
+Tests character effect.
+
+B. SAME CHARACTER, THREE SETS
+Tests material.
+
+C. SAME JOKE, THREE DELIVERIES
+voice / pace / visual.
+
+D. SAME TEMPLATE, DIFFERENT PERSONALIZATION DEPTH
+generic / name / one fact / rich context.
+
+E. SAME STRUCTURE, TOPICAL VS EVERGREEN.
+
+Collect:
+views
+watch time
+completion
+rewatches
+shares
+comments
+follows
+shop clicks
+sales
+
+Do not collapse to one "funny score" initially.
+
+A social winner should immediately become:
+static Etsy card
+personalized card
+possibly shirt
+
+A commerce winner should become:
+social sketch / recurring bit.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+GITHUB REPOS TO CLONE
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+CORE / OWN WORK
+
+1. prx0r/killella
+https://github.com/prx0r/killella
+
+Clone:
+git clone https://github.com/prx0r/killella.git
+
+Why:
+Reuse comedy-analysis concepts, Comedian/ActVersion model, controlled
+challenge thinking, reaction/performance measurement.
+Do NOT inherit unrelated show/payment architecture.
+
+
+JEV
+
+2. TypeSafe official JS/TS SDK
+https://github.com/typesafe-ai/typesafe-sdk-js
+
+git clone https://github.com/typesafe-ai/typesafe-sdk-js.git
+
+Why:
+Canonical Jev/System One JS interface.
+Use this in our Node/TypeScript humour router.
+
+
+3. TypeSafe System One adapter
+https://github.com/typesafe-ai/system-one-adapter-python
+
+git clone https://github.com/typesafe-ai/system-one-adapter-python.git
+
+Why:
+Run the same typed evaluation contract against ordinary LLMs and
+compare Jev vs chat models during FunnyLabs evaluation.
+Not required in production sprint.
+
+
+MCP
+
+4. Official MCP TypeScript SDK
+https://github.com/modelcontextprotocol/typescript-sdk
+
+git clone https://github.com/modelcontextprotocol/typescript-sdk.git
+
+Use v2 / @modelcontextprotocol/server.
+Do not start new code on the old monolithic v1 package.
+
+
+STATIC TEMPLATE RENDERER
+
+5. Vercel Satori
+https://github.com/vercel/satori
+
+git clone https://github.com/vercel/satori.git
+
+Why:
+JSX/HTML-ish template =E2=86=92 SVG.
+Excellent primitive for version-controlled card layouts.
+
+
+6. resvg-js
+https://github.com/thx/resvg-js
+
+git clone https://github.com/thx/resvg-js.git
+
+Why:
+Fast SVG =E2=86=92 PNG renderer.
+Use for print-resolution rasterization.
+
+
+7. Sharp
+https://github.com/lovell/sharp
+
+git clone https://github.com/lovell/sharp.git
+
+Why:
+crop / resize / composite pet uploads / masks / final print preparation.
+
+
+MOTION / SOCIAL LATER
+
+8. Creatomate examples
+https://github.com/Creatomate/node-examples
+
+git clone https://github.com/Creatomate/node-examples.git
+
+Why:
+Same template concept extended into image/video generation.
+Use after static products work to make social clips and motion versions.
+
+
+9. Creatomate official Node library
+https://github.com/Creatomate/creatomate-node
+
+git clone https://github.com/Creatomate/creatomate-node.git
+
+
+PRODIGI REFERENCE ONLY
+
+10. Community Prodigi v4 TypeScript client
+https://github.com/starkyru/prodigi-print-api
+
+git clone https://github.com/starkyru/prodigi-print-api.git
+
+IMPORTANT:
+Reference only.
+It is tiny and current but community-maintained and has no declared
+license in GitHub metadata.
+Do not copy/vendor code without confirming licensing.
+Production implementation should be our own small typed wrapper
+against Prodigi's official v4 API.
+
+Official docs:
+https://www.prodigi.com/print-api/docs/
+
+
+ETSY
+
+Do NOT clone the old Etsy wrappers as a core dependency.
+
+Implement directly against current Etsy Open API v3, especially the
+dedicated personalization endpoints.
+
+Docs:
+https://developer.etsy.com/documentation/tutorials/personalization-migratio=
+n/
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SUGGESTED NEW REPO
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+prx0r/funny
+
+Structure:
+
+apps/
+  roastpet/
+
+packages/
+  humour/
+    generate.ts
+    jev-rank.ts
+    topical.ts
+
+  templates/
+    thought-bubble/
+    standup/
+    breaking-news/
+    performance-review/
+    therapist/
+    search-history/
+    complaint/
+    split-panel/
+    incident-report/
+    wildcard/
+
+  renderer/
+    satori.ts
+    resvg.ts
+    sharp.ts
+
+  commerce/
+    prodigi.ts
+    etsy.ts
+
+  mcp/
+    server.ts
+    tools/
+      list-templates.ts
+      create-concepts.ts
+      preview-card.ts
+      quote-card.ts
+      order-card.ts
+      create-card.ts
+
+  schemas/
+    card.ts
+    joke.ts
+    template.ts
+    recipient.ts
+    order.ts
+
+later/
+  funnylabs/
+    characters/
+    experiments/
+    metrics/
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SPRINT ORDER
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+DAY/SPRINT 1
+
+1. Create repo.
+2. Clone/read Satori + resvg examples.
+3. Pick one Prodigi greeting-card SKU.
+4. Get exact dimensions/bleed.
+5. Implement one React/Satori card.
+6. Render SVG.
+7. Rasterize to print PNG.
+8. Send sandbox order to Prodigi.
+9. Print actual sample if possible.
+
+Then:
+
+10. Implement all 10 template components.
+11. Make 2=E2=80=933 strong examples per template.
+12. Create Etsy listings/personalization.
+13. Put 10 products live.
+
+ONLY AFTER LIVE:
+
+14. Add LLM joke generation.
+15. Add Jev routing/ranking.
+16. Expose MCP.
+17. Add Muse integration.
+18. Start FunnyLabs experiments.
+19. Add Creatomate motion/social render.
+20. Expand winning templates to T-shirts.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+THE CORE RULE
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Do not make the tech interesting before the jokes are interesting.
+
+A perfect API around ten unfunny cards is worthless.
+
+A folder containing ten genuinely funny reusable React templates can
+already be a business.
+
+First milestone:
+
+10 Roast.pet cards that make us laugh and can actually be purchased.
+
+Then let the system grow outward from proof.

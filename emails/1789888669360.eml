@@ -1,0 +1,382 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id uYskjHk5KPiH
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:17:49 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=VTnOD2QkBuR4xKJOdyeze/L+lx7KHl0+qU5lzq1gH78HNhZ0l6jJ6qZYLkKoCbIM43gty1bEz
+	ZxY8tkQv6999CELPHKMugqNsN4HeF6veF+RCj93BIqGGI/vk/Q4aYptYGghVQJJ8zlxzV/v+SIN
+	aFYxH7YE4aRvFJD0xFuahK1EMjUagS4CyJev4Yo1nb0cYyWwVVFX/646Yag21oHsLPCjJc+Hhyr
+	xz1fycpO0BBHV63X6XdODJsgyEr8GH5lfFyvOxtltR2+Tm2oHBPysTnqm8vQcoTK9YRWA6mOXsQ
+	LScEWfYCm/SCubNkHN0MfVz/YejhhJG2KX9vmXS3U8lQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888669; x=1790493469; bh=fX8otU4U
+	XsQJqtWdoSmEsz+sYy9WjLlttTHdVlJGVng=; b=Lh4yJ2lOH99WDT2/xie8mp1ENfU/+KB77kG
+	6rwioWzQS4hGv1luQ5KenFKGNFEEIjZASIFnWkBq6WYx29jL9NJk2trIqyLWkS1IpUDckp1rh6K
+	4LDoOb1/HV6H6Nr0s0wGfUsffSnZUAsVw5mTHgLUzyVs24TPqWUKLyd9YDZWkvQ4+zy21oTU+Ta
+	KBHzsPuEQAa9pxID4HBirVzT0jIlquYf3Xri4GiDTnnRSPtZGOPwE5q2isbZ3w0g2HqSQbjJNk3
+	/lcScYN6+QfIasl+YRQQTo5zX/RMoOMJwJgqMuIkclMXZCbGBw/hEjulfc6v3mpLkjbN4wZOHGH
+	s2H/BRA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=c/rVgs/K;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=c/rVgs/K;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43ac608dso14648957b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:17:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888669; cv=none;
+        d=google.com; s=arc-20260327;
+        b=VJy/aWjdNYZ+DWXurHVxG0Tv+SiVWqS5FHzW6JMiPlZkksknwZSgpgvv5QTOjCgF05
+         4Pt7QM6Ci8YbIbA/HA/FXhsxhBDbKp4Shr42yNGyw1Vfw00jaEmZqdR3ITM6NwCbX2ev
+         LeXHfnEyu9UrtPNnR7Ctu3eJT2eSIyIz3sMRKW0kQDldQ60fkqUdiq1lsoYmHCAVGvbg
+         0BmLetP9C8EiE/68g0ByAC5/Riqma+aa2V4KVSCkap0xyuA+FZghcfvW+Hh/ZM3vy+RS
+         Hb1vOrKV0l0FEStIZ2qljLnJlZjS2lM+y4M8EpT/FFMC+APak+aWCHH1cRwY/2XnjDdF
+         mHEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=fX8otU4UXsQJqtWdoSmEsz+sYy9WjLlttTHdVlJGVng=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=s12N064/wetaRFYJk6gOiLplzoUrGPaB3TDPT85g2vPIn5g/gu7BWQxQZ2TxtqAtbH
+         8jeK92mqOy9fn9ZxNL3QUa+Ja9JGsGkrydOzfBQunzd8zSEkdz2gSzqHwfpPPLIAy5i6
+         b4hVxH2aPU6kMlmUoq4N45h9D7W8aEAs7n8GQ43tHMXEmVZyW7bekK4oRBIoiAgML98k
+         AOSwlCGzVahOWpVVMIWsDK1zfqALv7xrz1ptKqDwHVTrSzVPiBF0W4JLuS9hQDzjPtaO
+         W4oNyAja/16mu0cXCmdJaoevTC8bJTu2cwuESa96xSS14SeXschOcvCkzLXSfQDSuhRL
+         CVHQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888669; x=1790493469; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=fX8otU4UXsQJqtWdoSmEsz+sYy9WjLlttTHdVlJGVng=;
+        b=c/rVgs/KJQFBllI5dF8V9pH2MKZdWH/BFASLwkVh/USpPycs0Qef7bJhzhaz9qP8xO
+         ojw3mx4ozp6Bt8OQp0FYbVp6r67zW4HMmZrcnjlHJypruFZnQU70hlnXeo993j+50ydg
+         00B03mZ5zR9WNXkTclcgAUX3jPFyTZS1xeCq/xJWSK7ARY1wDmOLHTAiw1i319Gpg6+u
+         m4a9r6gPSw1bfi7mNwAYLUyuX4YQBI0GBlXHAzX8MT7lcWkRCDG/JA7tidEHGIVhu9EZ
+         BY0cXy4k/w4hoxpdA9l5sSmNmuNpwjh6rHhvim8+imx9aIIYiF0GBZHqRgmEfCIctuX5
+         l/wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888669; x=1790493469;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=fX8otU4UXsQJqtWdoSmEsz+sYy9WjLlttTHdVlJGVng=;
+        b=Ua3ZqniKub1FM2pHPkkeVWb87E+y24b59051V5JnzwVshSj/ChwOicB7r83jEBja0u
+         OTcwXoWYqW7Rk0TUMtIiqBCgyWg+y9z6J0tuvuZ7SFwEcYXaCdGHQjBsH7BtR8x0sBeA
+         PYM1j9wkFrGBZPX9C6thC1IYy0t2SqeNT7kO/d0ulCphwE7GUY0zPJVandJCd06BR59M
+         yabgSWWVOzqdfz9ra8tRfVknVON+OhWj4rRnpANTqG4K5dNFyJ7ZKfr5OB0EXmx+DYxp
+         ZqZlgLpaTCfpHP/SgzVgnfvBBs+4vvd21CNb/1lJKaalwjQvrl7N7sgT53u2D6VPRfsa
+         K5KQ==
+X-Gm-Message-State: AFuF++mIBYukwKvLP7bwzz/3wvRTMrYgzNwwGoI08izqwHIbo560eAgy
+	v9itLEwO9gjlCRCbGPVOABghxMxpAKEeSQL4J5MdJ18lwcKBo+saaIS0sTIJyaw5Cy/eF/G63f5
+	QYJTvHMHAWmyg/YLz/cDmoFhnxJq5RmryEQ==
+X-Gm-Gg: AYBFou1I5k5DHva7Wnq1bpNX0SHQ2vPh+D/sUKE69uoYS76u1sAho+nXHvGl3Mq9eGy
+	maUDPRq4QeqLRKOG7pbubfTIAUwxTmfPOSbkGfCIfAOOWUYGVIr+f4TMjLDpQw21l/kuNx7TOcv
+	lavS4pnfzvezE7zansZpdMW3r2+jF6uyS4UB3FKasDpjqOa5aBUrg6dSiC/GEZEFMKom7R3Lp0V
+	OQ76EqpXnni3PoknsfS/EbpXYWyR42a34vBRxvJvym80q81xbZrwYrwbkoOq6gShmBlG/t7p7wT
+	WtxtM+eXfhU4fknsA33nSUldRigenJFmZSsQymMW8SiDKpS5qF27yO0GrGGaskyOwcsYXN3ytpO
+	CXO2rY8jFI2Atpnjz0Mr/tTSGgGRLaBS+LrvoUNF0o/8HdJdzCbkHzy1CrltKo/9iznAsoOVQMQ
+	2wdwnCcfs=
+X-Received: by 2002:a05:690c:18:b0:887:f4fc:ed49 with SMTP id
+ 00721157ae682-8973625cf75mr22340187b3.50.1789888668578; Sun, 20 Sep 2026
+ 00:17:48 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:17:47 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:17:47 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:17:47 -0500
+X-Gm-Features: AcwNN1XwZUT9WIo0jEcM6J4oGRLWZ5HRlSD5eAA3Ozke0LmVCBQ_h0Isli42ZV0
+Message-ID: <CAPdrGe=VwaNq+d2hh9Ft9Ndku7vAZLDRkQr7KoJMqAohNY-JyQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Attack_Chains_=E2=80=94_2026=2D09=2D18_03=3A35_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_1_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY ATTACK CHAINS =E2=80=94 DEFENSIVE SYNTHESIS
+
+1 NEW ATTACK CHAINS
+
+AC-2026-DELEGATED-MODULE-AUTHORITY =E2=80=94 ACTIVE/RECENT
+
+Aliases: Safe module authority bypass; delegated-wallet confused
+deputy; module-to-asset authority.
+
+Canonical fingerprint: externally callable helper/keeper ->
+already-authorized wallet module -> authorization check accepts
+unintended caller/path -> module executes with delegated wallet
+authority -> owner-signature threshold bypassed -> asset action ->
+public transaction copied/front-run -> observed asset movement /
+attribution break.
+
+Evidence: public reporting and on-chain analysis of the 15 Sep 2026
+rsETH Safe incident. Safe core and Kelp rsETH contracts were not
+identified as compromised; the weak boundary was a custom
+module/helper already authorized by the wallet. A public
+keeper/multicall path could drive the authorized liquidity module into
+an attacker-created hooked pool. A generalized MEV searcher then
+copied/front-ran the transaction, so the original exploiter did not
+receive most of the extracted rsETH.
+
+Stages:
+
+- ENTRY/SOURCE: public keeper/multicall invocation =E2=80=94 CONFIRMED / T2=
+,
+independently corroborated.
+
+- INITIAL EXECUTION: custom authorized Safe module invoked through
+helper path =E2=80=94 CONFIRMED / T2.
+
+- PERSISTENCE: enabled module remained delegated until owners disabled
+modules =E2=80=94 CONFIRMED / T2; not attacker persistence in the conventio=
+nal
+endpoint sense.
+
+- SECRET/SESSION/MEMORY ACCESS: not required =E2=80=94 N/A.
+
+- PRIVILEGE/AUTHORITY ESCALATION: unintended caller/path reaches
+pre-existing module authority =E2=80=94 CONFIRMED / T2.
+
+- TOOL/CLOUD/CI/SIGNER ACCESS analogue: module can execute Safe
+transactions without fresh owner signatures =E2=80=94 CONFIRMED / T2.
+
+- ACTION/SIGNING/EXFIL: approximately 2,900 rsETH extracted through
+the module path =E2=80=94 CONFIRMED / T2/on-chain.
+
+- OBSERVED CONSEQUENCE: asset movement and repeated copycat use until
+modules disabled =E2=80=94 CONFIRMED / T2.
+
+- CASHOUT/ATTRIBUTION BREAK: generalized MEV searcher copied/front-ran
+the public transaction; most assets therefore went to the searcher=E2=80=99=
+s
+address rather than the original exploiter =E2=80=94 CONFIRMED chronology /
+T2. This does not establish owner or intent beyond public labels.
+
+Affected stacks: programmable smart-account wallets; Safe-style
+delegated modules; automated treasury/agent wallets; keeper-driven
+execution; agent payment/signing systems with persistent delegated
+capabilities.
+
+Prerequisites: wallet has already delegated material authority to a
+module/helper path; an externally reachable path can satisfy or bypass
+intended authorization semantics.
+
+Trust boundaries crossed: public caller -> helper/keeper; helper ->
+authorized module; module -> wallet asset authority; public mempool ->
+independent searcher.
+
+Authority transition: no owner private key theft is needed. Existing
+delegated module authority is composed with an unintended invocation
+path.
+
+Persistence: authority persists while the module remains enabled.
+Incident response disabled the implicated modules and later additional
+modules.
+
+Propagation: copycat transactions using the same exposed mechanism
+were observed during the incident window. No inference about private
+identities.
+
+Strongest evidence: Bitquery=E2=80=99s on-chain reconstruction plus
+contemporaneous Blockaid/BlockSec/SlowMist/AstraSec reporting
+summarized by multiple outlets.
+
+Strongest counterevidence/constraint: reporting attributes the failure
+to custom module/helper authorization, not Safe core or Kelp rsETH
+contracts; the precise root-cause wording differs across reports.
+
+2 MATERIAL CHAIN UPDATES
+
+No prior canonical Privately chain crosses the material-update
+threshold this run. The new record is deliberately separated from
+credential-theft chains because it demonstrates consequential
+authority without secret theft.
+
+3 TOP RECURRING SECOND-ORDER MECHANISMS
+
+- Delegated authority outlives or bypasses the human approval surface.
+
+- Individually legitimate capabilities become unsafe when composed
+through an unintended caller/path.
+
+- Credential/key security is insufficient when a module, agent, app or
+trusted publisher already has equivalent execution authority.
+
+- Public execution surfaces create a second attribution boundary:
+independent automation can copy/front-run a discovered action.
+
+4 STAGE/EDGE GRAPH
+
+public caller [CONFIRMED/T2]
+
+-> keeper/helper [CONFIRMED/T2]
+
+-> authorized module [CONFIRMED/T2]
+
+-> delegated wallet authority [CONFIRMED/T2]
+
+-> fresh owner signatures NOT REQUIRED [CONFIRMED/T2]
+
+-> asset extraction [CONFIRMED/T2/on-chain]
+
+-> public transaction visibility [CONFIRMED/T2]
+
+-> independent MEV copy/front-run [CONFIRMED/T2]
+
+-> final recipient differs from original exploiter [CONFIRMED chronology]
+
+5 UNKNOWN LINKS WORTH RESOLVING
+
+- Exact code-level authorization invariant that failed across the
+helper/module composition: evidence currently varies in phrasing.
+
+- Whether the vulnerable path was introduced specifically for
+automation/keeper operation or inherited from a broader module design.
+
+- Whether comparable agent-wallet/module systems enforce caller +
+capability + destination + amount as one authorization object.
+
+6 DEFENSIVE CHOKEPOINTS + DETECTION PRIMITIVES
+
+- Treat every delegated module/app/agent as signer-equivalent
+authority in inventory and risk models.
+
+- Authorize the full tuple: caller, module, action, destination, asset
+and amount; do not authorize each independently.
+
+- Alert on module-initiated asset movement that lacks a corresponding
+fresh owner-policy event.
+
+- Maintain explicit module enable/disable history and capability diffing.
+
+- Add spend ceilings, destination allowlists, time bounds and
+revocation paths to autonomous wallet authority.
+
+- During incident response, revoke created/delegated authority, not
+only owner keys or tokens.
+
+- For public-chain automation, assume exploitable actions can be
+copied/reordered by unrelated searchers; recipient chronology does not
+prove original exploitation identity.
+
+QP implication: ALLOW(module M) + CALLABLE(helper H) must not imply
+ALLOW(H -> M -> arbitrary wallet action). Authorization must prove the
+composed authority path at execution time.
+
+7 SAFE LAB REPRODUCTION QUEUE
+
+Use a local/testnet smart account with dummy tokens, a deliberately
+over-permissioned test module and two fake callers. Demonstrate only
+that caller B can trigger a benign dummy-token transfer through
+authority intended for caller A, then test
+caller/module/action/destination tuple enforcement. No real wallets or
+funds.
+
+8 CROSS-CASE CLUSTERS
+
+Cluster: delegated-authority composition.
+
+Supporting mechanisms: relationship-blind agent read+write
+composition; package/registry authority surviving credential rotation;
+CI agent tool-policy asymmetry; Safe module authority bypass.
+
+Shared fingerprint: a security boundary validates a component but not
+the consequential composition of authorities.
+
+Status: ACTIVE/RECENT.
+
+9 MACHINE-READABLE JSONL DELTA
+
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-DELEGATED-MODULE-AUTHOR=
+ITY=E2=80=9D,=E2=80=9Caliases=E2=80=9D:[=E2=80=9CSafe
+module authority bypass=E2=80=9D,=E2=80=9Cdelegated-wallet confused
+deputy=E2=80=9D],=E2=80=9Cstatus=E2=80=9D:=E2=80=9CACTIVE_RECENT=E2=80=9D,=
+=E2=80=9Ccanonical_fingerprint=E2=80=9D:=E2=80=9Cpublic
+caller -> helper/keeper -> pre-authorized module -> unintended
+delegated wallet authority -> owner-signature bypass -> asset action
+-> public execution
+copied/front-run=E2=80=9D,=E2=80=9Cstages=E2=80=9D:[[=E2=80=9CENTRY_SOURCE=
+=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT2=E2=80=9D],[=E2=80=9CINITI=
+AL_EXECUTION=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT2=E2=80=9D],[=
+=E2=80=9CPERSISTENCE=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT2=E2=80=
+=9D],[=E2=80=9CSECRET_SESSION_MEMORY_ACCESS=E2=80=9D,=E2=80=9CN/A=E2=80=9D,=
+null],[=E2=80=9CPRIVILEGE_AUTHORITY_ESCALATION=E2=80=9D,=E2=80=9CCONFIRMED=
+=E2=80=9D,=E2=80=9CT2=E2=80=9D],[=E2=80=9CTOOL_CLOUD_CI_SIGNER_ACCESS=E2=80=
+=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT2=E2=80=9D],[=E2=80=9CACTION_SIGN=
+ING_EXFIL=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT2_ONCHAIN=E2=80=9D=
+],[=E2=80=9COBSERVED_CONSEQUENCE=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=
+=80=9CT2_ONCHAIN=E2=80=9D],[=E2=80=9CATTRIBUTION_BREAK=E2=80=9D,=E2=80=9CCO=
+NFIRMED_CHRONOLOGY=E2=80=9D,=E2=80=9CT2_ONCHAIN=E2=80=9D]],=E2=80=9Ctrust_b=
+oundaries_crossed=E2=80=9D:[=E2=80=9Cpublic
+caller->keeper/helper=E2=80=9D,=E2=80=9Chelper->authorized module=E2=80=9D,=
+=E2=80=9Cmodule->wallet
+authority=E2=80=9D,=E2=80=9Cpublic mempool->independent
+searcher=E2=80=9D],=E2=80=9Cauthority_transitions=E2=80=9D:[=E2=80=9Cpre-ex=
+isting delegated module
+authority=E2=80=9D,=E2=80=9Cunintended invocation of signer-equivalent
+capability=E2=80=9D],=E2=80=9Cpersistence=E2=80=9D:=E2=80=9Cmodule authorit=
+y persists while
+enabled=E2=80=9D,=E2=80=9Cpropagation=E2=80=9D:=E2=80=9Ccopycat transaction=
+s observed during incident
+window=E2=80=9D,=E2=80=9Cstrongest_counterevidence=E2=80=9D:=E2=80=9CSafe c=
+ore and Kelp rsETH
+contracts not identified as compromised; root-cause wording varies
+across reports=E2=80=9D,=E2=80=9Clikely_detection_points=E2=80=9D:[=E2=80=
+=9Cmodule-originated transfer
+without fresh owner-policy event=E2=80=9D,=E2=80=9Cunexpected helper caller=
+=E2=80=9D,=E2=80=9Cnew
+pool/hook destination=E2=80=9D,=E2=80=9Crepeated identical authority
+path=E2=80=9D],=E2=80=9Ccontainment_points=E2=80=9D:[=E2=80=9Ccaller+module=
++action+destination+amount
+binding=E2=80=9D,=E2=80=9Cspend ceilings=E2=80=9D,=E2=80=9Cdestination allo=
+wlists=E2=80=9D,=E2=80=9Ctime-bounded
+delegation=E2=80=9D,=E2=80=9Cmodule
+revocation=E2=80=9D],=E2=80=9Cqp_authority_policy_implication=E2=80=9D:=E2=
+=80=9CALLOW(module
+M)+CALLABLE(helper H) !=3D ALLOW(H->M->arbitrary wallet
+action)=E2=80=9D,=E2=80=9Csafe_lab_reproduction=E2=80=9D:=E2=80=9Clocal/tes=
+tnet smart account, dummy
+token, deliberately over-permissioned test module, benign transfer
+only=E2=80=9D,=E2=80=9Cfalsifier=E2=80=9D:=E2=80=9Cfull composed authorizat=
+ion tuple prevents
+unintended caller from exercising module
+authority=E2=80=9D,=E2=80=9Cunresolved_questions=E2=80=9D:[=E2=80=9Cprecise=
+ failing authorization
+invariant=E2=80=9D,=E2=80=9Cautomation-specific origin of helper path=E2=80=
+=9D,=E2=80=9Cprevalence in
+agent-wallet systems=E2=80=9D],=E2=80=9Cnext_evidence_request=E2=80=9D:=E2=
+=80=9Cprimary module
+code/postmortem establishing exact authorization invariant and a
+comparative audit of agent-wallet delegated-capability designs=E2=80=9D}
+
+10 NEXT-HOUR RESEARCH QUEUE =E2=80=94 INFORMATION GAIN
+
+- Obtain primary technical postmortem/source for the rsETH module and
+pin the exact failed invariant.
+
+- Search agent-wallet/payment frameworks for analogous
+signer-equivalent modules and whether caller/action/destination/amount
+are compositionally bound.
+
+- Resolve stolen AI-service credential -> authenticated agent session
+-> consequential external tool action from prior UNKNOWN edge.
+
+- Find production evidence of relationship-blind authorization in
+non-wallet agents.
+
+- Continue searching for persistent agent memory/session -> later
+privileged action with a fully confirmed downstream consequence.

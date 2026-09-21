@@ -1,3 +1,4 @@
+import os
 """
 Extended Coin Registry
 All tracked coins including external comparison set.

@@ -1,0 +1,452 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id F8sAhe4IEPbw
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 13:27:48 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=PDt0uILo9DmR3d1nj2pIgjwEYEU8i+NyFDwytpUfuzb5P0+4w0BJqLDxXrP2K+5IH6aW8Qfo4
+	nKCSAIn+fapImi5aHw5dfc2AGROUExIvU40P04JvEKv1VRVDgegwyhkhladuEOidTdr2XSlgSfD
+	bXYLlbuVgxW6ftv1erlFdZNBXeSqZmTXYST8SFPbKgKB/vqN8u+nqzc0IoTxzMBi3LLY6DvBQkf
+	zKAeUO1VurC6677uPPtRdSJExB7O3Y4zUfQIN19MIjYzOkri2f6hAGkEiyA6Kh73HaY6G/iVItH
+	k0LPZPF64VFC+2bJtYc1cRCoMPbv6+T+YhJFB/DEq7wA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789738068; x=1790342868; bh=FEoP5hzE
+	StEfwcAj2/kVh15BFhVOSMvle3iNtK/uD7o=; b=Z48GUdv9fDp7SQXZl5Vo4/9W7cgr41Ror7N
+	vdvMk4FW1/DGF35ZY4XkCB8r+jKFUjZ/wS0DiXlD6R3GXXdZ7fiZnohezy/CvHyp+b0uNAfKJGh
+	GRI12lSn8D3kDN4DT+VWBxfl8WyiGgdSlJ2JOfCbY2yg5URstH42e7SbtHLy9fgVED6xOeK6Zpc
+	u98Rg1yE7DtEcCZSIBfHBcp74ATG4tX6rClRH7t8uxyzZU/YKbmLah6ElHtz/Ui8EZYmijt/m9T
+	uePoqyxKlnFFJNGh5fWfstVLCSEyImdnnm+LbZRm9IdG7nDiq+0MVLBGxlGtifhesh4ScOGtc2Z
+	Abe/OjA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CVRuwOsu;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CVRuwOsu;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85e68bdbcc1so4971707b3.2
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 06:27:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789738068; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ILhnSVW0nGB7g1CexR39pYA91B03ui5RndfZFCNYVcEkPT4i32w0rVwYG1jAU3Jti8
+         +3M49hS1ghPz7NiPEJCENpm/qCxj8JSs3OGeP2vu2Erd9CKwM1Gg2Rc1y/MsLtW+UN4/
+         8gz3B3WKIeYHS8inTgw+PZNcmPUP7jNRuRRj2EaFZtSjgEj7pKCpYD/vHwzFtxiwZtC5
+         VNsgk879MKUPjT+g7BzOCIP/uJPgDdgdY2WO8FCCd5dtTPNuPbJtDswZkJ4GOxZzwFOT
+         2kYcfx7dYP4B//53O5S6IHlrX25MaZjROX8YeA4/e+xfQznYDhkLTMedS0dP5Z/DufUH
+         XfLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=FEoP5hzEStEfwcAj2/kVh15BFhVOSMvle3iNtK/uD7o=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=juzd0D8EEycM0yS8WjcPEjXC98Qa7OlnSaWtkMNHJKobK4w3iTdFGmfjxZasC0Lrjs
+         bnoyos8H7ne8NsajdxO+b78xcm3oIrAF45/yk0eFEJPwD5N/fgfeokg1fDHyhGa5ACzH
+         YwjdJj4L9pPK2mtlIoZY/3WCeK2hObVvUjUUfsbkfeqFzIvkMAdQcUDOxsvi59jewo/T
+         gWWYNXJ9I0pFW772hO4QPh90jkCmKJUX2mqNVNY0jW7hDOKwbpnIhrSkcJ2ifZIT732f
+         vd6eFY1/X70//DWk9q51nPrrRSScDiWwHdy9rUZ/1KLexexLeLnVa+L/nTHG3wkUjX4k
+         46UA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789738068; x=1790342868; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=FEoP5hzEStEfwcAj2/kVh15BFhVOSMvle3iNtK/uD7o=;
+        b=CVRuwOsucA1f15zeAuyxQi3L+h4uWAXJnpBSMVCLXnTpn/FbtGxQ+wHhsu1WeEhKxD
+         E1Pod4wBNACYFYY6sI9KDelv7s/GwadkrHw5yEb4gz11lD6qcejEITjh23i4XEIPOkut
+         aD5agoYWuiOew4uNurn5Ze8+C3fRoFoTAoOP7gBGz9CcVb5CfFICqXCcZPoP0vwYyVI1
+         eDRS6rxv80hKR5lB7iie6w6Zavj3PtO+4Eoyxkt0Qf6IeTyjakDISYzFF+eI2dr6DaLp
+         APepnw/qH6Irrkn/HVG6uBnPRhs7R7dcQDgWHJOhnXanBeVylgHmyPppNlxH2WE8F6Wk
+         J9iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789738068; x=1790342868;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=FEoP5hzEStEfwcAj2/kVh15BFhVOSMvle3iNtK/uD7o=;
+        b=WbL9VhpmmHbozp3vvQAn4O45sk2YrDDx2q7BF+jveI34uR/DAo8R5QujpHdile+Sva
+         LSD2ak4V8hD5dZ8kj3u8ZgA4LrrBtMKnWmp3L4T06Hz2MWD/mNSExJSIy9hMsuTRemko
+         vI5AWuHv0CsOTnPaIn9S+ELp8WnwZVFHZj1K8V3Ko6BkniwVJtfGe0HOI2/SoHS2Pnuy
+         rDAKxMGSYc7i8yM9I38+Rp0pl7NNESbjEor0ppWQNNlRhlpnDjnrJQqRBNUBJz4d4Jfq
+         2BDulE1wIRlYwbMd/81YRY/pOYdEPVagOWNflPtZwxuTBOast2JHIpQoFMLb2mKEmW88
+         3JBA==
+X-Gm-Message-State: AFuF++n4ddXQfet3HKwWZ9UjZWwvhqMguYF1e+dNXkqcQoH9/IrSZZbn
+	mtigCZiYCNetfWnemAmL/x+uGTB7SDeu7HMPc7Y9kbgg3L6LH8MQXV0AtE8IMyEdVrd5zr29Oa+
+	FJCOG+UPXRkKJ0/3/AMwEob8vY/tjNCtasA==
+X-Gm-Gg: AYBFou3CGWYGPxOg3UGw1GwyHNtD6ngIycl1e7f2bQE1LP4asDLSzbk0dbBV4MVIiAx
+	ELjaWFT4ABzsXbSdzc01LqtyOkkIWT+wGYHwFFTvb4rjx6o9GPlD/V28EsR4v1QPlFiQgEcCHAd
+	qKq0feWbQMOtBRTjeddtRPEJxeDwW+zvxAfgf2upNLgnBKTgUFM0b2KA7EOqDkSSk65dcyCrhAn
+	1OZ1ZBbn9V/oxAHG7aOxx3R5usi510B6AR3lX70W/LvCeDTSqlyTCek8cuLi3fjBio2tuJTWR1d
+	ntT55hmpranKB5DG4gc1gLaYWyOsc3AogF8/xD5B+7MNfURsgBEX7ERctUSS1Mo8T8CNJAbWIA8
+	asXsKUOtUDWpXXEHPzOSO+6WvJMNajw3k38bHFH2vBers9Wc7BBnax/l9BvhS89hLxqz+wPM3
+X-Received: by 2002:a81:8a82:0:b0:81f:e85b:f9da with SMTP id
+ 00721157ae682-89738597570mr12019487b3.33.1789738067632; Fri, 18 Sep 2026
+ 06:27:47 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 08:27:47 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 08:27:47 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 08:27:47 -0500
+X-Gm-Features: AcwNN1VkEsrIL3r4U4qSoAMfA7o4No6f7UD_hMgzcBc-wi3Q-fEegEAHrmd6n0E
+Message-ID: <CAPdrGemHSzCEUAOL1rLDYe4Kw+7OEdUOtQFp0xS8PaA91zVCgQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D18_20=3A2?=
+	=?UTF-8?Q?6_Asia=2FPhnom=5FPenh_=E2=80=94_5_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000c32714065bc1ddab"
+
+--000000000000c32714065bc1ddab
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 5 useful projects
+
+This run reviewed 20+ plausible candidates and deduplicated against earlier
+Roast.pet scans. The strongest new find is
+LostPetInitiative/study_winter_22_23: a student/research repo with a
+pretrained YOLOv7 pet-face detector that returns both a pet face box and 3
+landmarks (two eyes + nose), plus an alignment script. This is almost
+exactly the missing deterministic preprocessing primitive before generating
+Roast.pet mouth/eye variants.
+1) LostPetInitiative/study_winter_22_23
+
+URL: https://github.com/LostPetInitiative/study_winter_22_23
+Creator: LostPetInitiative / MDS student project; model archive credits Chi
+Chon Ng and Hon Sang Leong.
+Activity: 149 commits; project/model archive published 2023.
+License: no clear repo license surfaced in this run =E2=80=94 treat reuse r=
+ights as
+UNKNOWN until checked; do not ship copied code/weights commercially yet.
+Solves: dog/cat face detection, canonical crop and alignment before sprite
+generation.
+Route: Python 3.8 + PyTorch/YOLOv7. Pretrained yolov7-pet-face.pt is
+archived on Zenodo (~73.5 MB). Inference outputs bbox + confidence + 3
+landmarks; face_alignment.py consumes detector outputs.
+Hardware: CPU possible; GPU optional/preferred for throughput.
+Evidence: ~15k-image pet-face dataset assembled from AnimalWeb, cat
+datasets, TsingHua Dog and Dogs vs Cats, with bbox + two-eye/nose
+landmarks; pretrained weights publicly archived on Zenodo DOI
+10.5281/zenodo.7607110.
+Work replaced: pet-specific face detector, eye/nose locator, canonical
+crop/alignment glue =E2=80=94 potentially several days to weeks and avoids =
+trying
+human MediaPipe on pets.
+Difficulty: LOW-MEDIUM.
+Maintenance risk: MEDIUM; older YOLOv7 stack and uncertain license.
+Experiment: run 100 ugly customer-like dog/cat photos; record
+face-detection rate, landmark plausibility and whether aligned output makes
+generated 9-mouth packs more identity-consistent. Compare directly with
+simple object crop.
+Decision: COPY MECHANISM / BENCHMARK NOW; verify licensing before
+code/weight reuse.
+2) kairess/dog_face_detector
+
+URL: https://github.com/kairess/dog_face_detector
+Creator: kairess; model credited upstream to Doggie-smile.
+Activity: tiny 5-commit hobby repo; 68 stars / 24 forks.
+License: no license confirmed in this run =E2=80=94 treat as UNKNOWN.
+Solves: dog face rectangle + 6 facial landmarks with dlib.
+Route: Python + dlib + OpenCV + imutils + NumPy; pretrained detector files
+are included.
+Hardware: CPU-friendly old-school CV stack.
+Evidence: runnable image/video demo; an adjacent personal blog reports the
+detector was trained on >9,000 dog heads and demonstrates repurposing its
+eye/nose landmarks for alignment.
+Work replaced: dog-specific landmark bootstrap and a cheap fallback
+detector.
+Difficulty: LOW.
+Maintenance risk: HIGH due age/unknown model provenance; use as
+benchmark/fallback, not core.
+Experiment: same 100-photo set as LostPet detector; compare failure modes
+and CPU latency.
+Decision: WATCH / COPY MECHANISM.
+3) bunn-io/rembg-web
+
+URL: https://github.com/bunn-io/rembg-web
+Creator: bunn-io.
+Activity/release: npm/API docs v1.0.2; current GitHub crawl.
+License: MIT code; verify each selected model=E2=80=99s own license before
+commercial deployment.
+Solves: browser-native cutout without adopting a whole background-removal
+application.
+Route: npm install @bunnio/rembg-web onnxruntime-web. About 8 KB gzipped
+library excluding runtime/model. Supports U2Net/U2NetP/ISNet/Silueta,
+custom model paths, caching and mask-only output.
+Hardware: WASM baseline; WebNN/WebGPU where usable.
+Evidence: package docs, examples, model/session caching and published
+npm/CDN package.
+Work replaced: custom ONNX browser loader, model registry, session/cache
+management and cutout API.
+Difficulty: LOW.
+Maintenance risk: LOW-MEDIUM; browser acceleration varies and model
+licensing differs.
+Experiment: benchmark u2netp vs existing Alphaveil/Cutout Studio on 30
+fur-heavy photos, including first-load size, repeat latency and edge score.
+Decision: REUSE NOW if the chosen model license is commercial-safe.
+4) thangtn-foobla/background-removal
+
+URL: https://github.com/thangtn-foobla/background-removal
+Creator: thangtn-foobla.
+Activity: one-commit microrepo, crawled last month.
+License: not established in surfaced evidence =E2=80=94 treat as UNKNOWN.
+Solves: production details around browser ONNX cutout: iOS fallback, worker
+execution, cancellation, warmup, model hot-swap/rollback and IndexedDB
+cache.
+Route: Vite/JS + ONNX Runtime Web; U2Net 176 MB, MODNet 25.9 MB or
+quantized MODNet 6.6 MB.
+Hardware: WebGPU preferred; deliberately forces WASM on iOS/iPadOS where
+ONNX WebGPU is unreliable.
+Evidence: concrete service API and documented implementation, including
+versioned model URLs and rollback.
+Work replaced: boring but important browser inference lifecycle code.
+Difficulty: LOW.
+Maintenance risk: MEDIUM because it is tiny/unmaintained-looking.
+Experiment: copy only its device-routing and model-lifecycle ideas into a
+disposable page; test iPhone Safari plus desktop Chrome with cancellation
+and repeat runs.
+Decision: COPY MECHANISM.
+5) crdrury/Unity-Rhubarb-Lip-Syncer
+
+URL: https://github.com/crdrury/Unity-Rhubarb-Lip-Syncer
+Creator: crdrury.
+Activity: 79 stars; recently crawled.
+License: verify before reuse; not confirmed in surfaced evidence this run.
+Solves: automatic conversion of Rhubarb output into editable 2D sprite
+animation.
+Route: Unity + Rhubarb; mouth sprites named by Rhubarb shape and generated
+into an animation track. Transcript can be supplied to Rhubarb for better
+timing.
+Hardware: CPU; no inference GPU required.
+Evidence: documented 2D workflow and walkthrough/demo path.
+Work replaced: not our renderer, but validates the exact mouth-sprite state
+abstraction and provides a reference for editable animation generation.
+Difficulty: LOW to study, HIGH if we foolishly adopt Unity.
+Maintenance risk: LOW as a mechanism, HIGH as a direct dependency.
+Experiment: do not integrate Unity. Compare its generated mouth-state
+timing/hold behavior with our Rhubarb-crumble/LipSyncify implementation and
+copy any useful timing semantics.
+Decision: COPY MECHANISM, NOT STACK.
+New architectural consequence
+
+The LostPet detector is the material find. Our cheap deterministic V1 can
+now have a pet-native alignment stage:
+
+customer photo -> pet face bbox + eye/nose landmarks -> canonical aligned
+pet crop -> cutout/upscale -> generate 9 mouth + 3 eye states -> Rhubarb ->
+transparent pet animation -> captions/template -> Etsy/MindAR.
+
+This is better than using human MediaPipe as the locator and hoping it
+generalizes. It also gives a measurable quality gate: if face
+confidence/landmark geometry is poor, request another customer image before
+spending generation/render compute.
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+   1. Pet face detection/alignment: benchmark LostPetInitiative=E2=80=99s
+   pretrained detector first.
+   2. Generic dog landmark fallback: existing dlib dog-face hobby models
+   already exist.
+   3. Browser ONNX model/session/cache plumbing: rembg-web already packages
+   it.
+   4. iOS inference fallback/cancellation/model lifecycle: copy the thangtn
+   microrepo=E2=80=99s mechanism.
+   5. Rhubarb-to-sprite animation semantics: multiple independent wrappers
+   already solve it.
+
+Most surprising hobby project: LostPetInitiative/study_winter_22_23. It has
+zero stars in the surfaced result but 149 commits, a 15k-image pet-face
+dataset and archived pretrained dog/cat face+landmark weights =E2=80=94 far=
+ more
+useful to Roast.pet than another generic avatar framework.
+
+Fastest integration win: download the LostPet pretrained detector into a
+disposable benchmark and test whether canonical eye/nose alignment improves
+mouth-pack identity consistency. If yes, this becomes the quality-gate/crop
+primitive before any image generation.
+
+Repo/author worth following: LostPetInitiative and the Chi Chon Ng / Hon
+Sang Leong model archive. Their work is unusually aligned with the exact
+pet-specific preprocessing gap.
+
+--000000000000c32714065bc1ddab
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 5 useful projects
+<p>This run reviewed 20+ plausible candidates and deduplicated against earl=
+ier Roast.pet scans. The strongest new find is LostPetInitiative/study_wint=
+er_22_23: a student/research repo with a pretrained YOLOv7 pet-face detecto=
+r that returns both a pet face box and 3 landmarks (two eyes + nose), plus =
+an alignment script. This is almost exactly the missing deterministic prepr=
+ocessing primitive before generating Roast.pet mouth/eye variants.</p>
+
+1) LostPetInitiative/study_winter_22_23
+<p>URL: <a href=3D"https://github.com/LostPetInitiative/study_winter_22_23"=
+>https://github.com/LostPetInitiative/study_winter_22_23</a><br>
+Creator: LostPetInitiative / MDS student project; model archive credits Chi=
+ Chon Ng and Hon Sang Leong.<br>
+Activity: 149 commits; project/model archive published 2023.<br>
+License: no clear repo license surfaced in this run =E2=80=94 treat reuse r=
+ights as UNKNOWN until checked; do not ship copied code/weights commerciall=
+y yet.<br>
+Solves: dog/cat face detection, canonical crop and alignment before sprite =
+generation.<br>
+Route: Python 3.8 + PyTorch/YOLOv7. Pretrained <a href=3D"http://yolov7-pet=
+-face.pt">yolov7-pet-face.pt</a> is archived on Zenodo (~73.5 MB). Inferenc=
+e outputs bbox + confidence + 3 landmarks; face_alignment.py consumes detec=
+tor outputs.<br>
+Hardware: CPU possible; GPU optional/preferred for throughput.<br>
+Evidence: ~15k-image pet-face dataset assembled from AnimalWeb, cat dataset=
+s, TsingHua Dog and Dogs vs Cats, with bbox + two-eye/nose landmarks; pretr=
+ained weights publicly archived on Zenodo DOI 10.5281/zenodo.7607110.<br>
+Work replaced: pet-specific face detector, eye/nose locator, canonical crop=
+/alignment glue =E2=80=94 potentially several days to weeks and avoids tryi=
+ng human MediaPipe on pets.<br>
+Difficulty: LOW-MEDIUM.<br>
+Maintenance risk: MEDIUM; older YOLOv7 stack and uncertain license.<br>
+Experiment: run 100 ugly customer-like dog/cat photos; record face-detectio=
+n rate, landmark plausibility and whether aligned output makes generated 9-=
+mouth packs more identity-consistent. Compare directly with simple object c=
+rop.<br>
+Decision: COPY MECHANISM / BENCHMARK NOW; verify licensing before code/weig=
+ht reuse.</p>
+
+2) kairess/dog_face_detector
+<p>URL: <a href=3D"https://github.com/kairess/dog_face_detector">https://gi=
+thub.com/kairess/dog_face_detector</a><br>
+Creator: kairess; model credited upstream to Doggie-smile.<br>
+Activity: tiny 5-commit hobby repo; 68 stars / 24 forks.<br>
+License: no license confirmed in this run =E2=80=94 treat as UNKNOWN.<br>
+Solves: dog face rectangle + 6 facial landmarks with dlib.<br>
+Route: Python + dlib + OpenCV + imutils + NumPy; pretrained detector files =
+are included.<br>
+Hardware: CPU-friendly old-school CV stack.<br>
+Evidence: runnable image/video demo; an adjacent personal blog reports the =
+detector was trained on &gt;9,000 dog heads and demonstrates repurposing it=
+s eye/nose landmarks for alignment.<br>
+Work replaced: dog-specific landmark bootstrap and a cheap fallback detecto=
+r.<br>
+Difficulty: LOW.<br>
+Maintenance risk: HIGH due age/unknown model provenance; use as benchmark/f=
+allback, not core.<br>
+Experiment: same 100-photo set as LostPet detector; compare failure modes a=
+nd CPU latency.<br>
+Decision: WATCH / COPY MECHANISM.</p>
+
+3) bunn-io/rembg-web
+<p>URL: <a href=3D"https://github.com/bunn-io/rembg-web">https://github.com=
+/bunn-io/rembg-web</a><br>
+Creator: bunn-io.<br>
+Activity/release: npm/API docs v1.0.2; current GitHub crawl.<br>
+License: MIT code; verify each selected model=E2=80=99s own license before =
+commercial deployment.<br>
+Solves: browser-native cutout without adopting a whole background-removal a=
+pplication.<br>
+Route: npm install @bunnio/rembg-web onnxruntime-web. About 8 KB gzipped li=
+brary excluding runtime/model. Supports U2Net/U2NetP/ISNet/Silueta, custom =
+model paths, caching and mask-only output.<br>
+Hardware: WASM baseline; WebNN/WebGPU where usable.<br>
+Evidence: package docs, examples, model/session caching and published npm/C=
+DN package.<br>
+Work replaced: custom ONNX browser loader, model registry, session/cache ma=
+nagement and cutout API.<br>
+Difficulty: LOW.<br>
+Maintenance risk: LOW-MEDIUM; browser acceleration varies and model licensi=
+ng differs.<br>
+Experiment: benchmark u2netp vs existing Alphaveil/Cutout Studio on 30 fur-=
+heavy photos, including first-load size, repeat latency and edge score.<br>
+Decision: REUSE NOW if the chosen model license is commercial-safe.</p>
+
+4) thangtn-foobla/background-removal
+<p>URL: <a href=3D"https://github.com/thangtn-foobla/background-removal">ht=
+tps://github.com/thangtn-foobla/background-removal</a><br>
+Creator: thangtn-foobla.<br>
+Activity: one-commit microrepo, crawled last month.<br>
+License: not established in surfaced evidence =E2=80=94 treat as UNKNOWN.<b=
+r>
+Solves: production details around browser ONNX cutout: iOS fallback, worker=
+ execution, cancellation, warmup, model hot-swap/rollback and IndexedDB cac=
+he.<br>
+Route: Vite/JS + ONNX Runtime Web; U2Net 176 MB, MODNet 25.9 MB or quantize=
+d MODNet 6.6 MB.<br>
+Hardware: WebGPU preferred; deliberately forces WASM on iOS/iPadOS where ON=
+NX WebGPU is unreliable.<br>
+Evidence: concrete service API and documented implementation, including ver=
+sioned model URLs and rollback.<br>
+Work replaced: boring but important browser inference lifecycle code.<br>
+Difficulty: LOW.<br>
+Maintenance risk: MEDIUM because it is tiny/unmaintained-looking.<br>
+Experiment: copy only its device-routing and model-lifecycle ideas into a d=
+isposable page; test iPhone Safari plus desktop Chrome with cancellation an=
+d repeat runs.<br>
+Decision: COPY MECHANISM.</p>
+
+5) crdrury/Unity-Rhubarb-Lip-Syncer
+<p>URL: <a href=3D"https://github.com/crdrury/Unity-Rhubarb-Lip-Syncer">htt=
+ps://github.com/crdrury/Unity-Rhubarb-Lip-Syncer</a><br>
+Creator: crdrury.<br>
+Activity: 79 stars; recently crawled.<br>
+License: verify before reuse; not confirmed in surfaced evidence this run.<=
+br>
+Solves: automatic conversion of Rhubarb output into editable 2D sprite anim=
+ation.<br>
+Route: Unity + Rhubarb; mouth sprites named by Rhubarb shape and generated =
+into an animation track. Transcript can be supplied to Rhubarb for better t=
+iming.<br>
+Hardware: CPU; no inference GPU required.<br>
+Evidence: documented 2D workflow and walkthrough/demo path.<br>
+Work replaced: not our renderer, but validates the exact mouth-sprite state=
+ abstraction and provides a reference for editable animation generation.<br=
+>
+Difficulty: LOW to study, HIGH if we foolishly adopt Unity.<br>
+Maintenance risk: LOW as a mechanism, HIGH as a direct dependency.<br>
+Experiment: do not integrate Unity. Compare its generated mouth-state timin=
+g/hold behavior with our Rhubarb-crumble/LipSyncify implementation and copy=
+ any useful timing semantics.<br>
+Decision: COPY MECHANISM, NOT STACK.</p>
+
+New architectural consequence
+<p>The LostPet detector is the material find. Our cheap deterministic V1 ca=
+n now have a pet-native alignment stage:</p>
+<p>customer photo -&gt; pet face bbox + eye/nose landmarks -&gt; canonical =
+aligned pet crop -&gt; cutout/upscale -&gt; generate 9 mouth + 3 eye states=
+ -&gt; Rhubarb -&gt; transparent pet animation -&gt; captions/template -&gt=
+; Etsy/MindAR.</p>
+<p>This is better than using human MediaPipe as the locator and hoping it g=
+eneralizes. It also gives a measurable quality gate: if face confidence/lan=
+dmark geometry is poor, request another customer image before spending gene=
+ration/render compute.</p>
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+<ol>
+<li>Pet face detection/alignment: benchmark LostPetInitiative=E2=80=99s pre=
+trained detector first.</li>
+<li>Generic dog landmark fallback: existing dlib dog-face hobby models alre=
+ady exist.</li>
+<li>Browser ONNX model/session/cache plumbing: rembg-web already packages i=
+t.</li>
+<li>iOS inference fallback/cancellation/model lifecycle: copy the thangtn m=
+icrorepo=E2=80=99s mechanism.</li>
+<li>Rhubarb-to-sprite animation semantics: multiple independent wrappers al=
+ready solve it.</li>
+</ol>
+<p>Most surprising hobby project: LostPetInitiative/study_winter_22_23. It =
+has zero stars in the surfaced result but 149 commits, a 15k-image pet-face=
+ dataset and archived pretrained dog/cat face+landmark weights =E2=80=94 fa=
+r more useful to Roast.pet than another generic avatar framework.</p>
+<p>Fastest integration win: download the LostPet pretrained detector into a=
+ disposable benchmark and test whether canonical eye/nose alignment improve=
+s mouth-pack identity consistency. If yes, this becomes the quality-gate/cr=
+op primitive before any image generation.</p>
+<p>Repo/author worth following: LostPetInitiative and the Chi Chon Ng / Hon=
+ Sang Leong model archive. Their work is unusually aligned with the exact p=
+et-specific preprocessing gap.</p>
+
+--000000000000c32714065bc1ddab--

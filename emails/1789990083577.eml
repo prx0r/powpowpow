@@ -1,0 +1,551 @@
+Received: from mail-yx1-xb129.google.com (2607:f8b0:4864:20::b129)
+        by cloudflare-email.net (cloudflare) id JthDysJ84i43
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 11:28:03 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=Qn2lsxG6nolieSPfJ+antoLpRWmnqw8MPKnXLaww7u22WnPE0k3n+7E/EtbevEo7KYA4srWh1
+	ekOQ4MqkGL/9dyFpNlR821/he+qP89W8Ub73bX7Csj3hk5Ld7z7HQd7ipEsRaBManXmEtaESgpH
+	MyFmkAlSIqEABJrBXbYbFN3eEbOi1ykgEdJO/dChd4gjKmP7yacRQPGJMZvIJv8vFpzRCnkXHo1
+	FjbCWRUFjkxOUf6SZyRkKdhyt8bfojiTSTezaCg5ACUiP58iocu97RTlXhoa+QvwlbXEvF0XYUT
+	na4X3W+DVxWlNXcXMXxo0Fah+mc4CffTUxAT2zirRtRA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789990083; x=1790594883; bh=Gnhklsl6
+	rTnclrWw0BYw4Kt/lVb878QgttiDdyqD5w8=; b=fVP9NoR0tJJZi8nufu2deRRYHN2SR8TAxiW
+	l5WZ9+VtnIjd5wRFZ9pWVm3/WAKOOHX2Oew1eEUKsSkTZSeEpyCZZtgqP8IkopmlaEg3HwJAjvX
+	RUMd6UXYw7HKK/2TACPSvjgG2xNdB+Xd6JDxLIu2W0ZxOdUkdICl/nXPLvhzpm2MGYPawPsuqm6
+	s0WUZme9tHRenwEhz2WlL9RwDs5ICejkawqblTGYfALDV/b0oNyt/oT9EJOEsvGUEzaSS1+JtDW
+	YloGncRKtdm69K4tpt0en5JtJ2YqHKUMKidvnIUvmKy/oAX5h1WvXcC4c2C/VnMv1t/K+vAfJq5
+	xQA/IhQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qPNrCUc+;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb129.google.com) smtp.helo=mail-yx1-xb129.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b129 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b129"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b129 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:20::b129; envelope-from="tradesprior@gmail.com"; helo=mail-yx1-xb129.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qPNrCUc+;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb129.google.com) smtp.helo=mail-yx1-xb129.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b129 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b129"
+X-CF-SpamH-Score: 0
+Received: by mail-yx1-xb129.google.com with SMTP id 956f58d0204a3-66c9995ca60so2001628d50.1
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 04:28:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789990083; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Z7C+uSNqsEor5Njb80CUKYk6MdgpfAkgCcwWdkXbqAKW7xhMYoLhM66Mma0FdbNeT/
+         HQVGB24DWvzar7WZsWkEPfry5tRbuVLQAZe+QleDx7QPpy9URkfRRmiCVtOSO4sQMl9i
+         SIOQakIedhoIZUiYV2xmVbQc+NJmxqigbt4+MDNysDrnUdrqdEvTH6HV/Cbg9NAvKORG
+         aZjSr9Gk1wZuDrpLeg6gjTac3hB6BgfovuLqMJqY9PfILwfl8LIa2T3ox2Go9K+5hVkN
+         DObSxCjH5qCgb9Vcg5wv3MNlFCMF36e2h+gBBpgogSpOMtcjnA7odL1YDC8lrng6JRUp
+         98+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Gnhklsl6rTnclrWw0BYw4Kt/lVb878QgttiDdyqD5w8=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=sCCOXdfjWqryEmorhAL5JYehNemP6mnElnVbKmiAPqd4dYlZh9hpSoLbH+ld9t0c3u
+         kzjz1eFoMz1VjzYmRGrqmBvMITfwCL8d0xGLzDqppvN/WhUX+ShevtwNJcBUoVgmlOmg
+         GCjAXmcmjUdO5jxwMZ51b3HlD+kZ6OKL0fMnbiuvnzMe9yEgoGLPz6t5BQ6GeG7fis3N
+         +MJ3dd3VRGsENNrG3QXeurJ+6M88BussuDq2ehI0wRtL++ZIUzJXnjffYxy8SbLBhrma
+         pIswmZRLO8X/yenNoHENE+Z3mdp3askArP3/7B+vtIbcEjJIW8exLJx/FCmxriQL1w69
+         jV1g==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789990083; x=1790594883; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=Gnhklsl6rTnclrWw0BYw4Kt/lVb878QgttiDdyqD5w8=;
+        b=qPNrCUc+q0pWDxzmoVmb2mCioYW51+6A6LmdSlnzdOWozw2yniu5PsnMd/N+DfkqvI
+         T4wkHl8n9BEt/62gHu6r2Fj6QHzdkflShq5TzficM3JFjGsBVJKcJrGpS9hJI3NVRz4X
+         Q0oph2yQqL73956rF+0BxL6iNM4A9yrVugMXpQpTOAj8Z5w2Y+UsrNLfo+DhESq/5hFu
+         yuhy9KsXjTBcvrVUD5iQCybOuyLkh+ibvpupJcDBVo9gudaN4C0LR2thMvFJNxoY5l3x
+         rYPRfx/e2GQ3e+3OfrYgFMz52iOQS8kZ1RKYxLN5sTZxiw7+FTZXuxbvja47dGC3Vm52
+         WYYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789990083; x=1790594883;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Gnhklsl6rTnclrWw0BYw4Kt/lVb878QgttiDdyqD5w8=;
+        b=koYgilMZV9Z8x+lGHhzUgMKzU9/XfUF3UtL01GjdqOyIZQoF1LzTcC2T4ilk+XEXWC
+         SQdERHmBX1OzJYju0rz/IShCpfCt0iQkFDoTrlEIqg7aCGFqFeUvaf9uEHTHlwzigJU7
+         QoEHpCV6RHBEQMwIgz6U8KWCbYYQB1teAbhuBFVVtCfVw32GaM5WxSh5nOqgFf43jEkx
+         owSxoAGyXMNIsDpRgPfniOrYjAtICo3qn+pKqCQbTXhoTCGZGhyFM0EZEgz6IvLL24Vd
+         fVGgXBIV9Z46E0aB8b8etLK9J9huxAme+/52ytRoJM+a9XVytnbc2XBFKt7cAGbKWbZs
+         yPww==
+X-Gm-Message-State: AFuF++lRKsDwlnCNBbcrXDF/rw40B8wKjFUkq2vkCFwUiqxM5uaqToay
+	Dk+E9pu3rTheYY3fFzoos7QDd3pens03d6KtEfRFWUi+9O8Mn+UWqyPtR27aL1GWWBxU8yTxSJY
+	Yo4J7sNcQ7yu47oA0+RJOCEHZsLCpz1dQ8g==
+X-Gm-Gg: AYBFou362pfDAjAfdY5PyCWyHK35Wl3q8UxRSj9liK3/A3RI8irOaS54J9TqxqX6POd
+	TW+ilaY4Y9Io4K7w7y2L5u5lHSZgblYAzb8+MySZ5n0LMz3dRJaKbtudcs7bnMlJKBbpLnmyjCr
+	y+t+s/jCH/fHFaE8xP7jji/ZIgTEFSejyAjTA8c9H6N12/Mbw2f5x8CTO1U3p35c2JPeOzFyLnb
+	WVzShtkeb1aQfPa6BAVS1nKaq8nCfh9lkeFGXxW7TWTGquDfw1xbf9bioIGF7bEop21iQax13IO
+	5Bv8vU+CC0vzkZ+0PKTcraCrFmg74aFZGtDTrcDQRa7LGQiYvSZsbYzbUMYesKv7niA/eVnRxeI
+	t28RyQHlhdOlEh+wNvUFF+7sHAelBwwJOnrDhzBJutEuiEPX5IUHVcU/5pCC67lKdMPs2+k5fEA
+	==
+X-Received: by 2002:a05:690e:e87:b0:672:96c4:af92 with SMTP id
+ 956f58d0204a3-67296c4b19amr2297651d50.33.1789990082675; Mon, 21 Sep 2026
+ 04:28:02 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 06:28:02 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 06:28:02 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 06:28:02 -0500
+X-Gm-Features: AcwNN1XjFRr-nOT-8OIOtFSUPiynzIDgBWaKBFxH_TU50N3pt25BIWN4FlRcSq0
+Message-ID: <CAPdrGekmKzKyroqN78pNEqsv2TppQN+PVqAbLwxp00=uoCXbTg@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Buyer_Actions_=E2=80=94_2026=2D09=2D21_18=3A27_ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000078857065bfc8bb0"
+
+--000000000000078857065bfc8bb0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW Buyer / Action Probe =E2=80=94 21 Sep 2026, 18:27 ICT Executive delta
+
+Material promotion: OFF-GAS HEAT-PUMP ROUTING is now the cleanest near-term
+property action harness after EV grants.
+
+CONFIRMED: from 21 July 2026, eligible off-gas-grid homes replacing oil/LPG
+can receive =C2=A39,000 under the Boiler Upgrade Scheme, versus =C2=A37,500=
+ for the
+standard air-to-water/ground-source route. Ofgem confirms BUS is
+installer-led and the MCS-certified installer applies/redeems on the
+property owner=E2=80=99s behalf. DESNZ reported on 27 Aug that July heat-pu=
+mp
+applications hit 8,150, +81% vs June, with oil-heated household
+applications responding strongly to the uplift. This is observed demand
+response to a =C2=A31,500 policy-created price wedge, not merely a hypothet=
+ical
+market.
+
+POW implication: prioritize a property-level offgas =C3=97 incumbent-fuel =
+=C3=97
+heat-loss =C3=97 grant =C3=97 installer-capacity =C3=97 quote/outcome packe=
+t. It gives an
+agent a concrete decision and gives POW claim/quote/install outcomes.
+Ranked action surfaces
+
+   1. Site =E2=86=92 installer =E2=86=92 grant/job outcome: 5.00 =E2=80=94 =
+PRESELL + PLANT =E2=80=94
+   CONFIRMED market workflow.
+   2. Off-gas property =E2=86=92 =C2=A39k BUS =E2=86=92 MCS installer =E2=
+=86=92 install outcome: 4.99 =E2=80=94
+   NEW PROMOTION =E2=80=94 PRESELL + PLANT.
+   3. Exact repair/MPN routing: 4.96 =E2=80=94 PILOT + PLANT.
+   4. Property =E2=86=92 solar/battery/heat-pump intervention: 4.94 =E2=80=
+=94 PRESELL +
+   PLANT.
+   5. Capability =E2=86=92 first paid job: 4.88 =E2=80=94 PILOT.
+   6. Regulation/grant =E2=86=92 required physical work: 4.86 =E2=80=94 PLA=
+NT.
+   7. Grid/site viability: 4.66 =E2=80=94 PILOT.
+   8. Broken-item arbitrage: 4.51 =E2=80=94 DERIVATIVE.
+   9. GPU mine/rent/inference/sell: 3.87 =E2=80=94 WATCH.
+
+Exact buyer evidence
+
+CONFIRMED: OZEV Workplace Charging Scheme remains installer-led, supports
+up to 75% of purchase/installation cost capped at =C2=A3500/socket and 40
+sockets, and requires an OZEV-authorised installer. The 2026 platform
+explicitly notifies installers when claims are rejected for evidence,
+declined or approved, producing a natural outcome vocabulary.
+
+CONFIRMED: BUS now pays =C2=A39,000 for eligible off-gas-grid oil/LPG prope=
+rties
+until 31 Mar 2027. The installer must be MCS-certified, must pass the full
+grant through as an upfront quote discount, and handles the
+application/redemption. Applications must satisfy scheme timing; Ofgem
+states installers cannot retain the grant value.
+
+CONFIRMED observed software/lead spend: SolarPad publicly prices installer
+compliance software at =C2=A379/=C2=A3199/=C2=A3349 per month. UK Air Con T=
+racker
+publishes claimed-lead pricing of =C2=A325 single-room, =C2=A335 multi-room=
+ and =C2=A350
+whole-house/commercial, with the first 3 free. These establish category
+spend, NOT willingness to pay POW.
+
+INFERRED monetization: charge per accepted opportunity, won job, or monthly
+routing subscription only after pilot evidence. POW WTP remains UNKNOWN.
+Garden dependency graph
+
+UPRN/SITE
+=E2=86=92 current heating fuel + gas-grid status
+=E2=86=92 EPC/building state + heat loss
+=E2=86=92 intervention eligibility
+=E2=86=92 grant amount/rules at time t
+=E2=86=92 MCS/OZEV credential
+=E2=86=92 installer geography =C3=97 revealed capacity
+=E2=86=92 executable opportunity packet
+=E2=86=92 CLAIM/REJECT(reason)
+=E2=86=92 survey
+=E2=86=92 quote(value)
+=E2=86=92 WIN/LOSS(reason)
+=E2=86=92 installation
+=E2=86=92 evidence / grant redemption
+=E2=86=92 accepted/rejected/resubmitted
+=E2=86=92 realised cost/time/performance
+
+Core proprietary states: SiteInterventionFit, GrantAdjustedEconomics,
+RevealedProviderCapacity, ExpectedQuote, ExpectedCompletionTime,
+ClaimFailureRisk, and ultimately P(profitable completion | site,
+intervention, provider, place, time).
+Surviving harness definitions
+
+OFF-GAS HEAT PUMP =E2=80=94 Buyer/user: MCS installer + owner. Pain: identi=
+fy
+high-intent eligible rural properties and determine whether the job is
+technically/economically executable. Alternative: generic leads + manual
+EPC/property/grant checks. Input graph: UPRN, EPC, fuel/gas-grid status,
+BUS rules, heat-loss proxies, MCS identity, installer geography/capacity.
+Transformed state: grant-adjusted site fit + provider completion
+probability. Presale: permissioned opportunity packets. Receipt:
+claim/reject, quote, install, voucher/redemption outcome. Distribution:
+Muse property workflow, CMail installer outreach, API/lead routing.
+Constraints: no unsolicited personal profiling; use public property state
+and consenting businesses/users; scheme data handling must follow terms.
+
+EV GRANT ROUTING =E2=80=94 Buyer: OZEV installer/workplace. Pain:
+eligibility/evidence/site/provider matching. Alternative: manual portal +
+lead marketplaces. Input graph: site, parking, grant eligibility,
+charger/electrical constraints, installer credentials/capacity. State:
+claim readiness + expected completion. Transaction: claimed/won
+opportunity. Receipt: grant status + install evidence.
+
+EXACT REPAIR =E2=80=94 Buyer: repairer/refurbisher/owner. Pain: exact compa=
+tible
+part and whether repair beats replacement. Alternative: manual
+model/MPN/forum/eBay research. Input: model/serial-family =E2=86=92 MPN =E2=
+=86=92
+supersession/substitute =E2=86=92 fault =E2=86=92 stock/price =E2=86=92 rep=
+air guide =E2=86=92 resale.
+State: ExpectedRepairMargin and fit confidence. Receipt:
+ordered/fitted/succeeded/time/resale. Distribution: Muse repair flow/API.
+Permission: permitted marketplace/API access and first-party receipts.
+
+SKILL=E2=86=92PAID WORK =E2=80=94 Buyer: trainee/tradesperson/employer. Pai=
+n: which
+qualification produces locally monetizable capability. Alternative: course
+catalogues/job boards. Graph: person capability =E2=86=92 qualification =E2=
+=86=92
+certification =E2=86=92 vacancy/procurement/job =E2=86=92 geography. State:
+ExpectedTimeToFirstPaidWork. Receipt must terminate at paid work, not
+enrolment.
+PRESELL NOW
+
+Week-one deliverable: 20 permissioned Executable Opportunity Packets, with
+at least half deliberately targeted at off-gas oil/LPG heat-pump
+opportunities, across five MCS/OZEV installers. Each packet contains
+property/site facts, grant route, eligibility confidence, physical
+blockers, credential requirements, evidence checklist, indicative economics
+and exactly one required CLAIM | REJECT(reason) response.
+
+10 reachable archetypes/channels: MCS heat-pump sole traders; MCS
+rural/off-gas specialists; MCS solar+battery installers; OZEV installers;
+NICEIC electricians entering renewables; NAPIT installers; landlord
+retrofit contractors; small installers using spreadsheets; clean-tech firms
+already paying for compliance/CRM software; repair/refurbishment SMEs for
+parallel MPN benchmark.
+
+Low-friction pilot: free, 7 days, 3=E2=80=935 packets per business, email/C=
+SV only,
+no integration.
+
+Exact validation question: =E2=80=9CDid this packet cause or materially acc=
+elerate
+a profitable action you otherwise would not have completed as efficiently,
+and will you return the claim/reject, quote, job and grant outcome?=E2=80=
+=9D
+
+Evidence to justify charging: =E2=89=A55 businesses; =E2=89=A520 packets; =
+=E2=89=A550% explicit
+claim/reject; =E2=89=A55 surveys/quotes; =E2=89=A52 completed jobs or docum=
+ented admin/time
+savings; =E2=89=A52 businesses independently asking to continue or acceptin=
+g a paid
+continuation. Do not infer WTP before this.
+
+t=3D0: deterministic eligibility, property/site joins, credentials,
+grant-adjusted economics. 6 months: rejection reasons, response latency,
+geographic revealed capacity, quote distributions. 12 months:
+win/completion/grant success by property/provider. 36 months: conditional
+physical-work routing impossible to reconstruct from today=E2=80=99s static
+directories.
+Outcome loop
+
+OFFERED =E2=86=92 CLAIMED/REJECTED(reason) =E2=86=92 CONTACTED =E2=86=92 SU=
+RVEYED =E2=86=92 QUOTED(value) =E2=86=92
+WON/LOST(reason) =E2=86=92 INSTALLED =E2=86=92 GRANT/VOUCHER SUBMITTED =E2=
+=86=92
+ACCEPTED/REJECTED/RESUBMITTED =E2=86=92 PAID =E2=86=92 PERFORMANCE_OBSERVED=
+.
+
+Every event: opportunity_id, site_id/UPRN where lawful, provider_id,
+intervention_id, effective_at, observed_at, provenance,
+CONFIRMED/INFERRED/UNKNOWN.
+Kill reasons
+
+KILL generic lead generation without returned outcomes. KILL static grant
+finder. KILL installer directory as product (identity infrastructure only).
+KILL CRM clone as garden. KILL repair database without
+order/fit/repair/resale receipts. KILL training recommendation ending at
+enrolment. KILL standalone broken-item scraper; inherit repair garden.
+WATCH GPU routing until proprietary physical telemetry/outcomes exist.
+Next-hour queue
+
+   1. Build exact off-gas BUS eligibility schema and identify legal
+   property-level fuel/gas-grid proxies.
+   2. Create 10 off-gas =C2=A39k BUS packets and 10 EV/WCS packets without
+   personal data.
+   3. Encode claim/reject reason taxonomy shared across BUS/WCS.
+   4. Find 10 rural MCS installers and test packet acceptance/outcome
+   return.
+   5. Run 30 repair cases: model =E2=86=92 MPN =E2=86=92 substitute =E2=86=
+=92 current stock/price =E2=86=92
+   repair value =E2=86=92 fit/outcome.
+   6. Measure whether the =C2=A39k cohort produces materially different
+   quote/claim/completion behavior than standard =C2=A37.5k BUS sites.
+
+Machine-readable appendix { "probe":"POW_BUYER_ACTION",
+"material_delta":"OFFGAS_9000_BUS_ROUTING_PROMOTED",
+"collector_deployed":false, "ranked":[
+["SITE_INSTALLER_GRANT_JOB_OUTCOME",5.00,"PRESELL_PLANT"],
+["OFFGAS_BUS_9000_ROUTING",4.99,"PRESELL_PLANT"],
+["EXACT_REPAIR_ROUTING",4.96,"PILOT_PLANT"],
+["PROPERTY_CLEANTECH_ROUTE",4.94,"PRESELL_PLANT"],
+["CAPABILITY_TO_FIRST_PAID_JOB",4.88,"PILOT"],
+["REGULATION_TO_PHYSICAL_WORK",4.86,"PLANT"] ],
+"confirmed_policy":{"offgas_bus_gbp":9000,"standard_heatpump_bus_gbp":7500,=
+"offgas_uplift_effective":"2026-07-21","wcs_max_gbp_socket":500},
+"observed_demand":{"july_2026_heatpump_applications":8150,"month_over_month=
+_change":"+81%"},
+"pow_willingness_to_pay":"UNKNOWN",
+"core_receipt":"CLAIM_REJECT_QUOTE_WIN_INSTALL_GRANT_OUTCOME" }
+
+Sources checked this run: GOV.UK Workplace Charging Scheme installer
+guidance (updated 1 Apr 2026); GOV.UK EV grant changes (updated 7 Jul
+2026); GOV.UK BUS grant values (effective 21 Jul 2026); Ofgem BUS
+property-owner/installer guidance; DESNZ 27 Aug 2026 heat-pump application
+release; GOV.UK Warm Homes Plan; SolarPad pricing; UK Air Con Tracker
+installer pricing.
+
+--000000000000078857065bfc8bb0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW Buyer / Action Probe =E2=80=94 21 Sep 2026, 18:27 ICT
+
+Executive delta
+<p>Material promotion: OFF-GAS HEAT-PUMP ROUTING is now the cleanest near-t=
+erm property action harness after EV grants.</p>
+<p>CONFIRMED: from 21 July 2026, eligible off-gas-grid homes replacing oil/=
+LPG can receive =C2=A39,000 under the Boiler Upgrade Scheme, versus =C2=A37=
+,500 for the standard air-to-water/ground-source route. Ofgem confirms BUS =
+is installer-led and the MCS-certified installer applies/redeems on the pro=
+perty owner=E2=80=99s behalf. DESNZ reported on 27 Aug that July heat-pump =
+applications hit 8,150, +81% vs June, with oil-heated household application=
+s responding strongly to the uplift. This is observed demand response to a =
+=C2=A31,500 policy-created price wedge, not merely a hypothetical market.</=
+p>
+<p>POW implication: prioritize a property-level <code>offgas =C3=97 incumbe=
+nt-fuel =C3=97 heat-loss =C3=97 grant =C3=97 installer-capacity =C3=97 quot=
+e/outcome</code> packet. It gives an agent a concrete decision and gives PO=
+W claim/quote/install outcomes.</p>
+
+Ranked action surfaces
+<ol>
+<li>Site =E2=86=92 installer =E2=86=92 grant/job outcome: 5.00 =E2=80=94 PR=
+ESELL + PLANT =E2=80=94 CONFIRMED market workflow.</li>
+<li>Off-gas property =E2=86=92 =C2=A39k BUS =E2=86=92 MCS installer =E2=86=
+=92 install outcome: 4.99 =E2=80=94 NEW PROMOTION =E2=80=94 PRESELL + PLANT=
+.</li>
+<li>Exact repair/MPN routing: 4.96 =E2=80=94 PILOT + PLANT.</li>
+<li>Property =E2=86=92 solar/battery/heat-pump intervention: 4.94 =E2=80=94=
+ PRESELL + PLANT.</li>
+<li>Capability =E2=86=92 first paid job: 4.88 =E2=80=94 PILOT.</li>
+<li>Regulation/grant =E2=86=92 required physical work: 4.86 =E2=80=94 PLANT=
+.</li>
+<li>Grid/site viability: 4.66 =E2=80=94 PILOT.</li>
+<li>Broken-item arbitrage: 4.51 =E2=80=94 DERIVATIVE.</li>
+<li>GPU mine/rent/inference/sell: 3.87 =E2=80=94 WATCH.</li>
+</ol>
+
+Exact buyer evidence
+<p>CONFIRMED: OZEV Workplace Charging Scheme remains installer-led, support=
+s up to 75% of purchase/installation cost capped at =C2=A3500/socket and 40=
+ sockets, and requires an OZEV-authorised installer. The 2026 platform expl=
+icitly notifies installers when claims are rejected for evidence, declined =
+or approved, producing a natural outcome vocabulary.</p>
+<p>CONFIRMED: BUS now pays =C2=A39,000 for eligible off-gas-grid oil/LPG pr=
+operties until 31 Mar 2027. The installer must be MCS-certified, must pass =
+the full grant through as an upfront quote discount, and handles the applic=
+ation/redemption. Applications must satisfy scheme timing; Ofgem states ins=
+tallers cannot retain the grant value.</p>
+<p>CONFIRMED observed software/lead spend: SolarPad publicly prices install=
+er compliance software at =C2=A379/=C2=A3199/=C2=A3349 per month. UK Air Co=
+n Tracker publishes claimed-lead pricing of =C2=A325 single-room, =C2=A335 =
+multi-room and =C2=A350 whole-house/commercial, with the first 3 free. Thes=
+e establish category spend, NOT willingness to pay POW.</p>
+<p>INFERRED monetization: charge per accepted opportunity, won job, or mont=
+hly routing subscription only after pilot evidence. POW WTP remains UNKNOWN=
+.</p>
+
+Garden dependency graph
+<p>UPRN/SITE<br>
+=E2=86=92 current heating fuel + gas-grid status<br>
+=E2=86=92 EPC/building state + heat loss<br>
+=E2=86=92 intervention eligibility<br>
+=E2=86=92 grant amount/rules at time t<br>
+=E2=86=92 MCS/OZEV credential<br>
+=E2=86=92 installer geography =C3=97 revealed capacity<br>
+=E2=86=92 executable opportunity packet<br>
+=E2=86=92 CLAIM/REJECT(reason)<br>
+=E2=86=92 survey<br>
+=E2=86=92 quote(value)<br>
+=E2=86=92 WIN/LOSS(reason)<br>
+=E2=86=92 installation<br>
+=E2=86=92 evidence / grant redemption<br>
+=E2=86=92 accepted/rejected/resubmitted<br>
+=E2=86=92 realised cost/time/performance</p>
+<p>Core proprietary states: <code>SiteInterventionFit</code>, <code>GrantAd=
+justedEconomics</code>, <code>RevealedProviderCapacity</code>, <code>Expect=
+edQuote</code>, <code>ExpectedCompletionTime</code>, <code>ClaimFailureRisk=
+</code>, and ultimately P(profitable completion | site, intervention, provi=
+der, place, time).</p>
+
+Surviving harness definitions
+<p>OFF-GAS HEAT PUMP =E2=80=94 Buyer/user: MCS installer + owner. Pain: ide=
+ntify high-intent eligible rural properties and determine whether the job i=
+s technically/economically executable. Alternative: generic leads + manual =
+EPC/property/grant checks. Input graph: UPRN, EPC, fuel/gas-grid status, BU=
+S rules, heat-loss proxies, MCS identity, installer geography/capacity. Tra=
+nsformed state: grant-adjusted site fit + provider completion probability. =
+Presale: permissioned opportunity packets. Receipt: claim/reject, quote, in=
+stall, voucher/redemption outcome. Distribution: Muse property workflow, CM=
+ail installer outreach, API/lead routing. Constraints: no unsolicited perso=
+nal profiling; use public property state and consenting businesses/users; s=
+cheme data handling must follow terms.</p>
+<p>EV GRANT ROUTING =E2=80=94 Buyer: OZEV installer/workplace. Pain: eligib=
+ility/evidence/site/provider matching. Alternative: manual portal + lead ma=
+rketplaces. Input graph: site, parking, grant eligibility, charger/electric=
+al constraints, installer credentials/capacity. State: claim readiness + ex=
+pected completion. Transaction: claimed/won opportunity. Receipt: grant sta=
+tus + install evidence.</p>
+<p>EXACT REPAIR =E2=80=94 Buyer: repairer/refurbisher/owner. Pain: exact co=
+mpatible part and whether repair beats replacement. Alternative: manual mod=
+el/MPN/forum/eBay research. Input: model/serial-family =E2=86=92 MPN =E2=86=
+=92 supersession/substitute =E2=86=92 fault =E2=86=92 stock/price =E2=86=92=
+ repair guide =E2=86=92 resale. State: <code>ExpectedRepairMargin</code> an=
+d fit confidence. Receipt: ordered/fitted/succeeded/time/resale. Distributi=
+on: Muse repair flow/API. Permission: permitted marketplace/API access and =
+first-party receipts.</p>
+<p>SKILL=E2=86=92PAID WORK =E2=80=94 Buyer: trainee/tradesperson/employer. =
+Pain: which qualification produces locally monetizable capability. Alternat=
+ive: course catalogues/job boards. Graph: person capability =E2=86=92 quali=
+fication =E2=86=92 certification =E2=86=92 vacancy/procurement/job =E2=86=
+=92 geography. State: <code>ExpectedTimeToFirstPaidWork</code>. Receipt mus=
+t terminate at paid work, not enrolment.</p>
+
+PRESELL NOW
+<p>Week-one deliverable: 20 permissioned <code>Executable Opportunity Packe=
+ts</code>, with at least half deliberately targeted at off-gas oil/LPG heat=
+-pump opportunities, across five MCS/OZEV installers. Each packet contains =
+property/site facts, grant route, eligibility confidence, physical blockers=
+, credential requirements, evidence checklist, indicative economics and exa=
+ctly one required <code>CLAIM | REJECT(reason)</code> response.</p>
+<p>10 reachable archetypes/channels: MCS heat-pump sole traders; MCS rural/=
+off-gas specialists; MCS solar+battery installers; OZEV installers; NICEIC =
+electricians entering renewables; NAPIT installers; landlord retrofit contr=
+actors; small installers using spreadsheets; clean-tech firms already payin=
+g for compliance/CRM software; repair/refurbishment SMEs for parallel MPN b=
+enchmark.</p>
+<p>Low-friction pilot: free, 7 days, 3=E2=80=935 packets per business, emai=
+l/CSV only, no integration.</p>
+<p>Exact validation question: =E2=80=9CDid this packet cause or materially =
+accelerate a profitable action you otherwise would not have completed as ef=
+ficiently, and will you return the claim/reject, quote, job and grant outco=
+me?=E2=80=9D</p>
+<p>Evidence to justify charging: =E2=89=A55 businesses; =E2=89=A520 packets=
+; =E2=89=A550% explicit claim/reject; =E2=89=A55 surveys/quotes; =E2=89=A52=
+ completed jobs or documented admin/time savings; =E2=89=A52 businesses ind=
+ependently asking to continue or accepting a paid continuation. Do not infe=
+r WTP before this.</p>
+<p>t=3D0: deterministic eligibility, property/site joins, credentials, gran=
+t-adjusted economics. 6 months: rejection reasons, response latency, geogra=
+phic revealed capacity, quote distributions. 12 months: win/completion/gran=
+t success by property/provider. 36 months: conditional physical-work routin=
+g impossible to reconstruct from today=E2=80=99s static directories.</p>
+
+Outcome loop
+<p><code>OFFERED =E2=86=92 CLAIMED/REJECTED(reason) =E2=86=92 CONTACTED =E2=
+=86=92 SURVEYED =E2=86=92 QUOTED(value) =E2=86=92 WON/LOST(reason) =E2=86=
+=92 INSTALLED =E2=86=92 GRANT/VOUCHER SUBMITTED =E2=86=92 ACCEPTED/REJECTED=
+/RESUBMITTED =E2=86=92 PAID =E2=86=92 PERFORMANCE_OBSERVED</code>.</p>
+<p>Every event: opportunity_id, site_id/UPRN where lawful, provider_id, int=
+ervention_id, effective_at, observed_at, provenance, CONFIRMED/INFERRED/UNK=
+NOWN.</p>
+
+Kill reasons
+<p>KILL generic lead generation without returned outcomes. KILL static gran=
+t finder. KILL installer directory as product (identity infrastructure only=
+). KILL CRM clone as garden. KILL repair database without order/fit/repair/=
+resale receipts. KILL training recommendation ending at enrolment. KILL sta=
+ndalone broken-item scraper; inherit repair garden. WATCH GPU routing until=
+ proprietary physical telemetry/outcomes exist.</p>
+
+Next-hour queue
+<ol>
+<li>Build exact off-gas BUS eligibility schema and identify legal property-=
+level fuel/gas-grid proxies.</li>
+<li>Create 10 off-gas =C2=A39k BUS packets and 10 EV/WCS packets without pe=
+rsonal data.</li>
+<li>Encode claim/reject reason taxonomy shared across BUS/WCS.</li>
+<li>Find 10 rural MCS installers and test packet acceptance/outcome return.=
+</li>
+<li>Run 30 repair cases: model =E2=86=92 MPN =E2=86=92 substitute =E2=86=92=
+ current stock/price =E2=86=92 repair value =E2=86=92 fit/outcome.</li>
+<li>Measure whether the =C2=A39k cohort produces materially different quote=
+/claim/completion behavior than standard =C2=A37.5k BUS sites.</li>
+</ol>
+
+Machine-readable appendix
+
+<code>{
+  &quot;probe&quot;:&quot;POW_BUYER_ACTION&quot;,
+  &quot;material_delta&quot;:&quot;OFFGAS_9000_BUS_ROUTING_PROMOTED&quot;,
+  &quot;collector_deployed&quot;:false,
+  &quot;ranked&quot;:[
+    [&quot;SITE_INSTALLER_GRANT_JOB_OUTCOME&quot;,5.00,&quot;PRESELL_PLANT&=
+quot;],
+    [&quot;OFFGAS_BUS_9000_ROUTING&quot;,4.99,&quot;PRESELL_PLANT&quot;],
+    [&quot;EXACT_REPAIR_ROUTING&quot;,4.96,&quot;PILOT_PLANT&quot;],
+    [&quot;PROPERTY_CLEANTECH_ROUTE&quot;,4.94,&quot;PRESELL_PLANT&quot;],
+    [&quot;CAPABILITY_TO_FIRST_PAID_JOB&quot;,4.88,&quot;PILOT&quot;],
+    [&quot;REGULATION_TO_PHYSICAL_WORK&quot;,4.86,&quot;PLANT&quot;]
+  ],
+  &quot;confirmed_policy&quot;:{&quot;offgas_bus_gbp&quot;:9000,&quot;stand=
+ard_heatpump_bus_gbp&quot;:7500,&quot;offgas_uplift_effective&quot;:&quot;2=
+026-07-21&quot;,&quot;wcs_max_gbp_socket&quot;:500},
+  &quot;observed_demand&quot;:{&quot;july_2026_heatpump_applications&quot;:=
+8150,&quot;month_over_month_change&quot;:&quot;+81%&quot;},
+  &quot;pow_willingness_to_pay&quot;:&quot;UNKNOWN&quot;,
+  &quot;core_receipt&quot;:&quot;CLAIM_REJECT_QUOTE_WIN_INSTALL_GRANT_OUTCO=
+ME&quot;
+}
+</code>
+<p>Sources checked this run: <a href=3D"http://GOV.UK">GOV.UK</a> Workplace=
+ Charging Scheme installer guidance (updated 1 Apr 2026); <a href=3D"http:/=
+/GOV.UK">GOV.UK</a> EV grant changes (updated 7 Jul 2026); <a href=3D"http:=
+//GOV.UK">GOV.UK</a> BUS grant values (effective 21 Jul 2026); Ofgem BUS pr=
+operty-owner/installer guidance; DESNZ 27 Aug 2026 heat-pump application re=
+lease; <a href=3D"http://GOV.UK">GOV.UK</a> Warm Homes Plan; SolarPad prici=
+ng; UK Air Con Tracker installer pricing.</p>
+
+--000000000000078857065bfc8bb0--

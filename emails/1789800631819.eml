@@ -1,0 +1,668 @@
+Received: from i89-109.smtp-out.amazonses.com (24.110.89.109)
+        by cloudflare-email.net (cloudflare) id 7WysMDkb5uLt
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 06:50:31 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=none;
+	b=MQ2qHb/T96hI1RO4vVnQmz6N77Pe0QpAfTdG4Zlc3yg4dLexpdV/7cYdBgfvpdwSd/Zf6P4GO
+	D8sKyu3IGgOOk47x4ymx2mhUJoUDp0MMbVNr0qGa9etG0mZcv+NcwMYMdXVDaQ/tgtVLBcAasMT
+	ZoOfiumzGAmuTTdp6pd0xEPWHP9mA3LmGkIDTYrD6OCq+OJMPp2UJ7E2aprLAnyQS0FpVe2ftn/
+	hTmvAY3z9imn4e6UlX+edKqPeByM/zEX5oIqLwSKqVIFEhmGWeU1aidGblCH4rNHFkKb+K4uI9J
+	/MDKV0U45FXOJQa7pZ5hFs/I90o32qy11yI0FccwgfuQ==;
+ARC-Message-Signature: i=1; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=List-ID:Subject:Cc:To:Reply-To:From:Date:from:resent-date:resent-from
+	:resent-to:resent-cc:in-reply-to:references:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789800631; x=1790405431; bh=QxVgTRlO
+	0xw4B9fxypAWy+3awPhxmn1HNXoGOvEyWyI=; b=LvFUGBr0uqa+qYUqlfAx1diY5MzP124W9Eo
+	yfTHaECcojvZxAjxP0EtFcYxVBCEAIWTuiZiW/+PeiIZ/Shqzmc/IDsrE3aI5zs3+9noyMPs6gX
+	Tjx42D27Fv+VX4WZCOB83T8McS1HiNElkoi/vC/H0j70ALvyhl6hk6vEqaVUcD3HUuhj3d3FJuk
+	BRfVNFOY9TN3M1Hpqptve5vyPOfhwTHY+ogYMMHN+MPHKYmoHFwrpr5vAcQQnlS47QXbu7QsCIj
+	XgV6TVt/9D61zy/cfukqmOvXM83rWNCjccWFesqapI+/fEzA25mXgNdwEMAHcyjeaOcG4I17w9X
+	/E4ADgQ==;
+ARC-Authentication-Results: i=1; mx.cloudflare.net;
+	dkim=pass header.d=updates.typesafe.ai header.s=nb3refymiidctjhgxghypdojtonayqpa header.b=Jo0qGzBU;
+	dkim=pass header.d=amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=rLmsD0cf;
+	dmarc=pass header.from=updates.typesafe.ai policy.dmarc=none;
+	spf=pass (mx.cloudflare.net: domain of postmaster@i89-109.smtp-out.amazonses.com designates 24.110.89.109 as permitted sender) smtp.helo=i89-109.smtp-out.amazonses.com;
+	spf=pass (mx.cloudflare.net: domain of 010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000@envelope.updates.typesafe.ai designates 24.110.89.109 as permitted sender) smtp.mailfrom=010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000@envelope.updates.typesafe.ai;
+	arc=none smtp.remote-ip=24.110.89.109
+Received-SPF: pass (mx.cloudflare.net: domain of 010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000@envelope.updates.typesafe.ai designates 24.110.89.109 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=24.110.89.109; envelope-from="010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000@envelope.updates.typesafe.ai"; helo=i89-109.smtp-out.amazonses.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=updates.typesafe.ai header.s=nb3refymiidctjhgxghypdojtonayqpa header.b=Jo0qGzBU;
+	dkim=pass header.d=amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=rLmsD0cf;
+	dmarc=pass header.from=updates.typesafe.ai policy.dmarc=none;
+	spf=pass (mx.cloudflare.net: domain of postmaster@i89-109.smtp-out.amazonses.com designates 24.110.89.109 as permitted sender) smtp.helo=i89-109.smtp-out.amazonses.com;
+	spf=pass (mx.cloudflare.net: domain of 010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000@envelope.updates.typesafe.ai designates 24.110.89.109 as permitted sender) smtp.mailfrom=010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000@envelope.updates.typesafe.ai;
+	arc=none smtp.remote-ip=24.110.89.109
+X-CF-SpamH-Score: 1
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=nb3refymiidctjhgxghypdojtonayqpa; d=updates.typesafe.ai;
+	t=1789800631;
+	h=Date:From:Reply-To:To:Cc:Message-ID:Subject:MIME-Version:List-Unsubscribe:List-Unsubscribe-Post:List-ID:Content-Type;
+	bh=V0e3mVNBmAITsczI6UHlJqCMmYFuQrz75gPiXaNp52M=;
+	b=Jo0qGzBUXuZ7pa0yb94TyVhUCa4LXJg+gyAvjJ7s+543bLZ2ao2pcjWZuUzLzGYS
+	bjqvSebHIR0VgndaIECbe4dinVsjeDpesCaQQADMrGCjJcLSBM/dAMAJT2/lSh2Df28
+	dLIhZMUegkjBp9AISY0Eny1XbhV5w8Xays42Exh7U02l9zwEFNEA9xIzCG3nkj770Pc
+	u+wQXbDWAtek/IdDJZJa41qQc3Wj2hROZ+7HSZs+mNSFzRcqVE6+LvFpYAMUhTy6bc5
+	8rA8h3IBUoSGIw/w8tbErGQ2ZuFM1B9kPdSTb9k/rFxj+W2AnQCrmE43oeP81jD/HEk
+	GObbLxSUmg==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1789800631;
+	h=Date:From:Reply-To:To:Cc:Message-ID:Subject:MIME-Version:List-Unsubscribe:List-Unsubscribe-Post:List-ID:Content-Type:Feedback-ID;
+	bh=V0e3mVNBmAITsczI6UHlJqCMmYFuQrz75gPiXaNp52M=;
+	b=rLmsD0cfRGQmfJVNoalBdY9j9zEuEnZMIVMO6ODvQgOftmBsRt6vcUIWvgu3JJ16
+	M9kTemd8A/MIHcfMQi2weHevHEfrhY1e22rdOzZ52paDYBA1y2vmVcQYmrfH+cHHlzn
+	9JK/Mynvhqi4V92wbqpJjD18etzrRRwCd3Rc9exU=
+Date: Sat, 19 Sep 2026 06:50:31 +0000
+From: TypeSafe AI <team@updates.typesafe.ai>
+Reply-To: TypeSafe AI <no-reply@typesafe.ai>
+To: agents@intelligentothers.xyz
+Cc: 
+Message-ID: <010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000@email.amazonses.com>
+Subject: =?utf-8?B?VHlwZVNhZmUgQUk6IFlvdeKAmXJlIG9uIHRoZSB3YWl0bGlzdCBmb3IgSmV2IQ==?=
+MIME-Version: 1.0
+List-Unsubscribe: <mailto:cmu8131dmm5pu01suas88dobq+c6de41295c1f4212d4c8ce309a556cbffc13689578f2f196976248aebcff84e282aa810a18547a29f8d89d2102330db1f7f15e2790f801a69cca38f4@unsubscribe.loops.so?subject=unsubscribe>,<https://app.loops.so/unsubscribe/cmu8131dmm5pu01suas88dobq/c6de41295c1f4212d4c8ce309a556cbffc13689578f2f196976248aebcff84e282aa810a18547a29f8d89d2102330db1f7f15e2790f801a69cca38f4>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-ID: "TypeSafe AI - Waitlist for Jev" <cmsxyvn9s180y0j2pdd3sgj7t.updates.typesafe.ai>
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Content-Type: multipart/alternative; boundary=0u5gmps9qvf
+Feedback-ID: :1.us-east-1.7XBrMOpJKlEtQ2dRZm+EuMIc8vssflpWlQlqvOMj/uVYqOw507k9vjqjOFOSYs7WrQmHe1Emx8KLXn92MQlkZihVJgkaCYcS6T2bswp4z0hIxggsHh3aqEqNQyHFGtLqHjnlaKAvauv0padJx/886fWjBykjCD9RMm/zwtvzGDQ=:1.us-east-1.1nRXWOT+ETvogqnAUaOa7HjKGx1p40xVES7T8DfH/Gc=:AmazonSES
+X-SES-Outgoing: 2026.09.19-24.110.89.109
+
+--0u5gmps9qvf
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+We=E2=80=99ll be in touch when it=E2=80=99s your turn.
+
+=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F
+=C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F
+=C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F
+=C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F
+=C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F
+=C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F
+=C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD=CD=8F =
+=C2=A0=E2=80=87=C2=AD=CD=8F =C2=A0=E2=80=87=C2=AD
+
+
+You=E2=80=99re on the waitlist for Jev!
+
+We=E2=80=99ll be in touch when =
+it=E2=80=99s your turn to access Jev.
+Join our Discord [https://discord.=
+gg/typesafe]
+TypeSafe AI
+You are receiving this email because you opted in =
+to receive email from the list Waitlist for Jev from TypeSafe AI
+TypeSafe AI, 255 California Street, Suite 1300, San Francisco, CA 94111, =
+United States
+Unsubscribe [https://app.loops.so/unsubscribe/cmu8131dmm5pu01=
+suas88dobq/c6de41295c1f4212d4c8ce309a556cbffc13689578f2f196976248aebcff84e2=
+82aa810a18547a29f8d89d2102330db1f7f15e2790f801a69cca38f4]
+
+--0u5gmps9qvf
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html>
+<html lang=3D"en" dir=3D"auto" xmlns=3D"http://www.w3.org/1999/xhtml" xmlns=
+:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:o=
+ffice:office" style=3D"background-color: #fafafa;">
+  <head>
+    <title>TypeSafe AI: You=E2=80=99re on the waitlist for Jev!</title>
+    <!--[if !mso]><!-->
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <!--<![endif]-->
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
+">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1">
+    <style type=3D"text/css">
+      #outlook a { padding:0; }
+      body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size=
+-adjust:100%; }
+      table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-table-r=
+space:0pt; }
+      img { border:0;height:auto;line-height:100%; outline:none;text-decora=
+tion:none;-ms-interpolation-mode:bicubic; }
+      p { display:block;margin:13px 0; }
+    </style>
+    <!--[if mso]>
+    <noscript>
+    <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml>
+    </noscript>
+    <![endif]-->
+    <!--[if lte mso 11]>
+    <style type=3D"text/css">
+      .mj-outlook-group-fix { width:100% !important; }
+    </style>
+    <![endif]-->
+   =20
+      <!--[if !mso]><!-->
+        <link href=3D"https://fonts.googleapis.com/css?family=3DInter:400,6=
+00" rel=3D"stylesheet" type=3D"text/css">
+        <style type=3D"text/css">
+          @import url(https://fonts.googleapis.com/css?family=3DInter:400,6=
+00);
+        </style>
+      <!--<![endif]-->
+
+   =20
+   =20
+    <style type=3D"text/css">
+      @media only screen and (min-width:480px) {
+        .mj-column-per-100 { width:100% !important; max-width: 100%; }
+      }
+    </style>
+    <style media=3D"screen and (min-width:480px)">
+      .moz-text-html .mj-column-per-100 { width:100% !important; max-width:=
+ 100%; }
+    </style>
+   =20
+   =20
+ =20
+   =20
+    <style type=3D"text/css">
+
+    @media only screen and (max-width:479px) {
+      table.mj-full-width-mobile { width: 100% !important; }
+      td.mj-full-width-mobile { width: auto !important; }
+    }
+ =20
+    </style>
+    =20
+    <style type=3D"text/css">
+.wfix {
+          max-width: 600px !important;
+        }
+       =20
+        @media(max-width: 480px) {
+          .body-image-mobile-width-44 td { width: 44px !important; }
+          .body-image td  { max-width: 100% !important; }
+          .body-image img  { box-sizing: border-box; }
+          .social-icon-mobile-spacer {
+            display: inline-block !important;
+          }
+        }
+       =20
+    .mobile-only { display: none !important; } .desktop-only { display: blo=
+ck !important; }
+    @media(max-width: 480px) { .column-stack { width: 100% !important; max-=
+width: 100% !important; display: block !important; } .column-stack > table =
+> tbody > tr > td,.column-stack > table > tbody > tr > th { padding-left: 0=
+ !important; padding-right: 0 !important; } .mobile-only { display: block !=
+important; } .desktop-only { display: none !important; } }
+        @media (min-width: 481px) {
+      .column-row { display: table !important; table-layout: fixed; width: =
+100% !important; }
+      .column-row > .column-stack, .column-row > .column-persist { display:=
+ table-cell !important; float: none !important; }
+      .mobile-only { display: none !important; }
+    }
+    </style>
+    <style>
+          .wrapper {
+            padding: 0 12px;
+          }
+
+          /* Superhuman selector */
+          .ShadowHTML .wrapper {
+            padding: 0 !important;
+          }
+        =20
+        =20
+        =20
+        =20
+  .ShadowHTML :is(.styleUnquotedContent .unquoted-content, .styleUnquotedCo=
+ntent .sh-unquoted-content, .styleQuotedContent .sh-quoted-content, .sh-sig=
+nature, .Signature-settings) :is(td.column-container, div[class^=3D"mj-colu=
+mn-per-"]){font-size:0!important}
+  html.sh-color :is(td.column-container, div[class^=3D"mj-column-per-"], di=
+v.mj-column-per-100.mj-outlook-group-fix){font-size:0!important}
+  @media(max-width:480px){
+    html.sh-color .column-stack{width:100%!important;max-width:100%!importa=
+nt;display:block!important}
+    html.sh-color :is(.column-stack > table > tbody > tr > td,.column-stack=
+ > table > tbody > tr > th){padding-left:0!important;padding-right:0!import=
+ant;width:100%!important;max-width:100%!important;display:block!important}
+    html.sh-color :is(.column-stack, .column-stack *){word-break:break-word=
+!important;overflow-wrap:anywhere!important}
+    html.sh-color :is(.column-persist, .column-persist *){word-break:break-=
+word!important;overflow-wrap:anywhere!important}
+  }
+  html.sh-color a[href^=3D"tel:"]{color:inherit!important;text-decoration:n=
+one!important;font-size:inherit!important;line-height:inherit!important;let=
+ter-spacing:inherit!important;vertical-align:baseline!important}
+
+        =20
+      .isMarketing { background-color: #fafafa !important; }
+      .isMarketing .styled-primary-column { background-color: #fff !importa=
+nt; border-radius: 0px; }
+   =20
+        =20
+         [class~=3D"x_social-icon-dark-mode"] { display: none !important; m=
+so-hide:all;  width: 0px !important; padding: 0px !important; }
+
+          /* Gmail selectors */
+          u + .body .wrapper {
+            padding: 0 !important;
+          }
+          div > u + .body .wrapper {
+            padding: 0 !important;
+          }
+         =20
+    a { text-decoration: none; color: #E551BA; }
+   =20
+ =20
+         =20
+         =20
+          .link-unsubscribe { color: #9ca3af !important; }
+          </style>
+<meta name=3D"color-scheme" content=3D"light">
+          <meta name=3D"supported-color-schemes" content=3D"light">
+  </head>
+ =20
+      <body class=3D"body email-body" style=3D"word-spacing:normal;backgrou=
+nd-color:#fafafa;">
+       =20
+    <div style=3D"display:none;font-size:1px;color:#ffffff;line-height:1px;=
+max-height:0px;max-width:0px;opacity:0;overflow:hidden;">We=E2=80=99ll be i=
+n touch when it=E2=80=99s your turn.</div>
+ =20
+        <div aria-label=3D"TypeSafe AI: You=E2=80=99re on the waitlist for =
+Jev!" aria-roledescription=3D"email" role=3D"article" lang=3D"en" dir=3D"au=
+to" style=3D"word-spacing:normal;background-color:#fafafa;">
+        <img alt=3D"" src=3D"https://c.vialoops.com/CI0/010001a0b86e4ba6-9f=
+e5094e-b011-48cf-8c41-49b39bf87e76-000000/XbwuRCr-2zq36gEJvKuKKvcSEVvE4ngwa=
+PaYsTbSScg=3D452" style=3D"display: none; width: 1px; height: 1px;">
+<div style=3D"display: none; max-height: 0px; overflow: hidden;">&#847;&#82=
+03;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#81=
+99;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847=
+;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp=
+;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;=
+&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;=
+&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;=
+&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#=
+8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#=
+8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#8=
+47;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nb=
+sp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&sh=
+y;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#820=
+3;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#819=
+9;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;=
+&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;=
+&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&=
+#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&=
+nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&=
+shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8=
+203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8=
+199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#84=
+7;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbs=
+p;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy=
+;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203=
+;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199=
+;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&=
+#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&=
+#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#=
+847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&n=
+bsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&s=
+hy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#82=
+03;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#81=
+99;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847=
+;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp=
+;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;=
+&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;=
+&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;=
+&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#=
+8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#=
+8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#8=
+47;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nb=
+sp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&sh=
+y;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#820=
+3;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#819=
+9;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;=
+&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;=
+&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&=
+#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&=
+nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&=
+shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8=
+203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8=
+199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#84=
+7;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbs=
+p;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy=
+;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203=
+;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199=
+;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&=
+#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&=
+#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#=
+847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&n=
+bsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&s=
+hy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#82=
+03;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#81=
+99;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847=
+;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp=
+;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;=
+&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;=
+&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;=
+&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#=
+8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#=
+8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#8=
+47;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nb=
+sp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&sh=
+y;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#8203;&nbsp;&#8199;&shy;&#847;&#820=
+3;&nbsp;&#8199;&shy;</div>
+        <!--[if mso]><style type=3D"text/css"> a { text-decoration: underli=
+ne !important; } .button a { text-decoration: none !important; } .outlook-l=
+ist-fix { margin-left:4px !important; } .outlook-break-full-link { word-bre=
+ak: break-all !important; } .outlook-hide-social-icon { display: none !impo=
+rtant; mso-hide:all; width: 0px !important; padding: 0px !important; } .out=
+look-hide-social-icon * { display: none !important; mso-hide:all; width: 0p=
+x !important; padding: 0px !important; } .outlook-hide-social-icon table { =
+display: none !important; mso-hide:all; width: 0px !important; padding: 0px=
+ !important; } .outlook-hide-social-icon tbody { display: none !important; =
+mso-hide:all; width: 0px !important; padding: 0px !important; } .outlook-hi=
+de-social-icon tr { display: none !important; mso-hide:all; width: 0px !imp=
+ortant; padding: 0px !important; } .outlook-hide-social-icon td { display: =
+none !important; mso-hide:all; width: 0px !important; padding: 0px !importa=
+nt; } .outlook-hide-social-icon img { display: none !important; mso-hide:al=
+l; width: 0px !important; padding: 0px !important; } .outlook-hide-social-i=
+con a { display: none !important; mso-hide:all; width: 0px !important; padd=
+ing: 0px !important; }
+</style><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"wfix-outlook gmail-no-padding-outlook wrapper-outlook" role=
+=3D"presentation" style=3D"width:600px;" width=3D"600" ><tr><td style=3D"li=
+ne-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div class=3D"wfix gmail-no-padding wrapper" style=3D"margin:0px auto=
+;max-width:600px;">
+       =20
+        <table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"width:100%;">
+          <tbody>
+            <tr>
+              <td style=3D"direction:ltr;font-size:0px;padding:20px 0;paddi=
+ng-top:0;text-align:center;">
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"wfix-outlook" width=
+=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" class=3D"wfix-outlook" role=3D"presentation" style=3D"width:600px=
+;" width=3D"600" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]-->
+   =20
+     =20
+      <div class=3D"wfix" style=3D"margin:0px auto;max-width:600px;">
+       =20
+        <table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"width:100%;">
+          <tbody>
+            <tr>
+              <td style=3D"direction:ltr;font-size:0px;padding:20px 0;paddi=
+ng-bottom:16px;padding-left:16px;padding-right:16px;padding-top:16px;text-a=
+lign:center;">
+                <!--[if mso | IE]><table role=3D"presentation" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0"><tr><td align=3D"center" class=3D"wfix=
+-outlook rounded-corners-outlook styled-primary-column-outlook" style=3D"ve=
+rtical-align:top;width:568px;" ><![endif]-->
+           =20
+      <div class=3D"mj-column-per-100 mj-outlook-group-fix wfix rounded-cor=
+ners styled-primary-column" style=3D"font-size:0px;text-align:left;directio=
+n:ltr;display:inline-block;vertical-align:top;width:100%;">
+       =20
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"prese=
+ntation" width=3D"100%" style=3D"border-collapse: separate;">
+        <tbody>
+          <tr>
+            <td style=3D"background-color:#ffffff;border:1px solid #686868;=
+border-radius:0px;vertical-align:top;border-collapse:separate;padding-top:3=
+2px;padding-right:32px;padding-bottom:32px;padding-left:32px;">
+             =20
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"prese=
+ntation" style width=3D"100%">
+        <tbody>
+         =20
+              <tr>
+                <td align=3D"left" class=3D"body-image body-image-mobile-wi=
+dth-44" style=3D"font-size:0px;padding:10px 25px;padding-top:4px;padding-ri=
+ght:0px;padding-bottom:40px;padding-left:0px;word-break:break-word;">
+                 =20
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"prese=
+ntation" style=3D"border-collapse:collapse;border-spacing:0px;">
+        <tbody>
+          <tr>
+            <td style=3D"width:44px;">
+             =20
+      <img alt src=3D"https://images.vialoops.com/cmsgl91n601cq0j2u420gemiy=
+/cmtlw96nc01wn0j1s3104wz2k.png" style=3D"border:0;border-radius:0px;display=
+:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:1=
+3px;" width=3D"44" height=3D"auto">
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td align=3D"left" class=3D"dark-force" style=3D"font-size:=
+0px;padding:10px 25px;padding-top:8px;padding-right:0px;padding-bottom:12px=
+;padding-left:0px;word-break:break-word;">
+                 =20
+      <div style=3D"font-family:Inter, ui-sans-serif, sans-serif;font-size:=
+40px;letter-spacing:-0.2px;line-height:40px !important;text-align:left;colo=
+r:#191919;"><h1 class=3D"dark-force" style=3D"padding: 0; margin: 0; font-w=
+eight: 500; font-size: 40px; color: #191919 !important; line-height: 40px !=
+important; font-size: 40px !important;"><span style=3D"line-height: 40px !i=
+mportant; font-size: 40px; font-size: 40px !important; white-space: pre-wra=
+p;">You=E2=80=99re on the waitlist for Jev!</span></h1></div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td align=3D"left" class=3D"dark-force" style=3D"font-size:=
+0px;padding:10px 25px;padding-top:0px;padding-right:0px;padding-bottom:0px;=
+padding-left:0px;word-break:break-word;">
+                 =20
+      <div style=3D"font-family:Inter, ui-sans-serif, sans-serif;font-size:=
+16px;letter-spacing:-0.2px;line-height:26px !important;text-align:left;colo=
+r:#444444;"><span style=3D"line-height: 26px !important; font-size: 16px; f=
+ont-size: 16px !important; white-space: pre-wrap;">We=E2=80=99ll be in touc=
+h when it=E2=80=99s your turn to access Jev.</span></div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td align=3D"left" class=3D"dark-force" style=3D"font-size:=
+0px;padding:10px 25px;padding-top:20px;padding-right:0px;padding-bottom:26p=
+x;padding-left:0px;word-break:break-word;">
+                 =20
+      <div style=3D"font-family:Inter, ui-sans-serif, sans-serif;font-size:=
+16px;letter-spacing:-0.2px;line-height:26px !important;text-align:left;colo=
+r:#444444;"><a target=3D"_blank" rel=3D"noopener noreferrer" class=3D"body-=
+link" href=3D"https://c.vialoops.com/CL0/https:%2F%2Fdiscord.gg%2Ftypesafe/=
+1/010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000/PlrtKNCXuJht=
+viJBVDAkExLoeI1dyLXC5cCMi24bZ-s=3D452" style=3D"text-decoration: none; colo=
+r: #E551BA;"><span style=3D"color: #191919; font-size: 16px; white-space: p=
+re-wrap; text-decoration: underline !important; line-height: 26px !importan=
+t; font-size: 16px !important;" class=3D"underline dark-force">Join our Dis=
+cord</span></a></div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td align=3D"left" class=3D"dark-force" style=3D"font-size:=
+0px;padding:10px 25px;padding-top:0px;padding-right:0px;padding-bottom:0px;=
+padding-left:0px;word-break:break-word;">
+                 =20
+      <div style=3D"font-family:Inter, ui-sans-serif, sans-serif;font-size:=
+16px;letter-spacing:-0.2px;line-height:26px !important;text-align:left;colo=
+r:#444444;"><span style=3D"line-height: 26px !important; font-size: 16px; f=
+ont-size: 16px !important; white-space: pre-wrap;">TypeSafe AI</span></div>
+   =20
+                </td>
+              </tr>
+           =20
+              <tr>
+                <td align=3D"left" class=3D"dark-force" style=3D"font-size:=
+0px;padding:10px 25px;padding-top:24px;padding-right:0px;padding-left:0px;w=
+ord-break:break-word;">
+                 =20
+      <div style=3D"font-family:Inter, ui-sans-serif, sans-serif;font-size:=
+12px;letter-spacing:0px;line-height:19px !important;text-align:left;color:#=
+9ca3af;"><span class=3D"opt-in-explanation" style=3D"color: #9ca3af !import=
+ant; font-size: 12px !important; line-height: 19px !important;">
+  You are receiving this email because you opted in to receive email from t=
+he list Waitlist for Jev from TypeSafe AI<br>
+  TypeSafe AI, 255 California Street, Suite 1300, San Francisco, CA 94111, =
+United States<br>
+  <a style=3D"font-weight: 600; color: #9ca3af !important; text-decoration:=
+ none !important; font-size: 12px !important; line-height: 19px !important;=
+" href=3D"https://c.vialoops.com/CL0/https:%2F%2Fapp.loops.so%2Funsubscribe=
+%2Fcmu8131dmm5pu01suas88dobq%2Fc6de41295c1f4212d4c8ce309a556cbffc13689578f2=
+f196976248aebcff84e282aa810a18547a29f8d89d2102330db1f7f15e2790f801a69cca38f=
+4/1/010001a0b86e4ba6-9fe5094e-b011-48cf-8c41-49b39bf87e76-000000/ioOHN9sCY0=
+EXAsBq5-m8JmVLTH--WMBagO17-F9-hzA=3D452" target=3D"_blank" rel=3D"noopener =
+noreferrer" class=3D"bold link-unsubscribe">
+  Unsubscribe
+  </a>
+  </span></div>
+   =20
+                </td>
+              </tr>
+           =20
+        </tbody>
+      </table>
+   =20
+            </td>
+          </tr>
+        </tbody>
+      </table>
+   =20
+      </div>
+   =20
+          <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       =20
+      </div>
+   =20
+     =20
+      <!--[if mso | IE]></td></tr></table><![endif]-->
+   =20
+   =20
+      </div>
+      </body>
+   =20
+</html>
+ =20
+
+--0u5gmps9qvf--

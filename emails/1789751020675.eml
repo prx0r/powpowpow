@@ -1,0 +1,369 @@
+Received: from mail-ej2-x10.google.com (2a00:1450:4864:34::10)
+        by cloudflare-email.net (cloudflare) id z6ndFZFhaFPP
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 17:03:40 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ERbKwW6mK95R6pHLLCuGukaZaN1DSHYE7TYtxIK1rUJ/nQxJwGDzYxehMcw1qkuZvn5m+L5pU
+	C81ToX6FfjuTqwjwXNAed16lQM8w1ouudQg22L8Mg/MI+20O0oDN+GWg+U/KtEcjg4M15gZOxcX
+	jrbzkWT8reQZvfOZOImUFbV+LB9hpj7imXU8hx7KTiO3kYORi9G/a1/05NH9p6828NzBQ0RG0nk
+	ym1SY0NOyG+uu3ly4pIz0niZS+szuuCJri+/pXwtUylF/eRpb/AiO6tqQ58XOYHy9BMb4dY20hI
+	dLNhCoWnnZnLDUZoeVUD2sIfIy4h1zNwCNCzsAbV+nWw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789751020; x=1790355820; bh=9KMzMFuf
+	XdDau38TknirgPSgvE5SLmH4Bg1JjoLgtUc=; b=G8Mth4yRVkXtYOAlH8fmyZPd04GxAwKLMkV
+	CT4k7FDAPs8h+9zi7VnQlGf4KFZd7G7u8Itonn7uubxJtWQRpC4fcprVOLIqY2IiQTlwOdowQvK
+	9k0xgjJYcKeBwU4rWdN8inmAmOOLj+7MM6o7EpJ6QYMtjEvPectQmGQyWc6/eGWBgeOthAA/v9c
+	4atPS4zbopeMbaPFxamNff1JKKyawz/6e0ldNXwrP4cef4//9Ylk3TvaTvjHeBAxIzwJzVf3z92
+	FvAUiaRz6HBiOd7cj9kMshrrdkU+V1630I0w9ZHCtl41hYBb0/HcSMIU0sChs6i929iu0cFKBCx
+	SRDiInA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XxvooAQN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-ej2-x10.google.com) smtp.helo=mail-ej2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2a00:1450:4864:34::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2a00:1450:4864:34::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2a00:1450:4864:34::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2a00:1450:4864:34::10; envelope-from="tradesprior@gmail.com"; helo=mail-ej2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XxvooAQN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-ej2-x10.google.com) smtp.helo=mail-ej2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2a00:1450:4864:34::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2a00:1450:4864:34::10"
+X-CF-SpamH-Score: 0
+Received: by mail-ej2-x10.google.com with SMTP id a640c23a62f3a-c254f9f7db0so137062966b.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 10:03:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789751020; cv=none;
+        d=google.com; s=arc-20260327;
+        b=XkNL9V5+i2DYhyOJ0WqGJjZ8BUAJc/1K7FYLTST/f8EieINDAHHyKFvCxK3PCW+Goe
+         HGW1Gx8BNJzgLCUB2BQPgwu8hc5NychUpP6zM5Dh95aru1JdAhxfe3t8bCL8gUJ74Vd0
+         RDc6NsjB8U08pzyuqMXM/jK3zhIHzmoISCGs+D17Z6lqI0HPZ6GFwiBHkWtGoz9f8RP6
+         lCqgPUlzbYcCYl5B462TruHpp4afFYjfmPYsc5o2Ip3tNmcv5fXSAr+UKL3tMYAq584Q
+         m++HKrEBJY/7LfogwUA/vJ84mn5ByYdeiBqZDbQBygp++6/+GAD9fzZgqXk8TpoLymz0
+         nwvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=9KMzMFufXdDau38TknirgPSgvE5SLmH4Bg1JjoLgtUc=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=rb3NCV3Vs15rT3omj7eeNoslUhQC9qI2cOGAdC2gFm+N309O7HvYIE6chUoCdtxIew
+         8oUS0Ubr50LvLK7+2fJdaAffwtuVsDfLGytftwYcJe62fjoCreZPdlXZFX4D4N4nNpAy
+         psKIifPg87DPdymYmag+m2X4SvrUc8zfNSOe83+UTIawBQDh9EA6EIyGBMO1vvozx7Ri
+         uHvIaZTP8n8W/M8XGIuXEgGvLfzF/wwt1rviy2muMB6kQvAsTkE8TgjCGI5YNsEiZpTk
+         /i8ikxFYHvH9khJ10p3FuEGTEyCMlXsh0rnzEckRDi8sILocsFvJT/AEgC2RUOaMkIbL
+         PRqg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789751020; x=1790355820; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=9KMzMFufXdDau38TknirgPSgvE5SLmH4Bg1JjoLgtUc=;
+        b=XxvooAQNch/7xi1Ha7pj0l021fwzj2C+P91xDz4gLK+rhvEF5e9t92LC+Q78QFJX0C
+         CRwj7twZw0TUBEElG5jmYPwr1GR/lWTDHnnGrN8Bk9Y1nr6q7EWrOvKraGjCUxz0SGO0
+         B8CMtigKc7FcVRe8aUJ9mrYUnVRr67OOng2Itr1pN6Vv21h+a8VLn/w/BqRyl066FvL4
+         nr1SCgeilAmOacN20M/06WVeJ7Y+UwZ9TBBdxwdm1g2J5nYgwZ0icnYh7LnF4zhlQCC/
+         4uqgrNwcq3kUv3qzaHdNOPQPl7y1rZvawChNYPHy0Oek5Xc6lY0xQDbnkei5xqtqGdUv
+         PlqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789751020; x=1790355820;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=9KMzMFufXdDau38TknirgPSgvE5SLmH4Bg1JjoLgtUc=;
+        b=guJ3M+OdrzttRKuhUwUS1Qau3XpEmSfC2qEBI/Alq8dG0ZBtzJQTjAvwRh/wl1AESk
+         pJ6cIdfhqQSRnAU+Skb3Z53pXmragvfy9y+dgavVFfNaqJ5MV9K2e8z7PMPFes90KKlp
+         HnmFmi3PxVPWioQHCB9h3f8FJtbEv4p7erM0Zu6uoaEpzNBCebpCPaeN0cMeLrtvLSSM
+         rU1LmfxS24m9PnNfJV8yWg98CrumdPYsxSuKOgeB4LCPeE9Or6byQ6bmOGgOQ/2vX8k6
+         JO6dFfU0hcLe4rXNarUOpzRIZfBMLxXrgeLo08CwlWHbrUYYrTrIz1xi23GmT7ihC0md
+         adKg==
+X-Gm-Message-State: AFuF++n0ryW9hQgEkPI3Pglc3osKz/705fvIX18QuuaWJ5TbnFruVAD2
+	vslEuCNBNVwmXhHtSfDO3QyfiQgvdyrmozbH5KmpGqDRdQQ+r5N6OhXc8tngDxy7ifF4Matamaa
+	VdlOGjLKBb3WBWF7o+njiTx0v0c/Veh9Xcw==
+X-Gm-Gg: AYBFou3aB62b8JfQJSSt2V1pbacXx1q446Opo/1jLxjUeLTnHqkXDIHJqI3IRznekhy
+	WAv4QftMLYVpdJos8rC43sxmMwnQHHnHaHdE6Of9ouww0sM5BzFMnozdVmScSdMeMeP30UFjgvx
+	ZzNX05HIw4fbaLaiPqslTpXBfGYXIfGt3PZwM8VVCCkN2c4n3bXBlgnOllvx1ThmJCjxJGAbNaR
+	zi9G0bQsMb5hSCWGGARNm32pDoAVO+GsOPPSyImpmDAAr/6oFgwUpFe0AeK1HOyf/2x4VfEBUHw
+	lP2iZS0rZwZFYQlc2J+nIVVo++dgoOGIYFhjN8ViFZDJTkS3tEiCJ8oUDoXJioQ2eVd+7myQY+B
+	eHL5mLKYZIg6C8vgWtumq9voegljQDJaJavDkiXZ2f5X0OFVO29bBGhY45qVxCOy/Usiq
+X-Received: by 2002:a17:907:6d04:b0:c29:43fd:e43b with SMTP id
+ a640c23a62f3a-c2a157fce20mr332135866b.28.1789751019370; Fri, 18 Sep 2026
+ 10:03:39 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 17:03:35 +0000
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 17:03:35 +0000
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 17:03:35 +0000
+X-Gm-Features: AcwNN1X0icFc3mGEJH1V-3vymgLf5qjOTuLIaHuDVwuuhkBgvqg3-AaA8bJkKqA
+Message-ID: <CAPdrGemhC1fJmcKvExicf5aF4z7JxCyzA1KjA6BdyzJ2ajzxBA@mail.gmail.com>
+Subject: =?UTF-8?Q?Generated_Media_Frontier_=E2=80=94_2026=2D09=2D19_00=3A00_Asia=2FP?=
+	=?UTF-8?Q?hnom=5FPenh_=E2=80=94_2_strong_finds?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000befae5065bc4e16f"
+
+--000000000000befae5065bc4e16f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+GENERATED MEDIA FRONTIER =E2=80=94 2026-09-19 00:00 Asia/Phnom_Penh
+
+2 findings cleared the material-delta bar. I suppressed previously covered
+Flexatar, MuseTalk=C3=97LiveKit, AvatarAI, LiveTalking, video-content-agent=
+,
+Qwen3.8-Omni-Flash and vLLM-Omni because I found no sufficiently new
+release/change to justify repeating them.
+
+   1.
+
+   DramaClaw v2.0.5 =E2=80=94 dramaclaw/dramaclaw
+   Direct: https://github.com/dramaclaw/dramaclaw/releases
+   Meaningful update: v2.0.5 released 2026-09-17 09:27 (GitHub release
+   timestamp surfaced by primary release page).
+   Maturity: RUNNABLE / increasingly PRODUCTIONISH orchestration.
+   What changed: generated video, image and audio results can now be
+   delivered from archived media rather than depending on temporary result
+   URLs; reference-media limits are checked before generation; LingShan G25
+   Fast/Pro image model configs were added. The larger 2.x line already
+   provides structured script=E2=86=92episode=E2=86=92character=E2=86=92sce=
+ne construction, a
+   canvas/asset library, local ComfyUI routing, reference video/audio
+   capability and a swappable media-model catalog.
+   Why it matters: the interesting asset is not its generation models but
+   the production-control layer. Persistent synthetic characters need durab=
+le
+   source assets, references, generated outputs and provenance across
+   hundreds/thousands of clips. v2.0.5 hardens exactly that
+   boring-but-critical layer.
+   Inputs=E2=86=92outputs: script/source + character/scene/reference media =
+=E2=86=92
+   structured production graph/canvas =E2=86=92 image/video/audio assets.
+   Code: available on GitHub; self-hosted Community Edition path exists.
+   License: project has CE/EE licensing distinctions; verify exact intended
+   commercial deployment before adopting wholesale.
+   Hardware/cost: depends on routed models; it can route local ComfyUI and
+   external model channels rather than requiring one fixed GPU stack.
+   Experiment: deploy CE, create one canonical AGI-host character, feed 10
+   scripts, route cheap drafts locally/API-side, and inspect whether its
+   character/scene/media IDs can become our persistent asset graph. Measure
+   how cleanly a renderer can be swapped without rebuilding the character
+   project.
+   Replace/complement: complement our proposed Character Runtime;
+   potentially replaces a large amount of custom
+   storyboard/asset/model-routing UI.
+   Verdict: TEST NOW =E2=80=94 specifically mine the structured character/s=
+cene
+   graph and asset archival, not the whole product.
+   2.
+
+   Rula =E2=80=94 ykshv/rula
+   Direct: https://github.com/ykshv/rula
+   Current repo surfaced as active in the latest scan; I am NOT claiming a
+   new release date because search did not expose a trustworthy commit
+   timestamp.
+   Maturity: RUNNABLE experimental runtime.
+   What it does: local-first closed-contour digital-human runtime combining
+   STT, Qwen LLM, TTS, Audio2Face, LiveKit/WebRTC and browser VRM rendering=
+.
+   More importantly, it treats barge-in, stale generations, echo, mouth dri=
+ft,
+   first-audio latency and GPU contention as explicit measurable realtime
+   contracts.
+   Why technically interesting: most avatar demos optimize visual quality;
+   Rula treats the avatar as a realtime distributed system. Its visual laye=
+r
+   is explicitly replaceable, which matches our Performance-IR thesis.
+   Inputs=E2=86=92outputs: live speech =E2=86=92 streaming STT/LLM/TTS =E2=
+=86=92 facial-animation
+   state + realtime VRM audiovisual response.
+   Code: GitHub source available.
+   Hardware: designed around Windows + WSL2 + NVIDIA GPU; exact minimum
+   VRAM was not established in this scan.
+   Experiment: steal its latency/eval contract. Put our cheap VRM renderer
+   behind the same tests, then swap in a photoreal renderer. Track first
+   audio, first visual response, interruption latency, stale-output rejecti=
+on
+   and audio/face drift.
+   Replace/complement: complements LiveKit transport and our Performance
+   IR; could supply the realtime evaluation harness we otherwise would buil=
+d
+   ourselves.
+   Verdict: TEST/MINE NOW =E2=80=94 mainly its systems/eval architecture.
+
+TOP 5 TO TEST RIGHT NOW
+
+   1. DramaClaw character/scene/asset graph as persistent influencer
+   production memory.
+   2. Rula=E2=80=99s realtime contract/eval harness.
+   3. Keep the previously selected cheap browser/VRM performance layer for
+   mass drafts.
+   4. Keep a Jev-like cheap policy above Performance IR for
+   expression/gaze/gesture/shot decisions.
+   5. Promote only selected performances into the current best photoreal
+   renderer.
+
+BEST OPEN-SOURCE AI INFLUENCER STACK THIS RUN
+Persona + durable character state =E2=86=92 creative LLM =E2=86=92 cheap de=
+cision policy =E2=86=92
+Performance IR =E2=86=92 browser/VRM draft =E2=86=92 multimodal critic =E2=
+=86=92 DramaClaw-style
+durable asset/scene graph =E2=86=92 selected photoreal avatar/video rendere=
+r =E2=86=92
+FFmpeg/Remotion =E2=86=92 publish =E2=86=92 platform metrics =E2=86=92 poli=
+cy/audience-state update.
+
+BIGGEST CAPABILITY JUMP
+No new renderer cleared the bar this hour. The meaningful improvement is
+production state becoming durable and renderer-independent: DramaClaw=E2=80=
+=99s
+archived media + structured character/scene pipeline is the kind of
+infrastructure needed for a synthetic creator that survives model churn.
+
+CHEAPEST PRACTICAL WIN
+Do not generate more photoreal video. First implement/borrow Rula-style
+latency/eval contracts and a durable character/asset graph. Those
+improvements cost essentially no generation budget and make every future
+renderer easier to benchmark and swap.
+
+WATCH NEXT
+
+   - dramaclaw/dramaclaw =E2=80=94 production graph/model routing.
+   - ykshv/rula =E2=80=94 realtime avatar systems/evaluation.
+   - Comfy-Org/ComfyUI =E2=80=94 nightly workflow/runtime changes, especial=
+ly
+   anything affecting local video/reference pipelines.
+
+STACK DELTA
+Add two explicit layers to the architecture:
+(1) Character Asset Graph: canonical identity references, voices, scenes,
+reusable performances, generated clips and provenance/versioning.
+(2) Realtime Contract Harness: first-audio latency, first-frame latency,
+barge-in, stale-generation rejection, A/V drift and GPU contention.
+
+No reason this hour to replace the current cheap-draft =E2=86=92 critic =E2=
+=86=92
+premium-render strategy.
+
+--000000000000befae5065bc4e16f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>GENERATED MEDIA FRONTIER =E2=80=94 2026-09-19 00:00 Asia/Phnom_Penh</p>
+<p>2 findings cleared the material-delta bar. I suppressed previously cover=
+ed Flexatar, MuseTalk=C3=97LiveKit, AvatarAI, LiveTalking, video-content-ag=
+ent, Qwen3.8-Omni-Flash and vLLM-Omni because I found no sufficiently new r=
+elease/change to justify repeating them.</p>
+<ol>
+<li>
+<p>DramaClaw v2.0.5 =E2=80=94 dramaclaw/dramaclaw<br>
+Direct: <a href=3D"https://github.com/dramaclaw/dramaclaw/releases">https:/=
+/github.com/dramaclaw/dramaclaw/releases</a><br>
+Meaningful update: v2.0.5 released 2026-09-17 09:27 (GitHub release timesta=
+mp surfaced by primary release page).<br>
+Maturity: RUNNABLE / increasingly PRODUCTIONISH orchestration.<br>
+What changed: generated video, image and audio results can now be delivered=
+ from archived media rather than depending on temporary result URLs; refere=
+nce-media limits are checked before generation; LingShan G25 Fast/Pro image=
+ model configs were added. The larger 2.x line already provides structured =
+script=E2=86=92episode=E2=86=92character=E2=86=92scene construction, a canv=
+as/asset library, local ComfyUI routing, reference video/audio capability a=
+nd a swappable media-model catalog.<br>
+Why it matters: the interesting asset is not its generation models but the =
+production-control layer. Persistent synthetic characters need durable sour=
+ce assets, references, generated outputs and provenance across hundreds/tho=
+usands of clips. v2.0.5 hardens exactly that boring-but-critical layer.<br>
+Inputs=E2=86=92outputs: script/source + character/scene/reference media =E2=
+=86=92 structured production graph/canvas =E2=86=92 image/video/audio asset=
+s.<br>
+Code: available on GitHub; self-hosted Community Edition path exists.<br>
+License: project has CE/EE licensing distinctions; verify exact intended co=
+mmercial deployment before adopting wholesale.<br>
+Hardware/cost: depends on routed models; it can route local ComfyUI and ext=
+ernal model channels rather than requiring one fixed GPU stack.<br>
+Experiment: deploy CE, create one canonical AGI-host character, feed 10 scr=
+ipts, route cheap drafts locally/API-side, and inspect whether its characte=
+r/scene/media IDs can become our persistent asset graph. Measure how cleanl=
+y a renderer can be swapped without rebuilding the character project.<br>
+Replace/complement: complement our proposed Character Runtime; potentially =
+replaces a large amount of custom storyboard/asset/model-routing UI.<br>
+Verdict: TEST NOW =E2=80=94 specifically mine the structured character/scen=
+e graph and asset archival, not the whole product.</p>
+</li>
+<li>
+<p>Rula =E2=80=94 ykshv/rula<br>
+Direct: <a href=3D"https://github.com/ykshv/rula">https://github.com/ykshv/=
+rula</a><br>
+Current repo surfaced as active in the latest scan; I am NOT claiming a new=
+ release date because search did not expose a trustworthy commit timestamp.=
+<br>
+Maturity: RUNNABLE experimental runtime.<br>
+What it does: local-first closed-contour digital-human runtime combining ST=
+T, Qwen LLM, TTS, Audio2Face, LiveKit/WebRTC and browser VRM rendering. Mor=
+e importantly, it treats barge-in, stale generations, echo, mouth drift, fi=
+rst-audio latency and GPU contention as explicit measurable realtime contra=
+cts.<br>
+Why technically interesting: most avatar demos optimize visual quality; Rul=
+a treats the avatar as a realtime distributed system. Its visual layer is e=
+xplicitly replaceable, which matches our Performance-IR thesis.<br>
+Inputs=E2=86=92outputs: live speech =E2=86=92 streaming STT/LLM/TTS =E2=86=
+=92 facial-animation state + realtime VRM audiovisual response.<br>
+Code: GitHub source available.<br>
+Hardware: designed around Windows + WSL2 + NVIDIA GPU; exact minimum VRAM w=
+as not established in this scan.<br>
+Experiment: steal its latency/eval contract. Put our cheap VRM renderer beh=
+ind the same tests, then swap in a photoreal renderer. Track first audio, f=
+irst visual response, interruption latency, stale-output rejection and audi=
+o/face drift.<br>
+Replace/complement: complements LiveKit transport and our Performance IR; c=
+ould supply the realtime evaluation harness we otherwise would build oursel=
+ves.<br>
+Verdict: TEST/MINE NOW =E2=80=94 mainly its systems/eval architecture.</p>
+</li>
+</ol>
+<p>TOP 5 TO TEST RIGHT NOW</p>
+<ol>
+<li>DramaClaw character/scene/asset graph as persistent influencer producti=
+on memory.</li>
+<li>Rula=E2=80=99s realtime contract/eval harness.</li>
+<li>Keep the previously selected cheap browser/VRM performance layer for ma=
+ss drafts.</li>
+<li>Keep a Jev-like cheap policy above Performance IR for expression/gaze/g=
+esture/shot decisions.</li>
+<li>Promote only selected performances into the current best photoreal rend=
+erer.</li>
+</ol>
+<p>BEST OPEN-SOURCE AI INFLUENCER STACK THIS RUN<br>
+Persona + durable character state =E2=86=92 creative LLM =E2=86=92 cheap de=
+cision policy =E2=86=92 Performance IR =E2=86=92 browser/VRM draft =E2=86=
+=92 multimodal critic =E2=86=92 DramaClaw-style durable asset/scene graph =
+=E2=86=92 selected photoreal avatar/video renderer =E2=86=92 FFmpeg/Remotio=
+n =E2=86=92 publish =E2=86=92 platform metrics =E2=86=92 policy/audience-st=
+ate update.</p>
+<p>BIGGEST CAPABILITY JUMP<br>
+No new renderer cleared the bar this hour. The meaningful improvement is pr=
+oduction state becoming durable and renderer-independent: DramaClaw=E2=80=
+=99s archived media + structured character/scene pipeline is the kind of in=
+frastructure needed for a synthetic creator that survives model churn.</p>
+<p>CHEAPEST PRACTICAL WIN<br>
+Do not generate more photoreal video. First implement/borrow Rula-style lat=
+ency/eval contracts and a durable character/asset graph. Those improvements=
+ cost essentially no generation budget and make every future renderer easie=
+r to benchmark and swap.</p>
+<p>WATCH NEXT</p>
+<ul>
+<li>dramaclaw/dramaclaw =E2=80=94 production graph/model routing.</li>
+<li>ykshv/rula =E2=80=94 realtime avatar systems/evaluation.</li>
+<li>Comfy-Org/ComfyUI =E2=80=94 nightly workflow/runtime changes, especiall=
+y anything affecting local video/reference pipelines.</li>
+</ul>
+<p>STACK DELTA<br>
+Add two explicit layers to the architecture:<br>
+(1) Character Asset Graph: canonical identity references, voices, scenes, r=
+eusable performances, generated clips and provenance/versioning.<br>
+(2) Realtime Contract Harness: first-audio latency, first-frame latency, ba=
+rge-in, stale-generation rejection, A/V drift and GPU contention.</p>
+<p>No reason this hour to replace the current cheap-draft =E2=86=92 critic =
+=E2=86=92 premium-render strategy.</p>
+
+--000000000000befae5065bc4e16f--

@@ -1,0 +1,695 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id MPss35F6p2kp
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 17:22:52 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ep21cyCLgtR1YUBTsYY9Bnr31QZmVQbcLb036JYLMK+qaE6xJN7ZfNA7iEG6yUcxnqvFEA85y
+	gipdeqiMgKaKGUDQzJMX7mg+vSOYvWTWN01SVOks2DLdufsHx2ZXFQcpi9b2O35HQGRt2v+PnAy
+	YSG9d7aWRFmg2aTroffd97PK0Fp7hIaI0yPozPWKrGkb7ruKHbKp8ctP4ypMW3YFGAcihyEhQyW
+	oKtMoO1GwZ32wTfWl/vgz4arNPbS6LOLyb0NmiVxL8auYC4TNCLv7+s4uQZqZ+ulZrx34MjHM/z
+	HfTPSZgNDexw/uGvQ0N6HEMPyq816F2YfY6CAq69UGRw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789665772; x=1790270572; bh=zpZoIq5q
+	b04T5eNXGXVkOKfoKjVvGxUh4qJwsd8tKC4=; b=QCVZEuLpdLZqKE9Kd2KFDBzEa0PcuYMLJ4r
+	crUhWuP+CEADg5PzxXCRGlcctJApyEVaXZZKAXSj7kH1dna1wsm8W0qT16WGRyLDQVdBi93P5Bg
+	qh0y/hLi6Jxs0ecAk+r5yyGOGAkY1F0L0tjsF1YCmjEGHpZCxSsezR5DinLut71OumjbR9sOmbO
+	73zEMpM2q3hHcFqq782hH9MRIa/AH/Vja7mkd2KpLyZ3icBkZlr3JG9wZ070Hl5Vy4CBpuq8i1M
+	BS6pw8+GDtaVTbtdGhldemR5PlWcQn96ydIa79rR/cVBUhNM8iYvAIBhaMM5P3ArvQK2STJfh4y
+	5pBGNWg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=kmnBJBo2;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=kmnBJBo2;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43ac6089so7877397b3.1
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 10:22:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789665772; cv=none;
+        d=google.com; s=arc-20260327;
+        b=bEp7hR6+Rkn857yvYHOtAHilB6jUMvXrIqZyFlYD5BKFMRtrbe0IRCK8tNwBfht75c
+         JDxQU+E9nRnR43MWftImKG09QMdiKoWt7JH5rjeXLEfBvrCAKqiTdUum/N3MHvQJzLiy
+         pwJbDg+pnSYAOX4jwYOaUHoTHriFTMOVMQiT3blsvq+WTUc+esyiixv8i2NMbaEZCe1J
+         4tTEohfCmy6cARa7E8wOx7p1VEJToAAN294nMWZWAB3UozHJodtzlZAkWynsKq8qj3Np
+         6AOKHI4FjlQKuOi3GVFl144fLRwvoyFl3Np82Ul82dGFOiOar9I79ZYpDwcnMbbVYaAz
+         lMQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=zpZoIq5qb04T5eNXGXVkOKfoKjVvGxUh4qJwsd8tKC4=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=LARU+8SnhiyQoaU3d5lD9duZ4OfMMC0dMgP4QPVUCZLSUvJNmGg0eE0dAGnXrcMaOV
+         /0MHdGNoLBxM5CKgLJXhZI5j6vOFpPJQZeS2lFTIo5/U/pwBHO6bImDO4urdbSTGOJaZ
+         xofdS//vqDP1KJkQwTzUjTdq1TXEJkFM+faoR0NsPTittaqAH7ooCAzT5luOP+DfJBIm
+         oCc2VoyC1t4PuY3kY57m/OHpPHAxQhuMynulaBzk7LfRCu5+I6HVpLEkNG4C1qMpkw25
+         b/yaBafKgVSDf3+kkX3cba/Dt9v+xDeknrDA7MP2L6h/gXy69sxGdOyeNyRGWv1rLhSl
+         aqjg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789665772; x=1790270572; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=zpZoIq5qb04T5eNXGXVkOKfoKjVvGxUh4qJwsd8tKC4=;
+        b=kmnBJBo2ea52w5RmA7QRu8P1E4V14yIw0ppRHfOsS292dSErKi4EhZTSpdot2mYDje
+         womzo7KVz160vEEvevU4fZhtdvZmng90yJLRSqm5lXibAorWH7JrJr7UOU/cIllKZQoq
+         4o1+pQd4JIfgHWD6ISr/c6t2D1NDx3EMzva1qXBnEZssRPcizvz0YorWtjA1oVsgiBlZ
+         Qx1Zr8cifkfDhkDtZJqKWXeiUkdy96/rCZGTjDRq89da3yPjD2D9iD9kflPgv1lcZOKU
+         +/PdRc1Ex2dxpXorqGsIIvSNwzGiQLggxH6SBqZCwnPI2xXmKThCBAumqhjXmqB02z83
+         OT1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789665772; x=1790270572;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=zpZoIq5qb04T5eNXGXVkOKfoKjVvGxUh4qJwsd8tKC4=;
+        b=JtEx7k/knaOpOX00tL6eer1c0x+nn+fzwhGO76HouULch4P8S7TIn2TVqtNxpvTBTK
+         65nP+uFnUANXwHZcDPwo21gI5MiXWlS95EuAU7EhI417GD0lmg0NPeMOi2g5m05zlypw
+         6K0GPKyV1cl0LyFY7R/CYrZjdMdDfKi6386ItROMQ4EM1hiPpSS9jt/MTQlhau7t93io
+         B7YeUIMUp3tlKtQFFafYBRC4knFDjxoXJseSUw4Q3JDR0EmK/jvyEpzaP+Zcg9rFCXI+
+         IL60Y1S5aKwR7UCWdmMlXAS0D2OcCraOj7UN1HgNWVNfPS0M80UBtzYXkN+6qGuIpSef
+         HDug==
+X-Gm-Message-State: AFuF++nLRZI+li6bxRVDMoEDEdTV0U7SfMp+Ed7cWLFVMjZb7SPjAaHB
+	Ty9sHVw2Nd0pykBQmBJcxEnuiyY3z4tA5mWJEVusQovUUGejIbl958muPl9yfFBuIeBI5zCMsLt
+	RjIPdQ7xVa60hwnLLPNS4R1Brn4Eghaf+GQ==
+X-Gm-Gg: AYBFou3gtb1IoLBvRt5UAZLicIzvuwjXjKGFmLlH3z7H7w0mzOsfNqyH5PnQeUGWkiF
+	lCLUtEjNp6ERmuBWcJT6YLwALqayDDYx1AroJfbI4+fhA1sFxGjuUTQU/B1usftpQfBlvs3Io7F
+	SNeKGeSteAogWNUwbwYLqjRqYy6g1/O8Hqkld12UgY7IwxPrpqA4ZShvS+eA1HeY2VfgDm2Mi/c
+	xP/d84QEpthuGXdCdW+jB/+/TFHBwQmL5XB3CD5K5vkgpgY0nmOrtFEViwpt6WywCFREPYslu9s
+	JJMbIIcO43jIIuySaxrsfWqgw7FrPag6SJSGG1PXBYI7KzCEiS2ANIzVNQMVFNHwSPlMdA4y0wc
+	bX/rlKDiyJAAdkKC/6UfwJ1RqqpGTpQTtckHwNAsFbA9b9smF5JkjSzlMQ0JPQwGCt9bvi/2t
+X-Received: by 2002:a05:690e:4084:b0:671:1896:1a71 with SMTP id
+ 956f58d0204a3-671632aec4amr2330269d50.73.1789665771554; Thu, 17 Sep 2026
+ 10:22:51 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 02:22:50 +0900
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 02:22:50 +0900
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 02:22:50 +0900
+X-Gm-Features: AcwNN1WSO-DNEv2Utwf7yzJuHFhVC2s2B7Oxt3VCaaGs0xNRsmBJW4a7IBKAYxk
+Message-ID: <CAPdrGenCM4zymjxC5U2qFk92HZnHodRiKXZ9AKUsXrSwvLBwLA@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail=2FQP_convergence_plan_2=2F3_=E2=80=94_social_execution=2C_?=
+	=?UTF-8?Q?authority=2C_workflows?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000948e96065bb10870"
+
+--000000000000948e96065bb10870
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Continuation 2/3.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+F. SOCIAL EXECUTION =E2=80=94 REUSE, DO NOT REBUILD
+
+   1. social-mcp
+   Repo: IhsanKabir/social-mcp
+   License: MIT
+
+Useful because it is small and already has official-API implementations for=
+:
+
+   - YouTube publish + comments + analytics
+   - Facebook Pages
+   - Instagram
+   - Threads
+   - LinkedIn
+   - OAuth setup/token refresh
+   - account capability model
+   - local queue/dead-letter patterns
+
+Important caveat: very young/small repo. Treat as CODE DONOR / REFERENCE,
+not trusted infrastructure.
+
+Do this:
+
+   - inspect provider modules
+   - extract official request/response knowledge
+   - port useful provider calls into Monid connector definitions
+   - preserve upstream attribution/license
+   - write our own QP ProofSpecs/readback semantics around them
+   - verify behavior against official APIs and recorded fixtures
+
+Do NOT adopt its encrypted-token store or scheduler as canonical
+infrastructure; Agent Vault and durable workflow tooling cover those jobs
+better.
+
+   1.
+
+   Postiz
+   Use as broad execution fallback/sidecar for platforms where it has
+   mature provider support and where direct Monid connector coverage is not
+   ready.
+   2.
+
+   Official platform APIs
+   Authoritative readback should prefer official provider APIs even if
+   Postiz performed the mutation.
+
+Execution and observation should be independently identified:
+
+Effect:
+postiz.youtube.publish OR monid.youtube.video.insert
+Readback:
+monid.youtube.videos.list
+
+Effect:
+postiz.instagram.publish
+Readback:
+monid.meta.instagram.media.read
+
+Effect:
+postiz.tiktok.publish
+Readback:
+monid.tiktok.publish.status / content lookup
+
+Do not make the same opaque adapter both mutate and declare success.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+G. AUTHORITY =E2=80=94 USE GRANTEX AS A REFERENCE/SDK LAYER, NOT OUR OWN CR=
+YPTO
+EXPERIMENT
+
+Repo: mishrasanjeev/grantex
+License: Apache-2.0
+
+Grantex already provides:
+
+   - cryptographic agent identity
+   - scoped/time-limited/revocable authority
+   - delegation chains
+   - service-side verification
+   - audit records
+   - TypeScript SDK
+   - MCP auth integration
+   - multi-agent scope subset enforcement
+
+We should not keep designing generic delegated-agent authorization from
+scratch.
+
+However, do NOT blindly drop its MCP auth server into production yet: its
+current published MCP Auth package documents limitations around in-memory
+authorization codes, consent rendering and code handoff.
+
+Recommended path:
+
+   1. Keep QP=E2=80=99s semantic requirement that consequential actions nee=
+d exact
+   bounded authority.
+   2. Add an AuthorityProvider interface.
+   3. Implement a Grantex-backed provider using its SDK/protocol.
+   4. Map QP action/payload constraints into a cryptographically-bound
+   authorization object.
+   5. Keep QP-specific validation for exact payload hash,
+   amount/provider/resource constraints and one-shot effect identity where
+   Grantex=E2=80=99s generic token does not directly express them.
+   6. Remove duplicate key generation/signature machinery from QP only
+   after equivalence tests pass.
+
+Suggested interface:
+
+interface AuthorityDecision {
+principal: string;
+agent: string;
+action: string;
+payloadHash: string;
+constraintsHash: string;
+authorizationRef: string;
+issuedAt: string;
+expiresAt: string;
+valid: boolean;
+}
+
+QP receives AuthorityDecision. It does not invent authority from
+confirmed:true.
+
+The human approval UI should create/approve an authorization object. The
+execution path consumes it. The execution path must never mint its own
+owner grant.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+H. AGENT IDENTITY =E2=80=94 DO NOT BUILD A SECOND IAM PRODUCT
+
+OpenA2A AIM and Alibaba Open Agent Auth both now cover agent
+identity/capability authorization/audit patterns. Open Agent Auth is
+heavier Java/Spring infrastructure; AIM is Apache-2.0 and closer to an SDK.
+
+Do NOT integrate another IAM stack into the MVP yet.
+
+Decision:
+
+   - Use Grantex as the first authority abstraction because it is
+   TypeScript-friendly and directly aimed at delegated agent authority.
+   - Keep QP=E2=80=99s identity fields URI/DID-compatible.
+   - Do not build our own DID lifecycle, agent PKI, workload identity
+   server, OIDC provider or policy language.
+   - Re-evaluate AIM/Open Agent Auth once enterprise multi-tenant identity
+   is a real customer requirement.
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+I. DURABLE WORKFLOWS =E2=80=94 USE TRIGGER.DEV WHEN WE NEED LONG-LIVED
+RECONCILIATION
+
+Repo: triggerdotdev/trigger.dev
+License: Apache-2.0
+
+It already provides:
+
+   - long-running tasks
+   - durable retries
+   - queues/concurrency
+   - idempotency
+   - checkpointing/versioning
+   - waits
+   - human-in-the-loop waitpoints
+   - realtime run state
+   - replay/cancel
+   - observability
+
+We should NOT build a generic durable workflow engine.
+
+But do not integrate Trigger.dev before the first end-to-end QP effect is
+correct.
+
+Use it when we need flows such as:
+
+publish
+-> provider says processing
+-> wait 30 sec
+-> readback UNKNOWN
+-> wait
+-> retry observation
+-> terminal TRUE/FALSE/timeout
+-> settle or alert
+
+or:
+
+purchase proposal
+-> human approval waitpoint
+-> execute once
+-> provider ambiguity
+-> reconciliation retry for 30 min
+-> final settlement
+
+QP remains the state/claim authority. Trigger run state is operational
+state only.
+
+Never let trigger run succeeded settle a QP claim.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+J. TREG / OPEN AGENT AUTH / TEMPORAL =E2=80=94 STUDY, DON=E2=80=99T ADD YET
+
+Treg is useful as product/reference architecture for tool catalogs,
+server-side credential injection and metered calls, but Monid + Agent Vault
+already cover the parts we need with cleaner licensing/abstraction for our
+current system. Do not add another registry/proxy dependency now.
+
+Open Agent Auth is excellent enterprise reference material but is
+Java/Spring-heavy and duplicates Grantex/AIM territory. Do not pull it into
+cmail MVP.
+
+Temporal is proven durable orchestration and Postiz already uses it, but
+adding a second large orchestration substrate before we need it creates
+operational weight. Trigger.dev is a simpler TypeScript-facing first choice
+for our own reconciliation flows. If scale/reliability later requires
+Temporal, swap the workflow adapter.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+K. NEW SYSTEM BOUNDARIES
+
+Target architecture:
+
+AGENT / MCP CALLER
+|
+v
+QP REQUEST COMPILER
+
+   - exact desired claim
+   - exact effect proposal
+   |
+   =C2=B1-> AUTHORITY PROVIDER (Grantex-compatible)
+   |
+   v
+   QP EFFECT POLICY
+   - prerequisites TRUE
+   - authority valid
+   - budget/payload constraints
+   |
+   v
+   CONNECTOR RUNTIME (Monid)
+   |
+   v
+   AGENT VAULT PROXY
+   |
+   v
+   EXTERNAL PROVIDER
+   |
+   v
+   INDEPENDENT OBSERVER (Monid official API connector)
+   |
+   v
+   QP PROOFSPEC
+   - provenance
+   - identity binding
+   - freshness
+   - independence
+   - judges/gates
+   - TRUE/FALSE/UNKNOWN
+   |
+   v
+   AGENT RECEIPT / OBSIGNA
+   - portable signed envelope
+   - chained audit record
+   |
+   v
+   CANONICAL QP STATE
+
+Operational retries around the effect/readback loop may later be
+Trigger.dev.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+L. THE RULE FOR ADDING A NEW PLATFORM
+
+Do not write a platform integration from scratch until these searches fail:
+
+   1. Does Monid already have the endpoint?
+   2. Does Postiz already execute it?
+   3. Does social-mcp contain an official-API implementation we can port?
+   4. Is there an official OpenAPI/spec/SDK we can compile into a Monid
+   connector?
+
+Our work for a platform should ideally be only:
+
+   - effect connector identity
+   - readback connector identity
+   - claim schema
+   - ProofSpec/judges
+   - independence policy
+   - authority requirements
+   - adversarial fixtures
+
+That is where QP=E2=80=99s product value lives.
+
+Part 3 gives the exact refactor/build sequence and acceptance tests.
+
+--000000000000948e96065bb10870
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Continuation 2/3.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+F. SOCIAL EXECUTION =E2=80=94 REUSE, DO NOT REBUILD
+<ol>
+<li>social-mcp<br>
+Repo: IhsanKabir/social-mcp<br>
+License: MIT</li>
+</ol>
+<p>Useful because it is small and already has official-API implementations =
+for:</p>
+<ul>
+<li>YouTube publish + comments + analytics</li>
+<li>Facebook Pages</li>
+<li>Instagram</li>
+<li>Threads</li>
+<li>LinkedIn</li>
+<li>OAuth setup/token refresh</li>
+<li>account capability model</li>
+<li>local queue/dead-letter patterns</li>
+</ul>
+<p>Important caveat: very young/small repo. Treat as CODE DONOR / REFERENCE=
+, not trusted infrastructure.</p>
+<p>Do this:</p>
+<ul>
+<li>inspect provider modules</li>
+<li>extract official request/response knowledge</li>
+<li>port useful provider calls into Monid connector definitions</li>
+<li>preserve upstream attribution/license</li>
+<li>write our own QP ProofSpecs/readback semantics around them</li>
+<li>verify behavior against official APIs and recorded fixtures</li>
+</ul>
+<p>Do NOT adopt its encrypted-token store or scheduler as canonical infrast=
+ructure; Agent Vault and durable workflow tooling cover those jobs better.<=
+/p>
+<ol>
+<li>
+<p>Postiz<br>
+Use as broad execution fallback/sidecar for platforms where it has mature p=
+rovider support and where direct Monid connector coverage is not ready.</p>
+</li>
+<li>
+<p>Official platform APIs<br>
+Authoritative readback should prefer official provider APIs even if Postiz =
+performed the mutation.</p>
+</li>
+</ol>
+<p>Execution and observation should be independently identified:</p>
+<p>Effect:<br>
+postiz.youtube.publish OR monid.youtube.video.insert<br>
+Readback:<br>
+monid.youtube.videos.list</p>
+<p>Effect:<br>
+postiz.instagram.publish<br>
+Readback:<br>
+monid.meta.instagram.media.read</p>
+<p>Effect:<br>
+postiz.tiktok.publish<br>
+Readback:<br>
+monid.tiktok.publish.status / content lookup</p>
+<p>Do not make the same opaque adapter both mutate and declare success.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+G. AUTHORITY =E2=80=94 USE GRANTEX AS A REFERENCE/SDK LAYER, NOT OUR OWN CR=
+YPTO EXPERIMENT
+<p>Repo: mishrasanjeev/grantex<br>
+License: Apache-2.0</p>
+<p>Grantex already provides:</p>
+<ul>
+<li>cryptographic agent identity</li>
+<li>scoped/time-limited/revocable authority</li>
+<li>delegation chains</li>
+<li>service-side verification</li>
+<li>audit records</li>
+<li>TypeScript SDK</li>
+<li>MCP auth integration</li>
+<li>multi-agent scope subset enforcement</li>
+</ul>
+<p>We should not keep designing generic delegated-agent authorization from =
+scratch.</p>
+<p>However, do NOT blindly drop its MCP auth server into production yet: it=
+s current published MCP Auth package documents limitations around in-memory=
+ authorization codes, consent rendering and code handoff.</p>
+<p>Recommended path:</p>
+<ol>
+<li>Keep QP=E2=80=99s semantic requirement that consequential actions need =
+exact bounded authority.</li>
+<li>Add an AuthorityProvider interface.</li>
+<li>Implement a Grantex-backed provider using its SDK/protocol.</li>
+<li>Map QP action/payload constraints into a cryptographically-bound author=
+ization object.</li>
+<li>Keep QP-specific validation for exact payload hash, amount/provider/res=
+ource constraints and one-shot effect identity where Grantex=E2=80=99s gene=
+ric token does not directly express them.</li>
+<li>Remove duplicate key generation/signature machinery from QP only after =
+equivalence tests pass.</li>
+</ol>
+<p>Suggested interface:</p>
+<p>interface AuthorityDecision {<br>
+principal: string;<br>
+agent: string;<br>
+action: string;<br>
+payloadHash: string;<br>
+constraintsHash: string;<br>
+authorizationRef: string;<br>
+issuedAt: string;<br>
+expiresAt: string;<br>
+valid: boolean;<br>
+}</p>
+<p>QP receives AuthorityDecision. It does not invent authority from confirm=
+ed:true.</p>
+<p>The human approval UI should create/approve an authorization object. The=
+ execution path consumes it. The execution path must never mint its own own=
+er grant.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+H. AGENT IDENTITY =E2=80=94 DO NOT BUILD A SECOND IAM PRODUCT
+<p>OpenA2A AIM and Alibaba Open Agent Auth both now cover agent identity/ca=
+pability authorization/audit patterns. Open Agent Auth is heavier Java/Spri=
+ng infrastructure; AIM is Apache-2.0 and closer to an SDK.</p>
+<p>Do NOT integrate another IAM stack into the MVP yet.</p>
+<p>Decision:</p>
+<ul>
+<li>Use Grantex as the first authority abstraction because it is TypeScript=
+-friendly and directly aimed at delegated agent authority.</li>
+<li>Keep QP=E2=80=99s identity fields URI/DID-compatible.</li>
+<li>Do not build our own DID lifecycle, agent PKI, workload identity server=
+, OIDC provider or policy language.</li>
+<li>Re-evaluate AIM/Open Agent Auth once enterprise multi-tenant identity i=
+s a real customer requirement.</li>
+</ul>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+I. DURABLE WORKFLOWS =E2=80=94 USE <a href=3D"http://TRIGGER.DEV">TRIGGER.D=
+EV</a> WHEN WE NEED LONG-LIVED RECONCILIATION
+<p>Repo: triggerdotdev/<a href=3D"http://trigger.dev">trigger.dev</a><br>
+License: Apache-2.0</p>
+<p>It already provides:</p>
+<ul>
+<li>long-running tasks</li>
+<li>durable retries</li>
+<li>queues/concurrency</li>
+<li>idempotency</li>
+<li>checkpointing/versioning</li>
+<li>waits</li>
+<li>human-in-the-loop waitpoints</li>
+<li>realtime run state</li>
+<li>replay/cancel</li>
+<li>observability</li>
+</ul>
+<p>We should NOT build a generic durable workflow engine.</p>
+<p>But do not integrate Trigger.dev before the first end-to-end QP effect i=
+s correct.</p>
+<p>Use it when we need flows such as:</p>
+<p>publish<br>
+-&gt; provider says processing<br>
+-&gt; wait 30 sec<br>
+-&gt; readback UNKNOWN<br>
+-&gt; wait<br>
+-&gt; retry observation<br>
+-&gt; terminal TRUE/FALSE/timeout<br>
+-&gt; settle or alert</p>
+<p>or:</p>
+<p>purchase proposal<br>
+-&gt; human approval waitpoint<br>
+-&gt; execute once<br>
+-&gt; provider ambiguity<br>
+-&gt; reconciliation retry for 30 min<br>
+-&gt; final settlement</p>
+<p>QP remains the state/claim authority. Trigger run state is operational s=
+tate only.</p>
+<p>Never let <code>trigger run succeeded</code> settle a QP claim.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+J. TREG / OPEN AGENT AUTH / TEMPORAL =E2=80=94 STUDY, DON=E2=80=99T ADD YET
+<p>Treg is useful as product/reference architecture for tool catalogs, serv=
+er-side credential injection and metered calls, but Monid + Agent Vault alr=
+eady cover the parts we need with cleaner licensing/abstraction for our cur=
+rent system. Do not add another registry/proxy dependency now.</p>
+<p>Open Agent Auth is excellent enterprise reference material but is Java/S=
+pring-heavy and duplicates Grantex/AIM territory. Do not pull it into cmail=
+ MVP.</p>
+<p>Temporal is proven durable orchestration and Postiz already uses it, but=
+ adding a second large orchestration substrate before we need it creates op=
+erational weight. Trigger.dev is a simpler TypeScript-facing first choice f=
+or our own reconciliation flows. If scale/reliability later requires Tempor=
+al, swap the workflow adapter.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+K. NEW SYSTEM BOUNDARIES
+<p>Target architecture:</p>
+<p>AGENT / MCP CALLER<br>
+|<br>
+v<br>
+QP REQUEST COMPILER</p>
+<ul>
+<li>exact desired claim</li>
+<li>exact effect proposal<br>
+|<br>
+=C2=B1-&gt; AUTHORITY PROVIDER (Grantex-compatible)<br>
+|<br>
+v<br>
+QP EFFECT POLICY</li>
+<li>prerequisites TRUE</li>
+<li>authority valid</li>
+<li>budget/payload constraints<br>
+|<br>
+v<br>
+CONNECTOR RUNTIME (Monid)<br>
+|<br>
+v<br>
+AGENT VAULT PROXY<br>
+|<br>
+v<br>
+EXTERNAL PROVIDER<br>
+|<br>
+v<br>
+INDEPENDENT OBSERVER (Monid official API connector)<br>
+|<br>
+v<br>
+QP PROOFSPEC</li>
+<li>provenance</li>
+<li>identity binding</li>
+<li>freshness</li>
+<li>independence</li>
+<li>judges/gates</li>
+<li>TRUE/FALSE/UNKNOWN<br>
+|<br>
+v<br>
+AGENT RECEIPT / OBSIGNA</li>
+<li>portable signed envelope</li>
+<li>chained audit record<br>
+|<br>
+v<br>
+CANONICAL QP STATE</li>
+</ul>
+<p>Operational retries around the effect/readback loop may later be Trigger=
+.dev.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+L. THE RULE FOR ADDING A NEW PLATFORM
+<p>Do not write a platform integration from scratch until these searches fa=
+il:</p>
+<ol>
+<li>Does Monid already have the endpoint?</li>
+<li>Does Postiz already execute it?</li>
+<li>Does social-mcp contain an official-API implementation we can port?</li=
+>
+<li>Is there an official OpenAPI/spec/SDK we can compile into a Monid conne=
+ctor?</li>
+</ol>
+<p>Our work for a platform should ideally be only:</p>
+<ul>
+<li>effect connector identity</li>
+<li>readback connector identity</li>
+<li>claim schema</li>
+<li>ProofSpec/judges</li>
+<li>independence policy</li>
+<li>authority requirements</li>
+<li>adversarial fixtures</li>
+</ul>
+<p>That is where QP=E2=80=99s product value lives.</p>
+<p>Part 3 gives the exact refactor/build sequence and acceptance tests.</p>
+
+--000000000000948e96065bb10870--

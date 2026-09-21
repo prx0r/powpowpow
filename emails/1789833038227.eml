@@ -1,0 +1,328 @@
+Received: from mail-yx2-x1f.google.com (2607:f8b0:4864:41::1f)
+        by cloudflare-email.net (cloudflare) id lbLgAoJv9ROY
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 15:50:37 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=JF9PfZP+Y/2DprO/S1s+pMM5z0I+mlaCMQA80j1ZWm9H982BabaPk2DY7A7xLznhotiECD3tR
+	gxZBSjsG9vX54o4O/GajPh7Tur+2ER1qPNkOk4Ux/9Ny0K3VMzrG8Sdw2bOtRyCuv8T0W+2ITEF
+	9XqwwIKRcitUKweXgPxEB7ZN35abbbM5ahmi9gOYiuZX/KlhucATbL4rfFL9OaHKZEM0WDpk7bn
+	w7CU9SoEhRCQBjRbyKieYNveBXLm5qP9b7NVIsEx4MlkIyNugdnXMTMkEvpo3wn+jCTrSgWy8+E
+	fxZc+Jyr9EwCjIpSKFAPOoJFkj4q9y0pT5AfJj8Z3DWg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789833037; x=1790437837; bh=JuwRiSO7
+	pkVFEaNdyS16p+XC23IULB1NMOhLCQrxXcs=; b=IV6mjbvuX/B1/delfpv8Eh5IE1dgWllyImt
+	ooVgjzj3K2+GjS+zPmGJEkCBz+mOOkwGZ9uLZxWJiRwLEIWM8I55g/hCx5Ar7KliefAkUNuDmA3
+	f9RHHogNkdhEJZQBh5zLliWHazEZlv049ErAnbnDacYqqi0qChgR8E6650tJbL3qI4tarPN4RCq
+	15vJ87IYz/sXfqMjSfskEAMpr+fH2wWtnBRRGzYx3QxRap/18ac7H8kuQDkW9Ys1ov1yCShuoZ9
+	pe2fWX0V/Hm9Vro0R5AEaQyqrx28N/CGqswzIMwtOil/Vwopm/tVjmo/mGmccEHhxXRDcXwggzp
+	wrXWjgw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=MYGMUcAg;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x1f.google.com) smtp.helo=mail-yx2-x1f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::1f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::1f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::1f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::1f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x1f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=MYGMUcAg;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x1f.google.com) smtp.helo=mail-yx2-x1f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::1f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::1f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x1f.google.com with SMTP id 00721157ae682-895fd505832so12421367b3.3
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 08:50:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789833037; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Ij8gTX5Bc4laZgLJSRst2ubI4uOz26+9YsVnyg7WWSNo/ZaxdZ/pLeS0H6JCgAvJgj
+         pFH6WaVa580LH5Nyg5wW+6iQrPVRrmauYx+x2xqfmlQfEErLBUn6sXsrU+rqdp62xPdq
+         elG02nhoW7/BGuQ5urYG4m//4XQ+lXwFvHlrY4yc+NFBZmhk4X9FYy+2MY9628rydI7y
+         ukKwUOJx+m/pc2GalKm2FJhXejY62PFbeqJQf4O71X/NeFGzicFka+oAb/oKdB8DIDE+
+         gzAt2QIykLGPig3g9KLd495RzRmF2PiXwY1S0fMDorO4AR2uDzLjc1sShixRhW0fw9r6
+         uecg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=JuwRiSO7pkVFEaNdyS16p+XC23IULB1NMOhLCQrxXcs=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=LI0RpHH6CY4B5lo3Gls5crrceuK34eTHS7bUOqFGtM36t8Ywjz8iptVAso90GI8JiN
+         JXPF9gjT6NzzEArk1ZmgEDRCS34/klpPRyIdhpgrpvP5KmnSamlFq6BQMgDdil78smlm
+         kM2vA1dQo6A0jmacyH2Vz1sW3Htwoz5y8miy6rOSHfZCuZhh7bPxXPCesr39zzgMCSFD
+         h4k89Uvawhd/CU1lgJnN52/zXynTXifySm2Hnv9XGDmipcp//ykaIh1T3AjNHztu0Ako
+         14vIIjc8DzmUDif+66h5UmucQqFPMjSguqG3mdygepdzvkjm2Eor5Dv77owHEMOwL+kU
+         ddHw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789833037; x=1790437837; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=JuwRiSO7pkVFEaNdyS16p+XC23IULB1NMOhLCQrxXcs=;
+        b=MYGMUcAgWbrzXrp1rFkbKwimg6V2ir9NP/uAVGM9y+xvJOgPxh2WkErjvUWe6Hgre1
+         TvkvI7oNXhlOgYnypkrlHKojzzpIWNvmyPUDTZY8rPvFUHeFo2zrs6AhUvfj34gDLU+K
+         sqKkQjAd6M+Udpd5IMQJwSNQsqySmijdoQd6rVaIudp8jzCe+vG0XofPShAfqEJ3tqg9
+         y8GBDk3OLUvB+JWR178VFxuUKdL0mr8y0JAL37p0L620scp4F5h2Ou5osr7whpwVGdHk
+         9p1lpcyCBR/fMcR7FSIRP7YA5fLczT/O7yPPZJI9qwzEv7aG5pDMAOn+a0mNFhNAVPdp
+         tU0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789833037; x=1790437837;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=JuwRiSO7pkVFEaNdyS16p+XC23IULB1NMOhLCQrxXcs=;
+        b=tdC+6SpmTOWe+G5NDIwM2GOq2mjYOfAfJvRFTS9AGIgRLIROPAEm3ka6zozKG40w4V
+         SIv0xQpcn5T01OP6+FG4TyGz56Zv6imy9qVLM0mBAS3Jp3zStZpO6SQSXIokwn53GdhP
+         HHW+a6k5/bNPnt+Ys9JkNp9ZqTO2asxadnz4zkvZm/tlR0sroqo6JEmnmUyHtzkpH7cc
+         ZMds29/9kKAGB9nhNgjkaJ2NCGnasEQ9KWMNBYFFrGqjDCXgdO5NBTbnBmWgUVVyPSZO
+         MTmMMN31dyb3vd/SIEH9XZsmcu8g/lOTU/7wQfZp1oatDjAsurIjdIrXY3cdp90Z+tSW
+         gtZA==
+X-Gm-Message-State: AFuF++kQqOmKzEp26CjoWqJrdcE4VYJtedroY0yRN1DC9b2vr3wXqO9Z
+	CimSyn1n++yAdWmRf1DJoSmkguKEc+4PIL+8QXq+hAJL2jL4TMQSXZLesuB7Cb1B4aNzAfSDxEa
+	XLlThmC1q1KXMIKF4wWKOzAbC+aZXPH643Q==
+X-Gm-Gg: AYBFou2VvwzBxOruWggrDAsHZCU0+PblceSrlilI1a7GoYQ0+4CnRaaHJZVQomt2oDL
+	rahRySRs6l+ptGtsgKxpDNI2wEfo4p+qBv1XHld7w+IRIEPeFOiia6DrNCsGqmqdkJiG1tXUQHj
+	Ymyi46xI/qsJ5dEhu2HCTqOVqhyyzN011pH9oglsST9ndHzboqolLsZfBvb5Fb49FpkRTf4yS7s
+	Xo002Ehp6hOraXI+fnSL+HywTvJAyF+mpQ9ta7tLxxPZbAKHcjy82T7y0Rr5LQ6dg9SZGjQ8ETu
+	Jzi/LCd0vtXXI9d1o8Ajh2ph5MN4PiLzCiHfOBX6O9yuNikJ/JY4fT0gkqWLleFtibIP11HF2UP
+	fX3MKxD2dQkWyanjpYbQnmCePrp+512x2/yLlc98M07a14dPNTRnzsTe17H51HMIlBLNxfA==
+X-Received: by 2002:a05:690c:e204:10b0:886:5abf:2157 with SMTP id
+ 00721157ae682-89735d7b610mr15225247b3.55.1789833037262; Sat, 19 Sep 2026
+ 08:50:37 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 10:50:36 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 10:50:36 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 10:50:36 -0500
+X-Gm-Features: AcwNN1Xv_Onwu41UYc_YCYfdnuE7ItEaSnPVyVOLwylTon3eBc-IRHx5LdcXKBk
+Message-ID: <CAPdrGekhnRyVvDjL9TvaXoi9oU2YP+W-57KJtceGPMeLy4G_YQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D19_22=3A50_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_1_strong_signal?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000064b3dd065bd7fa3c"
+
+--00000000000064b3dd065bd7fa3c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+Prior sent state recovered through the 21:50 report. Semantic duplicates
+were rejected unless new independent evidence materially strengthened a
+cluster.
+
+STRONG NEW SIGNAL =E2=80=94 PET VOICE IS PART OF IDENTITY; BUYERS WANT CONT=
+ROL AND
+PERSISTENCE
+
+Source 1: https://justuseapp.com/en/app/1427290424/my-talking-pet/reviews
+Platform: aggregated App Store customer reviews / JustUseApp
+Date: source published 2026-06-15; individual review dates not consistently
+exposed
+Customer language: One reviewer says the update =E2=80=9Ccompletely ruined=
+=E2=80=9D the app
+after custom voice functionality was replaced by canned voices, explaining
+that they had created characters people identified with. Another explicitly
+asks for more voice options to =E2=80=9Cbetter represent our pet babies.=E2=
+=80=9D A further
+review praises separate speed and pitch controls.
+Wanted/problem: Users do not merely want any funny synthetic voice. They
+build a stable imagined voice/persona for a specific pet and notice when it
+changes. They want controllable pitch/speed, broader age/gender/personality
+choices, and persistence across videos.
+Current workaround/product: My Talking Pet; users manually tune recorded
+voice pitch/speed or rely on preset voices.
+Roast.pet implication: Treat VOICE as a locked identity attribute alongside
+face/markings/personality. After likeness approval, preview 3 voice
+candidates or simple controls (e.g. deep=E2=86=94high, slow=E2=86=94fast, d=
+ry=E2=86=94excited), ask
+=E2=80=9CWhich sounds most like them?=E2=80=9D, then persist the approved v=
+oice for every
+future roast/card/video for that pet.
+Occasion/audience: repeat pet owners, birthday greetings, social sharing,
+creator/fundraising characters, recurring family jokes.
+Independent support: HIGH. MWM=E2=80=99s current My Talking Pet review summ=
+ary says
+voice pitch/speed problems are the most-mentioned negative issue (13
+mentions), while its App Store description explicitly markets changing
+voice from big dog to little cat. App Store customer evidence also says
+pitch/speed control is valuable.
+Confidence: HIGH
+Prototype/test: Add a post-likeness step: =E2=80=9CPick their voice=E2=80=
+=9D with 3 instant
+audio samples =E2=80=94 Little menace / Normal chaos / Deep authority =E2=
+=80=94 plus
+optional Advanced pitch/speed sliders. Save selection to pet profile. A/B
+test against one automatically selected voice on completion rate,
+regenerate rate, and gift-recipient reaction.
+Verdict: BUILD/TEST
+
+Supporting sources:
+
+   - https://mwm.ai/apps/my-talking-pet/1427290424
+   - https://apps.apple.com/gb/app/my-talking-pet/id1427290424
+
+STATE / CLUSTER UPDATE
+Voice/personality identity: materially strengthened. This is distinct from
+the already-established mouth-motion/animation correction cluster: the
+visual animation can be technically good while the pet still feels wrong
+because its voice has changed.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Exact pet identity approval before final generation =E2=80=94 face, m=
+arkings,
+   accessories and motion continuity.
+   2. Personality-driven comedy =E2=80=94 pet quirks determine the roast pr=
+emise
+   and wording.
+   3. Multi-pet compositions from separate photos, with each pet
+   independently approved.
+   4. Fast/last-minute digital gifting with clear ETA and deferred-photo
+   surprise mode.
+   5. NEWLY STRENGTHENED: selectable, persistent pet voice identity with
+   preview and lightweight pitch/speed control.
+
+STRONGEST UNMET NEED
+A personalized funny gift where the animal remains recognizably the
+recipient=E2=80=99s exact pet across appearance, motion, personality AND vo=
+ice =E2=80=94
+rather than becoming a generic talking dog/cat after animation.
+
+EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW
+Immediately after identity approval, play three 2=E2=80=933 second voice sa=
+mples
+over the same line and ask: =E2=80=9CWhich sounds most like them?=E2=80=9D =
+Save the answer.
+This is cheap relative to rendering full video and reduces expensive
+post-render voice rejection.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE
+=E2=80=9CYour Dog Roasts Dad =E2=80=94 Choose Their Voice =E2=80=94 Persona=
+lized Talking Pet
+Birthday Video + QR Card.=E2=80=9D Listing media should demonstrate the sam=
+e pet in
+three clearly different voices and make =E2=80=9CYOU PICK THEIR VOICE=E2=80=
+=9D a visible
+benefit.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not rely on a single automatically chosen/canned AI voice. Existing
+talking-pet users explicitly report that replacing their controllable
+established voice with canned voices destroyed characters their audiences
+recognized. Voice novelty is not enough; continuity matters for
+personalization.
+
+SEARCH NOTE
+This run reviewed fresh web results across personalized-pet portrait/gift
+sellers, Etsy last-minute portrait listings, talking-pet App Store/review
+sources, and current talking-pet products. Most results repeated
+established clusters (last-minute delivery, multi-pet, preview/revision,
+likeness, talking animation) and were rejected as semantic duplicates. The
+voice-identity/control evidence was accepted because it adds a distinct
+mechanism and is independently repeated.
+
+--00000000000064b3dd065bd7fa3c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>Prior sent state recovered through the 21:50 report. Semantic duplicates=
+ were rejected unless new independent evidence materially strengthened a cl=
+uster.</p>
+<p>STRONG NEW SIGNAL =E2=80=94 PET VOICE IS PART OF IDENTITY; BUYERS WANT C=
+ONTROL AND PERSISTENCE</p>
+<p>Source 1: <a href=3D"https://justuseapp.com/en/app/1427290424/my-talking=
+-pet/reviews">https://justuseapp.com/en/app/1427290424/my-talking-pet/revie=
+ws</a><br>
+Platform: aggregated App Store customer reviews / JustUseApp<br>
+Date: source published 2026-06-15; individual review dates not consistently=
+ exposed<br>
+Customer language: One reviewer says the update =E2=80=9Ccompletely ruined=
+=E2=80=9D the app after custom voice functionality was replaced by canned v=
+oices, explaining that they had created characters people identified with. =
+Another explicitly asks for more voice options to =E2=80=9Cbetter represent=
+ our pet babies.=E2=80=9D A further review praises separate speed and pitch=
+ controls.<br>
+Wanted/problem: Users do not merely want any funny synthetic voice. They bu=
+ild a stable imagined voice/persona for a specific pet and notice when it c=
+hanges. They want controllable pitch/speed, broader age/gender/personality =
+choices, and persistence across videos.<br>
+Current workaround/product: My Talking Pet; users manually tune recorded vo=
+ice pitch/speed or rely on preset voices.<br>
+Roast.pet implication: Treat VOICE as a locked identity attribute alongside=
+ face/markings/personality. After likeness approval, preview 3 voice candid=
+ates or simple controls (e.g. deep=E2=86=94high, slow=E2=86=94fast, dry=E2=
+=86=94excited), ask =E2=80=9CWhich sounds most like them?=E2=80=9D, then pe=
+rsist the approved voice for every future roast/card/video for that pet.<br=
+>
+Occasion/audience: repeat pet owners, birthday greetings, social sharing, c=
+reator/fundraising characters, recurring family jokes.<br>
+Independent support: HIGH. MWM=E2=80=99s current My Talking Pet review summ=
+ary says voice pitch/speed problems are the most-mentioned negative issue (=
+13 mentions), while its App Store description explicitly markets changing v=
+oice from big dog to little cat. App Store customer evidence also says pitc=
+h/speed control is valuable.<br>
+Confidence: HIGH<br>
+Prototype/test: Add a post-likeness step: =E2=80=9CPick their voice=E2=80=
+=9D with 3 instant audio samples =E2=80=94 Little menace / Normal chaos / D=
+eep authority =E2=80=94 plus optional Advanced pitch/speed sliders. Save se=
+lection to pet profile. A/B test against one automatically selected voice o=
+n completion rate, regenerate rate, and gift-recipient reaction.<br>
+Verdict: BUILD/TEST</p>
+<p>Supporting sources:</p>
+<ul>
+<li><a href=3D"https://mwm.ai/apps/my-talking-pet/1427290424">https://mwm.a=
+i/apps/my-talking-pet/1427290424</a></li>
+<li><a href=3D"https://apps.apple.com/gb/app/my-talking-pet/id1427290424">h=
+ttps://apps.apple.com/gb/app/my-talking-pet/id1427290424</a></li>
+</ul>
+<p>STATE / CLUSTER UPDATE<br>
+Voice/personality identity: materially strengthened. This is distinct from =
+the already-established mouth-motion/animation correction cluster: the visu=
+al animation can be technically good while the pet still feels wrong becaus=
+e its voice has changed.</p>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE</p>
+<ol>
+<li>Exact pet identity approval before final generation =E2=80=94 face, mar=
+kings, accessories and motion continuity.</li>
+<li>Personality-driven comedy =E2=80=94 pet quirks determine the roast prem=
+ise and wording.</li>
+<li>Multi-pet compositions from separate photos, with each pet independentl=
+y approved.</li>
+<li>Fast/last-minute digital gifting with clear ETA and deferred-photo surp=
+rise mode.</li>
+<li>NEWLY STRENGTHENED: selectable, persistent pet voice identity with prev=
+iew and lightweight pitch/speed control.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+A personalized funny gift where the animal remains recognizably the recipie=
+nt=E2=80=99s exact pet across appearance, motion, personality AND voice =E2=
+=80=94 rather than becoming a generic talking dog/cat after animation.</p>
+<p>EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW<br>
+Immediately after identity approval, play three 2=E2=80=933 second voice sa=
+mples over the same line and ask: =E2=80=9CWhich sounds most like them?=E2=
+=80=9D Save the answer. This is cheap relative to rendering full video and =
+reduces expensive post-render voice rejection.</p>
+<p>BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Dog Roasts Dad =E2=80=94 Choose Their Voice =E2=80=94 Persona=
+lized Talking Pet Birthday Video + QR Card.=E2=80=9D Listing media should d=
+emonstrate the same pet in three clearly different voices and make =E2=80=
+=9CYOU PICK THEIR VOICE=E2=80=9D a visible benefit.</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not rely on a single automatically chosen/canned AI voice. Existing talk=
+ing-pet users explicitly report that replacing their controllable establish=
+ed voice with canned voices destroyed characters their audiences recognized=
+. Voice novelty is not enough; continuity matters for personalization.</p>
+<p>SEARCH NOTE<br>
+This run reviewed fresh web results across personalized-pet portrait/gift s=
+ellers, Etsy last-minute portrait listings, talking-pet App Store/review so=
+urces, and current talking-pet products. Most results repeated established =
+clusters (last-minute delivery, multi-pet, preview/revision, likeness, talk=
+ing animation) and were rejected as semantic duplicates. The voice-identity=
+/control evidence was accepted because it adds a distinct mechanism and is =
+independently repeated.</p>
+
+--00000000000064b3dd065bd7fa3c--

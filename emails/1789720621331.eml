@@ -1,0 +1,399 @@
+Received: from mail-yx2-x26.google.com (2607:f8b0:4864:41::26)
+        by cloudflare-email.net (cloudflare) id 7dAFgvIcFElx
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 08:37:00 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=dnXFxH9dk/0icuxiU8FTxZ8Cq8osrtcmrLXjvJgVsmjrwWJQt77IgbgMBep+xpZkcTTLYypdN
+	xBGvq+ytlEujS97jWC2mFNlDuzIYOjoZqrzC0a5pAh8jyw2xW4OhbvPFdu3iVDbDmv3V6/lw8Xm
+	MGVfT8jXO0xX1GHP4+l+0w335olqP6rrBEUBYkzVBtf8/tCHLFlpQ7WUVqXnRwFa3sJ9Gw0bD+q
+	RWxeAIY24/PBaRG/+JuXuErCWZ+ZWjlztL2XBVv7WdqPorVjb3kwM1szfas22ZjNIf62gCLspV3
+	IMTHCkwLu7T8RftienloOZtqarrcz2/kgwdziqOuVpoA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789720621; x=1790325421; bh=Ib343sIX
+	JSYEPuiRxhe3s5FnFJsf6y829m65sPrvjqg=; b=ejZ/5gBAHAX111qi98+dramTZCB0Qt9KoEe
+	8klbYQIbgWgB2Xn+LyTa4K3Ng9Ye1Ql20ZcXqHe4udcSkGrlcIdYg64TKBRGvB1dPlMDYWJ8yaX
+	RHkxU1KkxAil5UmHSCzyEtq+9r5ozbUmXDOkFe6AB3VfGF3VlyutVWE/m07unlSwVX5UvRZDS7C
+	uteGJHtS/m1DqYnFL517tBdZjnuCa44Nf4R69C0D1kl3pCrKBC5HSo7HN2xQ2Th0wO8MxYzoBrY
+	TyB4tlnILlmmmzkvcWD2TBUpyaIqh01ssKHgzBmy/rQjAjrILHK603MyU70FZIOuY3GAv/aYWm0
+	76n6n8g==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mI4u5HzI;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x26.google.com) smtp.helo=mail-yx2-x26.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::26 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::26"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::26 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::26; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x26.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mI4u5HzI;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x26.google.com) smtp.helo=mail-yx2-x26.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::26 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::26"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x26.google.com with SMTP id 00721157ae682-8961cca9193so5981887b3.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 01:37:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789720620; cv=none;
+        d=google.com; s=arc-20260327;
+        b=cU4AWJK2ldjPQQ3PMcDnTchO5qJQalc+9TUXRw2mm661S7Jt23jLUIzQZeu9Wv3aio
+         bFk/GsIfZXzCxkJOWOZJ6wh2PqA74zAtgKeIJ2ezXtYjug/F3Q49QY67z753uzaSWwQd
+         3hhsfKO+BzGVX4wy2MTYy5MnaCo3qyjmxkINqvm04d0jGQioGzzBGcl++SSEQfVoUvMy
+         hKcQZkeu9k1OGY5Hytm60v6B+pHN3X1lB/XVWStGgV1/tj4GikeQcajjND2u/ZJGndgU
+         Udwb5LLIG/sk0OOdD7F8f7o7YMXCa18Y+FVngfBohNPXwJVOk/zxAkPXZE8CPXivQ76N
+         nB4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=Ib343sIXJSYEPuiRxhe3s5FnFJsf6y829m65sPrvjqg=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=QMZl4BBsKZVUvumnJ/sQyjbSY6/SHtbJ89LqjCswHbmGVf5wiREy4CcMxEpS/9CwO7
+         FHSxiqY0/ldirOD+Ih3ZAw7sLjnZxT8h3O4jzMYKFXZPwedJiGCMYiHYXYyTKsOoCurm
+         0bdJf+5POBZTQu3c9blNZ1v25K1eg9+xXtRCeio0lQBiPyXVu7T0khZqyyF/0lBoOER2
+         KOV79ObeLN8xXvulYC6zNPsluFkJ2KBMXtziExT8KyGQdhUWionFox7YK8G3XFALFamI
+         RnUYnYYXH81Kt9NJ6XFHTCF5X6RXBoeNBNdA9cIN8zelgRsDgCTNz1iIJztBisfFtjwN
+         FbXg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789720620; x=1790325420; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Ib343sIXJSYEPuiRxhe3s5FnFJsf6y829m65sPrvjqg=;
+        b=mI4u5HzIlldlwCKPPoPqd3hl1lpo+Fo+92vn8Z9a3hx0aLJuiuSp+h2UYp3HxqWknm
+         ciKv6alELd4N/hp66+8sf6tPp/ynb68iWSqqT8LJz7PzEwWYVrh/X/dZ7SOwHlkte7fr
+         yZuw9dP5VKi+EdQFn41cABZ9FZrKp1fb4wOdrc9OLr/qjSAgGZ2ZKi832Qrd2j5SJmPB
+         WLQB0a4zbtu65IgpOQ4zTxmppHWf6Kn3BKKavl6VQn3xyy4MPOXXTrjafHYu85zBBF2/
+         gUWNPiS+90zEVfvrRvexeJuobFh4CFy+gcwUr+ENXYv+bZah2fRNALsiRKDhjTa9r5+O
+         121Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789720620; x=1790325420;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Ib343sIXJSYEPuiRxhe3s5FnFJsf6y829m65sPrvjqg=;
+        b=nui+egI8mSTgcIEYfcBoSoSWKfgziWEP/XBUrSY1gCnFTJWbk6QYrIv8oSCa0XJs3R
+         gbRBtekD/SJaWHTQwXfDm4qW2vJnpY/mGnTpDz5SVP4MA9UW2xIDYHd3xJqCUeYOKHNS
+         xQk2L1LvUrI8Po5q+47VUa8asxNdCeXZTq4TnZJSHsop3tzUa0VJZ2hObbe+b2fI6Zo7
+         OLTCzM5xYodWI8bvzrG6EO3jwT+NucGu4ldGbLXWDFHo6vVVzuq8n23PMOCH2e77AtfW
+         mPTvrd859F4BgygIcNnKd4l26CQfozdCcmLsSdrGGeT1iRydT9PeVMzjjDAXuk12xbp4
+         e55Q==
+X-Gm-Message-State: AFuF++mweNSizXdalOato+/uf8cRkChoFmRudbWjdGNzD7lGxqHIJdX1
+	vFTw2R4jZhxiTYW/MLd/fHO50uegt6rLlbJolZ0ZkbON2BEseJmHPCmEGkUQBq1gLuEIxrE7sFI
+	jAobmIJc/7Gdpj25yzAwnuZYwXUI6SZS6mA==
+X-Gm-Gg: AYBFou3twJBAa0rz6lO8sSeWwqGO1loX2/mbjJvNV05MqYlBVVSXz3UeYXo7aDBWXNN
+	WsYnSQBFqRpcKDh4Tn2/mrCkKNUMGP3TaM2VEqRV3qQCmIlCgIu5gwhgiFmKkmKofLFYdX5Af3o
+	CFqjGaT0W8OH6NGq8G8Jhm83P8OKBB1kCR/WOR38WjpGnv3BEq32TIq8aVF7C7S7h3z+zwMlRyV
+	rD4qhGMKP485N/4cXKnJHGdBt4suJKEnJTL/Afu/YKITd3+D1aElVQLM6Kd7DxvJTpPXjcm6STu
+	qJT8kj/qMpfdUvo4Tbz8Dj5u3sGMyk8djwsxgd0kU4m/JO9nUPh9JvDgWGd/o4WAYv4Ui8NqV2X
+	FCWYgkcHsfZk0XMYtD2MDyCWluy0C9uPOhRz6ePegvW7PJ+5cGdT8t4d9xA2DdPwzmiC5d5m0Rg
+	T6Uos=
+X-Received: by 2002:a53:ac99:0:b0:66d:fa2:63d0 with SMTP id
+ 956f58d0204a3-6717fdf95b8mr450700d50.50.1789720619770; Fri, 18 Sep 2026
+ 01:36:59 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 03:36:59 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 03:36:59 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 03:36:59 -0500
+X-Gm-Features: AcwNN1U14cP2nIaLUW0GYvTf-6eET3IzjQeF5lkQFYbugAo51JohbnT9ORdAwow
+Message-ID: <CAPdrGengO1Yhg8_GqN+kJgyhCLR5TzDu90mNX=nEbMOfJVcqvA@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D18_15=3A36_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+State check: compared against the prior sent Roast.pet Viral Formats
+reports (11:37, 13:35, 14:37). I excluded semantic repeats including
+press conference, performance review, finance-bro investigation,
+starter pack, wrong-species documentary, product review, fail/forensic
+replay, confession/storytime, AI recruiter, ironic Things To Say,
+anti-list and reusable overlay character. This run focuses on current
+formats with a genuinely different personalization mechanism or a
+materially better implementation.
+
+1) FUTURE TRUE-CRIME DOCUMENTARY: =E2=80=9CTHE OWNER FINALLY SPEAKS=E2=80=
+=9D =E2=80=94 MAKE TEMPLATE NOW
+Current evidence: Indian Express (20 Aug 2026) documents the viral
+=E2=80=9CPreparing for my Netflix Documentary=E2=80=9D format across TikTok=
+/Reels:
+creators mic up and prepare to solemnly explain an absurdly specific
+event. SocialBee=E2=80=99s Sep 11 trend roundup independently describes the
+same mechanism.
+Sources: https://indianexpress.com/article/trending/trending-in-india/shash=
+i-tharoor-netflix-documentary-trend-viral-video-10841392/
+; https://socialbee.com/blog/tiktok-trends-you-cant-miss/
+Why viewers watch: instant genre recognition + suspense about what
+supposedly serious catastrophe occurred.
+Core mechanic: give a trivial personal incident the production grammar
+of a prestige expos=C3=A9.
+Pet protagonist: the pet is the scandal; owner/pet witnesses explain
+=E2=80=9CThe Sofa Incident,=E2=80=9D =E2=80=9CThe Missing Chicken,=E2=80=9D=
+ etc. Unlike our earlier
+generic documentary idea, this version is specifically the
+PRE-INTERVIEW / future-documentary setup and can use true customer
+lore.
+Best use: birthday card QR video, social clip, premium gift bundle.
+15=E2=80=9335 sec template: 0=E2=80=933s black screen =E2=80=9CIn 2027, the=
+ truth came out.=E2=80=9D
+3=E2=80=937s pet sits under interview lighting while a paw/mic is adjusted.
+7=E2=80=9312s title: =E2=80=9C[NAME]: THE [CUSTOMER-SUPPLIED INCIDENT]=E2=
+=80=9D. 12=E2=80=9323s pet:
+=E2=80=9CPeople say I destroyed [X]. I prefer =E2=80=98renovated without pe=
+rmission.=E2=80=99=E2=80=9D
+23=E2=80=9330s owner evidence/photo appears. 30=E2=80=9335s pet: =E2=80=9CI=
+=E2=80=99d do it again.=E2=80=9D
+Hook: =E2=80=9CPracticing for the documentary about what [PET] did on [DATE=
+/OCCASION].=E2=80=9D
+Assets: pet cutout/avatar, documentary chair/background, lav-mic
+animation, title cards, 2=E2=80=933 customer facts/photos.
+Complexity: MEDIUM.
+Novelty: HIGH implementation delta; converts questionnaire lore into a
+serialized scandal universe.
+
+2) FAKE PET ANCESTOR / FAMILY-LORE REVEAL =E2=80=94 MAKE TEMPLATE NOW
+Current evidence: NewEngen=E2=80=99s Sep 2026 trend report identifies the
+=E2=80=9CAncestor Photo Prank=E2=80=9D: a vintage-filtered fake ancestor is=
+ sent to
+family, whose sincere reaction supplies the payoff.
+Source: https://newengen.com/insights/september-tiktok-trends/
+Why viewers watch: believable fabrication + family reaction +
+resemblance reveal.
+Core mechanic: manufacture an absurd historical continuity, then
+reveal the same personality has allegedly existed for generations.
+Pet protagonist: generate 3 historical =E2=80=9Cancestors=E2=80=9D of the
+pet=E2=80=94Victorian criminal, wartime ration thief, aristocratic lapdog=
+=E2=80=94each
+sharing the current pet=E2=80=99s real vice.
+Best use: birthday card, framed print, collectible card set, social clip.
+15=E2=80=9335 sec: 0=E2=80=934s =E2=80=9CWe found [PET]=E2=80=99s family re=
+cords.=E2=80=9D 4=E2=80=9310s sepia
+ancestor #1 + date/job. 10=E2=80=9317s ancestor #2 with escalating crime.
+17=E2=80=9324s ancestor #3. 24=E2=80=9331s modern pet photo: =E2=80=9CThe b=
+loodline
+continues.=E2=80=9D 31=E2=80=9335s customer-specific offence.
+Hook: =E2=80=9CWe found out why [PET] behaves like this.=E2=80=9D
+Assets: pet face/cutout, 3 generated period portraits, archive-paper
+UI, fake dates/jobs, one true behavior.
+Complexity: LOW=E2=80=93MEDIUM.
+Novelty: VERY HIGH for personalized pet gifting.
+
+3) HAND-FRAME PET LIFE FLASH =E2=80=94 TEST
+Current evidence: Electric Bloom (17 Sep 2026) reports the
+Wakacchainai ne short-form format drove a year-old song from ~200k to
+10M YouTube views; creators form a frame with their hands while
+childhood/fashion/food/game images flash through it.
+Source: https://electricbloomwebzine.com/2026/09/monet-wakacchainai-ne-tikt=
+ok-trend-10-million-views.html
+Why viewers watch: rhythmic rapid reveal plus tactile =E2=80=9Cframing=E2=
+=80=9D
+transition makes a photo dump feel authored.
+Core mechanic: a fixed physical frame becomes a portal through
+successive identity eras.
+Pet protagonist: puppy =E2=86=92 awkward era =E2=86=92 criminal era =E2=86=
+=92 current glamour
+shot =E2=86=92 ridiculous future persona.
+Best use: birthday/anniversary clip; QR card; owner-pet =E2=80=9Cyears
+together=E2=80=9D product.
+15=E2=80=9325 sec: hand frame opens; 4=E2=80=936 pet eras flash beat-synced=
+; each gets
+a 2=E2=80=934 word caption; final beat lands on =E2=80=9CCURRENT FORM: [cus=
+tom roast
+title].=E2=80=9D
+Hook: =E2=80=9CEvery version of [PET] we=E2=80=99ve survived.=E2=80=9D
+Assets: 4=E2=80=938 customer photos, hand-frame overlay, auto crop/face
+alignment, captions.
+Complexity: LOW.
+Novelty: MEDIUM-HIGH; importantly, uses multiple real uploads rather
+than one generated avatar.
+
+4) =E2=80=9CSUSPECT WAS HIDING IN PLAIN SIGHT=E2=80=9D REVEAL =E2=80=94 MAK=
+E TEMPLATE NOW
+Current evidence: SocialBee=E2=80=99s Sep 11 trend roundup describes a curr=
+ent
+police-style narration format where dramatic suspect narration ends
+with the reveal that the culprit has been visible all along.
+Source: https://socialbee.com/blog/tiktok-trends-you-cant-miss/
+Why viewers watch: mystery creates retention; obvious final culprit
+makes the reveal comic and rewatchable.
+Core mechanic: serious manhunt narration over mundane evidence, then
+smash-cut to the blatantly guilty subject.
+Pet protagonist: investigate a customer-provided crime (missing sock,
+food theft, ruined sofa) while the pet keeps appearing innocently in
+evidence shots.
+Best use: card QR, social clip, =E2=80=9Cwanted=E2=80=9D T-shirt companion =
+graphic.
+15=E2=80=9330 sec: 0=E2=80=933s =E2=80=9CAt 06:42 the chicken disappeared.=
+=E2=80=9D 3=E2=80=9312s evidence
+montage. 12=E2=80=9318s =E2=80=9CNo witnesses. No fingerprints.=E2=80=9D Pe=
+t visible in
+background. 18=E2=80=9323s zoom: crumbs on face. 23=E2=80=9328s mugshot + =
+=E2=80=9C[NAME], 4,
+unemployed.=E2=80=9D
+Hook: =E2=80=9CPolice spent 6 hours searching for the suspect.=E2=80=9D
+Assets: crime-board UI, evidence labels, zoom/replay, mugshot frame,
+pet photo + one real offence.
+Complexity: LOW.
+Novelty: HIGH relative to interrogation: this is investigation/reveal,
+not dialogue.
+
+5) PET=E2=80=99S HANDS ARE FULL =E2=80=94 TEST
+Current evidence: SocialBee Sep 11 tracks =E2=80=9CSorry I can=E2=80=99t, m=
+y hands are
+full,=E2=80=9D where creators stack the objects/interests they cannot live
+without.
+Source: https://socialbee.com/blog/tiktok-trends-you-cant-miss/
+Why viewers watch: escalating visual inventory communicates
+personality instantly.
+Core mechanic: literalize an obsession by physically accumulating its objec=
+ts.
+Pet protagonist: paws/arms progressively fill with customer-specific
+obsessions: sock, tennis ball, stolen sandwich, owner=E2=80=99s shoe, remot=
+e.
+Best use: T-shirt graphic first, social clip second, card.
+15=E2=80=9320 sec: =E2=80=9CCan [PET] behave today?=E2=80=9D =E2=86=92 =E2=
+=80=9CSorry, paws are full.=E2=80=9D =E2=86=92 5
+objects pop in one-by-one with labels =E2=86=92 pet vanishes behind pile =
+=E2=86=92
+final =E2=80=9Calso zero remorse.=E2=80=9D
+Hook: =E2=80=9CSorry, [PET] can=E2=80=99t come. His paws are full.=E2=80=9D
+Assets: pet cutout, 5 object PNGs/generated props, arm/paw compositing, lab=
+els.
+Complexity: LOW.
+Novelty: HIGH as a physical-product composition; one render can become
+T-shirt/card/video.
+
+6) =E2=80=9CMY OWNER DIDN=E2=80=99T RAISE A QUITTER=E2=80=9D =E2=80=94 TEST
+Current evidence: SocialBee Sep 11 identifies =E2=80=9Cmy mama didn=E2=80=
+=99t raise a
+quitter=E2=80=9D as an active format turning knowingly bad habits into mock
+perseverance.
+Source: https://socialbee.com/blog/tiktok-trends-you-cant-miss/
+Why viewers watch: motivational language is inverted to celebrate
+exactly the behavior that should stop.
+Core mechanic: frame a recurring flaw as heroic determination.
+Pet protagonist: =E2=80=9C[PET] could stop barking at delivery drivers, but
+[OWNER] didn=E2=80=99t raise a quitter.=E2=80=9D Customer selects the recur=
+ring vice.
+Best use: ultra-cheap social add-on, card caption, T-shirt.
+15=E2=80=9318 sec: 0=E2=80=934s noble slow-motion pet. 4=E2=80=939s =E2=80=
+=9CI could stop [REAL BAD
+HABIT]=E2=80=A6=E2=80=9D 9=E2=80=9314s heroic music/build. 14=E2=80=9318s =
+=E2=80=9C=E2=80=A6but [OWNER] didn=E2=80=99t raise a
+quitter.=E2=80=9D Cut to repeat offence.
+Hook: the first half of that sentence customized to the pet.
+Assets: one pet hero image/clip, one behavior image/animation,
+cinematic zoom, captions.
+Complexity: LOW.
+Novelty: MEDIUM-HIGH; extremely automatable from one questionnaire field.
+
+7) =E2=80=9CWHEN YOU GET THE PET PHOTO=E2=80=9D META-REVEAL =E2=80=94 TEST
+Current evidence: SocialBee Sep 11 describes =E2=80=9CWhen you get THE
+picture=E2=80=9D: an excellent photo is treated as a life-changing event an=
+d
+shown to a friend for an exaggerated reaction.
+Source: https://socialbee.com/blog/tiktok-trends-you-cant-miss/
+Why viewers watch: anticipation of the photo plus reaction validates the re=
+veal.
+Core mechanic: withhold one absurdly good/bad image, then make its
+reveal the event.
+Pet protagonist: Roast.pet itself creates =E2=80=9CTHE picture=E2=80=9D=E2=
+=80=94pet as
+emperor, football legend, criminal mastermind, etc.=E2=80=94then an animate=
+d
+audience/other pets lose their minds when it appears.
+Best use: Etsy listing/demo format and upsell preview; birthday clip.
+15=E2=80=9325 sec: 0=E2=80=935s =E2=80=9CWe finally got THE photo of [PET].=
+=E2=80=9D 5=E2=80=9310s hide screen
+while another pet reacts. 10=E2=80=9315s reveal custom hero image. 15=E2=80=
+=9322s
+escalating crowd/pet reaction. 22=E2=80=9325s freeze-frame printable artwor=
+k.
+Hook: =E2=80=9CAfter 4 years, [OWNER] finally got the photo.=E2=80=9D
+Assets: customer pet photo, generated hero image, 2=E2=80=933 generic react=
+ion
+avatars, reveal transition.
+Complexity: LOW=E2=80=93MEDIUM.
+Novelty: HIGH commercially because the viral clip directly reveals the
+physical product artwork.
+
+8) PET LOCAL-DUTY / =E2=80=9CSOMEONE HAS TO HOLD IT DOWN=E2=80=9D =E2=80=94=
+ WATCH/TEST
+Current evidence: SocialBee Sep 11 tracks =E2=80=9CWe can=E2=80=99t all be
+in=E2=80=A6=E2=80=9D=E2=80=94creators humorously claim responsibility for r=
+epresenting an
+ordinary hometown while others inhabit glamorous destinations.
+Source: https://socialbee.com/blog/tiktok-trends-you-cant-miss/
+Why viewers watch: local identity + mock importance makes it taggable/share=
+able.
+Core mechanic: portray an ordinary location/routine as an essential
+civic assignment.
+Pet protagonist: =E2=80=9CWe can=E2=80=99t all be at Crufts. Someone has to=
+ hold down
+[OWNER=E2=80=99S STREET/TOWN/SOFA].=E2=80=9D Use only customer-supplied coa=
+rse
+location; no inferred/private location.
+Best use: local/family card, social clip, location-themed T-shirt.
+15=E2=80=9320 sec: glamorous dog-show fantasy 0=E2=80=934s =E2=86=92 hard c=
+ut to pet on sofa
+4=E2=80=938s =E2=86=92 =E2=80=9Csomeone has to hold down [town/house nickna=
+me]=E2=80=9D =E2=86=92 mock patrol
+montage =E2=86=92 title =E2=80=9CLOCAL SECURITY, unpaid.=E2=80=9D
+Hook: =E2=80=9CWe can=E2=80=99t all be show dogs.=E2=80=9D
+Assets: pet cutout, customer-provided town/house nickname, generic
+glamour scene, patrol overlays.
+Complexity: LOW.
+Novelty: HIGH but narrower purchase trigger.
+
+CROSS-FORMAT PRODUCT INSIGHT
+This hour=E2=80=99s best formats share a useful property: CUSTOMER LORE is =
+the
+scarce input. The strongest Roast.pet template system should not ask
+only for breed/name/photos. It should collect: (1) pet=E2=80=99s most infam=
+ous
+incident, (2) recurring vice, (3) favorite/stolen objects, (4)
+funniest old photo, (5) household nickname, (6) one location the
+customer is comfortable using, and (7) owner=E2=80=99s relationship to the
+pet. Those seven fields automatically unlock documentary,
+investigation, ancestor, hands-full and quitter templates without
+requiring bespoke scripting.
+
+TOP 3 FORMATS TO TEMPLATE THIS HOUR
+1. Future True-Crime Documentary =E2=80=94 strongest combination of current
+trend evidence, personalized lore and premium-feeling video.
+2. Suspect Hiding in Plain Sight =E2=80=94 cleanest 20=E2=80=9330 second re=
+tention arc
+and easy to manufacture from one real pet offence.
+3. Fake Pet Ancestor =E2=80=94 most differentiated physical+video product;
+period portraits can become a card/print as well as the clip.
+
+EASIEST TO AUTOMATE END-TO-END
+=E2=80=9CMy Owner Didn=E2=80=99t Raise a Quitter=E2=80=9D: pet name + one b=
+ad-habit field +
+one image is sufficient. The entire timing and typography can be
+fixed.
+
+HIGHEST SHAREABILITY POTENTIAL
+Suspect Hiding in Plain Sight. It has a question/reveal loop, real
+customer lore, visual evidence, and a final mugshot that can itself be
+shared as an image.
+
+WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+Fake Pet Genealogy / Ancestor Archive: sell the fiction that this
+pet=E2=80=99s exact behavioral defect has persisted through a ridiculous
+historical bloodline. It naturally yields a short video + printable
+family-tree card/poster + future collectible =E2=80=9Cancestor=E2=80=9D exp=
+ansions.
+
+Current evidence note: the clearest fresh signals used here were
+published Aug 20=E2=80=93Sep 17, 2026. Formats were selected for transferab=
+le
+mechanics rather than dependence on copyrighted audio or celebrity
+likenesses; Roast.pet should use original music, narration and visual
+language.

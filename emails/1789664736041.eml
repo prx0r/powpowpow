@@ -1,0 +1,622 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id VxKaUCt98CLE
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 17:05:35 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=AHKpt4PKJ1HbKoK85+suB/QYxqdjDm4vzwb7KkpgZkRWdVIdifkF6sY+OQ8FSAuVmD6KPAK0H
+	+hgi3vjv7f1NfyHLgrkFnPbHgze06TTrInKk1VWfsFl/Tl8AZj2+7U3O0zl/0TLEVpGwH9mxHUy
+	cJV2aAgGaxgzKgEMrdbB1zBQsljSZ7jK3EV7NX7DaCwfRuN0EoB37kensDG+WrbywBjVoUCa5BY
+	GPeIRRn2oOa/GY0qGJwRq8ouUmjb2Hx6mH/HpsuN6dGREo7ReKMe9u0i5u/2jLJHVv99K1+2SUm
+	ev590BFXTl6/yvZWfWbJVMnGnz7tit7Rl0j62g3axduw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789664735; x=1790269535; bh=J/xhzVlw
+	3EIF3mw75eJpMElHH65WAKCUWI5ndupY+eQ=; b=UrGqZMTZS1ZeC5d6wnlbEhZkfGrXLtfUw0N
+	7Paxt2PGvLyyfykNeZYaDjLZvFk1BhCVwcJUhakKIqptfxoR5hpkAZTLRlu/h24BfSuTTKjIxQg
+	iekWsUtQNWQ5VxNlJbu+IullLyHjVfl4bS5kcxL/1NzRLcKK9iynuA9GKnVjcaLbss+ydgfOsFz
+	YYFB8kPOyGh4JMH3IFjF4XyzVF582WNNpk3F0JZiiSqkzCG6/rBrkibQ3uhLPR+YAEMoyBuTpp4
+	I1DbCw4dYpFZa0GvcmvWNEt7UeYh3DDJ3eR5GBzZOXq9tIJZOu6jAuXVnLNE1eJH2qte2qOaACa
+	nFX+hWA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=I1xgwD+4;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=I1xgwD+4;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43ac8d1fso7833747b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 10:05:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789664735; cv=none;
+        d=google.com; s=arc-20260327;
+        b=PaZY3nrnP+petDyZsWugYePsnnnth3ueefBmikNakvDDl5s+Emam7FoqOLZOPua2pt
+         DNEFZOxZ6HSxu5DU75MWD0xXQaug2Hq/xYx4ApSZpTQa77dphpdWejyme/X+4ucUBtcP
+         M7kD666bMUipyDct8GHcbw8b7W2bx5rKKzmY4L9uCgQPwsf6yHKUiogadOL9MQvjdL5I
+         i3eDJUIBBk3W9iQMEyaepRvThzc/G+iQB65ix/HCzaj0x1QUhWv3Npd5j6IItQpRAxTS
+         EARSilO1KqC9LEXMugJm8+z052/es6FiiCfcZ+XHBuySc5hYCjA30Znjm1qm1HJTG9Bm
+         I77g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=J/xhzVlw3EIF3mw75eJpMElHH65WAKCUWI5ndupY+eQ=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=fYdW+uNXjHU3b3EHQ2oYIYMGguX5ReKbJsIq1VHRqbfj4lrHEKwVnXE7m6JXI2Xwoz
+         IsZ8uU20sZaE6sG/0+YcTSgA018bD47wPxjoAFxlZuB2Deh3O/3cHQlUj9ULIpKMP7O3
+         by/nbhv4e2+ANUuEvU7gJ19kSBn8CAtlubEgLwsjtoE3Cwx1IKb/1q0HcqtY24sUlndo
+         5pPyU5jEDVHDSoP4X4j0Z1SUQwbePpLu08UbwKJfs/V3asS7YIgdMG6dqCynZKYfug4m
+         vzgXHi8AxnTTJ798sKBqDlZ7TlYsn+CPEvFVVAHeoNfcEGre5lQPkmd6sOsTyLpkIRXB
+         umgw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789664735; x=1790269535; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=J/xhzVlw3EIF3mw75eJpMElHH65WAKCUWI5ndupY+eQ=;
+        b=I1xgwD+4bqTzfQeN9taWTUVwp3slUqYaV0TCniPZBMZV8YqnA/fguYHVbbp4FzpRzG
+         XnM/o+j8DfWpqgWYfeRvcFN/TbUI0yA8KWq0P3Xd3gxAcsxUItvBAItl83TfrqcaiKen
+         oJDNMU9VfDu7shbs7NzQvmE/68TKneyNm3749p8pQ9yR4ye5qSq97hAOq2YnUur/33YZ
+         wCbU5djXY/qtm+srZjPBKuSs7KTHbb1HSf2trfXcED7VqRQZMdX+95fPW+EI+srKoE7O
+         +1aE41TNnOyYLVZjJeFdacph9GZ4CP4zEuFJ0Q+9zqPyLruk8t16JAvzkn1tWvxije7g
+         friw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789664735; x=1790269535;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=J/xhzVlw3EIF3mw75eJpMElHH65WAKCUWI5ndupY+eQ=;
+        b=n1gQzq8y3zCWaG9rN5JH4zX22WgF8yHURTzQAo7ztMlLzHoaUBXii/bLLOnou+iTXq
+         M43CSQVn6GV8tijsK0qcRLMNVaFsM2Q0QkhX5tQGttXQAjNRdfKHvcCftRgCkTdVsCf0
+         6WGbAIXXkcOanX7OxUASTLqkFcSY2baaZV3XdmhdaOTF4WzSxXWbuacmRxpyun7PWLcC
+         QqXQEhGAYMAKSRo9zE6w+GO//QLsfKTUinHFFrkwutsUjSV0f4FEs/9/vFmGuwI2Gwub
+         T+ly13Ddm22fo49fjV75bmQjB2w5AM5xnBw7E881MLMDwhOkPk3OJejx7aF5n9zWe+ac
+         LAFg==
+X-Gm-Message-State: AFuF++nIAz10UBOA+gpy3dtwxE88KZj9PE3lBUNphloMYdTUIZORke7+
+	QSBWG685tFIEXiMC61kaKXIVF5sd9HOh7MuKekJC3kG+qEHsYP0M6gmcidaLiUmcmU9wvHUkVJQ
+	BNEvVhZlkPkQaIx1MQKfx0tJPbzZ8dD2vJw==
+X-Gm-Gg: AYBFou2pW2DHBgLNzcfwx4xSBCh9kNVbMFFXTVy0a0wm+N/F7M74Ny5hztpivi6mRMP
+	RqFmC+rOEyq47eNozzMQO6KlyRe75plGEiyUUWf8ikhpNs90Q0K/KyETBnPp07zdpvg+E/j9+94
+	l4rAkZVJed4J0a6Kpi85THqUIuisuOThP/hdXX8fKrkmn7YpHQUsyA8vd9a/PaTvKDPs5llcaB3
+	FQkKYUrbl6khnRt9GXkIBeGfEC6y+X/w2lhvQEWbQCP+y2i5d5Fo32S8jO2ekngjdxjtZ82Y+Af
+	4KbOmHoVe6wrMb3IARiWzhQb9xT6Gxc+Ibb43l9rsg8N7bf2y/reFVakc+tVmozywQfRX4dRFxk
+	vXbHTKqFiVSe6AcHn/kG9FFGKcSy/CEQqH5p2toFXi0EmQZGNfU56RtEKYxpGY7Zj1ajtdWE53K
+	+l9KMWRRNb
+X-Received: by 2002:a05:690c:a7c3:b0:889:91c2:89ff with SMTP id
+ 00721157ae682-8922600972dmr19151327b3.55.1789664734912; Thu, 17 Sep 2026
+ 10:05:34 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:05:34 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:05:34 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 12:05:34 -0500
+X-Gm-Features: AcwNN1UwgHEw7xWFss1giu70xWfbsTH44P4lyhZIqYaaT1ooPL2m9BwlYTc0jaA
+Message-ID: <CAPdrGem3mVMe=OFMPrtLYbSos1jo9PtDNDd81hvGUtkRdQRDAQ@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail_peer_review_1=2F4_=E2=80=94_latest_master_verdict_=2B_ST?=
+	=?UTF-8?Q?OP=2DSHIP_P0s?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000caa55e065bb0ca41"
+
+--000000000000caa55e065bb0ca41
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Reviewed exact repo state:
+
+   - repo: prx0r/cmail
+   - branch reviewed: master
+   - head: 3058c0d702d3c3656b56585a3336a3394288c688
+   - previous reviewed baseline: 004035a9d95470496a5d9826354c28d949014907
+   - delta: 4 commits
+
+The direction is improving, but do NOT treat the P0s as closed yet. The new
+effect gateway is a useful skeleton, not yet a constitutional proof
+boundary.
+
+TOP-LEVEL VERDICT
+
+What improved:
+
+   - qp/effects.ts exists and cf_purchase now calls it.
+   - caller-supplied actor was removed from /mcp request parsing.
+   - capacity.list stopped hardcoding fake positive MX/SPF/worker values.
+   - FUTUREPLANS converges on the correct product thesis: proof layer, not
+   another scheduler.
+
+What remains true:
+
+   - QP still does not control all consequential effects.
+   - the live effect path can still manufacture its own authority.
+   - TRUE can still be minted without running the pinned ProofSpec/judges.
+   - receipts are not cryptographically signed, chained, persisted, or
+   replay-settled.
+   - current master has obvious TypeScript errors by source inspection.
+
+Treat this commit as a prototype checkpoint, not a trusted release.
+
+P0-A =E2=80=94 AUTHENTICATION IS STILL OPEN
+
+src/mcp.ts now derives principal from Authorization, but the token is not
+validated. Any Bearer string longer than 10 characters becomes
+authenticated:<prefix>.
+
+Worse: getPerms() returns [=E2=80=9CREAD=E2=80=9D,=E2=80=9CDRAFT=E2=80=9D] =
+when the principal does not
+exist in D1. Anonymous therefore also gets READ+DRAFT.
+
+The permission classifier only requires:
+
+   - SEND for email.send
+   - DRAFT for email.draft/email.reply
+   - READ for EVERYTHING ELSE
+
+That means READ currently covers money/write operations including
+name.cf_purchase, name.wire_email, name.phone_purchase, task.complete, etc.
+
+So an unauthenticated caller can reach important mutation paths if provider
+credentials are configured.
+
+Required fix:
+
+   1. Build one authenticate(req, env) -> Principal function.
+   2. Bearer token must be looked up by HASH in a dedicated
+   principals/API-keys table or verified JWT/session. Length is never
+   authentication.
+   3. Unknown/anonymous principal gets NO permissions except explicit
+   public/read-only endpoints.
+   4. Build an explicit per-tool permission map. There must be no default
+   READ fallback for unknown tools.
+   5. Money/external effects require EFFECT + exact capability/grant, not
+   READ.
+   6. Use token hash / key id as principal identifier, never first 8 raw
+   token chars.
+   7. CORS must allow Authorization only for trusted dashboard origins; *
+   is not an auth model.
+
+Also fix src/index.ts immediately:
+
+   - actorPerms() still returns ADMIN when actor is empty or owner.
+   - /admin/address and /admin/alias accept caller-controlled body.actor.
+   This is the original authority spoof in a second surface.
+
+Make /admin/* use the same authenticate() middleware. Delete body/query
+actor as an authorization input.
+
+Also currently public:
+
+   - GET /api/inbox
+   - GET /api/drafts
+   These expose message/draft data. Put them behind auth before treating
+   this as a secure vault/product.
+
+P0-B =E2=80=94 CURRENT MASTER APPEARS NOT TO TYPECHECK
+
+Source-visible compile errors include:
+
+   - src/mcp.ts removed actor from request destructuring but still
+   references actor in multiple audit_log calls.
+   - src/mcp.ts uses sha256(...) in the new cf_purchase readback without
+   importing/defining it.
+   - src/capacity.ts still has if (!null) return null;, so generateProof
+   always returns null.
+   - src/capacity.ts still reads result.pass, but VerifyResult now exposes
+   actuality, not pass.
+
+Do not make more architectural changes until:
+npm run typecheck npm test
+
+both pass from a clean checkout.
+
+Add CI and make these required before merge. The current head has no commit
+status checks, master is unprotected, and the head commit is unsigned. That
+is especially weak for software whose product claim is verifiable trust.
+
+P0-C =E2=80=94 EFFECT GATEWAY AUTO-MINTS =E2=80=9CHUMAN=E2=80=9D AUTHORITY
+
+Current name.cf_purchase flow:
+
+   - caller sends confirmed:true + confirm_text
+   - MCP generates a fresh Ed25519 keypair itself
+   - MCP calls issueGrant({ issuer: =E2=80=9Chuman:owner=E2=80=9D, =E2=80=
+=A6 }) itself
+   - MCP passes that generated public key to executeEffect()
+
+This means the system that wants to act also manufactures the =E2=80=9Chuma=
+n
+authorization=E2=80=9D proving it may act.
+
+That destroys the Cognition !=3D Truth !=3D Authority invariant.
+
+Required architecture:
+
+   - MCP NEVER possesses an issuer private key and NEVER issues a human
+   grant.
+   - human approval occurs through authenticated UI/out-of-band H-task.
+   - approval service creates a durable grant using a trusted signer whose
+   key is in a Worker secret/HSM-equivalent boundary.
+   - executeEffect receives only grant_id.
+   - QP loads the grant and issuer trust anchor itself from durable storage=
+.
+   - caller may not supply grant public key.
+   - proposal.grant_id MUST equal loaded grant.id.
+   - subject MUST equal authenticated principal/capability holder.
+   - action, canonical payload hash, resource, provider, cost/currency,
+   expiry and use count must match exactly.
+
+confirmed:true and BUY domain remain useful UX intent checks, but they are
+not authority.
+
+P0-D =E2=80=94 GRANT CONSTRAINTS ARE NOT SAFELY SIGNED OR ENFORCED
+
+qp/authority.ts signs:
+JSON.stringify(grantBody, Object.keys(grantBody).sort())
+
+Because the replacer array is only the TOP-LEVEL key list, nested
+constraints fields are not safely represented as a recursively canonical
+signed object. max_amount/provider/resource/scopes therefore are not bound
+the way the code implies.
+
+Fix:
+
+   - define one canonical JSON implementation for all QP objects.
+   - only valid JSON types; reject undefined/NaN/Infinity.
+   - hash/sign canonical bytes recursively.
+   - use same canonical function for payload hash, grant id, receipt hash,
+   Evidence id and ContractRoot.
+   - validate constraints before reservation.
+   - actual quoted/settled cost must be part of effect context.
+   - enforce max_amount, currency, provider, resource and scopes.
+
+Also:
+
+   - validate issuer against trusted issuer registry.
+   - validate subject.
+   - reject issued_at in future beyond small clock skew.
+   - max_uses needs durable counter semantics; current Set makes max_uses>1
+   meaningless.
+   - nonce consumption MUST be durable, not process memory.
+
+P0-E =E2=80=94 DIRECT EFFECT BYPASSES STILL EXIST
+
+Despite AGENTS.md saying =E2=80=9CNo direct provider mutators=E2=80=9D, src=
+/mcp.ts still
+directly invokes:
+
+   - email.send -> env.SENDER.send(=E2=80=A6)
+   - name.wire_email -> cfWireEmail(=E2=80=A6)
+   - name.phone_purchase -> telnyxPurchaseNumber(=E2=80=A6)
+
+Therefore P0-2 is not fixed system-wide.
+
+Required:
+
+   - move every external mutator into adapter modules.
+   - src/mcp.ts may only create proposals / retrieve grants / call QP.
+   - ban direct mutator imports in MCP with an architectural test/lint.
+   - provider credentials available only to adapters/transport, never
+   planner layer.
+
+Recommended CI invariant: grep/AST test fails if src/mcp.ts imports or
+calls cfRegisterDomain, cfWireEmail, telnyxPurchaseNumber, SENDER.send,
+social write endpoints, etc.
+
+P0-F =E2=80=94 DOMAIN =E2=80=9COWNERSHIP=E2=80=9D READBACK IS UNSOUND
+
+cf_purchase currently treats:
+registrable =3D=3D=3D false
+
+as evidence that the purchased domain exists in your account.
+
+That only proves the domain is unavailable. It could be owned by anyone.
+
+For domain_owned(domain, account) TRUE, readback must use an authenticated
+registrar/account endpoint proving exact domain is in the expected
+Cloudflare account/registration record.
+
+Use separate claims:
+
+   - domain_available(D): registrar says registrable before purchase
+   - purchase_accepted(D, txn/order): provider accepted purchase
+   - domain_owned(D, account): authenticated post-effect account readback
+   proves ownership
+   - dns_configured(D): DNS state matches desired config
+
+Do not derive ownership from public availability.
+
+Also include quote/cost in the signed proposal. Current proposal has
+domain/contact only, so =E2=80=9Cproof of spend=E2=80=9D cannot prove the a=
+uthorized price.
+
+P0-G =E2=80=94 CAPACITY.LIST IS BETTER, BUT STILL MIXES OBSERVATION WITH AS=
+SERTION
+
+Current positives are improved, but remaining problems:
+
+   - zone_status is inferred as =E2=80=9Cactive=E2=80=9D merely because dom=
+ain exists in
+   local D1. That is not Cloudflare zone state.
+   - routing_rules=3D0 and catch_all=3Dfalse are placeholders. Missing
+   observation must be UNKNOWN/null, not a negative fact.
+   - top-level status becomes =E2=80=9Cactive=E2=80=9D solely from mailboxE=
+xists.
+
+Return observations, e.g.:
+{ kind:"dns_mx", actuality:"OBSERVED", ... } { kind:"cf_zone",
+actuality:"NOT_OBSERVED" }
+
+Then QP settles claims. capacity.list must never promote active by itself.
+
+STOP-SHIP EXIT CONDITIONS FOR PART 1
+
+Do not continue social platform expansion until all are true:
+
+   - clean typecheck
+   - clean tests
+   - authenticated principal required for all private routes
+   - no caller actor/admin bypass anywhere
+   - no anonymous mutation
+   - MCP cannot issue its own authority
+   - every external mutator routes through QP
+   - no domain ownership proof from registrable:false
+   - no QP object signed/hashed with noncanonical JSON
+   - durable grant consumption exists
+
+Part 2 contains the required QP kernel/effect gateway redesign.
+
+--000000000000caa55e065bb0ca41
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Reviewed exact repo state:</p>
+<ul>
+<li>repo: prx0r/cmail</li>
+<li>branch reviewed: master</li>
+<li>head: 3058c0d702d3c3656b56585a3336a3394288c688</li>
+<li>previous reviewed baseline: 004035a9d95470496a5d9826354c28d949014907</l=
+i>
+<li>delta: 4 commits</li>
+</ul>
+<p>The direction is improving, but do NOT treat the P0s as closed yet. The =
+new effect gateway is a useful skeleton, not yet a constitutional proof bou=
+ndary.</p>
+<p>TOP-LEVEL VERDICT</p>
+<p>What improved:</p>
+<ul>
+<li>qp/effects.ts exists and cf_purchase now calls it.</li>
+<li>caller-supplied actor was removed from /mcp request parsing.</li>
+<li>capacity.list stopped hardcoding fake positive MX/SPF/worker values.</l=
+i>
+<li>FUTUREPLANS converges on the correct product thesis: proof layer, not a=
+nother scheduler.</li>
+</ul>
+<p>What remains true:</p>
+<ul>
+<li>QP still does not control all consequential effects.</li>
+<li>the live effect path can still manufacture its own authority.</li>
+<li>TRUE can still be minted without running the pinned ProofSpec/judges.</=
+li>
+<li>receipts are not cryptographically signed, chained, persisted, or repla=
+y-settled.</li>
+<li>current master has obvious TypeScript errors by source inspection.</li>
+</ul>
+<p>Treat this commit as a prototype checkpoint, not a trusted release.</p>
+<p>P0-A =E2=80=94 AUTHENTICATION IS STILL OPEN</p>
+<p>src/mcp.ts now derives <code>principal</code> from Authorization, but th=
+e token is not validated. Any Bearer string longer than 10 characters becom=
+es <code>authenticated:&lt;prefix&gt;</code>.</p>
+<p>Worse: getPerms() returns [=E2=80=9CREAD=E2=80=9D,=E2=80=9CDRAFT=E2=80=
+=9D] when the principal does not exist in D1. Anonymous therefore also gets=
+ READ+DRAFT.</p>
+<p>The permission classifier only requires:</p>
+<ul>
+<li>SEND for email.send</li>
+<li>DRAFT for email.draft/email.reply</li>
+<li>READ for EVERYTHING ELSE</li>
+</ul>
+<p>That means READ currently covers money/write operations including name.c=
+f_purchase, name.wire_email, name.phone_purchase, task.complete, etc.</p>
+<p>So an unauthenticated caller can reach important mutation paths if provi=
+der credentials are configured.</p>
+<p>Required fix:</p>
+<ol>
+<li>Build one <code>authenticate(req, env) -&gt; Principal</code> function.=
+</li>
+<li>Bearer token must be looked up by HASH in a dedicated principals/API-ke=
+ys table or verified JWT/session. Length is never authentication.</li>
+<li>Unknown/anonymous principal gets NO permissions except explicit public/=
+read-only endpoints.</li>
+<li>Build an explicit per-tool permission map. There must be no default <co=
+de>READ</code> fallback for unknown tools.</li>
+<li>Money/external effects require EFFECT + exact capability/grant, not REA=
+D.</li>
+<li>Use token hash / key id as principal identifier, never first 8 raw toke=
+n chars.</li>
+<li>CORS must allow Authorization only for trusted dashboard origins; <code=
+>*</code> is not an auth model.</li>
+</ol>
+<p>Also fix src/index.ts immediately:</p>
+<ul>
+<li>actorPerms() still returns ADMIN when actor is empty or <code>owner</co=
+de>.</li>
+<li>/admin/address and /admin/alias accept caller-controlled body.actor.<br=
+>
+This is the original authority spoof in a second surface.</li>
+</ul>
+<p>Make /admin/* use the same authenticate() middleware. Delete body/query =
+actor as an authorization input.</p>
+<p>Also currently public:</p>
+<ul>
+<li>GET /api/inbox</li>
+<li>GET /api/drafts<br>
+These expose message/draft data. Put them behind auth before treating this =
+as a secure vault/product.</li>
+</ul>
+<p>P0-B =E2=80=94 CURRENT MASTER APPEARS NOT TO TYPECHECK</p>
+<p>Source-visible compile errors include:</p>
+<ul>
+<li>src/mcp.ts removed <code>actor</code> from request destructuring but st=
+ill references <code>actor</code> in multiple audit_log calls.</li>
+<li>src/mcp.ts uses <code>sha256(...)</code> in the new cf_purchase readbac=
+k without importing/defining it.</li>
+<li>src/capacity.ts still has <code>if (!null) return null;</code>, so gene=
+rateProof always returns null.</li>
+<li>src/capacity.ts still reads <code>result.pass</code>, but VerifyResult =
+now exposes <code>actuality</code>, not <code>pass</code>.</li>
+</ul>
+<p>Do not make more architectural changes until:</p>
+
+<code>npm run typecheck
+npm test
+</code>
+<p>both pass from a clean checkout.</p>
+<p>Add CI and make these required before merge. The current head has no com=
+mit status checks, master is unprotected, and the head commit is unsigned. =
+That is especially weak for software whose product claim is verifiable trus=
+t.</p>
+<p>P0-C =E2=80=94 EFFECT GATEWAY AUTO-MINTS =E2=80=9CHUMAN=E2=80=9D AUTHORI=
+TY</p>
+<p>Current name.cf_purchase flow:</p>
+<ul>
+<li>caller sends confirmed:true + confirm_text</li>
+<li>MCP generates a fresh Ed25519 keypair itself</li>
+<li>MCP calls issueGrant({ issuer: =E2=80=9Chuman:owner=E2=80=9D, =E2=80=A6=
+ }) itself</li>
+<li>MCP passes that generated public key to executeEffect()</li>
+</ul>
+<p>This means the system that wants to act also manufactures the =E2=80=9Ch=
+uman authorization=E2=80=9D proving it may act.</p>
+<p>That destroys the Cognition !=3D Truth !=3D Authority invariant.</p>
+<p>Required architecture:</p>
+<ul>
+<li>MCP NEVER possesses an issuer private key and NEVER issues a human gran=
+t.</li>
+<li>human approval occurs through authenticated UI/out-of-band H-task.</li>
+<li>approval service creates a durable grant using a trusted signer whose k=
+ey is in a Worker secret/HSM-equivalent boundary.</li>
+<li>executeEffect receives only grant_id.</li>
+<li>QP loads the grant and issuer trust anchor itself from durable storage.=
+</li>
+<li>caller may not supply grant public key.</li>
+<li>proposal.grant_id MUST equal loaded <a href=3D"http://grant.id">grant.i=
+d</a>.</li>
+<li>subject MUST equal authenticated principal/capability holder.</li>
+<li>action, canonical payload hash, resource, provider, cost/currency, expi=
+ry and use count must match exactly.</li>
+</ul>
+<p><code>confirmed:true</code> and <code>BUY domain</code> remain useful UX=
+ intent checks, but they are not authority.</p>
+<p>P0-D =E2=80=94 GRANT CONSTRAINTS ARE NOT SAFELY SIGNED OR ENFORCED</p>
+<p>qp/authority.ts signs:</p>
+
+<code>JSON.stringify(grantBody, Object.keys(grantBody).sort())
+</code>
+<p>Because the replacer array is only the TOP-LEVEL key list, nested <code>=
+constraints</code> fields are not safely represented as a recursively canon=
+ical signed object. max_amount/provider/resource/scopes therefore are not b=
+ound the way the code implies.</p>
+<p>Fix:</p>
+<ul>
+<li>define one canonical JSON implementation for all QP objects.</li>
+<li>only valid JSON types; reject undefined/NaN/Infinity.</li>
+<li>hash/sign canonical bytes recursively.</li>
+<li>use same canonical function for payload hash, grant id, receipt hash, E=
+vidence id and ContractRoot.</li>
+<li>validate constraints before reservation.</li>
+<li>actual quoted/settled cost must be part of effect context.</li>
+<li>enforce max_amount, currency, provider, resource and scopes.</li>
+</ul>
+<p>Also:</p>
+<ul>
+<li>validate issuer against trusted issuer registry.</li>
+<li>validate subject.</li>
+<li>reject issued_at in future beyond small clock skew.</li>
+<li>max_uses needs durable counter semantics; current Set makes max_uses&gt=
+;1 meaningless.</li>
+<li>nonce consumption MUST be durable, not process memory.</li>
+</ul>
+<p>P0-E =E2=80=94 DIRECT EFFECT BYPASSES STILL EXIST</p>
+<p>Despite AGENTS.md saying =E2=80=9CNo direct provider mutators=E2=80=9D, =
+src/mcp.ts still directly invokes:</p>
+<ul>
+<li>email.send -&gt; env.SENDER.send(=E2=80=A6)</li>
+<li>name.wire_email -&gt; cfWireEmail(=E2=80=A6)</li>
+<li>name.phone_purchase -&gt; telnyxPurchaseNumber(=E2=80=A6)</li>
+</ul>
+<p>Therefore P0-2 is not fixed system-wide.</p>
+<p>Required:</p>
+<ul>
+<li>move every external mutator into adapter modules.</li>
+<li>src/mcp.ts may only create proposals / retrieve grants / call QP.</li>
+<li>ban direct mutator imports in MCP with an architectural test/lint.</li>
+<li>provider credentials available only to adapters/transport, never planne=
+r layer.</li>
+</ul>
+<p>Recommended CI invariant: grep/AST test fails if src/mcp.ts imports or c=
+alls cfRegisterDomain, cfWireEmail, telnyxPurchaseNumber, SENDER.send, soci=
+al write endpoints, etc.</p>
+<p>P0-F =E2=80=94 DOMAIN =E2=80=9COWNERSHIP=E2=80=9D READBACK IS UNSOUND</p=
+>
+<p>cf_purchase currently treats:</p>
+
+<code>registrable =3D=3D=3D false
+</code>
+<p>as evidence that the purchased domain exists in your account.</p>
+<p>That only proves the domain is unavailable. It could be owned by anyone.=
+</p>
+<p>For <code>domain_owned(domain, account)</code> TRUE, readback must use a=
+n authenticated registrar/account endpoint proving exact domain is in the e=
+xpected Cloudflare account/registration record.</p>
+<p>Use separate claims:</p>
+<ul>
+<li>domain_available(D): registrar says registrable before purchase</li>
+<li>purchase_accepted(D, txn/order): provider accepted purchase</li>
+<li>domain_owned(D, account): authenticated post-effect account readback pr=
+oves ownership</li>
+<li>dns_configured(D): DNS state matches desired config</li>
+</ul>
+<p>Do not derive ownership from public availability.</p>
+<p>Also include quote/cost in the signed proposal. Current proposal has dom=
+ain/contact only, so =E2=80=9Cproof of spend=E2=80=9D cannot prove the auth=
+orized price.</p>
+<p>P0-G =E2=80=94 CAPACITY.LIST IS BETTER, BUT STILL MIXES OBSERVATION WITH=
+ ASSERTION</p>
+<p>Current positives are improved, but remaining problems:</p>
+<ul>
+<li>zone_status is inferred as =E2=80=9Cactive=E2=80=9D merely because doma=
+in exists in local D1. That is not Cloudflare zone state.</li>
+<li>routing_rules=3D0 and catch_all=3Dfalse are placeholders. Missing obser=
+vation must be UNKNOWN/null, not a negative fact.</li>
+<li>top-level status becomes =E2=80=9Cactive=E2=80=9D solely from mailboxEx=
+ists.</li>
+</ul>
+<p>Return observations, e.g.:</p>
+
+<code>{ kind:&quot;dns_mx&quot;, actuality:&quot;OBSERVED&quot;, ... }
+{ kind:&quot;cf_zone&quot;, actuality:&quot;NOT_OBSERVED&quot; }
+</code>
+<p>Then QP settles claims. capacity.list must never promote <code>active</c=
+ode> by itself.</p>
+<p>STOP-SHIP EXIT CONDITIONS FOR PART 1</p>
+<p>Do not continue social platform expansion until all are true:</p>
+<ul>
+<li>clean typecheck</li>
+<li>clean tests</li>
+<li>authenticated principal required for all private routes</li>
+<li>no caller actor/admin bypass anywhere</li>
+<li>no anonymous mutation</li>
+<li>MCP cannot issue its own authority</li>
+<li>every external mutator routes through QP</li>
+<li>no domain ownership proof from registrable:false</li>
+<li>no QP object signed/hashed with noncanonical JSON</li>
+<li>durable grant consumption exists</li>
+</ul>
+<p>Part 2 contains the required QP kernel/effect gateway redesign.</p>
+
+--000000000000caa55e065bb0ca41--

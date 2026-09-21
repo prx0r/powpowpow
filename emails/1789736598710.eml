@@ -1,0 +1,570 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id 0GTbsuYPZtw1
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 13:03:18 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=HOU5lrSsY45tkbaNvNsediG0cnqKepdvPOK1G4y0+r4C4E98W6Izf7/HLImGrkDz0+ygc99yy
+	WM1BIUOFE/QAqm/rkJ5UgXbSGEIqxjI3HHXRSGqTTidEpN0C14pHvCorywYwgzWJTu/Q7RaWVMB
+	i0GW92xdCkDjUZNf3gEinPR3dMR1rb3LlWhmMczka7fJzsq87PBJtkUhKOOF2UmmAnOouXIyS8M
+	V4Ub3NmieHpDxqxl2fJaltpRjQ19lJ6omHP+/6p1zrlsi4MZLXXDyrUFjzcZz6ppSbrkHE789+C
+	TXB2vgaeh/iTU230Rb91pIZ//nSf+zFg4sLbiTyHrcgg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789736598; x=1790341398; bh=Wki53K9F
+	Ux2ZVa605aehgx/vSLZcQdnTy6vqbRZvjRQ=; b=SqFcA7OXHnwgmviPGkOLEjPkLLCw8oTQoGB
+	XpRU3VopzpRD6Fq6c8Bx0xg6NR/rjOcp2uBo8MGQu3HX3RO4VJV+14AVtCFhCIF1qCQbnhTPKk/
+	mjNYA7xL+E9grPTwPsbefGM47Ul+TJ3yUQQrnziczOeDP7VxzDlUYAmOyVcmyHr1UmAYQ8bGKQK
+	X8hy4mC+NFQyhU1dle3yZ6CIbs+E4f594UYeD1GMf4Nv9S+DB9E/LGvphv2lbw+f5xu15MxlpGh
+	d617FZJpSrGi0xD8ATRkOaSgnfMMcII0NN0Wvm1WVGmtjIjmZg0JoX5qPm/Ze4gk5AJixOgjJ7z
+	++v+Emg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YDj7mONM;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YDj7mONM;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d4ddd179eso5837777b3.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 06:03:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789736598; cv=none;
+        d=google.com; s=arc-20260327;
+        b=IyU2P0O4fNAIaRRcFflPRxEOy88if7DqmVjTcUQu1N7ucQarLpdYM0Xoh/ynotXlQl
+         YZ+OnbrK6raYoT1yl3DaBh7d7cLEuKUCGUPJCkqktOON/1y+CZ4j6jtUVzlHY14gj0J1
+         YzXhoK5i32ixj/BK2DIZ01YF7UJL/4jOf8ATQ8ZUJBELmT4SEByG93kaQjUpV6PT747z
+         bWIAnPmyDKH2OAl02kMS6xKPSzqz7aFvyLgRYaVScBiSQ8M1cPrr2eBvcZR3AmUx5Dxg
+         5R+HaCzxe29Rz7cEibkQNGqHNjh40ZbBgxZTjcjW5cgndCOIlnf2M6x5H3HVRYs9dXqr
+         +dDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Wki53K9FUx2ZVa605aehgx/vSLZcQdnTy6vqbRZvjRQ=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Jes2f7tyS4E3KmcSSHCS0sU9zKFFS1nsDc5+dY5S+MD568q2JcrjHrhWcMrR5v8fQp
+         DFZVMyxVS+Dx2d1FyFIdf+7hweWaZkhJIVv7SawZmwp8QRLYFqZsnzZ11Q9MmIdWh/Ko
+         YHVopSNGDl8+NS5u4GnAfCTdxqxFloj0ZpQ/Qyuf021wiPWoxkOkzdRor1rthT5HoxKT
+         9WVRHo5GXm1wPGgysIZnIt+sEua7asGIPMSREo6v/uaz/WlYOJsYJooNXoYv1phoGZ3F
+         8307A3vGF0G9rw9LzUwmDWqTJmc9yI8JVaxS9KnSPGwpP0RzZp96A/xW25C+ASZ37nF0
+         XkQg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789736598; x=1790341398; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=Wki53K9FUx2ZVa605aehgx/vSLZcQdnTy6vqbRZvjRQ=;
+        b=YDj7mONMRwP4dhfxeLw5gFyA6oiefTv7LNT7+QpgqPP8GC+G3VGYNRZ989GLadz9Pc
+         AuE88Pwl+vJglRZl7v3CKCk5PfOO+4IMEB8RzgWeT/4IX3qrO/lnXsjqvErXLKaZqwy2
+         sFP/L7ACX6ynei9emUad3ViQbDX5rFCxDzpowl+oz/JIdjr/0GQ6DALfsJ70XYmLYA1f
+         Qie2MmUbgeUHRPXC4k3momc4BKDITePCVKpdlEVCQ+I1cmP4eBBGtQvskuTTCFbKt7w0
+         zlEYv8q5nkqrFJ16cMInbA4z6R9KYQ9hRG30CbrVqcSWGYXTZwSlQ7GY2jkmap2C9thJ
+         8V/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789736598; x=1790341398;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Wki53K9FUx2ZVa605aehgx/vSLZcQdnTy6vqbRZvjRQ=;
+        b=L7lcS7Cy+t2l/w9xUMBf8fO32UeJWbO1V5YOJoN91Z4Po0XTzS7DTFZfRHWsPZ7lnO
+         Vo9jq+AJiZWYvEbHBX2p+G+lZadV79Hm1dSCJceValLpbCnoYD+tSTSw2GXLwFylr4zP
+         TiExPD0KoAsD5IjeyACxBxuxX5PfMiqYWIqeroZnH3KaSLcT+UoMNkK2aQtyqdf1ajw2
+         DKLnejtT+hdVXy1Cl+jbAMH/FRralmJQS7LqkyZ4Kx7EFYjYa1HQ8aLUk+OU4b90j0Ev
+         MnRDq0N6EcUNl1WpCF1obfy0342KEBKd/LWyPGP5oc2JqV829u6jfuBCF7+7yUAM2TKp
+         2HRg==
+X-Gm-Message-State: AFuF++mxeNKaeBtdJglt9V6K31oe0evdWkxcN0iNB7eLCnsL3R7Joz7n
+	9HVkDPX0KJTiBJpPnnsVggu2/jzAkCeLPGWTv7Rp28oRrGKIULWh2hrvgixBy1q/ubj5pltS5r2
+	5NHGnEn1qBESeXiHNsXtlfJ/08mz5Zw4EeQ==
+X-Gm-Gg: AYBFou1zbrSsd4r1Hot0q3wQsiQCi9fmKXUuSIjOlTLzY73ti+B0+G/Ff3ErxBjiThd
+	whSV7LewX5QJoguLOMgQldKyD7SGqb83fNFlC589Skirf5xetBTVp/IwfY7a780PAWudTBOlTkJ
+	HMyf3yi5Ddq90Q88eet4iaKYulvw5XlwkD/b7MObNOrGuHi1RQWIq5zSTy/tDjwun+X9wRT1caK
+	fyUCKb0zPIY7aht23peOTPK3LbmQwJ1A1x01PfgmD8DpT86mllSW0WcKM/wFNeU7iHA5WSJgtJx
+	MYti2CLDkTi/UfSu1+CidcmRxwE5tvPuwbmwUssgrGIKN7bXVJsYPooPBr1Ao+9ESGcQAHWzoow
+	8JqT1IFz0k/I83X12LfeBVmR+T7+oTYwkmRFXJGHFV9rHZzriWsWR1aD1AmD91uVAeNfEh0Nq0k
+	hccdH5
+X-Received: by 2002:a05:690c:c50e:b0:88f:b087:c109 with SMTP id
+ 00721157ae682-89735a9a734mr13314637b3.16.1789736597470; Fri, 18 Sep 2026
+ 06:03:17 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 08:03:16 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 08:03:16 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 08:03:16 -0500
+X-Gm-Features: AcwNN1UwEuLHhgA8f-AC0pm74-DfTbRP7x8aLgKAfJEgx2NchnbRoQ4qnpKgB_Q
+Message-ID: <CAPdrGe=sc9BXPYzBOZ240Nja__wjfbFB4r581Bikij=XxCq7kA@mail.gmail.com>
+Subject: =?UTF-8?Q?Generated_Media_Frontier_=E2=80=94_2026=2D09=2D18_20=3A02_Asia=2FP?=
+	=?UTF-8?Q?hnom=5FPenh_=E2=80=94_6_strong_finds?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000224228065bc18672"
+
+--000000000000224228065bc18672
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+GENERATED MEDIA FRONTIER =E2=80=94 18 Sep 2026, 20:02 Asia/Phnom_Penh
+
+This run found 6 items worth attention. The strongest delta is not another
+photorealistic avatar model: it is the emergence of extremely cheap CPU
+avatar-control layers plus agentic audio/video understanding that can sit
+around the expensive renderer.
+
+   1.
+
+   NYXCLAW =E2=80=94 myned-ai =E2=80=94 TEST NOW
+   GitHub: https://github.com/myned-ai/nyxclaw
+   Meaningful state observed: active/current repo, crawled Sep 14; current
+   README supports OpenClaw v2026.5.6 and ZeroClaw v0.7.4.
+   What it does: gives an AI agent a real-time face/voice. Wav2Arkit ONNX
+   outputs all 52 ARKit blendshapes at 30 FPS on CPU. Includes local
+   faster-whisper + Silero VAD + Piper TTS or OpenAI Realtime, barge-in,
+   synchronized transcripts and tool-call fillers.
+   Why interesting: this separates the cheap motion/control plane from
+   photoreal rendering. It can run on ~2 GB RAM/2 cores locally, so an
+   always-on synthetic host does not need a GPU just to maintain
+   expression/lip state.
+   Inputs -> outputs: mic/text -> STT/agent/TTS -> audio + 52 blendshapes @
+   30 FPS.
+   Code: runnable/self-hosted. Local pipeline; Docker/install scripts.
+   License: verify repository license before commercial deployment.
+   Hardware: OpenAI mode ~1 GB RAM/1 core; local mode ~2 GB RAM/2 cores; no
+   GPU required.
+   Maturity: RUNNABLE.
+   Experiment: run NyxClaw on a cheap CPU VPS, record its blendshape
+   stream, then use that stream as the motion-control signal for a
+   higher-quality renderer/VRM. Test whether the same performance can drive
+   multiple visual identities.
+   Could replace/complement: replaces bespoke realtime avatar
+   orchestration; complements LiveTalk/Runway-style photoreal renderers.
+   2.
+
+   ANIMA =E2=80=94 Yun-0000 =E2=80=94 TEST NOW
+   GitHub: https://github.com/Yun-0000/Anima
+   Meaningful state observed: public-release branch; repo currently only 3
+   commits, surfaced Sep 18.
+   What it does: browser VRM character studio with text/realtime voice,
+   audio-driven lip sync, expression selection and body motion. React/Three=
+.js
+   frontend + FastAPI backend. Motion planning is explicitly separated from
+   speech.
+   Why interesting: the architecture is clean for persistent hosts: speech
+   can come from any realtime provider while a separate acting policy selec=
+ts
+   nod/wave/idle/sad/etc. That is exactly where a cheap Jev-like decision
+   model could sit.
+   Inputs -> outputs: transcript/audio -> speech + expression/motion plan
+   -> animated VRM.
+   Code/demo: runnable locally; realtime voice is BYOK OpenAI; Mixamo
+   motion files are user supplied.
+   License: repo has LICENSE plus separate asset-license notes;
+   character/animation redistribution rights must be checked independently.
+   Hardware: browser + CPU for the 3D avatar layer; provider-dependent for
+   voice.
+   Maturity: RUNNABLE / early.
+   Experiment: replace /api/motion-plan with a tiny decision model choosing
+   expression + gesture from transcript, topic and previous engagement poli=
+cy.
+   This is a cheap test of an evolving synthetic-host policy without
+   generating video.
+   Could complement: NyxClaw, LiveTalk, photoreal renderers.
+   3.
+
+   QWEN3.8-OMNI-FLASH + QWEN LIVE =E2=80=94 Alibaba/Qwen =E2=80=94 TEST NOW=
+ / WATCH
+   Primary harness/package:
+   https://www.npmjs.com/package/@qwen-code/qwen-live
+   Meaningful update: Qwen3.8-Omni-Flash launched Sep 18; qwen-live package
+   v0.3.0 published ~Sep 12. The package reports protocol-v9 visual input,
+   proactive tools, memory tools and desktop controls; Apache-2.0. The mode=
+l
+   itself is API-only at launch; no weights were identified.
+   What it does: native text/image/audio/video understanding with a
+   1M-token context and tool-use orientation. Qwen Live provides persistent
+   realtime visual input, memory and proactive action infrastructure.
+   Why interesting: this is potentially the cheap =E2=80=98eyes/critic/dire=
+ctor=E2=80=99
+   around the avatar. Rather than use an expensive frontier VLM to inspect
+   every generated clip, feed videos + analytics to Omni-Flash and let it
+   classify hooks, continuity, expressions and failures, then route renders=
+.
+   Inputs -> outputs: text/image/audio/video -> text/tool decisions; Live
+   adds streaming visual input + memory/tool authority.
+   Code: Qwen Live tooling is open; model weights not found for
+   3.8-Omni-Flash at launch.
+   License: Qwen Live package Apache-2.0; API model terms separate.
+   Maturity: API PRODUCTIONISH; live harness early.
+   Experiment: feed 50 existing Shorts plus retention/comment metadata; ask
+   for structured per-second hook/visual/action labels, then test whether
+   those labels predict retention. Use as the perception layer feeding a
+   Jev-style cheap policy.
+   Could replace/complement: expensive Gemini/GPT video-analysis calls;
+   complements all renderers.
+   4.
+
+   vLLM-OMNI =E2=80=94 vLLM PROJECT =E2=80=94 WATCH / ADOPT WHEN SELF-HOSTI=
+NG OMNI MODELS
+   GitHub: https://github.com/vllm-project/vllm-omni
+   Meaningful update: repository marked updated Sep 18; current release
+   line 0.28.0; v0.30.0 milestone due Sep 24. Apache-2.0.
+   What it does: disaggregated serving for any-to-any multimodal models:
+   independent LLM/diffusion/audio/video stages, per-stage batching, GPU
+   allocation and unified connectors.
+   Why interesting: when we begin self-hosting voice/image/video models,
+   this is increasingly a better substrate than hand-wiring separate infere=
+nce
+   servers. The paper reports up to 91.4% lower job-completion time vs its
+   evaluated baselines.
+   Inputs -> outputs: multimodal request graph -> independently scheduled
+   model stages -> multimodal output.
+   Code: runnable, active; CUDA/ROCm/Intel XPU/MUSA/NPU support documented.
+   License: Apache-2.0.
+   Maturity: PRODUCTIONISH infrastructure.
+   Experiment: do not deploy yet on our tiny VPS. Benchmark it only when we
+   have a GPU box running >=3D2 local media stages; compare against separat=
+e
+   endpoints for TTS + image/video.
+   Could replace: bespoke inference orchestration later.
+   5.
+
+   LIVETALK + MUSETALK + LIVEKIT INTEGRATION =E2=80=94 plutus123 =E2=80=94 =
+WATCH / TEST ON
+   GPU
+   GitHub: https://github.com/plutus123/Livekit_MuseTalk_Avatar
+   Meaningful state observed: surfaced/current Sep 18.
+   What it does: MuseTalk latent-diffusion lip sync streamed over LiveKit
+   WebRTC, wired to STT/LLM/TTS. README reports 25=E2=80=9330 FPS on a sing=
+le GPU.
+   Why interesting: it is a useful reference implementation of the complete
+   realtime transport path, not merely an avatar model. LiveKit solves the
+   actual browser/mobile delivery layer.
+   Inputs -> outputs: live speech -> STT -> LLM -> TTS -> MuseTalk ->
+   WebRTC avatar stream.
+   Code: runnable repo.
+   License: component licenses need separate verification before commercial
+   use.
+   Hardware: single GPU; exact VRAM not established in this scan.
+   Maturity: RUNNABLE integration.
+   Experiment: compare end-to-end latency and cost with a CPU NyxClaw/VRM
+   host. Only retain photoreal streaming if it materially improves viewer
+   response.
+   Could complement: LiveTalk/other avatar renderers by keeping LiveKit as
+   transport.
+   6.
+
+   VIDEO-CONTENT-AGENT =E2=80=94 sailorworks =E2=80=94 WATCH / BORROW PIPEL=
+INE IDEAS
+   GitHub: https://github.com/sailorworks/video-content-agent
+   Meaningful state observed: active repo surfaced Sep 17 with 27 commits.
+   What it does: topic -> trend research -> script -> human approval ->
+   voiceover -> polished vertical video.
+   Why interesting: not a rendering breakthrough, but a compact reference
+   for the autonomous content loop surrounding the avatar. It is more relev=
+ant
+   as glue than as moat.
+   Inputs -> outputs: topic -> researched/scripted vertical short.
+   Code: runnable TypeScript project; tests included.
+   License: LICENSE.md present; verify exact commercial permissions before
+   reuse.
+   Maturity: RUNNABLE / early.
+   Experiment: inspect its state machine and publishing boundary; borrow
+   only components that save work. Do not make it the core stack.
+   Could complement: our persistent-host pipeline.
+
+TOP 5 TO TEST RIGHT NOW
+
+   1. NyxClaw CPU blendshape/control plane.
+   2. Qwen3.8-Omni-Flash as cheap video critic/director.
+   3. Anima with its motion planner replaced by a Jev-like fast decision
+   policy.
+   4. LiveKit + MuseTalk reference path if photoreal realtime is actually
+   needed.
+   5. Qwen Live persistent visual/memory loop once the harness is stable.
+
+BEST OPEN-SOURCE AI INFLUENCER STACK THIS RUN
+Topic/research + slow creative LLM -> Jev-like fast policy for
+hook/persona/gesture decisions -> Qwen Omni as video/audio
+perception/critic -> NyxClaw/Wav2Arkit as always-on 52-blendshape
+performance signal -> VRM/Anima for near-zero-cost drafts -> photoreal
+video renderer only for winning candidates -> LiveKit for realtime delivery
+-> FFmpeg/Remotion for final assembly -> platform analytics back into the
+policy/data store.
+
+BIGGEST CAPABILITY JUMP
+Qwen3.8-Omni-Flash is the strategic delta: cheap long-context audio/video
+understanding means the media agent can increasingly watch its own output
+and audience evidence rather than relying on text metadata. The launch is
+API-first, so this is not an OSS-weights win yet; the open Qwen Live
+tooling is the part to mine.
+
+CHEAPEST PRACTICAL WIN
+NyxClaw: 52 ARKit blendshapes at 30 FPS on CPU, with a full local voice
+option around 2 GB RAM/2 cores. That is cheap enough to treat avatar
+embodiment as persistent infrastructure rather than a per-video generation
+event.
+
+3 TO WATCH NEXT
+
+   - myned-ai/nyxclaw =E2=80=94 whether renderer adapters/character clients=
+ appear.
+   - QwenLM/Qwen-Live-Harness / qwen-live =E2=80=94 repository stabilizatio=
+n and
+   deeper video-agent tooling.
+   - vllm-project/vllm-omni =E2=80=94 v0.30.0 milestone due Sep 24, especia=
+lly
+   diffusion/video serving changes.
+
+STACK DELTA
+
+   1. Add a distinct PERCEPTION/CRITIC layer to the architecture.
+   Qwen3.8-Omni-Flash is a strong current candidate.
+   2. Separate CHARACTER POLICY from CHARACTER RENDERER.
+   Gesture/emotion/hook/CTA decisions should be cheap structured actions,
+   potentially Jev/NanoJev-like, not buried in the video model prompt.
+   3. Treat ARKit blendshapes / motion state as a portable performance
+   representation. Test NyxClaw immediately.
+   4. Keep photoreal video generation sparse: draft/test policy cheaply in
+   VRM or reusable footage; spend on high-quality rendering only after
+   selection.
+   5. Do not adopt vLLM-Omni on the current low-end boxes yet; track it for
+   the first dedicated GPU media worker.
+
+Notes: exact Git commit timestamps were not exposed by search for several
+very small repos, so I have deliberately not fabricated dates.
+=E2=80=98Surfaced/current=E2=80=99 means the repository was newly discovere=
+d in this run,
+not necessarily created today.
+
+--000000000000224228065bc18672
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>GENERATED MEDIA FRONTIER =E2=80=94 18 Sep 2026, 20:02 Asia/Phnom_Penh</p=
+>
+<p>This run found 6 items worth attention. The strongest delta is not anoth=
+er photorealistic avatar model: it is the emergence of extremely cheap CPU =
+avatar-control layers plus agentic audio/video understanding that can sit a=
+round the expensive renderer.</p>
+<ol>
+<li>
+<p>NYXCLAW =E2=80=94 myned-ai =E2=80=94 TEST NOW<br>
+GitHub: <a href=3D"https://github.com/myned-ai/nyxclaw">https://github.com/=
+myned-ai/nyxclaw</a><br>
+Meaningful state observed: active/current repo, crawled Sep 14; current REA=
+DME supports OpenClaw v2026.5.6 and ZeroClaw v0.7.4.<br>
+What it does: gives an AI agent a real-time face/voice. Wav2Arkit ONNX outp=
+uts all 52 ARKit blendshapes at 30 FPS on CPU. Includes local faster-whispe=
+r + Silero VAD + Piper TTS or OpenAI Realtime, barge-in, synchronized trans=
+cripts and tool-call fillers.<br>
+Why interesting: this separates the cheap motion/control plane from photore=
+al rendering. It can run on ~2 GB RAM/2 cores locally, so an always-on synt=
+hetic host does not need a GPU just to maintain expression/lip state.<br>
+Inputs -&gt; outputs: mic/text -&gt; STT/agent/TTS -&gt; audio + 52 blendsh=
+apes @ 30 FPS.<br>
+Code: runnable/self-hosted. Local pipeline; Docker/install scripts.<br>
+License: verify repository license before commercial deployment.<br>
+Hardware: OpenAI mode ~1 GB RAM/1 core; local mode ~2 GB RAM/2 cores; no GP=
+U required.<br>
+Maturity: RUNNABLE.<br>
+Experiment: run NyxClaw on a cheap CPU VPS, record its blendshape stream, t=
+hen use that stream as the motion-control signal for a higher-quality rende=
+rer/VRM. Test whether the same performance can drive multiple visual identi=
+ties.<br>
+Could replace/complement: replaces bespoke realtime avatar orchestration; c=
+omplements LiveTalk/Runway-style photoreal renderers.</p>
+</li>
+<li>
+<p>ANIMA =E2=80=94 Yun-0000 =E2=80=94 TEST NOW<br>
+GitHub: <a href=3D"https://github.com/Yun-0000/Anima">https://github.com/Yu=
+n-0000/Anima</a><br>
+Meaningful state observed: public-release branch; repo currently only 3 com=
+mits, surfaced Sep 18.<br>
+What it does: browser VRM character studio with text/realtime voice, audio-=
+driven lip sync, expression selection and body motion. React/Three.js front=
+end + FastAPI backend. Motion planning is explicitly separated from speech.=
+<br>
+Why interesting: the architecture is clean for persistent hosts: speech can=
+ come from any realtime provider while a separate acting policy selects nod=
+/wave/idle/sad/etc. That is exactly where a cheap Jev-like decision model c=
+ould sit.<br>
+Inputs -&gt; outputs: transcript/audio -&gt; speech + expression/motion pla=
+n -&gt; animated VRM.<br>
+Code/demo: runnable locally; realtime voice is BYOK OpenAI; Mixamo motion f=
+iles are user supplied.<br>
+License: repo has LICENSE plus separate asset-license notes; character/anim=
+ation redistribution rights must be checked independently.<br>
+Hardware: browser + CPU for the 3D avatar layer; provider-dependent for voi=
+ce.<br>
+Maturity: RUNNABLE / early.<br>
+Experiment: replace /api/motion-plan with a tiny decision model choosing ex=
+pression + gesture from transcript, topic and previous engagement policy. T=
+his is a cheap test of an evolving synthetic-host policy without generating=
+ video.<br>
+Could complement: NyxClaw, LiveTalk, photoreal renderers.</p>
+</li>
+<li>
+<p>QWEN3.8-OMNI-FLASH + QWEN LIVE =E2=80=94 Alibaba/Qwen =E2=80=94 TEST NOW=
+ / WATCH<br>
+Primary harness/package: <a href=3D"https://www.npmjs.com/package/@qwen-cod=
+e/qwen-live">https://www.npmjs.com/package/@qwen-code/qwen-live</a><br>
+Meaningful update: Qwen3.8-Omni-Flash launched Sep 18; qwen-live package v0=
+.3.0 published ~Sep 12. The package reports protocol-v9 visual input, proac=
+tive tools, memory tools and desktop controls; Apache-2.0. The model itself=
+ is API-only at launch; no weights were identified.<br>
+What it does: native text/image/audio/video understanding with a 1M-token c=
+ontext and tool-use orientation. Qwen Live provides persistent realtime vis=
+ual input, memory and proactive action infrastructure.<br>
+Why interesting: this is potentially the cheap =E2=80=98eyes/critic/directo=
+r=E2=80=99 around the avatar. Rather than use an expensive frontier VLM to =
+inspect every generated clip, feed videos + analytics to Omni-Flash and let=
+ it classify hooks, continuity, expressions and failures, then route render=
+s.<br>
+Inputs -&gt; outputs: text/image/audio/video -&gt; text/tool decisions; Liv=
+e adds streaming visual input + memory/tool authority.<br>
+Code: Qwen Live tooling is open; model weights not found for 3.8-Omni-Flash=
+ at launch.<br>
+License: Qwen Live package Apache-2.0; API model terms separate.<br>
+Maturity: API PRODUCTIONISH; live harness early.<br>
+Experiment: feed 50 existing Shorts plus retention/comment metadata; ask fo=
+r structured per-second hook/visual/action labels, then test whether those =
+labels predict retention. Use as the perception layer feeding a Jev-style c=
+heap policy.<br>
+Could replace/complement: expensive Gemini/GPT video-analysis calls; comple=
+ments all renderers.</p>
+</li>
+<li>
+<p>vLLM-OMNI =E2=80=94 vLLM PROJECT =E2=80=94 WATCH / ADOPT WHEN SELF-HOSTI=
+NG OMNI MODELS<br>
+GitHub: <a href=3D"https://github.com/vllm-project/vllm-omni">https://githu=
+b.com/vllm-project/vllm-omni</a><br>
+Meaningful update: repository marked updated Sep 18; current release line 0=
+.28.0; v0.30.0 milestone due Sep 24. Apache-2.0.<br>
+What it does: disaggregated serving for any-to-any multimodal models: indep=
+endent LLM/diffusion/audio/video stages, per-stage batching, GPU allocation=
+ and unified connectors.<br>
+Why interesting: when we begin self-hosting voice/image/video models, this =
+is increasingly a better substrate than hand-wiring separate inference serv=
+ers. The paper reports up to 91.4% lower job-completion time vs its evaluat=
+ed baselines.<br>
+Inputs -&gt; outputs: multimodal request graph -&gt; independently schedule=
+d model stages -&gt; multimodal output.<br>
+Code: runnable, active; CUDA/ROCm/Intel XPU/MUSA/NPU support documented.<br=
+>
+License: Apache-2.0.<br>
+Maturity: PRODUCTIONISH infrastructure.<br>
+Experiment: do not deploy yet on our tiny VPS. Benchmark it only when we ha=
+ve a GPU box running &gt;=3D2 local media stages; compare against separate =
+endpoints for TTS + image/video.<br>
+Could replace: bespoke inference orchestration later.</p>
+</li>
+<li>
+<p>LIVETALK + MUSETALK + LIVEKIT INTEGRATION =E2=80=94 plutus123 =E2=80=94 =
+WATCH / TEST ON GPU<br>
+GitHub: <a href=3D"https://github.com/plutus123/Livekit_MuseTalk_Avatar">ht=
+tps://github.com/plutus123/Livekit_MuseTalk_Avatar</a><br>
+Meaningful state observed: surfaced/current Sep 18.<br>
+What it does: MuseTalk latent-diffusion lip sync streamed over LiveKit WebR=
+TC, wired to STT/LLM/TTS. README reports 25=E2=80=9330 FPS on a single GPU.=
+<br>
+Why interesting: it is a useful reference implementation of the complete re=
+altime transport path, not merely an avatar model. LiveKit solves the actua=
+l browser/mobile delivery layer.<br>
+Inputs -&gt; outputs: live speech -&gt; STT -&gt; LLM -&gt; TTS -&gt; MuseT=
+alk -&gt; WebRTC avatar stream.<br>
+Code: runnable repo.<br>
+License: component licenses need separate verification before commercial us=
+e.<br>
+Hardware: single GPU; exact VRAM not established in this scan.<br>
+Maturity: RUNNABLE integration.<br>
+Experiment: compare end-to-end latency and cost with a CPU NyxClaw/VRM host=
+. Only retain photoreal streaming if it materially improves viewer response=
+.<br>
+Could complement: LiveTalk/other avatar renderers by keeping LiveKit as tra=
+nsport.</p>
+</li>
+<li>
+<p>VIDEO-CONTENT-AGENT =E2=80=94 sailorworks =E2=80=94 WATCH / BORROW PIPEL=
+INE IDEAS<br>
+GitHub: <a href=3D"https://github.com/sailorworks/video-content-agent">http=
+s://github.com/sailorworks/video-content-agent</a><br>
+Meaningful state observed: active repo surfaced Sep 17 with 27 commits.<br>
+What it does: topic -&gt; trend research -&gt; script -&gt; human approval =
+-&gt; voiceover -&gt; polished vertical video.<br>
+Why interesting: not a rendering breakthrough, but a compact reference for =
+the autonomous content loop surrounding the avatar. It is more relevant as =
+glue than as moat.<br>
+Inputs -&gt; outputs: topic -&gt; researched/scripted vertical short.<br>
+Code: runnable TypeScript project; tests included.<br>
+License: LICENSE.md present; verify exact commercial permissions before reu=
+se.<br>
+Maturity: RUNNABLE / early.<br>
+Experiment: inspect its state machine and publishing boundary; borrow only =
+components that save work. Do not make it the core stack.<br>
+Could complement: our persistent-host pipeline.</p>
+</li>
+</ol>
+<p>TOP 5 TO TEST RIGHT NOW</p>
+<ol>
+<li>NyxClaw CPU blendshape/control plane.</li>
+<li>Qwen3.8-Omni-Flash as cheap video critic/director.</li>
+<li>Anima with its motion planner replaced by a Jev-like fast decision poli=
+cy.</li>
+<li>LiveKit + MuseTalk reference path if photoreal realtime is actually nee=
+ded.</li>
+<li>Qwen Live persistent visual/memory loop once the harness is stable.</li=
+>
+</ol>
+<p>BEST OPEN-SOURCE AI INFLUENCER STACK THIS RUN<br>
+Topic/research + slow creative LLM -&gt; Jev-like fast policy for hook/pers=
+ona/gesture decisions -&gt; Qwen Omni as video/audio perception/critic -&gt=
+; NyxClaw/Wav2Arkit as always-on 52-blendshape performance signal -&gt; VRM=
+/Anima for near-zero-cost drafts -&gt; photoreal video renderer only for wi=
+nning candidates -&gt; LiveKit for realtime delivery -&gt; FFmpeg/Remotion =
+for final assembly -&gt; platform analytics back into the policy/data store=
+.</p>
+<p>BIGGEST CAPABILITY JUMP<br>
+Qwen3.8-Omni-Flash is the strategic delta: cheap long-context audio/video u=
+nderstanding means the media agent can increasingly watch its own output an=
+d audience evidence rather than relying on text metadata. The launch is API=
+-first, so this is not an OSS-weights win yet; the open Qwen Live tooling i=
+s the part to mine.</p>
+<p>CHEAPEST PRACTICAL WIN<br>
+NyxClaw: 52 ARKit blendshapes at 30 FPS on CPU, with a full local voice opt=
+ion around 2 GB RAM/2 cores. That is cheap enough to treat avatar embodimen=
+t as persistent infrastructure rather than a per-video generation event.</p=
+>
+<p>3 TO WATCH NEXT</p>
+<ul>
+<li>myned-ai/nyxclaw =E2=80=94 whether renderer adapters/character clients =
+appear.</li>
+<li>QwenLM/Qwen-Live-Harness / qwen-live =E2=80=94 repository stabilization=
+ and deeper video-agent tooling.</li>
+<li>vllm-project/vllm-omni =E2=80=94 v0.30.0 milestone due Sep 24, especial=
+ly diffusion/video serving changes.</li>
+</ul>
+<p>STACK DELTA</p>
+<ol>
+<li>Add a distinct PERCEPTION/CRITIC layer to the architecture. Qwen3.8-Omn=
+i-Flash is a strong current candidate.</li>
+<li>Separate CHARACTER POLICY from CHARACTER RENDERER. Gesture/emotion/hook=
+/CTA decisions should be cheap structured actions, potentially Jev/NanoJev-=
+like, not buried in the video model prompt.</li>
+<li>Treat ARKit blendshapes / motion state as a portable performance repres=
+entation. Test NyxClaw immediately.</li>
+<li>Keep photoreal video generation sparse: draft/test policy cheaply in VR=
+M or reusable footage; spend on high-quality rendering only after selection=
+.</li>
+<li>Do not adopt vLLM-Omni on the current low-end boxes yet; track it for t=
+he first dedicated GPU media worker.</li>
+</ol>
+<p>Notes: exact Git commit timestamps were not exposed by search for severa=
+l very small repos, so I have deliberately not fabricated dates. =E2=80=98S=
+urfaced/current=E2=80=99 means the repository was newly discovered in this =
+run, not necessarily created today.</p>
+
+--000000000000224228065bc18672--

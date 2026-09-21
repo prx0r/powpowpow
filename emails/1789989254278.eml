@@ -1,0 +1,753 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id O1mmEDPL8l64
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 11:14:13 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=HkWyADOFhyrZh2yYGJjw06TY1ftYx03YL2a/mWdJuFJuqdmMSy/HKWVTb1io9mYMzdU4iOoSi
+	sYSvlqwkpORH4bRi9mamjwgPiousLMF+aQccv5IcQDbeZkhrx2vxT+7aWLPtxPcbSvVBcBrjWFm
+	whPYsyMdxHP79/JRZgL2ZRf1ECuFUAPACSFT8OfRUjrRkxJVPv1lellAIOLLaOIA0lTqHJZY+d4
+	aoTPtET5JlyutoEzWK0a8hLLl68jl+FPDw5FoyuGl58JohiT/FYcz5TaHfwEdakg3yToMQciHzr
+	D5PZuTgNMTDp1NXCyEBUCN8iuNiNpsEFWpUvoT22mfAA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789989254; x=1790594054; bh=m4pSoP39
+	mcHnFGusPiD4qygTbVHRmka0rePKe43fhBc=; b=fdWPnnZS8BqCMaYD5oB3z3iAibHprAW3OGS
+	j13cvlZp48xxMhNY2+D5M7bLKLoodyWYNANb4tGqQ+TOiU5kxYJOikBYrH6d71l+i5e1A8KWT5L
+	9WHh/hrp3Dsf09drvgrVYElmQQYwpdSEuw7uwTsqPBXvhXA6yslCejHm/OiDxq+cCqWEWHJZkxi
+	f2+gyRhK+kCw5IK9MKspZLKQlW6RV7uqtgDQyubJ0g5Io3/UoFEJ7VV8g7pIwAyK6qZHLPruS+1
+	DRAxcAez1xoqNQVsvcS2ptTSn7k1ss/v9k+T45zA2gduIlgVZXIiC3cPLpqLW/Qt6iGJYs/Eve4
+	c7CLMNg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ha3uvv1E;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ha3uvv1E;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-895eaf31683so21841777b3.0
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 04:14:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789989253; cv=none;
+        d=google.com; s=arc-20260327;
+        b=PLssT4wN5mujEVxloeB15+WK5ZHmBB5bgCxrkTpHcquqoEBTqQCoCIWhjmxOmFgIyJ
+         9IjY2PQQVxHmfYHcfttqCGM4LmUJzyGW9GvakN4EyqvM3gvez8mSqKIG1XnovBAOLPKQ
+         3HTGQqf2Ihq1lqxUGLa86BSVXJBnv3bQbPdZzwzGsYYePeugR8CF32go6dHg0aUATNne
+         DxUpdD2Q+v6bBIxa+GEzXVp56/sIl3gRETfMaJwQY8Dy6QdiPt+EqYsepxA0QeRSVXkp
+         FizgTOhnATC/zTMO7k6cifZY/ZQ4MleSTw5T58zVFUIQOtmVz9FeoCCC9Yo8Nc4oeYYD
+         7QiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=m4pSoP39mcHnFGusPiD4qygTbVHRmka0rePKe43fhBc=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=i6R67I+DwrShB25SNEXMipJTSB8dUgk/yHl2dKX/ymtvAXrDFnx09rYq3x7PF1dObR
+         EadVOhs7S4XOlObf9/xIs5bKY+4VxLVjr2JeU1hJly0gVBc4UgineuvQa8QBL6luTIZu
+         Csz3/npHBPqp+jfLOX+WpRALt/JdK9V7QCFbyBn+DiYxyb0y/B6WbXrflZ98ZUOOI0T0
+         zCQpGz/CKtUXxRo9V6lpyWKRIgJKs9+kY89yydk+FdVNm1Vru5o6S9tL9E6eQqIDPJIl
+         lLhjypBdrfxY9I6YNqgx+N8ljDgmpkTtv+d9FJTBLD6j/NtjiCMd+yqB7DCNxVrXUS5+
+         064w==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789989253; x=1790594053; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=m4pSoP39mcHnFGusPiD4qygTbVHRmka0rePKe43fhBc=;
+        b=ha3uvv1ExzXQN24HjV1b/afGSzaktfit4Fgazkw/81UxzwDnvIqEzAPOiKNrw6Cas3
+         ixbVGqI1dJdU/mV296PujgELhABR9gcvg4yaGfHviuWpUa6Y3ufoQ0IZrPQOnyFwfwiC
+         F3CfdLJSPRkuj4r6MVz08A4TtMQ6oWnM9oCgvh0vEtvOFoaomXRHGihWrX7vu2c4O0JD
+         GCICfk6S4DzPHxDGVe8l8OcRMGik0OB8xJzVTVxRMzM2t9v7QP3leqk/Hu7YpT8za9hV
+         7pytHIY3BZJmrcJqUbyDUOQmM0zaJOT9Qp93TjIw/w6e1MbzcWRzzrDEMM3HFiA6PlbA
+         OBhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789989253; x=1790594053;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=m4pSoP39mcHnFGusPiD4qygTbVHRmka0rePKe43fhBc=;
+        b=s1Vbb8fyqxBOuf0FhCeapsj9ybKip1HA3xYzhLZhpRBrUw3P1/wo6jRQGiPCMNF8h2
+         5yhEsTx3NfN/YEjt/172GgWQTMWGQl9zWG0qtquhyB+dPMR1prHCkR5FpYkbfA8+IhBm
+         4iegB0KAULTODAQndn5QkMz6QhaFMCU/Qiz8WEBNMga6WFUXOEgpkf2kSuC0Mf4DEFdt
+         cXzwb+jZEqlLgIqaRHmgiol/+AB9siFnqkqet/6iqCK6deVHQJQsoURgJN0qVHMAyb/v
+         rWDwBJcJjkPlDBDx4u+4aU5NE9rdekS7D0oxIeaJ4+GPs68x3CHINkWm6agq8UGT2FE8
+         fuvQ==
+X-Gm-Message-State: AFuF++mpRxsbRB2cxJ2A+yVJ/ybNx4qOe8Lszo5BPBTjoSsmNtY9jPZp
+	s93BFdxzuPabZl8BtQwOT/HrBphUe/kJvWenlXtd44lxECLSCOJEkFbMN/ujoUkpZ/dfRzfoHZ6
+	HSMVGa/j1rfVBmNncNK9fChrQttn11bHIyw==
+X-Gm-Gg: AYBFou0/HEkhpO3r9f17whMluNc2itSxJksTu7ArdZ8Yy9dapDdfP1NaCzg0lOh91UR
+	hWlPd2F1QjVzY0jGP/dVw4YaXDOB0BR34kF7AtGVfCxRX6UL4XipyTC563IslfviCyYMQRwkGPN
+	7mnNSzbek7kY4JJAqtBTLflk2XJLIN7Y0V0uBEsESvf6nhwZZThrHKByixTlFKtdObFZ+w9A/8d
+	mGvt4pf8UKpOCo42PX5u4bg6BLSGGBei9WWeLLJ1H/h1Uf36uoBRCSntx1yrnw1yR+Ma5S7ihlD
+	uUHBCTQ7UTmVf+fTXak/3zSWBIpRQ20o/PP5gKchV5n7A4xhLjh7BBYFraNd5AI7UTdBX+aL3W7
+	MC89213KnxKjCzvx0BKvIkSp5Jd3MvAIHsyOf4ZCjUZybdtnWd1rB2KAAu+aJjXl+NV9ZpofIl0
+	+nKdvBfw4=
+X-Received: by 2002:a05:690c:d8b:b0:873:5c6b:a2ff with SMTP id
+ 00721157ae682-89736f266a6mr27528487b3.45.1789989252979; Mon, 21 Sep 2026
+ 04:14:12 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 06:14:12 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 06:14:12 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 06:14:12 -0500
+X-Gm-Features: AcwNN1U1OmYZWsV7ooolPwUOfS9WStyJpM5C8dZSGbDjXpL2LCL6nzP3aHPVcTg
+Message-ID: <CAPdrGek2gVoeNg_kMVpcfFr7yhNdNnP7DNz-FM2-qv0d3m9Ayw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW=2Esystems_=E2=80=94_Compute_Hardware_Market_Research_=2B_D?=
+	=?UTF-8?Q?ata_Garden_Plan?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS =E2=80=94 COMPUTE HARDWARE MARKET RESEARCH
+Date: 21 September 2026
+
+THESIS
+
+The strongest opportunity is not =E2=80=9Canother mining calculator.=E2=80=
+=9D The
+emerging market is physical compute capital: CPUs, GPUs and ASICs
+whose value depends on mining yield, resale value, electricity cost,
+rental yield, depreciation and workload optionality.
+
+Core framing:
+
+POW =3D the economic graph of physical computation.
+
+A Compute Asset is any physical device capable of transforming
+electricity into economically valuable computation.
+
+ComputeAsset
+=E2=86=92 purchase / resale market
+=E2=86=92 physical characteristics
+=E2=86=92 possible workloads
+   =E2=80=A2 BTC mining
+   =E2=80=A2 XMR mining
+   =E2=80=A2 QUBIC mining
+   =E2=80=A2 other PoW
+   =E2=80=A2 AI inference
+   =E2=80=A2 AI training
+   =E2=80=A2 rendering
+   =E2=80=A2 cloud rental
+   =E2=80=A2 idle/resale
+=E2=86=92 location-specific power + hosting
+=E2=86=92 expected cashflows
+=E2=86=92 fair asset value
+
+The user-facing questions become:
+1. What should this physical unit of compute be doing right now?
+2. What physical compute should I buy given every workload it could
+perform over its life?
+
+MARKET CONFIRMATION
+
+The market is already being financialized, but in silos.
+
+Luxor reports $865M+ of hardware transacted from 2022=E2=80=932025 across
+ASICs, GPUs and CPUs, with shipments to 36 countries. Its business now
+spans hardware brokerage, mining pools, firmware, energy optimization
+and hashrate derivatives.
+
+Luxor has also built a hashrate derivatives market with >$500M OTC
+volume, allowing miners to trade future compute revenue.
+
+Hashrate Index launched an AI Hardware Price Index in August 2026
+specifically because secondary-market AI hardware pricing remains
+opaque. This is strong evidence that compute hardware itself is
+becoming a financial asset class.
+
+Sources:
+https://luxor.tech/mining/hardware
+https://luxor.tech/mining/derivatives
+https://hashrateindex.com/blog/announcement-introducing-the-ai-hardware-pri=
+ce-index/
+https://luxor.tech/news/corporate-news/article/luxor-2025-year-in-review
+
+COMPETITIVE MAP
+
+Hashrate Index / Luxor
+Strength: BTC hashprice, ASIC pricing, derivatives, hardware.
+Gap: cross-PoW + consumer CPU/GPU + AI workload routing.
+
+Minerstat
+Strength: mining profitability across a large hardware universe.
+Gap: asset/resale economics and non-mining compute.
+
+Hashrate.no / WhatToMine
+Strength: mining benchmarks and coin switching.
+Gap: hardware capital lifecycle.
+
+Vast / Clore / Akash / Golem / Salad / RunPod
+Strength: live compute rental markets.
+Gap: mining economics + physical resale + hardware valuation.
+
+Jawa / eBay / Keepa
+Strength: physical market pricing.
+Gap: productive yield.
+
+Compass / Hashbranch
+Strength: ASIC purchase and hosting.
+Gap: general-purpose compute.
+
+Qubic / QLI
+Strength: Qubic productive mining.
+Gap: cross-asset allocation.
+
+Minerstat already exposes a useful baseline: mineable coins, hardware,
+hashrate/power benchmarks and long historical coverage. Do not rebuild
+it; ingest or reference it.
+
+Source:
+https://minerstat.com/api-docs
+
+BEST DATA SOURCES TO PLANT
+
+1. Mining profitability
+- Minerstat API
+  Data: coins, network data, hardware benchmarks, power, profitability, poo=
+ls
+  Cadence: 5 min
+
+- Luxor / Hashrate Index API
+  Data: BTC hashprice, difficulty, ASIC price indices, model-level
+ASIC pricing, forward hashprice
+  Cadence: 5=E2=80=9360 min
+
+- Qubic chain / Qubic Analytics / QLI
+  Data: epochs, solutions, thresholds, payouts, worker performance
+  Cadence: continuous/hourly
+
+- MiningRigRentals
+  Data: hashpower rental markets by algorithm
+  Cadence: 5 min
+
+2. Hardware market
+- eBay Browse API
+  Data: ask price, condition, location, shipping, seller, item
+specifics, listing state
+  Cadence: hourly
+
+- Jawa
+  Data: used GPU/CPU listings and crucially sold listings
+  Cadence: hourly/daily
+
+- Keepa
+  Data: Amazon new/used/third-party prices, offers, inventory, history
+  Cadence: hourly/daily
+
+- Luxor / Hashrate Index
+  Data: ASIC secondary market and price indices
+  Cadence: daily/weekly
+
+- Compass / Hashbranch
+  Data: ASIC inventory, hosting and secondhand hardware
+  Cadence: daily
+
+3. Compute rental market
+- Vast
+  Data: GPU model, price, availability, specs, dynamic market rates
+  Cadence: 5 min
+
+- Clore
+  Data: GPU model/count, CPU, RAM, country, bandwidth, spot/on-demand
+price, availability, bid book
+  Cadence: 5 min
+
+- Akash
+  Data: provider GPU model, availability, market rates
+  Cadence: 5 min
+
+- Golem
+  Data: CPU thread prices, RAM, disk, provider
+  Cadence: 5=E2=80=9315 min
+
+- Salad
+  Data: consumer GPU cloud floor pricing
+  Cadence: daily
+
+- RunPod
+  Data: GPU rental prices + AI workload reference
+  Cadence: hourly/daily
+
+4. Electricity / physical infrastructure
+- EIA API
+  Data: state-level residential/commercial/industrial electricity and grid =
+data
+  Cadence: monthly/hourly depending endpoint
+
+- Later: wholesale power markets, hosting offers, demand-response
+markets, grid-curtailment data, solar/battery economics.
+
+Source:
+https://www.eia.gov/opendata/documentation.php
+
+WHY JAWA IS HIGH-VALUE
+
+Jawa exposes sold listings, not merely current asks.
+
+That means we can preserve:
+asset
+variant
+condition
+ask_price
+sold_price
+first_seen_at
+last_seen_at
+sold_at
+seller
+seller_quality
+location
+shipping
+description
+included_accessories
+
+This gives liquidity and depreciation instead of just price.
+
+Relevant marketplace:
+https://www.jawa.gg/
+
+WHY EBAY MATTERS
+
+The official eBay Browse API exposes:
+- price
+- condition
+- item specifics
+- location
+- buying type
+- shipping
+- category
+- seller data
+- listing identity
+
+Store observations over time rather than overwriting them.
+
+An item disappearing should become an event. Do not blindly treat
+disappearance as a sale; learn P(sale | price, asset, condition, time)
+using marketplaces with explicit sold status.
+
+That enables:
+expected liquidation value
+median days-to-sale
+liquidity curves
+price elasticity
+condition discounts
+
+Source:
+https://developer.ebay.com/api-docs/buy/api-browse.html
+
+WHY KEEPA MATTERS
+
+Keepa provides historical Amazon pricing/offers and can help derive:
+new-used spread
+inventory pressure
+retail scarcity premium
+offer-count velocity
+price momentum
+
+Source:
+https://keepa.com/api-docs/
+
+RENTAL MARKET SIGNALS
+
+Vast and Clore are particularly important because rental-market prices
+make it possible to compare the same physical GPU across workloads.
+
+For a 4090:
+
+AI rental yield
+vs
+QUBIC yield
+vs
+best PoW yield
+vs
+resale/depreciation
+
+Define:
+
+BestUse(asset,t) =3D max(Y_AI, Y_QUBIC, Y_PoW, Y_render, ...)
+
+Vast:
+https://vast.ai/
+
+Clore:
+https://docs.clore.ai/developers/cli-sdk
+
+SALAD AS A FLOOR
+
+As of September 2026 Salad's lowest-priority GPU pricing included approxima=
+tely:
+RTX 3080 =E2=80=94 $0.060/GPU-hour
+RTX 3090 =E2=80=94 $0.090/GPU-hour
+RTX 4090 =E2=80=94 $0.160/GPU-hour
+RTX 5090 =E2=80=94 $0.250/GPU-hour
+
+This is useful as a visible interruptible-compute floor.
+
+Source:
+https://blog.salad.com/saladcloud-price-changes-september-2026/
+
+QUBIC AS A KEY CROSSOVER ASSET
+
+Qubic is especially interesting because it bridges mining and
+general-purpose compute.
+
+Current Qubic/QLI support includes:
+- modern Ryzen CPUs
+- Threadripper
+- EPYC
+- CUDA GPUs
+- AMD GPUs
+- AVX2 / AVX512 CPU paths
+
+A 9950X is simultaneously:
+QUBIC miner
+XMR miner
+server
+compile machine
+CPU cloud capacity
+AI inference CPU
+gaming/workstation CPU
+resalable consumer electronics
+
+This is exactly the workload optionality POW should quantify.
+
+Sources:
+https://qubic.org/academy/mining/module-1/lesson-2
+https://github.com/qubic-li/client
+https://qubic.org/blog-detail/qubic-ant-colony-mining-live-epoch-228
+
+POWER AS A MARKET
+
+Every compute workload should be converted into:
+
+ComputeRevenuePerMWh
+
+Then compare directly against electricity.
+
+Machine runs where:
+RevenuePerMWh > power price + overhead
+
+This lets POW join compute to energy markets and eventually identify
+geographic arbitrage.
+
+CANONICAL COMPUTE ASSET SCHEMA
+
+asset_id
+manufacturer
+model
+variant
+asset_class
+release_date
+
+# physical
+watts_stock
+watts_optimized
+cores
+threads
+ram
+vram
+memory_bandwidth
+instructions
+hash_algorithms
+cooling
+weight
+voltage
+
+# prices
+new_price
+used_price
+refurbished_price
+liquidation_price
+price_source_count
+
+# market structure
+active_inventory
+sold_7d
+sold_30d
+median_days_to_sale
+bid_ask_proxy
+price_dispersion
+
+# workload yields
+btc_usd_day
+qubic_usd_day
+xmr_usd_day
+best_pow_usd_day
+ai_rental_usd_day
+other_compute_usd_day
+
+# electricity
+kwh_day
+break_even_power_pow
+break_even_power_ai
+best_workload
+
+# capital
+gross_yield
+net_yield
+payback_days
+depreciation_30d
+depreciation_1y
+residual_value
+
+# optionality
+supported_workloads
+workload_concentration
+switching_cost
+optionality_score
+
+timestamp
+
+APPEND EVERY OBSERVATION. NEVER OVERWRITE HISTORY.
+
+CORE POW DERIVED METRICS
+
+1. Compute Asset Yield (CAY)
+
+CAY =3D
+annualized best-use net cashflow
+/
+asset acquisition price
+
+A cap rate for compute hardware.
+
+2. PoW Acquisition Spread (PAS)
+
+For Qubic:
+
+PAS =3D
+QUBIC mined per $
+/
+QUBIC bought spot per $
+
+PAS > 1 =3D> mining acquires QUBIC cheaper than spot.
+PAS < 1 =3D> buying QUBIC dominates.
+
+3. Compute Optionality (CO)
+
+Value machines that can switch across multiple economically
+independent workloads.
+
+CO =E2=89=88 sum(P_i =C3=97 Y_i) - switching costs
+
+4. Liquidation-adjusted yield (LRY)
+
+LRY =3D
+Revenue
+- Energy
+- Depreciation
+
+This prevents false =E2=80=9Cprofitability=E2=80=9D from ignoring collapsin=
+g hardware
+resale value.
+
+5. Buy-vs-Rent spread
+
+BR =3D
+annualized rental-equivalent revenue
+/
+hardware purchase price
+
+Highlights hardware cheap relative to cloud pricing.
+
+6. Mining Premium
+
+MP =3D
+hardware market price
+-
+fair value from non-mining uses
+
+Useful for identifying speculative hardware bubbles.
+
+7. Scarcity Index
+
+Combine:
+inventory =E2=86=93
+price =E2=86=91
+time-to-sale =E2=86=93
+rental price =E2=86=91
+utilization =E2=86=91
+
+into one hardware scarcity signal.
+
+HISTORICAL RESEARCH VALUE
+
+The critical moat is preserving WHY hardware is economically valuable
+through time.
+
+Example:
+RTX 3090
+=E2=86=92 launch/gaming demand
+=E2=86=92 Ethereum mining boom
+=E2=86=92 price spike
+=E2=86=92 ETH profitability collapse
+=E2=86=92 Merge
+=E2=86=92 used-GPU supply explosion
+=E2=86=92 AI boom
+=E2=86=92 24GB VRAM becomes valuable again
+
+A normal pricing DB stores:
+RTX 3090 =3D $X
+
+POW should store:
+the economic state and best use of the asset at every point in time.
+
+That is much harder to reconstruct retrospectively.
+
+FIVE COLLECTORS TO BUILD NOW
+
+1. PHYSICAL MARKET
+Sources:
+eBay
+Jawa
+Keepa
+Hashrate Index
+Compass
+Hashbranch
+
+Capture every observable CPU/GPU/ASIC price, listing, inventory and
+sale-state event.
+
+2. COMPUTE RENTAL MARKET
+Sources:
+Vast
+Clore
+Akash
+Golem
+Salad
+RunPod
+
+Capture lowest / median / spot / on-demand rate, availability and
+inventory by hardware model.
+
+3. WORK MARKET
+Sources:
+Minerstat
+MiningRigRentals
+Qubic/QLI
+Luxor
+
+Capture every hardware =E2=86=92 algorithm/workload =E2=86=92 yield relatio=
+nship.
+
+4. ENERGY MARKET
+Sources:
+EIA initially
+then wholesale grids, hosting offers, demand response
+
+Convert every workload into revenue/MWh.
+
+5. ASSET STATE COMPILER
+Hourly deterministic join producing:
+fair_value
+best_workload
+CAY
+PAS
+BR
+LRY
+scarcity
+optionality
+depreciation
+liquidity
+
+The first four collectors should remain dumb and immutable.
+The fifth is POW intelligence.
+
+FIRST ASSET BASKET
+
+Do not ingest everything initially.
+
+CPU
+- Ryzen 7950X
+- Ryzen 7950X3D
+- Ryzen 9950X
+- Ryzen 9950X3D
+- Threadripper 7970X
+- selected EPYC
+
+GPU
+- RTX 3090
+- RTX 4090
+- RTX 5090
+- A100 80GB
+- H100 PCIe
+- H100 SXM
+- H200
+- B200
+
+ASIC
+- Antminer S19 XP
+- S21
+- S21 Pro
+- S21 XP
+- S21 XP Hydro
+- current WhatsMiner equivalents
+- leading LTC/DOGE ASIC
+- selected home ASIC
+
+The four archetypes to obsessively track first:
+
+9950X =3D flexible CPU
+4090 =3D flexible GPU
+S21 XP =3D specialized PoW capital
+H100 =3D specialized AI capital
+
+PRODUCT / BUSINESS MODEL
+
+Do not start by becoming a mining-equipment retailer.
+
+Build the historical price/yield/liquidity graph first.
+
+Once POW can identify something like:
+
+=E2=80=9Cused 9950X at $310 has an implied X% productive yield while
+comparable machines trade around $400=E2=80=9D
+
+then commerce becomes a downstream output:
+
+- affiliate links
+- price alerts
+- acquisition alerts
+- brokerage
+- automated procurement
+- hosting recommendations
+- compute-routing software
+- eventually a marketplace
+
+This is far more defensible than starting as another mining shop.
+
+CORE DATA-GARDEN PRINCIPLE
+
+Raw data is not the moat.
+
+Unique transformation =C3=97 continuous collection =C3=97 time is the moat.
+
+POW should continuously transform fragmented compute, resale, workload
+and power telemetry into proprietary historical measurements of
+physical compute capital.
+
+END STATE
+
+POW is not a crypto-mining website.
+
+POW becomes:
+
+THE ECONOMIC GRAPH OF PHYSICAL COMPUTATION
+
+It tells you:
+- what hardware is worth
+- what it can do
+- what it should be doing now
+- where it should be located
+- whether you should buy, rent, mine, serve AI or sell
+- how scarce it is
+- how liquid it is
+- how its productive value is changing through time

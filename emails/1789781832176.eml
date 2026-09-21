@@ -1,0 +1,692 @@
+Received: from mail-yx2-x12.google.com (2607:f8b0:4864:41::12)
+        by cloudflare-email.net (cloudflare) id 9BR0JdjDeazV
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 01:37:11 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=PWp5zUmNSUuowKQVm2gnlAc1e1skP1zJPnYtHaFzeWrtymY7S3HiPOxo6A4pCxQzN/11sWw2t
+	iVEUL1wETJIMLGn0n38ESLyy3U37e8TaRCz5/WrEz8epTecE7j8AqhnUNgAtYe96PSz7AAdAqSQ
+	CEO6x96nt2C67z81e0n1dasCLCWvnYE/ntniqT9uIFzsBdfkPKXmB+GlEZgIdhShnt443YKxdc2
+	nieHTYZw0EXWDJu/4b+N7xHmmVQfHHaYJxdy47LYILZpanH5I80v6PVfKW3/nD/re+DzGX8DSKA
+	f1TYavNgeNQgnk+LCvuYW0xfuKtreOMCqB8QGq8VWhhA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789781831; x=1790386631; bh=jI8jht9L
+	J2to1EbAVPS012jIKq720LvUs2Gd3ih+nwU=; b=MKsAyyWlikpCrysEV//Of1pD10wQWzrWhF/
+	swwzchwqvOJfHv2CaInouYEskpc48XUdOl5SdKYdSjc+BDo2NABK3vkQlT0E4T6fzVe8umdLe5Y
+	LgEk+wsfi5mBTFegxdGNLPNGDmdStot+E71pcxaRcnYjC6FUUkZ+xMr9PAexPc4foqS9PWBecGL
+	Med5OZJ7e71Cd/1/LW3EzFiCIbaGcRlQTefveBe5R5Rb3BqiKd5a01eF9XPph47Rr2hfzgPKKVW
+	wWJmFdswR+PWxDZWODCvTvAxs11LyBZh/1dzi77J2WjvnCBijcLsWBZ+CtT7tNZR23wQjwN7DG+
+	Hb9YTrA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ArWGzE47;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x12.google.com) smtp.helo=mail-yx2-x12.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::12 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::12"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::12 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::12; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x12.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ArWGzE47;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x12.google.com) smtp.helo=mail-yx2-x12.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::12 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::12"
+X-CF-SpamH-Score: 1
+Received: by mail-yx2-x12.google.com with SMTP id 956f58d0204a3-66e4ab19127so1498606d50.1
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 18:37:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789781831; cv=none;
+        d=google.com; s=arc-20260327;
+        b=pNQVJ5foeVwYyeb8PtJMkblxTYcoR7KphBCKJrZODG1AbNX9r6lGxFCAGtWmKrEDzG
+         K+yS6HPnS1I1ocE1biXyPLklqd7T4o3S6coKEqT3W1LN/tYpqeabBtQWMrWJGMXPqRe1
+         /U+v5Cl1u6eXrMss06jIkSrcB6n9qCsLYg7zOTogh+TmpySvzFLS0g+2TZaCR5i+fVT+
+         9FxnwaoPimmWzziP6rm2B8bw7gd6nJ36yJ27QwC/GDPED7IB9mSPAV+XDaxrpMz9fIkc
+         937Vei32oPbtEFtkaRYVvMK1soK++1veelDqDvDlKwiKZ6zNzcOXeA5tVbmbkJL1FSAG
+         +nSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=jI8jht9LJ2to1EbAVPS012jIKq720LvUs2Gd3ih+nwU=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=JveO8gvOufFETaUMqb5yyXuCMHHR3QG7/Q98C0CYNMtX9FT9894oUNBz0+taLe5Oi0
+         TdrM4tXQuUjMdmdRlYMyxZwEvjpODCFqr6G3E0Nai/caGt8/U4OgfUM/is7ZnR5WHgw3
+         MJmo7YsuyyTYs8CP+GQHIGbJS8mMy66TnffmgTc88pO5Ukf9DUMI+q4KTzvdjgkFw9Oe
+         S0ApNEo5KhuV1/GogDWuJbXZ4gbyaoNwE22btuHN7or2VFuAP/D2h7+9P7HPamIA91LQ
+         mlqBKmZkAiWB8EjGxdHCJKTcb36DD51cv38aSZvhs9P2nz6LM1XbYT6CaJTVMquff+CB
+         LrLA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789781831; x=1790386631; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=jI8jht9LJ2to1EbAVPS012jIKq720LvUs2Gd3ih+nwU=;
+        b=ArWGzE47QqbHGcntkATwKQz+1SFUTeIlpEG6QoTUAd7Qq6JSAo8yhEefZiE44PJlhn
+         eFr2VLHzoJHHwEf8KbNDS9SKMmaYT0JCsLjA6g8epNSGpmONoWJaVIQap8haHWkJPQ6W
+         A0XpOtF0+bWlYb4+6tGQLjyrRC+JbLWRH57KJE0ncL1bQJYhUrMMUsAUMBmnFkJE47zU
+         yBDLSdBzYJIFy/WMZ/0nHGJCzBr3pRB1bDg7U90iKnGVGz6vHESuHa/aZOmIeG4/FsRv
+         hYFh8H9QlEGHOXZl/3X0RbzQJgOsVratS7n72fxKdh6KEZml9hXHg2QsdQv2/pBZRp63
+         sPsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789781831; x=1790386631;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=jI8jht9LJ2to1EbAVPS012jIKq720LvUs2Gd3ih+nwU=;
+        b=q4UgOGT2vcJuY7gDNSY+iRvSzAmfkwOjLxqzCWOFsSdS9M1QFiOBNcrhxe9am1QtOG
+         QlomAZcKU0N+Rxaxh6aT0xsDI71kmmnCiWAipko4lnpywd1LOkVOkTEagwWHMUbsCquO
+         ssnm64KBr6Vi4VlrSjKn4Wxu3tiseBjg8YdOHKCFEwXHW2EdOtYmaQthCTZ04QbsPz0d
+         OtUesIJcuYj8LxobwwTKeBSHdPfzilgVIf4whgab+nwX4/joZ6xe9N0Zrq3AQh8v7lJc
+         JvRWBclK9E1Pa+JpfyDSrLCyYC1HOGY87C6SFycI/2Od9PzqonEQ+MohuPIrnKyRosbt
+         Yq9Q==
+X-Gm-Message-State: AFuF++nvd5w8TRdrQ4blYAyALGSpW8mubAZrVx3+mzK5sUgx73yS0Wko
+	F/X3J8X9Jc0/MxSd2A6AS+UvDgfOQRptJQ14uLHNKmzI5uC35XyW3XW53qOJquT5oMBHS7xGCRP
+	nxqp7l5Rj7wHIDqyHpt87Nw4V3NMw/N526Q==
+X-Gm-Gg: AYBFou1bstYotZK5eEsjBLYhAWipyyZ/Vq5sukun5aoub12NKQ5LSzHX9nzkpOuBHN7
+	8zLox9IjHe5PhbPpxo0SF3tsY0/aGLcI5GJLsynZQwDeXNQtAlcwyxiNgEMuuQRkos8GG/FfwCy
+	HBBh5JEzQuf/q9eVjgA2hqCi+5NxsfKa/+gxw4xKWyfleGEIPX3whyLWMK41MIWlMIXJtYGHwib
+	etICjyzjMSRcwdP+pVkw+6g5ccibdz2mp+evVW5UzhoAZmGo9h5mMPM+mS4uCFChrUlLhJzu1hl
+	yX8O/5vL4QVvRrvTWhBwjt7gfNCl92dF92m0PagTdJzspSv2WB2K/pGHVAikiEXqldkE6omz4ij
+	U3Ct/BoBntrVdsiO5tc7hKpZlnXnUwEHWuoN3l1hb4cSRit+ITGkJlDH9rstn3dWY4DjocA5pUe
+	xdOZetzv4=
+X-Received: by 2002:a05:690c:389:b0:870:b039:9805 with SMTP id
+ 00721157ae682-89735c841f0mr27998927b3.19.1789781831013; Fri, 18 Sep 2026
+ 18:37:11 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 20:37:10 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 20:37:10 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 20:37:10 -0500
+X-Gm-Features: AcwNN1U911kT9VmBcc8FDnYmpV8NgWNp5MabDqGmhJBI_Vs7oRs0SnyVOFx-zVo
+Message-ID: <CAPdrGemuT6ztJLY_5HJu0_jQef3C3jpQXykqkyBcjfRnE=CZ5A@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D19_08=3A36_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000043588e065bcc0efe"
+
+--00000000000043588e065bcc0efe
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+STATE
+Checked prior SENT Roast.pet Viral Formats =E2=80=94 reports through 2026-0=
+9-19
+07:35 and excluded semantic repeats. This run searched fresh September
+TikTok/Shorts/Reels/meme reporting plus exploitable-meme structures. I
+rejected lookalike/DNA, documentary, flop-core, potential-maxxing, hangover
+aftermath, NPC, failure-commentary and other mechanisms already reported.
+
+   1.
+
+   PET THOUGHTS-ON-[PET] / CANONICAL POSE REDRAW
+   Current evidence/source: Know Your Meme=E2=80=99s September 2026 =E2=80=
+=9CThoughts On
+   Lanterns=E2=80=9D explainer:
+   https://trending.knowyourmeme.com/editorials/guides/what-is-the-thoughts=
+-on-lanterns-meme-the-viral-twitter-memes-based-on-the-green-lantern-show-e=
+xplained
+   Why viewers watch: one instantly recognizable composition gets
+   progressively more absurd as communities redraw/substitute characters wh=
+ile
+   preserving the pose.
+   Core mechanic: LOCK THE COMPOSITION; CHANGE THE CHARACTERS/WORLD.
+   Pet protagonist: establish one canonical photo/pose of the customer=E2=
+=80=99s
+   pet, then repeatedly redraw it as chef, football manager, medieval king,
+   office worker, RPG boss, etc., while keeping silhouette/composition
+   identical.
+   Best use: collectible card series, social clips, birthday card, T-shirt
+   drops.
+   15=E2=80=9345 sec template: 0=E2=80=933s original pet photo + =E2=80=9CT=
+houghts on Archie?=E2=80=9D;
+   3=E2=80=938s hard cut to Office Archie; 8=E2=80=9313s Medieval Archie; 1=
+3=E2=80=9318s Champions
+   League Archie; 18=E2=80=9323s final absurd universe; 23=E2=80=9327s retu=
+rn to untouched
+   original with same deadpan caption.
+   Hook/on-screen text: =E2=80=9CThoughts on Archie?=E2=80=9D / =E2=80=9CSa=
+me dog. Different
+   timeline.=E2=80=9D
+   Assets: one strong canonical pet photo, segmentation mask, pose/geometry
+   lock, 4 themed backgrounds/costumes, title card.
+   Complexity: MEDIUM.
+   Novelty: HIGH versus prior Roast.pet formats because the pet=E2=80=99s e=
+xact
+   pose becomes the reusable meme primitive.
+   Verdict: MAKE TEMPLATE NOW.
+   2.
+
+   THE PET PLUS-ONE / =E2=80=9CI=E2=80=99M WITH MAX=E2=80=9D
+   Current evidence/source: New Engen September TikTok tracker reports the
+   Jake Shane/Therapuss =E2=80=9CI=E2=80=99m With Max=E2=80=9D reveal forma=
+t actively climbing:
+   https://newengen.com/insights/september-tiktok-trends/
+   Why viewers watch: setup creates curiosity about who/what has completely
+   taken over the creator=E2=80=99s life; the reveal is instantly relatable=
+.
+   Core mechanic: REPEATED ABSENCE/OBSESSION EXPLAINED BY ONE REVEAL.
+   Pet protagonist: owner=E2=80=99s cancelled plans, late arrivals, camera =
+roll,
+   spending and sleep schedule all resolve to the same pet.
+   Best use: owner birthday card, partner gift, social clip.
+   15=E2=80=9345 sec: 0=E2=80=934s =E2=80=9CWhere have you been?=E2=80=9D; =
+4=E2=80=937s =E2=80=9CI=E2=80=99m with Archie.=E2=80=9D; 7=E2=80=9320s
+   rapid receipts: walk, sofa, food shop, 11,000 photos, ruined sleep; 20=
+=E2=80=9327s
+   Archie staring blankly; 27=E2=80=9332s =E2=80=9CHe has no idea who I am.=
+=E2=80=9D
+   Hook: =E2=80=9CEveryone keeps asking where I=E2=80=99ve been=E2=80=A6=E2=
+=80=9D
+   Assets: pet cutout, 4 customer photos, calendar/chat UI, receipt
+   overlays.
+   Complexity: LOW.
+   Novelty: MEDIUM-HIGH; differs from generic owner profiling because every
+   setup resolves to the pet as the permanent plus-one.
+   Verdict: MAKE TEMPLATE NOW.
+   3.
+
+   PET FACE-DANCE / EXPRESSION PERFORMANCE
+   Current evidence/source: Anijam=E2=80=99s September YouTube Shorts track=
+er says
+   face dancing surged again in late August/September via Miny Naranja and =
+is
+   crossing platforms: https://www.anijam.ai/blog/youtube-shorts-trends/
+   Why viewers watch: tiny changes in expression become the entire
+   performance, inviting replay and imitation.
+   Core mechanic: TURN A SEQUENCE OF MICRO-EXPRESSIONS INTO CHOREOGRAPHY.
+   Pet protagonist: animate 5=E2=80=937 authentic pet expressions=E2=80=94s=
+ide-eye, ears
+   back, food stare, guilty look, yawn, growl-face=E2=80=94as beat-synced =
+=E2=80=9Cmoves,=E2=80=9D
+   without needing human dance footage.
+   Best use: short social clip, reaction sticker pack, AR card.
+   15=E2=80=9330 sec: 0=E2=80=932s neutral pet + =E2=80=9CArchie has choreo=
+graphy=E2=80=9D; 2=E2=80=9315s
+   expression sequence snapped to percussion; 15=E2=80=9320s impossible fin=
+al
+   expression; 20=E2=80=9324s freeze-frame scorecard =E2=80=9CTechnique 2 /=
+ Attitude 99.=E2=80=9D
+   Hook: =E2=80=9CPOV: your dog thinks facial expressions count as choreogr=
+aphy.=E2=80=9D
+   Assets: 5 expression crops/frames or generated facial states, beat
+   markers, close-up background, scorecard.
+   Complexity: MEDIUM.
+   Novelty: MEDIUM-HIGH; expression-only choreography is distinct from the
+   earlier expression boss-fight/ranking treatment.
+   Verdict: TEST.
+   4.
+
+   PET PRIZED-POSSESSION OVERREACTION
+   Current evidence/source: Anijam September TikTok tracker describes the
+   viral =E2=80=9CMy American Girl Doll=E2=80=9D format: childhood-level ex=
+citement is reused
+   to reveal an ordinary adult prized possession:
+   https://www.anijam.ai/blog/tiktok-trends/
+   Why viewers watch: emotional intensity is wildly disproportionate to the
+   mundane reveal.
+   Core mechanic: MAXIMUM CEREMONY FOR MINIMUM OBJECT.
+   Pet protagonist: pet reacts as if receiving a life-changing award when
+   handed one disgusting tennis ball, stolen sock, empty yoghurt pot or sin=
+gle
+   treat.
+   Best use: birthday/social clip/product reveal.
+   15=E2=80=9325 sec: 0=E2=80=935s escalating =E2=80=9CI finally got it=E2=
+=80=9D; 5=E2=80=938s dramatic
+   covered-object reveal; 8=E2=80=9312s object =3D chewed tennis ball; 12=
+=E2=80=9320s pet
+   victory montage/confetti; 20=E2=80=9323s =E2=80=9CEstimated value: =C2=
+=A30.14.=E2=80=9D
+   Hook: =E2=80=9C[PET] has waited his entire life for this.=E2=80=9D
+   Assets: pet hero cutout, one known obsession object, pedestal/unboxing
+   graphic, confetti, fake valuation.
+   Complexity: LOW.
+   Novelty: HIGH implementation angle: personalize the supposedly priceless
+   object from customer lore rather than revealing the pet/product itself.
+   Verdict: MAKE TEMPLATE NOW.
+   5.
+
+   PET =E2=80=9CWHAT=E2=80=99S SO FUNNY?=E2=80=9D REACTION LAYER
+   Current evidence/source: September 17 GTA Speed meme reporting describes
+   IShowSpeed reacting with genuine confusion to edits of himself in GTA IV
+   loading screens; his baffled reaction became funnier than the underlying
+   parody: https://memedomain.net/meme/gta-speed/
+   Why viewers watch: a second layer of sincere confusion validates and
+   amplifies the first joke.
+   Core mechanic: MAKE THE SUBJECT WATCH ITS OWN RIDICULOUS MYTHOLOGY.
+   Pet protagonist: show a montage of generated =E2=80=9CArchie lore=E2=80=
+=9D on a
+   TV/tablet, then cut repeatedly to the same deadpan/confused pet reaction=
+ as
+   if it cannot understand why the family is laughing.
+   Best use: birthday reveal video, social clip, AR card.
+   15=E2=80=9335 sec: 0=E2=80=935s generated Archie-as-CEO image; 5=E2=80=
+=938s pet reaction; 8=E2=80=9313s
+   Archie wanted poster; 13=E2=80=9316s reaction; 16=E2=80=9321s Archie foo=
+tball legend;
+   21=E2=80=9324s reaction; 24=E2=80=9330s caption =E2=80=9CWhat is funny?=
+=E2=80=9D while owner laughter peaks.
+   Hook: =E2=80=9CShowing Archie his internet history.=E2=80=9D
+   Assets: 3 existing Roast.pet outputs, reaction shot/photo, TV frame,
+   subtitles/laughter bed.
+   Complexity: LOW.
+   Novelty: HIGH as a meta-format: it recycles OUTPUTS FROM OTHER FORMATS
+   and therefore compounds the content library.
+   Verdict: MAKE TEMPLATE NOW.
+   6.
+
+   PET MAIN-CHARACTER TRANSFORMATION =E2=80=94 ZERO ACHIEVEMENT
+   Current evidence/source: New Engen reports September=E2=80=99s =E2=80=9C=
+Nicole Kidman
+   Era=E2=80=9D as a main-character transformation/reveal format:
+   https://newengen.com/insights/september-tiktok-trends/
+   Why viewers watch: transformation ceremony creates anticipation; comedy
+   comes from attaching enormous status to something trivial.
+   Core mechanic: CINEMATIC STATUS UPGRADE AFTER A PATHETIC ACHIEVEMENT.
+   Pet protagonist: after catching one treat / sitting once / not barking
+   for 14 seconds, pet receives full celebrity treatment: paparazzi flashes=
+,
+   driver, velvet rope, sunglasses, security.
+   Best use: birthday, milestone card, social clip, T-shirt hero image.
+   15=E2=80=9330 sec: 0=E2=80=934s =E2=80=9CArchie sat FIRST TIME=E2=80=9D;=
+ 4=E2=80=938s black screen =E2=80=9CEverything
+   changed=E2=80=9D; 8=E2=80=9322s celebrity arrival montage; 22=E2=80=9327=
+s stat: =E2=80=9CCareer
+   achievements: 1 sit=E2=80=9D; 27=E2=80=9330s pet immediately ignores nex=
+t command.
+   Hook: =E2=80=9CAfter one successful sit, fame changed him.=E2=80=9D
+   Assets: one achievement fact, pet cutout, limo/red carpet/paparazzi
+   overlays, stat card.
+   Complexity: MEDIUM.
+   Novelty: MEDIUM-HIGH; unlike prior Celebrity Entitlement, this
+   implementation gives a precise transformation trigger and repeatable
+   before/after production grammar.
+   Verdict: TEST =E2=80=94 only keep if the transformation assets can be au=
+tomated
+   cheaply.
+   7.
+
+   PET BEDAZZLE ESCALATION / VISUAL OVER-UPGRADE
+   Current evidence/source: SocialPilot=E2=80=99s current September Reels t=
+racker
+   lists =E2=80=9CBedazzle Everything=E2=80=9D as an active Y2K rhinestone =
+before/after
+   format: https://www.socialpilot.co/blog/instagram-reels-trends
+   Why viewers watch: satisfying transformation plus escalating visual
+   excess.
+   Core mechanic: TAKE ONE BORING OBJECT AND UPGRADE IT FAR PAST REASON.
+   Pet protagonist: begin with the pet=E2=80=99s mundane possession=E2=80=
+=94bowl, cone,
+   lead, carrier, chewed toy=E2=80=94and transform it into a ludicrous luxu=
+ry artifact
+   bearing the pet=E2=80=99s name/face.
+   Best use: merch ideation, personalized physical product, social
+   before/after.
+   15=E2=80=9330 sec: 0=E2=80=933s =E2=80=9CArchie=E2=80=99s =C2=A33 bowl=
+=E2=80=9D; 3=E2=80=938s scan/assessment; 8=E2=80=9318s
+   transformation montage; 18=E2=80=9323s absurd luxury reveal; 23=E2=80=93=
+27s pet ignores it
+   and drinks from puddle/toilet/old bowl.
+   Hook: =E2=80=9CWe gave Archie the bowl he thinks he deserves.=E2=80=9D
+   Assets: photo of pet possession, pet name/portrait, upgrade layers,
+   final product mockup, contradiction ending.
+   Complexity: MEDIUM.
+   Novelty: HIGH because the product itself becomes personalized comedy
+   merchandise, not merely a pet portrait.
+   Verdict: TEST.
+   8.
+
+   PET ONE-IMAGE UNIVERSE / POSE EXPLOITABLE PACK
+   Current evidence/source: September=E2=80=99s =E2=80=9CThoughts On Lanter=
+ns=E2=80=9D meme has
+   spread by adapting one base walking image across unrelated franchises;
+   Sprout=E2=80=99s 2026 Gen-Z research also notes that successful brands m=
+ake formats
+   their own rather than mechanically chasing trends:
+   https://knowyourmeme.com/memes/thoughts-on-lanterns and
+   https://sproutsocial.com/insights/gen-z-social-media/
+   Why viewers watch: familiarity lowers decoding time while each new
+   substitution delivers a fresh recognition hit.
+   Core mechanic: ONE CUSTOMER PHOTO BECOMES A STANDARDIZED BLANK MEME
+   CANVAS.
+   Pet protagonist: on purchase, automatically create a reusable =E2=80=9CR=
+oast.pet
+   exploitable pack=E2=80=9D from the pet=E2=80=99s best funny pose: transp=
+arent PNG,
+   silhouette, line-art redraw, sticker, 3 expression variants and locked
+   composition. Future formats plug into this asset instead of regenerating
+   identity each time.
+   Best use: ALL social clips, stickers, T-shirts, cards, future repeat
+   orders.
+   15=E2=80=9345 sec demonstration: original pose =E2=86=92 silhouette =E2=
+=86=92 line-art =E2=86=92 office
+   universe =E2=86=92 fantasy universe =E2=86=92 sports universe =E2=86=92 =
+final grid =E2=80=9CChoose Archie=E2=80=99s
+   next timeline.=E2=80=9D
+   Hook: =E2=80=9CWe turned one stupid photo of your dog into a cinematic u=
+niverse.=E2=80=9D
+   Assets: one canonical photo; segmentation; identity/pose reference;
+   reusable render pack.
+   Complexity: MEDIUM initially / LOW thereafter.
+   Novelty: VERY HIGH strategically. This is not merely a single meme; it
+   is production infrastructure extracted from how exploitables propagate.
+   Verdict: MAKE TEMPLATE NOW.
+
+TOP 3 FORMATS TO TEMPLATE THIS HOUR
+
+   1. PET THOUGHTS-ON-[PET] / CANONICAL POSE REDRAW =E2=80=94 strongest pur=
+e
+   reusable visual format.
+   2. PET PRIZED-POSSESSION OVERREACTION =E2=80=94 cheapest high-specificit=
+y
+   personalized joke.
+   3. PET =E2=80=9CWHAT=E2=80=99S SO FUNNY?=E2=80=9D REACTION LAYER =E2=80=
+=94 can recycle every other
+   Roast.pet output into additional content.
+
+EASIEST TO AUTOMATE END-TO-END
+PET PRIZED-POSSESSION OVERREACTION. Required structured inputs: pet_name +
+absurdly_favorite_object + pet_photo. Everything else can be deterministic.
+
+HIGHEST SHAREABILITY POTENTIAL
+PET THOUGHTS-ON-[PET]. It produces a recognizable series and invites
+friends/family to request the next universe rather than consuming one
+finished joke.
+
+ONE WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+ONE-IMAGE UNIVERSE / EXPLOITABLE PACK. Treat the customer=E2=80=99s funnies=
+t pet
+photo as intellectual/comedic infrastructure: a stable pose and transparent
+asset that can be remixed forever across cards, shirts, stickers, videos
+and future trends. The purchase creates a persistent meme primitive, not
+just one personalized product.
+
+PRODUCT/SCHEMA DELTA
+Add: canonical_pose_photo, absurdly_prized_object, best_reaction_face,
+tiny_achievement, mundane_possession_to_luxurify. Generate and retain a
+canonical transparent cutout + pose-locked reference pack after the first
+order.
+
+QUALITY NOTE
+I deliberately rejected the fresh Celebrity Look-Alike trend despite strong
+September 17=E2=80=9318 evidence because it is semantically too close to th=
+e
+already-reported DNA/family-resemblance mechanic. That is exactly the kind
+of trend-level duplication this scanner should avoid.
+
+--00000000000043588e065bcc0efe
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA</p>
+<p>STATE<br>
+Checked prior SENT <code>Roast.pet Viral Formats =E2=80=94</code> reports t=
+hrough 2026-09-19 07:35 and excluded semantic repeats. This run searched fr=
+esh September TikTok/Shorts/Reels/meme reporting plus exploitable-meme stru=
+ctures. I rejected lookalike/DNA, documentary, flop-core, potential-maxxing=
+, hangover aftermath, NPC, failure-commentary and other mechanisms already =
+reported.</p>
+<ol>
+<li>
+<p>PET THOUGHTS-ON-[PET] / CANONICAL POSE REDRAW<br>
+Current evidence/source: Know Your Meme=E2=80=99s September 2026 =E2=80=9CT=
+houghts On Lanterns=E2=80=9D explainer: <a href=3D"https://trending.knowyou=
+rmeme.com/editorials/guides/what-is-the-thoughts-on-lanterns-meme-the-viral=
+-twitter-memes-based-on-the-green-lantern-show-explained">https://trending.=
+knowyourmeme.com/editorials/guides/what-is-the-thoughts-on-lanterns-meme-th=
+e-viral-twitter-memes-based-on-the-green-lantern-show-explained</a><br>
+Why viewers watch: one instantly recognizable composition gets progressivel=
+y more absurd as communities redraw/substitute characters while preserving =
+the pose.<br>
+Core mechanic: LOCK THE COMPOSITION; CHANGE THE CHARACTERS/WORLD.<br>
+Pet protagonist: establish one canonical photo/pose of the customer=E2=80=
+=99s pet, then repeatedly redraw it as chef, football manager, medieval kin=
+g, office worker, RPG boss, etc., while keeping silhouette/composition iden=
+tical.<br>
+Best use: collectible card series, social clips, birthday card, T-shirt dro=
+ps.<br>
+15=E2=80=9345 sec template: 0=E2=80=933s original pet photo + =E2=80=9CThou=
+ghts on Archie?=E2=80=9D; 3=E2=80=938s hard cut to Office Archie; 8=E2=80=
+=9313s Medieval Archie; 13=E2=80=9318s Champions League Archie; 18=E2=80=93=
+23s final absurd universe; 23=E2=80=9327s return to untouched original with=
+ same deadpan caption.<br>
+Hook/on-screen text: =E2=80=9CThoughts on Archie?=E2=80=9D / =E2=80=9CSame =
+dog. Different timeline.=E2=80=9D<br>
+Assets: one strong canonical pet photo, segmentation mask, pose/geometry lo=
+ck, 4 themed backgrounds/costumes, title card.<br>
+Complexity: MEDIUM.<br>
+Novelty: HIGH versus prior Roast.pet formats because the pet=E2=80=99s exac=
+t pose becomes the reusable meme primitive.<br>
+Verdict: MAKE TEMPLATE NOW.</p>
+</li>
+<li>
+<p>THE PET PLUS-ONE / =E2=80=9CI=E2=80=99M WITH MAX=E2=80=9D<br>
+Current evidence/source: New Engen September TikTok tracker reports the Jak=
+e Shane/Therapuss =E2=80=9CI=E2=80=99m With Max=E2=80=9D reveal format acti=
+vely climbing: <a href=3D"https://newengen.com/insights/september-tiktok-tr=
+ends/">https://newengen.com/insights/september-tiktok-trends/</a><br>
+Why viewers watch: setup creates curiosity about who/what has completely ta=
+ken over the creator=E2=80=99s life; the reveal is instantly relatable.<br>
+Core mechanic: REPEATED ABSENCE/OBSESSION EXPLAINED BY ONE REVEAL.<br>
+Pet protagonist: owner=E2=80=99s cancelled plans, late arrivals, camera rol=
+l, spending and sleep schedule all resolve to the same pet.<br>
+Best use: owner birthday card, partner gift, social clip.<br>
+15=E2=80=9345 sec: 0=E2=80=934s =E2=80=9CWhere have you been?=E2=80=9D; 4=
+=E2=80=937s =E2=80=9CI=E2=80=99m with Archie.=E2=80=9D; 7=E2=80=9320s rapid=
+ receipts: walk, sofa, food shop, 11,000 photos, ruined sleep; 20=E2=80=932=
+7s Archie staring blankly; 27=E2=80=9332s =E2=80=9CHe has no idea who I am.=
+=E2=80=9D<br>
+Hook: =E2=80=9CEveryone keeps asking where I=E2=80=99ve been=E2=80=A6=E2=80=
+=9D<br>
+Assets: pet cutout, 4 customer photos, calendar/chat UI, receipt overlays.<=
+br>
+Complexity: LOW.<br>
+Novelty: MEDIUM-HIGH; differs from generic owner profiling because every se=
+tup resolves to the pet as the permanent plus-one.<br>
+Verdict: MAKE TEMPLATE NOW.</p>
+</li>
+<li>
+<p>PET FACE-DANCE / EXPRESSION PERFORMANCE<br>
+Current evidence/source: Anijam=E2=80=99s September YouTube Shorts tracker =
+says face dancing surged again in late August/September via Miny Naranja an=
+d is crossing platforms: <a href=3D"https://www.anijam.ai/blog/youtube-shor=
+ts-trends/">https://www.anijam.ai/blog/youtube-shorts-trends/</a><br>
+Why viewers watch: tiny changes in expression become the entire performance=
+, inviting replay and imitation.<br>
+Core mechanic: TURN A SEQUENCE OF MICRO-EXPRESSIONS INTO CHOREOGRAPHY.<br>
+Pet protagonist: animate 5=E2=80=937 authentic pet expressions=E2=80=94side=
+-eye, ears back, food stare, guilty look, yawn, growl-face=E2=80=94as beat-=
+synced =E2=80=9Cmoves,=E2=80=9D without needing human dance footage.<br>
+Best use: short social clip, reaction sticker pack, AR card.<br>
+15=E2=80=9330 sec: 0=E2=80=932s neutral pet + =E2=80=9CArchie has choreogra=
+phy=E2=80=9D; 2=E2=80=9315s expression sequence snapped to percussion; 15=
+=E2=80=9320s impossible final expression; 20=E2=80=9324s freeze-frame score=
+card =E2=80=9CTechnique 2 / Attitude 99.=E2=80=9D<br>
+Hook: =E2=80=9CPOV: your dog thinks facial expressions count as choreograph=
+y.=E2=80=9D<br>
+Assets: 5 expression crops/frames or generated facial states, beat markers,=
+ close-up background, scorecard.<br>
+Complexity: MEDIUM.<br>
+Novelty: MEDIUM-HIGH; expression-only choreography is distinct from the ear=
+lier expression boss-fight/ranking treatment.<br>
+Verdict: TEST.</p>
+</li>
+<li>
+<p>PET PRIZED-POSSESSION OVERREACTION<br>
+Current evidence/source: Anijam September TikTok tracker describes the vira=
+l =E2=80=9CMy American Girl Doll=E2=80=9D format: childhood-level excitemen=
+t is reused to reveal an ordinary adult prized possession: <a href=3D"https=
+://www.anijam.ai/blog/tiktok-trends/">https://www.anijam.ai/blog/tiktok-tre=
+nds/</a><br>
+Why viewers watch: emotional intensity is wildly disproportionate to the mu=
+ndane reveal.<br>
+Core mechanic: MAXIMUM CEREMONY FOR MINIMUM OBJECT.<br>
+Pet protagonist: pet reacts as if receiving a life-changing award when hand=
+ed one disgusting tennis ball, stolen sock, empty yoghurt pot or single tre=
+at.<br>
+Best use: birthday/social clip/product reveal.<br>
+15=E2=80=9325 sec: 0=E2=80=935s escalating =E2=80=9CI finally got it=E2=80=
+=9D; 5=E2=80=938s dramatic covered-object reveal; 8=E2=80=9312s object =3D =
+chewed tennis ball; 12=E2=80=9320s pet victory montage/confetti; 20=E2=80=
+=9323s =E2=80=9CEstimated value: =C2=A30.14.=E2=80=9D<br>
+Hook: =E2=80=9C[PET] has waited his entire life for this.=E2=80=9D<br>
+Assets: pet hero cutout, one known obsession object, pedestal/unboxing grap=
+hic, confetti, fake valuation.<br>
+Complexity: LOW.<br>
+Novelty: HIGH implementation angle: personalize the supposedly priceless ob=
+ject from customer lore rather than revealing the pet/product itself.<br>
+Verdict: MAKE TEMPLATE NOW.</p>
+</li>
+<li>
+<p>PET =E2=80=9CWHAT=E2=80=99S SO FUNNY?=E2=80=9D REACTION LAYER<br>
+Current evidence/source: September 17 GTA Speed meme reporting describes IS=
+howSpeed reacting with genuine confusion to edits of himself in GTA IV load=
+ing screens; his baffled reaction became funnier than the underlying parody=
+: <a href=3D"https://memedomain.net/meme/gta-speed/">https://memedomain.net=
+/meme/gta-speed/</a><br>
+Why viewers watch: a second layer of sincere confusion validates and amplif=
+ies the first joke.<br>
+Core mechanic: MAKE THE SUBJECT WATCH ITS OWN RIDICULOUS MYTHOLOGY.<br>
+Pet protagonist: show a montage of generated =E2=80=9CArchie lore=E2=80=9D =
+on a TV/tablet, then cut repeatedly to the same deadpan/confused pet reacti=
+on as if it cannot understand why the family is laughing.<br>
+Best use: birthday reveal video, social clip, AR card.<br>
+15=E2=80=9335 sec: 0=E2=80=935s generated Archie-as-CEO image; 5=E2=80=938s=
+ pet reaction; 8=E2=80=9313s Archie wanted poster; 13=E2=80=9316s reaction;=
+ 16=E2=80=9321s Archie football legend; 21=E2=80=9324s reaction; 24=E2=80=
+=9330s caption =E2=80=9CWhat is funny?=E2=80=9D while owner laughter peaks.=
+<br>
+Hook: =E2=80=9CShowing Archie his internet history.=E2=80=9D<br>
+Assets: 3 existing Roast.pet outputs, reaction shot/photo, TV frame, subtit=
+les/laughter bed.<br>
+Complexity: LOW.<br>
+Novelty: HIGH as a meta-format: it recycles OUTPUTS FROM OTHER FORMATS and =
+therefore compounds the content library.<br>
+Verdict: MAKE TEMPLATE NOW.</p>
+</li>
+<li>
+<p>PET MAIN-CHARACTER TRANSFORMATION =E2=80=94 ZERO ACHIEVEMENT<br>
+Current evidence/source: New Engen reports September=E2=80=99s =E2=80=9CNic=
+ole Kidman Era=E2=80=9D as a main-character transformation/reveal format: <=
+a href=3D"https://newengen.com/insights/september-tiktok-trends/">https://n=
+ewengen.com/insights/september-tiktok-trends/</a><br>
+Why viewers watch: transformation ceremony creates anticipation; comedy com=
+es from attaching enormous status to something trivial.<br>
+Core mechanic: CINEMATIC STATUS UPGRADE AFTER A PATHETIC ACHIEVEMENT.<br>
+Pet protagonist: after catching one treat / sitting once / not barking for =
+14 seconds, pet receives full celebrity treatment: paparazzi flashes, drive=
+r, velvet rope, sunglasses, security.<br>
+Best use: birthday, milestone card, social clip, T-shirt hero image.<br>
+15=E2=80=9330 sec: 0=E2=80=934s =E2=80=9CArchie sat FIRST TIME=E2=80=9D; 4=
+=E2=80=938s black screen =E2=80=9CEverything changed=E2=80=9D; 8=E2=80=9322=
+s celebrity arrival montage; 22=E2=80=9327s stat: =E2=80=9CCareer achieveme=
+nts: 1 sit=E2=80=9D; 27=E2=80=9330s pet immediately ignores next command.<b=
+r>
+Hook: =E2=80=9CAfter one successful sit, fame changed him.=E2=80=9D<br>
+Assets: one achievement fact, pet cutout, limo/red carpet/paparazzi overlay=
+s, stat card.<br>
+Complexity: MEDIUM.<br>
+Novelty: MEDIUM-HIGH; unlike prior Celebrity Entitlement, this implementati=
+on gives a precise transformation trigger and repeatable before/after produ=
+ction grammar.<br>
+Verdict: TEST =E2=80=94 only keep if the transformation assets can be autom=
+ated cheaply.</p>
+</li>
+<li>
+<p>PET BEDAZZLE ESCALATION / VISUAL OVER-UPGRADE<br>
+Current evidence/source: SocialPilot=E2=80=99s current September Reels trac=
+ker lists =E2=80=9CBedazzle Everything=E2=80=9D as an active Y2K rhinestone=
+ before/after format: <a href=3D"https://www.socialpilot.co/blog/instagram-=
+reels-trends">https://www.socialpilot.co/blog/instagram-reels-trends</a><br=
+>
+Why viewers watch: satisfying transformation plus escalating visual excess.=
+<br>
+Core mechanic: TAKE ONE BORING OBJECT AND UPGRADE IT FAR PAST REASON.<br>
+Pet protagonist: begin with the pet=E2=80=99s mundane possession=E2=80=94bo=
+wl, cone, lead, carrier, chewed toy=E2=80=94and transform it into a ludicro=
+us luxury artifact bearing the pet=E2=80=99s name/face.<br>
+Best use: merch ideation, personalized physical product, social before/afte=
+r.<br>
+15=E2=80=9330 sec: 0=E2=80=933s =E2=80=9CArchie=E2=80=99s =C2=A33 bowl=E2=
+=80=9D; 3=E2=80=938s scan/assessment; 8=E2=80=9318s transformation montage;=
+ 18=E2=80=9323s absurd luxury reveal; 23=E2=80=9327s pet ignores it and dri=
+nks from puddle/toilet/old bowl.<br>
+Hook: =E2=80=9CWe gave Archie the bowl he thinks he deserves.=E2=80=9D<br>
+Assets: photo of pet possession, pet name/portrait, upgrade layers, final p=
+roduct mockup, contradiction ending.<br>
+Complexity: MEDIUM.<br>
+Novelty: HIGH because the product itself becomes personalized comedy mercha=
+ndise, not merely a pet portrait.<br>
+Verdict: TEST.</p>
+</li>
+<li>
+<p>PET ONE-IMAGE UNIVERSE / POSE EXPLOITABLE PACK<br>
+Current evidence/source: September=E2=80=99s =E2=80=9CThoughts On Lanterns=
+=E2=80=9D meme has spread by adapting one base walking image across unrelat=
+ed franchises; Sprout=E2=80=99s 2026 Gen-Z research also notes that success=
+ful brands make formats their own rather than mechanically chasing trends: =
+<a href=3D"https://knowyourmeme.com/memes/thoughts-on-lanterns">https://kno=
+wyourmeme.com/memes/thoughts-on-lanterns</a> and <a href=3D"https://sprouts=
+ocial.com/insights/gen-z-social-media/">https://sproutsocial.com/insights/g=
+en-z-social-media/</a><br>
+Why viewers watch: familiarity lowers decoding time while each new substitu=
+tion delivers a fresh recognition hit.<br>
+Core mechanic: ONE CUSTOMER PHOTO BECOMES A STANDARDIZED BLANK MEME CANVAS.=
+<br>
+Pet protagonist: on purchase, automatically create a reusable =E2=80=9CRoas=
+t.pet exploitable pack=E2=80=9D from the pet=E2=80=99s best funny pose: tra=
+nsparent PNG, silhouette, line-art redraw, sticker, 3 expression variants a=
+nd locked composition. Future formats plug into this asset instead of regen=
+erating identity each time.<br>
+Best use: ALL social clips, stickers, T-shirts, cards, future repeat orders=
+.<br>
+15=E2=80=9345 sec demonstration: original pose =E2=86=92 silhouette =E2=86=
+=92 line-art =E2=86=92 office universe =E2=86=92 fantasy universe =E2=86=92=
+ sports universe =E2=86=92 final grid =E2=80=9CChoose Archie=E2=80=99s next=
+ timeline.=E2=80=9D<br>
+Hook: =E2=80=9CWe turned one stupid photo of your dog into a cinematic univ=
+erse.=E2=80=9D<br>
+Assets: one canonical photo; segmentation; identity/pose reference; reusabl=
+e render pack.<br>
+Complexity: MEDIUM initially / LOW thereafter.<br>
+Novelty: VERY HIGH strategically. This is not merely a single meme; it is p=
+roduction infrastructure extracted from how exploitables propagate.<br>
+Verdict: MAKE TEMPLATE NOW.</p>
+</li>
+</ol>
+<p>TOP 3 FORMATS TO TEMPLATE THIS HOUR</p>
+<ol>
+<li>PET THOUGHTS-ON-[PET] / CANONICAL POSE REDRAW =E2=80=94 strongest pure =
+reusable visual format.</li>
+<li>PET PRIZED-POSSESSION OVERREACTION =E2=80=94 cheapest high-specificity =
+personalized joke.</li>
+<li>PET =E2=80=9CWHAT=E2=80=99S SO FUNNY?=E2=80=9D REACTION LAYER =E2=80=94=
+ can recycle every other Roast.pet output into additional content.</li>
+</ol>
+<p>EASIEST TO AUTOMATE END-TO-END<br>
+PET PRIZED-POSSESSION OVERREACTION. Required structured inputs: pet_name + =
+absurdly_favorite_object + pet_photo. Everything else can be deterministic.=
+</p>
+<p>HIGHEST SHAREABILITY POTENTIAL<br>
+PET THOUGHTS-ON-[PET]. It produces a recognizable series and invites friend=
+s/family to request the next universe rather than consuming one finished jo=
+ke.</p>
+<p>ONE WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING<br>
+ONE-IMAGE UNIVERSE / EXPLOITABLE PACK. Treat the customer=E2=80=99s funnies=
+t pet photo as intellectual/comedic infrastructure: a stable pose and trans=
+parent asset that can be remixed forever across cards, shirts, stickers, vi=
+deos and future trends. The purchase creates a persistent meme primitive, n=
+ot just one personalized product.</p>
+<p>PRODUCT/SCHEMA DELTA<br>
+Add: <code>canonical_pose_photo</code>, <code>absurdly_prized_object</code>=
+, <code>best_reaction_face</code>, <code>tiny_achievement</code>, <code>mun=
+dane_possession_to_luxurify</code>. Generate and retain a canonical transpa=
+rent cutout + pose-locked reference pack after the first order.</p>
+<p>QUALITY NOTE<br>
+I deliberately rejected the fresh Celebrity Look-Alike trend despite strong=
+ September 17=E2=80=9318 evidence because it is semantically too close to t=
+he already-reported DNA/family-resemblance mechanic. That is exactly the ki=
+nd of trend-level duplication this scanner should avoid.</p>
+
+--00000000000043588e065bcc0efe--

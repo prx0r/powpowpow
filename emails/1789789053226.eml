@@ -1,0 +1,682 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id QrS3DOr4TgLR
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 03:37:32 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=XzcxQxslbuLe5tdMwoySdX2GOVtp1O20lIuQdyL5u7H7uuSDE+k7aLqOHWaWd/SuwNS4HpxPs
+	Po6+bsTJamr8wdZ9pYrMA+j0U1F2hvqvvV8CohLFCVoqcVvAZAvjEHgYQu9omX5ik0n9GA7EwHo
+	ipTJSRdIV2/hWHOEuTSR33dKnz9XCd3H8nXe/Eb3FURKBI7a4NBOvjLS+FTETwLgIHBgb1OhVI2
+	hi3FPHHL6Zw+8Cz6bkV6y6uSCAyiOO7GU2D5DZ4YDdmP3dYwvDGtFs1fKe/mEZeHnzDfXxMdyWE
+	2Cs3P6cfRm1Rb3NoDVzv6LrTGAS9e4yRANf7HLRbOYFQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789789053; x=1790393853; bh=W4T4uAoa
+	G3XhRRuQ6d1BMaLcPwZArT8twop58+ydRQY=; b=M1CYD2PRVjCBujFS5lJYd7IzOWhC17yRsmr
+	fIHoUsdMOCTF3GOAuuYML8AvQLdcjNd9ZR4dKgPwzqj38+D9YT743ToIU3psEQLrXU4O/N7q7Oi
+	5DAgP/q5nMf9o6VZbvjjsyVuW1vET8JRcaHb0/yd7KQXGnIcdxMP8nLLoBJaJgjJ/6WC8ZlA6Eu
+	upIYb508pDvggkVXoxN1DuuU7hCrrx1x+h6uqHz55XdBRJoxNsB7axtyf1KhMfC+XbLHnvp/51t
+	E6HftQzCodIDh5tDvpN2P8X5gUpbcYOuME5HE3BpfyZRRXj+J4jeCFLDVhSrg0u7+EzRd/8jbkK
+	/9Y2m5Q==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=h0hZJdLJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=h0hZJdLJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4ab22370so1137238d50.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 20:37:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789789052; cv=none;
+        d=google.com; s=arc-20260327;
+        b=BsolewPbKWfvFCzgQkmwF9cM2U6OCTj5vtC3faYIhv1OgZ2tc/Upqc2npnWH2zelx2
+         17zcSOxThruxGN/j94cgRrmLQ98RWIYpq+BhDYUXnkR+TvCWCDZOD4/Vtsh0C/+cH5eE
+         9wEFF/Shuixa//mitpc0PMMACqR0IXZB9bEJtF32H+vpWMrMeeJMNPhqFGHzIUrnpzqU
+         P1QiGVoJrnLo5CSHgq3HzoqDAU4LcE1FQk44q/o/3FsY4TxAo0zkaDv1imqR7Y4w8wAm
+         EIY0SL3mWAsJ5I9bWwlaeg8lzfQ+6fMcjJnLnPVMkJ2tpbkbV6nQIP0UoMjuG2gcs50B
+         FtqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=W4T4uAoaG3XhRRuQ6d1BMaLcPwZArT8twop58+ydRQY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=ai7IEH9j8C3u/YqUWkiUnfvqsygmtvJqkQD9ra7Gm+1wVxdkJ/iCScAMlB9LJjkp6D
+         UTE4EG9C3YR8PNBLIL2jNnSz5XzqODMUW2XmpDA+BXYOWYWUPmRv0zhB2Wnd4l3wvtzo
+         EyPZ8bi5KHZ2EMp41xIoqRr/jDFtMIXWM+hkuWqu0jTDHMjc2n51ojVfb1qsd9RwLp4Q
+         kKOcJw7rNkJwiiao4WsltZ3ONpPrHNkAmw2bTwg3tBr5R7pKjYGxBO9dbcaja8pBdwUb
+         CekmM4ZwS9BS/iE5182r/UTSXyX2YW07Hm6BRbpbdd3zGfluksxptiL0j0sN/XLfrfYM
+         5M1w==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789789052; x=1790393852; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=W4T4uAoaG3XhRRuQ6d1BMaLcPwZArT8twop58+ydRQY=;
+        b=h0hZJdLJn3W5J084empBw8CbNxtB0LI1c6uwC8JVvzHw3FOfX3V7E6KKzPuCp1QtsE
+         nf++ssUWm6QKFEMA9c2E46GChOj7EDURr71Aw8ExWq4AOE6FWF/s/4unc3NJH+eBvzf/
+         uLe0iIqyF1ZBNbgYUOoezVZbHKghvVofjZJOfLXgJqY4/YBWoVbPsjDl72A0ug8LI2t1
+         6LauDikZVqrzz7JijMuDBEuo0/ISsAbmhTT8uhsEqag7Ut6Bjw/QImfCOZ6UXytnkmvu
+         J5c9IzBJ5h1Dgf47KUgy/SEAdCWQ2xVVzkd+gMqJBhPynQ1JHVRcjEGwEbcof0NADUM8
+         AjuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789789052; x=1790393852;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=W4T4uAoaG3XhRRuQ6d1BMaLcPwZArT8twop58+ydRQY=;
+        b=0IU1EBHeQVNaXYsn3kmhCbyjunQ9chvGtM3dMKPK7dfPnFOLJbORkEnvOQx83iZHC6
+         Eyrwrh2qxdljOSgknWEBeXD3JU5FfIKmbtTZLzOxFEXMHkx//7lcgDJOp2nWxsS+oQ28
+         41OJZ/SVECuheTmG9vow5cTL0zNiOoAeCzBba3nY2PYAgqdGcRuTePFvEaagb6mqNz9Y
+         HGR67M72bjflUATBrAyId/6d+tYoNYwmjN88bHnhZLvASw2Zc/UEI74ytE92fW87X0C4
+         uSvj1ejZLirKctFEcCMmFh3JgGQDZPJEGD9bNC/iXpW6ZmB6ZhQdmT7L+uLEN8uPDJej
+         6tKQ==
+X-Gm-Message-State: AFuF++ndVPr6zSG33bboDuOMM+OQWoCy6x/GEbfmU9Y9CbW7DdHDp/E1
+	ML3KMDwc/61XFuZXwoNTGI6kCTp6MKncUN+0+73dGV5wlk+M0Fl1iTsmXFyV9v1eGRWHphOfXG5
+	vkTDp6Lj7w/qX3Lwms/OCle7XQ9bvyo2gaQ==
+X-Gm-Gg: AYBFou3+7ga3nPvWiY+pFr7MN7ELlnkpUVt1MfTgh8DEZUwFzT77m4k4Ji2PJM79S6Y
+	8+Q1OpChYnSomySx7J+ORqB0vugohTVOCeKecUOVgrlrmhwHRgARV6eZhj80rhAS1RHqid4YLdB
+	WLUjSmLcJeU7oVXoe0mbXeIOjUTk/Gs0i+/bo5mx1F7QEGgiQVHoFW/cVBgY47pR9bHdALJusSv
+	8f3Km8JSmqgrsxmKbJKMKG76kM7OXRlwDo0fV8t483CW2p7fIpaFyoDM1n0kCK0B9rXOkt7IFj4
+	lT4h6oIkxuZggxzdh42XTiXRlaFF7eROhraypY0PPn4W88xS3gdzrFJ8d9t2yzdImecaI1gyywr
+	l+5VpkRDYHw0huVZcpP7ujkAMy3pKiLO/v4ysggbbm4Oy1NIC77IU7A7vmXr724z0uERcSFoROg
+	==
+X-Received: by 2002:a05:690e:1502:b0:671:7b7f:abbb with SMTP id
+ 956f58d0204a3-6717fd908ccmr1246044d50.59.1789789052105; Fri, 18 Sep 2026
+ 20:37:32 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 22:37:30 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 22:37:30 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 22:37:30 -0500
+X-Gm-Features: AcwNN1Wewkeyhy89X4lMRRgW1bIiF02w_5whDU-EDxFgTCJ_8bHwe8PDc54JdvE
+Message-ID: <CAPdrGem0O1qEj42bVfmj=m9Uw=qRXU_7Bm4zxX6agePagSH+9w@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D19_10=3A36_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000ac7b59065bcdbc21"
+
+--000000000000ac7b59065bcdbc21
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+STATE
+Checked prior SENT Roast.pet Viral Formats =E2=80=94 reports through 2026-0=
+9-19
+09:38 and excluded semantic repeats. Fresh evidence checked across current
+TikTok/Instagram meme reporting, Know Your Meme, current creator-format
+trackers, and TikTok=E2=80=99s newly expanded interaction mechanics.
+
+   1.
+
+   PET FAMILY RESEMBLANCE / SPLIT-FACE DNA TEST =E2=80=94 MAKE TEMPLATE NOW
+   Current evidence: The Parent Split-Face / Family Resemblance format is
+   still spreading in mid-September. A Sep 8 tutorial approached 100K likes=
+ in
+   10 days; later variants expanded from parents to siblings/couples.
+   Sources:
+
+   https://trending.knowyourmeme.com/editorials/guides/whats-the-parent-spl=
+it-face-trend-the-viral-family-resemblance-tiktok-trend-explained
+   https://meme.com/memes/parent-split-face-family-resemblance-trend
+   Why viewers watch: instant visual comparison plus the irresistible
+   question =E2=80=9Cwhere did that face come from?=E2=80=9D
+   Core mechanic: align two half-faces so viewers judge resemblance at a
+   glance.
+   Pet protagonist: split the pet against owner, puppy photo vs adult pet,
+   littermate, or two household pets; then deliberately score inherited
+   NON-visual traits: =E2=80=9CMum=E2=80=99s eyes / Dad=E2=80=99s anxiety /=
+ Grandad=E2=80=99s commitment to
+   stealing food.=E2=80=9D
+   Best use: birthday card, adoption anniversary, social clip, family gift.
+   15=E2=80=9330 sec template: 0=E2=80=932s =E2=80=9CEveryone says Archie l=
+ooks like his dad=E2=80=9D; 2=E2=80=936s
+   half-face alignment; 6=E2=80=9312s 3 trait labels; 12=E2=80=9318s puppy/=
+adult split; 18=E2=80=9325s
+   final verdict =E2=80=9CFace: Mum. Criminality: Dad.=E2=80=9D
+   Hook: =E2=80=9CWe finally found out who Archie gets it from.=E2=80=9D
+   Assets: front-facing pet portrait, owner/other pet portrait, alignment
+   mask, monochrome preset, trait labels.
+   Complexity: LOW=E2=80=93MEDIUM.
+   Novelty: HIGH relative to prior lookalike-percentages because this is
+   intimate family resemblance, not archetype classification.
+   2.
+
+   PET GOLD-STAR / BAD-BOY SCORECARD =E2=80=94 MAKE TEMPLATE NOW
+   Current evidence: Gold Star Behaviour is active across TikTok/Instagram
+   in September, rewarding tiny ordinary wins with literal stars; current
+   reporting says the format spread rapidly in early September.
+   Sources:
+
+   https://theintelligent.us/trends/2026/gold-star-behaviour-trend-turns-ev=
+eryday-tasks-into-quiet-victories
+   https://startups.co.uk/news/social-media-trends-september/
+   Why viewers watch: recognisable micro-behaviours become collectible
+   achievements.
+   Core mechanic: visually award tiny actions with a repeated badge.
+   Pet protagonist: invert the wholesome mechanic: =E2=80=9CDidn=E2=80=99t =
+eat the postman
+   =E2=98=85=E2=80=9D, =E2=80=9COnly barked at 3 leaves =E2=98=85=E2=98=85=
+=E2=80=9D, =E2=80=9CReturned one sock =E2=98=85=E2=98=85=E2=98=85=E2=98=85=
+=E2=98=85=E2=80=9D.
+   Best use: card, fridge print, sticker sheet, social carousel.
+   15=E2=80=9325 sec: 0=E2=80=932s =E2=80=9CARCHIE=E2=80=99S GOLD STAR BEHA=
+VIOUR=E2=80=9D; 2=E2=80=9316s four incidents +
+   stars; 16=E2=80=9321s total score; 21=E2=80=9325s =E2=80=9CEmployee of t=
+he minute.=E2=80=9D
+   Hook: =E2=80=9CHe has been good for almost seven minutes.=E2=80=9D
+   Assets: star overlay, incident photos, scoring rules, scorecard
+   end-frame.
+   Complexity: LOW.
+   Novelty: MEDIUM-HIGH; unlike 10/10 Habits, this turns tiny real
+   incidents into accumulating visual currency.
+   3.
+
+   PET SIGHTING / LOCAL CRYPTID SERIES =E2=80=94 MAKE TEMPLATE NOW
+   Current evidence: September=E2=80=99s Cat-in-the-Hat hoax spread through=
+ eerie
+   AI =E2=80=9Csightings,=E2=80=9D fake local reports and even fake meet-an=
+d-greets; police
+   had to clarify sightings were fake.
+   Source:
+   https://startups.co.uk/news/social-media-trends-september/
+   Why viewers watch: mundane local geography + impossible recurring
+   character creates participatory lore.
+   Core mechanic: repeatedly place the same recognizable character into
+   increasingly implausible real-world sightings while presenting each as
+   local evidence.
+   Pet protagonist: =E2=80=9CARCHIE SIGHTING #004 =E2=80=94 Tesco car park,=
+ 03:14=E2=80=9D; pet
+   appears tiny in CCTV, doorbell cam, woodland trail cam, bus stop,
+   neighbour=E2=80=99s garden.
+   Best use: social series, Halloween card, AR scan, poster.
+   15=E2=80=9335 sec: fake CCTV cold open =E2=86=92 timestamp/location =E2=
+=86=92 zoom/circle =E2=86=92
+   witness caption =E2=86=92 second angle =E2=86=92 =E2=80=9CDO NOT APPROAC=
+H WITH CHICKEN.=E2=80=9D
+   Hook: =E2=80=9CAnother Archie sighting has been reported.=E2=80=9D
+   Assets: pet cutout/model, CCTV/trail-cam overlays, map/location cards,
+   timestamp generator, witness-text template.
+   Complexity: MEDIUM.
+   Novelty: HIGH; this is persistent cryptid/local-lore rather than prior
+   documentary/omen structures.
+   4.
+
+   PET =E2=80=9CYOU CAN=E2=80=99T DO THAT=E2=80=9D DELUSIONAL CONFIDENCE =
+=E2=80=94 TEST
+   Current evidence: =E2=80=9CYou can=E2=80=99t do that / of course I can=
+=E2=80=A6=E2=80=9D is an active
+   September creator/brand format built around exaggerated confidence and a=
+n
+   imaginary hater.
+   Source:
+   https://startups.co.uk/news/social-media-trends-september/
+   Why viewers watch: instant conflict resolved by ridiculous self-belief.
+   Core mechanic: imaginary objection =E2=86=92 deadpan overconfident comeb=
+ack =E2=86=92
+   evidence that confidence is undeserved.
+   Pet protagonist: =E2=80=9CYou can=E2=80=99t just occupy the entire sofa.=
+=E2=80=9D / =E2=80=9COf course I
+   can, you rent-paying loser.=E2=80=9D =E2=86=92 heroic sofa montage.
+   Best use: T-shirt, card, short clip.
+   15=E2=80=9320 sec: objection 0=E2=80=933s =E2=86=92 pet comeback 3=E2=80=
+=937s =E2=86=92 three receipts 7=E2=80=9316s =E2=86=92
+   title 16=E2=80=9320s =E2=80=9CPROPERTY OWNER.=E2=80=9D
+   Hook: =E2=80=9CYou can=E2=80=99t keep doing this.=E2=80=9D
+   Assets: two text styles, pet hero portrait, 2=E2=80=933 proof photos.
+   Complexity: LOW.
+   Novelty: MEDIUM-HIGH; strongest as a repeatable dialogue shell rather
+   than a one-off trend copy.
+   5.
+
+   PET COMMENT-SECTION COURT / AUDIENCE VERDICT =E2=80=94 MAKE TEMPLATE NOW
+   Current evidence: TikTok rolled out comment polls (up to five options),
+   voice comments up to 60s, nine-photo carousel comments and Live Photo
+   comments in September; TikTok says more than 1.7B comments are posted da=
+ily.
+   Sources:
+   https://metricool.com/tiktok-adds-new-comment-features/
+
+   https://www.globaldatinginsights.com/featured/tiktok-adds-voice-comments=
+-polls-and-richer-photo-replies/
+   Why viewers watch: the audience gets a formal role in deciding the joke
+   rather than merely reacting.
+   Core mechanic: present evidence, then force viewers to vote on a
+   ridiculous verdict.
+   Pet protagonist: =E2=80=9CArchie is accused of stealing the birthday cak=
+e.
+   Sentence?=E2=80=9D Poll: INNOCENT / 1 TREAT FINE / SOCK BAN / LIFE WITHO=
+UT PAROLE /
+   PROMOTE HIM.
+   Best use: social growth loop, birthday reveal, recurring series.
+   15=E2=80=9330 sec: charge =E2=86=92 evidence A/B/C =E2=86=92 pet mugshot=
+ =E2=86=92 poll CTA; next
+   episode opens with previous verdict.
+   Hook: =E2=80=9CThe jury is now in the comments.=E2=80=9D
+   Assets: charge card, evidence slots, mugshot, five-option verdict bank,
+   next-episode state.
+   Complexity: LOW=E2=80=93MEDIUM.
+   Novelty: HIGH implementation angle: TikTok=E2=80=99s fresh native poll/c=
+omment
+   primitives turn the roast into a serial audience game.
+   6.
+
+   PET ERA MACHINE / DECADE IDENTITY CAROUSEL =E2=80=94 TEST
+   Current evidence: AI =E2=80=9C80s version of me=E2=80=9D portrait transf=
+ormations spread
+   rapidly across Instagram/Facebook in early September, driven by nostalgi=
+a
+   and comparison.
+   Source:
+   https://www.tbsnews.net/offbeat/80s-are-back-time-through-ai-1537811
+   Why viewers watch: identity remains constant while cultural context
+   changes dramatically.
+   Core mechanic: same subject, same recognizable face/pose, successive
+   historical aesthetic transformations.
+   Pet protagonist: Archie 1986 mall portrait =E2=86=92 1996 school photo =
+=E2=86=92 2006
+   emo MySpace =E2=86=92 2016 influencer =E2=86=92 2026 criminal mugshot.
+   Best use: birthday card, milestone gift, social carousel, poster.
+   20=E2=80=9335 sec: current portrait =E2=86=92 rapid decade cards =E2=86=
+=92 one joke/stat per era
+   =E2=86=92 return to present unchanged.
+   Hook: =E2=80=9CArchie in every era would still be unemployed.=E2=80=9D
+   Assets: clean pet reference, 4=E2=80=935 era presets, period
+   typography/backgrounds, identity lock.
+   Complexity: MEDIUM.
+   Novelty: MEDIUM-HIGH; unlike Ancestral Lore, the joke is cultural-era
+   substitution, not fabricated genealogy.
+   7.
+
+   PET VOICE-COMMENT HOTLINE =E2=80=94 TEST
+   Current evidence: TikTok=E2=80=99s September rollout now supports voice =
+comments
+   up to 60 seconds, explicitly extending shared-audio/joke behavior into
+   comments.
+   Sources:
+
+   https://www.thedailystar.net/news/technology/news/tiktok-adds-voice-mess=
+ages-and-polls-comment-sections-4266991
+   https://metricool.com/tiktok-adds-new-comment-features/
+   Why viewers watch: comments can become performances and sequel material.
+   Core mechanic: solicit a constrained audience voice performance, then
+   promote the best responses into the next episode.
+   Pet protagonist: post Archie=E2=80=99s silent press-photo with =E2=80=9C=
+Leave a voice
+   note explaining why you think you deserve your sock back=E2=80=9D; next =
+clip
+   lip-syncs Archie to the funniest safe response or has Archie judge them.
+   Best use: recurring social series/community growth, not primary gift SKU=
+.
+   15=E2=80=9340 sec: pet accusation =E2=86=92 5-sec prompt =E2=86=92 monta=
+ge of selected voice
+   responses =E2=86=92 Archie score/reaction =E2=86=92 next challenge.
+   Hook: =E2=80=9CArchie is accepting appeals by voice note.=E2=80=9D
+   Assets: reusable prompt card, comment capture layout, lip-sync/reaction
+   layer, moderation queue.
+   Complexity: MEDIUM.
+   Novelty: HIGH because the newly launched interaction primitive becomes
+   the content engine.
+   8.
+
+   PET =E2=80=9CWEIRDLY PRETTY=E2=80=9D EVIDENCE FLIP =E2=80=94 TEST
+   Current evidence: September=E2=80=99s Weirdly Pretty Photos format has c=
+reators
+   resurfacing awkward/unplanned photos that unexpectedly look great; one
+   tracked top video exceeded 1.4M views in five days.
+   Source:
+   https://www.trendsbymasterhooks.com/articles/weirdly-pretty-photos-trend
+   Why viewers watch: visual contradiction=E2=80=94an objectively chaotic m=
+oment
+   somehow produced a great image.
+   Core mechanic: embarrassing context =E2=86=92 unexpectedly majestic stil=
+l =E2=86=92
+   context reintroduced as punchline.
+   Pet protagonist: =E2=80=9CPhoto that belongs in a gallery=E2=80=9D =E2=
+=86=92 gorgeous Archie
+   portrait =E2=86=92 reveal it was taken 0.4 seconds before he vomited on =
+the rug /
+   fell off the sofa / stole dinner.
+   Best use: photo card, print, social clip.
+   15=E2=80=9325 sec: hero portrait 0=E2=80=935s =E2=86=92 luxury-gallery t=
+reatment 5=E2=80=9310s =E2=86=92
+   wider/next-frame reveal 10=E2=80=9318s =E2=86=92 =E2=80=9CARTIST STATEME=
+NT: no thoughts=E2=80=9D 18=E2=80=9323s.
+   Hook: =E2=80=9CThe best photo ever taken of Archie has a problem.=E2=80=
+=9D
+   Assets: one unusually good candid + adjacent context photo/video,
+   gallery frame, caption template.
+   Complexity: LOW.
+   Novelty: HIGH versus prior Flop-Core: Flop-Core celebrates failures;
+   this specifically weaponizes the contrast between a beautiful still and =
+its
+   disastrous surrounding context.
+
+TOP 3 FORMATS TO TEMPLATE THIS HOUR
+
+   1. PET FAMILY RESEMBLANCE / SPLIT-FACE DNA TEST =E2=80=94 immediately
+   recognizable current mechanic + deeply personal data.
+   2. PET SIGHTING / LOCAL CRYPTID SERIES =E2=80=94 strongest original recu=
+rring
+   universe; one pet can generate dozens of episodes.
+   3. PET COMMENT-SECTION COURT / AUDIENCE VERDICT =E2=80=94 strongest grow=
+th-loop
+   implementation because every post produces the premise for the next one.
+
+EASIEST TO AUTOMATE END-TO-END
+PET GOLD-STAR / BAD-BOY SCORECARD. Inputs =3D 3=E2=80=935 pet facts/inciden=
+ts +
+photos; output =3D deterministic text, stars, score and end card. No
+difficult animation or likeness generation required.
+
+HIGHEST SHAREABILITY POTENTIAL
+PET FAMILY RESEMBLANCE / SPLIT-FACE DNA TEST. It naturally involves
+owner/family, creates an immediate visual judgment, and invites =E2=80=9Che
+actually DOES look like you=E2=80=9D sharing.
+
+WEIRD FORMAT NOBODY IN PERSONALIZED PET GIFTS APPEARS TO BE USING
+PET SIGHTING / LOCAL CRYPTID SERIES: turn a customer=E2=80=99s actual anima=
+l into a
+persistent neighborhood cryptid with numbered CCTV sightings, trail-cam
+evidence, warning posters and a live Roast.pet case file. A physical
+=E2=80=9CMISSING? NO =E2=80=94 SIGHTED.=E2=80=9D poster/card could QR-link =
+to the accumulating
+evidence archive.
+
+PRODUCT/ONBOARDING DELTA
+Add: owner_front_portrait, pet_front_portrait, tiny_good_behaviour,
+local_landmark, best_awkward_beautiful_photo, imaginary_rule_pet_breaks,
+audience_verdict_options. The important new direction is to design formats
+that generate NEXT content: polls, sightings and family comparisons create
+loops rather than a single personalized asset.
+
+--000000000000ac7b59065bcdbc21
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA</p>
+<p>STATE<br>
+Checked prior SENT <code>Roast.pet Viral Formats =E2=80=94</code> reports t=
+hrough 2026-09-19 09:38 and excluded semantic repeats. Fresh evidence check=
+ed across current TikTok/Instagram meme reporting, Know Your Meme, current =
+creator-format trackers, and TikTok=E2=80=99s newly expanded interaction me=
+chanics.</p>
+<ol>
+<li>
+<p>PET FAMILY RESEMBLANCE / SPLIT-FACE DNA TEST =E2=80=94 MAKE TEMPLATE NOW=
+<br>
+Current evidence: The Parent Split-Face / Family Resemblance format is stil=
+l spreading in mid-September. A Sep 8 tutorial approached 100K likes in 10 =
+days; later variants expanded from parents to siblings/couples.<br>
+Sources:<br>
+<a href=3D"https://trending.knowyourmeme.com/editorials/guides/whats-the-pa=
+rent-split-face-trend-the-viral-family-resemblance-tiktok-trend-explained">=
+https://trending.knowyourmeme.com/editorials/guides/whats-the-parent-split-=
+face-trend-the-viral-family-resemblance-tiktok-trend-explained</a><br>
+<a href=3D"https://meme.com/memes/parent-split-face-family-resemblance-tren=
+d">https://meme.com/memes/parent-split-face-family-resemblance-trend</a><br=
+>
+Why viewers watch: instant visual comparison plus the irresistible question=
+ =E2=80=9Cwhere did that face come from?=E2=80=9D<br>
+Core mechanic: align two half-faces so viewers judge resemblance at a glanc=
+e.<br>
+Pet protagonist: split the pet against owner, puppy photo vs adult pet, lit=
+termate, or two household pets; then deliberately score inherited NON-visua=
+l traits: =E2=80=9CMum=E2=80=99s eyes / Dad=E2=80=99s anxiety / Grandad=E2=
+=80=99s commitment to stealing food.=E2=80=9D<br>
+Best use: birthday card, adoption anniversary, social clip, family gift.<br=
+>
+15=E2=80=9330 sec template: 0=E2=80=932s =E2=80=9CEveryone says Archie look=
+s like his dad=E2=80=9D; 2=E2=80=936s half-face alignment; 6=E2=80=9312s 3 =
+trait labels; 12=E2=80=9318s puppy/adult split; 18=E2=80=9325s final verdic=
+t =E2=80=9CFace: Mum. Criminality: Dad.=E2=80=9D<br>
+Hook: =E2=80=9CWe finally found out who Archie gets it from.=E2=80=9D<br>
+Assets: front-facing pet portrait, owner/other pet portrait, alignment mask=
+, monochrome preset, trait labels.<br>
+Complexity: LOW=E2=80=93MEDIUM.<br>
+Novelty: HIGH relative to prior lookalike-percentages because this is intim=
+ate family resemblance, not archetype classification.</p>
+</li>
+<li>
+<p>PET GOLD-STAR / BAD-BOY SCORECARD =E2=80=94 MAKE TEMPLATE NOW<br>
+Current evidence: Gold Star Behaviour is active across TikTok/Instagram in =
+September, rewarding tiny ordinary wins with literal stars; current reporti=
+ng says the format spread rapidly in early September.<br>
+Sources:<br>
+<a href=3D"https://theintelligent.us/trends/2026/gold-star-behaviour-trend-=
+turns-everyday-tasks-into-quiet-victories">https://theintelligent.us/trends=
+/2026/gold-star-behaviour-trend-turns-everyday-tasks-into-quiet-victories</=
+a><br>
+<a href=3D"https://startups.co.uk/news/social-media-trends-september/">http=
+s://startups.co.uk/news/social-media-trends-september/</a><br>
+Why viewers watch: recognisable micro-behaviours become collectible achieve=
+ments.<br>
+Core mechanic: visually award tiny actions with a repeated badge.<br>
+Pet protagonist: invert the wholesome mechanic: =E2=80=9CDidn=E2=80=99t eat=
+ the postman =E2=98=85=E2=80=9D, =E2=80=9COnly barked at 3 leaves =E2=98=85=
+=E2=98=85=E2=80=9D, =E2=80=9CReturned one sock =E2=98=85=E2=98=85=E2=98=85=
+=E2=98=85=E2=98=85=E2=80=9D.<br>
+Best use: card, fridge print, sticker sheet, social carousel.<br>
+15=E2=80=9325 sec: 0=E2=80=932s =E2=80=9CARCHIE=E2=80=99S GOLD STAR BEHAVIO=
+UR=E2=80=9D; 2=E2=80=9316s four incidents + stars; 16=E2=80=9321s total sco=
+re; 21=E2=80=9325s =E2=80=9CEmployee of the minute.=E2=80=9D<br>
+Hook: =E2=80=9CHe has been good for almost seven minutes.=E2=80=9D<br>
+Assets: star overlay, incident photos, scoring rules, scorecard end-frame.<=
+br>
+Complexity: LOW.<br>
+Novelty: MEDIUM-HIGH; unlike 10/10 Habits, this turns tiny real incidents i=
+nto accumulating visual currency.</p>
+</li>
+<li>
+<p>PET SIGHTING / LOCAL CRYPTID SERIES =E2=80=94 MAKE TEMPLATE NOW<br>
+Current evidence: September=E2=80=99s Cat-in-the-Hat hoax spread through ee=
+rie AI =E2=80=9Csightings,=E2=80=9D fake local reports and even fake meet-a=
+nd-greets; police had to clarify sightings were fake.<br>
+Source:<br>
+<a href=3D"https://startups.co.uk/news/social-media-trends-september/">http=
+s://startups.co.uk/news/social-media-trends-september/</a><br>
+Why viewers watch: mundane local geography + impossible recurring character=
+ creates participatory lore.<br>
+Core mechanic: repeatedly place the same recognizable character into increa=
+singly implausible real-world sightings while presenting each as local evid=
+ence.<br>
+Pet protagonist: =E2=80=9CARCHIE SIGHTING #004 =E2=80=94 Tesco car park, 03=
+:14=E2=80=9D; pet appears tiny in CCTV, doorbell cam, woodland trail cam, b=
+us stop, neighbour=E2=80=99s garden.<br>
+Best use: social series, Halloween card, AR scan, poster.<br>
+15=E2=80=9335 sec: fake CCTV cold open =E2=86=92 timestamp/location =E2=86=
+=92 zoom/circle =E2=86=92 witness caption =E2=86=92 second angle =E2=86=92 =
+=E2=80=9CDO NOT APPROACH WITH CHICKEN.=E2=80=9D<br>
+Hook: =E2=80=9CAnother Archie sighting has been reported.=E2=80=9D<br>
+Assets: pet cutout/model, CCTV/trail-cam overlays, map/location cards, time=
+stamp generator, witness-text template.<br>
+Complexity: MEDIUM.<br>
+Novelty: HIGH; this is persistent cryptid/local-lore rather than prior docu=
+mentary/omen structures.</p>
+</li>
+<li>
+<p>PET =E2=80=9CYOU CAN=E2=80=99T DO THAT=E2=80=9D DELUSIONAL CONFIDENCE =
+=E2=80=94 TEST<br>
+Current evidence: =E2=80=9CYou can=E2=80=99t do that / of course I can=E2=
+=80=A6=E2=80=9D is an active September creator/brand format built around ex=
+aggerated confidence and an imaginary hater.<br>
+Source:<br>
+<a href=3D"https://startups.co.uk/news/social-media-trends-september/">http=
+s://startups.co.uk/news/social-media-trends-september/</a><br>
+Why viewers watch: instant conflict resolved by ridiculous self-belief.<br>
+Core mechanic: imaginary objection =E2=86=92 deadpan overconfident comeback=
+ =E2=86=92 evidence that confidence is undeserved.<br>
+Pet protagonist: =E2=80=9CYou can=E2=80=99t just occupy the entire sofa.=E2=
+=80=9D / =E2=80=9COf course I can, you rent-paying loser.=E2=80=9D =E2=86=
+=92 heroic sofa montage.<br>
+Best use: T-shirt, card, short clip.<br>
+15=E2=80=9320 sec: objection 0=E2=80=933s =E2=86=92 pet comeback 3=E2=80=93=
+7s =E2=86=92 three receipts 7=E2=80=9316s =E2=86=92 title 16=E2=80=9320s =
+=E2=80=9CPROPERTY OWNER.=E2=80=9D<br>
+Hook: =E2=80=9CYou can=E2=80=99t keep doing this.=E2=80=9D<br>
+Assets: two text styles, pet hero portrait, 2=E2=80=933 proof photos.<br>
+Complexity: LOW.<br>
+Novelty: MEDIUM-HIGH; strongest as a repeatable dialogue shell rather than =
+a one-off trend copy.</p>
+</li>
+<li>
+<p>PET COMMENT-SECTION COURT / AUDIENCE VERDICT =E2=80=94 MAKE TEMPLATE NOW=
+<br>
+Current evidence: TikTok rolled out comment polls (up to five options), voi=
+ce comments up to 60s, nine-photo carousel comments and Live Photo comments=
+ in September; TikTok says more than 1.7B comments are posted daily.<br>
+Sources:<br>
+<a href=3D"https://metricool.com/tiktok-adds-new-comment-features/">https:/=
+/metricool.com/tiktok-adds-new-comment-features/</a><br>
+<a href=3D"https://www.globaldatinginsights.com/featured/tiktok-adds-voice-=
+comments-polls-and-richer-photo-replies/">https://www.globaldatinginsights.=
+com/featured/tiktok-adds-voice-comments-polls-and-richer-photo-replies/</a>=
+<br>
+Why viewers watch: the audience gets a formal role in deciding the joke rat=
+her than merely reacting.<br>
+Core mechanic: present evidence, then force viewers to vote on a ridiculous=
+ verdict.<br>
+Pet protagonist: =E2=80=9CArchie is accused of stealing the birthday cake. =
+Sentence?=E2=80=9D Poll: INNOCENT / 1 TREAT FINE / SOCK BAN / LIFE WITHOUT =
+PAROLE / PROMOTE HIM.<br>
+Best use: social growth loop, birthday reveal, recurring series.<br>
+15=E2=80=9330 sec: charge =E2=86=92 evidence A/B/C =E2=86=92 pet mugshot =
+=E2=86=92 poll CTA; next episode opens with previous verdict.<br>
+Hook: =E2=80=9CThe jury is now in the comments.=E2=80=9D<br>
+Assets: charge card, evidence slots, mugshot, five-option verdict bank, nex=
+t-episode state.<br>
+Complexity: LOW=E2=80=93MEDIUM.<br>
+Novelty: HIGH implementation angle: TikTok=E2=80=99s fresh native poll/comm=
+ent primitives turn the roast into a serial audience game.</p>
+</li>
+<li>
+<p>PET ERA MACHINE / DECADE IDENTITY CAROUSEL =E2=80=94 TEST<br>
+Current evidence: AI =E2=80=9C80s version of me=E2=80=9D portrait transform=
+ations spread rapidly across Instagram/Facebook in early September, driven =
+by nostalgia and comparison.<br>
+Source:<br>
+<a href=3D"https://www.tbsnews.net/offbeat/80s-are-back-time-through-ai-153=
+7811">https://www.tbsnews.net/offbeat/80s-are-back-time-through-ai-1537811<=
+/a><br>
+Why viewers watch: identity remains constant while cultural context changes=
+ dramatically.<br>
+Core mechanic: same subject, same recognizable face/pose, successive histor=
+ical aesthetic transformations.<br>
+Pet protagonist: Archie 1986 mall portrait =E2=86=92 1996 school photo =E2=
+=86=92 2006 emo MySpace =E2=86=92 2016 influencer =E2=86=92 2026 criminal m=
+ugshot.<br>
+Best use: birthday card, milestone gift, social carousel, poster.<br>
+20=E2=80=9335 sec: current portrait =E2=86=92 rapid decade cards =E2=86=92 =
+one joke/stat per era =E2=86=92 return to present unchanged.<br>
+Hook: =E2=80=9CArchie in every era would still be unemployed.=E2=80=9D<br>
+Assets: clean pet reference, 4=E2=80=935 era presets, period typography/bac=
+kgrounds, identity lock.<br>
+Complexity: MEDIUM.<br>
+Novelty: MEDIUM-HIGH; unlike Ancestral Lore, the joke is cultural-era subst=
+itution, not fabricated genealogy.</p>
+</li>
+<li>
+<p>PET VOICE-COMMENT HOTLINE =E2=80=94 TEST<br>
+Current evidence: TikTok=E2=80=99s September rollout now supports voice com=
+ments up to 60 seconds, explicitly extending shared-audio/joke behavior int=
+o comments.<br>
+Sources:<br>
+<a href=3D"https://www.thedailystar.net/news/technology/news/tiktok-adds-vo=
+ice-messages-and-polls-comment-sections-4266991">https://www.thedailystar.n=
+et/news/technology/news/tiktok-adds-voice-messages-and-polls-comment-sectio=
+ns-4266991</a><br>
+<a href=3D"https://metricool.com/tiktok-adds-new-comment-features/">https:/=
+/metricool.com/tiktok-adds-new-comment-features/</a><br>
+Why viewers watch: comments can become performances and sequel material.<br=
+>
+Core mechanic: solicit a constrained audience voice performance, then promo=
+te the best responses into the next episode.<br>
+Pet protagonist: post Archie=E2=80=99s silent press-photo with =E2=80=9CLea=
+ve a voice note explaining why you think you deserve your sock back=E2=80=
+=9D; next clip lip-syncs Archie to the funniest safe response or has Archie=
+ judge them.<br>
+Best use: recurring social series/community growth, not primary gift SKU.<b=
+r>
+15=E2=80=9340 sec: pet accusation =E2=86=92 5-sec prompt =E2=86=92 montage =
+of selected voice responses =E2=86=92 Archie score/reaction =E2=86=92 next =
+challenge.<br>
+Hook: =E2=80=9CArchie is accepting appeals by voice note.=E2=80=9D<br>
+Assets: reusable prompt card, comment capture layout, lip-sync/reaction lay=
+er, moderation queue.<br>
+Complexity: MEDIUM.<br>
+Novelty: HIGH because the newly launched interaction primitive becomes the =
+content engine.</p>
+</li>
+<li>
+<p>PET =E2=80=9CWEIRDLY PRETTY=E2=80=9D EVIDENCE FLIP =E2=80=94 TEST<br>
+Current evidence: September=E2=80=99s Weirdly Pretty Photos format has crea=
+tors resurfacing awkward/unplanned photos that unexpectedly look great; one=
+ tracked top video exceeded 1.4M views in five days.<br>
+Source:<br>
+<a href=3D"https://www.trendsbymasterhooks.com/articles/weirdly-pretty-phot=
+os-trend">https://www.trendsbymasterhooks.com/articles/weirdly-pretty-photo=
+s-trend</a><br>
+Why viewers watch: visual contradiction=E2=80=94an objectively chaotic mome=
+nt somehow produced a great image.<br>
+Core mechanic: embarrassing context =E2=86=92 unexpectedly majestic still =
+=E2=86=92 context reintroduced as punchline.<br>
+Pet protagonist: =E2=80=9CPhoto that belongs in a gallery=E2=80=9D =E2=86=
+=92 gorgeous Archie portrait =E2=86=92 reveal it was taken 0.4 seconds befo=
+re he vomited on the rug / fell off the sofa / stole dinner.<br>
+Best use: photo card, print, social clip.<br>
+15=E2=80=9325 sec: hero portrait 0=E2=80=935s =E2=86=92 luxury-gallery trea=
+tment 5=E2=80=9310s =E2=86=92 wider/next-frame reveal 10=E2=80=9318s =E2=86=
+=92 =E2=80=9CARTIST STATEMENT: no thoughts=E2=80=9D 18=E2=80=9323s.<br>
+Hook: =E2=80=9CThe best photo ever taken of Archie has a problem.=E2=80=9D<=
+br>
+Assets: one unusually good candid + adjacent context photo/video, gallery f=
+rame, caption template.<br>
+Complexity: LOW.<br>
+Novelty: HIGH versus prior Flop-Core: Flop-Core celebrates failures; this s=
+pecifically weaponizes the contrast between a beautiful still and its disas=
+trous surrounding context.</p>
+</li>
+</ol>
+<p>TOP 3 FORMATS TO TEMPLATE THIS HOUR</p>
+<ol>
+<li>PET FAMILY RESEMBLANCE / SPLIT-FACE DNA TEST =E2=80=94 immediately reco=
+gnizable current mechanic + deeply personal data.</li>
+<li>PET SIGHTING / LOCAL CRYPTID SERIES =E2=80=94 strongest original recurr=
+ing universe; one pet can generate dozens of episodes.</li>
+<li>PET COMMENT-SECTION COURT / AUDIENCE VERDICT =E2=80=94 strongest growth=
+-loop implementation because every post produces the premise for the next o=
+ne.</li>
+</ol>
+<p>EASIEST TO AUTOMATE END-TO-END<br>
+PET GOLD-STAR / BAD-BOY SCORECARD. Inputs =3D 3=E2=80=935 pet facts/inciden=
+ts + photos; output =3D deterministic text, stars, score and end card. No d=
+ifficult animation or likeness generation required.</p>
+<p>HIGHEST SHAREABILITY POTENTIAL<br>
+PET FAMILY RESEMBLANCE / SPLIT-FACE DNA TEST. It naturally involves owner/f=
+amily, creates an immediate visual judgment, and invites =E2=80=9Che actual=
+ly DOES look like you=E2=80=9D sharing.</p>
+<p>WEIRD FORMAT NOBODY IN PERSONALIZED PET GIFTS APPEARS TO BE USING<br>
+PET SIGHTING / LOCAL CRYPTID SERIES: turn a customer=E2=80=99s actual anima=
+l into a persistent neighborhood cryptid with numbered CCTV sightings, trai=
+l-cam evidence, warning posters and a live Roast.pet case file. A physical =
+=E2=80=9CMISSING? NO =E2=80=94 SIGHTED.=E2=80=9D poster/card could QR-link =
+to the accumulating evidence archive.</p>
+<p>PRODUCT/ONBOARDING DELTA<br>
+Add: <code>owner_front_portrait</code>, <code>pet_front_portrait</code>, <c=
+ode>tiny_good_behaviour</code>, <code>local_landmark</code>, <code>best_awk=
+ward_beautiful_photo</code>, <code>imaginary_rule_pet_breaks</code>, <code>=
+audience_verdict_options</code>. The important new direction is to design f=
+ormats that generate NEXT content: polls, sightings and family comparisons =
+create loops rather than a single personalized asset.</p>
+
+--000000000000ac7b59065bcdbc21--

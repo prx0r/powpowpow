@@ -10,10 +10,11 @@ import time
 from datetime import datetime
 import sys
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BASE_DIR)
 from warehouse import store_raw_event
 
-DATA_DIR = '/home/box/powpowpow/chains/quan'
+DATA_DIR = os.path.join(BASE_DIR, 'chains', 'quan')
 os.makedirs(DATA_DIR, exist_ok=True)
 
 def fetch_json(url, params=None, timeout=10):

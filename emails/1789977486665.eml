@@ -1,0 +1,167 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 5kxU0uPNe8V0
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 07:58:06 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=d28T52krpJD5f7ONwl07KbQ+jGM6yKLWOp2WcrgKczURMMUqrx36c9Juj3md6cpV9tmBUPVHg
+	yp782EA53jG6VfVuHdf+eOE9D4ldvHbVRjcQKm8cm9m4nv+SpNZMMqo6DzBR2+yBZp1IQXmEp7U
+	1EanAsvGCBxCVLOutAtrOrvm6OctfCb3dX+6iYe6tgRTi83Cbb2FYVNEaOiwJgb5mmuxAO4ghqI
+	c60PGMpdGcC9oucl5ASm+4jFM46x2Bx0g3Ns9AVAoIpV1irgLpacmv2ouwHgvzPT8EJsdk6VrDH
+	pFFUuMQFjm0eBDqKfBlxqKtvHW8wD3vhBJHrwSr46V2A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789977486; x=1790582286; bh=keCrSyVs
+	ZjrVYC+Aghg5hpUxEShhmxMNQxbdsPR2ZkY=; b=flXGP6x87kfJvvniD36VOnX8VNexQnZx7sm
+	mGnEZEUHFN1iLNBJT1R0JAj+HcBMSXR+1LRgkUgh31UkdopyzVNosi5gpGSu5jbfRS1aystdFwR
+	zpKEsz2LS4scKMS6Mg7aRr4DIeoKcPyMNpRk3vwgDxPtVgh/nJSWwgOlwLcnV7oZdNk8+QxKIAk
+	sWkbnRMC84CJgDvAy6OIYxbh3bgzq8GvdIeEtKnaECBvYnsKCHysjjruX4Ur3ngqAfQK28MQwmn
+	c4K+UiBwjA2GwEpudrvbH04pfom0VF5FVM/gbw9fHO6okdyEW33UREjwVYKYWfYHvipO94DQD5Q
+	969sfkw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VJBorzsy;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VJBorzsy;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-6713d20d375so2224806d50.0
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 00:58:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789977486; cv=none;
+        d=google.com; s=arc-20260327;
+        b=DpoQZMU4ZNxETkqQpyK7oE68vNDqvujyekuOadYny6EFkY5Q0AztqzajMQ0K95RDjU
+         953wwhUgWxQamNh3wJ/MVn7xPO7OafaXuWumNot5nQ1M584KR40UGWcMzR/9fPCallOo
+         C1av4pqbLVBX+r8S2V6hsmcB+ThA/5rnvdNazoOSOj1+8Pm3gspGJgm2MCKUNTrBv8WX
+         yfK9Q/RF3YrmxgV69esB48EvzVXWKviqB/5uVHbvpm57TAlfCS6KRVDlXTVHbF28Ol2x
+         B4AdX0Bog4ZkeNlzEJtsrem/lpAZzjA7LPJ4w/C1vywrlatU+Ew1RQ4OLfGOcc5ceIU7
+         hLeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=keCrSyVsZjrVYC+Aghg5hpUxEShhmxMNQxbdsPR2ZkY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=rs/TgrLnQxh/YpJ1FynMI2syZ43eiXXTNIyHj+vxJqPFTjrxEGUFtGd0g1+6HGm/a3
+         Q0V02QR/33kqPsK+kWF8edhWiB1uJxNYREIVbofxBKypLly2v11TGXac2jTLRiAIXf9L
+         ScZusJswBatQqjiB4gKPbi4R5V/ExY1U1u+mZb53zj4lGxUXMoknWPnsNBl6rpaJSEmV
+         sFzzWFQ8ycG3uXOJk+jn6Q34dQcpoZjPCLALuahJzdcK+V2Sy04URetcYM+gvfLpJyia
+         UlBRF75U0Dcts5LY/jwDr8xx6xX2VTWGzNWgvc0CxlS40kHR79ofRtJ2HAjz0Ff1W8SY
+         J8vw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789977486; x=1790582286; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=keCrSyVsZjrVYC+Aghg5hpUxEShhmxMNQxbdsPR2ZkY=;
+        b=VJBorzsyGLYtXAvOF7wl0K2jLcrJbaea8C53GtmtXDIC0Qid2fIr/j5HBjplfdfYmF
+         OHr8AmNukojpQisc6mjWRhCPdVR7+8+DKlfVYmmA93SXGL+PfuFA5OvLlN2prmlhzaxH
+         ta0WU82WrPHUjgL3wOXJMWAeth3/LtPIkUF2DThRURBk763OaPThTti0vEmnVQyeTiyd
+         sehSWTRTOSJnpNtvCW5UZzc8JDMcgTh6bWJIR22sMoJx3DXRYZEDZHqR+E76UUDH1fup
+         rVQ3J59lxdWcfsOX3/PZ6M4/spvwkIhVFx/02fsZQuEx2/BL1SSPv8npN2XH9BRC/p+D
+         Zbnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789977486; x=1790582286;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=keCrSyVsZjrVYC+Aghg5hpUxEShhmxMNQxbdsPR2ZkY=;
+        b=KEmVVtuKH8MKBM+6TTjd7YfOqW81aGjUWEPYTyqosXc9NphqUkoIPzodM2Eng2N6FK
+         eaZUBwyZZbegglZE9GJN6O0obf6LaN8E3+7QFVnYkCCIEUZHHZQOJrPvp4H7SSCPfcbP
+         ZcPRtbMF11Pwy1Imj+bOSVp12vjJNHfPzgdplghBgLEKsxUnHfGcnPTabfpr7w0B/NnT
+         Bvl1Ye+7kXStADnnhdvMRxKxOTWXDa6Y8s9J3IdXHMLc6zxA1benBjbfiwyZMCqNJBdI
+         o3BrYT8SuTQsrePOsnz8CywDBL5uXZz8I/rOPL+P0Lah8+sYYFnnsIzFTxXgqpzVmKNo
+         Ow8w==
+X-Gm-Message-State: AFuF++liSrZaDYRpAE4kwRFD4rcqelzi7aBOjYkaH3EM6MOMJDE/3krE
+	LEvBfX/r9ejfDHYZsjdP+ybB1bR+c3nxtPFNMT7At03iaVgjZvGkqCj2d5OYczGBamHNL7ytWMd
+	U7c3VkrrWCMrF7jQQ8YX9vyZGY8k2tBJACg==
+X-Gm-Gg: AYBFou0LT3I5bWAp/r98BqVVBfQ3ElLJWRuoM17wiaOS2IxvkB1YnJ9nCtEEXncrw9U
+	PPVryg4ENyqKlURBHCO15fGg5RwOeFBzLlOoBvC1K/MnsLNpv3al9UkE4r4/xfX8caOVmdt8ZDN
+	oiWXzpwvH9VXEPx7S/fBppYEjM3BveSvDbCNNr9SUkHwykIQyfXX1HC6yn2xAiR1Z/328ak7wK1
+	j2jEDB485nNLnrG9/s4ertWmxuTyUAiZg7bqCNkNGqwKCH6L77IHzPDosMZ/9e99koZtOvDPo1Z
+	La8MnGEDHxx7tVpfz/R4yIkYra34hYbedYDQqQlpswZy688dc8loc9jiirX6+O0AtRU1PaRGSgr
+	bW65Rkj5pU790000tDM0AuM16mKo4BMU7hUZre9qPNWmJeO/yBfr3jfzNeKvyT+hUruQYiganPQ
+	==
+X-Received: by 2002:a05:690e:1688:b0:672:a52c:db21 with SMTP id
+ 956f58d0204a3-672a52ce27fmr1604088d50.105.1789977485948; Mon, 21 Sep 2026
+ 00:58:05 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 02:58:04 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 02:58:04 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 02:58:04 -0500
+X-Gm-Features: AcwNN1V9GPZ3s_lKIWblI2sIc2CesqmTGWFXhCEDdvpw4XeDo_DtybrViOlSJHg
+Message-ID: <CAPdrGen-FWR-YXc-KzcEhtuR6ftdPNJtsN0=BHuSp9sG7j92qg@mail.gmail.com>
+Subject: =?UTF-8?B?UkVDT1ZFUlkg4oCUIFBPVyBQcm9iZSDigJQgTGl2ZSBTdGF0ZSDigJQgMjAyNi0wOS0yMQ==?=
+	=?UTF-8?B?IDE0OjU3IElDVA==?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS LIVE STATE PROBE =E2=80=94 21 Sep 2026 14:57 ICT
+
+Executive delta: NESO Open Balancing Platform Non-BM reserve state is
+promoted to PILOT/PLANT NOW. Official NESO datasets expose
+continuously updated Physical Notifications, Reserve Availability MW
+plus Utilisation Price, and Non-BM Instructions. These are
+provider-declared physical availability/price states plus dispatch
+consequences. Current pages expose one mutable resource per dataset.
+Exact version/history retention is UNKNOWN and is now the
+highest-information reconstruction test.
+
+Ranked ledger: EVSE transitions 5.00 PLANT HARD where permission
+allows; NGED primary 5-minute tape 4.99 PLANT HARD pending retention;
+NESO OBP Non-BM state 4.97 PILOT/PLANT NOW; NGED flex outcome 4.96
+PLANT; NESO TEC transitions 4.94 PLANT; apprenticeship vacancy
+lifecycle 4.58 PILOT.
+
+OBP PLANT gate: NESO Open Data Licence; public CSV/CKAN access; no
+auth indicated; rate limit UNKNOWN; source cost =C2=A30. Canonical
+identity: service + Unit ID + Time From + Time To + Pair ID, with
+instruction reference where present. Preserve observed_at, resource
+UUID, source modified timestamp, payload hash, row hash, schema
+version. Start with 5-minute metadata checks and download only on
+source change. Normalize AVAILABILITY_DECLARED/CHANGED, PRICE_CHANGED,
+PN_DECLARED/CHANGED, INSTRUCTION_ISSUED/CONFIRMED/CEASED,
+ROW_DISAPPEARED/REAPPEARED and SOURCE_CORRECTION.
+
+First transformations: ReserveScarcity, DeclaredToDispatchedMW,
+PriceToDispatchResponse, PNRevisionLatency,
+AvailabilityToInstructionConversion and UnitResponseReliability. Join
+to unit/company identity, constraints/skip rates, electricity
+opportunity cost and physical asset/site capability. Agent action:
+compare reserve economics against alternative uses of flexible
+physical capacity.
+
+1-day validation: snapshot changed resources, count semantic
+transitions and test whether prior versions vanish. 1-week validation:
+reconstruct all observed t0 transitions using only then-current
+official resources. If >=3D95% reconstructable, kill raw mirroring and
+retain semantic transformation only; otherwise promote.
+
+Counterevidence: NESO Skip Rates preserves monthly files and has
+reissued historical datasets after corrections; old ASDP retained
+monthly files. Therefore OBP ephemerality must be proven, not assumed.
+Octopus Shape Shifters Agile raw prices are KILL as garden because
+official history extends back to tariff launch. TEC current snapshots
+are KILL; semantic transitions remain PLANT. Apprenticeship static
+adverts are KILL; exact lifecycle remains PILOT.
+
+Next queue: (1) OBP retention/version test across PN,
+availability/price and instructions; (2) NGED D/D+2/D+7 retention; (3)
+one specific UK CPO permission/history test; (4) next TEC semantic
+diff. No collector is claimed deployed.
+
+Machine state: {probe: POW_LIVE_STATE, collector_deployed:false,
+material_delta:NESO_OBP_NON_BM_STATE_PROMOTED_TO_RETENTION_TEST,
+critical_unknowns:[OBP_VERSION_RETENTION,NGED_D_PLUS_7_RETENTION,EVSE_OPERA=
+TOR_HISTORY_AND_PERMISSION]}

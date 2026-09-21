@@ -1,0 +1,665 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id T2XviMblAfYj
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 20:16:00 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=R1fR0871BI9hbfFiEXakucP2wPt9j5YG74wKFbqs2tYH7xeyLAgmoTjt6FtAzvzvKQ5nwRxr/
+	igdJKSQTr9iy67m11XN6tu7rZgZCgsN8NYkEoF+gvXvdlnV7gsGDDIECx4DC607Xvpxf1e31f7M
+	L6aWfn61+4EJeM7nHBjRcW5bT2uLeHNXHpwWcwNrIH2eDMAMWiKN1LB3J08JA9QJKgEZG8SiJ55
+	m9Um5eYzX5ku0kxGqjKSkhRwRPT0snJTcwS9MzjbWvZXJALs6391kO3CR67CDgZ0kZuh/pKOMiZ
+	5N9r140HS5OIMqvaup3k3AsklanNYNpTd9v1PCbs54Kg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789676160; x=1790280960; bh=GfU1it0T
+	1ycjV5MOi1CGHDwVi/lVP1gfmHJ2xTIN/6w=; b=XmhmIOXdupo7tk7bDbu5+oJab/dLXkPNsk6
+	PZ2INk1mT0fGo5pK14Q0xNZiLe1CQO4J7WYW7kgFO7h54kFe6yPwvzCb6oskZNU4hekrPs72VV4
+	CvvJXE9g7+JQquGhLmj2zAzI89JATr+TGNRkA97T6QN1lp6rgxF97Q9T37lf8bAgT7fNyuthvbR
+	39N6iY7bj4I7B2rhouwaOvSwdFNI/JxOTBarXA2GY39SSBETg3I7Is3xIkrQT7MW7r8wABEAAXv
+	pte43Xd96MJ7xdWH+oVD4INDmdl6zgBbM101utw7rFmCfcH8wzuJ05aJ9LUWwGtt1/SMjBE73+G
+	idnniTA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AGjcKmWk;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AGjcKmWk;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66fabb1a601so94193d50.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 13:16:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789676160; cv=none;
+        d=google.com; s=arc-20260327;
+        b=WtuJk8p8wkLt4MYm+6lgC9GRhxUjQEk3vWto7usJRgnqtsIweo3hE7aOEP+TWsqXaB
+         BIiiEIE9qH4H4CJFwdSqix2o1RYzlZ9/eke7I9nB1EZOkzvW1QSdEjA5c8+pfyRc/OP7
+         xJWW8E/mHMoQYSKMmm6Fmg1HOJsUBB1LZ73cK4AkOnoeTTfHK4wF95hlKIHMhwlv9W/g
+         wxb0QEdUHHTJ9A9FLza056x/7qOdIPSTukVQxwucpa6zMl24PxS8kN8YIRSAc1qrlKed
+         dt0WoVqncCVH+vQu1qesMkEIeYKQDeQXxn3oTzSdCFiKBNaPFjPKp7R+oj52lDa1JS94
+         +K+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=GfU1it0T1ycjV5MOi1CGHDwVi/lVP1gfmHJ2xTIN/6w=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=ICYU5AOA0dfeiIJYW0eKJcsRjUnMl54UhI2WG7ElfiNWnIpOMOZYF7MkE/d6Xu7adu
+         I8FTBhw0z06zuuIcUrolTp9h3srHetLLFqGXVtZ3wLcGW48t8K5LDe/c1xLY7grAh6GB
+         M6p3+YAMUXJLe+92I2oqlQizrhjCE+7Wn2HufhKIDjBp5apxahotqlmjXXhkhw7N5Dy2
+         aXBjbdyFjySsXXxqr0M+IZEHE/G4Wf6KScQJz53dbzQsHXhTZz3KRbpRoYcr2UpKpItG
+         eVepFfKwGh0QMxLyakDMPvfK7Jajo02fTj9TS+SqafIXsitkkoI3ZK+FGv9fSLza/0lZ
+         8tvA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789676160; x=1790280960; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=GfU1it0T1ycjV5MOi1CGHDwVi/lVP1gfmHJ2xTIN/6w=;
+        b=AGjcKmWkCU/HzkdWoK2KnHWqQo8EUP8gFlW+o4jpBorI2fAwU3xXf8xk4PxSm43BrJ
+         SKmvg2XKWASCSd+wzjkJ3hpbmHkG/F32YDblxFaTIR9k1chTIfK0IuUFnKS0EWoc9Gsl
+         9BgVQ1K1VCy0LFbCT+BtliJOv2EughWs1sdw86aBPAV63iiSPjhK0pJSaelS8sORDv+z
+         B8aDDbjHH+TNEY5GdeBkn4vBYTlviHuHkOBNl6gcfafSZequ/MGuMxZHWNaLul4FD0yS
+         76Dqqo0EXHjDEFH78d4xW9W/xBKszuky1ZWWJUlRTaXXD4iokfTwCyuumTTRRUovB6Q1
+         MmAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789676160; x=1790280960;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=GfU1it0T1ycjV5MOi1CGHDwVi/lVP1gfmHJ2xTIN/6w=;
+        b=zQQpfb093q+LmAUnmfRBHYyge+7sueZEtecjFFJHh/9PY8v3CXjjMn4kN6ExCIh3t6
+         riUFqWMVlBIeou8KCaJlftRUua8aj8jiKyNFBwT6nAA/+q+Jd8uB7l5l9kxnXPUmGog+
+         B5/EID+8ZRjCsOt8zJLy7dBb6Ikpy2S1iJ0ThEdwJb4DNJeFQPv/C9MEDdqMZosCCQTI
+         vjhlkitbO9uwlaMQuUZLfRf0C5AYDyd/cYpmfRwhwIqHoDf73dufgQD+qULBgA+jyibJ
+         voEEp4TAPGWRCA3wcppEdTsEvdohC8xJ4dbGPx03I2TbvcWrcuIDVLrmorv/9NVqR7+V
+         NYtQ==
+X-Gm-Message-State: AFuF++mP4u84WEys2YCCj1eT6CYptR7TD/nFB8VGuOnubKXZuUGxCqP2
+	J5wOOKweXyCTz0RGQ6CGg8fuDQL/c2Bgbz8jSSI9L+idP/DoFjdCCbN2I7jqmIzcwI6YcSvGbkM
+	wqSbuKKPpxBMyoIhIIfpUS7YpKbbjgn+vuQ==
+X-Gm-Gg: AYBFou2DsQ2r2it7BuA0jNeNpGIf06XP7PEnGEG2zy+QTuZcbe4aO5HMGN/tuorasv+
+	Llo9veOH8+w6tZDFNZbBI6KuDObDPSkb30A7ltLUEAHRpxxrPvDmJhsSYD6beMlxak2y3xniYAK
+	KxSWTosa+VzGp1mkymPkGe1rBVw+3N3VmgxziQAiBkHeTtb7QbV1TaroFDq/g/aGJ5RdmmJ73Jq
+	MoR8SwyNHeWb2TVJ8ICWRpTf2hxBf0BkdbJnxCXdUATYvzcoe/90Frm0HPWTYBNbS+dcjxk2+XD
+	EkkQCN4QdyJTyLcnzHA/pUTGsd0f1fucT6JDTONXwWvr2zT4134xKF5eyGLff1y7djx7gNG17RP
+	ydVrKoMp2ZtWnwjjaCVtOaj9VaNLcemX3WmssZY8yihOt1D4Qb/osuSiR57tA4Z1m86xF2Wph
+X-Received: by 2002:a05:690e:118d:b0:66f:c1bc:c084 with SMTP id
+ 956f58d0204a3-6717fdf021amr95254d50.76.1789676159597; Thu, 17 Sep 2026
+ 13:15:59 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 15:15:58 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 15:15:58 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 15:15:58 -0500
+X-Gm-Features: AcwNN1XC4hFGCRuPwtQH77tUbVXi3riQKIAnQG6GXRA7fNyzgSFlsZDRdr983jo
+Message-ID: <CAPdrGekmfdsLeamc7wJgkSpFKphdDZDHKFFQ8Fn4xF953t1=nA@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_peer_review_2=2F5_=E2=80=94_cryptographic_receipts=2C_tr?=
+	=?UTF-8?Q?ansparency_log=2C_replay_=2B_reputation?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000c180ba065bb3730e"
+
+--000000000000c180ba065bb3730e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Implement this BEFORE adding more bridges. Goal: PMail/Privately must not
+require anyone to trust our database.
+
+TARGET CRYPTOGRAPHIC MODEL
+
+Every consequential PMail run produces an immutable canonical RunStatement,
+a signed portable receipt, and an append-only transparency-log commitment.
+Sensitive evidence stays private behind commitments.
+
+Do NOT build a blockchain.
+Use:
+
+   - RFC 8785/JCS canonicalization
+   - Agent Receipts / Obsigna for generic signed receipt envelope +
+   conformance
+   - QP for semantic truth
+   - RFC 6962/9162 Certificate-Transparency-style Merkle log semantics
+   (inclusion + consistency proofs)
+   - SCITT concepts for signed statements registered into transparency
+   service
+   - dstack/TDX attestation later for runtime-key binding
+
+
+   1. CANONICAL RUN STATEMENT
+   Create src/runs/types.ts and src/runs/canonical.ts.
+
+Suggested shape:
+interface RunStatementV1 { protocol: "privately.run/1"; run_id: string;
+agent_key_ref: string; started_at: string; finished_at: string;
+policy_root: string; proofspec_root: string; authority_root?: string;
+input_commitment: string; output_commitment: string; evidence_root: string;
+disclosure_root: string; runtime: { workload_hash: string; runtime_hash:
+string; attestation_hash?: string; ephemeral_run_pubkey?: string; };
+payment?: { rail: "XMR" | string; evidence_root: string; }; privacy: {
+class: PrivacyClass; identity_surface_root: string;
+external_identity_dependencies_root: string; }; actuality: "TRUE" | "FALSE"
+| "UNKNOWN"; }
+
+Canonical bytes MUST be RFC 8785-compatible. Do not use hand-rolled sorted
+JSON / plain JSON.stringify for cryptographic identity.
+
+run_id =3D sha256(JCS(statement_without_run_id_if_circular)) using one
+explicit deterministic rule documented in spec.
+
+   1. PRIVATE EVIDENCE MERKLE TREE
+   Create src/evidence/merkle.ts.
+
+Raw evidence MUST NOT be public by default.
+For each evidence object:
+
+   - canonicalize
+   - domain-separate leaf hash, e.g. H("PM-EVIDENCE-V1" || len || bytes)
+   - build deterministic Merkle tree
+   - store raw evidence encrypted/private
+   - expose evidence_root
+   - support inclusion proof for a selected evidence item
+
+Do not hash just evidence IDs as current QP does.
+
+Tests:
+
+   - modifying raw payload changes root
+   - reordering either has a defined canonical sort or changes root;
+   choose/document one
+   - duplicate leaves cannot create ambiguous tree
+   - inclusion proof succeeds only for exact committed item
+   - no raw phone/XMR/PII appears in public statement
+
+
+   1. REAL AGENT RECEIPTS / OBSIGNA
+   Delete/demote src/qp/receipts.ts custom crypto once upstream integration
+   works.
+   Clone/use:
+   https://github.com/agent-receipts/obsigna
+
+QP should be an extension, not a replacement receipt protocol.
+
+The verifier must distinguish:
+A. cryptographic envelope verification
+B. trusted signer binding
+C. QP semantic replay
+D. transparency-log inclusion
+
+All four are independently required for a fully verified run.
+
+Acceptance tests:
+
+   - upstream Obsigna verifier accepts receipt
+   - upstream conformance/MUST-reject vectors run in CI
+   - mutating signed extension breaks signature
+   - replacing signer_key with attacker key + attacker signature MUST NOT
+   be trusted when expected issuer/key is unchanged
+   - signed but semantically false receipt =3D> crypto PASS, QP FAIL
+   - valid QP receipt not logged =3D> semantic PASS, transparency NOT_INCLU=
+DED
+
+
+   1. TRUSTED SIGNER BINDING
+   Do not trust signer_key simply because it is inside the receipt.
+   Implement:
+
+interface SignerTrustResolver { resolve(issuer: string, context:
+VerifyContext): Promise<TrustedSigner[]>; }
+
+Sources can later include:
+
+   - pinned PMail verifier keys
+   - operator delegation
+   - dstack attested ephemeral key
+   - witness/transparency registry
+
+Receipt verification requires signer key to be authorized for
+issuer/purpose/time.
+
+   1. APPEND-ONLY TRANSPARENCY LOG (plog module, initially inside PMail)
+   Create:
+
+src/transparency/ log.ts merkle.ts store.ts verifier.ts types.ts
+
+Minimum API:
+append(runDigest): Promise<{index, treeSize, treeRoot, inclusionProof}>
+getInclusionProof(index, treeSize) getConsistencyProof(oldSize, newSize)
+getSignedTreeHead() verifyInclusion(...) verifyConsistency(...)
+
+Tree head is signed by a dedicated log key, separate from run signer.
+
+Receipt carries:
+
+   - log_id
+   - log_index
+   - tree_size
+   - tree_root
+   - signed_tree_head
+   - inclusion_proof
+
+Do not store raw evidence in public log. Log a cryptographic commitment to
+the signed run statement/receipt.
+
+   1. PERIODIC EXTERNAL WITNESS
+   MVP can start with one PMail log, but design for split-view resistance.
+   Create a Witness interface:
+
+interface LogWitness { observe(sth: SignedTreeHead):
+Promise<WitnessReceipt>; }
+
+Initially persist/export daily roots somewhere independent. Later use
+multiple witnesses. Never market a sole private database hash chain as
+globally tamper-proof.
+
+   1. QP REPLAY V2
+   Replace caller-supplied arbitrary functions.
+
+Add:
+
+   - ProofSpecRegistry
+   - ProgramManifest
+   - JudgeRegistry
+   - GateRegistry
+
+Frozen ProofSpec references content hashes of real code/schema/config
+bundles.
+Replay resolves bundle by hash and fails closed if missing/mismatch.
+
+Replay MUST recompute/verify:
+
+   - ProofSpec ContractRoot
+   - claim ID + claim.contract_root
+   - evidence ID/content hash
+   - evidence claim binding
+   - response_hash
+   - normalized_payload_hash
+   - freshness including future-skew bound
+   - provenance policy
+   - independence policy
+   - judge bundle hashes + results
+   - gate bundle hashes + results
+   - judge_results_root
+   - gate_results_root
+   - actuality DAG
+   - authority requirement/root when required
+   - transition program hash
+   - state_before/proposal/state_after root
+   - receipt signature/trusted signer
+   - previous-chain linkage where relevant
+   - transparency inclusion when requesting FULL verification
+
+API:
+verifyRun(receipt, mode: "CRYPTO"|"SEMANTIC"|"FULL")
+
+   1. PRIVACY/DISCLOSURE MANIFEST
+   Create canonical DisclosureManifestV1.
+   It records what PMail believes was disclosed on the path:
+
+{ pmail_collected: [], providers: [{provider, fields_disclosed,
+network_metadata, legal_identity_required}], payment_rail: "XMR",
+network_path: ["TOR"], identity_bridges: [] }
+
+Hash to disclosure_root; signed RunStatement commits it.
+
+Do NOT claim universal identity_not_collected from absence of a log. Narrow
+claims to facts the system can verify, e.g.:
+
+   - request schema contains no legal-identity fields
+   - PMail persisted-state projection contains no prohibited PII fields
+   - configured route contains no IDENTITY_BRIDGED dependency
+   - provider identity requirements are represented by evidence-backed
+   IdentitySurface
+
+
+   1. REPUTATION MUST BE DERIVED, NOT STORED AS AUTHORITATIVE SCORE
+   Create src/reputation/replay.ts only after the log works.
+
+ReputationSnapshot =3D f(valid included runs, policy version, cutoff tree
+size)
+
+Each snapshot commits:
+
+   - algorithm/version hash
+   - input tree size/root
+   - included predicates
+   - output metrics
+
+Examples:
+
+   - verified completed runs
+   - FALSE/UNKNOWN rates
+   - privacy-policy violations
+   - provider success rate
+   - spend reconciliation accuracy
+
+Do not expose a permanently linkable master agent key on every public run.
+Design for task/epoch keys now; selective/ZK reputation can come later.
+
+DEFINITION OF DONE FOR THIS PHASE
+
+   - no custom generic receipt crypto on production path
+   - RFC8785 canonicalization
+   - actual Obsigna conformance passing
+   - trusted issuer binding separate from receipt input
+   - private evidence Merkle root + inclusion proofs
+   - append-only log inclusion proof
+   - consistency proof between two tree sizes
+   - signed tree head
+   - offline verifier can verify a fixture without PMail server
+   - mutation of statement/evidence/signer/log proof fails
+   - QP false semantic claim remains false even if crypto/log signatures
+   are valid
+
+Only after this should the repo claim =E2=80=9Ccryptographically verified h=
+istory.=E2=80=9D
+
+--000000000000c180ba065bb3730e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Implement this BEFORE adding more bridges. Goal: PMail/Privately must no=
+t require anyone to trust our database.</p>
+<p>TARGET CRYPTOGRAPHIC MODEL</p>
+<p>Every consequential PMail run produces an immutable canonical <code>RunS=
+tatement</code>, a signed portable receipt, and an append-only transparency=
+-log commitment. Sensitive evidence stays private behind commitments.</p>
+<p>Do NOT build a blockchain.<br>
+Use:</p>
+<ul>
+<li>RFC 8785/JCS canonicalization</li>
+<li>Agent Receipts / Obsigna for generic signed receipt envelope + conforma=
+nce</li>
+<li>QP for semantic truth</li>
+<li>RFC 6962/9162 Certificate-Transparency-style Merkle log semantics (incl=
+usion + consistency proofs)</li>
+<li>SCITT concepts for signed statements registered into transparency servi=
+ce</li>
+<li>dstack/TDX attestation later for runtime-key binding</li>
+</ul>
+<ol>
+<li>CANONICAL RUN STATEMENT<br>
+Create <code>src/runs/types.ts</code> and <code>src/runs/canonical.ts</code=
+>.</li>
+</ol>
+<p>Suggested shape:</p>
+
+<code>interface RunStatementV1 {
+  protocol: &quot;privately.run/1&quot;;
+  run_id: string;
+  agent_key_ref: string;
+  started_at: string;
+  finished_at: string;
+
+  policy_root: string;
+  proofspec_root: string;
+  authority_root?: string;
+
+  input_commitment: string;
+  output_commitment: string;
+  evidence_root: string;
+  disclosure_root: string;
+
+  runtime: {
+    workload_hash: string;
+    runtime_hash: string;
+    attestation_hash?: string;
+    ephemeral_run_pubkey?: string;
+  };
+
+  payment?: {
+    rail: &quot;XMR&quot; | string;
+    evidence_root: string;
+  };
+
+  privacy: {
+    class: PrivacyClass;
+    identity_surface_root: string;
+    external_identity_dependencies_root: string;
+  };
+
+  actuality: &quot;TRUE&quot; | &quot;FALSE&quot; | &quot;UNKNOWN&quot;;
+}
+</code>
+<p>Canonical bytes MUST be RFC 8785-compatible. Do not use hand-rolled sort=
+ed JSON / plain JSON.stringify for cryptographic identity.</p>
+<p><code>run_id =3D sha256(JCS(statement_without_run_id_if_circular))</code=
+> using one explicit deterministic rule documented in spec.</p>
+<ol>
+<li>PRIVATE EVIDENCE MERKLE TREE<br>
+Create <code>src/evidence/merkle.ts</code>.</li>
+</ol>
+<p>Raw evidence MUST NOT be public by default.<br>
+For each evidence object:</p>
+<ul>
+<li>canonicalize</li>
+<li>domain-separate leaf hash, e.g. <code>H(&quot;PM-EVIDENCE-V1&quot; || l=
+en || bytes)</code></li>
+<li>build deterministic Merkle tree</li>
+<li>store raw evidence encrypted/private</li>
+<li>expose <code>evidence_root</code></li>
+<li>support inclusion proof for a selected evidence item</li>
+</ul>
+<p>Do not hash just evidence IDs as current QP does.</p>
+<p>Tests:</p>
+<ul>
+<li>modifying raw payload changes root</li>
+<li>reordering either has a defined canonical sort or changes root; choose/=
+document one</li>
+<li>duplicate leaves cannot create ambiguous tree</li>
+<li>inclusion proof succeeds only for exact committed item</li>
+<li>no raw phone/XMR/PII appears in public statement</li>
+</ul>
+<ol>
+<li>REAL AGENT RECEIPTS / OBSIGNA<br>
+Delete/demote <code>src/qp/receipts.ts</code> custom crypto once upstream i=
+ntegration works.<br>
+Clone/use:<br>
+<a href=3D"https://github.com/agent-receipts/obsigna">https://github.com/ag=
+ent-receipts/obsigna</a></li>
+</ol>
+<p>QP should be an extension, not a replacement receipt protocol.</p>
+<p>The verifier must distinguish:<br>
+A. cryptographic envelope verification<br>
+B. trusted signer binding<br>
+C. QP semantic replay<br>
+D. transparency-log inclusion</p>
+<p>All four are independently required for a fully verified run.</p>
+<p>Acceptance tests:</p>
+<ul>
+<li>upstream Obsigna verifier accepts receipt</li>
+<li>upstream conformance/MUST-reject vectors run in CI</li>
+<li>mutating signed extension breaks signature</li>
+<li>replacing signer_key with attacker key + attacker signature MUST NOT be=
+ trusted when expected issuer/key is unchanged</li>
+<li>signed but semantically false receipt =3D&gt; crypto PASS, QP FAIL</li>
+<li>valid QP receipt not logged =3D&gt; semantic PASS, transparency NOT_INC=
+LUDED</li>
+</ul>
+<ol>
+<li>TRUSTED SIGNER BINDING<br>
+Do not trust <code>signer_key</code> simply because it is inside the receip=
+t.<br>
+Implement:</li>
+</ol>
+
+<code>interface SignerTrustResolver {
+  resolve(issuer: string, context: VerifyContext): Promise&lt;TrustedSigner=
+[]&gt;;
+}
+</code>
+<p>Sources can later include:</p>
+<ul>
+<li>pinned PMail verifier keys</li>
+<li>operator delegation</li>
+<li>dstack attested ephemeral key</li>
+<li>witness/transparency registry</li>
+</ul>
+<p>Receipt verification requires signer key to be authorized for issuer/pur=
+pose/time.</p>
+<ol>
+<li>APPEND-ONLY TRANSPARENCY LOG (<code>plog</code> module, initially insid=
+e PMail)<br>
+Create:</li>
+</ol>
+
+<code>src/transparency/
+  log.ts
+  merkle.ts
+  store.ts
+  verifier.ts
+  types.ts
+</code>
+<p>Minimum API:</p>
+
+<code>append(runDigest): Promise&lt;{index, treeSize, treeRoot, inclusionPr=
+oof}&gt;
+getInclusionProof(index, treeSize)
+getConsistencyProof(oldSize, newSize)
+getSignedTreeHead()
+verifyInclusion(...)
+verifyConsistency(...)
+</code>
+<p>Tree head is signed by a dedicated log key, separate from run signer.</p=
+>
+<p>Receipt carries:</p>
+<ul>
+<li>log_id</li>
+<li>log_index</li>
+<li>tree_size</li>
+<li>tree_root</li>
+<li>signed_tree_head</li>
+<li>inclusion_proof</li>
+</ul>
+<p>Do not store raw evidence in public log. Log a cryptographic commitment =
+to the signed run statement/receipt.</p>
+<ol>
+<li>PERIODIC EXTERNAL WITNESS<br>
+MVP can start with one PMail log, but design for split-view resistance.<br>
+Create a Witness interface:</li>
+</ol>
+
+<code>interface LogWitness {
+  observe(sth: SignedTreeHead): Promise&lt;WitnessReceipt&gt;;
+}
+</code>
+<p>Initially persist/export daily roots somewhere independent. Later use mu=
+ltiple witnesses. Never market a sole private database hash chain as global=
+ly tamper-proof.</p>
+<ol>
+<li>QP REPLAY V2<br>
+Replace caller-supplied arbitrary functions.</li>
+</ol>
+<p>Add:</p>
+<ul>
+<li><code>ProofSpecRegistry</code></li>
+<li><code>ProgramManifest</code></li>
+<li><code>JudgeRegistry</code></li>
+<li><code>GateRegistry</code></li>
+</ul>
+<p>Frozen ProofSpec references content hashes of real code/schema/config bu=
+ndles.<br>
+Replay resolves bundle by hash and fails closed if missing/mismatch.</p>
+<p>Replay MUST recompute/verify:</p>
+<ul>
+<li>ProofSpec ContractRoot</li>
+<li>claim ID + claim.contract_root</li>
+<li>evidence ID/content hash</li>
+<li>evidence claim binding</li>
+<li>response_hash</li>
+<li>normalized_payload_hash</li>
+<li>freshness including future-skew bound</li>
+<li>provenance policy</li>
+<li>independence policy</li>
+<li>judge bundle hashes + results</li>
+<li>gate bundle hashes + results</li>
+<li>judge_results_root</li>
+<li>gate_results_root</li>
+<li>actuality DAG</li>
+<li>authority requirement/root when required</li>
+<li>transition program hash</li>
+<li>state_before/proposal/state_after root</li>
+<li>receipt signature/trusted signer</li>
+<li>previous-chain linkage where relevant</li>
+<li>transparency inclusion when requesting FULL verification</li>
+</ul>
+<p>API:</p>
+
+<code>verifyRun(receipt, mode: &quot;CRYPTO&quot;|&quot;SEMANTIC&quot;|&quo=
+t;FULL&quot;)
+</code>
+<ol>
+<li>PRIVACY/DISCLOSURE MANIFEST<br>
+Create canonical <code>DisclosureManifestV1</code>.<br>
+It records what PMail believes was disclosed on the path:</li>
+</ol>
+
+<code>{
+  pmail_collected: [],
+  providers: [{provider, fields_disclosed, network_metadata, legal_identity=
+_required}],
+  payment_rail: &quot;XMR&quot;,
+  network_path: [&quot;TOR&quot;],
+  identity_bridges: []
+}
+</code>
+<p>Hash to <code>disclosure_root</code>; signed RunStatement commits it.</p=
+>
+<p>Do NOT claim universal <code>identity_not_collected</code> from absence =
+of a log. Narrow claims to facts the system can verify, e.g.:</p>
+<ul>
+<li>request schema contains no legal-identity fields</li>
+<li>PMail persisted-state projection contains no prohibited PII fields</li>
+<li>configured route contains no IDENTITY_BRIDGED dependency</li>
+<li>provider identity requirements are represented by evidence-backed Ident=
+itySurface</li>
+</ul>
+<ol>
+<li>REPUTATION MUST BE DERIVED, NOT STORED AS AUTHORITATIVE SCORE<br>
+Create <code>src/reputation/replay.ts</code> only after the log works.</li>
+</ol>
+
+<code>ReputationSnapshot =3D f(valid included runs, policy version, cutoff =
+tree size)
+</code>
+<p>Each snapshot commits:</p>
+<ul>
+<li>algorithm/version hash</li>
+<li>input tree size/root</li>
+<li>included predicates</li>
+<li>output metrics</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>verified completed runs</li>
+<li>FALSE/UNKNOWN rates</li>
+<li>privacy-policy violations</li>
+<li>provider success rate</li>
+<li>spend reconciliation accuracy</li>
+</ul>
+<p>Do not expose a permanently linkable master agent key on every public ru=
+n. Design for task/epoch keys now; selective/ZK reputation can come later.<=
+/p>
+<p>DEFINITION OF DONE FOR THIS PHASE</p>
+<ul>
+<li>no custom generic receipt crypto on production path</li>
+<li>RFC8785 canonicalization</li>
+<li>actual Obsigna conformance passing</li>
+<li>trusted issuer binding separate from receipt input</li>
+<li>private evidence Merkle root + inclusion proofs</li>
+<li>append-only log inclusion proof</li>
+<li>consistency proof between two tree sizes</li>
+<li>signed tree head</li>
+<li>offline verifier can verify a fixture without PMail server</li>
+<li>mutation of statement/evidence/signer/log proof fails</li>
+<li>QP false semantic claim remains false even if crypto/log signatures are=
+ valid</li>
+</ul>
+<p>Only after this should the repo claim =E2=80=9Ccryptographically verifie=
+d history.=E2=80=9D</p>
+
+--000000000000c180ba065bb3730e--

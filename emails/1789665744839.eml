@@ -1,0 +1,610 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id NKocAIAOz2I3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 17:22:22 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=IiSJhulU+zsIfzAhNF3AwPGDxkHV04fm6XgmyGzNyqNS9jeF8DJXaMoquVWxNITx/DCJzxSaC
+	Up6twj1ToXGSDeE+QZA3ckl8Qo+2k/WsSxIa1mnBNb+mhr2Oj6LKGfQumFNl54i/StqYamyeIY3
+	jKDjirsmlx4m3WowdyLe5ifsRQhWJzIqGo1rxapZFcAv5kkE0n6TeW4oD0h6jnzDMKzMIi+Q3lp
+	XW3CFqbS8pPTzpYmDVA7rJH8W0OpTlNS4v8Zd3dlqKJh7W/xUH2j1L2UqnoR8pcHJ+RCYsraFt2
+	66/aDSNoqbygzbJBywWn12e173mrkRJxi96I1Tcc6PBg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789665744; x=1790270544; bh=n5l0f7V/
+	J0hKD4uiCvzH+hi1zfZofuXwlrE5vYLmxYw=; b=Mt/epEZ/mmYiwap+/5n/DTUkFuRGnfYf8o7
+	69O1GUqGcGUfFS3JK6oeBIuM/qiutS0ndB/yzmYyUqIxP4kqMPLQfA2r72Cf2rbRPOjUTzEec7d
+	MG1avPEJzPPFdTAmkcQwwXGAHpU5d4dSslARPJHGkms+eDr8fZ2HVN4Nw66q6WPMIYnA2yIbfYF
+	A5M5i4geo5drvWQvzep6zl8/NTyj0XcSwnOEEs72SwCSTQeseOSfl5R6fU7K1lbt2Zi6ucs3AqX
+	lwjybqljEaZ1AYRXml9VGI/TKGWMoKFUJj3ofYyWC34SHJZNDhoKTaP5XNetVTon7XBmvF6hxI6
+	etvkISQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IPQFIHsJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IPQFIHsJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d45ae011aso8182437b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 10:22:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789665742; cv=none;
+        d=google.com; s=arc-20260327;
+        b=DXrh8HIKwWe/ROcaFSQamz+xUoSp4p6SxRvrNqB7d4BesdZpIlO5bsSxZBS8LDnDa0
+         JRKOVOs1K/R9Wb376PRuczvUZjW/0XDcTmpRWkUqkIXeIYwrmLykhQX+kC5VyT7w0HN4
+         qP5oqKsPe0xGQsX+x5Sxhd2NFqbhqsb9/x2pelN4AsAInCesDZl+x8HMn2cjCSUou0ds
+         eRED6Ee8/Pz+g8GkjU9APUtK0fuZkVi11nC3cddwhT4zcWtHK+7xvKkOUa6KPFq89q1+
+         zd/8BSZdCbHPfo6I8QdAdbKC/JHcrXMJNW2vwA49Ja1CNdRSgLSxefbPx4ciGXbmV5OE
+         hs6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=n5l0f7V/J0hKD4uiCvzH+hi1zfZofuXwlrE5vYLmxYw=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Vg5o6tCCdb2PTlSlObBn0UU10zJnE5XTpEQrLwdK+z66Oi9A65k1kOU1hGe+RvQvd1
+         RMIVrKmMt6Yck5KbdczFviFIGEIesTXrYe4ystQY2aHzpd0fXbseGPlWlPwqukr25YKm
+         F3WDb0QEfU+3t8lcGRHkUVPfe3DGjWYBzCTF3DSHSj6PXCPFifXrzwrSZILKdpmn5XrQ
+         kqzIDTecISwbJUJOGeOPY8Xg5ByRzZms/ku1oPl070pW4IwBuyEpmFqraNKROTfxybDL
+         VYzZTHU6VaPFl7GGCPzSOxjRMZARU/D9sdRKbp+RYBQdpzJy3mKpQlMAnFb6nO8ilPYZ
+         QNew==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789665742; x=1790270542; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=n5l0f7V/J0hKD4uiCvzH+hi1zfZofuXwlrE5vYLmxYw=;
+        b=IPQFIHsJJNutsGUKj+IUktirKIpuellPVkPHBIh7PTqDyhAfzjrLJMg1aH/mlqAri6
+         QiF4p4U0kXGUu7yjeuSchzkjW7rlb/V5EjCtcFgiG7t0Y3Iwmnl6b9ACsk+9dV92MNB+
+         k98i3Mw8fqKaySsGaE46k1yDNMB3HKz2akR3AxGeeZkkf19xi0iK6ow5w64JS3gkqM2a
+         ketg4qxBAMwxuCA1vVFJc3mK7imHKWaCnDSPu+7Ter6PTaLKTPTMrd/7J+LmbEuP/cbO
+         tmw8MhgdOI1xL77rSXOFvK0Grv7TpbACRvH1Oxe2wXorLfY0U6IZQGdtlsHQzmkto2c0
+         T+dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789665742; x=1790270542;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=n5l0f7V/J0hKD4uiCvzH+hi1zfZofuXwlrE5vYLmxYw=;
+        b=c90ShziOmFpkDYAN/qEGxNUdg/zV0Y8ts4F9qgdklrDvXs3AfYGZqolq2x8yjQuQu8
+         emQ8AtZ9bm3IvUipvoYNUbnG28tmGyYqcpyOYfvzkB3mSNruVPUaU43JVG/Kg/K8gr5M
+         1q3v2rtLBVLNpuLmOrVqSmUAlVb40KzyES7AunhwkHm1rQFehBS0ytMHW6de5rEufLvz
+         RuRDvDEwT8wVg40JyDk5jdNC0dVyldFahnzLmxv383f2wr1RtO2Bg0L+eVojiw5MR5In
+         HkjimDwRbP0+fOAdvUxoKIbFZotAR1fa1zAooGF7/3bZq5Kq3xZv25wA567slKMYD5TZ
+         VFXw==
+X-Gm-Message-State: AFuF++kfXoDq7m9xVX7fKb72fBtIMpLclWAAbdZkBgHuQgNMZ8BqbnuO
+	PYHOzb8911wok8XXEscPTVmbLix78cwiI4gYGZu/bORfdd0hTqZo92w+oT4jlv1Qp/2ii+AYYmr
+	dMtnE2oyje2Ys5zJTViUxlWzso5Yc8piBEg==
+X-Gm-Gg: AYBFou23wV1Lo4oBq7JUBEnqDWj/YBOct4nmz6LHkaPN6P14tB3G0wVozzz190T/eCL
+	9VVRTzK+lLDaUzemriE/eqWLi7/AhKT2p+u9s54DsENS7x1IYfECkQlhu0ioHKUgONyDuUbySQC
+	foOLHAHmy2666t2kk9ztuXDGnC72FwA2tlSuo7VChD+82hkEZxMcZW/MSVNc09NzF6pB4F64AWz
+	UMdRDACNKqNW47RF5zKSRULU3qD0tcRT8epEl+oIkEeGqJHrP27DNrZHGkyoIrgjA99Ju8BlgeI
+	xWFivogT91WYc+pqwqS+6p7L2i2ry4hpm8FODbRgHKXaXsprDlPjbI5FiRlNBwAgB0TbQI5nC+U
+	GxYyOa5w1vadvDOyGIPCJEY6v8KZ1vucs5PjBgDoSi6DYxZjwScZJiO3WBW48ITCqWzpRqwdo
+X-Received: by 2002:a05:690c:13:b0:873:5bb2:6c39 with SMTP id
+ 00721157ae682-8922a03efcfmr23852617b3.64.1789665741811; Thu, 17 Sep 2026
+ 10:22:21 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:22:21 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:22:21 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 12:22:21 -0500
+X-Gm-Features: AcwNN1XGUo8dehcTorILFTKIZw8tdXAjtnV8zX-vWzZb_szoysO3YwZUolOmjxo
+Message-ID: <CAPdrGem9rjncoc1h89ChX+PRSg8j4=8+gm36-AQrJFUSL45-0w@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail=2FQP_convergence_plan_1=2F3_=E2=80=94_STOP_rebuilding_co?=
+	=?UTF-8?Q?mmodity_infrastructure?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000ceb58c065bb106fc"
+
+--000000000000ceb58c065bb106fc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Peer-review follow-up: converge cmail/QP onto existing open-source
+infrastructure and preserve only the genuinely unique layer.
+
+Current target
+
+The product is not a scheduler, connector registry, vault, OAuth framework,
+workflow engine, or generic signed-receipt protocol. Those layers now have
+credible OSS implementations.
+
+QP should converge toward:
+
+   1. exact claim semantics (what does it mean for X to be
+   TRUE/FALSE/UNKNOWN?)
+   2. effect/readback pairing
+   3. independence policy for evidence
+   4. ProofSpec registry + frozen ContractRoots
+   5. claim dependency/composition
+   6. deterministic settlement against evidence
+   7. verified spend/outcome composition
+   8. replay of QP semantics
+
+Everything else should be imported or wrapped.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+A. ADOPT NOW =E2=80=94 MONID AS CONNECTOR SUBSTRATE
+
+Repo: monid-ai/monid
+License: MIT
+Current inspected main SHA: 7e3148f5adfde3ebc77745b42ec92fa7e554c924
+
+Monid already provides the parts we should stop inventing:
+
+   - declarative provider/endpoint definitions
+   - JSON-schema input validation
+   - content-hashed referenced functions
+   - sealed execution units
+   - credential injection at transport boundary
+   - normalized input->request->transport->output pipeline
+   - usage/cost settlement hooks
+   - fixture recording/replay
+   - offline deterministic connector tests
+
+Use Monid as the generic connector compiler/runtime beneath QP.
+
+Do NOT make Monid authoritative for truth. Monid is an I/O engine.
+
+Desired boundary:
+
+QP
+-> selects exact frozen Monid effect bundle
+-> authorizes exact payload
+-> Monid executes
+-> raw effect evidence stored
+-> separate Monid observation bundle performs readback
+-> QP evaluates ProofSpec
+-> QP settles claim
+
+Required QP receipt/proof metadata should include at least:
+
+   - effect connector bundle hash
+   - observation connector bundle hash
+   - input canonical hash
+   - raw response hash
+   - normalized response hash
+   - Monid engine/runtime identity
+   - credential reference/version, never secret value
+
+Do not fork Monid deeply into cmail. Integrate behind a narrow adapter
+interface and pin exact commits/bundle hashes.
+
+Create:
+
+integrations/monid/
+client.ts
+types.ts
+identity.ts
+README.md
+
+Suggested interface:
+
+interface ConnectorExecution {
+bundleHash: string;
+provider: string;
+endpoint: string;
+inputHash: string;
+requestHash: string;
+rawResponseHash: string;
+normalizedResponseHash: string;
+output: unknown;
+observedAt: string;
+}
+
+Effect executors and observation probes may both use Monid, but QP must
+require independent bundles/independence groups where the ProofSpec
+requires independent readback.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+B. ADOPT NOW =E2=80=94 INFISICAL AGENT VAULT FOR CREDENTIALS
+
+Repo: Infisical/agent-vault
+Core license: MIT (enterprise directory excluded under its own license)
+
+Agent Vault already solves the problem we should not rebuild:
+
+   - agents never possess credentials
+   - HTTP/HTTPS proxy injects credentials on outbound requests
+   - service/host/path egress rules
+   - short-lived agent/vault-scoped sessions
+   - request logging
+   - pluggable secret stores
+   - SQLite/Postgres persistence
+   - TS SDK for session/proxy setup
+
+Delete the idea of building our own generic secret broker.
+
+QP owns whether an operation is authorized.
+Agent Vault owns whether the caller can physically access/use a credential.
+Provider OAuth owns what the upstream account granted.
+
+Those are three different layers.
+
+QP should store only:
+
+credential_ref =3D vault://tenant/account/youtube
+credential_version/hash =3D =E2=80=A6
+
+Never persist raw OAuth/API tokens into QP evidence or receipts.
+
+Integration rules:
+
+   - strict-deny unmatched hosts in production
+   - separate Agent Vault host/network from untrusted agent execution
+   - give QP/connector runtime short-lived scoped vault sessions
+   - service rule must restrict exact provider host/path where feasible
+   - QP grant does NOT equal vault session; both must pass
+   - vault request log may be evidence, but never sufficient world-state
+   proof
+
+Create:
+
+integrations/vault/
+agent-vault.ts
+policy.ts
+types.ts
+
+Do not implement AES secret storage/token proxying ourselves.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+C. ADOPT NOW =E2=80=94 AGENT RECEIPTS / OBSIGNA FOR RECEIPT ENVELOPE
+
+Repo: agent-receipts/obsigna
+Code license: Apache-2.0
+Protocol spec: MIT
+Current protocol: Agent Receipt Protocol v0.5.0 draft
+
+This is the biggest deletion opportunity.
+
+Obsigna already implements:
+
+   - W3C VC-style receipt envelope
+   - RFC 8785 canonical JSON
+   - Ed25519 signatures
+   - SHA-256 parameter hashing
+   - hash-chained receipts
+   - out-of-process signing daemon/key custody
+   - MCP proxy
+   - TypeScript/Go/Python SDKs
+   - cross-language conformance vectors
+   - MUST-reject corpus
+   - local verification CLI
+   - audit dashboard
+
+Therefore: STOP building a competing generic receipt/signature/chaining
+format unless QP requires a semantic field the Agent Receipt extension
+mechanism cannot represent.
+
+QP should become a domain-specific proof extension carried inside/alongside
+an Agent Receipt.
+
+Design a QP extension context/schema containing:
+
+   - qp.contract_root
+   - qp.claim_id
+   - qp.actuality TRUE|FALSE|UNKNOWN
+   - qp.evidence_root
+   - qp.judge_results_root
+   - qp.gate_results_root
+   - qp.effect_bundle_hash
+   - qp.observer_bundle_hash
+   - qp.independence_policy_hash
+   - qp.authority_ref
+   - qp.state_before_root
+   - qp.state_after_root
+   - qp.replay_result
+
+Use Obsigna/Agent Receipts for:
+
+   - canonical envelope
+   - signer/key custody
+   - chain linkage
+   - portable verification
+   - generic action taxonomy/risk fields
+
+QP remains responsible for proving the external claim under frozen
+semantics.
+
+Important distinction:
+Agent Receipt =3D cryptographically proves the audit record has integrity.
+QP =3D determines whether the external-world claim is justified.
+
+Do not conflate them.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+D. DO NOT COPY POSTIZ INTO CLOSED CORE
+
+Repo: gitroomhq/postiz-app
+License: AGPL-3.0
+
+Postiz already provides huge social execution coverage, API/CLI/MCP,
+scheduling, OAuth flows, media handling and platform-specific settings.
+
+Use it as an UNMODIFIED/SEPARATE NETWORK SIDECAR where useful.
+
+Do not copy AGPL implementation files into closed QP core.
+Do not make Postiz=E2=80=99s success response proof.
+
+Boundary:
+QP -> HTTP -> Postiz -> platform
+platform -> separate official readback -> QP
+
+Postiz is replaceable execution infrastructure.
+
+If we modify and expose an AGPL Postiz deployment over a network, comply
+with AGPL source obligations. Prefer an unmodified service boundary and
+keep QP independent.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+E. IMMEDIATE DELETIONS / DEMOTIONS
+
+Do NOT spend more time implementing:
+
+   - generic credential encryption/vault
+   - generic OAuth-token secret storage
+   - generic signed receipt format
+   - generic Ed25519 receipt chain
+   - generic connector compiler
+   - generic API request transformation engine
+   - generic scheduler
+   - generic queue/retry dashboard
+   - generic social posting adapters where existing code is reusable
+
+Before adding any new infrastructure primitive, search OSS first and record
+why existing projects fail our requirement.
+
+The unique work is ProofSpecs + independent evidence + settlement, not
+plumbing.
+
+Part 2 will cover social adapters, authority and durable workflows, plus
+exactly what to port versus wrap.
+
+--000000000000ceb58c065bb106fc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Peer-review follow-up: converge cmail/QP onto existing open-source infra=
+structure and preserve only the genuinely unique layer.</p>
+<p>Current target</p>
+<p>The product is not a scheduler, connector registry, vault, OAuth framewo=
+rk, workflow engine, or generic signed-receipt protocol. Those layers now h=
+ave credible OSS implementations.</p>
+<p>QP should converge toward:</p>
+<ol>
+<li>exact claim semantics (what does it mean for X to be TRUE/FALSE/UNKNOWN=
+?)</li>
+<li>effect/readback pairing</li>
+<li>independence policy for evidence</li>
+<li>ProofSpec registry + frozen ContractRoots</li>
+<li>claim dependency/composition</li>
+<li>deterministic settlement against evidence</li>
+<li>verified spend/outcome composition</li>
+<li>replay of QP semantics</li>
+</ol>
+<p>Everything else should be imported or wrapped.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+A. ADOPT NOW =E2=80=94 MONID AS CONNECTOR SUBSTRATE
+<p>Repo: monid-ai/monid<br>
+License: MIT<br>
+Current inspected main SHA: 7e3148f5adfde3ebc77745b42ec92fa7e554c924</p>
+<p>Monid already provides the parts we should stop inventing:</p>
+<ul>
+<li>declarative provider/endpoint definitions</li>
+<li>JSON-schema input validation</li>
+<li>content-hashed referenced functions</li>
+<li>sealed execution units</li>
+<li>credential injection at transport boundary</li>
+<li>normalized input-&gt;request-&gt;transport-&gt;output pipeline</li>
+<li>usage/cost settlement hooks</li>
+<li>fixture recording/replay</li>
+<li>offline deterministic connector tests</li>
+</ul>
+<p>Use Monid as the generic connector compiler/runtime beneath QP.</p>
+<p>Do NOT make Monid authoritative for truth. Monid is an I/O engine.</p>
+<p>Desired boundary:</p>
+<p>QP<br>
+-&gt; selects exact frozen Monid effect bundle<br>
+-&gt; authorizes exact payload<br>
+-&gt; Monid executes<br>
+-&gt; raw effect evidence stored<br>
+-&gt; separate Monid observation bundle performs readback<br>
+-&gt; QP evaluates ProofSpec<br>
+-&gt; QP settles claim</p>
+<p>Required QP receipt/proof metadata should include at least:</p>
+<ul>
+<li>effect connector bundle hash</li>
+<li>observation connector bundle hash</li>
+<li>input canonical hash</li>
+<li>raw response hash</li>
+<li>normalized response hash</li>
+<li>Monid engine/runtime identity</li>
+<li>credential reference/version, never secret value</li>
+</ul>
+<p>Do not fork Monid deeply into cmail. Integrate behind a narrow adapter i=
+nterface and pin exact commits/bundle hashes.</p>
+<p>Create:</p>
+<p>integrations/monid/<br>
+client.ts<br>
+types.ts<br>
+identity.ts<br>
+README.md</p>
+<p>Suggested interface:</p>
+<p>interface ConnectorExecution {<br>
+bundleHash: string;<br>
+provider: string;<br>
+endpoint: string;<br>
+inputHash: string;<br>
+requestHash: string;<br>
+rawResponseHash: string;<br>
+normalizedResponseHash: string;<br>
+output: unknown;<br>
+observedAt: string;<br>
+}</p>
+<p>Effect executors and observation probes may both use Monid, but QP must =
+require independent bundles/independence groups where the ProofSpec require=
+s independent readback.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+B. ADOPT NOW =E2=80=94 INFISICAL AGENT VAULT FOR CREDENTIALS
+<p>Repo: Infisical/agent-vault<br>
+Core license: MIT (enterprise directory excluded under its own license)</p>
+<p>Agent Vault already solves the problem we should not rebuild:</p>
+<ul>
+<li>agents never possess credentials</li>
+<li>HTTP/HTTPS proxy injects credentials on outbound requests</li>
+<li>service/host/path egress rules</li>
+<li>short-lived agent/vault-scoped sessions</li>
+<li>request logging</li>
+<li>pluggable secret stores</li>
+<li>SQLite/Postgres persistence</li>
+<li>TS SDK for session/proxy setup</li>
+</ul>
+<p>Delete the idea of building our own generic secret broker.</p>
+<p>QP owns whether an operation is authorized.<br>
+Agent Vault owns whether the caller can physically access/use a credential.=
+<br>
+Provider OAuth owns what the upstream account granted.</p>
+<p>Those are three different layers.</p>
+<p>QP should store only:</p>
+<p>credential_ref =3D vault://tenant/account/youtube<br>
+credential_version/hash =3D =E2=80=A6</p>
+<p>Never persist raw OAuth/API tokens into QP evidence or receipts.</p>
+<p>Integration rules:</p>
+<ul>
+<li>strict-deny unmatched hosts in production</li>
+<li>separate Agent Vault host/network from untrusted agent execution</li>
+<li>give QP/connector runtime short-lived scoped vault sessions</li>
+<li>service rule must restrict exact provider host/path where feasible</li>
+<li>QP grant does NOT equal vault session; both must pass</li>
+<li>vault request log may be evidence, but never sufficient world-state pro=
+of</li>
+</ul>
+<p>Create:</p>
+<p>integrations/vault/<br>
+agent-vault.ts<br>
+policy.ts<br>
+types.ts</p>
+<p>Do not implement AES secret storage/token proxying ourselves.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+C. ADOPT NOW =E2=80=94 AGENT RECEIPTS / OBSIGNA FOR RECEIPT ENVELOPE
+<p>Repo: agent-receipts/obsigna<br>
+Code license: Apache-2.0<br>
+Protocol spec: MIT<br>
+Current protocol: Agent Receipt Protocol v0.5.0 draft</p>
+<p>This is the biggest deletion opportunity.</p>
+<p>Obsigna already implements:</p>
+<ul>
+<li>W3C VC-style receipt envelope</li>
+<li>RFC 8785 canonical JSON</li>
+<li>Ed25519 signatures</li>
+<li>SHA-256 parameter hashing</li>
+<li>hash-chained receipts</li>
+<li>out-of-process signing daemon/key custody</li>
+<li>MCP proxy</li>
+<li>TypeScript/Go/Python SDKs</li>
+<li>cross-language conformance vectors</li>
+<li>MUST-reject corpus</li>
+<li>local verification CLI</li>
+<li>audit dashboard</li>
+</ul>
+<p>Therefore: STOP building a competing generic receipt/signature/chaining =
+format unless QP requires a semantic field the Agent Receipt extension mech=
+anism cannot represent.</p>
+<p>QP should become a domain-specific proof extension carried inside/alongs=
+ide an Agent Receipt.</p>
+<p>Design a QP extension context/schema containing:</p>
+<ul>
+<li>qp.contract_root</li>
+<li>qp.claim_id</li>
+<li>qp.actuality TRUE|FALSE|UNKNOWN</li>
+<li>qp.evidence_root</li>
+<li>qp.judge_results_root</li>
+<li>qp.gate_results_root</li>
+<li>qp.effect_bundle_hash</li>
+<li>qp.observer_bundle_hash</li>
+<li>qp.independence_policy_hash</li>
+<li>qp.authority_ref</li>
+<li>qp.state_before_root</li>
+<li>qp.state_after_root</li>
+<li>qp.replay_result</li>
+</ul>
+<p>Use Obsigna/Agent Receipts for:</p>
+<ul>
+<li>canonical envelope</li>
+<li>signer/key custody</li>
+<li>chain linkage</li>
+<li>portable verification</li>
+<li>generic action taxonomy/risk fields</li>
+</ul>
+<p>QP remains responsible for proving the external claim under frozen seman=
+tics.</p>
+<p>Important distinction:<br>
+Agent Receipt =3D cryptographically proves the audit record has integrity.<=
+br>
+QP =3D determines whether the external-world claim is justified.</p>
+<p>Do not conflate them.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+D. DO NOT COPY POSTIZ INTO CLOSED CORE
+<p>Repo: gitroomhq/postiz-app<br>
+License: AGPL-3.0</p>
+<p>Postiz already provides huge social execution coverage, API/CLI/MCP, sch=
+eduling, OAuth flows, media handling and platform-specific settings.</p>
+<p>Use it as an UNMODIFIED/SEPARATE NETWORK SIDECAR where useful.</p>
+<p>Do not copy AGPL implementation files into closed QP core.<br>
+Do not make Postiz=E2=80=99s success response proof.</p>
+<p>Boundary:<br>
+QP -&gt; HTTP -&gt; Postiz -&gt; platform<br>
+platform -&gt; separate official readback -&gt; QP</p>
+<p>Postiz is replaceable execution infrastructure.</p>
+<p>If we modify and expose an AGPL Postiz deployment over a network, comply=
+ with AGPL source obligations. Prefer an unmodified service boundary and ke=
+ep QP independent.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+E. IMMEDIATE DELETIONS / DEMOTIONS
+<p>Do NOT spend more time implementing:</p>
+<ul>
+<li>generic credential encryption/vault</li>
+<li>generic OAuth-token secret storage</li>
+<li>generic signed receipt format</li>
+<li>generic Ed25519 receipt chain</li>
+<li>generic connector compiler</li>
+<li>generic API request transformation engine</li>
+<li>generic scheduler</li>
+<li>generic queue/retry dashboard</li>
+<li>generic social posting adapters where existing code is reusable</li>
+</ul>
+<p>Before adding any new infrastructure primitive, search OSS first and rec=
+ord why existing projects fail our requirement.</p>
+<p>The unique work is ProofSpecs + independent evidence + settlement, not p=
+lumbing.</p>
+<p>Part 2 will cover social adapters, authority and durable workflows, plus=
+ exactly what to port versus wrap.</p>
+
+--000000000000ceb58c065bb106fc--

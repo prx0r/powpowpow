@@ -1,0 +1,418 @@
+Received: from mail-yx2-x25.google.com (2607:f8b0:4864:41::25)
+        by cloudflare-email.net (cloudflare) id 45N2TpnyEcjh
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:17:19 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=IRTBjIMra6yAJv50gADNuEQef8quFFS/Ecs0+Z1/niGvpNNllzE3rGv2OtVGsdGV78NVJcawK
+	mftSVNXK7ltJp5mkdnbEKx1rWDOz27/d1gM6jrsjPDTihm+uEOeQDbGtkuIeQ7JJWReumZjHp/t
+	WlZSmDBF0T5CjseuB4g30+BrBwGhU7gn18Jv63MYWgEAa/N9bGxPtmR0GyT4GgQi7pD42yevQJr
+	dvOGMprnxDwVwxJigw9MuhEupVlr26D8A2dJpq6NRRX93o83fCk716wrXcwHFi6vExaFO2bKmmU
+	tcidaij2OEu77vodN5JezaUt7AG1KOpMBa9v3FmyOTtQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888639; x=1790493439; bh=DOQ9KNe9
+	CCyyf5DYUGM98fU5C6990j/+hunRYXN4ATc=; b=DvokVmpVA99lQKiDB8VCOYtnPqzX2gyQX9J
+	nxK0WU2kL26xyny+8JjY89xJ6fzlOpuJRWUNTSuYtqy7ZCtnF7D31YXqMOFg3TBs/1NiZ5JMF9Z
+	uzr71gwvmkTIqy80AKvv7UX4cd8zuEJHWnjtEAjAcqBOiMF82QmY5reuHBUpmP/uWnwsMe6HEEs
+	zSSZBTPAhZadh7h0Fc6HA3N+gs/Us0iiofoWE+V4o4G5SO7RqOSxl0oY5vKnA+AYXC2S9KfbwGJ
+	lkF0J6H2BXa78k+wclHxaPXPdZRFKxNykDkfkShkSmcStMtQjq3mv8TT/LJDI+vHa6CNtYhlyFw
+	n1KrgDQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AGN2eE7R;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x25.google.com) smtp.helo=mail-yx2-x25.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::25 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::25"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::25 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::25; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x25.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AGN2eE7R;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x25.google.com) smtp.helo=mail-yx2-x25.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::25 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::25"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x25.google.com with SMTP id 00721157ae682-85d43ac6089so13180317b3.1
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:17:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888639; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Ooaf3miDQQa9xsmPGJBefDVrfBRpilTO+r4sYRZoy811mQrjpcGe3nXZ7tbQXmiGoe
+         Gw09y6kHc4LodVA0agiOJCK1f9a3mf+u5Dh2ULWHoSZ02geP1ZFGQy0vEL3hhEIfPj1C
+         Mx7WDoEv9hww3FAuf24+oss61z2hZiVPiUJi6CEtBTtuiZ2exvZkK/D0oEgk0hlM1Db3
+         6axY1JKDwR0Yi1VxhXUTtpyVKsGG+fDoVYzPR2mtw5R8n7Y5ExQCCyFWSTmZfSp82it5
+         9jZrVwFV9cvc5EnSLL4kaySx/ViS7pxFwAgVInHovoAPI0EO8U/ejvZCjt9zrgDaUpP6
+         owwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=DOQ9KNe9CCyyf5DYUGM98fU5C6990j/+hunRYXN4ATc=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Np+dNND2Ld8K61207UBXsUlsSI/s4XD6SD0HO+JTjpu1TAIs074e+HzhBoBZMdRs7o
+         yQItB0LpY+FH3saZaDlH1+1DI8mbePoz/D1BV/Y4Jq5tHOQGILAie/T3dOnhxXe7Tpda
+         s/sj9csUX3OAcWTmR00vRsYj7BxzNdc8TnOtQCIILQ/L1hNnPt5Wl+nJKzbgxWYhvtWc
+         elD63v59aXzeCbGUN/nIWQZYJoYV4lS0YzzTCh9TZU4E0+g1jVLoG4k8LFq3piE5Jm8L
+         YUB6lm7jW0/oIdt+wevfW1rX9YtwwxVpKvxFmUn8kzwTBdNoLX5VTG+UhRh0zHLfydjl
+         nTMA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888639; x=1790493439; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=DOQ9KNe9CCyyf5DYUGM98fU5C6990j/+hunRYXN4ATc=;
+        b=AGN2eE7RmeuUvChOtKlny/0EKy2/PUQ+d86B/8sXjTKj4MrFODM6fd2obcgvAmNhdp
+         BbkrPQI0ZPH6/ylwwJz+mr+PgqlMghx3bogblVOta1tKI6eea1qnKhFw1qXhYlHImQFx
+         9PT/LjAa0jBfgy9rgkW+vsApERQ1FaSnw/gVtqcM6qNACVoq6PN233z2nU4yRjWiuIQe
+         CpUhEJte6yIlSZsT6hloVaPfD83wFaC1h9htZ9fEWHF02Zb+ySVCdI94xgTUbyCw+8Gp
+         7J6+cO2Nt/V1AS1FCMezW6SCBm955yyi7aAxJq5YDFuDFfYlqSuYmTPtY8Do7TQrPkWA
+         yKyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888639; x=1790493439;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=DOQ9KNe9CCyyf5DYUGM98fU5C6990j/+hunRYXN4ATc=;
+        b=VdazR8gp7+7n1wvO8KupVoOqdvv4zpayxCu6z4OaQ6FTu9wGLQSfnMYRvK78LplU5P
+         NXoIGS4Nud8i4VNlyWW6szlViufTKuXZsO+5/6wi3JpGmjc0ChOedBF+qlXPIMVNEnE/
+         pstWqnLBGPzqQ3Dpfre108sEwRqUkCfbLzeSxPbAp/NTugYuaYZh55GnPVgxkSSi0udr
+         n346hHMn/4BKShtecMzg66JaPQ/UyKX5SnP5pubZ/wqfaLbAm5d/kDfc/k0maubtYTEW
+         TcmRNEwY8riNLFGSMGJluDcQMy0+ChpYU4tyiuZJLFexdSgL3W2ErrRwQ1zWAzgMqrNY
+         irAw==
+X-Gm-Message-State: AFuF++mVzdKQcr00wWRxZjHHTrKHcXa29N9eS7LvPPYSp2AKacrfLWzR
+	GeK7Z5xsP8wqCmkjKdid3bOtqh2E9bDYDYkhz6Do1eNnX0mnj6ic3VrZ5LUNUeQBxGw1YhxNP1c
+	3VCzPIeEFgPwJo4XZCJOUVcKN4JNWzdpzFw==
+X-Gm-Gg: AYBFou0dTFlgVCn3KWANLq30i0vtVnOjr+w5i9kbcov5crszVXqVWVrdcyCwFgDOLjI
+	KxWXBeKNuLoKHX0sZLJFuATZ4WpU/ZDkgaKDCOEwmxmsgaAUmwxETUazySBLWVqKPMyD6eBkgi9
+	62+c9z9uWs4hewTqzrIlJKKTsiCuSxdonz2WsRzcMt589y3G1RBHTWpEcuSfxhW5BgU+mBRHB2z
+	6V2l+6pd96ylsAnbiVO59qbnLNnHQtK+kOz/kTawUWZAteksMN0QaFTzF/HZOlC+dWHdGNOiH+2
+	lmrPqG15fF2u9T/sOG8JOBYxfmsRnwwqMAhNtoCfwhYSfPhO7dr2TBhrhC8bftzkX46we9708C8
+	aqlGOFQB4N4xWXPrg/eYXDI4ixtC7SPY5+X3rykf+jwYDSs/2Lkrn69w/VcuKaD5f8mE0Y17b
+X-Received: by 2002:a05:690c:c3e2:b0:854:d9d0:46b5 with SMTP id
+ 00721157ae682-89732083963mr17849097b3.19.1789888639145; Sun, 20 Sep 2026
+ 00:17:19 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:17:18 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:17:18 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:17:18 -0500
+X-Gm-Features: AcwNN1VCDHAqoK6wsUumGz_7UN0kRW3vKrjzZux9vrN33vocfmBPDTp8dWtCKhI
+Message-ID: <CAPdrGenGoHBauKTnoO5aszAn4P1J=Upd7_MGi4qUXxNjMYB2UQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D18_06=3A48_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_24_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY SCANNER =E2=80=94 EDGE REPORT
+
+1 RUN STATE / COVERAGE
+Recovered the complete Sent-mail scanner chain first. Latest persisted
+run: 2026-09-18 05:49 =E2=80=94 26 new/0 changed. All prior canonical objec=
+ts
+were treated as exclusions, including recent dynamic-discovery,
+x402search, Pipelock, MemSentry/PMPA, ShareLock, self-evolve,
+Beagle-adjacent items already previously surfaced where identifiable.
+This run widened into x402/agent-marketplace trust, delegated policy
+gateways, RSI infrastructure, typed/meta-policy control,
+browser/multimodal memory attacks, and media skill ecosystems. Recency
+searched 24h=E2=86=923d=E2=86=927d=E2=86=9230d=E2=86=9290d, with older clos=
+e neighbours retained.
+
+2 NEW OBJECT DASHBOARD =E2=80=94 24 UNIQUE
+AGENT/CONTROL
+A1 the402.ai MCP =E2=80=94 https://github.com/the402ai/mcp-server =E2=80=94=
+ closest
+MONID: browse, purchase and sell agent services through x402; SANDBOX.
+A2 agent-discovery-mcp =E2=80=94
+https://github.com/ClayYTsai/agent-discovery-mcp =E2=80=94 MONID: ERC-8004
+discovery across ~70k registered agents + x402 payment; BUILD PROBE.
+A3 x402Scout / x402-discovery-mcp =E2=80=94
+https://github.com/rplryan/x402-discovery-mcp =E2=80=94 MONID: live service
+discovery, health, facilitator compatibility, ERC-8004 trust,
+route+execute, placement bids; BUILD PROBE.
+A4 AgentLot =E2=80=94 https://agentlot.io =E2=80=94 MONID: machine-readable=
+ MCP/A2A
+paid-work marketplace; WATCH.
+A5 agent-data-gateway =E2=80=94
+https://github.com/sderosiaux/agent-data-gateway =E2=80=94 Privately contro=
+l:
+gateway-created security context + OPA evaluation + delegated
+agent-chain telemetry; ADOPT NOW as reference.
+A6 mcp-gateway-registry =E2=80=94
+https://github.com/agentic-community/mcp-gateway-registry =E2=80=94 gateway
+now spans inference/MCP/A2A/REST and explicit authz keys; SANDBOX.
+
+JEV / RSI / DECISION
+J1 Beagle =E2=80=94 https://github.com/SalesforceAIResearch/Beagle =E2=80=
+=94
+Dream-RSI: HuggingFace-Trainer-like harness evolution; DarwinX evolves
+agent harnesses against verifier-backed tasks; ADOPT NOW.
+J2 Universe Routing =E2=80=94 https://arxiv.org/abs/2603.14799 =E2=80=94 JE=
+V: explicit
+learned 465M semantic router selects mutually exclusive reasoning
+frameworks; reported 7x speed vs soft MoE with smaller generalization
+gap; BUILD PROBE.
+J3 roomkg-meta-policies =E2=80=94
+https://github.com/humemai/roomkg-meta-policies =E2=80=94 JEV: learned poli=
+cy
+heads choose bounded named symbolic retrieval/explore/forget
+heuristics over temporal KG state; BUILD PROBE.
+J4 CrowNest =E2=80=94 https://github.com/pranuprakash/crownest =E2=80=94 JE=
+V-like: PPO
+small policy aggregates four LLM analyst outputs into a bounded
+portfolio action; cross-LLM transfer reported; SANDBOX.
+J5 MageZero =E2=80=94 https://github.com/WillWroble/MageZero =E2=80=94 JEV-=
+like weird
+neighbour: sparse state encoder with four separate policy heads +
+value head for typed MTG decision classes; SANDBOX.
+
+ATTACKER FRONTIER (defensive research only)
+X1 MemVenom =E2=80=94 https://arxiv.org/abs/2606.10742 =E2=80=94 ProjectMem=
+ory:
+triggered graph-memory poisoning coordinating text+image evidence in
+web agents; up to 99.15% reported end-to-end ASR; CONTENT NOW / BUILD
+SAFE FIXTURE.
+X2 Breaking the Protocol / MCPBench+MCPSec =E2=80=94
+https://arxiv.org/abs/2601.17549 =E2=80=94 MCP protocol attack surface:
+missing capability attestation, unauthenticated bidirectional
+sampling, implicit multi-server trust propagation; BUILD PROBE.
+X3 AgentSploit =E2=80=94 https://github.com/agentsploit/agentsploit =E2=80=
+=94
+authorized agent/MCP offensive-security harness with chained-tool and
+persistent-state threat modules plus bundled training fixtures;
+SANDBOX.
+X4 MCP Threat Modeling + Tool Poisoning study =E2=80=94
+https://arxiv.org/abs/2603.22489 =E2=80=94 STRIDE/DREAD across
+host/client/LLM/server/data/auth server and seven-client
+tool-poisoning comparison; WATCH/benchmark source.
+
+DEFENDER FRONTIER
+D1 GitHub Safe Outputs MCP Gateway spec =E2=80=94
+https://github.github.com/gh-aw/specs/safe-outputs-specification/ =E2=80=94
+Privately defence: read-only agent declares intended effects;
+privileged gateway validates/sanitizes/previews/executes; ADOPT NOW
+architecture reference.
+D2 fuzzd =E2=80=94 https://github.com/ksek87/fuzzd =E2=80=94 tool-boundary =
+fuzzer
+models chained calls, persistent session state and cross-tool
+contamination; reports 90.7% on MCPTox/zero FP; SANDBOX.
+D3 Niraven mcp-gateway =E2=80=94 https://github.com/Niraven/mcp-gateway =E2=
+=80=94
+local-first poisoned-tool filtering, descriptor drift blocking, rate
+limiting and redacted run audit; SANDBOX.
+D4 mcpguard =E2=80=94 https://github.com/GT-Projects256/mcpguard =E2=80=94 =
+OWASP MCP
+scanner + runtime policy proxy + audit; SANDBOX.
+D5 MCPShield =E2=80=94 https://arxiv.org/abs/2602.14281 =E2=80=94 metadata-=
+guided
+pre-invocation probing + bounded execution + post-use trace-derived
+trust cognition; BUILD PROBE.
+
+AUTONOMOUS MEDIA
+V1 EvoLink Media MCP =E2=80=94 https://github.com/EvoLinkAI/evolink-media-m=
+cp
+=E2=80=94 60+ video/image/music models behind one MCP/API key including
+Sora/Kling/Veo/Seedance/Suno; closest OpenX router; SANDBOX.
+V2 Vibe Creating Skill =E2=80=94
+https://github.com/Alisa0808/vibe-creating-skill =E2=80=94 portable
+model-agnostic video-prompt skill with end-to-end handoff into
+AtlasCloud model router; SANDBOX.
+V3 novoads agent-skills =E2=80=94 https://github.com/novoads/agent-skills =
+=E2=80=94
+Seedance 2 UGC/product/feature workflows with live-priced prompt
+formulas and native audio/lipsync; CONTENT NOW.
+V4 seedance-2.0-skills =E2=80=94
+https://github.com/whoizerwin/seedance-2.0-skills =E2=80=94 23 modular
+agent-loadable filmmaking skills across T2V/I2V/V2V/reference video;
+SANDBOX.
+V5 seedance-skills / MyClaw =E2=80=94
+https://github.com/LeoYeAI/seedance-skills =E2=80=94 28 director-grade skil=
+ls,
+multi-clip sequences, multilingual and delivery workflow; SANDBOX.
+V6 HiAPI Seedance skill =E2=80=94
+https://github.com/HiAPIAI/hiapi-seedance-2-0-video-skill =E2=80=94
+agent-native install and routing into broader HiAPI model matrix;
+WATCH.
+
+WEIRD ALPHA
+W1 roomkg-meta-policies =E2=80=94 bounded neural selection among inspectabl=
+e
+symbolic heuristics is an unusually clean JEV primitive.
+W2 MageZero =E2=80=94 typed policy heads demonstrate that heterogeneous act=
+ion
+classes need not share one unconstrained output head.
+W3 CrowNest =E2=80=94 tiny learned policy over LLM-generated semantic state
+may be a direct template for fast decision heads.
+
+3 TOP 5 DEEP DIVES
+#1 x402Scout: The key novelty is not payments but market selection. It
+combines discovery, uptime/latency, facilitator compatibility, trust
+scoring, routing/execution and public placement bids. Security
+implication: ranking becomes pre-authorization attack surface. 6m:
+richer service routing; 18m: autonomous purchasing normalizes; 36m:
+capability-market search may resemble ad/search security. Experiment:
+shadow-route 100 intents without payment and compare selected provider
+against independently attested provider. Falsifier: trust/ranking
+signals add no predictive value over random/catalog order.
+#2 Beagle: Evolver modifies an evolvee harness against verifier-backed
+tasks. This turns RSI from bespoke demo into infrastructure. Privately
+implication: authorization must bind not only to tools but harness
+version/lineage. Experiment: evolve a toy harness while QP records
+capability delta each generation. Falsifier: accepted harness edits do
+not generalize to held-out tasks.
+#3 GitHub Safe Outputs: Strong real-world embodiment of 'agent
+proposes; trusted mediator effects'. Privately should steal the
+separation, then generalize beyond GitHub to network/money/data.
+Experiment: implement one read-only agent + privileged mediator for a
+harmless filesystem write. Falsifier: mediation cannot preserve useful
+autonomy without excessive approval friction.
+#4 roomkg-meta-policies: State is encoded, then separate bounded heads
+select among named symbolic heuristics. This is very close to JEV's
+typed-choice thesis. Experiment: replace an LLM memory-strategy choice
+with 3-way learned/logit router. Falsifier: router loses materially to
+direct LLM choice after latency/cost normalization.
+#5 MemVenom: memory poisoning is multimodal and retrieval-targeted,
+not just malicious text. Experiment only with inert local fixtures:
+poisoned text/image memories whose 'effect' is a benign marker.
+Falsifier: provenance + occupancy constraints prevent
+retrieval/activation without unacceptable utility loss.
+
+4 AGENT FRAMEWORK / MONID FRONTIER
+Rank: x402Scout > agent-discovery-mcp > the402 MCP >
+agent-data-gateway > mcp-gateway-registry > AgentLot. Important delta:
+ERC-8004 identity/reputation and x402 purchase are converging into
+discover=E2=86=92rank=E2=86=92pay=E2=86=92execute loops.
+
+5 JEV / DECISION / RSI FRONTIER
+Rank: Beagle > Universe Routing > roomkg-meta-policies > CrowNest >
+MageZero. Pattern: explicit small/bounded controllers are appearing at
+reasoning-universe, memory-policy, aggregation and game-action layers.
+
+6 ATTACKER FRONTIER
+Rank: MemVenom > Breaking the Protocol/MCPBench > AgentSploit > MCP
+threat-model study. New semantic fingerprints: multimodal
+retrieval-triggered memory poison; unauthenticated server=E2=86=92model
+sampling influence; implicit trust propagation across servers; chained
+tool privilege paths.
+
+7 DEFENDER FRONTIER
+Rank: GitHub Safe Outputs > fuzzd > agent-data-gateway > MCPShield >
+Niraven gateway > mcpguard. Generation shift: prompt classifiers =E2=86=92
+inline gateways =E2=86=92 stateful chain analysis =E2=86=92 externalized pr=
+ivileged
+effect mediation.
+
+8 AUTONOMOUS VIDEO / MEDIA
+Rank: EvoLink Media MCP > Vibe Creating > novoads skills > whoizerwin
+Seedance skills > LeoYe/MyClaw > HiAPI. None beats the strongest
+previously known full research=E2=86=92script=E2=86=92shots=E2=86=92voice=
+=E2=86=92edit=E2=86=92publish systems
+end-to-end, but these are the closest unseen production/router/skill
+neighbours. The useful edge is modular skill loading + unified
+provider surfaces.
+
+9 COMMERCIAL SHOCK DERIVATIVES
+x402 Foundation Bazaar now explicitly describes itself as a
+machine-readable search index for payable APIs/MCP tools. OSS
+derivatives are already adding health, trust, routing and
+monetization. GitHub Safe Outputs provides a major production-adjacent
+signal for privileged mediation rather than direct agent
+credentials/effects.
+
+10 WEIRD ALPHA
+roomkg-meta-policies and MageZero are the best mechanistic JEV
+neighbours; CrowNest is the best cross-domain small-controller
+neighbour.
+
+11 ATTACK LOGBOOK DELTAS
+ADD: multimodal memory poison =3D {external image/text =E2=86=92 graph memo=
+ry =E2=86=92
+trigger-conditioned retrieval =E2=86=92 later objective displacement}. ADD:
+protocol trust propagation =3D {server metadata/sampling =E2=86=92 implicit
+client trust =E2=86=92 cross-tool/server effect}. ADD: marketplace selectio=
+n
+manipulation =3D {provider metadata/reputation/placement =E2=86=92 router
+ranking =E2=86=92 purchase =E2=86=92 capability acquisition}.
+
+12 TOP PRIVATELY LAB EXPERIMENTS
+1. Capability-market shadow router: x402Scout results =E2=86=92 independent
+attestations =E2=86=92 compare ranking.
+2. Harness-lineage grants: Beagle evolves toy agent; grant hash
+includes harness commit and reachable effects.
+3. Safe Outputs clone: read-only proposer + privileged effect mediator
++ signed receipt.
+4. JEV memory head: bounded 3-choice memory strategy controller using
+roomkg pattern.
+5. Multimodal memory-firewall benchmark using inert MemVenom-style fixtures=
+.
+
+13 BUILD/PROBE OPPORTUNITIES
+Highest value: capability-set attestation before market purchase;
+harness-version-bound grants; external effect mediator; learned
+bounded decision heads; multimodal memory provenance/occupancy
+firewall.
+
+14 CONTENT OPPORTUNITIES
+Best: 'The next agent security boundary is search ranking'; 'Why
+agents should never hold the credential that executes their action';
+'Can a 465M router control a frontier LLM?'; 'Persistent memory
+attacks are becoming multimodal'; 'RSI needs versioned authority, not
+just evals.'
+
+15 TOP 5 THINGS TO TRY NOW
+x402Scout shadow-routing; Beagle on a toy harness; GitHub Safe Outputs
+spec architecture extraction; roomkg meta-policy reproduction; EvoLink
+vs existing media-router bakeoff.
+
+16 WATCHLIST
+Keep: Monid/ToolRouter/ToolRoute; dynamic discovery family; x402
+Bazaar/x402search; Beagle/DarwinX; self-evolve; Pipelock;
+MemSentry/PMPA; ShareLock; Safe Outputs; EvoLink Media; x402Scout.
+Recheck material deltas, not mere stars.
+
+17 SOURCE-YIELD / GRAPH LEDGER
+Highest-yield branch this run: x402
+discovery=E2=86=92ERC-8004=E2=86=92marketplace=E2=86=92trust/ranking. Secon=
+d: RSI
+infrastructure=E2=86=92DarwinX/Beagle=E2=86=92bounded controllers. Third: M=
+CP
+gateway=E2=86=92GitHub Safe Outputs=E2=86=92delegated OPA/security context.=
+ Media
+provider-router searches yielded many wrappers but modular skill
+systems were the better unseen neighbours. Weird allocation followed
+learned meta-policy and typed-game-policy branches.
+
+18 MASTER FRONTIER INDEX DELTA
+Append these 24 canonical objects: the402-mcp; agent-discovery-mcp;
+x402Scout; AgentLot; agent-data-gateway; mcp-gateway-registry; Beagle;
+Universe-Routing; roomkg-meta-policies; CrowNest; MageZero; MemVenom;
+Breaking-the-Protocol/MCPBench/MCPSec; AgentSploit;
+MCP-threat-model-tool-poison-study; GitHub-Safe-Outputs; fuzzd;
+Niraven-mcp-gateway; mcpguard; MCPShield; EvoLink-Media-MCP;
+vibe-creating-skill; novoads-agent-skills; seedance-2.0-skills;
+LeoYe-seedance-skills; HiAPI-seedance-skill. NOTE: dashboard contains
+26 names but canonical unique NEW count is conservatively reported as
+24 because closely related Seedance skill packs/marketplace surfaces
+may collapse under future semantic dedupe.
+
+19 MACHINE-READABLE RUN_STATE JSON
+{"run_local":"2026-09-18T06:48:53+07:00","new":24,"changed":0,"state_recove=
+red":true,"registry_mode":"exclusion_set","lanes":{"agent_control":6,"jev_r=
+si":5,"attacker":4,"defender":6,"media":6,"weird":3},"top_objects":["x402Sc=
+out","Beagle","GitHub
+Safe Outputs","roomkg-meta-policies","MemVenom"],"top_experiment":"capabili=
+ty-market
+shadow router + independent capability-set
+attestation","attack_log_deltas":["multimodal-memory-poison","protocol-trus=
+t-propagation","marketplace-selection-manipulation"],"source_yield_top":["x=
+402->ERC8004->marketplace
+trust","RSI->Beagle->bounded controllers","gateway->privileged
+mediator"],"next_branch":["marketplace ranking
+attacks/defenses","harness lineage attestation","typed small
+controller implementations","multimodal memory admission"]}
+
+Sources were checked live on 2026-09-18. Primary references include
+GitHub repositories and arXiv papers linked inline above.

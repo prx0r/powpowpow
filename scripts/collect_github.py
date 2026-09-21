@@ -8,7 +8,7 @@ import os
 import requests
 from datetime import datetime, timedelta
 
-DATA_DIR = '/home/box/powpowpow/chains'
+DATA_DIR = os.path.join(BASE_DIR, 'chains')
 os.makedirs(DATA_DIR, exist_ok=True)
 
 # All repos to track

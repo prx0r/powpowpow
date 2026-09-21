@@ -1,0 +1,347 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id ZqWNQN9hVTTN
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:16:16 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=AlVoh8+Do7pwcLvxub+5AqzEDXpXEKWP3pOCLoSr/xHhMeMsGxRNcAlbw23d7VpOXt34EC5vv
+	p4oOqq+muORx4qW8mpnh/B80iRqUlzFtJzHV92LWnaL/eQsGM9TcrAeq31KY7iWACjaeFhHUb6j
+	kMuNhwiU1J+i5LpNLPecwj52aM3zC2mwMbysVpmgUvqR9DXtQJFCi5katYv7uhrXqdZd4R8Z4iR
+	iEB3pMGAj1BV7VsRTfWmuA11iDbd0uSBX6xxk3JS2kD9FdLBwaCUNccbnqPBQ8I+zQLOZ/uvwaO
+	Mai8U0Tlk0cdHxaaQHlbWbgr4qERFWWd+/U+PPGIh9EA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888576; x=1790493376; bh=c0K38I/x
+	cKKURy8F1UiIr/Vl00RJIt7uF7rPf+t+DEc=; b=QBvncrfD8Hw8jVcHzdp0YReVWcSvYNEPiQO
+	2aXgLZxt6NvISsRhld7ay8bye1nvD9h78k8i1KQ4DkPtosWz/G36gbYqAXsj7Egws871x2pAV3m
+	UTN4xuASIHi4olWz9Opwz4ghjaQVSOP9+KIyapFOvfF3lqd8vVEZg8xntbesxyVEYF/KmAwsU3G
+	hLb/gRpIKYvIyB65o11ZsqX0ezLpQSp59FPR0tUKNvbKYEvJ6tQXcfK2QG6XEnad5Wq3vLPw4Qb
+	30K5U6AIR+ZPf/mrnAecVPlDYX3YgoJ0QlRkwQu4mIqlsWMWfHvx5P7wd2XC9T6s8FuCfZAPzD+
+	XTffEsA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=V93C2wzN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=V93C2wzN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43daa8f4so12948357b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:16:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888576; cv=none;
+        d=google.com; s=arc-20260327;
+        b=MAIxsWPd8ZskzpJ4S+RAIsh/wDJTUIM5vIU0ozD7OgD7W09i0r++LdkjGVdNLl5DWh
+         /GbNiHp+GQOLSTNo12uIm4aC3IaOfAlWVeZXVmVX6L5+HXiHz15qF4C7J/d8DIu/We3E
+         Uvlztqu9OYujYGsStkQCMxh7SLVEz7+Ich17zkYLYOHYxh6Y20g3vMYo4fskHdrNlTPK
+         5O0QoobFa2V63+2yu8608X9H/4g/e+W+eQV5YTCSdi5ccKIrhCAVJ14JHKWifdwQeGrJ
+         UQsNN1N3N27w90bUZEeIaV+/eeFInWxYFQ4njOVEIx6E5mWliBk0eLUzgkJrI/ja/2NK
+         AKeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=c0K38I/xcKKURy8F1UiIr/Vl00RJIt7uF7rPf+t+DEc=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=VqaVJkbQLBj/czNlnhjIPg8VxR/NHW936s420Ve+krKEox4m6reW6w/XLTLnmbCDzM
+         cX7yggYiYXUNHYDOhd+//YDFEzEKqF4wP84kyS9mAB4FDKtktVc4s1jMKgmn0X9zQtL+
+         fOY/T+fFiFpFdo9htH4t6+FrErf9jouX8+uEF4o/X1R1QwinVFjXANPjBSdugSbQXOEF
+         gr+qcfPpaHT5K9tTTm9nnzeGWpLGwYPBjR2mubP/z88zCI8jddGr9v0vqS7R9864q68Q
+         s08mpCEwZ8NXkXA9Drv8CgIFPIzc29vKJeIJhu0mztoRE2Zl7Z4TCxjIkrEgcr6Rb2wx
+         NoAg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888576; x=1790493376; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=c0K38I/xcKKURy8F1UiIr/Vl00RJIt7uF7rPf+t+DEc=;
+        b=V93C2wzN9yafo1+0FXYmesE8rkRgcdCvbUE1ISEW8tNM1sNvsIHiDb5WD1UdalyVwi
+         +grhRdMygQtJNKLCuusGVV0pZuijwEN/YyIYLsqIck31pmnmPnQzvHoL8jSTcPDLGuFB
+         RD0BUi9zZEdwcYwjykW2LDASX8qZD/aeSby8QrPIhPffMRQpqIF28ptQylweIhS62zzQ
+         yeoLO8vN5pv5UBqToRphIvERTY1+duMmzE+6NOeaBnEQ+L3WzR75HzsTS7CDSgsYOfgi
+         vhr4gEWtRkYUSI67VZqKMdDMag2dW3ElZyTcsctYNiZW8ENrANYplcf2/VujIZxfmfP8
+         3zpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888576; x=1790493376;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=c0K38I/xcKKURy8F1UiIr/Vl00RJIt7uF7rPf+t+DEc=;
+        b=124ZvFE/khqxojX88rPGBRGs3b3PyUYJG9cbjzdjF4VBTjvzGt0WuNQgo9/I2mg5rS
+         qmHjtA77rm1MC5t8Bm7oRftns/jqU560Qxv+1an7R9QfEsUr8kiYXquFHfE2L96tgbLv
+         OFbKc4Ca1ym+WnopIRhl8RI7jxjMPXRhgS0nXP2t8Iib/isTzAp3FBYtbwkBVb5yEUKz
+         8HnD4TODd0TwlxnSZY2+EpDUrmBfo4zWrVKstpmyhla5wMW6/xfXOId6/AQNpIMYyZjL
+         JJel99tAnFXWYmxoGc/X6TSbyZ5OwbqQpNLsM4f3DoLZhJpRtM+yPZ9q1cA1SG+h+7Dm
+         WI2Q==
+X-Gm-Message-State: AFuF++leheoomqJSN7m6H4qxqm/HCd03GW5Uwr6uAnBCe71WKXLRk70N
+	szCXZSiohiOReO8wqrGjkqrGBwl6IdgDTBdkR+uaaHGLl04LmfK1dQMrToliL8tJ8DXHJTbdO1O
+	VGZInQF2EUne8eCqOZ/RefRV35A2p5MgFjg==
+X-Gm-Gg: AYBFou2F+HijxjfboZfc6TXXAzjNV0W+LyW4S9Y65t7XxlgUt+YGYgZ9Djlhd+dTl+d
+	LSNlJosV35RnK4VoyckKHQ5vNUTLKOjxj8/qD1kQsNOU3AjY2+Y9d9PppForSiaQ7jHkuZJkVD4
+	Y4yeunwwYm+DqI2N6+zN+fk3ikL6hzsowJ5dgWxwK+uljPJWcMyX73uvcDoTUONPAoV+z9pmv+c
+	TtKxTUOjPUMGkeZSZAavOxAmtaCwymhCZ60nuhVovWUFBN61TflDHHurLEkQHJjej7ZB46F1BIg
+	w98nhUFAOKDV7u1tHvw/nefsryXhMcPTE4CVzlZsrUQ5sRv1IeHk2c+VZbBXo0IacPbZJBiZ0Wy
+	OzbE33j2TDRIjGidjK15AndeDVlSjYhQRbecFEt1KxDk3N+2q6+ZoGNIoEAAUTgTez5ssxyee
+X-Received: by 2002:a05:690c:a18b:b0:865:50a0:b1a1 with SMTP id
+ 00721157ae682-89733f062e9mr14795297b3.25.1789888576199; Sun, 20 Sep 2026
+ 00:16:16 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:15 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:15 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:16:15 -0500
+X-Gm-Features: AcwNN1XUVo2BHHgsBAqLjdTY18OVUGoLpZp5rK92ACXDwFxIMKNdx95bcIyLrWk
+Message-ID: <CAPdrGenc-u9MShsDfCquPNUSbK-EhPLM5fP_ba1Ad3C=zcCS+g@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D20_10=3A2?=
+	=?UTF-8?Q?4_Asia=2FPhnom=5FPenh_=E2=80=94_2_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 2 useful new finds
+
+This run screened 25+ candidates across GitHub, Hugging Face/community
+search, Reddit technical threads, pet landmarks/identity, avatar
+animation, WebAR, browser rendering, POD/mockups and TTS/viseme
+tooling. Previous discoveries were removed. Only two new projects
+cleared the no-padding bar.
+
+1. LiveToon =E2=80=94 COPY AUTO-RIGGING + PERFORMANCE MAPPING
+
+URL: https://github.com/oaboelazm/LiveToon
+
+Creator: oaboelazm
+
+Activity: 2 commits; repository was freshly indexed/current on 2026-09-20
+
+License: Apache-2.0
+
+Why it matters to Roast.pet:
+
+LiveToon takes a single front-facing cartoon PNG, automatically finds
+eyes and mouth using simple dark-pixel/blob analysis, slices the PNG
+into animatable regions, then drives those layers from a compact
+performance state: mouth open/close, blink, eyebrow, smile, head
+yaw/pitch/roll. It also uses a One Euro Filter for jitter smoothing
+and falls back to proportional regions if auto-detection fails.
+
+The important part is not its human MediaPipe driver. Roast.pet
+already has better plans for audio/visemes and pet geometry. The
+useful mechanism is the opposite half: flat PNG -> detect regions ->
+slice layers -> affine transforms -> alpha compositor.
+
+That means we should test whether an approved canonical pet PNG can
+become a cheap deterministic micro-rig without Live2D, generated
+video, or hand-authored layer coordinates.
+
+Install/demo route:
+
+git clone https://github.com/oaboelazm/LiveToon.git && pip install -r
+requirements.txt && python app.py; also provides Colab/Kaggle notebook
+and CLI.
+
+Dependencies/hardware:
+
+Python, OpenCV/Gradio/MediaPipe-style CV stack; ordinary CPU/webcam
+environment. No generation GPU required for the rig/compositor
+mechanism.
+
+Evidence it works:
+
+The repo exposes separate avatar_rigging, animation_engine,
+feature_extraction, and renderer modules; README reports >=3D20 FPS and
+documents the exact auto-rigging constraints and fallback behavior.
+
+How much code/work it could replace:
+
+Potentially our first custom sprite-rigging implementation, manual
+eye/mouth coordinate setup, affine layer transforms, alpha compositor,
+smoothing, and debug tooling.
+
+Integration difficulty: MEDIUM
+
+Maintenance risk: MEDIUM =E2=80=94 only 2 commits, so copy the mechanism
+rather than depend on the project as infrastructure.
+
+Exact experiment:
+
+Take 20 already-clean Roast.pet canonical pet PNGs. Replace LiveToon=E2=80=
+=99s
+human-avatar region assumptions with our dog/cat landmark coordinates
+where available. Auto-extract eyes + muzzle/mouth into layers, then
+drive five actions: blink, side-eye, mouth-open, recoil/head-back,
+tiny idle sway. Compare identity preservation and setup time against
+generated I2V and our existing sprite-state approach. Success
+criterion: >=3D80% of pets rig automatically with <30 seconds manual
+correction and no identity drift.
+
+VERDICT: COPY MECHANISM / FORK EXPERIMENT.
+
+2. lively-mascot =E2=80=94 COPY THE SEMANTIC PERFORMANCE ENGINE
+
+URL: https://github.com/jingluoguo/lively-mascot
+
+Creator: jingluoguo
+
+Activity: 61 commits; current release guidance references v0.3.1
+
+License: MIT
+
+Why it matters to Roast.pet:
+
+This tiny 2-star project is a zero-dependency SVG mascot engine with
+40 emotion/reaction states, custom SVG/HTML models, a Web Component,
+pointer gaze, 2D/3D presentation, and =E2=80=94 most importantly =E2=80=94 =
+a semantic
+recipe system. Emotions are not hardwired to animation IDs. A semantic
+state such as celebrating expands into part-level actions such as
+body=3Dbounce, eyes=3Dhappy, mouth=3Dsmile, feet=3Dhappy. Models declare wh=
+ich
+physical actions they support.
+
+That is almost exactly the abstraction Roast.pet needs between comedy
+direction and rendering:
+
+performance: deadpan_disbelief
+
+-> eyes: side_eye
+
+-> mouth: closed
+
+-> head: recoil_small
+
+-> body: freeze
+
+-> timing: 420ms
+
+The pet renderer can then implement those actions using sprites today,
+LiveToon-style affine layers tomorrow, or generated video later.
+Comedy choreography remains stable data.
+
+Install/API/demo route:
+
+npm install lively-mascot; framework-free API or <lively-mascot>
+custom element; live GitHub Pages demo. Custom SVG/HTML model docs and
+an image-to-model skill are included.
+
+Dependencies/hardware:
+
+Zero runtime dependencies; browser CSS/SVG/JS. No GPU required.
+
+Evidence it works:
+
+61 commits, live demo, 40 built-in emotion states, five example
+characters, custom model API, runtime action discovery, explicit
+extension docs and release pinning guidance.
+
+How much code/work it could replace:
+
+Our bespoke emotion/action registry, renderer-specific choreography
+calls, capability negotiation between pet rigs, and potentially much
+of the browser-side state machine for deterministic reactions.
+
+Integration difficulty: LOW
+
+Maintenance risk: LOW =E2=80=94 MIT and zero dependencies; pin the
+implementation or copy the semantic schema.
+
+Exact experiment:
+
+Define 10 Roast.pet comedy primitives (deadpan, side_eye, recoil,
+offended, smug, confused, double_take, laugh, freeze, look_at_owner)
+using its recipe model. Build two render adapters: our current sprite
+actor and a crude LiveToon-derived layer rig. Run the same performance
+JSON through both. If the script is renderer-agnostic, adopt the
+schema as the canonical choreography layer.
+
+VERDICT: COPY MECHANISM / REUSE ENGINE IF FIT IS CLEAN.
+
+Candidates reviewed but rejected this run
+
+WebAR-Youtube (akbartus): neat 7-star MIT MindAR/A-Frame demo
+projecting YouTube/CSS3D surfaces onto an image target, but
+arspace/webar-core already cover Roast.pet=E2=80=99s AR needs more directly=
+.
+SKIP.
+
+PET-DINO: strong CVPR 2026 universal visual/text-prompt detector, but
+too generic/heavy for the narrow pet pipeline and not a weird cheap
+replacement for an immediate Roast.pet task. WATCH ecosystem, not
+integrate.
+
+CatFLW: useful 48-point cat landmark dataset, but CC-BY-NC means it
+remains research-only for commercial Roast.pet and overlaps prior
+cat-landmark discoveries. SKIP production.
+
+DogFaceNet: historically useful dog identity work, but older and
+superseded for our purposes by the newer nose+face biometric pipeline
+already found. SKIP.
+
+Generic mockup generators: several current repos surfaced, but
+automated_mockups and the Printify/POD paths found in previous runs
+already dominate them. No new win.
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+- A renderer-specific emotion API =E2=80=94 copy lively-mascot=E2=80=99s se=
+mantic
+emotion -> part-action recipe idea.
+
+- Manual per-pet eye/mouth layer coordinates before benchmarking
+LiveToon=E2=80=99s auto-rigging approach with our pet landmarks.
+
+- A bespoke affine sprite compositor =E2=80=94 LiveToon already contains th=
+e
+mechanical implementation.
+
+- A different choreography definition for sprites, Live2D and future
+generated video =E2=80=94 store comedy performances as renderer-independent
+data.
+
+- Generated video for every blink/side-eye/recoil micro-action =E2=80=94
+benchmark deterministic texture-preserving layer animation first.
+
+Most surprising hobby project
+
+lively-mascot. Two stars hides a surprisingly mature 61-commit
+semantic animation engine. The useful invention is not its cartoon
+cat; it is separating what the character is doing emotionally from how
+this particular rig physically renders it.
+
+Fastest integration win
+
+Define the ten canonical Roast.pet reactions in lively-mascot-style
+recipe JSON and make the existing sprite actor consume them. This
+requires no model downloads, inference, customer data or paid API
+calls and immediately tests whether choreography can become durable
+data.
+
+Repo/author worth following
+
+jingluoguo / lively-mascot. The repo is actively iterating on exactly
+the abstraction Roast.pet needs between AI/comedy direction and a
+replaceable visual renderer.
+
+Architecture implication
+
+The emerging Roast.pet stack should separate three durable objects:
+
+- pet.json =E2=80=94 identity, canonical texture, landmarks/geometry.
+
+- performance.json =E2=80=94 semantic comedy state + timed part-level actio=
+ns.
+
+- renderer adapter =E2=80=94 sprites / affine micro-rig / Live2D / I2V.
+
+Then the roast script can say Fred performs deadpan_disbelief at 2.4s
+without knowing whether Fred is currently rendered as sprites or
+tomorrow=E2=80=99s video model. That is much more durable than accumulating
+renderer-specific animation code.

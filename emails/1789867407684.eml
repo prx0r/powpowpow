@@ -1,0 +1,468 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 9rYLY7VTPvXN
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 01:23:27 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=frx6U6q3qcetr8gZppbJ2fxywnElJK/3LTG7qhoU6/iy9xs0xmN7q+8GbLz5fSC2EYWNRjcwE
+	HsPr0IQDnkGtYpcHBaV8EsszKriWXWYepa5Kek7wDf2KvbtnwP7ZtbV34134gBtDV70ai5PA1bJ
+	9BmnoNJ3K3k4B0hNVzb+Dzb6N8Q7dV5m5/qm3DNkDuVK4AsjAqtPUtLe4JZTr0+Ps1hmPTHNEaO
+	S1Xwgb01bQmdgvUScWdx5KhWf76F7/RNlZgKDw3SzORH7LaYAda46p3zkoGGStj5NAamPPRbYuh
+	EBDRQ0jpL19dsOG/Piz/DIdyi51nbSPBNjLttBY5S8DA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789867407; x=1790472207; bh=HOYmct2k
+	FcSHmLYdq7flb1UwszHhgEtLF0JSS4PI63U=; b=BwFF5xHHTAAv0Q0o2Otd8uKisWLBvfA7uXZ
+	gJiuoEYScUR9bjU4jtqOqJzrurvh+DOphJJ8xjvrTHT3BgzS3yHakmPZC+5IteGNJtbhnZkC//r
+	nmaIQqHKT6UESAtNH5qbelvPZTSX6gefF65g2ULFh/rZyhaCJIaIBRwthWqpdwDCS5HVFHzkItL
+	cVQx7SrGeYLlSOkkpYRtnStZfGRuyLinFmt5l+GCwiV+sut3txpzAHV0EinzRQKPi1w1vUszktW
+	X2pjfbjruueF9LSc6DGw/DU0mC4A02N8QxlSL7fN4uCFb4t+q9AhQiWSfjPRrpLB0j4ofPOoDw/
+	vWh2kRQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AYad5dqN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AYad5dqN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab1ba47so933720d50.0
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 18:23:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789867407; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ebrwcC118T07v7RmS5KdPrOZ9HgnryW8IYMigLoLzvPK/H1M8/KauCZ8nNpeyjfaZT
+         0UuGEesbVasXIdsbDw+oQdFWMPhCF9xB29MaNjoazVuib7er1b6rclXXf57tjowofC4J
+         VjoAfuhzuqqiRUWsRLhv5jFe3fm6jYoKQIXT8ROakAD2NkTP0rYUzuPgPASbBKMQSLKY
+         EKROLbr0Zp9U1fjyRO5B20TD20HMxhH7alsRtchHAtvMUzzsYPA7ZUodUrVa5o952FBm
+         cm42543KLKT3Gr2FPfVPefl7j9GEIlFqQPb0wTPM09ilcAUCn1z4HxQPGPF/g0oL3bbi
+         uYMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=HOYmct2kFcSHmLYdq7flb1UwszHhgEtLF0JSS4PI63U=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=SGrUiw25k2DiL1hSq2Xy5GnslyJTXb6Vppf5A/Id8gg1xYmrkwDdAX856QxsBBzt7/
+         6v3QE78/eqcxJhmJtZJUjkW3LFz1GJmadUjAVoUvY966vsVIjdGwCNXbtyAXV50ff5yN
+         yxo2tVFIVfWuNfYJ+ILEIZxV3VhlsRflJJDsQSGm2jzMKC8DVx85uVeKBI5BiF1CR3Pa
+         ij/udIek7zGTVLR3Z/9r91LpcVqQ1W0O/xDh3Mnb7ZUJuqEbAMz3qOmx8IPkotxGF7wJ
+         yXJ9t8Qw9pW74x0LX6tt60k+t7S3dP3iRcp9mN3Kv7vc3Eux0QNBrjAo1huT8O15R6l6
+         lVUA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789867407; x=1790472207; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=HOYmct2kFcSHmLYdq7flb1UwszHhgEtLF0JSS4PI63U=;
+        b=AYad5dqN0kByCrts4AlnDVslp+GQyGKECAi9McqXfkuxWgZp5eTRYqSCik3DuZDSQ+
+         xApdKf3qW6EV9RM7Oo3KK1Lj/9kplIktYRrwXnsgjL7RXZd25E99jyEhrVBX5W72BOXI
+         jgkKCzePDgio/PTQJXZZxwFS4Ew2sJtzGnNFMbTNgFJ2dRSceIrI7ZlqaXII6kTGMHwx
+         Fjf9uuC/Ig9OyaXXv948pGjUg2cnc2Hznz0XWmFtA5u4eVv/+vW4OH5MxANfMOaGSXsB
+         KXmS0e+TyQIYLipQmG/l5lIQ8v9cpEvEvR/XCWgKnDYC+GW+5DJ4BiJePciSjaLhLvAm
+         67vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789867407; x=1790472207;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=HOYmct2kFcSHmLYdq7flb1UwszHhgEtLF0JSS4PI63U=;
+        b=tqvTlF4onNl6JQ0QMDJg2SaX+xRYYQi2AqX5hoGJ/6FtDBfjlP3j3cO4jzULnZxt7R
+         +mZD6N72f5bmv0OwpEiHYV5oRI8ZfEOYqJk3idX6rRDI5XIj9fX3aan8CQqNlVpj7rF3
+         MUPQdlMZumMLAGRh4sUofXnGUhxuGIpoNxca68k0tuPhaT5GQ2MpHAbQU2ZXAXlY1SXW
+         8V1N7HyhTzHaLs1vJDYVvaBFFFTyCnI3bfq/3rTP9wG0sZuOrfYeyKvTyrTYtAboC4ld
+         tGLx4/l/zXiOe6cnMO7Euh46soUN3aXMkvAKMMDitt/AsVnAc3SBIQZZQFaEBi+KLN+m
+         KL2A==
+X-Gm-Message-State: AFuF++ntLBfCiYvv8zdbPP3NVp7Z1Zjh9vj9nYCqGpH/+X9Jt1q6+YLj
+	Rve2uxYGgtPyja6HVl2euiguIN0CX234ljzzkCUGvXlmxpqhP/xJmCIa/PmGUbk9k1Qgt5e8lak
+	7ZTHfZc9Rl/hKS0a/DkoCGL4lH8GPO6vJjw==
+X-Gm-Gg: AYBFou3edj51y9JiJhst3imVM5T4vm7x8aumY2MNFk5lMnc3QpwZmXy8vLHYQ34HxS9
+	0f5HRqkNbi7cNqm022F0JpYMSeJwUljELJYkqr4+wAGlwcj7yVVT+/jhLF0ew7TgI95RjD5BMyo
+	OJENisQydMpY7dLWFD0Efc71oNKDdSbeKjj5sOkXOQmREKZW6cfKUJIz4KbfDfBz+PDOBmKcjzZ
+	Sxo6WAyytZ/m5A0gCn1fdPDpV5r2CRB3o/a91hp1LugKdVkICLiy8Xyq8i5BClwGTKodJK81Kiv
+	LqAjWA+3zOPDrF3C2cxRw4xluWJv6U96WWH+Skhrpt9Ce78L9gb+TxGpd65yxvD/asSqvAjAcl4
+	JtGbzVz39yrlsx1mGY74PTd2CWiO7ap+E2qK78V8TUJFJglTvm94v/XYUCqs2YiHLN1gdkZNI
+X-Received: by 2002:a05:690e:1347:b0:672:a29e:e307 with SMTP id
+ 956f58d0204a3-672a29ee486mr567106d50.44.1789867406662; Sat, 19 Sep 2026
+ 18:23:26 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 20:23:25 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 20:23:25 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 20:23:25 -0500
+X-Gm-Features: AcwNN1V8JubcmD3JUw9mG-AeLR828vcAPoTI8xJo5anvA8wuBxw0xShSf58m4gE
+Message-ID: <CAPdrGenbXMLGva8wd05piW7OSQM8E54dJcjKcPGcnCLsq_FvQg@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D20_08=3A2?=
+	=?UTF-8?Q?2_Asia=2FPhnom=5FPenh_=E2=80=94_4_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000f82157065bdffa92"
+
+--000000000000f82157065bdffa92
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 4 useful projects
+
+Screened 25+ plausible projects across GitHub and web results covering
+pet/animal landmarks, lip sync, browser video rendering, captions, WebAR,
+matting, Etsy/POD and mockup automation. Deduplicated against prior
+Roast.pet scanner finds. Four new projects are worth retaining.
+1) dougalder/lip-sync-generator =E2=80=94 REUSE NOW / COPY UI MECHANISMS
+
+URL: https://github.com/dougalder/lip-sync-generator
+Creator: Doug Alder
+Activity: 70 commits; repository crawled current on 2026-09-20
+License: Apache-2.0; embedded Rhubarb WASM is MIT, CMU Sphinx model BSD,
+fonts OFL
+
+What it solves: This is much more complete than merely calling Rhubarb. One
+offline HTML file takes speech, derives viseme timing, exposes an editable
+exposure sheet, lets the operator trim/split clips, place the mouth over a
+still/video puppet, keyframe the mouth position, blur/cover an existing
+printed mouth, queue up to 24 clips, and export chart/timing, transparent
+GIF/APNG, sprite sheet, PNG sequence, chroma MP4 or composited video. It
+includes 15 mouth styles in front/3-quarter/profile angles and accepts
+custom mouth art.
+
+Install/demo: download lip-sync-generator.html and open it directly; no
+server/account/build/network required. A served version can preload custom
+lips/ sets.
+Dependencies/hardware: ordinary browser; Rhubarb/PocketSphinx WASM; CPU
+only.
+Evidence: 70 commits, manual + offline test that actively refuses network
+access, multiple export paths, editable exposure-sheet workflow.
+Work replaced: arbitrary-audio lip-sync UI, mouth placement editor, manual
+correction UI, sprite/timing export, potentially 1k+ lines of bespoke
+tooling.
+Integration: LOW.
+Maintenance risk: LOW-MEDIUM.
+Exact experiment: load one canonical Roast.pet transparent pet and our five
+mouth sprites, run 20 arbitrary audio clips, manually correct any bad
+visemes, export timing JSON + transparent frames, and measure median
+operator correction time. Compare against raw Rhubarb WASM.
+Verdict: REUSE NOW; copy the correction/exposure-sheet/placement mechanisms
+even if HeadTTS remains the normal generated-speech path.
+2) IgorShadurin/yumcut-video-ads =E2=80=94 BENCHMARK NOW / REUSE RENDERER
+
+URL: https://github.com/IgorShadurin/yumcut-video-ads
+Creator: Igor Shadurin
+Activity: 5 commits; current repository
+License: MIT; distributed Mediabunny dependency MPL-2.0
+
+What it solves: A tiny one-star browser-native production renderer using
+WebCodecs + worker WebGL2. It composes ordered video/image/audio layers,
+trims/loops/fades/transforms/crops them, mixes audio, and exports MP4
+H.264/AAC or WebM VP9/Opus without a render server. It has support analysis
+before rendering, hardware acceleration requests, bounded decode/encode
+queues, progress/cancellation, Cache Storage/OPFS support, and 360p=E2=80=
+=934K /
+up-to-five-minute qualification targets.
+
+Install/API: npm install github:IgorShadurin/yumcut-video-ads; runnable
+Next.js, React/Vite and vanilla TypeScript demos are included.
+Dependencies/hardware: modern secure-context browser with WebCodecs; WebGL2
+with Canvas2D fallback. Desktop Chromium is the primary target; mobile
+depends on actual codec support.
+Evidence: browser tests, demo production builds, benchmark records,
+deterministic media fixtures and explicit detectSupport()/analyze() paths.
+Work replaced: our browser compositor, muxing/encoding plumbing, media
+support detection, cache/progress/cancellation logic =E2=80=94 potentially =
+several
+thousand lines.
+Integration: MEDIUM.
+Maintenance risk: MEDIUM because WebCodecs support varies by browser.
+Exact experiment: encode the canonical 15-second Roast.pet vertical roast
+entirely client-side: podium background + transparent/stacked-alpha pet
+layer + captions + TTS + music sting. Benchmark iPhone Safari, Android
+Chrome and desktop Chrome for render time, memory, output size and visual
+parity. If mobile support is adequate, avoid building a server renderer for
+interactive/order-preview work.
+Verdict: BENCHMARK NOW / REUSE RENDERER.
+3) Fats403/remotion-captions-kit =E2=80=94 REUSE NOW if Remotion stays in t=
+he stack
+
+URL: https://github.com/Fats403/remotion-captions-kit
+Creator: Fats403 / videoventure.ai
+Activity: 5 commits; current repository
+License: MIT
+
+What it solves: The annoying layer after word timestamps. It adds
+human-like caption pagination over @remotion/captions: sentence boundaries,
+silence gaps, max-duration and max-character caps, clause-aware breaks,
+orphan balancing, flash-page merging, abbreviation handling and
+malformed-input cleanup. It also ships six animated presets including
+karaoke, kinetic slam, pill karaoke and editorial emphasis. Placement is
+normalized by composition dimensions, so the same theme works at different
+resolutions.
+
+Install: npm i remotion-captions-kit; peer deps are Remotion v4, React and
+@remotion/captions.
+Dependencies/hardware: normal Remotion render stack.
+Evidence: explicit Vitest suite for pagination/SRT/emphasis plus demo
+studio; code addresses known @remotion/captions whitespace/timing footguns.
+Work replaced: custom short-form caption paginator, word activation timing
+and most caption animation CSS/React =E2=80=94 hundreds of lines plus edge-=
+case
+testing.
+Integration: LOW.
+Maintenance risk: LOW-MEDIUM; coupled to Remotion APIs.
+Exact experiment: feed HeadTTS word timestamps for 50 roast lines into
+createCaptionPages() with a Roast.pet KineticSlam theme. Screenshot-test
+line breaks and safe-area placement at 9:16, 1:1 and 16:9. Compare against
+our current caption implementation.
+Verdict: REUSE NOW if Remotion remains; otherwise copy the pagination
+rules/mechanism.
+4) dh-js/printify-etsy-listing-creation-desktop-app =E2=80=94 COPY FAILURE/=
+RESUME
+MECHANISM, WATCH LICENSE
+
+URL: https://github.com/dh-js/printify-etsy-listing-creation-desktop-app
+Creator: dh-js
+Activity: 21 commits; 4 stars / 1 fork
+License: no clear license surfaced; do not copy source until verified.
+
+What it solves: This is an actual client-built Printify=E2=86=92Etsy produc=
+tion
+automation, not a toy wrapper. A CSV + files directory drives Printify
+product/listing creation; it then finds the published Etsy listing and
+uploads custom images AND listing video as binary through Etsy. Crucially,
+it writes frequent progress backups to CSV and can resume incomplete runs
+without repeating completed work. It supports per-product
+variants/colors/sizes/pricing and continues past non-critical errors.
+
+Install/route: Node desktop/server app packaged to a single executable with
+PKG; Etsy OAuth2 + Printify/Etsy APIs. It uses an ngrok URL for Printify
+assets over 5 MB.
+Dependencies/hardware: Node, API credentials, network.
+Evidence: 21-commit client project; explicit resume-from-backup workflow
+and custom Etsy image/video post-processing after Printify publish.
+Work replaced: concrete reference for the exact Roast.pet handoff from
+Printify to Etsy media patching and crash recovery.
+Integration: MEDIUM.
+Maintenance risk: HIGH as literal code because API assumptions may age and
+license is unclear.
+Exact experiment: do not copy code. Reproduce its state machine with one
+disposable Printify/Etsy draft: create product =E2=86=92 publish =E2=86=92 =
+locate Etsy
+listing =E2=86=92 upload Roast.pet listing images/video =E2=86=92 crash int=
+entionally =E2=86=92
+resume from checkpoint without duplicating product/listing.
+Verdict: COPY MECHANISM / WATCH LICENSE.
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+   1. An arbitrary-audio lip-sync correction workstation:
+   lip-sync-generator already has exposure-sheet editing, mouth placement,
+   keyframes and exports.
+   2. A browser media compositor/encoder before benchmarking YumCut;
+   WebCodecs + WebGL2 + muxing/support analysis are already packaged.
+   3. Short-form caption pagination and animation edge cases if using
+   Remotion; remotion-captions-kit already handles
+   sentence/silence/orphan/abbreviation logic.
+   4. Etsy listing-video patching and crash-resume logic from first
+   principles; existing production scripts demonstrate the sequence.
+   5. Whole-order restart behavior. Persist checkpoints and resume only the
+   incomplete Printify/Etsy/media stage.
+
+Most surprising hobby project: lip-sync-generator. A single offline HTML
+file has effectively become a miniature Adobe Character Animator mouth
+workflow: DSP + Rhubarb, editable exposure sheet, keyframed mouth
+placement, puppet compositing, 24-clip queue and eight export modes.
+
+Fastest integration win: remotion-captions-kit. HeadTTS already gives
+Roast.pet word timings; feeding those directly into this kit could
+eliminate our caption pagination/timing edge cases immediately.
+
+Repo/author worth following: Doug Alder / lip-sync-generator. The project
+is solving exactly the unglamorous human-correction and export details that
+make automated character speech usable in production, rather than merely
+demonstrating a model.
+
+Architecture implication: the browser can plausibly own substantially more
+of Roast.pet than expected: customer cleanup (Alphaveil/BiRefNet),
+arbitrary-audio mouth correction (lip-sync-generator), caption logic
+(remotion-captions-kit), and possibly complete interactive rendering
+(YumCut). Server-side infrastructure can then concentrate on generation,
+identity QA, durable order state and commerce rather than media plumbing.
+
+--000000000000f82157065bdffa92
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 4 useful projects
+<p>Screened 25+ plausible projects across GitHub and web results covering p=
+et/animal landmarks, lip sync, browser video rendering, captions, WebAR, ma=
+tting, Etsy/POD and mockup automation. Deduplicated against prior Roast.pet=
+ scanner finds. Four new projects are worth retaining.</p>
+
+1) dougalder/lip-sync-generator =E2=80=94 REUSE NOW / COPY UI MECHANISMS
+<p>URL: <a href=3D"https://github.com/dougalder/lip-sync-generator">https:/=
+/github.com/dougalder/lip-sync-generator</a><br>
+Creator: Doug Alder<br>
+Activity: 70 commits; repository crawled current on 2026-09-20<br>
+License: Apache-2.0; embedded Rhubarb WASM is MIT, CMU Sphinx model BSD, fo=
+nts OFL</p>
+<p>What it solves: This is much more complete than merely calling Rhubarb. =
+One offline HTML file takes speech, derives viseme timing, exposes an edita=
+ble exposure sheet, lets the operator trim/split clips, place the mouth ove=
+r a still/video puppet, keyframe the mouth position, blur/cover an existing=
+ printed mouth, queue up to 24 clips, and export chart/timing, transparent =
+GIF/APNG, sprite sheet, PNG sequence, chroma MP4 or composited video. It in=
+cludes 15 mouth styles in front/3-quarter/profile angles and accepts custom=
+ mouth art.</p>
+<p>Install/demo: download lip-sync-generator.html and open it directly; no =
+server/account/build/network required. A served version can preload custom =
+lips/ sets.<br>
+Dependencies/hardware: ordinary browser; Rhubarb/PocketSphinx WASM; CPU onl=
+y.<br>
+Evidence: 70 commits, manual + offline test that actively refuses network a=
+ccess, multiple export paths, editable exposure-sheet workflow.<br>
+Work replaced: arbitrary-audio lip-sync UI, mouth placement editor, manual =
+correction UI, sprite/timing export, potentially 1k+ lines of bespoke tooli=
+ng.<br>
+Integration: LOW.<br>
+Maintenance risk: LOW-MEDIUM.<br>
+Exact experiment: load one canonical Roast.pet transparent pet and our five=
+ mouth sprites, run 20 arbitrary audio clips, manually correct any bad vise=
+mes, export timing JSON + transparent frames, and measure median operator c=
+orrection time. Compare against raw Rhubarb WASM.<br>
+Verdict: REUSE NOW; copy the correction/exposure-sheet/placement mechanisms=
+ even if HeadTTS remains the normal generated-speech path.</p>
+
+2) IgorShadurin/yumcut-video-ads =E2=80=94 BENCHMARK NOW / REUSE RENDERER
+<p>URL: <a href=3D"https://github.com/IgorShadurin/yumcut-video-ads">https:=
+//github.com/IgorShadurin/yumcut-video-ads</a><br>
+Creator: Igor Shadurin<br>
+Activity: 5 commits; current repository<br>
+License: MIT; distributed Mediabunny dependency MPL-2.0</p>
+<p>What it solves: A tiny one-star browser-native production renderer using=
+ WebCodecs + worker WebGL2. It composes ordered video/image/audio layers, t=
+rims/loops/fades/transforms/crops them, mixes audio, and exports MP4 H.264/=
+AAC or WebM VP9/Opus without a render server. It has support analysis befor=
+e rendering, hardware acceleration requests, bounded decode/encode queues, =
+progress/cancellation, Cache Storage/OPFS support, and 360p=E2=80=934K / up=
+-to-five-minute qualification targets.</p>
+<p>Install/API: npm install github:IgorShadurin/yumcut-video-ads; runnable =
+Next.js, React/Vite and vanilla TypeScript demos are included.<br>
+Dependencies/hardware: modern secure-context browser with WebCodecs; WebGL2=
+ with Canvas2D fallback. Desktop Chromium is the primary target; mobile dep=
+ends on actual codec support.<br>
+Evidence: browser tests, demo production builds, benchmark records, determi=
+nistic media fixtures and explicit detectSupport()/analyze() paths.<br>
+Work replaced: our browser compositor, muxing/encoding plumbing, media supp=
+ort detection, cache/progress/cancellation logic =E2=80=94 potentially seve=
+ral thousand lines.<br>
+Integration: MEDIUM.<br>
+Maintenance risk: MEDIUM because WebCodecs support varies by browser.<br>
+Exact experiment: encode the canonical 15-second Roast.pet vertical roast e=
+ntirely client-side: podium background + transparent/stacked-alpha pet laye=
+r + captions + TTS + music sting. Benchmark iPhone Safari, Android Chrome a=
+nd desktop Chrome for render time, memory, output size and visual parity. I=
+f mobile support is adequate, avoid building a server renderer for interact=
+ive/order-preview work.<br>
+Verdict: BENCHMARK NOW / REUSE RENDERER.</p>
+
+3) Fats403/remotion-captions-kit =E2=80=94 REUSE NOW if Remotion stays in t=
+he stack
+<p>URL: <a href=3D"https://github.com/Fats403/remotion-captions-kit">https:=
+//github.com/Fats403/remotion-captions-kit</a><br>
+Creator: Fats403 / <a href=3D"http://videoventure.ai">videoventure.ai</a><b=
+r>
+Activity: 5 commits; current repository<br>
+License: MIT</p>
+<p>What it solves: The annoying layer after word timestamps. It adds human-=
+like caption pagination over @remotion/captions: sentence boundaries, silen=
+ce gaps, max-duration and max-character caps, clause-aware breaks, orphan b=
+alancing, flash-page merging, abbreviation handling and malformed-input cle=
+anup. It also ships six animated presets including karaoke, kinetic slam, p=
+ill karaoke and editorial emphasis. Placement is normalized by composition =
+dimensions, so the same theme works at different resolutions.</p>
+<p>Install: npm i remotion-captions-kit; peer deps are Remotion v4, React a=
+nd @remotion/captions.<br>
+Dependencies/hardware: normal Remotion render stack.<br>
+Evidence: explicit Vitest suite for pagination/SRT/emphasis plus demo studi=
+o; code addresses known @remotion/captions whitespace/timing footguns.<br>
+Work replaced: custom short-form caption paginator, word activation timing =
+and most caption animation CSS/React =E2=80=94 hundreds of lines plus edge-=
+case testing.<br>
+Integration: LOW.<br>
+Maintenance risk: LOW-MEDIUM; coupled to Remotion APIs.<br>
+Exact experiment: feed HeadTTS word timestamps for 50 roast lines into crea=
+teCaptionPages() with a Roast.pet KineticSlam theme. Screenshot-test line b=
+reaks and safe-area placement at 9:16, 1:1 and 16:9. Compare against our cu=
+rrent caption implementation.<br>
+Verdict: REUSE NOW if Remotion remains; otherwise copy the pagination rules=
+/mechanism.</p>
+
+4) dh-js/printify-etsy-listing-creation-desktop-app =E2=80=94 COPY FAILURE/=
+RESUME MECHANISM, WATCH LICENSE
+<p>URL: <a href=3D"https://github.com/dh-js/printify-etsy-listing-creation-=
+desktop-app">https://github.com/dh-js/printify-etsy-listing-creation-deskto=
+p-app</a><br>
+Creator: dh-js<br>
+Activity: 21 commits; 4 stars / 1 fork<br>
+License: no clear license surfaced; do not copy source until verified.</p>
+<p>What it solves: This is an actual client-built Printify=E2=86=92Etsy pro=
+duction automation, not a toy wrapper. A CSV + files directory drives Print=
+ify product/listing creation; it then finds the published Etsy listing and =
+uploads custom images AND listing video as binary through Etsy. Crucially, =
+it writes frequent progress backups to CSV and can resume incomplete runs w=
+ithout repeating completed work. It supports per-product variants/colors/si=
+zes/pricing and continues past non-critical errors.</p>
+<p>Install/route: Node desktop/server app packaged to a single executable w=
+ith PKG; Etsy OAuth2 + Printify/Etsy APIs. It uses an ngrok URL for Printif=
+y assets over 5 MB.<br>
+Dependencies/hardware: Node, API credentials, network.<br>
+Evidence: 21-commit client project; explicit resume-from-backup workflow an=
+d custom Etsy image/video post-processing after Printify publish.<br>
+Work replaced: concrete reference for the exact Roast.pet handoff from Prin=
+tify to Etsy media patching and crash recovery.<br>
+Integration: MEDIUM.<br>
+Maintenance risk: HIGH as literal code because API assumptions may age and =
+license is unclear.<br>
+Exact experiment: do not copy code. Reproduce its state machine with one di=
+sposable Printify/Etsy draft: create product =E2=86=92 publish =E2=86=92 lo=
+cate Etsy listing =E2=86=92 upload Roast.pet listing images/video =E2=86=92=
+ crash intentionally =E2=86=92 resume from checkpoint without duplicating p=
+roduct/listing.<br>
+Verdict: COPY MECHANISM / WATCH LICENSE.</p>
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+<ol>
+<li>An arbitrary-audio lip-sync correction workstation: lip-sync-generator =
+already has exposure-sheet editing, mouth placement, keyframes and exports.=
+</li>
+<li>A browser media compositor/encoder before benchmarking YumCut; WebCodec=
+s + WebGL2 + muxing/support analysis are already packaged.</li>
+<li>Short-form caption pagination and animation edge cases if using Remotio=
+n; remotion-captions-kit already handles sentence/silence/orphan/abbreviati=
+on logic.</li>
+<li>Etsy listing-video patching and crash-resume logic from first principle=
+s; existing production scripts demonstrate the sequence.</li>
+<li>Whole-order restart behavior. Persist checkpoints and resume only the i=
+ncomplete Printify/Etsy/media stage.</li>
+</ol>
+<p>Most surprising hobby project: lip-sync-generator. A single offline HTML=
+ file has effectively become a miniature Adobe Character Animator mouth wor=
+kflow: DSP + Rhubarb, editable exposure sheet, keyframed mouth placement, p=
+uppet compositing, 24-clip queue and eight export modes.</p>
+<p>Fastest integration win: remotion-captions-kit. HeadTTS already gives Ro=
+ast.pet word timings; feeding those directly into this kit could eliminate =
+our caption pagination/timing edge cases immediately.</p>
+<p>Repo/author worth following: Doug Alder / lip-sync-generator. The projec=
+t is solving exactly the unglamorous human-correction and export details th=
+at make automated character speech usable in production, rather than merely=
+ demonstrating a model.</p>
+<p>Architecture implication: the browser can plausibly own substantially mo=
+re of Roast.pet than expected: customer cleanup (Alphaveil/BiRefNet), arbit=
+rary-audio mouth correction (lip-sync-generator), caption logic (remotion-c=
+aptions-kit), and possibly complete interactive rendering (YumCut). Server-=
+side infrastructure can then concentrate on generation, identity QA, durabl=
+e order state and commerce rather than media plumbing.</p>
+
+--000000000000f82157065bdffa92--

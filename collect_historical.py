@@ -11,7 +11,7 @@ import csv
 from datetime import datetime, timedelta
 import sys
 
-BASE_DIR = '/home/box/powpowpow'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'historical_data')
 os.makedirs(DATA_DIR, exist_ok=True)
 

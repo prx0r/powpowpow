@@ -1,0 +1,790 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id nMNZcaaWKG5s
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 10:51:25 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=OBzN5wwYwrUJkGx80R0DpFGm0ELx3QES80c0VSGIKBTD07mtvYVsFYyB9usiufqlHn3faXisj
+	IrQMQilIDfoh6gAakFFYigaX1imozELEwumob0GeO8FnvMjO54WeHY2lZHP5nMm72rFkcjg/iu6
+	Ls1441ukdo1ZX4U/rSOZQM/BgTOigzmMuhyCo+5cb9H/dyVWuB55qVD/I454vl3vL7WZmvUFMwe
+	mg8EpM6L1uZbyYNYEqLSFP5yg6b8xUMItDq+pMaOgcY/OR5MsS7p3mQTboWiLAsNaQwbA6Y5OEQ
+	Z32egZjP0aImhzTXRAyGo8g95XJx1fvJF3Ib+ZSP7N3A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789642285; x=1790247085; bh=MBG0Rwn6
+	v7L53o7j8g5Q5k/dvbVy4h5eeeeV7fXS6to=; b=bzMiMypIR9URQkmGddsk2Th86FxsZIJDZoL
+	OrcIQipv8UtqFIco7NLrIvRYoBEluUf0UJo/YceabhGUkNNXWmyIfu8F1Nl4ni8FPB3U9Oy2X2m
+	G6/qoqHaQFKblhPrQ75BmJ1VWdEcaGD3eurGVhCbzNQ52zank4rlxZIBMSEvuigRyS1rlVPKaME
+	ePT7GlYx8gynIVGlGpxCsp47FcBpnTzNLGfKNodpxzY24e368bJvX6HQywvUJOIjQoO7x1ZwfLn
+	gfkON1WoWptgN2mbxiot17D23/52ErN5j3B1FuIBrvbCzih62P4DaCD7PTLQhXNaP/Rgv80cRvi
+	3oN75vA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=lLcMPHvf;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=lLcMPHvf;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-85d43da99ddso4454337b3.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 03:51:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789642285; cv=none;
+        d=google.com; s=arc-20260327;
+        b=rW7jk/xve6DyYScBOCdcSK6EJXH32T1Q1HcmNrgLKr7AJa0KlBYwPXi8uoKlw6+mOZ
+         6S5gAtwiDR5X2NnGGoYtDf8F55D0nUILrH4I8vYg6bBLZhecuq1MoqsFYApysUSA+/us
+         xDKTJYJgtWFU1Fv5tIdiff94xXPzRZufMRgzekSGPU+e7FM/RNkysn5SkLpamgJ7a5GZ
+         DXYffr7EgEy6C1fhWoeBlg8uBAS/2TApBUe4DPVaOgsSyvVrjnOzDpj6fHQsPv82smw8
+         C+LBjQcz3Cby3rhItd6eiE+MF8N7xExhcpyeFedKYa9pKZ/wJs7GQWehTY3MwkogRLIM
+         BjuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=MBG0Rwn6v7L53o7j8g5Q5k/dvbVy4h5eeeeV7fXS6to=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=AIN3YV6UaaJzmpjQWBH3GZ/ZJ80wtYAmUnKvjHX5uZBebPcz0MDQdToK7a9FKOYkXM
+         ayYpmf2A90ary8belW1Ou3slvpOcp5ZbZ50MuqMhWn+dTMZl6TtGuIg00d9PBID6n+wl
+         Eisi0FL1kQt6qpw3RUHOcJDqclyq3Hxh1uOcH3yQM/GlwLB9pdwy18Ehxqa9TN6SBnfW
+         sJBfG8cF1sSn0Al3mpH8pEvtCaNGbHqNXmgZt1PTHv1hwPqSFigEXhNrWiCz0THlNCiv
+         v7ftQ5yt+yjobzIuuREwPZdOzSa8BxYw7yu/ioPKIYqNgOngIb20DbtJbUu/ARMv3Hy5
+         leqw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789642285; x=1790247085; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=MBG0Rwn6v7L53o7j8g5Q5k/dvbVy4h5eeeeV7fXS6to=;
+        b=lLcMPHvf1hsvmFG4MF9515L/54yBMzvxcuQx2ikQpXYjGDGYALAfVKR99dGz5hTw47
+         yPaHp3kGTe3n2gEGatBYcqZvN2ZD2Xpgnz+V253AJT5vKx/N3sHTYpdjWntWhbREhJAB
+         +5vyqqKun8leNPwCDODh+HeFeI7owT6b6l2y1uKwTodqgLxLOZ9hIZ8i7MvZZXvBf2Ml
+         FOKV34TVs5c4cBHhb0ueS7zviijDQxw0lrZSZA1c0OKVFomTaK3T/X0OzC0YBNG3fPLk
+         /CDqdL2rDANeLQR96Lj3x8T+Hxd7g1Z9ZXyiVM4V6xoi1/tOntt5HPvfpb8UM8qzae1R
+         dp8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789642285; x=1790247085;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=MBG0Rwn6v7L53o7j8g5Q5k/dvbVy4h5eeeeV7fXS6to=;
+        b=Lv/7zfBWwW31tz2X9aUidt4PJRPRc4l29dqLgt5ECEfUW3svfHuUenhFdCW3X1aFWm
+         pwrj8svyfsRLsUqpE0DS0GSsSo1xkd9kz2SV9YMKh9g3bSso8TlXJdXh2YL0TXjJqYY0
+         wAYT2woIAVbCyxFUl8zCZIft5hiH82p98vpCIdpjlsXSvTu0tA+nQWO4QvfJup6bYsBa
+         1ql8RB3jupqg1GkZsTJ8v0pA1/TOfDWh/ROHS1vybnHbKJS9hfHKWU7hGyhIBePfcuQL
+         FzyRYDT9GxsSNNTE5XYOUWNznGdMl65y0PV71xxevQGFiZd63ELYn92CGi+7WdfcdpC1
+         mQrg==
+X-Gm-Message-State: AFuF++k8dwyXgy75QlAHi1pQsNETzEg1RR2so2JXUKTnpGS9+z/d6eNm
+	oaIzYmaHbTnF6V85MEn035lnPe7WYRFCDKjcakRKlb//IgrVs0VZbmrfocILsgZiDJ2hgqPQSn5
+	dRSUYWOGPNcLmMKpK2EOeeA11ssf1NXBWzQ==
+X-Gm-Gg: AYBFou06w2mFBgKGr4o5eTmNcMOwr++VsVKkoU8gk2hyvNrrmQy/UqLC9JIjIvxSf/j
+	r3Kyr1TIk5uv2nztb+Cs5hTfSN2u77FDlKeFwbVqbrUbkvHZSf01LJjqffmbbzUhLyZBmjOvaXl
+	/6toY39iOVjVvABZ2BTfafQAwUsIg5XTse9LVnhtgnYcNxVCct2mg1QIoMVHDxFNSz248F4ujDK
+	teENqLC3goBTjhYXDMD4QyEGfD2i4+FTZU7/pekQ82S+O//2oOc4FaKt4zpq3wZJT2i7lGn/LWn
+	rpUFrY/gsgycwFEPupszYpCMO/BypxXRTDkXwGD6yKhTbsQ6OTz8t9BK9LL62yuioAlp9/0x0hT
+	hyUplreMjuLAKUhmC4T6Mv35VgzbKGXitlQHuug/HFc1z8lBu7AsbvPMxCH0Zb80Yqn0aIQ==
+X-Received: by 2002:a05:690c:ec8:b0:87f:244c:7aaf with SMTP id
+ 00721157ae682-89225b37b4amr19492517b3.47.1789642285173; Thu, 17 Sep 2026
+ 03:51:25 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 05:51:24 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 05:51:24 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 05:51:24 -0500
+X-Gm-Features: AcwNN1WJGwI03EXBFzb6LAEgNctA13NkdXDvjbihgin9HVxYumZ6bE47FEuL9Z4
+Message-ID: <CAPdrGekKPjHaaZnXC_TgcpgCEiYXRfWHh9q62y3J518mbb5ZwA@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D17_17=3A49_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_3_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000aed0f6065bab90e9"
+
+--000000000000aed0f6065bab90e9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Scanner =E2=80=94 Edge Report 1. RUN STATE / COVERAGE AUDIT
+
+Recovered the cumulative scanner chain from Gmail Sent before research. The
+latest persisted run was Privately Scanner =E2=80=94 2026-09-17 16:51
+Asia/Phnom_Penh =E2=80=94 4 new/0 changed; the preceding run was 5 new/0 ch=
+anged.
+This run semantically deduped against those reports and the earlier
+baseline chain.
+
+Windows searched: today/24h first, then 3d/7d where current-hour yield was
+thin. Source families: current AI/agent news, primary lab/vendor material,
+GitHub-oriented discovery, agent-security research, local/private-agent
+infrastructure, autonomous-media infrastructure. Search noise remained high
+for generic AI agent framework and open source video agent queries; those
+queries were not promoted into findings merely to fill the report.
+
+Result: *3 new canonical frontier objects / 0 material updates*. No
+old-security backfill.
+2. EXECUTIVE EDGE MAP
+
+   1. *Paper2Agent* is the strongest capability delta this pass: Nature
+   published a framework today that turns research papers into interactive =
+AI
+   agents rather than passive documents. This is more interesting than anot=
+her
+   generic agent framework because it makes a *paper itself* an executable
+   capability package and supports interactions among paper-agents. Primary
+   publication: https://www.nature.com/articles/s41586-026-11044-y
+   2. *OX Cloud* is a useful defender-frontier signal: cloud security is
+   beginning to fuse conventional CNAPP visibility with runtime controls
+   specifically for autonomous agents that read data, invoke tools and act =
+in
+   cloud environments. It launched Sep 16 and surfaced today. Discovery
+   source:
+   https://www.unite.ai/ox-security-unveils-cnapp-platform-paired-with-ai-a=
+gent-runtime-defense/
+   3. *Perplexity Portable Computer for Windows* is a meaningful
+   local-agent deployment delta rather than a new underlying agent
+   architecture. The local harness/model/tool stack is now moving from
+   DGX/Linux into ordinary RTX Windows workstations, with local MCP and
+   explicit cloud escalation. NVIDIA=E2=80=99s primary description of the l=
+ocal-agent
+   direction:
+   https://blogs.nvidia.com/blog/local-ai-ifa-next-gen-agents-nv-pair-rtx-s=
+park/
+   4. Generic fresh GitHub-agent queries did *not* surface a new
+   Monid/Goose/Jev-quality object with enough primary evidence to promote t=
+his
+   hour. That is a useful negative result; next queries should target repo
+   creation/activity feeds and citations from fresh papers rather than
+   SEO-heavy AI agent framework searches.
+   5. The strongest cross-frontier pattern is *capability packaging*:
+   papers become agents, local PCs become complete agent runtimes, and
+   cloud-security products increasingly inspect agent runtime behavior. The
+   valuable control point is shifting from which model? toward what
+   executable capability package is being admitted, and what authority does=
+ it
+   get?
+
+3. AGENT FRAMEWORK / OSS FRONTIER NEW =E2=80=94 Paper2Agent
+
+*What is new:* automated conversion of scientific papers into AI agents.
+Published in Nature on Sep 17, 2026.
+
+*Technical delta:* instead of an agent merely retrieving/summarizing a
+paper, the research artifact is transformed into an interactive agent that
+exposes the paper=E2=80=99s methods/data/code as usable capability. The pub=
+lication
+also describes paper-agents interacting to support discovery.
+
+*Why serious builders may use it:* scientific tooling has unusually high
+friction between reading a method and actually running/adapting it.
+Packaging the method as an agent attacks that integration bottleneck
+directly.
+
+*Route:* Nature paper: https://www.nature.com/articles/s41586-026-11044-y .
+Code/reproduction status should be rechecked next run rather than inferred
+from secondary snippets.
+
+*Trajectory inference:* 6m: reproductions and domain-specific paper agents;
+18m: agent-callable research-method registries; 36m: papers increasingly
+ship executable agent interfaces; 60m: scientific literature partly behaves
+like a capability graph rather than a text corpus.
+
+*Privately implication:* a paper-agent is also a software supply-chain
+object. If scientific methods become callable agents, Privately should
+eventually be able to fingerprint the code/data/tools/network/authority a
+paper-agent introduces before allowing it into a research environment.
+
+*Decision:* SANDBOX / WATCH.
+
+*Minimum experiment:* take one open paper with an existing repository,
+convert it through the framework when code is available, then measure
+whether a second agent can use the resulting interface without bespoke
+integration. Falsifier: conversion produces little beyond RAG/wrapper
+behavior and cannot reliably expose the actual computational method.
+4. PAPER -> FUTURE AGENT FRONTIER
+
+Paper2Agent dominates this run. No second paper cleared the
+novelty/evidence threshold. Fresh agent-security searches produced
+substantial repeated memory-poisoning/MCP material already represented by
+the registry; those were deduped rather than re-reported.
+5. COMMERCIAL CAPABILITY SHOCKS -> OSS/PRIVATE IMPLEMENTATIONS NEW =E2=80=
+=94
+Perplexity Portable Computer expands local-agent deployment toward Windows
+RTX
+
+NVIDIA describes Portable Computer as a packaged local agent stack where
+models, harness, tools and workflows can execute locally, with explicit
+permission before escalating work to cloud models. The broader NVIDIA
+local-agent stack is also converging around one-click local setup for
+Hermes/OpenClaw/Perplexity, llama.cpp/vLLM optimizations and local
+inference routing.
+
+Primary NVIDIA source:
+https://blogs.nvidia.com/blog/local-ai-ifa-next-gen-agents-nv-pair-rtx-spar=
+k/
+
+*Why it matters to Privately:* private agent is becoming less synonymous
+with build your own obscure stack. Major agent products are starting to
+package local orchestration + tools + sandbox + open models as a normal
+deployment mode. The differentiation therefore moves upward toward policy,
+authority, auditability and safe hybrid escalation.
+
+*Decision:* WATCH / CONTENT NOW if framed as local inference is becoming
+commodity; private authority is not.
+6. ATTACKER FRONTIER
+
+No new attacker framework cleared the bar this hour. Search continued to
+surface current coding-agent Git/config attack reporting and previously
+known supply-chain/context-worm families, but primary-source verification
+was insufficient for a new canonical attack object in this run. Do not
+inflate the logbook from secondary retellings.
+7. DEFENDER FRONTIER NEW =E2=80=94 OX Cloud / agent runtime defence
+
+OX Security launched OX Cloud on Sep 16; current coverage describes a
+CNAPP-style cloud security layer paired with runtime defence for AI agents
+accessing cloud data, tools and actions.
+
+*Technical delta:* conventional cloud posture/workload context is being
+connected to agent runtime behavior rather than agent security living only
+as prompt filtering or MCP scanning.
+
+*Why serious defenders may use it:* agents increasingly inherit cloud
+identities and operate across resources that existing CNAPP products
+already understand. Runtime agent controls attached to that graph can
+potentially reason over both cloud exposure and agent action.
+
+*Key questions for recheck:* Is enforcement actually inline? What event
+schema captures agent/tool actions? Does it distinguish agent principal
+from human/service principal? Does it inspect hostile tool output? Is there
+an open telemetry/API path we can test?
+
+*Decision:* WATCH. Promote to BUILD PROBE comparison only after primary
+technical docs expose enforcement architecture.
+8. CURRENT THREAT REALITY
+
+No new current campaign promoted. The scanner continues to treat
+supply-chain/credential compromise and autonomous-agent misuse as active
+categories, but this run found no primary-source delta strong enough to
+justify another canonical record.
+9. ATTACK LOGBOOK DELTAS
+
+No new canonical attack-chain fingerprint this run.
+10. AUTONOMOUS VIDEO / MEDIA FRONTIER
+
+No new media object cleared the bar. Current searches were dominated by
+generic wrappers and already-known model/pipeline coverage. One useful
+ecosystem signal from NVIDIA=E2=80=99s Sep 3 primary post is that open loca=
+l video
+inference continues to compress: LTX 2.5 is described as open-world video
+generation optimized for RTX/DGX, while FastH3 is described as a four-step
+distilled open-weight video system with a reported 7x performance
+improvement. These are *watchlist signals*, not promoted as new canonical
+objects in this run because they predate the immediate scanner window and
+need direct repo/model verification before entering the registry.
+
+Primary:
+https://blogs.nvidia.com/blog/local-ai-ifa-next-gen-agents-nv-pair-rtx-spar=
+k/
+11. PRIVATELY LAB =E2=80=94 TOP EXPERIMENTS
+
+*EXP-P2A-01 =E2=80=94 executable-paper trust surface.* Hypothesis:
+Paper2Agent-style conversion creates a distinct inspectable capability
+package whose tools/dependencies/network permissions can be fingerprinted
+before execution. Safe setup: one open paper/repo in a disposable
+container. Success: generate a machine-readable capability manifest before
+agent execution. Falsifier: generated agent has no stable
+interface/dependency boundary to inspect.
+
+*EXP-LOCAL-01 =E2=80=94 local/cloud authority split.* Reproduce the archite=
+cture
+with an open local agent: local model handles private files; cloud
+escalation requires explicit policy gate; log exactly what context would
+cross the boundary. Artifact: QP egress_decision processor.
+
+*EXP-RUNTIME-01 =E2=80=94 cloud action telemetry schema.* Build a tiny
+vendor-neutral event format for {principal, agent, tool, target,
+requested_effect, credentials_scope, approval, result} and see whether
+current agent gateways can emit/consume it. This tests the likely control
+layer suggested by OX=E2=80=99s direction without depending on its propriet=
+ary
+implementation.
+12. BUILD / PROBE OPPORTUNITIES
+
+Best probe: *capability-package admission*. Given an MCP server, skill,
+paper-agent, agent plugin or harness extension, output a normalized
+manifest of code origin, dependencies, tools, network destinations, secret
+requirements, write capabilities, mutable metadata and external effects.
+This generalizes better than another MCP-only scanner.
+13. CONTENT ENGINE OPPORTUNITIES
+
+Strongest original angle: *Papers are becoming executable agents =E2=80=94 =
+so
+papers now have a software supply chain.* Build EXP-P2A-01 first; publish
+only if the experiment produces a concrete trust manifest or surprising
+authority path.
+
+Secondary: *Local AI is becoming commodity. Private authority is the next
+problem.* Tie Portable Computer/Hermes/OpenClaw local packaging to why
+local inference alone does not solve malicious tools, excessive authority
+or data egress.
+14. WEIRD ALPHA / PEOPLE
+
+No person added this run. Paper2Agent authors should be followed through
+the primary paper/code trail on the next recheck rather than creating an
+influencer entry without concrete implementation evidence.
+15. TOP 3 THINGS TO TRY NOW
+
+   1. Paper2Agent =E2=80=94 locate official implementation and sandbox one
+   conversion.
+   2. Reproduce local/cloud escalation policy with an existing local
+   harness.
+   3. Prototype capability-package manifesting across MCP + skill +
+   paper-agent objects.
+
+16. TOP 3 ATTACK/DEFENCE THINGS TO UNDERSTAND NOW
+
+   1. Admission-time capability manifests vs runtime behavioral drift.
+   2. Agent principal/action telemetry inside cloud environments.
+   3. Whether executable paper-agents inherit arbitrary dependency/network
+   authority from research code.
+
+17. TOP 3 WATCHLIST ITEMS
+
+   1. Paper2Agent official code/reproductions =E2=80=94 recheck 12h.
+   2. OX Cloud technical runtime/enforcement docs =E2=80=94 recheck 12h.
+   3. LTX 2.5 / FastH3 direct repos, licenses and real cost-per-video =E2=
+=80=94
+   recheck 6-12h in media lane.
+
+18. ONE NON-OBVIOUS EDGE / SEESAW CONSEQUENCE
+
+The frontier is turning *knowledge objects into executable authority
+objects*. Skills did it to instructions; MCP did it to tools; Paper2Agent
+now points toward papers doing it to scientific methods. As more static
+artifacts become agent-callable, content provenance is insufficient. The
+security object becomes *capability provenance*: what executable authority
+did this artifact introduce into my system?
+19. ARCHITECTURE / ROADMAP CHANGE
+
+No major roadmap change. Add capability-package admission/fingerprinting as
+a candidate Privately/QP probe class, but do not build a platform around it
+until the Paper2Agent experiment and at least one skill/MCP comparison show
+the same schema generalizes.
+20. MASTER FRONTIER INDEX =E2=80=94 DELTA
+
+NEW-P2A =E2=80=94 Paper2Agent =E2=80=94 paper/framework =E2=80=94 first_see=
+n 2026-09-17 =E2=80=94
+SANDBOX/WATCH =E2=80=94 Nature publication Sep 17 =E2=80=94 converts papers=
+ into
+interactive agents.
+NEW-OXCLOUD =E2=80=94 OX Cloud agent runtime defence =E2=80=94 defender/pro=
+duct =E2=80=94
+first_seen 2026-09-17 =E2=80=94 WATCH =E2=80=94 launched Sep 16 =E2=80=94 j=
+oins cloud
+posture/context to agent runtime defence.
+NEW-PERPLEXITY-WIN =E2=80=94 Portable Computer Windows/local-agent deployme=
+nt delta
+=E2=80=94 agent runtime/product =E2=80=94 first_seen 2026-09-17 =E2=80=94 W=
+ATCH =E2=80=94 Windows/RTX
+expansion =E2=80=94 packaged local harness/model/tools with controlled clou=
+d
+escalation.
+
+Prior registry objects remain canonical and are not repeated in full here.
+21. ATTACK LOGBOOK INDEX
+
+No attack-logbook delta this run. Existing context-worm,
+temporal-trust-drift, supply-chain and autonomous-agent incident classes
+remain active watch objects.
+22. WATCHLIST / NEXT RECHECK QUEUE
+
+   - Paper2Agent code/repo: +12h
+   - OX Cloud primary technical docs: +12h
+   - LTX 2.5 / FastH3 direct implementation metrics: +6-12h
+   - current agent-security GitHub creation/activity feeds: +1-3h
+   - existing explosive/young registry repos: according to prior per-item
+   schedule
+
+23. SOURCE-YIELD LEDGER
+
+   - Current broad web/news: medium discovery yield, high duplicate/noise
+   rate.
+   - GitHub-targeted web search: low yield this pass; needs more exact
+   repo-creation/activity query variants.
+   - Primary lab/vendor sources: high signal; NVIDIA produced useful
+   local-agent/media infrastructure context.
+   - Paper search: high signal due Paper2Agent.
+   - Security current-threat search: medium candidate volume, low NEW yield
+   after semantic dedupe.
+   - Media OSS search: low NEW yield; next run should query specific
+   model/repo names surfaced from primary ecosystem posts rather than
+generic AI
+   video agent.
+
+24. MACHINE-READABLE RUN_STATE JSON {
+"run_date":"2026-09-17T17:49:58+07:00", "registry_delta":[
+{"id":"NEW-P2A","name":"Paper2Agent","type":"paper_framework","state":"SAND=
+BOX_WATCH"},
+{"id":"NEW-OXCLOUD","name":"OX Cloud agent runtime
+defence","type":"defender_product","state":"WATCH"},
+{"id":"NEW-PERPLEXITY-WIN","name":"Perplexity Portable Computer Windows
+expansion","type":"agent_runtime_product","state":"WATCH"} ],
+"attack_logbook_delta":[], "metric_observations":[],
+"stale_snapshot_conflicts":[], "semantic_duplicates_rejected":["generic
+agent-framework roundups","repeated memory-poisoning coverage","repeated
+MCP injection coverage","previous supply-chain/context-worm families"],
+"watchlist":["Paper2Agent official code","OX Cloud enforcement docs","LTX
+2.5","FastH3"], "next_recheck_queue":{"Paper2Agent":"12h","OX
+Cloud":"12h","LTX2.5_FastH3":"6-12h","fresh_security_repos":"1-3h"},
+"source_family_yield":{"papers":"high","primary_vendor":"high","broad_web":=
+"medium","github_targeted_web":"low","security_current":"medium_candidates_=
+low_new","media_generic":"low"},
+"windows_searched":["today","24h","3d","7d"],
+"experiment_queue_delta":["EXP-P2A-01","EXP-LOCAL-01","EXP-RUNTIME-01"] }
+
+SCARCITY BEATS PADDING. FRONTIER BEATS HISTORY. MECHANISMS BEAT HEADLINES.
+PRIMARY SOURCES BEAT SNIPPETS.
+
+--000000000000aed0f6065bab90e9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Scanner =E2=80=94 Edge Report
+
+1. RUN STATE / COVERAGE AUDIT
+<p>Recovered the cumulative scanner chain from Gmail Sent before research. =
+The latest persisted run was <code>Privately Scanner =E2=80=94 2026-09-17 1=
+6:51 Asia/Phnom_Penh =E2=80=94 4 new/0 changed</code>; the preceding run wa=
+s 5 new/0 changed. This run semantically deduped against those reports and =
+the earlier baseline chain.</p>
+<p>Windows searched: today/24h first, then 3d/7d where current-hour yield w=
+as thin. Source families: current AI/agent news, primary lab/vendor materia=
+l, GitHub-oriented discovery, agent-security research, local/private-agent =
+infrastructure, autonomous-media infrastructure. Search noise remained high=
+ for generic <code>AI agent framework</code> and <code>open source video ag=
+ent</code> queries; those queries were not promoted into findings merely to=
+ fill the report.</p>
+<p>Result: <strong>3 new canonical frontier objects / 0 material updates</s=
+trong>. No old-security backfill.</p>
+
+2. EXECUTIVE EDGE MAP
+<ol>
+<li><strong>Paper2Agent</strong> is the strongest capability delta this pas=
+s: Nature published a framework today that turns research papers into inter=
+active AI agents rather than passive documents. This is more interesting th=
+an another generic agent framework because it makes a <em>paper itself</em>=
+ an executable capability package and supports interactions among paper-age=
+nts. Primary publication: <a href=3D"https://www.nature.com/articles/s41586=
+-026-11044-y">https://www.nature.com/articles/s41586-026-11044-y</a></li>
+<li><strong>OX Cloud</strong> is a useful defender-frontier signal: cloud s=
+ecurity is beginning to fuse conventional CNAPP visibility with runtime con=
+trols specifically for autonomous agents that read data, invoke tools and a=
+ct in cloud environments. It launched Sep 16 and surfaced today. Discovery =
+source: <a href=3D"https://www.unite.ai/ox-security-unveils-cnapp-platform-=
+paired-with-ai-agent-runtime-defense/">https://www.unite.ai/ox-security-unv=
+eils-cnapp-platform-paired-with-ai-agent-runtime-defense/</a></li>
+<li><strong>Perplexity Portable Computer for Windows</strong> is a meaningf=
+ul local-agent deployment delta rather than a new underlying agent architec=
+ture. The local harness/model/tool stack is now moving from DGX/Linux into =
+ordinary RTX Windows workstations, with local MCP and explicit cloud escala=
+tion. NVIDIA=E2=80=99s primary description of the local-agent direction: <a=
+ href=3D"https://blogs.nvidia.com/blog/local-ai-ifa-next-gen-agents-nv-pair=
+-rtx-spark/">https://blogs.nvidia.com/blog/local-ai-ifa-next-gen-agents-nv-=
+pair-rtx-spark/</a></li>
+<li>Generic fresh GitHub-agent queries did <strong>not</strong> surface a n=
+ew Monid/Goose/Jev-quality object with enough primary evidence to promote t=
+his hour. That is a useful negative result; next queries should target repo=
+ creation/activity feeds and citations from fresh papers rather than SEO-he=
+avy <code>AI agent framework</code> searches.</li>
+<li>The strongest cross-frontier pattern is <strong>capability packaging</s=
+trong>: papers become agents, local PCs become complete agent runtimes, and=
+ cloud-security products increasingly inspect agent runtime behavior. The v=
+aluable control point is shifting from <code>which model?</code> toward <co=
+de>what executable capability package is being admitted, and what authority=
+ does it get?</code></li>
+</ol>
+
+3. AGENT FRAMEWORK / OSS FRONTIER
+
+NEW =E2=80=94 Paper2Agent
+<p><strong>What is new:</strong> automated conversion of scientific papers =
+into AI agents. Published in Nature on Sep 17, 2026.</p>
+<p><strong>Technical delta:</strong> instead of an agent merely retrieving/=
+summarizing a paper, the research artifact is transformed into an interacti=
+ve agent that exposes the paper=E2=80=99s methods/data/code as usable capab=
+ility. The publication also describes paper-agents interacting to support d=
+iscovery.</p>
+<p><strong>Why serious builders may use it:</strong> scientific tooling has=
+ unusually high friction between reading a method and actually running/adap=
+ting it. Packaging the method as an agent attacks that integration bottlene=
+ck directly.</p>
+<p><strong>Route:</strong> Nature paper: <a href=3D"https://www.nature.com/=
+articles/s41586-026-11044-y">https://www.nature.com/articles/s41586-026-110=
+44-y</a> . Code/reproduction status should be rechecked next run rather tha=
+n inferred from secondary snippets.</p>
+<p><strong>Trajectory inference:</strong> 6m: reproductions and domain-spec=
+ific paper agents; 18m: agent-callable research-method registries; 36m: pap=
+ers increasingly ship executable agent interfaces; 60m: scientific literatu=
+re partly behaves like a capability graph rather than a text corpus.</p>
+<p><strong>Privately implication:</strong> a paper-agent is also a software=
+ supply-chain object. If scientific methods become callable agents, Private=
+ly should eventually be able to fingerprint the code/data/tools/network/aut=
+hority a paper-agent introduces before allowing it into a research environm=
+ent.</p>
+<p><strong>Decision:</strong> SANDBOX / WATCH.</p>
+<p><strong>Minimum experiment:</strong> take one open paper with an existin=
+g repository, convert it through the framework when code is available, then=
+ measure whether a second agent can use the resulting interface without bes=
+poke integration. Falsifier: conversion produces little beyond RAG/wrapper =
+behavior and cannot reliably expose the actual computational method.</p>
+
+4. PAPER -&gt; FUTURE AGENT FRONTIER
+<p>Paper2Agent dominates this run. No second paper cleared the novelty/evid=
+ence threshold. Fresh agent-security searches produced substantial repeated=
+ memory-poisoning/MCP material already represented by the registry; those w=
+ere deduped rather than re-reported.</p>
+
+5. COMMERCIAL CAPABILITY SHOCKS -&gt; OSS/PRIVATE IMPLEMENTATIONS
+
+NEW =E2=80=94 Perplexity Portable Computer expands local-agent deployment t=
+oward Windows RTX
+<p>NVIDIA describes Portable Computer as a packaged local agent stack where=
+ models, harness, tools and workflows can execute locally, with explicit pe=
+rmission before escalating work to cloud models. The broader NVIDIA local-a=
+gent stack is also converging around one-click local setup for Hermes/OpenC=
+law/Perplexity, llama.cpp/vLLM optimizations and local inference routing.</=
+p>
+<p>Primary NVIDIA source: <a href=3D"https://blogs.nvidia.com/blog/local-ai=
+-ifa-next-gen-agents-nv-pair-rtx-spark/">https://blogs.nvidia.com/blog/loca=
+l-ai-ifa-next-gen-agents-nv-pair-rtx-spark/</a></p>
+<p><strong>Why it matters to Privately:</strong> <code>private agent</code>=
+ is becoming less synonymous with <code>build your own obscure stack</code>=
+. Major agent products are starting to package local orchestration + tools =
++ sandbox + open models as a normal deployment mode. The differentiation th=
+erefore moves upward toward policy, authority, auditability and safe hybrid=
+ escalation.</p>
+<p><strong>Decision:</strong> WATCH / CONTENT NOW if framed as <code>local =
+inference is becoming commodity; private authority is not</code>.</p>
+
+6. ATTACKER FRONTIER
+<p>No new attacker framework cleared the bar this hour. Search continued to=
+ surface current coding-agent Git/config attack reporting and previously kn=
+own supply-chain/context-worm families, but primary-source verification was=
+ insufficient for a new canonical attack object in this run. Do not inflate=
+ the logbook from secondary retellings.</p>
+
+7. DEFENDER FRONTIER
+
+NEW =E2=80=94 OX Cloud / agent runtime defence
+<p>OX Security launched OX Cloud on Sep 16; current coverage describes a CN=
+APP-style cloud security layer paired with runtime defence for AI agents ac=
+cessing cloud data, tools and actions.</p>
+<p><strong>Technical delta:</strong> conventional cloud posture/workload co=
+ntext is being connected to agent runtime behavior rather than agent securi=
+ty living only as prompt filtering or MCP scanning.</p>
+<p><strong>Why serious defenders may use it:</strong> agents increasingly i=
+nherit cloud identities and operate across resources that existing CNAPP pr=
+oducts already understand. Runtime agent controls attached to that graph ca=
+n potentially reason over both cloud exposure and agent action.</p>
+<p><strong>Key questions for recheck:</strong> Is enforcement actually inli=
+ne? What event schema captures agent/tool actions? Does it distinguish agen=
+t principal from human/service principal? Does it inspect hostile tool outp=
+ut? Is there an open telemetry/API path we can test?</p>
+<p><strong>Decision:</strong> WATCH. Promote to BUILD PROBE comparison only=
+ after primary technical docs expose enforcement architecture.</p>
+
+8. CURRENT THREAT REALITY
+<p>No new current campaign promoted. The scanner continues to treat supply-=
+chain/credential compromise and autonomous-agent misuse as active categorie=
+s, but this run found no primary-source delta strong enough to justify anot=
+her canonical record.</p>
+
+9. ATTACK LOGBOOK DELTAS
+<p>No new canonical attack-chain fingerprint this run.</p>
+
+10. AUTONOMOUS VIDEO / MEDIA FRONTIER
+<p>No new media object cleared the bar. Current searches were dominated by =
+generic wrappers and already-known model/pipeline coverage. One useful ecos=
+ystem signal from NVIDIA=E2=80=99s Sep 3 primary post is that open local vi=
+deo inference continues to compress: LTX 2.5 is described as open-world vid=
+eo generation optimized for RTX/DGX, while FastH3 is described as a four-st=
+ep distilled open-weight video system with a reported 7x performance improv=
+ement. These are <strong>watchlist signals</strong>, not promoted as new ca=
+nonical objects in this run because they predate the immediate scanner wind=
+ow and need direct repo/model verification before entering the registry.</p=
+>
+<p>Primary: <a href=3D"https://blogs.nvidia.com/blog/local-ai-ifa-next-gen-=
+agents-nv-pair-rtx-spark/">https://blogs.nvidia.com/blog/local-ai-ifa-next-=
+gen-agents-nv-pair-rtx-spark/</a></p>
+
+11. PRIVATELY LAB =E2=80=94 TOP EXPERIMENTS
+<p><strong>EXP-P2A-01 =E2=80=94 executable-paper trust surface.</strong> Hy=
+pothesis: Paper2Agent-style conversion creates a distinct inspectable capab=
+ility package whose tools/dependencies/network permissions can be fingerpri=
+nted before execution. Safe setup: one open paper/repo in a disposable cont=
+ainer. Success: generate a machine-readable capability manifest before agen=
+t execution. Falsifier: generated agent has no stable interface/dependency =
+boundary to inspect.</p>
+<p><strong>EXP-LOCAL-01 =E2=80=94 local/cloud authority split.</strong> Rep=
+roduce the architecture with an open local agent: local model handles priva=
+te files; cloud escalation requires explicit policy gate; log exactly what =
+context would cross the boundary. Artifact: QP <code>egress_decision</code>=
+ processor.</p>
+<p><strong>EXP-RUNTIME-01 =E2=80=94 cloud action telemetry schema.</strong>=
+ Build a tiny vendor-neutral event format for <code>{principal, agent, tool=
+, target, requested_effect, credentials_scope, approval, result}</code> and=
+ see whether current agent gateways can emit/consume it. This tests the lik=
+ely control layer suggested by OX=E2=80=99s direction without depending on =
+its proprietary implementation.</p>
+
+12. BUILD / PROBE OPPORTUNITIES
+<p>Best probe: <strong>capability-package admission</strong>. Given an MCP =
+server, skill, paper-agent, agent plugin or harness extension, output a nor=
+malized manifest of code origin, dependencies, tools, network destinations,=
+ secret requirements, write capabilities, mutable metadata and external eff=
+ects. This generalizes better than another MCP-only scanner.</p>
+
+13. CONTENT ENGINE OPPORTUNITIES
+<p>Strongest original angle: <strong><code>Papers are becoming executable a=
+gents =E2=80=94 so papers now have a software supply chain.</code></strong>=
+ Build EXP-P2A-01 first; publish only if the experiment produces a concrete=
+ trust manifest or surprising authority path.</p>
+<p>Secondary: <strong><code>Local AI is becoming commodity. Private authori=
+ty is the next problem.</code></strong> Tie Portable Computer/Hermes/OpenCl=
+aw local packaging to why local inference alone does not solve malicious to=
+ols, excessive authority or data egress.</p>
+
+14. WEIRD ALPHA / PEOPLE
+<p>No person added this run. Paper2Agent authors should be followed through=
+ the primary paper/code trail on the next recheck rather than creating an i=
+nfluencer entry without concrete implementation evidence.</p>
+
+15. TOP 3 THINGS TO TRY NOW
+<ol>
+<li>Paper2Agent =E2=80=94 locate official implementation and sandbox one co=
+nversion.</li>
+<li>Reproduce local/cloud escalation policy with an existing local harness.=
+</li>
+<li>Prototype capability-package manifesting across MCP + skill + paper-age=
+nt objects.</li>
+</ol>
+
+16. TOP 3 ATTACK/DEFENCE THINGS TO UNDERSTAND NOW
+<ol>
+<li>Admission-time capability manifests vs runtime behavioral drift.</li>
+<li>Agent principal/action telemetry inside cloud environments.</li>
+<li>Whether executable paper-agents inherit arbitrary dependency/network au=
+thority from research code.</li>
+</ol>
+
+17. TOP 3 WATCHLIST ITEMS
+<ol>
+<li>Paper2Agent official code/reproductions =E2=80=94 recheck 12h.</li>
+<li>OX Cloud technical runtime/enforcement docs =E2=80=94 recheck 12h.</li>
+<li>LTX 2.5 / FastH3 direct repos, licenses and real cost-per-video =E2=80=
+=94 recheck 6-12h in media lane.</li>
+</ol>
+
+18. ONE NON-OBVIOUS EDGE / SEESAW CONSEQUENCE
+<p>The frontier is turning <em>knowledge objects into executable authority =
+objects</em>. Skills did it to instructions; MCP did it to tools; Paper2Age=
+nt now points toward papers doing it to scientific methods. As more static =
+artifacts become agent-callable, <code>content provenance</code> is insuffi=
+cient. The security object becomes <strong>capability provenance</strong>: =
+what executable authority did this artifact introduce into my system?</p>
+
+19. ARCHITECTURE / ROADMAP CHANGE
+<p>No major roadmap change. Add <code>capability-package admission/fingerpr=
+inting</code> as a candidate Privately/QP probe class, but do not build a p=
+latform around it until the Paper2Agent experiment and at least one skill/M=
+CP comparison show the same schema generalizes.</p>
+
+20. MASTER FRONTIER INDEX =E2=80=94 DELTA
+<p>NEW-P2A =E2=80=94 Paper2Agent =E2=80=94 paper/framework =E2=80=94 first_=
+seen 2026-09-17 =E2=80=94 SANDBOX/WATCH =E2=80=94 Nature publication Sep 17=
+ =E2=80=94 converts papers into interactive agents.<br>
+NEW-OXCLOUD =E2=80=94 OX Cloud agent runtime defence =E2=80=94 defender/pro=
+duct =E2=80=94 first_seen 2026-09-17 =E2=80=94 WATCH =E2=80=94 launched Sep=
+ 16 =E2=80=94 joins cloud posture/context to agent runtime defence.<br>
+NEW-PERPLEXITY-WIN =E2=80=94 Portable Computer Windows/local-agent deployme=
+nt delta =E2=80=94 agent runtime/product =E2=80=94 first_seen 2026-09-17 =
+=E2=80=94 WATCH =E2=80=94 Windows/RTX expansion =E2=80=94 packaged local ha=
+rness/model/tools with controlled cloud escalation.</p>
+<p>Prior registry objects remain canonical and are not repeated in full her=
+e.</p>
+
+21. ATTACK LOGBOOK INDEX
+<p>No attack-logbook delta this run. Existing context-worm, temporal-trust-=
+drift, supply-chain and autonomous-agent incident classes remain active wat=
+ch objects.</p>
+
+22. WATCHLIST / NEXT RECHECK QUEUE
+<ul>
+<li>Paper2Agent code/repo: +12h</li>
+<li>OX Cloud primary technical docs: +12h</li>
+<li>LTX 2.5 / FastH3 direct implementation metrics: +6-12h</li>
+<li>current agent-security GitHub creation/activity feeds: +1-3h</li>
+<li>existing explosive/young registry repos: according to prior per-item sc=
+hedule</li>
+</ul>
+
+23. SOURCE-YIELD LEDGER
+<ul>
+<li>Current broad web/news: medium discovery yield, high duplicate/noise ra=
+te.</li>
+<li>GitHub-targeted web search: low yield this pass; needs more exact repo-=
+creation/activity query variants.</li>
+<li>Primary lab/vendor sources: high signal; NVIDIA produced useful local-a=
+gent/media infrastructure context.</li>
+<li>Paper search: high signal due Paper2Agent.</li>
+<li>Security current-threat search: medium candidate volume, low NEW yield =
+after semantic dedupe.</li>
+<li>Media OSS search: low NEW yield; next run should query specific model/r=
+epo names surfaced from primary ecosystem posts rather than generic <code>A=
+I video agent</code>.</li>
+</ul>
+
+24. MACHINE-READABLE RUN_STATE JSON
+
+<code>{
+  &quot;run_date&quot;:&quot;2026-09-17T17:49:58+07:00&quot;,
+  &quot;registry_delta&quot;:[
+    {&quot;id&quot;:&quot;NEW-P2A&quot;,&quot;name&quot;:&quot;Paper2Agent&=
+quot;,&quot;type&quot;:&quot;paper_framework&quot;,&quot;state&quot;:&quot;=
+SANDBOX_WATCH&quot;},
+    {&quot;id&quot;:&quot;NEW-OXCLOUD&quot;,&quot;name&quot;:&quot;OX Cloud=
+ agent runtime defence&quot;,&quot;type&quot;:&quot;defender_product&quot;,=
+&quot;state&quot;:&quot;WATCH&quot;},
+    {&quot;id&quot;:&quot;NEW-PERPLEXITY-WIN&quot;,&quot;name&quot;:&quot;P=
+erplexity Portable Computer Windows expansion&quot;,&quot;type&quot;:&quot;=
+agent_runtime_product&quot;,&quot;state&quot;:&quot;WATCH&quot;}
+  ],
+  &quot;attack_logbook_delta&quot;:[],
+  &quot;metric_observations&quot;:[],
+  &quot;stale_snapshot_conflicts&quot;:[],
+  &quot;semantic_duplicates_rejected&quot;:[&quot;generic agent-framework r=
+oundups&quot;,&quot;repeated memory-poisoning coverage&quot;,&quot;repeated=
+ MCP injection coverage&quot;,&quot;previous supply-chain/context-worm fami=
+lies&quot;],
+  &quot;watchlist&quot;:[&quot;Paper2Agent official code&quot;,&quot;OX Clo=
+ud enforcement docs&quot;,&quot;LTX 2.5&quot;,&quot;FastH3&quot;],
+  &quot;next_recheck_queue&quot;:{&quot;Paper2Agent&quot;:&quot;12h&quot;,&=
+quot;OX Cloud&quot;:&quot;12h&quot;,&quot;LTX2.5_FastH3&quot;:&quot;6-12h&q=
+uot;,&quot;fresh_security_repos&quot;:&quot;1-3h&quot;},
+  &quot;source_family_yield&quot;:{&quot;papers&quot;:&quot;high&quot;,&quo=
+t;primary_vendor&quot;:&quot;high&quot;,&quot;broad_web&quot;:&quot;medium&=
+quot;,&quot;github_targeted_web&quot;:&quot;low&quot;,&quot;security_curren=
+t&quot;:&quot;medium_candidates_low_new&quot;,&quot;media_generic&quot;:&qu=
+ot;low&quot;},
+  &quot;windows_searched&quot;:[&quot;today&quot;,&quot;24h&quot;,&quot;3d&=
+quot;,&quot;7d&quot;],
+  &quot;experiment_queue_delta&quot;:[&quot;EXP-P2A-01&quot;,&quot;EXP-LOCA=
+L-01&quot;,&quot;EXP-RUNTIME-01&quot;]
+}
+</code>
+<p>SCARCITY BEATS PADDING. FRONTIER BEATS HISTORY. MECHANISMS BEAT HEADLINE=
+S. PRIMARY SOURCES BEAT SNIPPETS.</p>
+
+--000000000000aed0f6065bab90e9--

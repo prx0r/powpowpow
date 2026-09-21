@@ -1,0 +1,517 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id McWHmfk4E7LA
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 18:08:23 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=gv9rhQtPGEx7mtz9zhdbVFnrmqHur0eIVvBrCGjXAFG8ypIWnUBd2xK3bSBeTOpuizDC+fycP
+	ioFClPl2qNjx854SPyDSICZnnJVDbSnABifl2yUkiAQOYmX+1dG7fn8+za4Ik9IkmX6nYcHlJjX
+	Jh8XRs7Kn4bb23kmBVReEJnNwCD+JwRDQ5aMxtAZ4ZEj4sdaCyvFhV5gUE/2qG9QKbZUW+i6l/J
+	poUGSWC+kgLq2JL3rkFMvPctXLGZf4RbYbAb3tISRQeySZoWEcAFjwjaInKj8rLapnEgl0tOnRj
+	WNTV+WrjFRGKdyLHfSKlACs233flcoX4OlNvAvJdCCuQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789668503; x=1790273303; bh=FEcqOL6q
+	7yVFibZT1Mr4tS3+7sfwcmI5gFMOAGvHBF8=; b=VVXM0vb1kLmJCwM5aMtyPpsNsJCEMngDItW
+	gVJTyOrVVmBHNFBIYiigowfxEa/a8i9/tvMSQm7HVCL1OAisqCpocDf3Oohx5cqSAxdC+iHmWFy
+	WIPE+oPqqTXynWYs8WEtoIPyLbMhZS+XQOIF1/O2Aat++sCDHhajgWqNsWmOeWaUx9dLme2y0Dp
+	dQgehxwlWW6y3+azAFo8nMhnBFFgQ05+OSJqRV3TEyOEu7WWApq0aZT0dVS5THzLlxuP3LAb4r+
+	nA7NWTU0W0poHRt/g5CF9CWrg07kfmT/Q+y2vEDp5f3ZDkdqAnBPMMWeOgHrFMBAHAQ3AYmTGyX
+	3NMncPA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=B8fG3baj;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=B8fG3baj;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-85d43f9b120so10032337b3.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 11:08:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789668503; cv=none;
+        d=google.com; s=arc-20260327;
+        b=W5JUjRtfoGksLqjDggCo+XMsAKUTVJCvt7LVUlLpq+NeeKHuSVvE3TcoSdCf2Qrex0
+         3rHI6Efo/NjLQP0DlyQ0bzCw7Edj+uYnvbzS4pRbIJRRSzk1hhmihMKgXiScalRgrZmJ
+         V7p3cjOP1G0fpuLAvbCKUMYgvgAkeuyQi0LWxRvhLxrh5vISKp7Tj0AByHpzxKOg51KU
+         lTMEOk7cHPHshIl1pHJS0UrapT+Mt7NUFJWn/IYGTE3bZAEZ/8JQ80w2eC6jkvnru/D8
+         aDytzig8K4IWmTKQHigEsISYF967lvxQiMjxCT5lykrGZ+In1x0wo6fFqQ4+/yuD6tZn
+         nQpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=FEcqOL6q7yVFibZT1Mr4tS3+7sfwcmI5gFMOAGvHBF8=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=JmI43w203rmz8jgm89s+CTVqMTuHYQsnBOAROs8G7Swajg5vqaKObB/Cvs0xflfzal
+         BH3bleUKKsLPEPew3UsJmiIvrhkWcnwEv1tRiVzxhCwAROtWW432f/6eG91bNZaad+vP
+         5lhoq8UUnzwR6Zs8SKS7XZPTZfegqxOoWLhD6HrGncsP+ZC0iqI8tQsOHMGoPs+iwA5/
+         mcLXYpsd54W2FXLnSCspmd1FBMInEF8XeWESzsHuBRCpWjouHzPL5nc/Hvv1uZKvlrFU
+         i+PmpIPlieYYoZPdxorsZReXyOtpnl4R0dloKgA+wafEaHgeX4GcCzmFDWnEdaXepNaN
+         8ZqA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789668503; x=1790273303; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=FEcqOL6q7yVFibZT1Mr4tS3+7sfwcmI5gFMOAGvHBF8=;
+        b=B8fG3baj22Z9JxGaLVjtg/+dsONOUzYxHEWp4/6u2mtpfM+1lX+90jL6Vt1kqU3+mq
+         c7tjwLHdfTVBaVJzpxrl//vVbQmvQj0paoRd+7XWgeyNkNun/FM1GdipJ0FZ2uEsj+aP
+         GznjWJIIbS4Q8njowjKKbDFfyClMugW2HC8GP+t3nq1CWfZFN3sL/1F1KOt0V7+CgAz1
+         bT9/XFEwRt7B/8ShI+Zg4PBTTkGIFIZEi5J0st+VDjY0XTIsMPZ48x5z4iE/1V5RUIE7
+         gY+w4R/+h7AAeyO/NScKqiiSL0pNBfAdXa8qdyGm1UDBz4jhGLTZUgE4DapLk+c5GLDr
+         I0Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789668503; x=1790273303;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=FEcqOL6q7yVFibZT1Mr4tS3+7sfwcmI5gFMOAGvHBF8=;
+        b=KK8lKjX4l3+SAIiSGWq2Okg8vxwnAeaq9KFbChOmsWLsFc1lBVQul/COAhfQ1A4CU0
+         4rT8Cm8cnqYlGy8r5vo8x5jJT9TF+6p/yhO1silzoVWYqET6RL5gixTIw9KuBjN7P4w/
+         62YmO5A+w8x4Ho7yiLUsHp0QMdXB70oXb+yQLTiLy3c1dZhZ2YS2JWznK00nns6Iah7M
+         1tz8HK2H91AtPxok3HWZrIkn6a0UP6IL4BfStjL9Sou+t319cmnv/+BdGwMY35lLDdmB
+         oef9spn1XUXfAbZqp+vljbKMmZeCYx4TnLAVEqPQVFtNfHy5iXKjMSYi0xddQYEMNxhX
+         HCeA==
+X-Gm-Message-State: AFuF++ncO27GTei1ZvdstMX1d7P6BYzhZAHd8MR5ASqqaW+zQoVYG1EF
+	YikKnf3GLfMxhhZWb3ASs3ApWdC9LPPN8RhDl0g52X3eJ5wZAfYzTD6V03gJT27Z6eZvcZ98XA/
+	cHzZ1eyN9m2V1RsVo2PtWFritFyQH6W61Mg==
+X-Gm-Gg: AYBFou371kfjrWHxn3qa94XtpK8vEPWy8pLg5ArRZJ6U+ADfvRPtzOvkzKQGneozYRm
+	FIkf4nJ81e0a4MrY93/B71T4G7LUHt2pu0lLwkwkGPIZHkilvNzgrdda7/SvYAvdhkKravqt0mN
+	LWSwz3yNH0CIt59IcFZNUCtfcqp/xjMalDsZvWykyhoIvrkoThbUO+zbG/pPCFF/yAKLFxmDHGf
+	sEM4vWFJNi+M9qe2HJ9JWyuHNN48c3DZTyTwgHbw3oAnvbPxPsw6U0ZT9zCi4rLSIkEUp/Eq8Vj
+	bDC9VRxA+KwT/bIOTTiYvgKOlfNmKp7UDtlhSo5nHwy2llaycMZaZlQRXMB7xSe/KCuowF3TRKX
+	Gftfke95EeX49llBd4N8GYPjCsee0TYUmdDAefr73GwVLwmswE0DsmrHA1g9cEcwSCJSP+CdU
+X-Received: by 2002:a05:690c:e687:20b0:873:5ddf:d877 with SMTP id
+ 00721157ae682-892267da967mr16577457b3.66.1789668502904; Thu, 17 Sep 2026
+ 11:08:22 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 13:08:22 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 13:08:22 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 13:08:22 -0500
+X-Gm-Features: AcwNN1UGe634v9z_Domi-QRGu1G2ymS1q17a5j6Hj_VciDZ9sPuDUgN7cRfG9-c
+Message-ID: <CAPdrGenRpha+2wX4WS4-x=EFCeJ=RbtpRRMq93M15T4rf1VVyA@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_build_4=2F5_=E2=80=94_XMR_lifecycle_=2B_phone_bridge_imp?=
+	=?UTF-8?Q?lementation?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000061a38c065bb1ab83"
+
+--00000000000061a38c065bb1ab83
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This is the hard real-world vertical. Build it as a provider capability
+system, not phone_owned=3Dtrue.
+A. XMR PAYMENT / ACCOUNTLESS ACCESS
+
+Use MoneroPay / monero-wallet-rpc. Do not implement Monero cryptography.
+
+Desired lifecycle:
+POST /session/new -> random session id + operator capability -> create
+fresh XMR invoice/subaddress payment observer -> detects
+amount/confirmations -> QP resolves xmr_payment_received(...) -> mint
+bounded service capability -> capability is the "account"
+
+Never require an email/password to recover a normal account. Recovery can
+be an optional operator key / recovery capability.
+
+Payment implementation rules:
+
+   1. Fresh subaddress/invoice per session/order.
+   2. Store amounts in atomic units; never float.
+   3. Define confirmation policy explicitly by operation/risk.
+   4. Separate receive wallet from spending wallet where practical.
+   5. Agent never receives wallet seed/private spend key.
+   6. Outgoing XMR requires exact bounded authority: destination, max
+   amount, purpose, expiry, nonce.
+   7. Preserve payment evidence privately; public receipt should normally
+   expose commitments/hashes, not unnecessary transaction metadata.
+   8. Idempotency: an invoice can mint its entitlement exactly once.
+   9. Partial/overpayment semantics must be explicit.
+   10. Reorg/ambiguous state =3D> UNKNOWN/reconciliation, not silent succes=
+s.
+
+Model:
+type InvoiceState =3D | "PENDING" | "PARTIAL" | "DETECTED" | "CONFIRMED" |
+"EXPIRED" | "RECONCILIATION_REQUIRED"; B. PHONE IS AN OPTIONAL BRIDGE
+
+Never identify an operator by phone number. A phone number is a leased
+external capability.
+
+Model each resource as:
+interface PhoneCapabilities { sms_in: boolean | "UNKNOWN"; sms_out: boolean
+| "UNKNOWN"; voice_in: boolean | "UNKNOWN"; voice_out: boolean | "UNKNOWN";
+data: boolean | "UNKNOWN"; renewable: boolean | "UNKNOWN"; expires_at?:
+string; number_type?: "mobile" | "voip" | "unknown"; } C. PROVIDER 1 =E2=80=
+=94
+PIKASIM (EXPERIMENTAL FIRST FULL BRIDGE)
+
+Current docs:
+
+   - https://pikasim.com/mcp-docs
+   - https://pikasim.com/for-ai-assistants
+   - https://pikasim.com/api-docs-for-ai
+   - MCP browse endpoint: https://pikasim.com/mcp
+   - authenticated wallet endpoint: https://pikasim.com/mcp/wallet
+
+Why test first:
+
+   - current docs claim real carrier phone-number eSIMs with voice + SMS +
+   data
+   - public MCP browsing needs no auth
+   - agent wallet can be created without account/email/KYC according to
+   current docs
+   - prepaid wallet can be crypto funded, including Monero according to
+   current docs
+   - purchasing is exposed directly as MCP
+
+DO NOT assume the marketing claim is proven. Treat provider as EXPERIMENTAL
+until live acceptance tests pass.
+
+Build PikaSimProvider against their MCP protocol rather than screen
+scraping.
+
+Required workflow:
+
+   1. keyless tools/list
+   2. create_wallet in test flow if acceptable under provider TOS
+   3. generate crypto deposit invoice
+   4. fund manually during first live test (do not spend autonomously until
+   reviewed)
+   5. search exact phone-number plan
+   6. capture quote + advertised capabilities + country + expiry
+   7. exact QP authorization for purchase
+   8. purchase
+   9. record returned resource identifiers privately
+   10. independently test actual SMS/voice capabilities
+   11. only then promote claims to TRUE
+
+Acceptance tests:
+
+   - no name requested
+   - no email requested
+   - no legal ID requested
+   - no card required for selected flow
+   - XMR funding path works
+   - resource persists across API sessions
+   - inbound SMS from independent sender arrives
+   - outbound SMS to independent receiver arrives
+   - inbound voice rings/terminates where advertised
+   - outbound voice reaches independent receiver where advertised
+   - renewal/top-up path works
+   - provider API/MCP can read resource state
+   - cancellation/refund semantics recorded
+
+If any identity/KYC requirement appears in the selected jurisdiction/plan,
+classify that route IDENTITY_BRIDGED; do not automate evasion.
+D. PROVIDER 2 =E2=80=94 SILENT LINK (STRONGER ESTABLISHED PRIVACY, LIMITED =
+PHONE)
+
+Current docs:
+
+   - https://silent.link/
+   - https://silent.link/bulk
+
+Current US.PLUS advertises:
+
+   - US +1 number
+   - data + inbound SMS
+   - no legacy voice
+   - outbound SMS disabled
+   - one-year number lease, renewable
+   - zero-KYC/no email according to provider
+   - Monero payment shown
+
+Public bulk API is documented on /bulk page:
+
+   - GET /api/v1/bulk/stock
+   - POST /api/v1/order/new
+   - GET /api/v1/order/{token}/json
+   - public OpenAPI/Swagger referenced there
+
+Build SilentLinkProvider only around documented API.
+
+Expected capability truth after empirical validation:
+sms_in TRUE sms_out FALSE voice_in FALSE/limited-not-general voice_out
+FALSE data TRUE
+
+Do not call it a =E2=80=9Cfull phone=E2=80=9D.
+E. MONEROSMS =E2=80=94 PROGRAMMABLE SMS CANDIDATE
+
+Research current API/TOS independently before implementation. Prior
+research identified it as an XMR/no-personal-info SMS candidate, but do not
+trust stale notes. Add provider only after current docs are saved under
+docs/providers/monerosms.md with dated source URLs and exact
+capability/identity surface.
+F. JMP.CHAT =E2=80=94 FULL PSTN BENCHMARK, NOT ANON-CORE BY ASSUMPTION
+
+Use as a functional benchmark for two-way SMS/voice and XMPP integration.
+Do not label anonymous/XMR-native unless current evidence proves the exact
+funding and onboarding path.
+G. TEST HARNESS
+
+Create:
+tests/live/phone/ pikasim.acceptance.ts silentlink.acceptance.ts
+provider-contract.ts
+
+Every live test outputs immutable evidence fixture with:
+
+   - provider
+   - observed date
+   - product/plan id
+   - country
+   - fields requested during onboarding
+   - payment rails actually used
+   - resource type
+   - capability tested
+   - independent sender/receiver
+   - timestamps
+   - result TRUE/FALSE/UNKNOWN
+   - raw-response commitment
+   - privacy classification
+
+Never commit live phone numbers, wallet codes, API keys, QR activation
+codes, IMSI/ICCID, or raw sensitive provider payloads.
+H. BRIDGE SELECTION
+
+Resolver should do:
+selectBridge({ require: ["sms_in", "sms_out"], maxPrivacyClass:
+"PSEUDONYMOUS_BRIDGE", paymentRail: "XMR", country: "US" })
+
+and return a ranked SET OF ELIGIBLE routes based on hard constraints. Do
+not silently choose a more identity-invasive fallback.
+
+Part 5 gives the build order, API/MCP surface, tests and definition of done=
+.
+
+--00000000000061a38c065bb1ab83
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>This is the hard real-world vertical. Build it as a provider capability =
+system, not <code>phone_owned=3Dtrue</code>.</p>
+
+A. XMR PAYMENT / ACCOUNTLESS ACCESS
+<p>Use MoneroPay / monero-wallet-rpc. Do not implement Monero cryptography.=
+</p>
+<p>Desired lifecycle:</p>
+
+<code>POST /session/new
+  -&gt; random session id + operator capability
+  -&gt; create fresh XMR invoice/subaddress
+
+payment observer
+  -&gt; detects amount/confirmations
+  -&gt; QP resolves xmr_payment_received(...)
+  -&gt; mint bounded service capability
+  -&gt; capability is the &quot;account&quot;
+</code>
+<p>Never require an email/password to recover a normal account. Recovery ca=
+n be an optional operator key / recovery capability.</p>
+<p>Payment implementation rules:</p>
+<ol>
+<li>Fresh subaddress/invoice per session/order.</li>
+<li>Store amounts in atomic units; never float.</li>
+<li>Define confirmation policy explicitly by operation/risk.</li>
+<li>Separate receive wallet from spending wallet where practical.</li>
+<li>Agent never receives wallet seed/private spend key.</li>
+<li>Outgoing XMR requires exact bounded authority: destination, max amount,=
+ purpose, expiry, nonce.</li>
+<li>Preserve payment evidence privately; public receipt should normally exp=
+ose commitments/hashes, not unnecessary transaction metadata.</li>
+<li>Idempotency: an invoice can mint its entitlement exactly once.</li>
+<li>Partial/overpayment semantics must be explicit.</li>
+<li>Reorg/ambiguous state =3D&gt; UNKNOWN/reconciliation, not silent succes=
+s.</li>
+</ol>
+<p>Model:</p>
+
+<code>type InvoiceState =3D
+  | &quot;PENDING&quot;
+  | &quot;PARTIAL&quot;
+  | &quot;DETECTED&quot;
+  | &quot;CONFIRMED&quot;
+  | &quot;EXPIRED&quot;
+  | &quot;RECONCILIATION_REQUIRED&quot;;
+</code>
+
+B. PHONE IS AN OPTIONAL BRIDGE
+<p>Never identify an operator by phone number. A phone number is a leased e=
+xternal capability.</p>
+<p>Model each resource as:</p>
+
+<code>interface PhoneCapabilities {
+  sms_in: boolean | &quot;UNKNOWN&quot;;
+  sms_out: boolean | &quot;UNKNOWN&quot;;
+  voice_in: boolean | &quot;UNKNOWN&quot;;
+  voice_out: boolean | &quot;UNKNOWN&quot;;
+  data: boolean | &quot;UNKNOWN&quot;;
+  renewable: boolean | &quot;UNKNOWN&quot;;
+  expires_at?: string;
+  number_type?: &quot;mobile&quot; | &quot;voip&quot; | &quot;unknown&quot;=
+;
+}
+</code>
+
+C. PROVIDER 1 =E2=80=94 PIKASIM (EXPERIMENTAL FIRST FULL BRIDGE)
+<p>Current docs:</p>
+<ul>
+<li><a href=3D"https://pikasim.com/mcp-docs">https://pikasim.com/mcp-docs</=
+a></li>
+<li><a href=3D"https://pikasim.com/for-ai-assistants">https://pikasim.com/f=
+or-ai-assistants</a></li>
+<li><a href=3D"https://pikasim.com/api-docs-for-ai">https://pikasim.com/api=
+-docs-for-ai</a></li>
+<li>MCP browse endpoint: <code><a href=3D"https://pikasim.com/mcp">https://=
+pikasim.com/mcp</a></code></li>
+<li>authenticated wallet endpoint: <code><a href=3D"https://pikasim.com/mcp=
+/wallet">https://pikasim.com/mcp/wallet</a></code></li>
+</ul>
+<p>Why test first:</p>
+<ul>
+<li>current docs claim real carrier phone-number eSIMs with voice + SMS + d=
+ata</li>
+<li>public MCP browsing needs no auth</li>
+<li>agent wallet can be created without account/email/KYC according to curr=
+ent docs</li>
+<li>prepaid wallet can be crypto funded, including Monero according to curr=
+ent docs</li>
+<li>purchasing is exposed directly as MCP</li>
+</ul>
+<p>DO NOT assume the marketing claim is proven. Treat provider as EXPERIMEN=
+TAL until live acceptance tests pass.</p>
+<p>Build <code>PikaSimProvider</code> against their MCP protocol rather tha=
+n screen scraping.</p>
+<p>Required workflow:</p>
+<ol>
+<li>keyless <code>tools/list</code></li>
+<li><code>create_wallet</code> in test flow if acceptable under provider TO=
+S</li>
+<li>generate crypto deposit invoice</li>
+<li>fund manually during first live test (do not spend autonomously until r=
+eviewed)</li>
+<li>search exact phone-number plan</li>
+<li>capture quote + advertised capabilities + country + expiry</li>
+<li>exact QP authorization for purchase</li>
+<li>purchase</li>
+<li>record returned resource identifiers privately</li>
+<li>independently test actual SMS/voice capabilities</li>
+<li>only then promote claims to TRUE</li>
+</ol>
+<p>Acceptance tests:</p>
+<ul>
+<li>no name requested</li>
+<li>no email requested</li>
+<li>no legal ID requested</li>
+<li>no card required for selected flow</li>
+<li>XMR funding path works</li>
+<li>resource persists across API sessions</li>
+<li>inbound SMS from independent sender arrives</li>
+<li>outbound SMS to independent receiver arrives</li>
+<li>inbound voice rings/terminates where advertised</li>
+<li>outbound voice reaches independent receiver where advertised</li>
+<li>renewal/top-up path works</li>
+<li>provider API/MCP can read resource state</li>
+<li>cancellation/refund semantics recorded</li>
+</ul>
+<p>If any identity/KYC requirement appears in the selected jurisdiction/pla=
+n, classify that route <code>IDENTITY_BRIDGED</code>; do not automate evasi=
+on.</p>
+
+D. PROVIDER 2 =E2=80=94 SILENT LINK (STRONGER ESTABLISHED PRIVACY, LIMITED =
+PHONE)
+<p>Current docs:</p>
+<ul>
+<li><a href=3D"https://silent.link/">https://silent.link/</a></li>
+<li><a href=3D"https://silent.link/bulk">https://silent.link/bulk</a></li>
+</ul>
+<p>Current US.PLUS advertises:</p>
+<ul>
+<li>US +1 number</li>
+<li>data + inbound SMS</li>
+<li>no legacy voice</li>
+<li>outbound SMS disabled</li>
+<li>one-year number lease, renewable</li>
+<li>zero-KYC/no email according to provider</li>
+<li>Monero payment shown</li>
+</ul>
+<p>Public bulk API is documented on <code>/bulk</code> page:</p>
+<ul>
+<li><code>GET /api/v1/bulk/stock</code></li>
+<li><code>POST /api/v1/order/new</code></li>
+<li><code>GET /api/v1/order/{token}/json</code></li>
+<li>public OpenAPI/Swagger referenced there</li>
+</ul>
+<p>Build <code>SilentLinkProvider</code> only around documented API.</p>
+<p>Expected capability truth after empirical validation:</p>
+
+<code>sms_in    TRUE
+sms_out   FALSE
+voice_in  FALSE/limited-not-general
+voice_out FALSE
+data       TRUE
+</code>
+<p>Do not call it a =E2=80=9Cfull phone=E2=80=9D.</p>
+
+E. MONEROSMS =E2=80=94 PROGRAMMABLE SMS CANDIDATE
+<p>Research current API/TOS independently before implementation. Prior rese=
+arch identified it as an XMR/no-personal-info SMS candidate, but do not tru=
+st stale notes. Add provider only after current docs are saved under <code>=
+docs/providers/monerosms.md</code> with dated source URLs and exact capabil=
+ity/identity surface.</p>
+
+F. JMP.CHAT =E2=80=94 FULL PSTN BENCHMARK, NOT ANON-CORE BY ASSUMPTION
+<p>Use as a functional benchmark for two-way SMS/voice and XMPP integration=
+. Do not label anonymous/XMR-native unless current evidence proves the exac=
+t funding and onboarding path.</p>
+
+G. TEST HARNESS
+<p>Create:</p>
+
+<code>tests/live/phone/
+  pikasim.acceptance.ts
+  silentlink.acceptance.ts
+  provider-contract.ts
+</code>
+<p>Every live test outputs immutable evidence fixture with:</p>
+<ul>
+<li>provider</li>
+<li>observed date</li>
+<li>product/plan id</li>
+<li>country</li>
+<li>fields requested during onboarding</li>
+<li>payment rails actually used</li>
+<li>resource type</li>
+<li>capability tested</li>
+<li>independent sender/receiver</li>
+<li>timestamps</li>
+<li>result TRUE/FALSE/UNKNOWN</li>
+<li>raw-response commitment</li>
+<li>privacy classification</li>
+</ul>
+<p>Never commit live phone numbers, wallet codes, API keys, QR activation c=
+odes, IMSI/ICCID, or raw sensitive provider payloads.</p>
+
+H. BRIDGE SELECTION
+<p>Resolver should do:</p>
+
+<code>selectBridge({
+  require: [&quot;sms_in&quot;, &quot;sms_out&quot;],
+  maxPrivacyClass: &quot;PSEUDONYMOUS_BRIDGE&quot;,
+  paymentRail: &quot;XMR&quot;,
+  country: &quot;US&quot;
+})
+</code>
+<p>and return a ranked SET OF ELIGIBLE routes based on hard constraints. Do=
+ not silently choose a more identity-invasive fallback.</p>
+<p>Part 5 gives the build order, API/MCP surface, tests and definition of d=
+one.</p>
+
+--00000000000061a38c065bb1ab83--

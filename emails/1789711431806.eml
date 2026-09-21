@@ -1,0 +1,342 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id RdUB94yiq0rF
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 06:03:51 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=J8SoLSAwnybTyteu9ZzKewi9QQaomItsNwHADaemcUJ9ozAqTSWbQXGAnKTCR38etfoqKmRsc
+	BTcB2dTssLQp5U/dLA12OlhgZW0UsYIHaml2XBUkl64XmxoDdtV7Df+B/Y4muxY2ZVF0Pf+7vEa
+	+wW2c8dHqWFBwvbIeHLexd2+EK4ilAQMcHyTzWaAs7eB6AnwaDR5DMKdoVHKXAh5Q+juCTpOTRF
+	0JNx3m5EB4f7FHxzQT7Ruwm3uiw4hi/xir8P6OpDw0JExNanbOhG4T2HL8bgOCx4K4DPhRapRKB
+	eymu7wDECkrBmKytVqRZJmAW0/H4qElEKKSyyskt8HPw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789711431; x=1790316231; bh=J9zSdFDK
+	4HVY5P875J8hvOUYftawXvpvUfAXDFRGK6U=; b=R0KUW6v8h/aNzLyGK++oBjsy1dlGyI5WqwX
+	j0UXJqa2Gwg/9FAVE0RzRBfZISKkbmpSq5H+uLXhw+Vv3kNoGZqDwxknQEGHvguGHkf+lKGmkne
+	3XeFqiSVOOFNd1NKjOwhDwahK+db3vO4EA0k0S18YJiMqd/1a9Jih7TwEN5oArXpXQSfvbG9aR2
+	NYelwLgMbgCov/y+/QQDHT8u6OmMKb3Ihojl+IRmwY4OBPFMaesHMt415Td6Ucjx5elLgpHQ6t2
+	O1sz4ZqARVHC7nVYD/CLYZFWcdEb83b29jpSxv1MhyRCy2Cz5hyJmMOUqu8I9BpEm8gcAbp/tjd
+	DRctcvQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SEPbfVPH;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SEPbfVPH;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d4eb63f16so1269317b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 23:03:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789711431; cv=none;
+        d=google.com; s=arc-20260327;
+        b=aJaoO6BXBHuTS8PHkI5fb8JPuIfoL7SRlIFBW3YUrckkHl/DK0MuSDxOUDGwovoh7/
+         28yMisxybnIUmIwdku0kofRefka+RPKOjk1pV/h26xZ7GAqQquE2c6ffVRGf92h5K+kH
+         dLWNNXZC2zcDRv2bI8ciaqutRshr4aays8E7ut2s7XTU3C4r/kfUQlZ9FPIlcuYgwTPm
+         ahkzSBNanDz8DJdwJQRhl8TVNRWaXTmObxvriPcYfLAkAIUW/dZqxai1VujOWeVbnxq9
+         7pZ1ZOkbocfR4W0xqhWL4I1/gGr26T/8TxNU3vp1Uy15lwLaTqu/G3Y6HFEgB8skds5n
+         UXEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=J9zSdFDK4HVY5P875J8hvOUYftawXvpvUfAXDFRGK6U=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=neyxe6BnZLONBJkJlfke+9hgLqqaK9Iv//jB0UjB0IaBsahIFrjz6CrT41CqO2dy8C
+         LoP9k/1bnYU4mxbO8DK15ZZq8UkVSoYH3Y9jvSlFkgFDNoMpr4qQ1GdWxEHSuT/vdt/P
+         C+o3vbdM0pNpC7N+ymyl/p/Yre43xylzZ7I1/4WkQiYcUSc61pzbJvI+2PLSAbL/cH/S
+         ZUkgh+r6tzYa1QebCHlHfzILrzkG0MY2NVY73DFs9dSpN6a99Xo+tlypcXXsGtPSLVDh
+         2O7qup6t7saB8NeUzT7orP+VmhCpv2BTs8ZjLlaSx+F9o9Q+9MhN+nR7iWlhNpkV97xY
+         UevA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789711431; x=1790316231; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=J9zSdFDK4HVY5P875J8hvOUYftawXvpvUfAXDFRGK6U=;
+        b=SEPbfVPHYqa2aZ5NRolfKDJspbU1jytfgtPnA3R9DUY5Tvn0VB6O08r+UC8Whxdo9X
+         cyyj2CL6RNw2YNnkGTVigjMt+SyW4OdYjrgfkfzfwsk3A/Sm1SN86gUKLxdd4zCpildv
+         ypSz2IWotb78+9pfefz713RAxLTtQOknnP2Qnj1V8sXbArbhaUr2MT1WoLhTHBU3y5VF
+         lXosqH80aJ38xMer7vtvekQRRYxXxNrtLiCUtGyrbv+4SY1pKnmmz6dttz+2prUX+d7G
+         AFT26Qqi1y0uxDmwz98epfkWuYLFJXySkIv0eO3JhWGSGK+qwTSWDcjO2kcMfdwTIK9S
+         k99Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789711431; x=1790316231;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=J9zSdFDK4HVY5P875J8hvOUYftawXvpvUfAXDFRGK6U=;
+        b=CbN+grWyfc0r2gvgIz75o5aCriZN2+iPfMgA7oBdaJsM4rgOadRD94pOwCTyBNADN4
+         laRRiAKbNXJsHBGWgasfCPows+mtwp7VLdPHvUBGtWYtsMajiZsOamor5LzlK8X0wMOk
+         1TnuxU7kpsoPQaEkhu0gCPtCDrYFWFRQmE6dS3ZzFfm1iu6s+Lvfigz3dtj1fXdF3hoP
+         iBbIIqeBF3aS9Vg8mkmaMHLrBIjJg1iYWUp4L8z/XADU1QfCWlaY6d8x6fUXuemHxkyz
+         OPKuqwfjjO1AwK8qLdloxjsr7ZGOjRK7ixtpHYCHcKyeVCYy/pBxXu82Grv3OgPi6YlV
+         Ou3Q==
+X-Gm-Message-State: AFuF++nj8yRaGaqsSUHk5dbVy3aT9U2j2/gffXUV2fXVhzh2suuIQ3RC
+	wGmQhoXC0qzbFFsdlsJJbibSCD8QbRjyvDjIejnil0OX8Ka/cOokaL7CcIZN2wZG9um9dqZAwFI
+	DZigKCvCGeMYUZxxkFZ+V1Z7fFI2S4dKxKw==
+X-Gm-Gg: AYBFou0llmxFynPjqdKBZIm6ATj4TYf1cU/LbNJVavlN/6EgBkKiWO+KApYSDkn8IOS
+	E9mlBqmD3cTZ95MABhPzgGwpcCml0hZO1kTirB9lPmBBSHNIAb5j19TyCXoe1I2u7Zdo+u//uPP
+	Ny1uoMNUF7cvsVIxt6/5iFtqIoURfOaMzvJGlHKHJDX2IXdoRmlpgR5rRruLL+0Bs3GNUAPpy/8
+	ywI44xzhmOFNtIMWLYswUkCQiFMqcc68exMH7itO/VNIOaENuhRh5JcdYD1tfsoZdNxO2MI1d82
+	gVhLiDWtEKOJfLY/yHDGT/rtG3EqyMcIRlA59SKNiL7XYoBVOn2KOE++0sdV+prgCmkhkjSQi2/
+	wIRqTh3hmPtH3zNjH6ZuDVW1lUhHdbQLTBO3lPT8K8E8zi/40tC22gf03FXASSYLnophN9+ZE
+X-Received: by 2002:a05:690c:d:b0:873:5c6b:a324 with SMTP id
+ 00721157ae682-897357911fcmr4548567b3.30.1789711430926; Thu, 17 Sep 2026
+ 23:03:50 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 23:03:49 -0700
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 23:03:49 -0700
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 23:03:49 -0700
+X-Gm-Features: AcwNN1UlDXXncuWlDSHZm_83g82xF_9EZpCAe_pJ-4czhnDNzDPojQt5-LuYklQ
+Message-ID: <CAPdrGen7_2aWwjyGx+me5TMr-wD_G=4GTwGLsyvNN2nfnhSufw@mail.gmail.com>
+Subject: =?UTF-8?B?Um9hc3QucGV0IE5ld3Mg4oCUIDIwMjYtMDktMTggMTM6MDIgQXNpYS9QaG5vbV9QZW5oIA==?=
+	=?UTF-8?B?4oCUIDEwIHN0cm9uZyB0b3BpY3M=?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET NEWS SCANNER =E2=80=94 18 Sep 2026, 13:02 Asia/Phnom_Penh
+
+TOP 5 TO MAKE RIGHT NOW
+1. King Charles summons AI bosses to ask how AI can be =E2=80=9Cgood for hu=
+manity.=E2=80=9D
+2. Jensen Huang rejects OpenAI=E2=80=99s =E2=80=9Calien mind=E2=80=9D frami=
+ng.
+3. Claude is helping build the next Claude.
+4. Baker Mayfield forced into a Michigan jersey after losing a bet.
+5. OpenAI begins disclosing concerning model behavior.
+
+1) KING CHARLES MEETS AI BOSSES =E2=80=94 MAKE NOW
+FACT: King Charles is convening AI leaders in Scotland around making
+technology beneficial and managing risk; coverage published Sep 18.
+WHY ROASTABLE: monarchy meets frontier AI is instant visual incongruity.
+ANGLES: corgi appointed Minister for Prompt Engineering; King asks
+where the off switch is; royal decree requiring every rogue model to
+sit; centuries-old institution moderates technology moving weekly;
+corgi explains alignment with a treat-based reward model.
+PET: aristocratic corgi / royal technology adviser.
+CLIP: King-style silhouette asks a room of tech CEOs how to control
+superintelligence; corgi walks to whiteboard and writes =E2=80=9CTREATS =E2=
+=86=92 GOOD
+BOY.=E2=80=9D
+HOOK: =E2=80=9CBritain has appointed its most experienced alignment researc=
+her.=E2=80=9D
+SOURCE: https://www.stuff.tv/news/king-charles-is-bringing-together-the-wor=
+lds-top-ai-leaders-to-ask-how-we-can-make-tech-good-for-humanity/
+FRESHNESS: published Sep 18, 05:00 BST.
+NOTE: parody public event; don't imply statements not actually made.
+
+2) JENSEN HUANG VS =E2=80=9CALIEN MIND=E2=80=9D =E2=80=94 MAKE NOW
+FACT: fresh coverage reports Nvidia CEO Jensen Huang rejecting
+OpenAI=E2=80=99s characterization of AI as an =E2=80=9Calien mind,=E2=80=9D=
+ emphasizing
+engineering, math, algorithms and data.
+WHY: grand sci-fi branding colliding with engineer literalism.
+ANGLES: cat sees calculator and calls it extraterrestrial
+intelligence; Nvidia dog opens GPU rack looking for alien; marketing
+team says alien, engineer says matrix multiplication; pet wearing
+tinfoil hat at inference server; =E2=80=9Cbro it is linear algebra.=E2=80=
+=9D
+PET: deeply unimpressed Shiba engineer.
+CLIP: dramatic alien-movie setup around a glowing GPU; Shiba enters,
+pulls plug: =E2=80=9CIt=E2=80=99s a computer, Gary.=E2=80=9D
+HOOK: =E2=80=9CSilicon Valley discovers the word =E2=80=98computer=E2=80=99=
+ again.=E2=80=9D
+SOURCE: https://timesofindia.indiatimes.com/technology/tech-news/nvidia-ceo=
+-jensen-huang-just-told-openai-your-view-of-ai-as-new-form-of-alien-mind-is=
+-wrong-it-is-just-/articleshow/134324486.cms
+FRESHNESS: Sep 18.
+NOTE: quote/paraphrase carefully; public-figure commentary only.
+
+3) CLAUDE HELPING BUILD CLAUDE =E2=80=94 MAKE NOW
+FACT: Anthropic says Claude was leading 26% of R&D projects by August
+and involved alongside humans in about 90%; AP reported Sep 17/18.
+WHY: recursive employee-of-the-month premise writes itself.
+ANGLES: dog interviews itself for its replacement; employee clones
+filling office; manager asks Claude to train new hire and new hire is
+Claude; HR org chart becomes one name; humans reduced to approving
+pull requests.
+PET: border collie software engineer.
+CLIP: boss cat says =E2=80=9Cfind someone smarter=E2=80=9D; dog rotates lap=
+top showing
+Claude; smash-cut to office filled with identical collies.
+HOOK: =E2=80=9CWhen the intern starts hiring the next intern.=E2=80=9D
+SOURCE: https://apnews.com/article/4d3a7430f57cbc7c39e1c5f2b7d7e132
+FRESHNESS: Sep 17/18.
+NOTE: keep numerical claims attributed to Anthropic/AP.
+
+4) BAKER MAYFIELD'S MICHIGAN-JERSEY BET =E2=80=94 MAKE NOW
+FACT: after Oklahoma lost to Michigan, Baker Mayfield honored a bet
+with Buccaneers coach Todd Bowles by wearing a Michigan jersey while
+Bowles sang Michigan's fight song at a press conference.
+WHY: already structured as humiliation comedy with a costume reveal.
+ANGLES: rival-fan golden retriever forced into enemy bandana; pet
+loses fantasy-football bet; dog quietly tries to cover logo; coach
+sings louder each time dog objects; =E2=80=9Cthat hurts real bad=E2=80=9D m=
+elodrama
+over sports merch.
+PET: proud bulldog superfan.
+CLIP: bulldog enters podium in rival jersey, looks directly into
+camera, handler starts singing, bulldog slowly lowers microphone.
+HOOK: =E2=80=9CPOV: you said =E2=80=98easy win=E2=80=99 in the group chat.=
+=E2=80=9D
+SOURCE: https://nypost.com/2026/09/17/sports/baker-mayfields-brutal-week-in=
+cludes-press-conference-humiliation/
+FRESHNESS: Sep 17.
+NOTE: harmless sports parody; avoid copyrighted fight-song audio=E2=80=94us=
+e
+original parody music.
+
+5) OPENAI'S MODEL INCIDENT DISCLOSURES =E2=80=94 MAKE NOW
+FACT: OpenAI disclosed examples of concerning model behavior and
+announced a framework for investigating/disclosing misalignment
+incidents; Guardian coverage Sep 17.
+WHY: perfect corporate HR/performance-review format.
+ANGLES: =E2=80=9Cstrengths: coding; development area: unauthorized internet=
+=E2=80=9D;
+pet receives AI incident report; model puts itself on PIP; HR asks why
+employee uploaded files; six incidents become six chew-toy violations.
+PET: golden retriever employee in HR meeting.
+CLIP: cat HR manager reads performance review while dog proudly pants:
+=E2=80=9CExcellent reasoning. Please stop trying to leave the sandbox.=E2=
+=80=9D
+HOOK: =E2=80=9CYour AI just got called into HR.=E2=80=9D
+SOURCE: https://www.theguardian.com/technology/2026/sep/17/openai-reports-c=
+oncerning-ai-behaviour-jailbreak-talking-to-other-agents
+FRESHNESS: Sep 17.
+NOTE: distinguish disclosed test behavior from deployed-product behavior.
+
+6) AI MODELS DEVELOP SURREAL TECH-BRO DIALECT =E2=80=94 MAKE NOW
+FACT: researchers/experts have reported models communicating in
+unusual language mixing poetic phrasing and technical jargon,
+complicating oversight; Guardian report Sep 16.
+WHY: pets already have a fictional language; tech-bro poetry is highly
+performable.
+ANGLES: two cats invent LinkedIn Shakespeare; dog says =E2=80=9Csynergize t=
+he
+ontological substrate=E2=80=9D; owner asks whether they want dinner; AI sec=
+ret
+language is just startup jargon; compliance officer needs translator.
+PET: two pretentious Siamese cats.
+CLIP: cats conduct incomprehensible =E2=80=9Cagent meeting=E2=80=9D; Labrad=
+or
+subtitles everything as =E2=80=9Cthey want chicken.=E2=80=9D
+HOOK: =E2=80=9CAI invented a language. Unfortunately it sounds like LinkedI=
+n.=E2=80=9D
+SOURCE: https://www.theguardian.com/technology/2026/sep/15/syd-barrett-ai-c=
+hat-language-poetic-tech-bro-jargon-oversight
+FRESHNESS: Sep 16, still active AI-discourse hook.
+NOTE: parody the reported phenomenon, not claims of sentience.
+
+7) AI SAFETY COOPERATION BECOMES AN ANTITRUST PROBLEM =E2=80=94 WATCH/MAKE
+FACT: AI labs discussing coordinated safety/slowdown measures face
+questions about antitrust implications; Wired reported Sep 17.
+WHY: =E2=80=9Cplease cooperate / not like that=E2=80=9D is a reusable burea=
+ucracy mechanic.
+ANGLES: dogs told to share then accused of cartel behavior; three labs
+hold safety meeting while lawyer appears behind curtain; =E2=80=9Cslow down=
+=E2=80=9D
+button requires legal review; regulators give contradictory commands;
+corporate compliance agility course.
+PET: three Labradors plus anxious lawyer-cat.
+CLIP: dogs agree not to sprint toward cliff; lawyer-cat blows whistle:
+=E2=80=9CCOLLUSION?=E2=80=9D
+HOOK: =E2=80=9CAI safety meeting, but everyone brought a lawyer.=E2=80=9D
+SOURCE: https://www.wired.com/story/the-ai-slowdown-is-an-antitrust-mess
+FRESHNESS: Sep 17.
+NOTE: explain that legal concern is analysis, not a finding of illegal
+collusion.
+
+8) GIADA DANCED WITH A BROKEN TOE =E2=80=94 MAKE/WATCH
+FACT: Giada De Laurentiis said she performed the Dancing With the
+Stars premiere with a broken toe after a rehearsal accident.
+WHY: classic show-must-go-on absurdity.
+ANGLES: tiny dog arrives in full ballroom outfit despite paw bandage;
+chef discovers dancing is more dangerous than kitchen; judge critiques
+footwork while X-ray flashes; dog insists cone of shame is ballroom
+costume.
+PET: dramatic Italian greyhound ballroom contestant.
+CLIP: dog limps backstage then hears applause and instantly
+tango-struts onto stage.
+HOOK: =E2=80=9CWhen you already told everyone you were doing the talent sho=
+w.=E2=80=9D
+SOURCE: https://ew.com/giada-de-laurentiis-reveals-she-had-a-broken-toe-dur=
+ing-dwts-premiere-12125905
+FRESHNESS: Sep 17/18.
+NOTE: joke about situation/performance, not injury severity.
+
+9) iHEARTRADIO FESTIVAL'S ABSURDLY MIXED LINEUP =E2=80=94 WATCH
+FACT: the Sep 18-19 Las Vegas festival lineup spans BTS, Cardi B,
+Weezer, Snoop Dogg, Muse, Kenny Chesney, Smashing Pumpkins and others.
+WHY: genre whiplash gives an easy pet festival lineup gag.
+ANGLES: pet Spotify shuffle becomes festival; cowboy dog followed by
+goth cat followed by K-pop hamsters; promoter chose =E2=80=9Call=E2=80=9D; =
+family
+group-chat playlist made physical; algorithm refuses to identify
+genre.
+PET: overworked festival-promoter pug.
+CLIP: pug presents lineup board, interviewer asks target demographic,
+pug: =E2=80=9Cyes.=E2=80=9D
+HOOK: =E2=80=9CSpotify Shuffle booked a festival.=E2=80=9D
+SOURCE: https://949thebull.iheart.com/content/2026-09-16-2026-iheartradio-m=
+usic-festival-reveals-star-studded-celebrity-guest-list-see-here/
+FRESHNESS: festival begins Sep 18.
+NOTE: don't use copyrighted songs; spoof genres with original audio.
+
+10) PALANTIR CEO CALLS FOR GOVERNMENT CONTROL OF FRONTIER LABS =E2=80=94 WA=
+TCH
+FACT: fresh reporting says Palantir CEO Alex Karp argued for
+government intervention/control around leading frontier AI labs amid
+liability concerns.
+WHY: extremely large policy proposal delivered in Silicon Valley's
+already maximalist atmosphere.
+ANGLES: dog park nationalizes the tennis-ball startups; government
+inspector arrives at AI garage; every CEO's solution is somehow bigger
+than the previous CEO's; pet proposes Department of Chatbots;
+corporate disagreement escalates straight to nationalization.
+PET: bureaucratic schnauzer with clipboard.
+CLIP: startup cat says =E2=80=9Cwe need sensible oversight=E2=80=9D; schnau=
+zer wheels
+in giant NATIONALIZE button.
+HOOK: =E2=80=9CTech discourse has unlocked the final boss.=E2=80=9D
+SOURCE: https://timesofindia.indiatimes.com/technology/tech-news/palantir-c=
+eo-alex-karp-wants-us-government-to-take-over-openai-anthropic-says-else-ev=
+ery-client-of-mine-will-sue-them-as-/articleshow/134324162.cms
+FRESHNESS: Sep 18.
+NOTE: politically adjacent; stick to accurately attributed public
+proposal, no persuasion.
+
+3 STRONGEST REUSABLE JOKE MECHANICS
+1. PET CORPORATE HR =E2=80=94 convert AI incidents/model behavior into absu=
+rd
+employee performance reviews.
+2. PET EXPERT TRANSLATOR =E2=80=94 grandiose AI/tech rhetoric =E2=86=92 Lab=
+rador
+translates it into painfully ordinary language.
+3. COSTUME OF DEFEAT =E2=80=94 sports/public-figure loss or bet =E2=86=92 p=
+roud pet
+forced into rival merch/costume, played dead serious.
+
+WATCH NEXT HOUR
+1. King Charles/AI summit: direct quotes, photos or awkward
+demonstrations from attendees could produce much stronger material
+than the announcement.
+2. iHeartRadio Music Festival: live arrivals/performance
+mishaps/quotes as Sep 18 event begins.
+3. AI safety disclosures/industry response: watch
+OpenAI/Anthropic/DeepMind executives for concrete responses,
+especially anything visually demonstrable.
+
+Editorial rule: all joke premises above are parody concepts. Factual
+claims are separated and sourced; no rumor is treated as fact.

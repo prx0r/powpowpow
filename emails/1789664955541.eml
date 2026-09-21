@@ -1,0 +1,1148 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 6wgQsvzoJcwh
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 17:09:14 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ePRC1jDKwEdAanFevwbpMGdfBrIHc79Kf4rDVDqeHw5AkgTlaY5VUhEMQBmDbT7Hdv632Mx7N
+	520+aDNigR9nhvnaYsqoUfWKhgQjqJZpfec8nhFkfn92DyB2ylPjjFNo6QTMg5L3ZVE4EkaYI1Y
+	YccLdGGioMS/+gXfQKc9m16a5wWhBDZVOIMNU7OspYgyc3lVJqH6AJ+F+L1Sqmqsz5MlpUNYIuR
+	4Zx4FOQHt65IelzD96Oe1Y5dHpjrlKeSTh0ud3OywBIE3Fl90QfdCUpE+2mLxXFbiweocNU4wTF
+	To+0wUYkfbewGEuNkEj+FtAZ3bI9Odc9RBzN01PgSZTw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789664955; x=1790269755; bh=dKwvVxsH
+	ZN25cUMv+cZ5ElmJVPSTX1+41qYNMolEmt8=; b=UlJOJIWM/ks7FGPzUPCKNkPT71M/d7nRXD5
+	K2YrnrorcO0zmeAloIji6zlEERFNTJbdkRV9PV51veMg0PVBpzxG5lNHw8NDm2S1eSkGY6XvE+G
+	3FVJClSlIiDLKODzRaloP+X6mMORYBfCoonBytMqMPN/f2LKNoinADcAACOAcczKlA/ATJZT56i
+	3+aD/uMpuLa7vvKxO7CZBuM4sIuUdcvP8DBeFi8AnS96yASeNM3izxNvoiveEbQcss/UX4L1Y8s
+	czmk4U2AykE3FAHe+er2OwoFrUPESqt/F7mx6oJJ4bLOmYJFJcUKRD2m2204IehCK75zfzlVInF
+	PBp4oZA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=bxTjkEWf;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=bxTjkEWf;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab1ef11so974941d50.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 10:09:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789664954; cv=none;
+        d=google.com; s=arc-20260327;
+        b=lit6Nl1jTmjMLJpFuu+vH9c7IGyePyM036UhACEwpsYRANf10wO3BH2kKgnCrkx8Gg
+         Ruak0BAdb+glVQu0Co743LZWo6YAHGoGH52WTdXaG6O4yV1P/dOr1C/F6kOqYlUo7Ui0
+         f9pmJgV6B5BuGMHH8uvaGIGy7KexZfwcxiUyPXtADYK3NY70ITL0AQBEG99x3WZZsBzV
+         Jc7+O6U41E2CcJRWKznpZylB7PyCAHqcX0Tfw/YGE3sXpgSurJNo6BO40paLA5+hvd9z
+         uXdY3p4RaNaZdHNIbxt8YNQCj6OQzTZJH4yUYk65H6bJ9mCtc0v+YEsEsYw8UwWjoqzH
+         goEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=dKwvVxsHZN25cUMv+cZ5ElmJVPSTX1+41qYNMolEmt8=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=HM4kh2qCtw/E69K2djQQNFnkh9iOM1/L4MRKTp4YaIjqLxzucNZou4c+TOb+2+h9RM
+         2j4qIuIpKtlJW7aEYnB8yEixIplBUNjw/TVgYvS9cVIhpytBEIIVs8ZMXV+h3RQYfjzF
+         CXRwZfdBGiCXauVMNdkYL4fbzMbcutwSJD4ZX06b7hDjIRhcyy67vzqGFnqu5wMOsxUy
+         gDk+hRRWIienFCoZ0Rg/1IUYqD3CjNiJLoTyOypmtrakNaXNWNUE70YN22QhM2xAkDn/
+         xLwJ9L5vmMr5NDXbvS6ZonFbAvrOJF0SXKVxnrzIHroB/31ulUuTjGHMa4Am1KoNQrUX
+         sn+g==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789664954; x=1790269754; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=dKwvVxsHZN25cUMv+cZ5ElmJVPSTX1+41qYNMolEmt8=;
+        b=bxTjkEWfUW9Jq6BJVMqgop9iZYuYluICeBAv08Liz2/UN4BAnGfG7nUwLf0RiUQZt7
+         QoYgMImBDdZXlV5nXUa2Hya67sqwyyPIuaC7V2mtP9B48qA0K0n3pYGmeXwGsfPlnZnC
+         eBSqB3Meaq6xN8oOg21gZHmFSDD7zSdnR9ai3w9zFlVALgVNlbbbyq4gjegTjvBxWvPg
+         YKVhjr8ZerfRfVhLxLjf+lkEjx4hZnG3pUqFsTyBkjX4RKlyQTLnoAcGJgg1QPcgdC7v
+         q36plREmkDVtwdyNoyfdBjzfZhXO880ZlHPgGHOSztTmBdf+IHLCisYzU9eV34M++06u
+         447g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789664954; x=1790269754;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=dKwvVxsHZN25cUMv+cZ5ElmJVPSTX1+41qYNMolEmt8=;
+        b=PMNng3hsFbP85JvgUn3Nz2UYDFfa6zk0j1SD8wVVzo3GgVyAH/fDFliIhXmDc6gs4r
+         +A8ORv/LmhwUC/m4Xdx0X98nRNi8+FZ5x5CUX+An2NCg/kAYi+RQbQp1gJR0V+Q9NDg7
+         WMxZS7yLRsmy7wtdtx0442SZLGSJqtb60IMDCLpk3FeoMlIZE8rFGlh4nKHTyMkRm1zQ
+         IV4SKzfkwNZWEQO0LZHPOd+U76zhP+6Sm15QrmDXT5CttRk5cxHm8HlJMtHqbahJ6D/d
+         Zxgl7xGcke7jiOeqA0bZjUmV67tkOarScd1iqJLOJP1LG56qgZgYxZ51WXDqZtw2TtDk
+         tqiQ==
+X-Gm-Message-State: AFuF++mRRfsIRVCvLohSfhigcON+A61MZqrZJGC5pZRFjcB3whdlGOtj
+	R0m7PZRtvBOsKoaS6JB4FVAXcQGbFqCmkItDtZI+vXkihldPZgXQI2fkvBFa8lkCfnxpe4s0Gg/
+	0kPLbCW09Sus2vgqluWI46MciiiZ2T/LVug==
+X-Gm-Gg: AYBFou0kMSNKTj143aKffqjg1V+KCzvVIY9T2a9y/rl3JtavH5P0U4GuYBke1w/+wHF
+	fTz5WTVGGkGweinYSMoN+fPk8T+JLVWerfsNi/lfEc47ejVoTGQ4nUEmuzOJ/zAUF5Hp6oYiwXt
+	rEMn6/F4Be+WA6rsj41Br8NHIAfiLz0YqMEV4guoRQeHEZflC+KGtfKQ395LS46jhlwa9oZR2Am
+	8vZqg/RV4JnELRH0IuIPVyivosfbtyYGNNcYM8t6nQ02wsP4uaej4paQWfsclptRLk6xWgNRhJi
+	LGpj9L/FF2Tp4HDg8BL26AHg2JzSiQ3IQxkw7+/DPpka6ZR8agX5KAGrUnmkE+HTxnTh5M4ej8V
+	CwxDlifbW3BTvUAJfrPKzlRKjnMEGpm1qYanGhkltP8DA9m5vBEbX7AGknVpcz+dH4Ai3yPOs
+X-Received: by 2002:a05:690e:4144:b0:671:1880:17ba with SMTP id
+ 956f58d0204a3-671632c2dadmr2598304d50.90.1789664953893; Thu, 17 Sep 2026
+ 10:09:13 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:09:13 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:09:13 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 12:09:13 -0500
+X-Gm-Features: AcwNN1XU5QLT5siCWYy2UfFsGayH95sjWnX1FEuu3Fg0zojwM7O72XptfPS5FcY
+Message-ID: <CAPdrGe=y6Sfhvo+y8pC5UxUXbjstnfN88X+p5RdBMm28-FzJWw@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail_peer_review_4=2F4_=E2=80=94_final_product_architecture?=
+	=?UTF-8?Q?=2C_social=2FMonid_roadmap_=2B_definition_of_done?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000d80841065bb0d7a3"
+
+--000000000000d80841065bb0d7a3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Final part. This assumes parts 1=E2=80=933 are implemented first. The produ=
+ct
+direction is now clearer: setup.social should become a trustworthy
+proof/authority layer around agent actions, not another social scheduler.
+
+   1. TARGET ARCHITECTURE
+
+Keep the system layered and make the trust boundary explicit:
+
+A. AUTH / VAULT
+
+   - authenticates human + agent principals
+   - stores OAuth/API credentials
+   - issues capabilities/grants through trusted human/policy authority
+   - raw credentials never returned to agents
+
+B. PROPOSAL / AUTHORITY
+
+   - agent proposes desired world transition
+   - exact canonical payload + resource + price/currency/provider committed
+   - human/policy approves -> durable signed Grant
+   - proposal does not execute itself
+
+C. QP SETTLEMENT KERNEL
+
+   - loads frozen ProofSpec / EffectSpec
+   - checks prerequisite settled claims
+   - validates/reserves authority
+   - prepares crash-safe effect attempt
+   - invokes trusted adapter by pinned program identity
+   - collects independent evidence through pinned probes
+   - runs pinned judges + gates
+   - computes TRUE/FALSE/UNKNOWN
+   - applies deterministic state transition
+   - signs and appends TransitionReceipt
+   - independently replayable from stored artifacts
+
+D. ADAPTER / TRANSPORT LAYER
+
+   - Cloudflare, Telnyx, Google, Meta, TikTok, X, Postiz, Monid, etc.
+   - adapters can ATTEMPT actions and OBSERVE provider responses
+   - adapters can never declare a QP fact TRUE
+   - credentials live here/vault, not in planner
+
+E. INDEPENDENT PROBES / READBACK
+
+   - separate path from write adapter where possible
+   - authenticated provider account readback for ownership
+   - public/read API for observable publication state
+   - nonce/challenge probes for receipt/control claims
+   - every result emitted as provenance-bearing Evidence
+
+F. RECEIPT / EVENT LEDGER
+
+   - append-only claims/evidence/grants/effect attempts/receipts/events
+   - signed ledger head / hash chain
+   - receipt verifier can operate independently
+
+G. MCP SURFACE
+The MCP should expose intentions and proofs, not raw provider APIs:
+qp.claim.get / qp.claim.list qp.prove qp.grant.request qp.grant.get
+qp.grant.revoke qp.effect.propose qp.effect.execute qp.effect.status
+qp.receipt.get qp.receipt.verify qp.replay
+
+Platform convenience tools can wrap these, e.g.:
+social.youtube.publish domain.purchase
+
+but they must reduce to the same QP primitives internally.
+
+Remove or deprecate capacity.verify(type, arbitrary_evidence_string) as a
+truth-changing primitive. A caller must not submit arbitrary text and ask
+the system to promote it. Registered probes collect evidence; QP settles it=
+.
+
+   1. QP SHOULD BE GENERIC, setup.social SHOULD BE A CONSUMER
+
+Do not hardwire the root kernel to YouTube/email/domain terminology.
+
+QP core knows only:
+
+   - Claim
+   - Evidence
+   - ProofSpec
+   - ProgramBundle
+   - Actuality
+   - Grant
+   - EffectSpec
+   - Gate/Judge results
+   - TransitionReceipt
+   - State/Event ledger
+   - Replay
+
+setup.social supplies domain-specific ProofSpecs, probes and effect
+adapters.
+
+That keeps QP reusable later for payments, commerce, security automation,
+deployments, data jobs, etc.
+
+   1. MONID ROLE
+
+Use Monid as a connector/execution/observation substrate, NOT as the source
+of truth.
+
+The useful pieces from the Monid review:
+
+   - declarative connector catalog
+   - content-addressed fnTable
+   - sealed endpoint units
+   - deterministic compilation
+   - input/output schemas
+   - usage/cost modelling
+   - replay fixtures
+
+Those are excellent for reducing integration work.
+
+Trust model:
+QP -> invokes pinned Monid sealed unit / connector -> provider -> returns
+response/evidence candidate QP -> independent probe/readback -> judges ->
+receipt
+
+Pin:
+
+   - Monid repo commit/tree
+   - compiled sealed-unit hash
+   - connector EndpointDoc hash
+   - fnTable closure hashes
+   - Monid engine/runtime version
+
+A Monid response is evidence, not truth.
+
+Important: Monid=E2=80=99s engine intentionally evaluates repo-authored con=
+nector
+functions via new Function. That is acceptable inside Monid=E2=80=99s own t=
+rusted
+connector model, but it means Monid must remain OUTSIDE the QP
+signer/kernel trust boundary. QP should never load arbitrary Monid
+connector code into the kernel process and assume it is safe simply because
+it is content-addressed.
+
+Do not integrate Monid deeply until the QP v1 acceptance milestone passes.
+Otherwise you multiply connectors before the truth boundary works.
+
+   1. POSTIZ ROLE
+
+Given FUTUREPLANS, do NOT turn setup.social into a Postiz clone.
+
+Postiz is useful where it saves ugly implementation work:
+
+   - scheduling
+   - media upload workflows
+   - platform-specific posting normalization
+   - OAuth/provider integrations
+
+Use it as an optional executor:
+grant -> QP effect -> Postiz execute -> direct platform readback -> QP
+receipt
+
+Postiz saying =E2=80=9Csuccess=E2=80=9D is only execution evidence.
+
+If direct APIs are simpler for a platform, use them directly. Do not clone
+the whole Postiz repo just because it is open source. Import/reuse only
+code whose maintenance cost is lower than treating Postiz as an external
+executor.
+
+The proof layer should remain executor-agnostic: Postiz can disappear and
+the claim/receipt semantics remain unchanged.
+
+   1. FIRST SOCIAL VERTICAL: YOUTUBE
+
+YouTube is the best first end-to-end social proof because
+account/readback/post APIs are comparatively structured.
+
+Build the claim chain:
+
+A. account_owned(youtube, channel_id, principal)
+Evidence:
+
+   - authenticated channels.list?mine=3Dtrue
+   - exact channel ID
+   - credential/vault principal binding
+
+B. oauth_authorized(youtube, channel_id, required_scopes)
+Evidence:
+
+   - verified OAuth grant/token metadata
+   - actual scopes/introspection/provider authorization state
+   - token existence alone is insufficient
+
+C. can_post(youtube, channel_id)
+Derive only under exact policy from B + any provider restrictions required.
+This is a capability fact, not authority for a particular post.
+
+D. POST EFFECT
+Proposal commits:
+
+   - channel ID
+   - source artifact hash
+   - title
+   - description
+   - privacy status
+   - tags/category/settings where relevant
+   - expected cost/quota semantics if you care
+
+Human/policy Grant authorizes exact proposal hash or bounded template.
+
+QP executes upload through direct Google API/Postiz.
+
+E. RESULTING CLAIMS
+Separate claims rather than one vague post_success:
+video_exists(youtube, video_id) video_bound_to_channel(video_id,
+channel_id) video_metadata_matches(video_id, expected_metadata)
+video_visibility(video_id, expected_visibility)
+video_processing_complete(video_id)
+
+Settle a higher-level video_publish_satisfied(...) only from these defined
+dependencies.
+
+   1. ARTIFACT HASH SEMANTICS
+
+Do not claim the YouTube-hosted video bytes equal the uploaded file hash
+after YouTube transcodes it.
+
+Correct binding:
+
+   - hash exact source artifact bytes BEFORE upload.
+   - include source_artifact_hash in the authorized proposal/effect attempt=
+.
+   - bind provider upload/video ID returned by the effect to that proposal.
+   - independently read back observable metadata/state from YouTube.
+
+This proves:
+=E2=80=9Cthe exact source artifact authorized in proposal P was submitted i=
+n effect
+E and resulted in YouTube video ID V whose observable state matches the
+contracted metadata.=E2=80=9D
+
+It does NOT prove the transcoded hosted bytes are SHA256-identical.
+
+If later you need media-equivalence verification, create a separate
+perceptual/transcode claim with explicit algorithm/tolerance. Never
+silently substitute perceptual equivalence for exact byte equality.
+
+   1. NEXT SOCIAL ADAPTERS
+
+After YouTube passes the same replay/adversarial criteria:
+
+Instagram:
+
+   - distinguish existing IG professional account, Meta Page binding, OAuth
+   scopes, media container creation, publication, permalink/readback.
+
+TikTok:
+
+   - existing authorized TikTok user/account first; Content Posting API is
+   not an account-signup API.
+   - prove publish status through the official status/read API.
+
+X:
+
+   - prove authenticated user ID + scopes.
+   - post effect -> exact tweet ID -> direct readback.
+
+For all platforms use the same abstract sequence:
+account_owned oauth_authorized can_<capability> signed authority for exact
+effect execute independent readback resulting claim(s) signed receipt
+
+The platform adapter must not invent account ownership from a public handle
+existing.
+
+   1. PROOF OF SPEND
+
+This is potentially the strongest commercial wedge if implemented exactly.
+
+A spend proof should commit to TWO separate things:
+
+AUTHORITY:
+
+   - issuer/principal
+   - exact or bounded action
+   - provider
+   - resource
+   - quote ID / quote evidence
+   - max amount
+   - currency
+   - expiry
+   - payload hash
+
+WORLD RESULT:
+
+   - provider transaction/order ID
+   - actual charged/settled amount where observable
+   - resulting owned asset/service
+   - authenticated post-effect readback
+
+For domain purchase:
+QuoteReceipt + Grant(max $10.50 USD, cloudflare, domain X) + EffectAttempt
++ Provider transaction evidence + domain_owned(X, account) readback =3D
+SpendReceipt
+
+Do not conflate =E2=80=9Cprovider accepted request=E2=80=9D with =E2=80=9Ca=
+sset now owned=E2=80=9D.
+
+If actual charge cannot be independently obtained immediately, receipt
+actuality for charged_amount_exact is UNKNOWN while domain_owned may be
+TRUE. QP should tolerate multiple precise claims instead of forcing one
+coarse status.
+
+   1. READ-ONLY PROOFS FIRST
+
+FUTUREPLANS Phase 1 (=E2=80=9Cproof of presence=E2=80=9D) is a good product=
+ milestone
+because it lets you harden QP without money/write risk.
+
+Suggested public demo:
+prove youtube channel exists prove account-owned after OAuth prove latest
+video state return signed receipt + independent verifier output
+
+The value is much clearer if anyone can verify the receipt without trusting
+the dashboard.
+
+   1. TRANSPARENT VERIFICATION, PRIVATE EXECUTION
+
+The statement in FUTUREPLANS that QP should be closed because open source
+would allow =E2=80=9Ctampering=E2=80=9D is not technically the strongest fr=
+aming.
+
+Tamper resistance should come from:
+
+   - content hashes
+   - frozen ContractRoots
+   - signed receipts
+   - trusted signer keys
+   - reproducible/pinned program identity
+
+Secrecy is not the integrity primitive.
+
+Commercially sensible split:
+PRIVATE:
+
+   - hosted execution service
+   - credentials/vault
+   - provider developer-app secrets
+   - approval UX
+   - operational anti-abuse logic
+   - signer private keys
+
+TRANSPARENT/PUBLIC OR REPRODUCIBLE:
+
+   - receipt schema
+   - ProofSpecs/ContractRoots
+   - public signer keys
+   - replay verifier
+   - program manifest/hashes
+   - protocol semantics
+
+That makes the core promise stronger: customers do not need to trust
+setup.social=E2=80=99s dashboard to validate a receipt.
+
+You can still keep the hosted implementation closed while making
+verification independently possible.
+
+   1. DOC CLAIMS TO CHANGE NOW
+
+Until QP v1 acceptance passes, replace claims such as:
+
+   - =E2=80=9Ccryptographic proof it worked=E2=80=9D
+   - =E2=80=9Ceffect gateway is the constitutional boundary=E2=80=9D
+   - =E2=80=9CP0 fixed=E2=80=9D
+   - =E2=80=9Creceipts append-only=E2=80=9D
+
+with prototype language.
+
+Also correct:
+
+   - =E2=80=9Ccredentials never touch the open internet=E2=80=9D -> credent=
+ials are never
+   exposed to agents/client UI; controlled server sends them only to intend=
+ed
+   provider over authenticated TLS.
+   - infrastructure proof is not stronger than email receipt; they are
+   different claims.
+   - =E2=80=9Call socials FREE=E2=80=9D and API quotas/pricing should not b=
+ecome
+   architectural assumptions; treat provider pricing/limits as external
+   mutable data.
+
+
+   1. DEFINITION OF DONE =E2=80=94 QP/1
+
+Do not mark QP/1 complete until ALL are mechanically demonstrated:
+
+BUILD/RELEASE
+
+   - one canonical protected branch
+   - clean typecheck
+   - all unit/adversarial/integration tests green
+   - required CI
+   - reproducible/pinned program manifest
+   - release/tag identity pinned
+
+AUTHN/AUTHZ
+
+   - every private endpoint authenticated
+   - no body/query actor authority
+   - no arbitrary long token authentication
+   - no public mutation
+   - explicit deny-by-default operation permissions
+   - multi-tenant isolation tests
+
+AUTHORITY
+
+   - MCP cannot issue its own human grant
+   - trusted issuer registry
+   - recursively canonical signed grant
+   - subject/action/payload/provider/resource/price/currency/scopes enforce=
+d
+   - durable atomic use/replay enforcement
+
+QP CONTRACT
+
+   - every ProofSpec runtime-valid and complete
+   - real program bundle hashes, no placeholder hash labels
+   - actuality DAG executed from spec
+   - exact claim schema validation
+   - unknown evidence class rejected
+   - provenance/independence/freshness enforced
+
+EVIDENCE
+
+   - response hash recomputed
+   - evidence ID recomputed
+   - claim binding checked
+   - collector program allowed/pinned
+   - timestamps checked
+   - content immutable/durable
+
+EFFECTS
+
+   - every consequential path goes through one effect gateway
+   - no direct external mutators from MCP/planner
+   - prerequisite claims enforced
+   - crash-safe PREPARED journal
+   - idempotency/reconciliation
+   - actual adapter/readback programs pinned
+
+RECEIPTS
+
+   - ContractRoot correct
+   - full judge/gate roots
+   - deterministic state_after recomputed
+   - real prev receipt/event chain
+   - durable append-only store
+   - QP signature nonempty and verified against trusted signer
+
+REPLAY
+
+   - fresh process can load ONLY persisted artifacts + public verification
+   material and reproduce PASS
+   - one-byte mutations fail
+   - missing program/evidence/spec fails closed
+
+DEMONSTRATIONS
+
+   - domain_available read-only proof -> signed receipt -> independent
+   replay PASS
+   - one sandbox authorized effect -> signed result receipt -> independent
+   replay PASS
+   - no grant -> adapter never called
+   - changed payload -> adapter never called
+   - effect succeeds + readback unavailable -> UNKNOWN + reconciliation, no
+   duplicate effect
+
+Only at this point call QP the root of trust.
+
+   1. BUILD ORDER AFTER QP/1
+
+Once that definition of done passes:
+
+   1. YouTube public presence proof
+   2. YouTube authenticated account_owned + OAuth proof
+   3. YouTube publish effect + readback proof
+   4. email_receives exact-address nonce proof
+   5. domain purchase/spend proof hardened for production money
+   6. phone_owned + SMS receipt challenge
+   7. Instagram proof/post adapter
+   8. TikTok proof/post adapter
+   9. X proof/post adapter
+   10. Monid connector bridge for breadth
+   11. Postiz bridge only where scheduling/media execution materially saves
+   work
+
+Do not invert this by adding 50 connectors first.
+
+   1. FINAL ARCHITECTURAL INVARIANT
+
+Everything should reduce to:
+untrusted cognition -> proposal -> independent bounded authority ->
+prepared effect (if needed) -> external world -> provenance-bearing
+observations -> pinned deterministic judges/gates -> TRUE / FALSE / UNKNOWN
+-> deterministic state transition -> signed append-only receipt ->
+independent replay
+
+Cognition !=3D Truth !=3D Authority.
+
+The coding agent should not mark review findings =E2=80=9Cfixed=E2=80=9D be=
+cause a comment,
+README status table or wrapper function was added. A finding closes only
+when its adversarial acceptance test demonstrates the invariant through the
+actual production path.
+
+END OF 4-PART REVIEW / DEV PLAN.
+
+Review target: prx0r/cmail master @
+3058c0d702d3c3656b56585a3336a3394288c688.
+
+--000000000000d80841065bb0d7a3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Final part. This assumes parts 1=E2=80=933 are implemented first. The pr=
+oduct direction is now clearer: setup.social should become a trustworthy pr=
+oof/authority layer around agent actions, not another social scheduler.</p>
+<ol>
+<li>TARGET ARCHITECTURE</li>
+</ol>
+<p>Keep the system layered and make the trust boundary explicit:</p>
+<p>A. AUTH / VAULT</p>
+<ul>
+<li>authenticates human + agent principals</li>
+<li>stores OAuth/API credentials</li>
+<li>issues capabilities/grants through trusted human/policy authority</li>
+<li>raw credentials never returned to agents</li>
+</ul>
+<p>B. PROPOSAL / AUTHORITY</p>
+<ul>
+<li>agent proposes desired world transition</li>
+<li>exact canonical payload + resource + price/currency/provider committed<=
+/li>
+<li>human/policy approves -&gt; durable signed Grant</li>
+<li>proposal does not execute itself</li>
+</ul>
+<p>C. QP SETTLEMENT KERNEL</p>
+<ul>
+<li>loads frozen ProofSpec / EffectSpec</li>
+<li>checks prerequisite settled claims</li>
+<li>validates/reserves authority</li>
+<li>prepares crash-safe effect attempt</li>
+<li>invokes trusted adapter by pinned program identity</li>
+<li>collects independent evidence through pinned probes</li>
+<li>runs pinned judges + gates</li>
+<li>computes TRUE/FALSE/UNKNOWN</li>
+<li>applies deterministic state transition</li>
+<li>signs and appends TransitionReceipt</li>
+<li>independently replayable from stored artifacts</li>
+</ul>
+<p>D. ADAPTER / TRANSPORT LAYER</p>
+<ul>
+<li>Cloudflare, Telnyx, Google, Meta, TikTok, X, Postiz, Monid, etc.</li>
+<li>adapters can ATTEMPT actions and OBSERVE provider responses</li>
+<li>adapters can never declare a QP fact TRUE</li>
+<li>credentials live here/vault, not in planner</li>
+</ul>
+<p>E. INDEPENDENT PROBES / READBACK</p>
+<ul>
+<li>separate path from write adapter where possible</li>
+<li>authenticated provider account readback for ownership</li>
+<li>public/read API for observable publication state</li>
+<li>nonce/challenge probes for receipt/control claims</li>
+<li>every result emitted as provenance-bearing Evidence</li>
+</ul>
+<p>F. RECEIPT / EVENT LEDGER</p>
+<ul>
+<li>append-only claims/evidence/grants/effect attempts/receipts/events</li>
+<li>signed ledger head / hash chain</li>
+<li>receipt verifier can operate independently</li>
+</ul>
+<p>G. MCP SURFACE<br>
+The MCP should expose intentions and proofs, not raw provider APIs:</p>
+
+<code>qp.claim.get / qp.claim.list
+qp.prove
+qp.grant.request
+qp.grant.get
+qp.grant.revoke
+qp.effect.propose
+qp.effect.execute
+qp.effect.status
+qp.receipt.get
+qp.receipt.verify
+qp.replay
+</code>
+<p>Platform convenience tools can wrap these, e.g.:</p>
+
+<code>social.youtube.publish
+domain.purchase
+</code>
+<p>but they must reduce to the same QP primitives internally.</p>
+<p>Remove or deprecate <code>capacity.verify(type, arbitrary_evidence_strin=
+g)</code> as a truth-changing primitive. A caller must not submit arbitrary=
+ text and ask the system to promote it. Registered probes collect evidence;=
+ QP settles it.</p>
+<ol>
+<li>QP SHOULD BE GENERIC, setup.social SHOULD BE A CONSUMER</li>
+</ol>
+<p>Do not hardwire the root kernel to YouTube/email/domain terminology.</p>
+<p>QP core knows only:</p>
+<ul>
+<li>Claim</li>
+<li>Evidence</li>
+<li>ProofSpec</li>
+<li>ProgramBundle</li>
+<li>Actuality</li>
+<li>Grant</li>
+<li>EffectSpec</li>
+<li>Gate/Judge results</li>
+<li>TransitionReceipt</li>
+<li>State/Event ledger</li>
+<li>Replay</li>
+</ul>
+<p>setup.social supplies domain-specific ProofSpecs, probes and effect adap=
+ters.</p>
+<p>That keeps QP reusable later for payments, commerce, security automation=
+, deployments, data jobs, etc.</p>
+<ol>
+<li>MONID ROLE</li>
+</ol>
+<p>Use Monid as a connector/execution/observation substrate, NOT as the sou=
+rce of truth.</p>
+<p>The useful pieces from the Monid review:</p>
+<ul>
+<li>declarative connector catalog</li>
+<li>content-addressed fnTable</li>
+<li>sealed endpoint units</li>
+<li>deterministic compilation</li>
+<li>input/output schemas</li>
+<li>usage/cost modelling</li>
+<li>replay fixtures</li>
+</ul>
+<p>Those are excellent for reducing integration work.</p>
+<p>Trust model:</p>
+
+<code>QP -&gt; invokes pinned Monid sealed unit / connector
+   -&gt; provider
+   -&gt; returns response/evidence candidate
+QP -&gt; independent probe/readback
+   -&gt; judges
+   -&gt; receipt
+</code>
+<p>Pin:</p>
+<ul>
+<li>Monid repo commit/tree</li>
+<li>compiled sealed-unit hash</li>
+<li>connector EndpointDoc hash</li>
+<li>fnTable closure hashes</li>
+<li>Monid engine/runtime version</li>
+</ul>
+<p>A Monid response is evidence, not truth.</p>
+<p>Important: Monid=E2=80=99s engine intentionally evaluates repo-authored =
+connector functions via <code>new Function</code>. That is acceptable insid=
+e Monid=E2=80=99s own trusted connector model, but it means Monid must rema=
+in OUTSIDE the QP signer/kernel trust boundary. QP should never load arbitr=
+ary Monid connector code into the kernel process and assume it is safe simp=
+ly because it is content-addressed.</p>
+<p>Do not integrate Monid deeply until the QP v1 acceptance milestone passe=
+s. Otherwise you multiply connectors before the truth boundary works.</p>
+<ol>
+<li>POSTIZ ROLE</li>
+</ol>
+<p>Given FUTUREPLANS, do NOT turn setup.social into a Postiz clone.</p>
+<p>Postiz is useful where it saves ugly implementation work:</p>
+<ul>
+<li>scheduling</li>
+<li>media upload workflows</li>
+<li>platform-specific posting normalization</li>
+<li>OAuth/provider integrations</li>
+</ul>
+<p>Use it as an optional executor:</p>
+
+<code>grant -&gt; QP effect -&gt; Postiz execute -&gt; direct platform read=
+back -&gt; QP receipt
+</code>
+<p>Postiz saying =E2=80=9Csuccess=E2=80=9D is only execution evidence.</p>
+<p>If direct APIs are simpler for a platform, use them directly. Do not clo=
+ne the whole Postiz repo just because it is open source. Import/reuse only =
+code whose maintenance cost is lower than treating Postiz as an external ex=
+ecutor.</p>
+<p>The proof layer should remain executor-agnostic: Postiz can disappear an=
+d the claim/receipt semantics remain unchanged.</p>
+<ol>
+<li>FIRST SOCIAL VERTICAL: YOUTUBE</li>
+</ol>
+<p>YouTube is the best first end-to-end social proof because account/readba=
+ck/post APIs are comparatively structured.</p>
+<p>Build the claim chain:</p>
+<p>A. <code>account_owned(youtube, channel_id, principal)</code><br>
+Evidence:</p>
+<ul>
+<li>authenticated <code>channels.list?mine=3Dtrue</code></li>
+<li>exact channel ID</li>
+<li>credential/vault principal binding</li>
+</ul>
+<p>B. <code>oauth_authorized(youtube, channel_id, required_scopes)</code><b=
+r>
+Evidence:</p>
+<ul>
+<li>verified OAuth grant/token metadata</li>
+<li>actual scopes/introspection/provider authorization state</li>
+<li>token existence alone is insufficient</li>
+</ul>
+<p>C. <code>can_post(youtube, channel_id)</code><br>
+Derive only under exact policy from B + any provider restrictions required.=
+<br>
+This is a capability fact, not authority for a particular post.</p>
+<p>D. POST EFFECT<br>
+Proposal commits:</p>
+<ul>
+<li>channel ID</li>
+<li>source artifact hash</li>
+<li>title</li>
+<li>description</li>
+<li>privacy status</li>
+<li>tags/category/settings where relevant</li>
+<li>expected cost/quota semantics if you care</li>
+</ul>
+<p>Human/policy Grant authorizes exact proposal hash or bounded template.</=
+p>
+<p>QP executes upload through direct Google API/Postiz.</p>
+<p>E. RESULTING CLAIMS<br>
+Separate claims rather than one vague <code>post_success</code>:</p>
+
+<code>video_exists(youtube, video_id)
+video_bound_to_channel(video_id, channel_id)
+video_metadata_matches(video_id, expected_metadata)
+video_visibility(video_id, expected_visibility)
+video_processing_complete(video_id)
+</code>
+<p>Settle a higher-level <code>video_publish_satisfied(...)</code> only fro=
+m these defined dependencies.</p>
+<ol>
+<li>ARTIFACT HASH SEMANTICS</li>
+</ol>
+<p>Do not claim the YouTube-hosted video bytes equal the uploaded file hash=
+ after YouTube transcodes it.</p>
+<p>Correct binding:</p>
+<ul>
+<li>hash exact source artifact bytes BEFORE upload.</li>
+<li>include source_artifact_hash in the authorized proposal/effect attempt.=
+</li>
+<li>bind provider upload/video ID returned by the effect to that proposal.<=
+/li>
+<li>independently read back observable metadata/state from YouTube.</li>
+</ul>
+<p>This proves:<br>
+=E2=80=9Cthe exact source artifact authorized in proposal P was submitted i=
+n effect E and resulted in YouTube video ID V whose observable state matche=
+s the contracted metadata.=E2=80=9D</p>
+<p>It does NOT prove the transcoded hosted bytes are SHA256-identical.</p>
+<p>If later you need media-equivalence verification, create a separate perc=
+eptual/transcode claim with explicit algorithm/tolerance. Never silently su=
+bstitute perceptual equivalence for exact byte equality.</p>
+<ol>
+<li>NEXT SOCIAL ADAPTERS</li>
+</ol>
+<p>After YouTube passes the same replay/adversarial criteria:</p>
+<p>Instagram:</p>
+<ul>
+<li>distinguish existing IG professional account, Meta Page binding, OAuth =
+scopes, media container creation, publication, permalink/readback.</li>
+</ul>
+<p>TikTok:</p>
+<ul>
+<li>existing authorized TikTok user/account first; Content Posting API is n=
+ot an account-signup API.</li>
+<li>prove publish status through the official status/read API.</li>
+</ul>
+<p>X:</p>
+<ul>
+<li>prove authenticated user ID + scopes.</li>
+<li>post effect -&gt; exact tweet ID -&gt; direct readback.</li>
+</ul>
+<p>For all platforms use the same abstract sequence:</p>
+
+<code>account_owned
+oauth_authorized
+can_&lt;capability&gt;
+signed authority for exact effect
+execute
+independent readback
+resulting claim(s)
+signed receipt
+</code>
+<p>The platform adapter must not invent account ownership from a public han=
+dle existing.</p>
+<ol>
+<li>PROOF OF SPEND</li>
+</ol>
+<p>This is potentially the strongest commercial wedge if implemented exactl=
+y.</p>
+<p>A spend proof should commit to TWO separate things:</p>
+<p>AUTHORITY:</p>
+<ul>
+<li>issuer/principal</li>
+<li>exact or bounded action</li>
+<li>provider</li>
+<li>resource</li>
+<li>quote ID / quote evidence</li>
+<li>max amount</li>
+<li>currency</li>
+<li>expiry</li>
+<li>payload hash</li>
+</ul>
+<p>WORLD RESULT:</p>
+<ul>
+<li>provider transaction/order ID</li>
+<li>actual charged/settled amount where observable</li>
+<li>resulting owned asset/service</li>
+<li>authenticated post-effect readback</li>
+</ul>
+<p>For domain purchase:</p>
+
+<code>QuoteReceipt
++ Grant(max $10.50 USD, cloudflare, domain X)
++ EffectAttempt
++ Provider transaction evidence
++ domain_owned(X, account) readback
+=3D SpendReceipt
+</code>
+<p>Do not conflate =E2=80=9Cprovider accepted request=E2=80=9D with =E2=80=
+=9Casset now owned=E2=80=9D.</p>
+<p>If actual charge cannot be independently obtained immediately, receipt a=
+ctuality for <code>charged_amount_exact</code> is UNKNOWN while <code>domai=
+n_owned</code> may be TRUE. QP should tolerate multiple precise claims inst=
+ead of forcing one coarse status.</p>
+<ol>
+<li>READ-ONLY PROOFS FIRST</li>
+</ol>
+<p>FUTUREPLANS Phase 1 (=E2=80=9Cproof of presence=E2=80=9D) is a good prod=
+uct milestone because it lets you harden QP without money/write risk.</p>
+<p>Suggested public demo:</p>
+
+<code>prove youtube channel exists
+prove account-owned after OAuth
+prove latest video state
+return signed receipt + independent verifier output
+</code>
+<p>The value is much clearer if anyone can verify the receipt without trust=
+ing the dashboard.</p>
+<ol>
+<li>TRANSPARENT VERIFICATION, PRIVATE EXECUTION</li>
+</ol>
+<p>The statement in FUTUREPLANS that QP should be closed because open sourc=
+e would allow =E2=80=9Ctampering=E2=80=9D is not technically the strongest =
+framing.</p>
+<p>Tamper resistance should come from:</p>
+<ul>
+<li>content hashes</li>
+<li>frozen ContractRoots</li>
+<li>signed receipts</li>
+<li>trusted signer keys</li>
+<li>reproducible/pinned program identity</li>
+</ul>
+<p>Secrecy is not the integrity primitive.</p>
+<p>Commercially sensible split:<br>
+PRIVATE:</p>
+<ul>
+<li>hosted execution service</li>
+<li>credentials/vault</li>
+<li>provider developer-app secrets</li>
+<li>approval UX</li>
+<li>operational anti-abuse logic</li>
+<li>signer private keys</li>
+</ul>
+<p>TRANSPARENT/PUBLIC OR REPRODUCIBLE:</p>
+<ul>
+<li>receipt schema</li>
+<li>ProofSpecs/ContractRoots</li>
+<li>public signer keys</li>
+<li>replay verifier</li>
+<li>program manifest/hashes</li>
+<li>protocol semantics</li>
+</ul>
+<p>That makes the core promise stronger: customers do not need to trust set=
+up.social=E2=80=99s dashboard to validate a receipt.</p>
+<p>You can still keep the hosted implementation closed while making verific=
+ation independently possible.</p>
+<ol>
+<li>DOC CLAIMS TO CHANGE NOW</li>
+</ol>
+<p>Until QP v1 acceptance passes, replace claims such as:</p>
+<ul>
+<li>=E2=80=9Ccryptographic proof it worked=E2=80=9D</li>
+<li>=E2=80=9Ceffect gateway is the constitutional boundary=E2=80=9D</li>
+<li>=E2=80=9CP0 fixed=E2=80=9D</li>
+<li>=E2=80=9Creceipts append-only=E2=80=9D</li>
+</ul>
+<p>with prototype language.</p>
+<p>Also correct:</p>
+<ul>
+<li>=E2=80=9Ccredentials never touch the open internet=E2=80=9D -&gt; crede=
+ntials are never exposed to agents/client UI; controlled server sends them =
+only to intended provider over authenticated TLS.</li>
+<li>infrastructure proof is not stronger than email receipt; they are diffe=
+rent claims.</li>
+<li>=E2=80=9Call socials FREE=E2=80=9D and API quotas/pricing should not be=
+come architectural assumptions; treat provider pricing/limits as external m=
+utable data.</li>
+</ul>
+<ol>
+<li>DEFINITION OF DONE =E2=80=94 QP/1</li>
+</ol>
+<p>Do not mark QP/1 complete until ALL are mechanically demonstrated:</p>
+<p>BUILD/RELEASE</p>
+<ul>
+<li>one canonical protected branch</li>
+<li>clean typecheck</li>
+<li>all unit/adversarial/integration tests green</li>
+<li>required CI</li>
+<li>reproducible/pinned program manifest</li>
+<li>release/tag identity pinned</li>
+</ul>
+<p>AUTHN/AUTHZ</p>
+<ul>
+<li>every private endpoint authenticated</li>
+<li>no body/query actor authority</li>
+<li>no arbitrary long token authentication</li>
+<li>no public mutation</li>
+<li>explicit deny-by-default operation permissions</li>
+<li>multi-tenant isolation tests</li>
+</ul>
+<p>AUTHORITY</p>
+<ul>
+<li>MCP cannot issue its own human grant</li>
+<li>trusted issuer registry</li>
+<li>recursively canonical signed grant</li>
+<li>subject/action/payload/provider/resource/price/currency/scopes enforced=
+</li>
+<li>durable atomic use/replay enforcement</li>
+</ul>
+<p>QP CONTRACT</p>
+<ul>
+<li>every ProofSpec runtime-valid and complete</li>
+<li>real program bundle hashes, no placeholder hash labels</li>
+<li>actuality DAG executed from spec</li>
+<li>exact claim schema validation</li>
+<li>unknown evidence class rejected</li>
+<li>provenance/independence/freshness enforced</li>
+</ul>
+<p>EVIDENCE</p>
+<ul>
+<li>response hash recomputed</li>
+<li>evidence ID recomputed</li>
+<li>claim binding checked</li>
+<li>collector program allowed/pinned</li>
+<li>timestamps checked</li>
+<li>content immutable/durable</li>
+</ul>
+<p>EFFECTS</p>
+<ul>
+<li>every consequential path goes through one effect gateway</li>
+<li>no direct external mutators from MCP/planner</li>
+<li>prerequisite claims enforced</li>
+<li>crash-safe PREPARED journal</li>
+<li>idempotency/reconciliation</li>
+<li>actual adapter/readback programs pinned</li>
+</ul>
+<p>RECEIPTS</p>
+<ul>
+<li>ContractRoot correct</li>
+<li>full judge/gate roots</li>
+<li>deterministic state_after recomputed</li>
+<li>real prev receipt/event chain</li>
+<li>durable append-only store</li>
+<li>QP signature nonempty and verified against trusted signer</li>
+</ul>
+<p>REPLAY</p>
+<ul>
+<li>fresh process can load ONLY persisted artifacts + public verification m=
+aterial and reproduce PASS</li>
+<li>one-byte mutations fail</li>
+<li>missing program/evidence/spec fails closed</li>
+</ul>
+<p>DEMONSTRATIONS</p>
+<ul>
+<li>domain_available read-only proof -&gt; signed receipt -&gt; independent=
+ replay PASS</li>
+<li>one sandbox authorized effect -&gt; signed result receipt -&gt; indepen=
+dent replay PASS</li>
+<li>no grant -&gt; adapter never called</li>
+<li>changed payload -&gt; adapter never called</li>
+<li>effect succeeds + readback unavailable -&gt; UNKNOWN + reconciliation, =
+no duplicate effect</li>
+</ul>
+<p>Only at this point call QP the root of trust.</p>
+<ol>
+<li>BUILD ORDER AFTER QP/1</li>
+</ol>
+<p>Once that definition of done passes:</p>
+<ol>
+<li>YouTube public presence proof</li>
+<li>YouTube authenticated account_owned + OAuth proof</li>
+<li>YouTube publish effect + readback proof</li>
+<li>email_receives exact-address nonce proof</li>
+<li>domain purchase/spend proof hardened for production money</li>
+<li>phone_owned + SMS receipt challenge</li>
+<li>Instagram proof/post adapter</li>
+<li>TikTok proof/post adapter</li>
+<li>X proof/post adapter</li>
+<li>Monid connector bridge for breadth</li>
+<li>Postiz bridge only where scheduling/media execution materially saves wo=
+rk</li>
+</ol>
+<p>Do not invert this by adding 50 connectors first.</p>
+<ol>
+<li>FINAL ARCHITECTURAL INVARIANT</li>
+</ol>
+<p>Everything should reduce to:</p>
+
+<code>untrusted cognition
+  -&gt; proposal
+  -&gt; independent bounded authority
+  -&gt; prepared effect (if needed)
+  -&gt; external world
+  -&gt; provenance-bearing observations
+  -&gt; pinned deterministic judges/gates
+  -&gt; TRUE / FALSE / UNKNOWN
+  -&gt; deterministic state transition
+  -&gt; signed append-only receipt
+  -&gt; independent replay
+</code>
+<p>Cognition !=3D Truth !=3D Authority.</p>
+<p>The coding agent should not mark review findings =E2=80=9Cfixed=E2=80=9D=
+ because a comment, README status table or wrapper function was added. A fi=
+nding closes only when its adversarial acceptance test demonstrates the inv=
+ariant through the actual production path.</p>
+<p>END OF 4-PART REVIEW / DEV PLAN.</p>
+<p>Review target: prx0r/cmail master @ 3058c0d702d3c3656b56585a3336a3394288=
+c688.</p>
+
+--000000000000d80841065bb0d7a3--

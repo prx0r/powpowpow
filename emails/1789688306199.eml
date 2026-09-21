@@ -1,0 +1,430 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id z3NwKrdtRUL0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 23:38:25 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=Xv9BfGgNRVhAk5oazhbK3UiD28f8vVjAf1E+B4E+YtJCz2lq8ooSjB3PIFv++21SNug3L0L32
+	ikfIfpQu6THIb2N3IZ1UWdHvc+qlAvgu9nRPhsNIJ8nUkBLLB0cSl/siuLpsVDWEhFcmiofZlR1
+	xk7UGfddwO5qY64JCe5Vj/Q+d6yMo7lL4oi7e6AgcnCvHimXORYqgtNlPMocwiYJma3ha7hJrAH
+	ZGlpXvclt9qQKLmFAX91ZXDbaZBypNnKXG+XZZ6DX3lNkiPUWjMiuKrsH13tUaqErSuQ6bO1QYE
+	ft3hzemBtPghMJsp+Ae/assl8+X8/Q7ntCKhq6sZZ/7A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789688305; x=1790293105; bh=/ygGcVSu
+	OV5WjmE4M/acxKGob29F+2uBTmtbO07rgh4=; b=P5E5m0lM4GqnyyZIR0qYChN8QK3CY+mgUVM
+	qNeQWLBV4DLEoV7M1nYcE6056bGOPmcVSJlKid056yq3IlTNvaHhkwiSbKt/jr1zVFgJoPPb4u4
+	oJY7JGeGt9NYDEoXwXDV+AAn58SBfjU6aHRXIo9aYAoC1P8CrYNHaO81CS3QZofQMkpAcHrxcFl
+	ybwfRgKIFEprRg5YPsF9YdgTgUBOJhVuJuTSq8OmyUyixvuXqZXgpeRXbNSWm/vakI7HbeCW27M
+	w76wtXmx9nZzUKsfEsMDo6TvxYXekDtZl8Mhf7wp97lDSq0B5z5z4o9GJnD8gjBrQwU8bifFtlN
+	YhnffjA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=aEqQwF22;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=aEqQwF22;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab19127so258645d50.1
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 16:38:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789688305; cv=none;
+        d=google.com; s=arc-20260327;
+        b=s6GIBBdSWDOj0Glp3GDEZcXqeVeuTZfoyxTf49nxlbPaVlurnYdcd+642pFVc9OCrR
+         pt8nUP3Snkzu++wwL3lAED0vBkhNrG5gUNerPK1JhrFvosLhFvPIFdXTbhCMDSc56iWZ
+         dOoMf3rlZLBWhPTj+5m2FvTpNjOFEdBjj4TsmYuLeo9YwTHsB3Ti4IrRhtPKsCjFJaka
+         xHamTIZgOw32KRlS/Eg/7N/gvWV2qTjvgOU47YhNtiW7Gm3Jugkdevzugbkxng2TEdlL
+         82SCME5Jntw0KHJ1ChKs+dJN3tzDK062d7umrjUJ/y1JORMcwmnFP8AZ3zpKmLfLOurc
+         RHQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=/ygGcVSuOV5WjmE4M/acxKGob29F+2uBTmtbO07rgh4=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=l40aYgmvf6Bu8jsCps3bPmV4IjtPtKCoVSPwTNxMjsi5BZqgTeEI7hIkldozp2CFGf
+         2di3MI68ZRJ0HX955H9E2v2QYG2iQ8ejlm1wLas0yrJyVPbhjmzUI2fLspzZNqxwWX4P
+         1ckc1xiWqn+K+lMEhCfkyBgFEWD8Vzx1pq6j59abngozqPYsJRJOmvvRAzd6KXu79/qZ
+         Ecig9unWlJG2jlG1G7qPqsmorLOqCgsPjKHHtB+I9yY3TYZWwyEIq9I+lpFan0k4EkA5
+         lx+K0gi/ajE1Q3qradIlhVDPr066KngyLPMhGwu/1/U4/eORn3wbyvzhZ7RibntgEC6/
+         Hnog==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789688305; x=1790293105; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=/ygGcVSuOV5WjmE4M/acxKGob29F+2uBTmtbO07rgh4=;
+        b=aEqQwF22qvVNK1kk2zi1HOTNS1BYWRrUcmRmIe5YZrHlZeEquIlrBLxgovRVTIIvoZ
+         V+ns10N02Zcld+RPPmjgXgbU7Eg1l6GtW1h3kpzbJw84uPBFViaRnaO3ZWyQ8Hda3GDa
+         IssSW/Vb67AA0kj2MBFFMQM7JabvpzPR6YdQHMWlOuLpe5VYbrW+xkloxqzdT7aBLe8l
+         DPpzOk6r3TgB3VyZXZGbqmU8uP0nXbPQfXV7ed5t36eQBIXOBH5fjDfxPyVs60SDpdtp
+         R8VFhLgnJ+keOnFgO85bqG8YKGELDhZaExUa1EHLA4SC2FNExCVLRchhi2v5i+/hOgpF
+         IJDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789688305; x=1790293105;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=/ygGcVSuOV5WjmE4M/acxKGob29F+2uBTmtbO07rgh4=;
+        b=rUxMeAl9goQGjAp58ttfyrfdYHa4Qsq1Jfa+qFmw3CUo6HGRPGEbYEghM1pEGcG+9T
+         7U0R9HHgCAXYdI6nOMErszEhYLQckCO/HmHZpagOCVUQNudnrw1s/FTKzNx5kOn7cnki
+         sAWKnRRpvVaQTiE5rAQPTyJwrKuzkQiQvBGfcMHHxNKmm+B3Ygwfe5mPyNY/HeNI+tLl
+         Ygt0YBpG0qAcjkKeJYu3HqQC8yJd9UldcKwalxDJBBCxs3MXzxcItypHvzlCCJo/JnpK
+         q3iIpL8ttzIfUG/0VO3ASJHyG9efc21iVlvxB8HRjEFCDbr57F58PUsnAVdjqJQZN5/T
+         QQWw==
+X-Gm-Message-State: AFuF++nhob4CKbFvFvdWwBHjFb9T8n628nJxaSaWV2CnWGknP8IJqxZk
+	26bSmmfLD3D9EAnMfNUdmLsnaS6hPwjVAFHW7xVqbERQDqwknEK3LhsBxyQL05pPsa0hakO18d2
+	Br3aN2eDJgbh3BSnatJ5y2LJBOCCDMEc+nw==
+X-Gm-Gg: AYBFou0gXXZqOsTNrfshPaNE6NtntPugQ0orMw7LcTzoic3ZgNisib43ZlxxyJ3/L2Y
+	1Zdw6kex4mKUXRsrZo90TmPjsi3xR5zap/N/yD+zSWrJ+9zlTRuUfX8a2kdFGH+u2WuCBbU1TEc
+	DQLxtZK+t5Oa3EJAkzIHJzSKn5pntAkydC+WSW0z4SSQR6f/gg6h5cGwrlM7pft469cgNZlNQQ6
+	/bBpIDPa1Sl7ncRuYRL2ygQIFYquG2I3H69Jy513CkP5mfsU7XnjKZlFDqSJY6XFvwt3mu6nyTx
+	wmtsTN/2I6r1UclPMg5eFZythNzKjZVEWAUhqrCXjIbe9YWH9dUrNk4iATmHfyni2iR3TJ/CaOT
+	7THqwMI3lsSj/0ckdI5dnb22S/BR/ufW9VQTR+/XBC4IDh1J5rcGHtUhQrFH8X7DbvXc4
+X-Received: by 2002:a05:690e:4083:b0:671:26c1:c627 with SMTP id
+ 956f58d0204a3-6717fd6a656mr219899d50.54.1789688305308; Thu, 17 Sep 2026
+ 16:38:25 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 16:38:24 -0700
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 16:38:24 -0700
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 16:38:24 -0700
+X-Gm-Features: AcwNN1WLoDKKXUOvS_TXyVjiNDxO_gpfykHJbAKT3j3L7_XPJTgFBMPDyQWGnnk
+Message-ID: <CAPdrGe=5BUKiLz1O-8VpaEgv+Jf2AtL2ngXqk5GRhB1gM8N0FQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Attack_Chains_=E2=80=94_2026=2D09=2D18_06=3A37_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_1_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000b25604065bb647e5"
+
+--000000000000b25604065bb647e5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY ATTACK CHAINS =E2=80=94 DEFENSIVE SYNTHESIS
+
+1 NEW ATTACK CHAINS
+
+AC-2026-OAUTH-VAULT-PERSISTENT-CONTEXT =E2=80=94 RECENT / PATCHED / NO KNOW=
+N ACTIVE
+EXPLOITATION
+Aliases: OAuth auto-approval to agent-memory authority; vault-token
+bootstrap; unauthenticated persistent-context poisoning.
+
+Canonical fingerprint: network-reachable MCP OAuth endpoint ->
+authorization without user authentication/consent -> static vault token ->
+full MCP vault authority -> persistent knowledge/context modification ->
+later agent consumption -> privileged downstream action UNKNOWN.
+
+Fresh evidence: CVE-2026-54618, published 17 Sep 2026, affects Obsidian Web
+MCP before 0.2.0. Public advisory data states /oauth/authorize could issue
+an authorization code without login, consent, or session validation;
+/oauth/token could exchange it for the static VAULT_MCP_TOKEN without
+authenticating a client. A reachable caller could then invoke vault_read,
+vault_write, vault_search, vault_list, vault_move and vault_delete across
+the vault. Optional PKCE did not stop attacker-initiated authorization.
+Version 0.2.0 fixes the issue. No public active exploitation is established=
+.
+
+Stages/edges:
+ENTRY network-reachable OAuth/MCP service [CONFIRMED/T1]
+-> authorization code without authenticated resource owner [CONFIRMED/T1]
+-> static VAULT_MCP_TOKEN acquisition [CONFIRMED/T1]
+-> MCP vault authority [CONFIRMED/T1]
+-> vault read/write/search/delete [CONFIRMED capability/T1]
+-> persistent modification of agent-consumed knowledge [INFERRED:
+capability established, later agent consumption deployment-dependent]
+-> later agent behavior influenced [UNKNOWN]
+-> external privileged tool/cloud/signer action [UNKNOWN].
+
+Prerequisites: vulnerable version; OAuth/MCP deployment reachable to
+caller. Trust boundaries: unauthenticated network -> OAuth authorization
+server; OAuth token -> MCP resource authority; persistent vault -> future
+agent context. Authority transition: zero user authority -> full static
+vault-token authority.
+
+Persistence: vault writes can survive the originating request and therefore
+create persistent state; persistence into a future agent context is
+INFERRED unless that deployment actually consumes the modified vault.
+Propagation: UNKNOWN.
+Strongest evidence: public CVE/GitHub-derived advisory description for
+CVE-2026-54618.
+Strongest counterevidence: no public exploit or in-the-wild exploitation
+identified; no documented downstream agent action from a poisoned vault.
+
+2 MATERIAL CHAIN UPDATES
+None accepted. Latest Incident Intake at 06:00 reported NO MATERIAL DELTA.
+Latest Scanner at 05:49 reported 26 new scanner edges, but the new accepted
+chain here is based on a newly published MCP OAuth boundary failure rather
+than treating scanner findings as incident confirmation.
+
+3 TOP RECURRING SECOND-ORDER MECHANISMS
+A. Authority bootstrap: authentication/identity boundary failure yields a
+high-authority reusable capability.
+B. Persistent-context authority: write access to agent-consumed state can
+outlive the initiating session.
+C. Identity-to-authority binding failure: nominal OAuth flow exists, but
+resource-owner authentication/consent is not actually bound to issuance.
+D. Composition gap: vault write authority plus later agent trust may
+compose into behavior authority even though neither grant explicitly
+authorizes that composition.
+
+4 STAGE/EDGE GRAPH
+unauth network -> OAuth code [C/T1] -> static token [C/T1] -> vault
+authority [C/T1] -> persistent vault mutation [C capability/T1] -> future
+agent consumes mutation [I] -> privileged external action [U]
+
+5 UNKNOWN LINKS WORTH RESOLVING
+Highest-value edge: persistent agent knowledge mutation -> later
+tool-authorized external action. Also unresolved: whether any public
+deployment was exploited before patching; whether modified Obsidian content
+is automatically elevated into trusted instructions by common agent
+integrations.
+
+6 DEFENSIVE CHOKEPOINTS + DETECTION
+Require authenticated resource-owner session and explicit consent before
+authorization-code issuance; bind codes to client and redirect identity;
+avoid static bearer tokens representing an entire knowledge store; scope
+read/write/delete separately; detect token issuance without preceding
+authenticated session; alert on bulk or unusual vault writes/deletes;
+provenance-tag externally mutable context; treat persistent knowledge as
+untrusted data when re-entering an agent; require separate authority for
+context mutation -> tool action composition.
+
+QP implication: ALLOW(write persistent context S) must not imply ALLOW(S ->
+future privileged action). Authorization should bind issuer identity, state
+provenance and downstream capability separately.
+
+7 SAFE LAB REPRODUCTION QUEUE
+Disposable local OAuth/MCP mock, dummy vault, fake static token, harmless
+marker note. Verify that unauthenticated authorization cannot produce a
+token and that a marker written by an untrusted identity remains labelled
+untrusted when a dummy agent later reads it. No production systems or real
+credentials.
+
+8 CROSS-CASE CLUSTERS
+Joins SHARED-CACHE-AUTHORITY on identity separation failure;
+AGENT-PERSISTED-INSTRUCTION and AGENT-STIGMERGY-AUTHORITY-CASCADE on
+persistent state becoming future agent input; PLUGIN-PIN-IDENTITY-CONFUSION
+on authorization referring to an identity/object that is not sufficiently
+bound to the authority actually exercised.
+
+9 MACHINE-READABLE JSONL DELTA
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-OAUTH-VAULT-PERSISTENT-=
+CONTEXT=E2=80=9D,=E2=80=9Caliases=E2=80=9D:[=E2=80=9COAuth
+auto-approval to agent-memory authority=E2=80=9D,=E2=80=9Cvault-token
+bootstrap=E2=80=9D,=E2=80=9Cunauthenticated persistent-context
+poisoning=E2=80=9D],=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT_PATCHED=E2=80=
+=9D,=E2=80=9Ccanonical_fingerprint=E2=80=9D:=E2=80=9Cnetwork-reachable
+MCP OAuth -> unauthenticated authorization -> static vault token -> full
+vault authority -> persistent context mutation -> later agent consumption
+-> privileged action UNKNOWN=E2=80=9D,=E2=80=9Caffected_stacks=E2=80=9D:[=
+=E2=80=9CObsidian Web MCP
+<0.2.0=E2=80=9D],=E2=80=9Cstages=E2=80=9D:[[=E2=80=9CENTRY_SOURCE=E2=80=9D,=
+=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT1=E2=80=9D],[=E2=80=9CAUTHORITY_BOOTS=
+TRAP=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT1=E2=80=9D],[=E2=80=9CS=
+ECRET_SESSION_MEMORY_ACCESS=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT=
+1=E2=80=9D],[=E2=80=9CTOOL_ACCESS=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=
+=80=9CT1=E2=80=9D],[=E2=80=9CPERSISTENCE=E2=80=9D,=E2=80=9CCONFIRMED_CAPABI=
+LITY=E2=80=9D,=E2=80=9CT1=E2=80=9D],[=E2=80=9CLATER_AGENT_CONSUMPTION=E2=80=
+=9D,=E2=80=9CINFERRED=E2=80=9D,null],[=E2=80=9CEXTERNAL_PRIVILEGED_ACTION=
+=E2=80=9D,=E2=80=9CUNKNOWN=E2=80=9D,null]],=E2=80=9Cconfirmed_edges=E2=80=
+=9D:5,=E2=80=9Cinferred_edges=E2=80=9D:1,=E2=80=9Cunknown_edges=E2=80=9D:2,=
+=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cunauthenticated
+network->OAuth=E2=80=9D,=E2=80=9COAuth token->MCP vault authority=E2=80=9D,=
+=E2=80=9Cpersistent
+vault->future agent context=E2=80=9D],=E2=80=9Cpersistence=E2=80=9D:=E2=80=
+=9Cvault mutation persists;
+future agent consumption
+deployment-dependent=E2=80=9D,=E2=80=9Cpropagation=E2=80=9D:=E2=80=9CUNKNOW=
+N=E2=80=9D,=E2=80=9Cstrongest_evidence=E2=80=9D:=E2=80=9CCVE-2026-54618
+public advisory=E2=80=9D,=E2=80=9Cstrongest_counterevidence=E2=80=9D:=E2=80=
+=9Cno known active exploitation
+and no documented poisoned-vault-to-external-action
+case=E2=80=9D,=E2=80=9Cdetection_points=E2=80=9D:[=E2=80=9Cauthorization co=
+de without authenticated
+session=E2=80=9D,=E2=80=9Ctoken issuance without consent event=E2=80=9D,=E2=
+=80=9Cunusual vault
+writes/deletes=E2=80=9D,=E2=80=9Cagent consumption of recently externally m=
+odified
+context=E2=80=9D],=E2=80=9Ccontainment_points=E2=80=9D:[=E2=80=9Cauthentica=
+ted OAuth consent=E2=80=9D,=E2=80=9Cscoped
+non-static tokens=E2=80=9D,=E2=80=9Cseparate read/write/delete scopes=E2=80=
+=9D,=E2=80=9Ccontext
+provenance=E2=80=9D,=E2=80=9Ctool-action reauthorization=E2=80=9D],=E2=80=
+=9Cfalsifier=E2=80=9D:=E2=80=9Cpatched OAuth
+rejects unauthenticated authorization and downstream agents never treat
+externally writable vault content as instruction
+authority=E2=80=9D,=E2=80=9Cnext_evidence_request=E2=80=9D:=E2=80=9Cpublic =
+telemetry linking persistent MCP
+knowledge-store mutation to a later privileged agent tool action=E2=80=9D}
+
+10 NEXT-HOUR RESEARCH QUEUE
+
+   1. Find production telemetry completing persistent MCP/knowledge
+   mutation -> later privileged tool action.
+   2. Resolve GitLab MCP token-leak CVE-2026-61559 into confirmed token
+   replay or repository action, if any public evidence exists.
+   3. Search new MCP OAuth advisories for authorization-code/client binding
+   failures that create durable delegated authority.
+   4. Look for incidents where compromised persistent context survives
+   credential/token rotation.
+   5. Continue searching for agent-specific authority-composition failures
+   rather than standalone CVEs.
+
+--000000000000b25604065bb647e5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>PRIVATELY ATTACK CHAINS =E2=80=94 DEFENSIVE SYNTHESIS</p>
+<p>1 NEW ATTACK CHAINS</p>
+<p>AC-2026-OAUTH-VAULT-PERSISTENT-CONTEXT =E2=80=94 RECENT / PATCHED / NO K=
+NOWN ACTIVE EXPLOITATION<br>
+Aliases: OAuth auto-approval to agent-memory authority; vault-token bootstr=
+ap; unauthenticated persistent-context poisoning.</p>
+<p>Canonical fingerprint: network-reachable MCP OAuth endpoint -&gt; author=
+ization without user authentication/consent -&gt; static vault token -&gt; =
+full MCP vault authority -&gt; persistent knowledge/context modification -&=
+gt; later agent consumption -&gt; privileged downstream action UNKNOWN.</p>
+<p>Fresh evidence: CVE-2026-54618, published 17 Sep 2026, affects Obsidian =
+Web MCP before 0.2.0. Public advisory data states /oauth/authorize could is=
+sue an authorization code without login, consent, or session validation; /o=
+auth/token could exchange it for the static VAULT_MCP_TOKEN without authent=
+icating a client. A reachable caller could then invoke vault_read, vault_wr=
+ite, vault_search, vault_list, vault_move and vault_delete across the vault=
+. Optional PKCE did not stop attacker-initiated authorization. Version 0.2.=
+0 fixes the issue. No public active exploitation is established.</p>
+<p>Stages/edges:<br>
+ENTRY network-reachable OAuth/MCP service [CONFIRMED/T1]<br>
+-&gt; authorization code without authenticated resource owner [CONFIRMED/T1=
+]<br>
+-&gt; static VAULT_MCP_TOKEN acquisition [CONFIRMED/T1]<br>
+-&gt; MCP vault authority [CONFIRMED/T1]<br>
+-&gt; vault read/write/search/delete [CONFIRMED capability/T1]<br>
+-&gt; persistent modification of agent-consumed knowledge [INFERRED: capabi=
+lity established, later agent consumption deployment-dependent]<br>
+-&gt; later agent behavior influenced [UNKNOWN]<br>
+-&gt; external privileged tool/cloud/signer action [UNKNOWN].</p>
+<p>Prerequisites: vulnerable version; OAuth/MCP deployment reachable to cal=
+ler. Trust boundaries: unauthenticated network -&gt; OAuth authorization se=
+rver; OAuth token -&gt; MCP resource authority; persistent vault -&gt; futu=
+re agent context. Authority transition: zero user authority -&gt; full stat=
+ic vault-token authority.</p>
+<p>Persistence: vault writes can survive the originating request and theref=
+ore create persistent state; persistence into a future agent context is INF=
+ERRED unless that deployment actually consumes the modified vault.<br>
+Propagation: UNKNOWN.<br>
+Strongest evidence: public CVE/GitHub-derived advisory description for CVE-=
+2026-54618.<br>
+Strongest counterevidence: no public exploit or in-the-wild exploitation id=
+entified; no documented downstream agent action from a poisoned vault.</p>
+<p>2 MATERIAL CHAIN UPDATES<br>
+None accepted. Latest Incident Intake at 06:00 reported NO MATERIAL DELTA. =
+Latest Scanner at 05:49 reported 26 new scanner edges, but the new accepted=
+ chain here is based on a newly published MCP OAuth boundary failure rather=
+ than treating scanner findings as incident confirmation.</p>
+<p>3 TOP RECURRING SECOND-ORDER MECHANISMS<br>
+A. Authority bootstrap: authentication/identity boundary failure yields a h=
+igh-authority reusable capability.<br>
+B. Persistent-context authority: write access to agent-consumed state can o=
+utlive the initiating session.<br>
+C. Identity-to-authority binding failure: nominal OAuth flow exists, but re=
+source-owner authentication/consent is not actually bound to issuance.<br>
+D. Composition gap: vault write authority plus later agent trust may compos=
+e into behavior authority even though neither grant explicitly authorizes t=
+hat composition.</p>
+<p>4 STAGE/EDGE GRAPH<br>
+unauth network -&gt; OAuth code [C/T1] -&gt; static token [C/T1] -&gt; vaul=
+t authority [C/T1] -&gt; persistent vault mutation [C capability/T1] -&gt; =
+future agent consumes mutation [I] -&gt; privileged external action [U]</p>
+<p>5 UNKNOWN LINKS WORTH RESOLVING<br>
+Highest-value edge: persistent agent knowledge mutation -&gt; later tool-au=
+thorized external action. Also unresolved: whether any public deployment wa=
+s exploited before patching; whether modified Obsidian content is automatic=
+ally elevated into trusted instructions by common agent integrations.</p>
+<p>6 DEFENSIVE CHOKEPOINTS + DETECTION<br>
+Require authenticated resource-owner session and explicit consent before au=
+thorization-code issuance; bind codes to client and redirect identity; avoi=
+d static bearer tokens representing an entire knowledge store; scope read/w=
+rite/delete separately; detect token issuance without preceding authenticat=
+ed session; alert on bulk or unusual vault writes/deletes; provenance-tag e=
+xternally mutable context; treat persistent knowledge as untrusted data whe=
+n re-entering an agent; require separate authority for context mutation -&g=
+t; tool action composition.</p>
+<p>QP implication: ALLOW(write persistent context S) must not imply ALLOW(S=
+ -&gt; future privileged action). Authorization should bind issuer identity=
+, state provenance and downstream capability separately.</p>
+<p>7 SAFE LAB REPRODUCTION QUEUE<br>
+Disposable local OAuth/MCP mock, dummy vault, fake static token, harmless m=
+arker note. Verify that unauthenticated authorization cannot produce a toke=
+n and that a marker written by an untrusted identity remains labelled untru=
+sted when a dummy agent later reads it. No production systems or real crede=
+ntials.</p>
+<p>8 CROSS-CASE CLUSTERS<br>
+Joins SHARED-CACHE-AUTHORITY on identity separation failure; AGENT-PERSISTE=
+D-INSTRUCTION and AGENT-STIGMERGY-AUTHORITY-CASCADE on persistent state bec=
+oming future agent input; PLUGIN-PIN-IDENTITY-CONFUSION on authorization re=
+ferring to an identity/object that is not sufficiently bound to the authori=
+ty actually exercised.</p>
+<p>9 MACHINE-READABLE JSONL DELTA<br>
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-OAUTH-VAULT-PERSISTENT-=
+CONTEXT=E2=80=9D,=E2=80=9Caliases=E2=80=9D:[=E2=80=9COAuth auto-approval to=
+ agent-memory authority=E2=80=9D,=E2=80=9Cvault-token bootstrap=E2=80=9D,=
+=E2=80=9Cunauthenticated persistent-context poisoning=E2=80=9D],=E2=80=9Cst=
+atus=E2=80=9D:=E2=80=9CRECENT_PATCHED=E2=80=9D,=E2=80=9Ccanonical_fingerpri=
+nt=E2=80=9D:=E2=80=9Cnetwork-reachable MCP OAuth -&gt; unauthenticated auth=
+orization -&gt; static vault token -&gt; full vault authority -&gt; persist=
+ent context mutation -&gt; later agent consumption -&gt; privileged action =
+UNKNOWN=E2=80=9D,=E2=80=9Caffected_stacks=E2=80=9D:[=E2=80=9CObsidian Web M=
+CP &lt;0.2.0=E2=80=9D],=E2=80=9Cstages=E2=80=9D:[[=E2=80=9CENTRY_SOURCE=E2=
+=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT1=E2=80=9D],[=E2=80=9CAUTHORIT=
+Y_BOOTSTRAP=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT1=E2=80=9D],[=E2=
+=80=9CSECRET_SESSION_MEMORY_ACCESS=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=
+=80=9CT1=E2=80=9D],[=E2=80=9CTOOL_ACCESS=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=
+=9D,=E2=80=9CT1=E2=80=9D],[=E2=80=9CPERSISTENCE=E2=80=9D,=E2=80=9CCONFIRMED=
+_CAPABILITY=E2=80=9D,=E2=80=9CT1=E2=80=9D],[=E2=80=9CLATER_AGENT_CONSUMPTIO=
+N=E2=80=9D,=E2=80=9CINFERRED=E2=80=9D,null],[=E2=80=9CEXTERNAL_PRIVILEGED_A=
+CTION=E2=80=9D,=E2=80=9CUNKNOWN=E2=80=9D,null]],=E2=80=9Cconfirmed_edges=E2=
+=80=9D:5,=E2=80=9Cinferred_edges=E2=80=9D:1,=E2=80=9Cunknown_edges=E2=80=9D=
+:2,=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cunauthenticated network-&gt=
+;OAuth=E2=80=9D,=E2=80=9COAuth token-&gt;MCP vault authority=E2=80=9D,=E2=
+=80=9Cpersistent vault-&gt;future agent context=E2=80=9D],=E2=80=9Cpersiste=
+nce=E2=80=9D:=E2=80=9Cvault mutation persists; future agent consumption dep=
+loyment-dependent=E2=80=9D,=E2=80=9Cpropagation=E2=80=9D:=E2=80=9CUNKNOWN=
+=E2=80=9D,=E2=80=9Cstrongest_evidence=E2=80=9D:=E2=80=9CCVE-2026-54618 publ=
+ic advisory=E2=80=9D,=E2=80=9Cstrongest_counterevidence=E2=80=9D:=E2=80=9Cn=
+o known active exploitation and no documented poisoned-vault-to-external-ac=
+tion case=E2=80=9D,=E2=80=9Cdetection_points=E2=80=9D:[=E2=80=9Cauthorizati=
+on code without authenticated session=E2=80=9D,=E2=80=9Ctoken issuance with=
+out consent event=E2=80=9D,=E2=80=9Cunusual vault writes/deletes=E2=80=9D,=
+=E2=80=9Cagent consumption of recently externally modified context=E2=80=9D=
+],=E2=80=9Ccontainment_points=E2=80=9D:[=E2=80=9Cauthenticated OAuth consen=
+t=E2=80=9D,=E2=80=9Cscoped non-static tokens=E2=80=9D,=E2=80=9Cseparate rea=
+d/write/delete scopes=E2=80=9D,=E2=80=9Ccontext provenance=E2=80=9D,=E2=80=
+=9Ctool-action reauthorization=E2=80=9D],=E2=80=9Cfalsifier=E2=80=9D:=E2=80=
+=9Cpatched OAuth rejects unauthenticated authorization and downstream agent=
+s never treat externally writable vault content as instruction authority=E2=
+=80=9D,=E2=80=9Cnext_evidence_request=E2=80=9D:=E2=80=9Cpublic telemetry li=
+nking persistent MCP knowledge-store mutation to a later privileged agent t=
+ool action=E2=80=9D}</p>
+<p>10 NEXT-HOUR RESEARCH QUEUE</p>
+<ol>
+<li>Find production telemetry completing persistent MCP/knowledge mutation =
+-&gt; later privileged tool action.</li>
+<li>Resolve GitLab MCP token-leak CVE-2026-61559 into confirmed token repla=
+y or repository action, if any public evidence exists.</li>
+<li>Search new MCP OAuth advisories for authorization-code/client binding f=
+ailures that create durable delegated authority.</li>
+<li>Look for incidents where compromised persistent context survives creden=
+tial/token rotation.</li>
+<li>Continue searching for agent-specific authority-composition failures ra=
+ther than standalone CVEs.</li>
+</ol>
+
+--000000000000b25604065bb647e5--

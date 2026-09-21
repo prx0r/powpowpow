@@ -1,0 +1,618 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id HdHierfy1mwy
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:17:27 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=N6heDNvdlDjU317F/leGXYFWjKcZd75TcLyNmP4qEts0Bi6ovZ3JH8oBUUl6GALsAoHe6WYC0
+	xRv6LvK/Fl5WKN94wBB6N5oYtFbA3eiC1FoDFP7iUpdPPAEqo2IijEHA8r+ft6dPRvzzwo3q1wD
+	5vsribWpylQzMXg43fYyRg9pOnuxlJ0IO6j7cLtlR+kPDJkmF+vcytMOIw/sU6V+1csVnCVVWK7
+	0/Y3+N7MzQ2a+4FzOHDu7UiLWkEPkid6yuBNIlZDulWj8SinEmErUAiyc9YASeJQcjvvZbV0utS
+	Ea2Bt9DMGKMmAUyeJulIH1So6QOfiWreYSSP2YD/6bMw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888648; x=1790493448; bh=XiPI/lQx
+	DHTanaCry4oNsphSl4FfRA7IhTiCkxWBAqk=; b=TTIMwNjg6f2ND1uNHBVOkIFzUkCOpi+/dcU
+	iOgKEHSWgeugM8eqkJ5DZbJAn8MhDjfEiLmhYw/eajV+ZzC4J9GQR7IGr4plvB9U13RElUV7316
+	Xc/X7/ySuOenxxONtiB3/+hqXpJefFrmvR+XQXRpth7Kcas9CLHtU0WtB/ppgC86ZBoYgBhAjF/
+	WShAchA0uHKIfZDrubRjfXIt/L0TkXXj8zfq7k9qhB+ZZT6ADl3fjIqT9Qp8UgmtML3gqn3ACO9
+	kRl2hVKeBngNY34JAdRi44jOsDHubpkJGeQOKKmZqLK9nxg4YsB1HHKqLVyr7QI/7qhO2dQasCN
+	iGSk/ug==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=MiDICXxK;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=MiDICXxK;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d43db0c17so17521347b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:17:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888647; cv=none;
+        d=google.com; s=arc-20260327;
+        b=SNFHwkOwpRzS9jTYIHrqCauPT02Wi53cqvL006jAJ/Ky8mxdxCdLPDbuEIMi/7Vf0f
+         m3kVJYMPbFcB4SrndqmVCC8N5RYmUBgQFooUgOAbxfs4J+SpXXSEELN74l3xb5UgVYWj
+         tSo5cP3De5s85KAnfGvGsB85MMmYiu9Rj/56I6cV7sJjWUa/2o3Wn/Xxz8gak0RCVo1Y
+         tFktZwPVWB0kzUuBWkWvkvOv7pskz3kySrDQjFHxaOpWhdMwnDarWq9LFtAeykhX15bR
+         CJXquOmcFHbQOB5NXfkOexKWUUipaRmxoEsn4eI9cHWNXgwODTunK0Gmdh8dkwb8AeuD
+         7Lfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=XiPI/lQxDHTanaCry4oNsphSl4FfRA7IhTiCkxWBAqk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=AN55LPcKKcqPX+Qkv9FQIO2XIo64yMXwiIEtFUGfMGUjAf/TRMvFeASUrACGuPjNYB
+         YSwOUQkWu8UR6D+D40m+MVxEF0euGdRl/7D1mEjyxH2u9XeANQMINhPHgzG67foQlv68
+         U7V23N0/10lrQFs5r2kPwrw+bUnrKUMdSpnZMSVoGr7NdNgmE6d5oRB4hhIjBRoLs8Ky
+         KJGFTfbWU7J9huSt9v8gmpCfM3ZrYIsaYIhVCkzvKPjzehkmoyVVTvg8xGZ2Q19sTeAP
+         JPpT1KK0he1/JxGrJi4uor3B86F6q+m9SoAPTL/VDVz7w4JEi2HYU1UOtCekXHYuX8Fl
+         CeFg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888647; x=1790493447; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=XiPI/lQxDHTanaCry4oNsphSl4FfRA7IhTiCkxWBAqk=;
+        b=MiDICXxKn5jnttOWcpGoFC8eEWHSRZhPbEN7DnKN0Cs/ZfGgGdLWCRVe4iyfAm1c99
+         a+ghw5ZpvgpEOkC7gJjmJLrX6Z0GnoxWs5ybxF0AgLQUy0axYilkvm+3jMIjmThltAbK
+         R46s7QH5hJD8uOgBokTwWmWYNRzsqXzmtNIZLqqdNm5PAKoEh7E2xuImoPDM8cW+jM2L
+         P1BUr4fucIFoKN31ZOKtS6uXvIsE+HWq2S5jtiTe3mSUL6luDIwfnXQtttQYohy5G/xG
+         4AHycBG9tWyMF837s5H40drO7JeozmeRT8pf6am40KYbTLCa2q6XTc+3YtnLrDmZeZgM
+         /Q2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888647; x=1790493447;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=XiPI/lQxDHTanaCry4oNsphSl4FfRA7IhTiCkxWBAqk=;
+        b=feIX49V83otaHMvkDlCj/YDS4TSl0Vs9fgKuseRCj5XBBUAnCUfuJKog9s8E4Z4tU4
+         2jILsSI2WRvhxoc/Zcxpwm84lh0IQs8DvJmIOBEWP1NmT8e6kymLUlRFyc4JIV3DFEjr
+         7y2LkiwwKT0z32CvCr0gQ4ypm/pkeoEf4ps9wes0+q6kinvPnTS6BN1ybe/skcxVUJQg
+         qjPY7WTKdvsdfGJFtbA/9snfvH1CFKT/bgAaqxrsT+T+SDRrnUUQZOA8XLx91q/hyNo1
+         gl4LhuwNyzDmpgBlWgF5hsL88OitrzTUjLF3sdEsvdaZwBcB5M7cuKtGF4K3VWZih7vd
+         9BTQ==
+X-Gm-Message-State: AFuF++mexCwyWrV9EPB3LrFlxv3Hssxygvt3BD709rcbDgltHiN8YfuL
+	7guyBPgBQvEFDId5m9p+7kV5oCeRxBXzX8MkENFUMnTSllDjs7zt4x/dMrNL2nSzTs60goWTAdS
+	qZbTgrj5X0eEKAdnxv6GJkbICvpyJ0IAOug==
+X-Gm-Gg: AYBFou1OIke9Rssx/gziI/vGRgRa4Axjt0WXQmqnukesweFkIwzLsO4w/d0+NINz206
+	XiC7TE7VUQShQYmxnVdfEW2tfgoEmmnt9iwzdk9XCOuSC0xzLsxgD4DMtBJemYNkW2e+rVygc0g
+	IpHkLbrMFIthEkFSvalFUQUPa6ueBccS+iFPYXB8Q+6SNTtWuBMGIABYhOtK/L357+VRAQmQxxi
+	Uw/CmSbRp+4fKejpRMI1AI5SySA0NO9PCfbBp/mpY7Oop1xAtqkz0sj5uYm1imeKKh3c71KsARP
+	ALr9Sm6aJQuzN+oVHRdCvK14HrFQrs2CCcQ+pMPcN49Y3xdQLabIm87CaJr2ygr9gKKbDdtyUCc
+	YhoB99Q/XARvCY3bSJLv/hJ2iiVNk9AQZiIlxoLm00t36qj00Gbihqc6dC6vUFBXQMF+DstaQ
+X-Received: by 2002:a05:690c:e3ed:b0:871:8a81:a2c9 with SMTP id
+ 00721157ae682-89733726004mr19952217b3.22.1789888647097; Sun, 20 Sep 2026
+ 00:17:27 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:17:26 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:17:26 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:17:26 -0500
+X-Gm-Features: AcwNN1XSPmL9dZGFqrIzNvSRJN1kCsNy_GYOxysjLoPQNTpQ-kH86_-baVKvfIw
+Message-ID: <CAPdrGemPQ7y72s+K1AyGkuKt8jq2OPTdqWz6JsRkQi9LH5_ASw@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D18_05=3A49_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_26_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY SCANNER =E2=80=94 EDGE REPORT
+
+1 RUN STATE / COVERAGE
+
+Recovered the cumulative scanner chain from Gmail Sent before
+discovery. Latest persisted report: 2026-09-18 04:48 =E2=80=94 23 new/0
+changed. Its registry delta included x402search-mcp, navi-x402-mcp,
+x402 Bazaar, AgentLot, serverless-harness, Apify AGI,
+recursive-self-improvement, RSIAgent, MCP-ITP, Utility Under Attack,
+MemGhost, Ruflo memory attack map, Vault, mcpgw, NemoClaw bridge,
+OWASP Agent Memory Guard, Kinocut, Showrunner, OpenShorts,
+ClipCaptionAI and n8n AI Short Video Automation. Those and earlier
+known objects were treated as an exclusion set. Search expanded
+through x402 commerce, capability identity/delegation, trajectory
+replay, skill evolution, multi-tool poisoning, TEE policy enforcement,
+local-first video, reference-style cloning and self-evolving
+long-video systems. 26 canonical additions after semantic dedupe.
+
+2 NEW OBJECT DASHBOARD
+
+A =E2=80=94 AGENT FRAMEWORK / CONTROL / TOOLING
+
+-
+
+the402ai/mcp-server =E2=80=94 https://github.com/the402ai/mcp-server =E2=80=
+=94 MONID
+nearest neighbour. MCP marketplace where agents browse
+services/products, purchase with a prefunded USDC balance, manage
+subscriptions/threads and earn as providers. MIT; tiny but real
+implementation. BUILD PROBE.
+
+-
+
+Cryptorefills/agents =E2=80=94 https://github.com/Cryptorefills/agents =E2=
+=80=94 MONID
+commerce neighbour. 10,500+ gift cards/top-ups/eSIMs across 180+
+countries; MCP search=E2=86=92validate=E2=86=92order=E2=86=92pay=E2=86=92de=
+livery, plus autonomous
+x402 settlement on Base/Solana without account/OAuth/API key. SANDBOX.
+
+-
+
+Agiotage =E2=80=94 https://github.com/x402-foundation/x402/issues/2170 =E2=
+=80=94
+MONID/A2A commerce neighbour. Agent job marketplace with bidding,
+escrow, skill competitions, reputation, Base/Solana settlement and
+MCP/SDK. Reported 60 registered agents and 3,700+ settled transactions
+in its x402 listing request. WATCH.
+
+-
+
+ARCP / Agent Runtime Control Protocol =E2=80=94
+https://github.com/agentruntimecontrolprotocol =E2=80=94 Goose/Pi/control
+neighbour. Transport-agnostic envelope for long-running agent jobs:
+resumable sessions/events, capability-bounded leases and delegation.
+Very small/new standards effort but unusually aligned with Privately
+authority semantics. BUILD PROBE.
+
+-
+
+Agentic Global Identity Layer =E2=80=94
+https://github.com/MihaiCiprianChezan/Agentic-Global-Identity-Layer =E2=80=
+=94
+Privately/identity neighbour. Explores request-scoped agent
+identity/capability claims, issuer binding, MCP authorization and
+agent-gateway enforcement. WATCH.
+
+B =E2=80=94 JEV / DECISION / SELF-IMPROVEMENT / PAPER-TO-CODE
+
+-
+
+AgentHER =E2=80=94 https://github.com/alphadl/AgentHER =E2=80=94 DREAM-RSI =
+nearest new
+implementation. Hindsight Experience Replay for LLM-agent
+trajectories: detects failed trajectories, relabels outcomes, emits
+SFT/DPO/ShareGPT training data. Apache-2.0; 94 stars/11 forks at
+crawl. SANDBOX.
+
+-
+
+SkillMaster =E2=80=94 https://arxiv.org/abs/2605.08693 =E2=80=94 DREAM-RSI/=
+JEV. Trains
+an agent to create/refine/select skills from trajectory evidence;
+counterfactual probe-task utility evaluates candidate skill edits;
+DualAdv-GRPO separates task-action and skill-edit advantages. BUILD
+SAFE REPRO.
+
+-
+
+GRASP =E2=80=94 https://arxiv.org/abs/2605.29668 =E2=80=94 DREAM-RSI verifi=
+er
+neighbour. Bounded skill library; every candidate edit must improve a
+balanced held-out probe under a hard regression budget. Strong
+conceptual match to QP: self-improvement as typed edits gated by
+falsification. ADOPT PATTERN.
+
+-
+
+Bifrost =E2=80=94 https://arxiv.org/abs/2602.05810 =E2=80=94 JEV/trajectory=
+ reuse.
+Training-free representation-level steering adapts successful
+trajectories to context-shifted tasks rather than blindly replaying
+them. WATCH.
+
+-
+
+ForceU-VLA =E2=80=94 https://github.com/VMVLab/ForceU-VLA =E2=80=94 JEV/act=
+ion-head
+weird neighbour. Force-conditioned stage-adaptive modulation feeds a
+flow-matching Action Expert + policy head producing continuous
+closed-loop robot actions. 3 stars, but mechanism fit is high. SANDBOX
+READ.
+
+C =E2=80=94 ATTACKER FRONTIER (defensive analysis only)
+
+-
+
+ShareLock =E2=80=94 https://arxiv.org/abs/2606.27027 =E2=80=94 MCPParasite =
+neighbour.
+Multi-tool threshold poisoning distributes a hidden instruction as
+benign-looking shares across multiple tool descriptions,
+reconstructing only after aggregation/trigger. Reported >90% average
+ASR. Adds a new semantic fingerprint: COMPOSITIONAL POISONING BELOW
+PER-TOOL DETECTION THRESHOLD. BUILD SAFE BENCH.
+
+-
+
+SkillJect =E2=80=94 surfaced via https://github.com/L3G5/sec4ai_papers =E2=
+=80=94
+MCPParasite/skill-supply-chain neighbour. Closed-loop Attack
+Agent=E2=86=92Code Agent=E2=86=92Evaluator refines stealthy poisoned agent =
+skills from
+execution traces. Defensive relevance: static skill scanning faces an
+adaptive optimizer. BUILD SAFE BENCH.
+
+-
+
+Skill-Inject benchmark =E2=80=94 surfaced via
+https://github.com/L3G5/sec4ai_papers =E2=80=94 malicious skill-file benchm=
+ark
+with 202 injection-task pairs and reported high attack rates across
+coding agents. Treat as a corpus/benchmark object distinct from
+SkillJect=E2=80=99s adaptive generator. SANDBOX.
+
+-
+
+NotebookLM MCP artifact-write advisory / v0.10.1 fix =E2=80=94
+https://github.com/mp3wizard/notebooklm-mcp-cli =E2=80=94 concrete agent
+supply-chain/path-control case: untrusted notebook content could steer
+MCP artifact downloads toward sensitive writable locations before the
+September fix constrained writes to one approved directory. ATTACK
+LOGBOOK / CONTENT NOW.
+
+D =E2=80=94 DEFENDER FRONTIER
+
+-
+
+ClawGuard =E2=80=94 https://github.com/Claw-Guard/ClawGuard =E2=80=94 Priva=
+tely
+defence nearest neighbour. Derives user-confirmed task-specific access
+constraints before external calls and enforces them deterministically
+at every tool boundary across web/local, MCP and skill-file injection
+channels. BUILD BAKEOFF.
+
+-
+
+cMCP / Confidential MCP Runtime =E2=80=94 https://github.com/agentrust-io/c=
+mcp
+=E2=80=94 Privately defence/TEE. Cedar tool policy runs inside a hardware T=
+EE;
+policy hash is measured into attestation; sessions emit signed TRACE
+claims. pip install cmcp-runtime; software mode available. BUILD
+PROBE.
+
+-
+
+CASCADE =E2=80=94 https://arxiv.org/abs/2604.17125 =E2=80=94 local MCP inje=
+ction
+defence. Three tiers: regex/entropy prefilter =E2=86=92 BGE semantic layer
+with local Llama fallback =E2=86=92 output pattern filtering. Reported 95.8=
+5%
+precision but only 61.05% recall, making it a useful cheap baseline
+rather than endpoint. SANDBOX.
+
+-
+
+poojakira/mcp-agent-security-gateway =E2=80=94
+https://github.com/poojakira/mcp-agent-security-gateway =E2=80=94 agent
+EDR/gateway neighbour. Inline MCP stdio proxy plus decision service
+covering tool-call arguments, tool outputs, server trust, PII/exfil
+signals, process events, network-egress decisions and hash-chained
+audit. SANDBOX.
+
+-
+
+inclavare-containers/confidential-agent =E2=80=94
+https://github.com/inclavare-containers/confidential-agent =E2=80=94
+TEE/private-execution neighbour. Intel TDX deployment workflow for
+OpenClaw/MCP, attestation-challenge secret injection and optional
+Rekor-backed reference values. WATCH/PROBE.
+
+E =E2=80=94 AUTONOMOUS VIDEO / MEDIA
+
+-
+
+frankxai/remotion-video =E2=80=94 https://github.com/frankxai/remotion-vide=
+o =E2=80=94
+OpenMontage/Hermes neighbour. Local-first Hermes+Claude short-form
+factory: faster-whisper word timestamps, agent storyboard/motion
+specs, A/B hooks, Remotion render, versionable logs. BUILD PROBE.
+
+-
+
+alichherawalla/video-overlay-kit =E2=80=94
+https://github.com/alichherawalla/video-overlay-kit =E2=80=94 OpenMontage
+neighbour. MIT local MCP driving Remotion for reusable
+b-roll/motion-graphic scenes; zero per-render cost and same scene spec
+can target portrait/landscape. ADOPT NOW for cheap deterministic
+visual layer.
+
+-
+
+pouyashahrdami/mimic-mcp =E2=80=94 https://github.com/pouyashahrdami/mimic-=
+mcp
+=E2=80=94 Open AI UGC neighbour. Agent analyzes a reference reel
+frame-by-frame, scaffolds its style onto supplied footage, renders
+with Remotion, critiques the result against the reference and
+iterates. BUILD PROBE.
+
+-
+
+hse-solutions/RemoQwen-MCP =E2=80=94
+https://github.com/hse-solutions/RemoQwen-MCP =E2=80=94 autonomous-media
+neighbour. Fully local Qwen Desktop + Remotion MCP with persistent
+loop, Telegram control and visual self-healing through browser
+inspection. Tiny but mechanism-rich. SANDBOX.
+
+-
+
+jordanurbs/venice-video-mcp =E2=80=94
+https://github.com/jordanurbs/venice-video-mcp =E2=80=94 OpenX
+Flow/model-router neighbour. Token-lean 7-verb MCP + lazy skills over
+a large video harness; multi-shot consistency,
+Seedance/Wan/Kling/Veo/Sora/Runway routing, audio scheduling and NLE
+timeline export. SANDBOX.
+
+-
+
+Xabilimon1/reeljet =E2=80=94 https://github.com/Xabilimon1/reeljet =E2=80=
+=94 UGC
+neighbour. Claude skill that combines real product captures with
+Higgsfield-generated motion/b-roll, music, captions and ffmpeg; plans
+creative direction before spending credits and has an approval gate.
+SANDBOX.
+
+-
+
+CineForge =E2=80=94 https://arxiv.org/abs/2608.29621 =E2=80=94 DREAM-RSI =
+=C3=97 OpenX Flow
+crossover. Self-evolving long-horizon video-production agent: typed
+narrative/character/spatial/cinematic state, canonical production
+trajectories, Case=E2=86=92Pattern=E2=86=92Policy evolution, structural rep=
+lay and
+confidence-controlled paired evaluation. Highest-value
+weird-alpha/media object this run. BUILD PROBE.
+
+3 TOP 5 DEEP DIVES
+
+#1 CineForge. This is the cleanest bridge yet between the scanner=E2=80=99s
+RSI and autonomous-video lanes. It does not merely self-critique a
+render: production trajectories are converted into bounded stage-local
+policy patches and validated across stories. Privately/YouTube
+implication: replace generic =E2=80=98make next video better=E2=80=99 memor=
+y with
+typed policy patches for hook, pacing, shot choice, narration, edit
+and CTA. Smallest experiment: run 10 synthetic short-video tasks,
+permit one stage-local patch per episode, hold out 3 tasks for
+regression. Falsifier: learned patches overfit one topic/style and
+fail held-out clips.
+
+#2 ShareLock. Existing MCP scanners often reason per tool. ShareLock=E2=80=
+=99s
+mechanism means every tool description can be individually innocuous
+while the set is dangerous. Privately must therefore evaluate the
+capability/tool SET and changes to its composition. Smallest safe
+experiment: benign synthetic fragments distributed across 3=E2=80=935 dummy
+tool descriptions, test whether set-level scanner flags reconstructed
+semantics without executing effects. Falsifier: composition signal is
+indistinguishable from benign cross-tool context at acceptable FPR.
+
+#3 cMCP. This advances the defence generation from =E2=80=98policy exists
+outside the agent=E2=80=99 to =E2=80=98policy execution itself is remotely
+attestable.=E2=80=99 For high-value/private agents, a signed receipt is
+stronger if the verifier can establish which policy binary/bundle
+actually made the decision. Experiment: same Cedar grant in software
+mode vs TEE-backed mode; verify TRACE claims and deliberate
+policy-bundle mismatch. Falsifier: operational cost/latency overwhelms
+value outside regulated/high-value workflows.
+
+#4 Cryptorefills agents. This is a concrete answer to what agentic
+purchasing looks like when it leaves toy API calls: 10,500+ real-world
+products, no account, two crypto rails, discovery through fulfillment.
+Privately implication: a narrow money grant can produce a
+physical/digital external effect. Experiment: browse-only catalog,
+compute capability/effect graph for a hypothetical $5 eSIM purchase
+without transacting. Falsifier: purchase flow still needs enough human
+identity/interaction that autonomous authority is limited.
+
+#5 GRASP. The key contribution is not another reflection loop; it is
+an explicit hard regression budget on edits to reusable skills. This
+should be imported directly into Privately=E2=80=99s RSI model: no
+self-modification gets authority merely because it fixes the current
+failure. Experiment: allow agent to propose one skill patch, evaluate
+current failure + balanced historical probes, reject on any protected
+regression. Falsifier: probe suite has too little coverage to predict
+real regressions.
+
+4 AGENT FRAMEWORK / MONID-LIKE FRONTIER
+
+Rank: the402 MCP > Cryptorefills agents > ARCP > Agiotage > Agentic
+Global Identity Layer. Main delta: the frontier is splitting into
+three planes =E2=80=94 capability markets, durable runtime/delegation
+envelopes, and identity/authority claims. Privately can sit across all
+three rather than becoming another MCP catalog.
+
+5 JEV / DECISION / SELF-IMPROVEMENT FRONTIER
+
+Rank: GRASP > SkillMaster > AgentHER > Bifrost > ForceU-VLA. Mechanism
+progression: replay/relabel trajectories =E2=86=92 extract/edit skills =E2=
+=86=92
+counterfactually evaluate edits =E2=86=92 enforce regression budgets =E2=86=
+=92
+route/action heads produce bounded decisions. The highest-leverage
+Privately primitive is a verifier-gated mutation transaction.
+
+6 ATTACKER FRONTIER
+
+Rank: ShareLock > SkillJect > Skill-Inject > NotebookLM artifact-write
+case. New lesson: security units are expanding from one response/tool
+to sets of tools, installed skills and output destinations. Static
+per-object inspection is structurally insufficient against
+distributed/adaptive attacks.
+
+7 DEFENDER FRONTIER
+
+Rank: cMCP > ClawGuard > mcp-agent-security-gateway >
+confidential-agent > CASCADE. Generation improvement: policy is moving
+from semantic classifiers toward deterministic effect constraints,
+then toward hardware-attested enforcement and externally verifiable
+receipts.
+
+8 AUTONOMOUS VIDEO / MEDIA FRONTIER
+
+Rank: CineForge > mimic-mcp > venice-video-mcp > remotion-video >
+video-overlay-kit > RemoQwen-MCP > reeljet. The important bifurcation
+is clear: expensive stochastic generation for scarce shots;
+deterministic Remotion/FFmpeg for structure, captions, overlays and
+revisions. CineForge adds cross-video learning on top.
+
+9 COMMERCIAL SHOCK DERIVATIVES
+
+The relevant shock is not one vendor launch but capability
+commoditization: x402 marketplaces now expose services/products; video
+routers collapse Seedance/Kling/Veo/Sora/Wan behind agent-callable
+surfaces; TEE frameworks make attested policy increasingly accessible.
+Strategic value migrates to selection, authority, receipts, evaluation
+and learning.
+
+10 WEIRD ALPHA
+
+- ForceU-VLA: a 3-star robotics repo is useful precisely because its
+action head demonstrates a compact state=E2=86=92continuous-action control
+boundary outside language generation.
+
+- CineForge: production trajectories become persistent stage-local
+policy updates. This is almost a direct experimental substrate for the
+YouTube feedback/Abhinavagupta project.
+
+- Awesome LLM-Agent Experience Lifecycle =E2=80=94
+https://github.com/EvaxHe/Awesome-LLM-Agent-Experience-Lifecycle =E2=80=94
+traversal seed rather than dashboard count: 90 systems organized
+across acquisition=E2=86=92representation=E2=86=92retrieval=E2=86=92consoli=
+dation=E2=86=92abstraction=E2=86=92internalization=E2=86=92revision=E2=86=
+=92distribution/governance,
+last verified Sep 14. High-yield next-run graph source.
+
+11 ATTACK LOGBOOK DELTAS
+
+NEW fingerprint A: MULTI-TOOL THRESHOLD POISONING =E2=80=94 individually
+benign metadata fragments compose into malicious semantics only across
+a set.
+
+NEW fingerprint B: ADAPTIVE SKILL POISONING =E2=80=94 attacker optimizes
+installed skill instructions against execution-trace feedback.
+
+NEW fingerprint C: OUTPUT-PATH AUTHORITY =E2=80=94 untrusted content steers=
+ a
+legitimate artifact-writing tool toward persistence-sensitive
+destinations.
+
+12 TOP PRIVATELY LAB EXPERIMENTS
+
+- Set-level MCP admission: compare per-tool scan vs joint
+capability-set scan on ShareLock-style synthetic cases.
+
+- TEE policy receipt: cMCP software vs TEE claim verification and
+deliberate policy-drift test.
+
+- GRASP-style self-modification gate: current-task gain cannot exceed
+a hard historical regression budget.
+
+- Real-commerce capability graph: Cryptorefills browse-only flow =E2=86=92
+infer money/data/external-effect expansion before payment.
+
+- CineForge-lite YouTube loop: typed edit policy patches + held-out
+retention experiments.
+
+13 BUILD/PROBE OPPORTUNITIES
+
+The strongest build is a SET-AWARE CAPABILITY ATTESTER. Input is not
+one tool but the current capability graph: tool metadata, schemas,
+providers, skills, destinations, delegation edges, budgets and memory
+writers. It emits a signed graph fingerprint plus reachable effects.
+Any mutation triggers differential re-analysis of affected grants.
+
+14 CONTENT OPPORTUNITIES
+
+- =E2=80=98Your AI security scanner checked every tool. The attack was hidd=
+en
+between them.=E2=80=99
+
+- =E2=80=98Can an AI safely improve itself? Give every improvement a regres=
+sion budget.=E2=80=99
+
+- =E2=80=98I let an AI learn video editing from its own production history.=
+=E2=80=99
+
+- =E2=80=98What does hardware-attested permission for an AI agent actually =
+buy you?=E2=80=99
+
+15 TOP 5 THINGS TO TRY NOW
+
+cMCP; GRASP mechanism; CineForge; mimic-mcp; Cryptorefills browse-only MCP.
+
+16 WATCHLIST
+
+Continue Monid, x402search, Agent402, Toolport, dynamic
+discovery/agent-discover, TinyRouter/JEV-like routers, RSIAgent,
+Pipelock, Vault, MemSentry, AgentPassport, Kinocut, VibeFrame and Open
+AI UGC. Do not count watchlist objects as discovery.
+
+17 SOURCE-YIELD / GRAPH-TRAVERSAL LEDGER
+
+High yield this run: x402 marketplace=E2=86=92real-world commerce;
+self-improvement=E2=86=92skill edit=E2=86=92counterfactual/regression gate;=
+ MCP
+poisoning=E2=86=92multi-tool composition; defender=E2=86=92TEE policy=E2=86=
+=92attested
+receipts; Remotion agent=E2=86=92reference-style cloning=E2=86=92self-evolv=
+ing
+long-video. Medium: VLA policy-head adjacency. Low: generic agent
+framework and generic faceless-video searches. Next run prioritize
+Experience Lifecycle authors/projects, ShareLock citations/defences,
+ARCP delegation/capability leases, CineForge code/citations, and
+real-world x402 commerce derivatives. Preserve >=3D15% weird traversal.
+
+18 MASTER FRONTIER INDEX DELTA
+
+Append canonical dashboard objects #1=E2=80=93#26. Treat Awesome LLM-Agent
+Experience Lifecycle as a traversal/source object, not part of the 26
+count. Mirrors/forks/report duplicates excluded. Prior registry
+remains exclusion set.
+
+19 MACHINE-READABLE RUN_STATE JSON
+
+{=E2=80=9Crun_local=E2=80=9D:=E2=80=9C2026-09-18T05:49:14+07:00=E2=80=9D,=
+=E2=80=9Cnew=E2=80=9D:26,=E2=80=9Cchanged=E2=80=9D:0,=E2=80=9Ccategory_coun=
+ts=E2=80=9D:{=E2=80=9Cagent_control=E2=80=9D:5,=E2=80=9Cjev_rsi=E2=80=9D:5,=
+=E2=80=9Cattacker=E2=80=9D:4,=E2=80=9Cdefender=E2=80=9D:5,=E2=80=9Cvideo=E2=
+=80=9D:7,=E2=80=9Cweird_alpha=E2=80=9D:3},=E2=80=9Ctop_objects=E2=80=9D:[=
+=E2=80=9CCineForge=E2=80=9D,=E2=80=9CShareLock=E2=80=9D,=E2=80=9Cagentrust-=
+io/cmcp=E2=80=9D,=E2=80=9CCryptorefills/agents=E2=80=9D,=E2=80=9CGRASP=E2=
+=80=9D],=E2=80=9Cattack_deltas=E2=80=9D:[=E2=80=9Cmulti_tool_threshold_pois=
+oning=E2=80=9D,=E2=80=9Cadaptive_skill_poisoning=E2=80=9D,=E2=80=9Coutput_p=
+ath_authority_abuse=E2=80=9D],=E2=80=9Cnext_queries=E2=80=9D:[=E2=80=9CShar=
+eLock
+multi-tool poisoning defense composition scanner=E2=80=9D,=E2=80=9CARCP cap=
+ability
+bounded lease delegation agent=E2=80=9D,=E2=80=9CCineForge repository CPPE =
+video
+evolution=E2=80=9D,=E2=80=9Cexperience lifecycle agent governance revision
+projects=E2=80=9D,=E2=80=9Cx402 real world commerce MCP
+authority=E2=80=9D],=E2=80=9Csource_yield=E2=80=9D:{=E2=80=9Cx402_real_comm=
+erce=E2=80=9D:=E2=80=9Chigh=E2=80=9D,=E2=80=9Cskill_regression_gates=E2=80=
+=9D:=E2=80=9Chigh=E2=80=9D,=E2=80=9Cmulti_tool_security=E2=80=9D:=E2=80=9Ch=
+igh=E2=80=9D,=E2=80=9Ctee_attestation=E2=80=9D:=E2=80=9Chigh=E2=80=9D,=E2=
+=80=9Cself_evolving_video=E2=80=9D:=E2=80=9Chigh=E2=80=9D,=E2=80=9Cgeneric_=
+agent_search=E2=80=9D:=E2=80=9Clow=E2=80=9D}}
+
+CORE INFERENCE
+
+The frontier has moved one level above the last run. It is no longer
+enough to attest an individual capability. ShareLock shows that risk
+can be an emergent property of a capability SET; SkillMaster/GRASP
+show the set can mutate itself; x402 commerce lets it acquire new
+real-world effects; cMCP shows enforcement can itself be attested.
+Privately=E2=80=99s durable object should therefore be a signed, continuous=
+ly
+updated CAPABILITY GRAPH with differential grant invalidation and
+externally verifiable enforcement receipts.

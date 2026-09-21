@@ -1,0 +1,395 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id vMFI52MTvysL
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 08:42:59 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=KjB99JS/ByT6GNM+2pMPItexjEG/S125BKPyf62l4ug3xp2Nnq043ri4CsHvbyET9tZWUBllu
+	vlk4xIDgHs9o8iCzGfi20N/AIvSmWtOBEn/55gefmEu5UHGh4Mon9u5KrR4bBAgFQ8W1/1I14DF
+	QoDz13+4a2vP/FMV6s78PfivvGNACF1592pN0YVX1onLBF3cDxX4YP0hBJsyyV+pcG72eTU81RE
+	v0+RG6a4cOSVLiFJhGPHxuNUI8enfnzmUaQfarlFEWet3cgiSt0ZcbXrtOIQINI+G4rcjMWwznV
+	H3Fj1/DLWgISKKpSxATARUfTTNip4oCCr+93SDUcqojQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789980179; x=1790584979; bh=5yI25WOc
+	gwfLJuNH8H37cPQStycgBygs7sEsVzIu7nQ=; b=KmEfpAbZX3jn52Wr9WL0ZCLPqIMSN/B611A
+	n9jf69URJSqbxTwIeEXwO/lvkuLnNG0IhJlhf0eEqR2eVASTDJ6dxaWWeukGjsPjIsdEuc+MO0C
+	VbjBfB2zfAZuR8AknBBi/TpFAeghbK7Dccl95TvbvASftiEkUARV+c1LKcnyJ1QPtU7XaaiWBPE
+	POMHB3sEAGoYhKZ6t3qG3C3sBkKtQeYFXt6CSuqV6ehnMwjZnj7ntmuLOU9gG/TvIwx6JGF00ry
+	cV/5DvhXGu7AyVF2igC3kI4Nv2czVjFhQFbBgrIlxMM3c+UXIGJ/7ZaIPN6TvqMMpEdMxM/sCtY
+	UxHB8qg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=DtkqfyKE;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=DtkqfyKE;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab201f9so2173366d50.0
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 01:42:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789980179; cv=none;
+        d=google.com; s=arc-20260327;
+        b=APMXcfaKPrZE0t7W4k/f/MW6ve/NMN+WBeuyxEppIO367AjpN+U+w7TFHOe/FcysHa
+         dIlQnLQadwL+lX+3XKKZAahcc5pRtOETI0c3ivt3R8QFq61T0gC2G3LxFjSgZAdenopw
+         LZOkRspj8gksicJgdv2fsBAMgyxXosFLuVnVZlQ8Fhvw6zf5Zc3DvR+CNhr1xod5N/pC
+         Eu/mMpsozhJHOthlyelf9EJS6sG1G0U7ReFtvem59PsHqphEITnjl0pGWqcmGs5tI8LD
+         qvMRnixS6v+rBVJrUKyzwdN4qOQG8ClLTsaFN/gFBl/XHOFb2QhYheHe0EdOeWwU7ov/
+         kY0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=5yI25WOcgwfLJuNH8H37cPQStycgBygs7sEsVzIu7nQ=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=EHLS1o9SrBPW5lNSWd8bBJHTrIjyb2EL/ZJYJqncclaRdynfk6pIMlaLldVBIlSYGW
+         jQSl1OaAxGRXfAcTDITGsKwQgVkeF+VUu6+xSBdtOajNpZUR5Xdb/HHs19jJlrU2+hkr
+         F3fD6e5kLu9P0AEncifan8TdilBScFIB+lCxSfVjNzWRhrlpeTEEz7PEHjam0cRtrQX9
+         txdWGv3aASV2aNu0iDrWrDW0SAPjjiW7izP5xCQtCwOIqNhecCEe3w5HQk/zBk4yfGzG
+         aSJyNqBvFe+M/D0hP9FYvl6XT6Y5K5OplH6LG2MwqR6Lxmo+RjGBeNS+93cxYApoZ834
+         828A==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789980179; x=1790584979; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=5yI25WOcgwfLJuNH8H37cPQStycgBygs7sEsVzIu7nQ=;
+        b=DtkqfyKEsQBn4tk/pvH6yGO6mv5kGZpHUxoC+Ua1+/0tIlucuObQuC+cQCT1b5ITrM
+         Ooz1e8IeeDCdGpl7E3EnOFBTqd/YiCCMGmVH4/DHZocWklqS5erBiOCYvadKMTr2mS8K
+         WHRFoGiXpm2cAkEKQIQdcomuzKiBjrmH8x4/6kPiTF6lZfAGTOY0Eolgf2XcQWhhnBSl
+         js7J7LpF/xTUIafFbfQs6reiZh9nbUSPdEWMLflXZimq9qR3yNKhKXUwMWMwRnxClyc8
+         Wj/XIn6nDeWMiI9qFe0MAgCFOH8f8WZbLLK4XpjntovSyiaUh8eNqzG4jkPhx27ScNfs
+         qzEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789980179; x=1790584979;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=5yI25WOcgwfLJuNH8H37cPQStycgBygs7sEsVzIu7nQ=;
+        b=1P+fz3yz1pD6+tHHfHuOb/xmkKkGRPdDPSf0yj4OcNi1sDpl7h4oIeK2bt7hGr/Tjp
+         cQJ1TucRPhX45yVvIIUae3w0uTXIQSLoJlL9k2m8RWo+vOduLaXPH9s0VZuRECK3olbK
+         1i2EDqmfQHFnTODURqSl0ChRY+P1r9NnFXIT1wBlBuxGZG8WO3TN/rZaO1ydKTzBM5Ag
+         x+f3+tCFctskyLN1HKlDA0oVK2INJDSzgzD036YWPPOS2HOch1Ahsi4UwKkIemkUnwoX
+         JJNh3WCu9LOjrbI2vO/Sxe/gUWTweuGjiRnWqYtEzVRw+4JuSdeqzpfcLi3lkfdghkOn
+         jelQ==
+X-Gm-Message-State: AFuF++lbHFAJ110sX5EzTbncQ+vgkx0+jYYCgn2quHQmVgWNkmXOC2Oc
+	CtrTmKPHZKZ7S197oWAqx8ePr+gAh0SR0Ksn6Jm9mTXnQ92oSHYTQxuG2nZKK6JnQGNzYMJaqGi
+	rL8Wis4bCBtIvz/GKyi9fqVUDzjw3Y/iGnQ==
+X-Gm-Gg: AYBFou3yC1O9VNz2dx2fE68oTlW4TZZ2ntJJ4J+58IS2bGs2X7/aAtS+DPI6aQ0aPjC
+	3mNXMG68hCTBgeOScdzfgAL2iBVICUFuqZUDF2kxvOSBSCnDgZInsmPJsA16DHK+Xy2L0MfA4iT
+	YVhASAX+kCxQmTNsGW5320d1B5WDQLKMdadmeB4luM40Fir0QWlGR7MJ3tWNpZRiOgrHNL0mC7S
+	TQXSyUJEldagFoTe49ZIOCrVajpsbFE4Q7DGnPUOLzzH8+OriDO58WauDhlBZkzfmgck/8gD+pc
+	DJGOl95e1nGLMR2Szt1cAuuOmadzmswyYA28DA0Vw43ZKgSPKVsFOiCwhgxK0IfXVSvbNexU5hY
+	Rlnh1FOq5MIM2RK/3WZS6JqMBDK9iprrtCIOpDYSFw9bAuZGrV5bm+VL3bhOKONcIIXwO
+X-Received: by 2002:a05:690e:dc6:b0:671:a86d:5d35 with SMTP id
+ 956f58d0204a3-671a86d5ebcmr2498066d50.66.1789980178822; Mon, 21 Sep 2026
+ 01:42:58 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 03:42:57 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 03:42:57 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 03:42:57 -0500
+X-Gm-Features: AclHuK9zvA8RrR64vzO33TrzrZf4sCj-zLImOniSgqwceyQDaPPbpgttoN8AUMY
+Message-ID: <CAPdrGenJPdv2NPtkBwwi+qVvfmdKt_AFXQHSP+_F-SNXA0ovsw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Joins_=26_Outcomes_=E2=80=94_2026=2D09=2D21_15=3A42_?=
+	=?UTF-8?Q?ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS JOIN / OUTCOME PROBE =E2=80=94 2026-09-21 15:42 ICT
+
+EXECUTIVE DELTA
+
+The highest-information update is a correction to the Street Manager
+access model. There are two different near-real-time mechanisms that
+should not be conflated. Street Manager's authenticated API
+Notifications endpoint subscribes an authenticated organisation and is
+organisation-scoped. Separately, DfT's public roadworks-data guidance
+says England-wide roadworks data is publicly viewable free of charge
+via API after registration, and the public feed exposes
+event_reference, work_reference_number, permit_reference_number,
+coordinates, work category, traffic-management type, proposed/actual
+dates, work status, USRN, event_time, object_reference and version.
+Therefore the Street Manager =C3=97 BODS OutcomeGraph remains plantable,
+but POW should use the public/open-data registration path for national
+observation and reserve authenticated API Notifications for a
+participating authority/promoter/contractor integration.
+
+This run also sharpens the reconstruction test. National raw BODS is
+definitively not a moat: National Data Library archives SIRI-VM every
+~30 seconds, currently 2.74 TB, under OGL, with known collection gaps;
+its main page says the archive began 18 June 2025 and identifies a
+University of Exeter archive back to February 2024. The moat is the
+continuously resolved intervention =E2=86=92 exposure =E2=86=92 degradation=
+ =E2=86=92 recovery
+graph, plus gap filling where public archives fail.
+
+A second important identity lesson comes from EPC. Current official
+statistics explicitly note multiple EPCs can exist for the same
+dwelling and that de-duplication uses UPRN plus address; address-level
+open data is updated daily through the developer API. A government
+linkage example achieved a 97% EPC match among social lettings with
+valid UPRNs. UPRN should therefore be POW's primary site identity
+whenever present, with address matching as a resolver rather than a
+canonical key.
+
+RANKED JOINS
+
+1. Grid project =E2=86=92 owner/company =E2=86=92 planning =E2=86=92 Gate/q=
+ueue/headroom =E2=86=92
+energisation: 4.94 / PLANT.
+2. Street Manager public events =E2=86=92 USRN/geometry =E2=86=92 BODS jour=
+ney
+exposure =E2=86=92 delay/recovery: 4.93 / PLANT NOW.
+3. MCS installer/install =E2=86=92 site/UPRN =E2=86=92 grant/certificate =
+=E2=86=92
+performance/outcome receipt: 4.90 / PILOT/PLANT.
+4. EVSE =E2=86=92 site/UPRN/geospatial identity =E2=86=92 grid/tariff =E2=
+=86=92 installer =E2=86=92
+install/reliability outcome: 4.88 / PLANT where permission exists.
+5. Planning application lifecycle =E2=86=92 UPRN/site =E2=86=92 interventio=
+n =E2=86=92
+EPC/installation/physical outcome: 4.82 / t=3D0 WATCH.
+6. MOT defect =E2=86=92 model/vehicle identity =E2=86=92 first-party repair=
+ receipt =E2=86=92
+subsequent MOT: 4.57 / JOIN/PILOT.
+7. Asset/model =E2=86=92 MPN/supersession =E2=86=92 fault =E2=86=92 part tr=
+ansaction =E2=86=92
+repair/resale outcome: 4.55 / PILOT.
+
+IDENTITY GRAPH
+
+Site spine: UPRN CONFIRMED where source supplies it; otherwise
+normalized address + postcode + geometry as INFERRED candidate, never
+silently promoted. Preserve source address strings.
+
+Road spine: USRN + geometry + Street Manager
+work_reference_number/version. USRN is spatial identity;
+work_reference_number is intervention identity.
+
+Bus spine: operator/service + dated vehicle journey reference +
+vehicle reference + timetable version. Exposure to roadworks is
+INFERRED unless an authoritative route/geometry relationship exists.
+
+Company/provider spine: Companies House number where resolved; scheme
+IDs (MCS/OZEV/NICEIC/NAPIT etc.) remain source-native aliases linked
+with provenance and validity windows. Never key solely by company
+name.
+
+Part spine: manufacturer + MPN + revision/supersession edge. A
+compatible substitute is a directed, validity-scoped edge, not
+identity equality.
+
+Project spine: authoritative project ID/reference first; owner/company
+and connection point are time-varying attributes. Name changes and
+ownership transfers create events, not new projects unless
+authoritative IDs change.
+
+Every edge must store from_id, to_id, edge_type, valid_from, valid_to,
+observed_at, status CONFIRMED|INFERRED|UNKNOWN, confidence,
+provenance[], resolver_version and evidence_hash.
+
+EXACT SOURCE STACK
+
+Street Manager: DfT public roadworks API, registration required,
+OGL/free. Official guidance:
+https://www.gov.uk/guidance/find-and-use-roadworks-data . Public
+fields include event_reference, event_type, work_reference_number,
+permit_reference_number, promoter/highway authority, coordinates,
+work_category, traffic_management_type, proposed/actual start/end,
+status, USRN, event_time, object_reference and version. Cadence: live.
+Canonical intervention key: work_reference_number + version; event key
+event_reference.
+
+Street Manager API Notifications: official docs at
+https://department-for-transport-streetmanager.github.io/street-manager-doc=
+s/api-notifications/
+. Near-real-time semantic events, but authenticated POST
+/api-notifications/subscribe is organisation-scoped. Do not assume
+this is the national public subscription path.
+
+BODS archive: https://data.datalibrary.uk/transport/BODS-ARCHIVE/sirivm/
+. OGL; one request/second; daily downloads containing snapshots saved
+about every 30 seconds; 2.74 TB current SIRI-VM archive. Use archive
+first, live collection only for gaps or experiments.
+
+EPC: official England/Wales address-level open data; CSV monthly,
+developer API daily. Canonical site key UPRN when present;
+certificate/lodgement identity preserved separately. Official 2026
+statistics note duplicate certificates and daily API updates.
+
+Planning Data planning-application-log:
+https://www.planning.data.gov.uk/dataset/planning-application-log .
+OGL. Current state remains 0 records, no providers, no collector
+attempt. Schema already contains planning-application, status,
+event-date, organisation, reference and lifecycle statuses including
+submission, document check, missing-document request, consultation and
+appeal. This remains a clean t=3D0 trigger.
+
+MCS: installation/certificate data is operationally useful, but public
+row-level access and permission path for a broad POW collector remain
+unresolved. Treat as PILOT/PERMISSION, not open-data fact.
+
+JOIN QUALITY METRICS
+
+For every join report: stable_id_coverage; exact_match_rate;
+alias_match_rate; fuzzy_match_rate; unresolved_rate; one_to_many_rate;
+temporal_conflict_rate; source_disagreement_rate; stale_edge_rate;
+manual_precision; manual_recall; and confidence calibration.
+
+Initial gates:
+- Street Manager intervention identity =E2=89=A599% exact
+work_reference_number/version coverage.
+- USRN or usable geometry =E2=89=A595%.
+- Journey resolution =E2=89=A590% on sampled exposed windows.
+- Manual roadwork=E2=86=92journey exposure precision =E2=89=A590% before ca=
+usal modelling.
+- UPRN site joins: =E2=89=A595% exact UPRN where both sources claim UPRN
+coverage; address-fallback edges remain INFERRED and need =E2=89=A595% manu=
+al
+precision.
+- Company joins: =E2=89=A598% precision for Companies House mapping; otherw=
+ise
+retain UNKNOWN/unresolved rather than forcing name matches.
+- MPN/supersession: exact manufacturer+MPN preferred; no fuzzy
+substitute edge without evidence.
+
+OUTCOME ACQUISITION ROUTES
+
+Roadworks: fully public operational outcome. Intervention comes from
+Street Manager; consequences from BODS. No personal data required.
+
+Property clean-tech: first-party consenting owner/installer returns
+action_id =E2=86=92 survey =E2=86=92 quote =E2=86=92 won/lost =E2=86=92 ins=
+tallation/certificate =E2=86=92
+cost/time/performance. Authoritative certificate/grant evidence can
+validate self-report where permitted.
+
+Repair: consenting user/repairer returns diagnosis =E2=86=92 actual MPN =E2=
+=86=92
+substitute used =E2=86=92 part cost =E2=86=92 labour/time =E2=86=92 success=
+/failure =E2=86=92 later
+fault/resale. Subsequent MOT or safety/recall events become external
+validation where applicable.
+
+Grid: public project/register events establish queue/Gate/planning
+state; energisation must only be marked CONFIRMED from an
+authoritative operational/connection source. Company reports may be
+evidence but should preserve source class.
+
+PLANT NOW =E2=80=94 STREET MANAGER =C3=97 BODS
+
+Collector A: register for DfT public roadworks API; capture all
+permitted national event records. Raw append-only payload + SHA256;
+normalize work_reference_number, version, event_reference, USRN,
+geometry, traffic_management_type, proposed/actual dates, work_status,
+promoter, event_time.
+
+Collector B: do not mirror national BODS blindly. Use NDL historical
+daily bundles. For prospective experiments collect only chosen
+geographies/journeys where archive gaps or latency matter.
+
+Derived event: ROADWORK_EXPOSURE(work_id, journey_id,
+exposure_start/end, route_distance_overlap, confidence,
+resolver_version).
+
+Outcome: excess_journey_seconds, maximum_delay, reliability_delta,
+recovery_half_life, spillover_route_count, matched_control_set and
+effect_estimate.
+
+Smallest test: 20 interventions, >=3D100 exposed journey-windows, at
+least 20 matched controls. Manually inspect every inferred exposure in
+the first batch.
+
+Kill threshold: if a cheap provider already supplies the same
+versioned intervention=C3=97journey causal history with comparable
+identity/provenance and outcome metrics, kill raw collection and
+buy/backfill. If only raw sources/history exist, retain transformation
+garden.
+
+PLANT NOW =E2=80=94 SITE IDENTITY TAPE
+
+Use UPRN as canonical site ID when present. Preserve EPC lodgements
+over time rather than replacing with latest-only state. Record
+SITE_STATE_CHANGED when EPC/property/intervention state changes. Never
+infer whole-housing-stock coverage: official statistics say EPC
+coverage is incomplete because certificates are event-triggered and
+valid for 10 years.
+
+Smallest test: 1,000 properties across one local authority; measure
+UPRN availability, duplicate EPC history, address fallback precision,
+planning/site join coverage and whether clean-tech installation
+records can be attached without ambiguous multi-building matches.
+
+PLANNING t=3D0 WATCH
+
+Current official planning-application-log remains empty. Trigger
+collection immediately when provider_count > 0 or record_count > 0.
+Preserve the first observed schema and every subsequent event.
+Reconstruction question: does first publication backfill historical
+lifecycle, or begin prospectively? If prospective/incomplete, POW
+gains a real time moat from day one.
+
+COUNTEREVIDENCE
+
+CONFIRMED: national raw BODS history already exists at NDL, so generic
+AVL mirroring is not a moat.
+CONFIRMED: Street Manager public roadworks data is free via API after
+registration, but the authenticated API Notifications subscription
+documented in v7 is organisation-scoped. Do not treat that endpoint as
+the public national feed.
+CONFIRMED: EPC history is partly reconstructable and official open
+data updates daily; raw EPC mirroring alone is weak moat.
+CONFIRMED: UPRN linkage can be strong where present: a government
+social-lettings linkage reported EPC matches for 97% of lettings with
+a valid UPRN.
+INFERRED: the high-value transport asset is causal
+intervention=E2=86=92outcome resolution, not storage.
+UNKNOWN: exact public Street Manager open-feed onboarding
+mechanics/rate limits in 2026; NDL long-term durability after its
+stated storage constraint; row-level MCS permission path; future
+planning-log retrospective completeness.
+
+NEXT-HOUR INFORMATION-GAIN QUEUE
+
+1. Complete public Street Manager registration/onboarding
+documentation: exact public feed subscription mechanism, auth,
+rate/volume, payload retention and whether open data receives the same
+event classes as organisation-scoped notifications.
+2. Run 20-roadwork manual identity/exposure sample against NDL BODS;
+quantify false joins before any causal model.
+3. Test NDL gap map against target interventions and decide whether
+selective live BODS collection is justified.
+4. Build UPRN resolver benchmark using EPC + one
+planning/local-authority sample; report exact/fuzzy/unresolved rates.
+5. Keep planning-application-log t=3D0 trigger active; first
+authoritative record/provider is a high-priority event.
+6. Resolve MCS public/partner access and whether certificate IDs can
+legally join to first-party installer outcome receipts.
+
+MACHINE-READABLE APPENDIX
+
+{"probe":"POW_JOIN_OUTCOME","run":"2026-09-21T15:42:08+07:00","collector_de=
+ployed":false,"material_delta":"STREET_MANAGER_PUBLIC_VS_ORG_NOTIFICATION_A=
+CCESS_CLARIFIED","ranked":[["GRID_PROJECT_OUTCOME",4.94,"PLANT"],["STREETMA=
+NAGER_BODS_CAUSAL_OUTCOME",4.93,"PLANT_NOW"],["MCS_SITE_INSTALL_OUTCOME",4.=
+90,"PILOT_PLANT"],["EVSE_SITE_INSTALL_OUTCOME",4.88,"PLANT_PERMISSION"],["P=
+LANNING_LIFECYCLE_PHYSICAL_OUTCOME",4.82,"T0_WATCH"],["MOT_REPAIR_OUTCOME",=
+4.57,"JOIN_PILOT"],["MPN_REPAIR_RESALE_OUTCOME",4.55,"PILOT"]],"identity":{=
+"site":"UPRN","road":"USRN","roadwork":"work_reference_number+version","bus=
+":"operator+dated_vehicle_journey_ref+vehicle_ref","company":"CompaniesHous=
+eNumber_when_resolved","part":"manufacturer+MPN","edge_status":["CONFIRMED"=
+,"INFERRED","UNKNOWN"]},"kills":["GENERIC_NATIONAL_BODS_MIRROR","LATEST_ONL=
+Y_EPC_MIRROR"],"critical_unknowns":["STREET_MANAGER_PUBLIC_FEED_ONBOARDING_=
+AND_RATE","NDL_LONG_TERM_DURABILITY","MCS_ROW_LEVEL_PERMISSION","PLANNING_L=
+OG_RETROSPECTIVE_COMPLETENESS"]}

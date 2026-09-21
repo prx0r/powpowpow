@@ -1,0 +1,1633 @@
+Received: from mail-yx1-xb12e.google.com (2607:f8b0:4864:20::b12e)
+        by cloudflare-email.net (cloudflare) id H47zcW6Zt2Pv
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 12:40:53 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=bqF4ENzOAKNnafBvHgzxGzwMlcGjLN6UFpTxglMiCVY3scXvqIEbIklWt7rDp5PQktMiV7ZaC
+	3hZK1LRgH4TtIcPAi5jdJqHMmelHekDXl1Jyvs0jHk9Zm77pNzTTJ6fMxEeTB5PBgDiNy3QFVhm
+	sZE+bmQ0/wUWiIpiDj11jYnmNBXRKFuuTBLjJ+28Hc9nTtS/UbCy+ug4JuVzYHxCt3cHKKCgDEK
+	Uo1rsFOF8oJQ//8bhGU0m6FsrDj/rHoVrGaHXxYMWB0htYJErWwKxXfYj9VbzYQkZL/wkflekle
+	It6g6z6qeqHOzFGt71h6hKJ2oTV4xxFyJd8YVk6HlMbg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789908053; x=1790512853; bh=v8C5FGfr
+	FfdBKN9lvacuAFJz3/4krugQhWEOMq8CRhk=; b=E/JoBcL8ARAFybMmHvywQyzOXsggdN1EWHp
+	ynnQPTGVBVeOCP3tymQ9cZChsEFf9J1bujIcTtH4Orl9bAbLhTyD6DtvPjMU+zoYh8eEeItRgir
+	0TCBUexWDqQ6j6s7J3qufl6VE/S3+TCRWSEkGqyeexxGgRqrULDpC899t8P2o6rTnMh8UcWbDKS
+	NbPycA9LwxAojEl5GTEFlGav6UchqAMNVM0K50yK0aXiJ/gm5JrfUAMWV/hBYrLLvUKjpye4oAd
+	vD3Y6CCnKg2KaKvGOszDRoRr1lYdhR3EOhuQsxA3Sfyttp/50sC7oMyBSrBOSa+0cjiG9IjaZRQ
+	pZKyN8A==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=aIaeWHKy;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb12e.google.com) smtp.helo=mail-yx1-xb12e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b12e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b12e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b12e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:20::b12e; envelope-from="tradesprior@gmail.com"; helo=mail-yx1-xb12e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=aIaeWHKy;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb12e.google.com) smtp.helo=mail-yx1-xb12e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b12e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b12e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx1-xb12e.google.com with SMTP id 956f58d0204a3-670f572e814so1264644d50.1
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 05:40:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789908053; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Dm16A0G5BVnYYqQ1VdWkrKa1WBk24iiqn9FwRfNq+3WHZiNjrsdhm8f8Rdlgbz+TyP
+         eT00NSH7XqxbId3NqcHJaY8D1HQPprKlsMHXd5nPtq3V7T9vwYyRWW1/I+5JXMi2s1qf
+         aTCj3a+C+kITJaL5+uIxmX4fOKNxuQwccNucJLiBVg3tIYKt4sr7J8NnXThSmrn74eIB
+         JYtONgAyukCQmeI0kUirX2UHWClQ9+EEsm88QRhm5htnBPSHAiIgMSwsr/vxnNOXUpI3
+         Y1/9yBe5rZDE9tRhGdr9ETznj1FEKlfH5noJU0VPZ8/VsdCsPacUntlVdtGjvmFr8Uqi
+         8uaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=v8C5FGfrFfdBKN9lvacuAFJz3/4krugQhWEOMq8CRhk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=kIV/PKMTqbXtSHKUf33Z51uW1ZJ1eRmhJGzudn8jZaRc3oWr1NKHvO6yW7AvlBVEmP
+         BCd+LVbv3IJ8H0wYQMuA2ZWCV2Lme0MXZGL2+UjPMyJIhwV6DoB6A5YsrMySSU4VPyD+
+         Dio73tXjXuci4AmNEtF1QCdXUDC1olXDI0bH5POFGNbclva26Pz4MOW8GvDS8TIrCCnd
+         nGPQ0q/HVkLSzcOyy1G1Tepi5PaBqQQn/+2kFhvMs75tsSzJ95AIWwZ5IUrngkgGScxt
+         kq1AjoXIT/Q1Xgez7lgbCZbKLFPKS+5CKxekRXgQZvITQ5+I6GLxFbeEZnxtceEO65HY
+         qOcw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789908053; x=1790512853; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=v8C5FGfrFfdBKN9lvacuAFJz3/4krugQhWEOMq8CRhk=;
+        b=aIaeWHKyR5iSDCqMVzeak5zTeHWx75fwGUSBZ+MCNzEMtjaeTJgeVmOwLwG7mTzfSV
+         tjVG3Fb8dX/2ikULn8oNmmW4xjH4Kz0GnrT8mzq7A1Bk0YGabz3Sp+qhSW2+YGLwflC9
+         kRm6iS+YFJRktvHSBQq83j/pN16aqheg96mO2CmW6YUkFQX50nYGH4DgLbwC5zx0StJM
+         9PGdr3hTtYxKYBU8YGvkVIgHMN7TXbpi5noXgJlHUZWOOmil+y5rqv+Z0FN+2isGal+r
+         GKm/56FhVkqAhv46RnhnzL/S0CzONl+VEvNLSIhJUPYaeu43fSSm57yTJIrBvu55O3XG
+         6ajQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789908053; x=1790512853;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=v8C5FGfrFfdBKN9lvacuAFJz3/4krugQhWEOMq8CRhk=;
+        b=KKspoAlL7MvQlyXmEvjJbvL0a9yVTkk7PqwXlaK1DZcvvqH4lmR7NJX91nacyhcIb2
+         mIXnf4XZc4Z48OhrmL2wbkof4pSKcXmRO1G6shdsju3eXOmJOHPR1v7F+Yk2Ust0k/dK
+         DS1dbC4JadqS8NkScis1t3ZJm0t7UlbpIjr7jqMfN4XtLZiCwkgUTjnemG95E9W25L5C
+         GoTDhC/wGaUnjvh/XYFSwMzLl2nvcg+Fo4S6pMtxlbldo9ZkrRel7F0wZtfeZI1f4Gfm
+         BGDiRLnejHupn9CeAK7yQtGOF6Jly13+idSZlfytZ4sCxA0lYmQ4kJ9YXwuZRSYDZ/op
+         M/WQ==
+X-Gm-Message-State: AFuF++niLUkIoUGQqGVyBcnofLz7REymVtxdJJmfHGgYepWtjTrWDTvX
+	IQYsLuCFnqSlQspPbfRDjQmPvDucCs9TAAQ5bl0EwgoQA4wEzyI21FbHEvWHRET5XSaWbMhnrko
+	8IprOcmofuHFlzsQDcQuS4HlDu+2i7OxO6w==
+X-Gm-Gg: AYBFou3f5sIRWXlmfUVJCXQ8NxAR539vHJbbatdCe8EIYlP418GgoUhLzegqntKVsJG
+	UFaEQPFaEYhcrHJhqoJaTn8te44afFFbONcqL7sx4LCfUIYLJ9uR4fvCPl57hykPE7miPbGLJqp
+	hQc6g/t9Mg3EOJFB4OYbWfYO8YchuQTXQwDlO3bKJlkupTIugPHjHztRgsENRYHqfTZuQxjjJfa
+	/Dz57wSJ+A9BQNhFoeyy0Bk7GXkcDFbRBH+VUyyP2vSohFTPZe7TDOL7yQX3Uz0fcKpNEUycePL
+	tolRNYK9+zLLlJAO/kvNpvLcrp/N6vqu738BwSOLU11lNBBlebGCI+BoDMCKEd0mmF1ZB5Cueo1
+	HvkLbzbS5Zqd8v7/6Q3tPlpmwNn0O/Y7Qqj72dbiUfg2IXZXt8i9jsHANf3JzhGdSEVODGDwq
+X-Received: by 2002:a05:690e:4194:b0:66f:c1bc:4065 with SMTP id
+ 956f58d0204a3-67170493f0emr2829787d50.45.1789908053012; Sun, 20 Sep 2026
+ 05:40:53 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:40:52 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:40:52 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 07:40:52 -0500
+X-Gm-Features: AcwNN1UjEbseYknhQWcGOs9qJM1B3DgAJvgRbRTh-bmY9iQ8zlmsYTDPk4Wv2W8
+Message-ID: <CAPdrGek=PCMsNyb+kUbr3+vBRMXR=2GO9McwWLnHPxVzBSJbDw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Systems_=E2=80=94_L2_Markets=2C_Jev_Architecture=2C_Causal?=
+	=?UTF-8?Q?_Graph_=2B_Downstream_Products?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000ae355b065be97153"
+
+--000000000000ae355b065be97153
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW Systems =E2=80=94 L2 Markets, Jev Architecture, Causal Graph + Downstre=
+am
+Products Core expansion
+
+Once POW combines physical-economy state with securities/microstructure
+data, it stops being a repair/parts intelligence system and becomes a live
+causal graph from:
+
+*physical event =E2=86=92 constraint change =E2=86=92 company exposure =E2=
+=86=92 market reaction =E2=86=92
+capital allocation =E2=86=92 supply response*
+
+This is the deeper Seesaw system.
+
+The most valuable thing POW can ultimately measure is not just =E2=80=9Cwha=
+t
+changed,=E2=80=9D but:
+
+*How long does information take to propagate from physical reality into
+financial markets?*
+
+That is the causal-latency alpha thesis made measurable.
+1. Securities layer / L2
+
+For publicly traded companies, add market state and depth data.
+
+Potential L2-derived features:
+
+   - bid depth / ask depth
+   - spread
+   - depth at N levels
+   - order-book imbalance
+   - depth slope
+   - microprice
+   - replenishment rate
+   - depletion rate
+   - cancel/update intensity
+   - price-impact proxy
+   - liquidity vacuums
+   - recovery after shocks
+
+The point is not merely =E2=80=9Cstock moved +2.3%.=E2=80=9D
+
+We want event timing such as:
+
+08:41 =E2=80=94 tender published
+08:47 =E2=80=94 asks begin disappearing
+08:48 =E2=80=94 book imbalance flips
+08:51 =E2=80=94 spread widens
+08:55 =E2=80=94 repricing begins
+09:02 =E2=80=94 sector peer reacts
+09:16 =E2=80=94 supplier reacts
+
+After enough events, POW can ask:
+
+*Which markets price which kinds of physical information fastest?*
+
+And then stratify by:
+
+   - FTSE 100 / 250 / AIM
+   - large vs small cap
+   - analyst coverage
+   - direct vs indirect exposure
+   - commodity vs component vs labour vs regulatory events
+
+Possible result:
+
+the edge is not =E2=80=9Cwhich event matters,=E2=80=9D but *which classes o=
+f event have the
+longest assimilation latency.*
+
+2. Important data-rights boundary
+
+IBKR/L2 should initially be considered a private research/model-development
+feed unless licensing explicitly permits broader commercial use.
+
+Do not assume broker/exchange market data can be republished or
+commercialized through POW.
+
+Architectural rule:
+
+*Every datum in POW carries a rights envelope.*
+
+Suggested type:
+
+type DataRights =3D
+| =E2=80=9COPEN_REPUBLISH=E2=80=9D
+| =E2=80=9CATTRIBUTION=E2=80=9D
+| =E2=80=9CINTERNAL_ONLY=E2=80=9D
+| =E2=80=9CDERIVED_INTERNAL_ONLY=E2=80=9D
+| =E2=80=9CDERIVED_PUBLISHABLE=E2=80=9D
+| =E2=80=9CLICENSE_REQUIRED=E2=80=9D;
+
+Every transformation should compute/propagate the strictest relevant rights
+class from its parents.
+
+This prevents us building a valuable dataset we later discover we cannot
+legally expose.
+3. Company / economic entity graph
+
+Add a securities/company ontology beside the physical-component graph.
+
+Canonical nodes:
+
+   - COMPANY
+   - SECURITY
+   - LEGAL_ENTITY
+   - BRAND
+   - FACTORY
+   - PRODUCT
+   - PRODUCT_CATEGORY
+   - COMPONENT
+   - SUPPLIER
+   - CUSTOMER
+   - DISTRIBUTOR
+   - GEOGRAPHY
+   - COMMODITY
+   - SKILL
+
+Edges:
+
+   - manufactures
+   - consumes
+   - supplies
+   - owns
+   - operates
+   - exposed_to
+   - sells_into
+   - depends_on
+   - security / ticker mapping
+
+Then physical anomalies map naturally into market exposures.
+
+Example:
+
+servo motor:
+
+   - inventory =E2=86=93
+   - price =E2=86=91
+   - lead time =E2=86=91
+   - tenders =E2=86=91
+   - imports =E2=86=91
+
+POW asks:
+
+   - Who makes these?
+   - Who uses these?
+   - Who distributes these?
+   - Whose costs rise?
+   - Whose revenue rises?
+   - Which of those entities are publicly traded?
+
+That is the bridge from physical data to securities.
+4. Traverse both directions
+
+Forward:
+
+physical anomaly
+=E2=86=92 affected companies
+=E2=86=92 securities
+
+Reverse:
+
+unusual stock/L2 behavior
+=E2=86=92 company
+=E2=86=92 product exposures
+=E2=86=92 component exposures
+=E2=86=92 physical-market signals
+
+This supports machine-assisted fundamental investigation:
+
+A stock behaves strangely. What changed underneath it?
+
+Possible causes:
+
+   - tender demand
+   - supplier inventory
+   - import changes
+   - repair/failure cohort
+   - regulatory change
+   - factory issues
+   - competitor shortages
+   - labour scarcity
+
+5. The propagation graph is the key asset
+
+Every meaningful observation becomes an event.
+
+Suggested shape:
+
+EconomicEvent {
+id
+observed_at
+effective_at?
+
+entity_ids[]
+
+event_type
+
+magnitude?
+direction?
+
+source
+source_rights
+
+confidence
+
+provenance
+}
+
+Then connect events with relations such as:
+
+   - PRECEDES
+   - SUPPORTS
+   - CONTRADICTS
+   - SAME_PHENOMENON
+   - EXPOSED_TO
+   - POSSIBLE_CAUSE_OF
+
+Example:
+
+EVENT A
+sensor inventory collapse
+2027-04-03
+
+=E2=86=93 11 days
+
+EVENT B
+distributor prices rise
+2027-04-14
+
+=E2=86=93 6 days
+
+EVENT C
+tender prices rise
+2027-04-20
+
+=E2=86=93 18 days
+
+EVENT D
+company guidance changes
+2027-05-08
+
+=E2=86=93 seconds/minutes/hours
+
+EVENT E
+market reprices
+
+Over time POW learns empirical propagation delays.
+
+That dataset becomes extremely hard to recreate after the fact.
+6. Jev / TypeSafe architecture
+
+Jev should NOT be treated as a general =E2=80=9CAI brain.=E2=80=9D
+
+Use three layers of intelligence.
+A. Deterministic code
+
+Use normal code for:
+
+   - arithmetic
+   - price changes
+   - inventory deltas
+   - returns
+   - moving windows
+   - graph traversal
+   - time deltas
+   - order-book imbalance
+   - statistics
+   - backtests
+   - currency conversion
+
+Never ask AI to do exact math we can compute deterministically.
+B. Jev / typed atomic decisions
+
+Use Jev for small ambiguous classifications where the output space is
+constrained.
+
+Examples:
+
+   - Is this component a sensor?
+   - Which failure category does this text describe?
+   - Does this tender imply incremental actuator demand?
+   - Which model does this messy marketplace listing likely correspond to?
+   - Is this evidence FOR / AGAINST / NEUTRAL to hypothesis X?
+   - Does this announcement indicate actual capacity addition or only
+   planned capacity?
+   - Is company X materially exposed to component Y?
+   - Is this event already represented in the graph?
+   - How strong is this evidence?
+
+Prefer small independent typed questions with probabilities/confidence.
+
+Do NOT do:
+
+500MB of raw world
+=E2=86=92 =E2=80=9CJev, tell me what to trade=E2=80=9D
+
+Do:
+
+SOURCE
+=E2=86=92 deterministic parser
+=E2=86=92 Jev atomic decisions
+=E2=86=92 typed facts
+=E2=86=92 deterministic graph/math
+
+Example repair text:
+
+=E2=80=9CMachine fills but drum won=E2=80=99t spin, motor brushes heavily w=
+orn.=E2=80=9D
+
+Jev-type outputs:
+
+   - product_category: CHOICE
+   - primary_failure_family: CHOICE
+   - repairable: probability
+   - failure_severity: SCORE
+   - requires_component_replacement: probability
+
+The system receives typed structured fields, not freeform prose.
+C. Large reasoning model
+
+Use a reasoning LLM only for higher-order tasks:
+
+   - discovering new causal pathways
+   - forming new Seesaw hypotheses
+   - reading papers
+   - designing ontology extensions
+   - explaining anomalies
+   - generating content/video narratives
+   - proposing new features
+
+This is where costs stay low:
+millions of simple typed classifications;
+rare expensive reasoning.
+7. Jev-native Seesaw hypotheses
+
+Represent every Seesaw as a structured object.
+
+SeesawHypothesis {
+id
+
+innovation
+constraint_relaxed
+new_constraint
+
+resource
+companies[]
+securities[]
+
+predictions[]
+kill_conditions[]
+
+created_at
+}
+
+Example:
+
+HYPOTHESIS:
+cheap edge intelligence increases servo/encoder demand
+
+PREDICTIONS:
+P1 actuator shipments =E2=86=91
+P2 distributor stock =E2=86=93
+P3 lead times =E2=86=91
+P4 prices =E2=86=91
+P5 imports =E2=86=91
+P6 tender references =E2=86=91
+P7 supplier revenues =E2=86=91
+
+KILL CONDITIONS:
+K1 robot deployments stall
+K2 actuator capacity expands faster than demand
+K3 prices decline despite demand growth
+K4 substitutes make incumbent actuator types irrelevant
+
+Each incoming event gets tiny typed questions:
+
+supports P1?
+supports P2?
+supports P3?
+supports K1?
+supports K2?
+
+Jev provides probabilities.
+
+Ordinary code updates an evidence score / posterior.
+
+This is far better than asking an agent to repeatedly reread everything and
+=E2=80=9Chave an opinion.=E2=80=9D
+8. Close the loop with market behavior
+
+Canonical flow:
+
+THESIS
+=E2=86=93
+physical predictions
+=E2=86=93
+physical observations
+=E2=86=93
+company consequences
+=E2=86=93
+market expectation
+=E2=86=93
+L2 / securities observations
+=E2=86=93
+eventual fundamentals
+=E2=86=93
+thesis validation
+
+Then backtest questions such as:
+
+When physical supply pressure first crossed threshold X, how long did
+exposed securities take to react?
+
+This is the direct experimental form of causal-latency alpha.
+9. Additional data layers that compound the system
+
+Potential future inputs:
+
+   - RNS / exchange announcements
+   - Companies House
+   - patents
+   - job postings
+   - planning applications
+   - grid connection queues
+   - shipping/imports
+   - AIS vessel movement where rights permit
+   - satellite imagery where licensed/open
+   - tender data
+   - repair data
+   - distributor inventory
+   - used marketplaces
+   - wholesale marketplaces
+   - energy prices
+   - weather
+   - academic papers
+   - GitHub/open-source development
+   - training/apprenticeship data
+   - L1/L2 securities data
+
+The key is not the number of sources.
+
+Every source must resolve onto the *same temporal causal graph*.
+10. Provenance must be first-class
+
+Every derived fact should carry:
+
+VALUE
+SOURCE
+OBSERVED_AT
+VALID_FROM
+VALID_TO
+CONFIDENCE
+LICENSE / RIGHTS
+TRANSFORMATION
+PARENT_FACTS
+
+Do not store:
+
+=E2=80=9Cservo demand =3D high=E2=80=9D
+
+Store:
+
+servo_demand_index =3D 0.81
+
+derived from:
+
+   - tender_count +21%
+   - distributor inventory -14%
+   - imports +9%
+   - prices +7%
+
+algorithm:
+servo-demand-v3
+
+calculated:
+timestamp
+
+rights:
+publishable-derived
+
+This gives reproducibility and lets us debug causal claims.
+11. Recommended data architecture
+
+SOURCES
+=E2=94=82
+=E2=94=9C APIs
+=E2=94=9C files/feeds
+=E2=94=94 streams
+=E2=86=93
+IMMUTABLE RAW EVENT LOG
+=E2=86=93
+NORMALIZATION
+(deterministic first)
+=E2=86=93
+JEV
+(typed ambiguous fields)
+=E2=86=93
+ENTITY RESOLUTION
+=E2=86=93
+TEMPORAL KNOWLEDGE GRAPH
+=E2=94=82
+=E2=94=9C FEATURES
+=E2=94=9C SEESAWS
+=E2=94=94 TIMESERIES
+=E2=86=93
+BACKTEST ENGINE
+=E2=86=93
+SIGNALS / RESEARCH / CONTENT / API
+
+Keep raw, normalized and derived layers strictly separate.
+
+Never overwrite history.
+12. The append-only event log may be the crown jewel
+
+Example:
+
+2026-09-20 08:00
+DigiKey inventory X =3D 5,119
+
+2026-09-20 09:13
+Tender mentions X
+
+2026-09-20 10:02
+Repair event implicates X
+
+2026-09-20 10:31
+Company Y RNS
+
+2026-09-20 10:31:04
+Company Y book imbalance flips
+
+Five years later, the valuable thing is not just the latest graph.
+
+It is:
+
+*the observed state of the economy before everyone knew what mattered.*
+
+That is the Data Garden moat:
+unique transformation =C3=97 continuous collection =C3=97 time.
+13. POW vs Muse vs trading action
+
+Keep the system boundary clean.
+POW
+
+Models:
+
+   - resources
+   - constraints
+   - work
+   - physical markets
+   - company exposures
+   - capital allocation
+   - market assimilation
+
+POW can say:
+
+Physical evidence indicates increasing scarcity in component family X.
+Companies A/B/C have measured exposures. Historically, this class of signal
+took Y days to be absorbed into market prices.
+
+Muse
+
+Maps opportunities onto a specific person:
+
+Given your tools, skills, certifications, location and calendar, this
+repair/job/opportunity is suitable for you.
+
+Trading system / user
+
+Makes the action decision:
+
+Buy/security/position/size/etc.
+
+POW should remain the measurement substrate rather than becoming a
+personalized execution engine.
+14. Downstream products this enables
+
+This is where the architecture compounds.
+A. POW Research Terminal
+
+A live causal-economic terminal:
+
+   - component scarcity
+   - repair/failure pressure
+   - labour bottlenecks
+   - supply-chain stress
+   - company exposure
+   - securities assimilation
+   - live Seesaw hypotheses
+
+Think: a physical-economy intelligence terminal rather than a conventional
+market terminal.
+B. POW Signals/API
+
+Machine-readable outputs:
+
+   - scarcity indices
+   - repair spreads
+   - demand indices
+   - obsolescence pressure
+   - supplier fragility
+   - skill bottlenecks
+   - company exposure scores
+   - event propagation lags
+
+Agents, funds, businesses and apps can consume these.
+C. Company Exposure Engine
+
+Input:
+company/ticker
+
+Output:
+
+   - physical inputs
+   - suppliers
+   - customer industries
+   - scarce components
+   - labour exposure
+   - energy exposure
+   - geographic exposure
+   - live underlying physical anomalies
+
+D. Reverse Fundamental Scanner
+
+Input:
+weird stock/order-book movement
+
+Output:
+possible physical-world causes based on:
+
+   - tenders
+   - imports
+   - inventories
+   - component pricing
+   - repairs
+   - labour
+   - regulation
+
+E. Seesaw Backtester
+
+Define:
+
+   - innovation
+   - relaxed constraint
+   - predicted new bottleneck
+   - company exposures
+   - kill conditions
+
+Then test against historical temporal graph.
+
+This could become a unique research product.
+F. Repair Economics API
+
+For marketplaces/agents:
+
+   - expected repair spread
+   - failure families
+   - parts availability
+   - standardized difficulty
+   - resale value
+   - repair knowledge coverage
+
+POW provides objective economics.
+Muse/personal agents handle =E2=80=9Cshould I personally do it?=E2=80=9D
+G. Parts Scarcity / Procurement Intelligence
+
+For repairers, small manufacturers and distributors:
+
+   - component shortage alerts
+   - substitute discovery
+   - supplier concentration
+   - lead-time deterioration
+   - lifecycle/EOL risk
+
+H. Flipping / Resale Intelligence
+
+Objective market data:
+
+   - working vs broken value
+   - component replacement cost
+   - repair spread
+   - liquidity
+   - inventory age
+   - marketplace dispersion
+
+Again: POW provides the opportunity surface; downstream agents
+execute/personalize.
+I. Skills / Training Intelligence
+
+For training providers, tradespeople and policymakers:
+
+   - emerging technical bottlenecks
+   - training supply vs demand
+   - qualification coverage
+   - geographic shortage maps
+   - future repair/install capacity
+
+J. Industrial Opportunity Discovery
+
+Detect:
+
+   - under-supplied physical niches
+   - spare-part gaps
+   - new reseller opportunities
+   - obsolete components needing substitutes
+   - potential dropship/commerce categories
+
+K. Content Engine
+
+Every material Seesaw automatically becomes:
+
+   - YouTube topic
+   - research post
+   - chart
+   - dashboard card
+   - data story
+
+POW content is generated from actual tracked reality, not generic
+technology news.
+L. Muse primitive
+
+Muse asks POW:
+=E2=80=9CWhat objective opportunities exist?=E2=80=9D
+
+Then personalizes:
+=E2=80=9CWhat fits this human?=E2=80=9D
+
+This makes POW the substrate beneath a much larger assistant ecosystem.
+M. Agent / MCP infrastructure
+
+Expose typed functions such as:
+
+   - get_component_market_state()
+   - get_repair_economics()
+   - get_company_physical_exposure()
+   - get_skill_bottleneck()
+   - get_seesaw_status()
+   - get_market_assimilation()
+   - explain_signal_provenance()
+
+Agents can reason over POW without scraping/reconstructing the world.
+N. Data Licensing / Historical Datasets
+
+Long-run historical time series could become valuable themselves:
+
+   - component inventory history
+   - repair/failure history
+   - spare-part pricing history
+   - labour bottleneck history
+   - tender demand history
+   - propagation-lag datasets
+
+The historical state is the moat.
+Canonical formulation
+
+The architecture should now be treated as:
+
+RAW WORLD
+=E2=86=92 TYPED EVENTS
+=E2=86=92 TEMPORAL GRAPH
+=E2=86=92 SEESAW HYPOTHESES
+=E2=86=92 PHYSICAL SIGNALS
+=E2=86=92 COMPANY EXPOSURES
+=E2=86=92 MARKET ASSIMILATION
+
+with:
+
+   - deterministic code for facts/math
+   - Jev for millions of small fuzzy typed decisions
+   - reasoning models only for genuinely novel reasoning
+   - explicit provenance and rights on every fact
+   - append-only history
+   - strict POW/Muse/action separation
+
+The end-state is not a repair site, stock screener or data dashboard.
+
+It is:
+
+*a live causal observatory for where work, scarcity and capital move
+through the economy.*
+
+And almost every downstream product becomes a specialized view or action
+layer over that same accumulating temporal graph.
+
+--000000000000ae355b065be97153
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW Systems =E2=80=94 L2 Markets, Jev Architecture, Causal Graph + Downstre=
+am Products
+
+Core expansion
+<p>Once POW combines physical-economy state with securities/microstructure =
+data, it stops being a repair/parts intelligence system and becomes a live =
+causal graph from:</p>
+<p><strong>physical event =E2=86=92 constraint change =E2=86=92 company exp=
+osure =E2=86=92 market reaction =E2=86=92 capital allocation =E2=86=92 supp=
+ly response</strong></p>
+<p>This is the deeper Seesaw system.</p>
+<p>The most valuable thing POW can ultimately measure is not just =E2=80=9C=
+what changed,=E2=80=9D but:</p>
+<blockquote>
+<p><strong>How long does information take to propagate from physical realit=
+y into financial markets?</strong></p>
+</blockquote>
+<p>That is the causal-latency alpha thesis made measurable.</p>
+
+
+
+1. Securities layer / L2
+<p>For publicly traded companies, add market state and depth data.</p>
+<p>Potential L2-derived features:</p>
+<ul>
+<li>bid depth / ask depth</li>
+<li>spread</li>
+<li>depth at N levels</li>
+<li>order-book imbalance</li>
+<li>depth slope</li>
+<li>microprice</li>
+<li>replenishment rate</li>
+<li>depletion rate</li>
+<li>cancel/update intensity</li>
+<li>price-impact proxy</li>
+<li>liquidity vacuums</li>
+<li>recovery after shocks</li>
+</ul>
+<p>The point is not merely =E2=80=9Cstock moved +2.3%.=E2=80=9D</p>
+<p>We want event timing such as:</p>
+<p>08:41 =E2=80=94 tender published<br>
+08:47 =E2=80=94 asks begin disappearing<br>
+08:48 =E2=80=94 book imbalance flips<br>
+08:51 =E2=80=94 spread widens<br>
+08:55 =E2=80=94 repricing begins<br>
+09:02 =E2=80=94 sector peer reacts<br>
+09:16 =E2=80=94 supplier reacts</p>
+<p>After enough events, POW can ask:</p>
+<blockquote>
+<p><strong>Which markets price which kinds of physical information fastest?=
+</strong></p>
+</blockquote>
+<p>And then stratify by:</p>
+<ul>
+<li>FTSE 100 / 250 / AIM</li>
+<li>large vs small cap</li>
+<li>analyst coverage</li>
+<li>direct vs indirect exposure</li>
+<li>commodity vs component vs labour vs regulatory events</li>
+</ul>
+<p>Possible result:</p>
+<blockquote>
+<p>the edge is not =E2=80=9Cwhich event matters,=E2=80=9D but <strong>which=
+ classes of event have the longest assimilation latency.</strong></p>
+</blockquote>
+
+
+
+2. Important data-rights boundary
+<p>IBKR/L2 should initially be considered a private research/model-developm=
+ent feed unless licensing explicitly permits broader commercial use.</p>
+<p>Do not assume broker/exchange market data can be republished or commerci=
+alized through POW.</p>
+<p>Architectural rule:</p>
+<blockquote>
+<p><strong>Every datum in POW carries a rights envelope.</strong></p>
+</blockquote>
+<p>Suggested type:</p>
+<p>type DataRights =3D<br>
+| =E2=80=9COPEN_REPUBLISH=E2=80=9D<br>
+| =E2=80=9CATTRIBUTION=E2=80=9D<br>
+| =E2=80=9CINTERNAL_ONLY=E2=80=9D<br>
+| =E2=80=9CDERIVED_INTERNAL_ONLY=E2=80=9D<br>
+| =E2=80=9CDERIVED_PUBLISHABLE=E2=80=9D<br>
+| =E2=80=9CLICENSE_REQUIRED=E2=80=9D;</p>
+<p>Every transformation should compute/propagate the strictest relevant rig=
+hts class from its parents.</p>
+<p>This prevents us building a valuable dataset we later discover we cannot=
+ legally expose.</p>
+
+
+
+3. Company / economic entity graph
+<p>Add a securities/company ontology beside the physical-component graph.</=
+p>
+<p>Canonical nodes:</p>
+<ul>
+<li>COMPANY</li>
+<li>SECURITY</li>
+<li>LEGAL_ENTITY</li>
+<li>BRAND</li>
+<li>FACTORY</li>
+<li>PRODUCT</li>
+<li>PRODUCT_CATEGORY</li>
+<li>COMPONENT</li>
+<li>SUPPLIER</li>
+<li>CUSTOMER</li>
+<li>DISTRIBUTOR</li>
+<li>GEOGRAPHY</li>
+<li>COMMODITY</li>
+<li>SKILL</li>
+</ul>
+<p>Edges:</p>
+<ul>
+<li>manufactures</li>
+<li>consumes</li>
+<li>supplies</li>
+<li>owns</li>
+<li>operates</li>
+<li>exposed_to</li>
+<li>sells_into</li>
+<li>depends_on</li>
+<li>security / ticker mapping</li>
+</ul>
+<p>Then physical anomalies map naturally into market exposures.</p>
+<p>Example:</p>
+<p>servo motor:</p>
+<ul>
+<li>inventory =E2=86=93</li>
+<li>price =E2=86=91</li>
+<li>lead time =E2=86=91</li>
+<li>tenders =E2=86=91</li>
+<li>imports =E2=86=91</li>
+</ul>
+<p>POW asks:</p>
+<ul>
+<li>Who makes these?</li>
+<li>Who uses these?</li>
+<li>Who distributes these?</li>
+<li>Whose costs rise?</li>
+<li>Whose revenue rises?</li>
+<li>Which of those entities are publicly traded?</li>
+</ul>
+<p>That is the bridge from physical data to securities.</p>
+
+
+
+4. Traverse both directions
+<p>Forward:</p>
+<p>physical anomaly<br>
+=E2=86=92 affected companies<br>
+=E2=86=92 securities</p>
+<p>Reverse:</p>
+<p>unusual stock/L2 behavior<br>
+=E2=86=92 company<br>
+=E2=86=92 product exposures<br>
+=E2=86=92 component exposures<br>
+=E2=86=92 physical-market signals</p>
+<p>This supports machine-assisted fundamental investigation:</p>
+<blockquote>
+<p>A stock behaves strangely. What changed underneath it?</p>
+</blockquote>
+<p>Possible causes:</p>
+<ul>
+<li>tender demand</li>
+<li>supplier inventory</li>
+<li>import changes</li>
+<li>repair/failure cohort</li>
+<li>regulatory change</li>
+<li>factory issues</li>
+<li>competitor shortages</li>
+<li>labour scarcity</li>
+</ul>
+
+
+
+5. The propagation graph is the key asset
+<p>Every meaningful observation becomes an event.</p>
+<p>Suggested shape:</p>
+<p>EconomicEvent {<br>
+id<br>
+observed_at<br>
+effective_at?</p>
+<p>entity_ids[]</p>
+<p>event_type</p>
+<p>magnitude?<br>
+direction?</p>
+<p>source<br>
+source_rights</p>
+<p>confidence</p>
+<p>provenance<br>
+}</p>
+<p>Then connect events with relations such as:</p>
+<ul>
+<li>PRECEDES</li>
+<li>SUPPORTS</li>
+<li>CONTRADICTS</li>
+<li>SAME_PHENOMENON</li>
+<li>EXPOSED_TO</li>
+<li>POSSIBLE_CAUSE_OF</li>
+</ul>
+<p>Example:</p>
+<p>EVENT A<br>
+sensor inventory collapse<br>
+2027-04-03</p>
+<p>=E2=86=93 11 days</p>
+<p>EVENT B<br>
+distributor prices rise<br>
+2027-04-14</p>
+<p>=E2=86=93 6 days</p>
+<p>EVENT C<br>
+tender prices rise<br>
+2027-04-20</p>
+<p>=E2=86=93 18 days</p>
+<p>EVENT D<br>
+company guidance changes<br>
+2027-05-08</p>
+<p>=E2=86=93 seconds/minutes/hours</p>
+<p>EVENT E<br>
+market reprices</p>
+<p>Over time POW learns empirical propagation delays.</p>
+<p>That dataset becomes extremely hard to recreate after the fact.</p>
+
+
+
+6. Jev / TypeSafe architecture
+<p>Jev should NOT be treated as a general =E2=80=9CAI brain.=E2=80=9D</p>
+<p>Use three layers of intelligence.</p>
+
+A. Deterministic code
+<p>Use normal code for:</p>
+<ul>
+<li>arithmetic</li>
+<li>price changes</li>
+<li>inventory deltas</li>
+<li>returns</li>
+<li>moving windows</li>
+<li>graph traversal</li>
+<li>time deltas</li>
+<li>order-book imbalance</li>
+<li>statistics</li>
+<li>backtests</li>
+<li>currency conversion</li>
+</ul>
+<p>Never ask AI to do exact math we can compute deterministically.</p>
+
+B. Jev / typed atomic decisions
+<p>Use Jev for small ambiguous classifications where the output space is co=
+nstrained.</p>
+<p>Examples:</p>
+<ul>
+<li>Is this component a sensor?</li>
+<li>Which failure category does this text describe?</li>
+<li>Does this tender imply incremental actuator demand?</li>
+<li>Which model does this messy marketplace listing likely correspond to?</=
+li>
+<li>Is this evidence FOR / AGAINST / NEUTRAL to hypothesis X?</li>
+<li>Does this announcement indicate actual capacity addition or only planne=
+d capacity?</li>
+<li>Is company X materially exposed to component Y?</li>
+<li>Is this event already represented in the graph?</li>
+<li>How strong is this evidence?</li>
+</ul>
+<p>Prefer small independent typed questions with probabilities/confidence.<=
+/p>
+<p>Do NOT do:</p>
+<p>500MB of raw world<br>
+=E2=86=92 =E2=80=9CJev, tell me what to trade=E2=80=9D</p>
+<p>Do:</p>
+<p>SOURCE<br>
+=E2=86=92 deterministic parser<br>
+=E2=86=92 Jev atomic decisions<br>
+=E2=86=92 typed facts<br>
+=E2=86=92 deterministic graph/math</p>
+<p>Example repair text:</p>
+<p>=E2=80=9CMachine fills but drum won=E2=80=99t spin, motor brushes heavil=
+y worn.=E2=80=9D</p>
+<p>Jev-type outputs:</p>
+<ul>
+<li>product_category: CHOICE</li>
+<li>primary_failure_family: CHOICE</li>
+<li>repairable: probability</li>
+<li>failure_severity: SCORE</li>
+<li>requires_component_replacement: probability</li>
+</ul>
+<p>The system receives typed structured fields, not freeform prose.</p>
+
+C. Large reasoning model
+<p>Use a reasoning LLM only for higher-order tasks:</p>
+<ul>
+<li>discovering new causal pathways</li>
+<li>forming new Seesaw hypotheses</li>
+<li>reading papers</li>
+<li>designing ontology extensions</li>
+<li>explaining anomalies</li>
+<li>generating content/video narratives</li>
+<li>proposing new features</li>
+</ul>
+<p>This is where costs stay low:<br>
+millions of simple typed classifications;<br>
+rare expensive reasoning.</p>
+
+
+
+7. Jev-native Seesaw hypotheses
+<p>Represent every Seesaw as a structured object.</p>
+<p>SeesawHypothesis {<br>
+id</p>
+<p>innovation<br>
+constraint_relaxed<br>
+new_constraint</p>
+<p>resource<br>
+companies[]<br>
+securities[]</p>
+<p>predictions[]<br>
+kill_conditions[]</p>
+<p>created_at<br>
+}</p>
+<p>Example:</p>
+<p>HYPOTHESIS:<br>
+cheap edge intelligence increases servo/encoder demand</p>
+<p>PREDICTIONS:<br>
+P1 actuator shipments =E2=86=91<br>
+P2 distributor stock =E2=86=93<br>
+P3 lead times =E2=86=91<br>
+P4 prices =E2=86=91<br>
+P5 imports =E2=86=91<br>
+P6 tender references =E2=86=91<br>
+P7 supplier revenues =E2=86=91</p>
+<p>KILL CONDITIONS:<br>
+K1 robot deployments stall<br>
+K2 actuator capacity expands faster than demand<br>
+K3 prices decline despite demand growth<br>
+K4 substitutes make incumbent actuator types irrelevant</p>
+<p>Each incoming event gets tiny typed questions:</p>
+<p>supports P1?<br>
+supports P2?<br>
+supports P3?<br>
+supports K1?<br>
+supports K2?</p>
+<p>Jev provides probabilities.</p>
+<p>Ordinary code updates an evidence score / posterior.</p>
+<p>This is far better than asking an agent to repeatedly reread everything =
+and =E2=80=9Chave an opinion.=E2=80=9D</p>
+
+
+
+8. Close the loop with market behavior
+<p>Canonical flow:</p>
+<p>THESIS<br>
+=E2=86=93<br>
+physical predictions<br>
+=E2=86=93<br>
+physical observations<br>
+=E2=86=93<br>
+company consequences<br>
+=E2=86=93<br>
+market expectation<br>
+=E2=86=93<br>
+L2 / securities observations<br>
+=E2=86=93<br>
+eventual fundamentals<br>
+=E2=86=93<br>
+thesis validation</p>
+<p>Then backtest questions such as:</p>
+<blockquote>
+<p>When physical supply pressure first crossed threshold X, how long did ex=
+posed securities take to react?</p>
+</blockquote>
+<p>This is the direct experimental form of causal-latency alpha.</p>
+
+
+
+9. Additional data layers that compound the system
+<p>Potential future inputs:</p>
+<ul>
+<li>RNS / exchange announcements</li>
+<li>Companies House</li>
+<li>patents</li>
+<li>job postings</li>
+<li>planning applications</li>
+<li>grid connection queues</li>
+<li>shipping/imports</li>
+<li>AIS vessel movement where rights permit</li>
+<li>satellite imagery where licensed/open</li>
+<li>tender data</li>
+<li>repair data</li>
+<li>distributor inventory</li>
+<li>used marketplaces</li>
+<li>wholesale marketplaces</li>
+<li>energy prices</li>
+<li>weather</li>
+<li>academic papers</li>
+<li>GitHub/open-source development</li>
+<li>training/apprenticeship data</li>
+<li>L1/L2 securities data</li>
+</ul>
+<p>The key is not the number of sources.</p>
+<p>Every source must resolve onto the <strong>same temporal causal graph</s=
+trong>.</p>
+
+
+
+10. Provenance must be first-class
+<p>Every derived fact should carry:</p>
+<p>VALUE<br>
+SOURCE<br>
+OBSERVED_AT<br>
+VALID_FROM<br>
+VALID_TO<br>
+CONFIDENCE<br>
+LICENSE / RIGHTS<br>
+TRANSFORMATION<br>
+PARENT_FACTS</p>
+<p>Do not store:</p>
+<p>=E2=80=9Cservo demand =3D high=E2=80=9D</p>
+<p>Store:</p>
+<p>servo_demand_index =3D 0.81</p>
+<p>derived from:</p>
+<ul>
+<li>tender_count +21%</li>
+<li>distributor inventory -14%</li>
+<li>imports +9%</li>
+<li>prices +7%</li>
+</ul>
+<p>algorithm:<br>
+servo-demand-v3</p>
+<p>calculated:<br>
+timestamp</p>
+<p>rights:<br>
+publishable-derived</p>
+<p>This gives reproducibility and lets us debug causal claims.</p>
+
+
+
+11. Recommended data architecture
+<p>SOURCES<br>
+=E2=94=82<br>
+=E2=94=9C APIs<br>
+=E2=94=9C files/feeds<br>
+=E2=94=94 streams<br>
+=E2=86=93<br>
+IMMUTABLE RAW EVENT LOG<br>
+=E2=86=93<br>
+NORMALIZATION<br>
+(deterministic first)<br>
+=E2=86=93<br>
+JEV<br>
+(typed ambiguous fields)<br>
+=E2=86=93<br>
+ENTITY RESOLUTION<br>
+=E2=86=93<br>
+TEMPORAL KNOWLEDGE GRAPH<br>
+=E2=94=82<br>
+=E2=94=9C FEATURES<br>
+=E2=94=9C SEESAWS<br>
+=E2=94=94 TIMESERIES<br>
+=E2=86=93<br>
+BACKTEST ENGINE<br>
+=E2=86=93<br>
+SIGNALS / RESEARCH / CONTENT / API</p>
+<p>Keep raw, normalized and derived layers strictly separate.</p>
+<p>Never overwrite history.</p>
+
+
+
+12. The append-only event log may be the crown jewel
+<p>Example:</p>
+<p>2026-09-20 08:00<br>
+DigiKey inventory X =3D 5,119</p>
+<p>2026-09-20 09:13<br>
+Tender mentions X</p>
+<p>2026-09-20 10:02<br>
+Repair event implicates X</p>
+<p>2026-09-20 10:31<br>
+Company Y RNS</p>
+<p>2026-09-20 10:31:04<br>
+Company Y book imbalance flips</p>
+<p>Five years later, the valuable thing is not just the latest graph.</p>
+<p>It is:</p>
+<blockquote>
+<p><strong>the observed state of the economy before everyone knew what matt=
+ered.</strong></p>
+</blockquote>
+<p>That is the Data Garden moat:<br>
+unique transformation =C3=97 continuous collection =C3=97 time.</p>
+
+
+
+13. POW vs Muse vs trading action
+<p>Keep the system boundary clean.</p>
+
+POW
+<p>Models:</p>
+<ul>
+<li>resources</li>
+<li>constraints</li>
+<li>work</li>
+<li>physical markets</li>
+<li>company exposures</li>
+<li>capital allocation</li>
+<li>market assimilation</li>
+</ul>
+<p>POW can say:</p>
+<blockquote>
+<p>Physical evidence indicates increasing scarcity in component family X. C=
+ompanies A/B/C have measured exposures. Historically, this class of signal =
+took Y days to be absorbed into market prices.</p>
+</blockquote>
+
+Muse
+<p>Maps opportunities onto a specific person:</p>
+<blockquote>
+<p>Given your tools, skills, certifications, location and calendar, this re=
+pair/job/opportunity is suitable for you.</p>
+</blockquote>
+
+Trading system / user
+<p>Makes the action decision:</p>
+<blockquote>
+<p>Buy/security/position/size/etc.</p>
+</blockquote>
+<p>POW should remain the measurement substrate rather than becoming a perso=
+nalized execution engine.</p>
+
+
+
+14. Downstream products this enables
+<p>This is where the architecture compounds.</p>
+
+A. POW Research Terminal
+<p>A live causal-economic terminal:</p>
+<ul>
+<li>component scarcity</li>
+<li>repair/failure pressure</li>
+<li>labour bottlenecks</li>
+<li>supply-chain stress</li>
+<li>company exposure</li>
+<li>securities assimilation</li>
+<li>live Seesaw hypotheses</li>
+</ul>
+<p>Think: a physical-economy intelligence terminal rather than a convention=
+al market terminal.</p>
+
+B. POW Signals/API
+<p>Machine-readable outputs:</p>
+<ul>
+<li>scarcity indices</li>
+<li>repair spreads</li>
+<li>demand indices</li>
+<li>obsolescence pressure</li>
+<li>supplier fragility</li>
+<li>skill bottlenecks</li>
+<li>company exposure scores</li>
+<li>event propagation lags</li>
+</ul>
+<p>Agents, funds, businesses and apps can consume these.</p>
+
+C. Company Exposure Engine
+<p>Input:<br>
+company/ticker</p>
+<p>Output:</p>
+<ul>
+<li>physical inputs</li>
+<li>suppliers</li>
+<li>customer industries</li>
+<li>scarce components</li>
+<li>labour exposure</li>
+<li>energy exposure</li>
+<li>geographic exposure</li>
+<li>live underlying physical anomalies</li>
+</ul>
+
+D. Reverse Fundamental Scanner
+<p>Input:<br>
+weird stock/order-book movement</p>
+<p>Output:<br>
+possible physical-world causes based on:</p>
+<ul>
+<li>tenders</li>
+<li>imports</li>
+<li>inventories</li>
+<li>component pricing</li>
+<li>repairs</li>
+<li>labour</li>
+<li>regulation</li>
+</ul>
+
+E. Seesaw Backtester
+<p>Define:</p>
+<ul>
+<li>innovation</li>
+<li>relaxed constraint</li>
+<li>predicted new bottleneck</li>
+<li>company exposures</li>
+<li>kill conditions</li>
+</ul>
+<p>Then test against historical temporal graph.</p>
+<p>This could become a unique research product.</p>
+
+F. Repair Economics API
+<p>For marketplaces/agents:</p>
+<ul>
+<li>expected repair spread</li>
+<li>failure families</li>
+<li>parts availability</li>
+<li>standardized difficulty</li>
+<li>resale value</li>
+<li>repair knowledge coverage</li>
+</ul>
+<p>POW provides objective economics.<br>
+Muse/personal agents handle =E2=80=9Cshould I personally do it?=E2=80=9D</p=
+>
+
+G. Parts Scarcity / Procurement Intelligence
+<p>For repairers, small manufacturers and distributors:</p>
+<ul>
+<li>component shortage alerts</li>
+<li>substitute discovery</li>
+<li>supplier concentration</li>
+<li>lead-time deterioration</li>
+<li>lifecycle/EOL risk</li>
+</ul>
+
+H. Flipping / Resale Intelligence
+<p>Objective market data:</p>
+<ul>
+<li>working vs broken value</li>
+<li>component replacement cost</li>
+<li>repair spread</li>
+<li>liquidity</li>
+<li>inventory age</li>
+<li>marketplace dispersion</li>
+</ul>
+<p>Again: POW provides the opportunity surface; downstream agents execute/p=
+ersonalize.</p>
+
+I. Skills / Training Intelligence
+<p>For training providers, tradespeople and policymakers:</p>
+<ul>
+<li>emerging technical bottlenecks</li>
+<li>training supply vs demand</li>
+<li>qualification coverage</li>
+<li>geographic shortage maps</li>
+<li>future repair/install capacity</li>
+</ul>
+
+J. Industrial Opportunity Discovery
+<p>Detect:</p>
+<ul>
+<li>under-supplied physical niches</li>
+<li>spare-part gaps</li>
+<li>new reseller opportunities</li>
+<li>obsolete components needing substitutes</li>
+<li>potential dropship/commerce categories</li>
+</ul>
+
+K. Content Engine
+<p>Every material Seesaw automatically becomes:</p>
+<ul>
+<li>YouTube topic</li>
+<li>research post</li>
+<li>chart</li>
+<li>dashboard card</li>
+<li>data story</li>
+</ul>
+<p>POW content is generated from actual tracked reality, not generic techno=
+logy news.</p>
+
+L. Muse primitive
+<p>Muse asks POW:<br>
+=E2=80=9CWhat objective opportunities exist?=E2=80=9D</p>
+<p>Then personalizes:<br>
+=E2=80=9CWhat fits this human?=E2=80=9D</p>
+<p>This makes POW the substrate beneath a much larger assistant ecosystem.<=
+/p>
+
+M. Agent / MCP infrastructure
+<p>Expose typed functions such as:</p>
+<ul>
+<li>get_component_market_state()</li>
+<li>get_repair_economics()</li>
+<li>get_company_physical_exposure()</li>
+<li>get_skill_bottleneck()</li>
+<li>get_seesaw_status()</li>
+<li>get_market_assimilation()</li>
+<li>explain_signal_provenance()</li>
+</ul>
+<p>Agents can reason over POW without scraping/reconstructing the world.</p=
+>
+
+N. Data Licensing / Historical Datasets
+<p>Long-run historical time series could become valuable themselves:</p>
+<ul>
+<li>component inventory history</li>
+<li>repair/failure history</li>
+<li>spare-part pricing history</li>
+<li>labour bottleneck history</li>
+<li>tender demand history</li>
+<li>propagation-lag datasets</li>
+</ul>
+<p>The historical state is the moat.</p>
+
+
+
+Canonical formulation
+<p>The architecture should now be treated as:</p>
+<p>RAW WORLD<br>
+=E2=86=92 TYPED EVENTS<br>
+=E2=86=92 TEMPORAL GRAPH<br>
+=E2=86=92 SEESAW HYPOTHESES<br>
+=E2=86=92 PHYSICAL SIGNALS<br>
+=E2=86=92 COMPANY EXPOSURES<br>
+=E2=86=92 MARKET ASSIMILATION</p>
+<p>with:</p>
+<ul>
+<li>deterministic code for facts/math</li>
+<li>Jev for millions of small fuzzy typed decisions</li>
+<li>reasoning models only for genuinely novel reasoning</li>
+<li>explicit provenance and rights on every fact</li>
+<li>append-only history</li>
+<li>strict POW/Muse/action separation</li>
+</ul>
+<p>The end-state is not a repair site, stock screener or data dashboard.</p=
+>
+<p>It is:</p>
+<blockquote>
+<p><strong>a live causal observatory for where work, scarcity and capital m=
+ove through the economy.</strong></p>
+</blockquote>
+<p>And almost every downstream product becomes a specialized view or action=
+ layer over that same accumulating temporal graph.</p>
+
+--000000000000ae355b065be97153--

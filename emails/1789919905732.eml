@@ -1,0 +1,1114 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id hvZPp5T5qEiY
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 15:58:25 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=VMt+fr6Qh0OlDoLLj89ksQG41vaHU3t5WjImasGac9+6el8SinunGm/sBvSQsdaqi2oXmKNxl
+	9/bFNGpMhE0eAf18861GUKvHxyQO4QpUU1ltx0EqTswO6u8qK/IZ9Cs826Yzge160LjvZosEq6P
+	5neUewL3PT6gtpO8IkamGeYLZgZOuSrdqjoL6+GomSFl7WDeZT5a/CTuwHoR5KMlKbKMAriY2+m
+	iBr0gEtu1CCJvR1b7O26T4kdSDVaFgCo9OLENwErl3Iq+7Gy8FRCiHrVY29CsDLelXYlNt1vSQ3
+	e6A+ipRI7X/Mp9kuWFCDozFzxeJdCBvzF7yW8iV0nf+A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=Cc:To:Subject:Date:From:from:reply-to:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789919905; x=1790524705; bh=c22MNuzY
+	ANblU6wA/IPLGLDIgIPD809ibFGlREWWlKo=; b=DT21Zvr/EV3y0B88+b7cd7P7gEpXZjCP5ni
+	Xzyo9kTLE/otyREaTK1+BoBKrhqkIo1EANBeA7mvMkKkWmo22QbaeifoeGqD3huRi21cPwmkhAD
+	rFnsDhPI+Puc4UgT4sg0P7zrzOuYXQGsMxRJWOCU5M6a5l7WPTUxjE+NIcePA27cPbiM7I5wqcD
+	JCeLrH5J6USbC5bg3riUXrrlduvq5OOZJCPjirPHvKKEg7NaK8kKR0HKZ1vPZbqm9Q2ZBTNasVp
+	GUDW/UOuu/Ci9rS5PshDE3o3XerCZ0YzaLzXWlIu4JgG+loGk/s9zhdv5bKAD1zVuYjWUrD4fmj
+	RRKnBsw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=BmHmUQ6R;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=BmHmUQ6R;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 956f58d0204a3-671563fb8beso1966075d50.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 08:58:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789919905; cv=none;
+        d=google.com; s=arc-20260327;
+        b=LN3fmO5v1Va2SdcEvD70vHfSldpFXZYGZqn0iECCSvOTvvD2kRcqq5R/2q3QgAYhJs
+         WXqDKCeaKZm9Rl9vjbwyduenZMdGnpVKaUtEX618FatCwBA3hzAqyJq/UPOQ+ApHzHBk
+         6NMae3be0PmNiY3gk+8sXu4AB88pSoN0Ti9uR1+MN0yWtqd8Buik1cEow6gutC4rVO+/
+         t7bgyx9h7ixiCkR3bqKknA2e6JMtt5TL6Uuu25OEUmn9eC6hYQyRgotfcQD1fox1ckb3
+         RZ98Edk0tNTpca7sZjxEHLw5jIXQCXCTZr8bX+7CpnPjrFbuitBRAutRX8/uvbtlSo1d
+         5kQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=c22MNuzYANblU6wA/IPLGLDIgIPD809ibFGlREWWlKo=;
+        fh=4hACYuCvgXGRdciNN10Z0AXDhwV9z2yNsiHo/DldUyw=;
+        b=pLu1hvonEsZPcY0TOQjkzpBt7o5blUatCuRFP69v7qH1df8gVnzSW0fa5MgkkePrwN
+         +tcllF45WCk/cOyqitK5rxWDbiMGaJ9XXbvZG/xsS659WVBJkDySJ3lod5GZ9MJJ44zS
+         1sOQQRPvqJM52hiB13icpy3tyz3OowcWK2+Vz56J3cN89H2d4PfIurHS6iX67u83ASgQ
+         yXlJJ6qwNhhZ7axxKM7dbVKRFBzFB8Gj4EXV4jpTAdrumcLFcvJZbYkYxhyM4Rg09Q/n
+         3SozA0OCbDPx/9YCHeq8ZYdCEa2kN8RUO5ijVIvjK8lYpfThokSubIBSqRcxCHgB2Cgc
+         XC8A==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789919905; x=1790524705; darn=intelligentothers.xyz;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=c22MNuzYANblU6wA/IPLGLDIgIPD809ibFGlREWWlKo=;
+        b=BmHmUQ6R/UTRvsJP7ckqYtsc499OFdgmJX17sHJOjLqMSdioN1HZq6FhTrtQFPZvdJ
+         HbIkUkPnstR17R7EgDPScS0bic3ee9tbjDa+ppu2md93ISm9VMPM9VB02XO5DzxFwpUS
+         HPoMeOWQeljZDl5zKrbfeh6ie7MUWPrXCpirTKPqEOfSBdRbllSi2uYUAk12zJM6C18K
+         crpX5bwQCJnyZvblBMCbi49JEA2iz91XjFFwFNY0GPLLVRVYD4b753JaoFEiMNtK/cCb
+         T2j6qTbrN8ESxFh/GQUnxO3yAZkmavwb0+V8AZpP9fGIa7sADvySP9aDG5sR/5tEgcXg
+         pAew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789919905; x=1790524705;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=c22MNuzYANblU6wA/IPLGLDIgIPD809ibFGlREWWlKo=;
+        b=PcGQ06aNBTVg44JJ0QoK1WH4ZMbLrWOMRaUOfYUYghhQ6dWdX9hl0RNQhHqucTG+bv
+         4YgYweOlZkrPFBaASGLQPRU3itnr++L4FuNS2Sr8wPvAx0Z/o8V3GaneGAiK1BdIQtSm
+         1RJ0cz5yT6CERtICKzMxJvxXChGBhJdT75QLbB08s9hXkxKwDmYGmorzAGMEBW54Mm+M
+         JYUrFZtYfJkWL7NPgXWEZ3zey44ahU8dKGKVP6TIJDFAYdrHPRWA4/WlUFcLpR1AYg+j
+         OrYGODVCaaIdDvl3tNecj+iH/6D2h4/RP/94MdVameZjtJdtpHvHsiHPdA6cVKq4KpEG
+         X3Qw==
+X-Gm-Message-State: AFuF++nG5BRXwBo6SBn9RHiIJPZxm5ctzU1Ota7dFe8KF4PBVlvbP0x/
+	8DjQx/1WIfjpAAsZZ1O1dVTB7YIuoV5wA1Dlo2V0gDmF9fuabubJix6oMkjjcEToA/BhEvONC4O
+	PGlJwHyVFSaClVHQqPVH2P59t5V6z8DYhqw==
+X-Gm-Gg: AYBFou3XOQ/UyJNdz17HXQd2m8S6NJwt7rVsrnPqfaquAiTsYGcVHdvJkLs1e7JZEeZ
+	wOpVBdU1xcE4nf4IF/zLmvaT/SaWpXarp1Ej8ZzB0Wt/5tzQ8QH7d9h4Uu8TUHma+rtFNmqAG9s
+	lSpR+mlJkqFQ+kjDLr9Y1s4RQcBIixTuYk482OCFVJYwgJ5EMOnOQCfFFjla5mKI3uH17Z+kT4b
+	0shwtuar7pzBZuF1OUzWnV01LzXBAy1nX80swZ8c5V1G+70TL5fnH+ns+CA+G/wmrdhGk+Y5UmQ
+	PAfnN4WFv7UwOj6qj9lpKGzufh4h8S0BDSZOB/nxAie5zrGlcOHqfFOLKjpgc7SLGKlpRYnjWvN
+	rnNEYo0cwT6UCKN3YpHlgmCy/eTNo0YIB+523pn3TVoUqRItb3UTjaKcjW13KLX3VexlPbVid
+X-Received: by 2002:a05:690e:1514:b0:66f:c1be:84cb with SMTP id
+ 956f58d0204a3-6717fd90895mr2375894d50.57.1789919904845; Sun, 20 Sep 2026
+ 08:58:24 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 10:58:23 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 10:58:23 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 10:58:23 -0500
+X-Gm-Features: AcwNN1VHIQwD1FqINWJs0qWdGqsKjSjxCXBZUt4JB4KAdCYAF5sEjl18_8BYp9I
+Message-ID: <CAPdrGektE3Tajb31X=XvqFB1BjifW5p+kaDcUfu5GmhzYXfNaQ@mail.gmail.com>
+Subject: =?UTF-8?Q?POW=2ESYSTEMS_=E2=80=94_Priority_One=3A_Get_the_Data_Flowing_=28?=
+	=?UTF-8?Q?No_Docker=29?=
+To: tradesprior@gmail.com
+Cc: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000001ad459065bec3480"
+
+--0000000000001ad459065bec3480
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS =E2=80=94 Priority One: Get the Data Flowing Decision
+
+Do not build infrastructure for its own sake.
+
+Do not start with Docker.
+Do not start with Prefect.
+Do not start with Grafana.
+Do not start with Kafka.
+Do not start with a lakehouse.
+Do not start with a dashboard.
+
+*Priority one is simple: begin preserving irreversible data immediately.*
+
+The first version should be almost embarrassingly simple:
+
+SOURCE
+=E2=86=92 Python collector
+=E2=86=92 validation
+=E2=86=92 compressed raw file
+=E2=86=92 R2
+=E2=86=92 tiny run ledger
+=E2=86=92 repeat forever
+
+Everything else can be rebuilt later from the raw history.
+
+Missing history cannot.
+1. Use one VPS you already pay for
+
+Pick one existing VPS and dedicate it to POW collection.
+
+Name it:
+
+pow-garden-01
+
+It needs:
+
+   - Linux
+   - Python 3
+   - git
+   - uv or venv/pip
+   - cron or systemd timers
+   - sqlite initially
+   - rclone or boto3/S3 client for R2
+   - curl
+   - jq
+   - optionally DuckDB/Polars for transformations later
+
+That is enough.
+
+No containers required.
+2. Minimal repo
+
+Create one repo:
+
+pow/
+
+Structure:
+
+pow/
+=E2=94=9C=E2=94=80=E2=94=80 sources/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 mouser/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 collect.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 source.yaml
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 validate.py
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 digikey/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 fuel_finder/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 neso/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 apprenticeships/
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 =E2=80=A6
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 kernel/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 run.py
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 r2.py
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 ledger.py
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 health.py
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 data/
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 scratch/
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 scripts/
+=E2=94=94=E2=94=80=E2=94=80 README.md
+
+Do not build a giant framework.
+
+Every source should only need:
+
+   1. fetch
+   2. validate
+   3. save raw
+   4. record run
+
+3. R2 is the permanent memory
+
+Create:
+
+pow-raw
+
+Optionally later:
+
+pow-lake
+pow-private
+pow-artifacts
+
+But only pow-raw matters on Day 1.
+
+Use paths like:
+
+raw/
+domain=3Dparts/
+source=3Dmouser/
+year=3D2026/
+month=3D09/
+day=3D20/
+hour=3D23/
+2026-09-20T23-15-00Z.jsonl.gz
+
+Every successful fetch gets pushed to R2 immediately.
+
+Local disk is scratch only.
+
+If the VPS dies, replace it.
+
+If R2 history survives, the garden survives.
+4. Every collector writes a manifest
+
+Example source.yaml:
+
+id: parts.mouser
+domain: parts
+
+schedule: =E2=80=9C*/15 * * * *=E2=80=9D
+
+primary:
+type: api
+
+fallback:
+type: none
+
+freshness_slo_minutes: 30
+
+irreversibility: 5
+
+retention:
+raw_allowed: true
+derived_allowed: true
+
+identity:
+primary_key: manufacturer_part_number
+
+why_preserve:
+
+   - live inventory
+   - live lead time
+   - price state
+   - lifecycle changes
+
+target_transformations:
+
+   - component_scarcity
+   - repair_feasibility
+   - repair_margin
+
+Do not collect data without knowing why it matters.
+5. Every run records one row
+
+Use SQLite first.
+
+Table:
+
+collection_runs
+
+Fields:
+
+run_id
+source_id
+scheduled_for
+started_at
+completed_at
+status
+route_used
+records_seen
+records_changed
+raw_bytes
+payload_hash
+schema_hash
+r2_uri
+error
+collector_version
+
+That is enough to answer:
+
+   - did it run?
+   - when?
+   - what did it collect?
+   - did data change?
+   - where is the raw file?
+   - did schema change?
+   - did it fail?
+
+No dashboard required yet.
+6. Use systemd timers or cron
+
+For V1, use systemd timers if convenient because they are easy to inspect
+and restart.
+
+Example collector command:
+
+python -m kernel.run parts.mouser
+
+or:
+
+./scripts/run-source parts.mouser
+
+Schedules can be generated from the source manifests later.
+
+Do not waste time building a scheduler initially.
+
+The target is:
+
+Mouser every 15m
+DigiKey every 15m
+Fuel Finder every 30m
+Apprenticeships every 30=E2=80=9360m
+NESO around publication cadence
+compute/mining existing cadence
+EV feeds as frequently as practical
+
+Get the first irreversible sources running.
+
+Then consolidate scheduling later.
+7. Collector flow
+
+Every collector should do exactly:
+
+   1. fetch
+   2. confirm HTTP/API success
+   3. basic schema check
+   4. timestamp observation
+   5. hash payload
+   6. compress
+   7. upload to R2
+   8. verify upload
+   9. record collection_runs row
+   10. exit 0
+
+If anything fails:
+
+   - record failed run
+   - retry
+   - alert if freshness SLO will be violated
+
+Do NOT make normalization a prerequisite for preserving raw.
+
+The raw response must survive even if downstream code is broken.
+8. Fallbacks later, not before primary collection works
+
+Do not spend hours designing fallback ladders before one source even
+collects.
+
+First:
+
+primary source
+=E2=86=92 reliable collection
+=E2=86=92 R2 history
+
+Then add fallback for important sources.
+
+When a fallback exists, store:
+
+route_used =3D primary
+or
+route_used =3D fallback_csv
+or
+route_used =3D fallback_api
+
+Never silently mix sources.
+9. Very basic health monitoring
+
+Create:
+
+pow-health.py
+
+It reads the source manifests + collection_runs and asks:
+
+For each source:
+
+now - last_valid_run > freshness_slo?
+
+If yes:
+
+STALE
+
+If no valid run within 2=C3=97 SLO:
+
+GAP_FORMING
+
+Output:
+
+Mouser HEALTHY 8m
+DigiKey HEALTHY 11m
+Fuel Finder HEALTHY 21m
+Apprentices STALE 79m
+EV Gridserve GAP 14m
+
+This is enough initially.
+
+Run it every five minutes.
+
+Send alert by email/webhook if a source enters:
+
+GAP_FORMING
+FAILED
+SCHEMA_CHANGED
+10. External dead-man switch
+
+Because the VPS can die completely, have one independent check outside it.
+
+Simplest options:
+
+   - Healthchecks.io
+   - Better Stack
+   - a tiny Cloudflare scheduled Worker
+
+The VPS pings every 5 minutes.
+
+If no heartbeat for 10=E2=80=9315 minutes:
+
+alert.
+
+That is the only external monitoring required for V1.
+11. Initial collector priority
+
+Do not start with historically backfillable datasets.
+
+Start with data that disappears.
+Tier A =E2=80=94 start immediately Parts
+
+   - Mouser live stock
+   - DigiKey live stock
+   - lead time
+   - price
+   - lifecycle
+   - substitute/replacement data
+
+Markets
+
+   - official/permitted used/broken/new marketplace state
+   - listing price
+   - condition
+   - listing lifetime
+   - relisting
+   - active inventory
+
+Repair
+
+   - any live/new repair/outcome data
+   - recalls/safety changes
+   - current part availability as repair input
+
+Grid / energy
+
+   - grid queue snapshots
+   - outages
+   - headroom/constraint state
+   - dynamic tariffs
+
+EV
+
+   - live charger availability/status
+   - charger tariff state
+
+Skills
+
+   - apprenticeship adverts
+   - provider/certification changes
+
+Compute
+
+   - existing PowPowPow market/network state
+
+These are the things tomorrow cannot necessarily reconstruct.
+12. Backfillable data can wait
+
+Do not prioritize:
+
+   - historical MOT bulk
+   - EPC archive
+   - Land Registry archive
+   - Open Repair historical bulk
+   - historical Elexon
+   - static OpenWrt/PCI datasets
+
+Those can be ingested later.
+
+They do not justify delaying ephemeral collection.
+13. First transformation after collection is stable
+
+Once Tier A feeds are reliably landing, build the first Gold transformation=
+:
+
+MARKET =C3=97 PART =C3=97 REPAIR
+
+Input:
+
+asset identity
+condition
+broken market price
+working market price
+likely fault
+part identity
+part stock
+part price
+lead time
+repair procedure
+skill/tool requirement
+
+Output:
+
+expected repair cost
+expected repair time
+expected success probability
+expected resale value
+expected margin
+repair/no-repair decision
+
+This is the first real POW wedge.
+
+Do not build ten transformations simultaneously.
+14. Cloudflare comes after raw collection
+
+Once the data is flowing:
+
+Cloudflare Worker
+=E2=86=92 mcp.pow.systems
+=E2=86=92 D1 operational index
+=E2=86=92 R2 history
+
+MCP tools can then expose:
+
+pow.health()
+pow.sources()
+pow.gaps()
+pow.timeline()
+
+parts.lookup()
+repair.assess()
+markets.history()
+
+But MCP is not required to start collecting.
+
+Do not delay Day 0 for the MCP backend.
+15. Day 0 checklist
+
+The first successful session should end with:
+
+   - VPS chosen
+   - repo created
+   - Python environment working
+   - R2 credentials configured
+   - pow-raw bucket working
+   - SQLite run ledger created
+   - generic R2 writer working
+   - generic run wrapper working
+   - first 3=E2=80=935 collectors running
+   - systemd/cron schedules installed
+   - health script running
+   - external heartbeat running
+   - raw files visibly accumulating in R2
+
+That is enough.
+
+If by the end of the first build session we have beautiful architecture but
+zero raw data in R2, the session failed.
+
+If we have ugly Python scripts writing clean timestamped immutable source
+data into R2 every 15 minutes, the session succeeded.
+16. Then industrialise gradually
+
+Only after collection is alive:
+
+Phase 2:
+
+   - source manifests formalised
+   - schema hashes
+   - gap detection
+   - fallback routes
+   - better validation
+   - collector tests
+
+Phase 3:
+
+   - normalization
+   - canonical identity
+   - Parquet
+   - DuckDB/Polars transforms
+
+Phase 4:
+
+   - Cloudflare MCP/API
+   - D1 operational view
+   - content candidates
+   - Muse actions
+
+Phase 5:
+
+   - OutcomeGraph
+   - real-world intervention feedback
+
+Do not reverse this order.
+Standing rule
+
+*Every hour spent on infrastructure must justify itself by improving
+collection reliability, data quality, or actionability.*
+
+The first objective is not elegant architecture.
+
+The first objective is:
+
+*At midnight tonight, POW should possess data that did not exist in its
+archive at 23:59, and tomorrow it should possess the next state too.*
+
+That is the garden starting to grow.
+
+--0000000000001ad459065bec3480
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS =E2=80=94 Priority One: Get the Data Flowing
+
+Decision
+<p>Do not build infrastructure for its own sake.</p>
+<p>Do not start with Docker.<br>
+Do not start with Prefect.<br>
+Do not start with Grafana.<br>
+Do not start with Kafka.<br>
+Do not start with a lakehouse.<br>
+Do not start with a dashboard.</p>
+<p><strong>Priority one is simple: begin preserving irreversible data immed=
+iately.</strong></p>
+<p>The first version should be almost embarrassingly simple:</p>
+<p>SOURCE<br>
+=E2=86=92 Python collector<br>
+=E2=86=92 validation<br>
+=E2=86=92 compressed raw file<br>
+=E2=86=92 R2<br>
+=E2=86=92 tiny run ledger<br>
+=E2=86=92 repeat forever</p>
+<p>Everything else can be rebuilt later from the raw history.</p>
+<p>Missing history cannot.</p>
+
+
+
+1. Use one VPS you already pay for
+<p>Pick one existing VPS and dedicate it to POW collection.</p>
+<p>Name it:</p>
+<p>pow-garden-01</p>
+<p>It needs:</p>
+<ul>
+<li>Linux</li>
+<li>Python 3</li>
+<li>git</li>
+<li>uv or venv/pip</li>
+<li>cron or systemd timers</li>
+<li>sqlite initially</li>
+<li>rclone or boto3/S3 client for R2</li>
+<li>curl</li>
+<li>jq</li>
+<li>optionally DuckDB/Polars for transformations later</li>
+</ul>
+<p>That is enough.</p>
+<p>No containers required.</p>
+
+
+
+2. Minimal repo
+<p>Create one repo:</p>
+<p>pow/</p>
+<p>Structure:</p>
+<p>pow/<br>
+=E2=94=9C=E2=94=80=E2=94=80 sources/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 mouser/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 collect.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 source.yaml<br>
+=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 validate.py<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 digikey/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 fuel_finder/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 neso/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 apprenticeships/<br>
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 =E2=80=A6<br>
+=E2=94=82<br>
+=E2=94=9C=E2=94=80=E2=94=80 kernel/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 run.py<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 r2.py<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 ledger.py<br>
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 health.py<br>
+=E2=94=82<br>
+=E2=94=9C=E2=94=80=E2=94=80 data/<br>
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 scratch/<br>
+=E2=94=82<br>
+=E2=94=9C=E2=94=80=E2=94=80 scripts/<br>
+=E2=94=94=E2=94=80=E2=94=80 README.md</p>
+<p>Do not build a giant framework.</p>
+<p>Every source should only need:</p>
+<ol>
+<li>fetch</li>
+<li>validate</li>
+<li>save raw</li>
+<li>record run</li>
+</ol>
+
+
+
+3. R2 is the permanent memory
+<p>Create:</p>
+<p>pow-raw</p>
+<p>Optionally later:</p>
+<p>pow-lake<br>
+pow-private<br>
+pow-artifacts</p>
+<p>But only pow-raw matters on Day 1.</p>
+<p>Use paths like:</p>
+<p>raw/<br>
+domain=3Dparts/<br>
+source=3Dmouser/<br>
+year=3D2026/<br>
+month=3D09/<br>
+day=3D20/<br>
+hour=3D23/<br>
+2026-09-20T23-15-00Z.jsonl.gz</p>
+<p>Every successful fetch gets pushed to R2 immediately.</p>
+<p>Local disk is scratch only.</p>
+<p>If the VPS dies, replace it.</p>
+<p>If R2 history survives, the garden survives.</p>
+
+
+
+4. Every collector writes a manifest
+<p>Example source.yaml:</p>
+<p>id: parts.mouser<br>
+domain: parts</p>
+<p>schedule: =E2=80=9C*/15 * * * *=E2=80=9D</p>
+<p>primary:<br>
+type: api</p>
+<p>fallback:<br>
+type: none</p>
+<p>freshness_slo_minutes: 30</p>
+<p>irreversibility: 5</p>
+<p>retention:<br>
+raw_allowed: true<br>
+derived_allowed: true</p>
+<p>identity:<br>
+primary_key: manufacturer_part_number</p>
+<p>why_preserve:</p>
+<ul>
+<li>live inventory</li>
+<li>live lead time</li>
+<li>price state</li>
+<li>lifecycle changes</li>
+</ul>
+<p>target_transformations:</p>
+<ul>
+<li>component_scarcity</li>
+<li>repair_feasibility</li>
+<li>repair_margin</li>
+</ul>
+<p>Do not collect data without knowing why it matters.</p>
+
+
+
+5. Every run records one row
+<p>Use SQLite first.</p>
+<p>Table:</p>
+<p>collection_runs</p>
+<p>Fields:</p>
+<p>run_id<br>
+source_id<br>
+scheduled_for<br>
+started_at<br>
+completed_at<br>
+status<br>
+route_used<br>
+records_seen<br>
+records_changed<br>
+raw_bytes<br>
+payload_hash<br>
+schema_hash<br>
+r2_uri<br>
+error<br>
+collector_version</p>
+<p>That is enough to answer:</p>
+<ul>
+<li>did it run?</li>
+<li>when?</li>
+<li>what did it collect?</li>
+<li>did data change?</li>
+<li>where is the raw file?</li>
+<li>did schema change?</li>
+<li>did it fail?</li>
+</ul>
+<p>No dashboard required yet.</p>
+
+
+
+6. Use systemd timers or cron
+<p>For V1, use systemd timers if convenient because they are easy to inspec=
+t and restart.</p>
+<p>Example collector command:</p>
+<p>python -m kernel.run parts.mouser</p>
+<p>or:</p>
+<p>./scripts/run-source parts.mouser</p>
+<p>Schedules can be generated from the source manifests later.</p>
+<p>Do not waste time building a scheduler initially.</p>
+<p>The target is:</p>
+<p>Mouser every 15m<br>
+DigiKey every 15m<br>
+Fuel Finder every 30m<br>
+Apprenticeships every 30=E2=80=9360m<br>
+NESO around publication cadence<br>
+compute/mining existing cadence<br>
+EV feeds as frequently as practical</p>
+<p>Get the first irreversible sources running.</p>
+<p>Then consolidate scheduling later.</p>
+
+
+
+7. Collector flow
+<p>Every collector should do exactly:</p>
+<ol>
+<li>fetch</li>
+<li>confirm HTTP/API success</li>
+<li>basic schema check</li>
+<li>timestamp observation</li>
+<li>hash payload</li>
+<li>compress</li>
+<li>upload to R2</li>
+<li>verify upload</li>
+<li>record collection_runs row</li>
+<li>exit 0</li>
+</ol>
+<p>If anything fails:</p>
+<ul>
+<li>record failed run</li>
+<li>retry</li>
+<li>alert if freshness SLO will be violated</li>
+</ul>
+<p>Do NOT make normalization a prerequisite for preserving raw.</p>
+<p>The raw response must survive even if downstream code is broken.</p>
+
+
+
+8. Fallbacks later, not before primary collection works
+<p>Do not spend hours designing fallback ladders before one source even col=
+lects.</p>
+<p>First:</p>
+<p>primary source<br>
+=E2=86=92 reliable collection<br>
+=E2=86=92 R2 history</p>
+<p>Then add fallback for important sources.</p>
+<p>When a fallback exists, store:</p>
+<p>route_used =3D primary<br>
+or<br>
+route_used =3D fallback_csv<br>
+or<br>
+route_used =3D fallback_api</p>
+<p>Never silently mix sources.</p>
+
+
+
+9. Very basic health monitoring
+<p>Create:</p>
+<p>pow-health.py</p>
+<p>It reads the source manifests + collection_runs and asks:</p>
+<p>For each source:</p>
+<p>now - last_valid_run &gt; freshness_slo?</p>
+<p>If yes:</p>
+<p>STALE</p>
+<p>If no valid run within 2=C3=97 SLO:</p>
+<p>GAP_FORMING</p>
+<p>Output:</p>
+<p>Mouser          HEALTHY   8m<br>
+DigiKey         HEALTHY   11m<br>
+Fuel Finder     HEALTHY   21m<br>
+Apprentices     STALE     79m<br>
+EV Gridserve    GAP       14m</p>
+<p>This is enough initially.</p>
+<p>Run it every five minutes.</p>
+<p>Send alert by email/webhook if a source enters:</p>
+<p>GAP_FORMING<br>
+FAILED<br>
+SCHEMA_CHANGED</p>
+
+
+
+10. External dead-man switch
+<p>Because the VPS can die completely, have one independent check outside i=
+t.</p>
+<p>Simplest options:</p>
+<ul>
+<li>Healthchecks.io</li>
+<li>Better Stack</li>
+<li>a tiny Cloudflare scheduled Worker</li>
+</ul>
+<p>The VPS pings every 5 minutes.</p>
+<p>If no heartbeat for 10=E2=80=9315 minutes:</p>
+<p>alert.</p>
+<p>That is the only external monitoring required for V1.</p>
+
+
+
+11. Initial collector priority
+<p>Do not start with historically backfillable datasets.</p>
+<p>Start with data that disappears.</p>
+
+Tier A =E2=80=94 start immediately
+
+Parts
+<ul>
+<li>Mouser live stock</li>
+<li>DigiKey live stock</li>
+<li>lead time</li>
+<li>price</li>
+<li>lifecycle</li>
+<li>substitute/replacement data</li>
+</ul>
+
+Markets
+<ul>
+<li>official/permitted used/broken/new marketplace state</li>
+<li>listing price</li>
+<li>condition</li>
+<li>listing lifetime</li>
+<li>relisting</li>
+<li>active inventory</li>
+</ul>
+
+Repair
+<ul>
+<li>any live/new repair/outcome data</li>
+<li>recalls/safety changes</li>
+<li>current part availability as repair input</li>
+</ul>
+
+Grid / energy
+<ul>
+<li>grid queue snapshots</li>
+<li>outages</li>
+<li>headroom/constraint state</li>
+<li>dynamic tariffs</li>
+</ul>
+
+EV
+<ul>
+<li>live charger availability/status</li>
+<li>charger tariff state</li>
+</ul>
+
+Skills
+<ul>
+<li>apprenticeship adverts</li>
+<li>provider/certification changes</li>
+</ul>
+
+Compute
+<ul>
+<li>existing PowPowPow market/network state</li>
+</ul>
+<p>These are the things tomorrow cannot necessarily reconstruct.</p>
+
+
+
+12. Backfillable data can wait
+<p>Do not prioritize:</p>
+<ul>
+<li>historical MOT bulk</li>
+<li>EPC archive</li>
+<li>Land Registry archive</li>
+<li>Open Repair historical bulk</li>
+<li>historical Elexon</li>
+<li>static OpenWrt/PCI datasets</li>
+</ul>
+<p>Those can be ingested later.</p>
+<p>They do not justify delaying ephemeral collection.</p>
+
+
+
+13. First transformation after collection is stable
+<p>Once Tier A feeds are reliably landing, build the first Gold transformat=
+ion:</p>
+<p>MARKET =C3=97 PART =C3=97 REPAIR</p>
+<p>Input:</p>
+<p>asset identity<br>
+condition<br>
+broken market price<br>
+working market price<br>
+likely fault<br>
+part identity<br>
+part stock<br>
+part price<br>
+lead time<br>
+repair procedure<br>
+skill/tool requirement</p>
+<p>Output:</p>
+<p>expected repair cost<br>
+expected repair time<br>
+expected success probability<br>
+expected resale value<br>
+expected margin<br>
+repair/no-repair decision</p>
+<p>This is the first real POW wedge.</p>
+<p>Do not build ten transformations simultaneously.</p>
+
+
+
+14. Cloudflare comes after raw collection
+<p>Once the data is flowing:</p>
+<p>Cloudflare Worker<br>
+=E2=86=92 mcp.pow.systems<br>
+=E2=86=92 D1 operational index<br>
+=E2=86=92 R2 history</p>
+<p>MCP tools can then expose:</p>
+<p>pow.health()<br>
+pow.sources()<br>
+pow.gaps()<br>
+pow.timeline()</p>
+<p>parts.lookup()<br>
+repair.assess()<br>
+markets.history()</p>
+<p>But MCP is not required to start collecting.</p>
+<p>Do not delay Day 0 for the MCP backend.</p>
+
+
+
+15. Day 0 checklist
+<p>The first successful session should end with:</p>
+<ul>
+<li>VPS chosen</li>
+<li>repo created</li>
+<li>Python environment working</li>
+<li>R2 credentials configured</li>
+<li>pow-raw bucket working</li>
+<li>SQLite run ledger created</li>
+<li>generic R2 writer working</li>
+<li>generic run wrapper working</li>
+<li>first 3=E2=80=935 collectors running</li>
+<li>systemd/cron schedules installed</li>
+<li>health script running</li>
+<li>external heartbeat running</li>
+<li>raw files visibly accumulating in R2</li>
+</ul>
+<p>That is enough.</p>
+<p>If by the end of the first build session we have beautiful architecture =
+but zero raw data in R2, the session failed.</p>
+<p>If we have ugly Python scripts writing clean timestamped immutable sourc=
+e data into R2 every 15 minutes, the session succeeded.</p>
+
+
+
+16. Then industrialise gradually
+<p>Only after collection is alive:</p>
+<p>Phase 2:</p>
+<ul>
+<li>source manifests formalised</li>
+<li>schema hashes</li>
+<li>gap detection</li>
+<li>fallback routes</li>
+<li>better validation</li>
+<li>collector tests</li>
+</ul>
+<p>Phase 3:</p>
+<ul>
+<li>normalization</li>
+<li>canonical identity</li>
+<li>Parquet</li>
+<li>DuckDB/Polars transforms</li>
+</ul>
+<p>Phase 4:</p>
+<ul>
+<li>Cloudflare MCP/API</li>
+<li>D1 operational view</li>
+<li>content candidates</li>
+<li>Muse actions</li>
+</ul>
+<p>Phase 5:</p>
+<ul>
+<li>OutcomeGraph</li>
+<li>real-world intervention feedback</li>
+</ul>
+<p>Do not reverse this order.</p>
+
+
+
+Standing rule
+<p><strong>Every hour spent on infrastructure must justify itself by improv=
+ing collection reliability, data quality, or actionability.</strong></p>
+<p>The first objective is not elegant architecture.</p>
+<p>The first objective is:</p>
+<blockquote>
+<p><strong>At midnight tonight, POW should possess data that did not exist =
+in its archive at 23:59, and tomorrow it should possess the next state too.=
+</strong></p>
+</blockquote>
+<p>That is the garden starting to grow.</p>
+
+--0000000000001ad459065bec3480--

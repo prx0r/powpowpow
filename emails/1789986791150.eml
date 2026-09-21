@@ -1,0 +1,310 @@
+Received: from mail-yx2-x28.google.com (2607:f8b0:4864:41::28)
+        by cloudflare-email.net (cloudflare) id fNDhpd3jjD7N
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 10:33:10 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=EFRe6VpD795v+sKbWGVROaUnAR4vtIgxF3knYG3P0Z/drJtV6ggyTIl0CYrV0iYmN9sLCGcnH
+	y2dU/ruHPoRtU01brF0xmEscJf66O+lcwpEUGNMgBX5bRPcDXxryq0mmRkdch951HHDEfOMimEi
+	JYB1R3UBjR+vC959OUpUw0z5Mf3GYvTSnLyjxYi4tnpzm7K4MJNvzBNmC8ScCjPU7YEcU8K5OMz
+	O43JkrjU7sngmIJAovWsB8+7q5wKgyyyD2FZUa02NHrWyttu2NtIJEBiHC3r9F7raCq95fO4nkB
+	OC9XBaVlz1JUOuPT/tOwuKponcO0Pl1c6Lq1lVKuVNCg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789986790; x=1790591590; bh=zmkpOKBT
+	HZu8zo/qXbVrasQaSlRtFeTT6/PPBiTx9n4=; b=eukG4DM3LEOMrgf4jvPOsaleKxyTNObDjV7
+	gQcVAoxwIuf+dCuAsv2oAkZBiTvzeOskGXRIc7+MwV0E0stXq28/pcn7h7vFOtU0dq2tSdiRfDc
+	hEJo5OZNaqQkyBH4rHa0z6ekWvLjKA2PovLQugrqH4Pi0sATz5688t82lmTSVHISAuthn/D1gTM
+	1+7D1Z094dEkGeVkOumonbhRju/ueDAsLNYj5DmmVBVUuMPnpA0IzY+ON4Xpll6NkPflPgznxEn
+	UikO/in9va5vT7saQWCfKQ0ffG+MEvsemFCJGvkpLRbU+u9ShhfP9ShA1ZoVSYS6GVhaCymARl7
+	x2Jbujw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ntnZoc+/;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x28.google.com) smtp.helo=mail-yx2-x28.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::28 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::28"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::28 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::28; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x28.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ntnZoc+/;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x28.google.com) smtp.helo=mail-yx2-x28.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::28 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::28"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x28.google.com with SMTP id 956f58d0204a3-66e4aaf2ecfso2203605d50.1
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 03:33:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789986790; cv=none;
+        d=google.com; s=arc-20260327;
+        b=nV6CrCY7uZwD/SsQrdMwnJe52ttn/65b6LJQX2+q4E6/2Z22DTDI764qqhg+TQj5r/
+         6vZcHT/Gcm3Iq0gghQh8O9FZLFWNp+hbML8aIL6qSR7u6KOOvtBZcKyNBXZEff4IqwhD
+         KVKAlX6qm/B2esk/LiGiv6V/xYvyKphbZHnht5TLwcMafMsPxZ6Z0Cz8mb2SpVT57WdQ
+         FJkhUM+8hy/FR66Dkk+//08j+6QWZKh8O7ddQxjGZjKfrvezqGLgIhgMQZBXmz36hCNj
+         k6UbqNfpTDY/Ka7cNy6nSHqd7zHuE0EUCOJYxhOVOEkNLArO8SkhGY+HbX8sonwxrd3O
+         rySw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=zmkpOKBTHZu8zo/qXbVrasQaSlRtFeTT6/PPBiTx9n4=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=nEjMxiZqWdA11Tsyw0qlES307t4lto+fV6Tuuzp6h6gtK/6cXkioaDTbIMxYpApigj
+         de3RBHkOA2jMw6hRpx+LLGUgUAuhd7BeFgvebJmRZHaKOXM5FJ0lDpJUwueUoNg58LAy
+         rIeTlpJdUecGInzmtGM9Un+Fl11ZyVxps64IcaR9qnaZq4uoHYuUYxfOnb2gfIe6HXri
+         pFsp8D+zQscpHanbs6SPZeD9jkFrqHtR5Dh9FGJ48nQRZY80bSH2lTJCFUYjrfHN1qV9
+         kBENZ7kO0YIAUvyUq++ianYQiWnxyfByVgTXgV25GTzTwPYlonZNoOlc5dV3WqRkVKB8
+         ZxYw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789986790; x=1790591590; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=zmkpOKBTHZu8zo/qXbVrasQaSlRtFeTT6/PPBiTx9n4=;
+        b=ntnZoc+/Gpl4IwWH/uNRxQQehFCj7DB3C3WxNUuTsTclDljc0ObgWoZiBSjxIKrEml
+         Oo3xXN4xWsuLo4fkIMqgTAHA+VO30cYzX1iJxBQS+Zbd9hu+JYn2JUYOwngaVCsEwxrW
+         WVwwp55hRGmZ9l/fV09dWCNQ6E9bfo2gk/ECBpDWb02j8Xq7/wADeUWeFFP/aIGlyJ9L
+         jZ/szUqRzY182796tp35i7faYUDr2RugWF+0e42sC+vhzEiLeCU1s+/vQI5akkfgNcDP
+         HDTpilxI2XhqXjT4WZKkwDKsLspRMdWkTOrxeTAEyzld4XAZY6qvP58o9RPMuJoyYgY8
+         5COQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789986790; x=1790591590;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=zmkpOKBTHZu8zo/qXbVrasQaSlRtFeTT6/PPBiTx9n4=;
+        b=lfmIijNUtjkKBmCnxO6iYbAGgiPQwvqMqT2febl0uTAUYo2y3eqmV1XqiztxWrnOhM
+         5uLhSvAiJrrZlEgZZT1vIRUF/elyEAsKHjy0fPiKMnnLUmBwyrd1sFSNYMN9uj1av+bm
+         V8vbnbbfTt90qwhVrelSsA51/PP2ZR1ci8JqvXiY+zp3Dh4s6VUPEZVZ28iKyXcJ7raM
+         VDU909EzoH5pCJIt+Kaiuc4n8bvkHNgMBubrF/X4yzdWwxzP93/RsVZUSdR2kJgP4yYD
+         hFJ8M6fMsRGYD8DwwcSBk3RY5i2nDugk0OOOcPYfEA7IMjOLMSQK69xp+5qrdz8whBBp
+         OWxQ==
+X-Gm-Message-State: AFuF++niLmNdk09z0XJBPjLUAhUTTFIiVlpxc1IcIz56nfL+l3vh68hy
+	Xra9YxsmkXSKoahZaCR9K65t56oxGvGPTwODqLHCw8WreL0xLSjLUqKgrvXFldhhdrDViFAQvGq
+	uncshzcy0ekeg01bzrMasdoWgyhFF4Hh76w==
+X-Gm-Gg: AYBFou1iQcGG31EWVkTJcM7BQBPxaRcr/4gFNoNEHWbkj7NnGrHJWp2koXOBAjsgkmE
+	i+y/6m5YTqop/Y1Xwzajn2TqyuOgSDvFW+ITl/JK7yEVjmYm1g6HZ7YttjwFp7zhz3arxkTUC2v
+	HNuiL72QiGRZlnj50iGnSSkZC4VQ6Caut96q4TKP0bKE2enRHtVuhtplhj/nYQJnJOzZ1YevZ0n
+	RUOEZfAyi+gsc94af6QqUAm7KXuos6xG1E8wBmFH5o7mBkaNIjpY/wi1KnUsFNJ+3PATNOuDe4H
+	/pPGEzpij8zb0ApjdLOhvDk9ZMtRqhBr9NQs1vNmiw3bCWVZiSr4paAXPxfDSZ9YbKD9+jQlXLg
+	CumPulscKi3cRviThFlsig7k8XwbeefxWN8VqhzxBEfedx/njKqks9Q0SAnQDRsapX20uwJUdMQ
+	==
+X-Received: by 2002:a05:690e:b47:b0:66f:c1be:84cd with SMTP id
+ 956f58d0204a3-6717fd8ee5dmr3267440d50.59.1789986790132; Mon, 21 Sep 2026
+ 03:33:10 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 05:33:09 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 05:33:09 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 05:33:09 -0500
+X-Gm-Features: AcwNN1WdFEgAKZZj9ALlwilFcY1F57KH8aXkW1v-YFWZffEUW93Ze28QgfDvtxA
+Message-ID: <CAPdrGemG1cq81eZqtTdiEp6Ttmd8=JagqG=hW62b_ayTAFjtKw@mail.gmail.com>
+Subject: =?UTF-8?B?UkVDT1ZFUlkg4oCUIFBPVyBQcm9iZSDigJQgQnV5ZXIgQWN0aW9ucyDigJQgMjAyNi0wOQ==?=
+	=?UTF-8?B?LTIxIDE3OjMxIElDVA==?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS BUYER / ACTION PROBE =E2=80=94 2026-09-21 17:31 ICT
+
+EXECUTIVE DELTA
+The strongest buyer-side evidence this run is a sharper commercial
+primitive: installers already pay specifically for pre-qualified
+physical opportunities where they can inspect fit before committing,
+and some providers charge only on claim or win. Towsty publishes =C2=A325
+per heat-pump lead charged on claim, with a property/estimate brief
+visible before claim. ChargerFit publishes EV installer leads from =C2=A315
+charged only when the installer wins and describes photo-based remote
+quoting plus scheduling, invoicing and OZEV grant-paperwork handling.
+UK Energy Partnership publishes =C2=A325=E2=80=93=C2=A3100 per exclusive pr=
+e-qualified
+lead. Trade Quote Network publishes =C2=A349/month for one EV postcode area
+through =C2=A3349/month nationally. Lead Pronto advertises EV booked
+appointments from =C2=A3130 and heat-pump leads from =C2=A315.
+
+This sharpens POW from lead generation to Decision Packet =E2=86=92
+CLAIM/REJECT =E2=86=92 execution =E2=86=92 outcome receipt. The garden is t=
+he
+accumulated mapping of which site/job/provider combinations convert,
+fail, delay, require evidence remediation or produce profit.
+
+Clean-tech firms also demonstrably buy workflow/compliance software.
+Payaca publishes =C2=A3299/month for qualifying new installers, =C2=A31,199
+Growth, =C2=A31,999 Scale, =C2=A33,199 Scale Max and =C2=A31,500 Growth onb=
+oarding.
+GoInstall publishes =C2=A330/user/month Starter, =C2=A355/month Standard an=
+d
+=C2=A375/month Professional. These are observed category budgets, not
+evidence of willingness to pay POW.
+
+RANKED ACTION SURFACES
+1. Site =E2=86=92 installer =E2=86=92 claim/win =E2=86=92 completed job =E2=
+=86=92 grant/outcome: 5.00,
+PRESELL + PLANT. Buyer: OZEV/MCS installer. Pain: finding executable
+jobs and carrying them through eligibility/evidence/compliance.
+Inputs: site/property facts =C3=97 intervention =C3=97 eligibility =C3=97 c=
+redentials
+=C3=97 geography =C3=97 capacity =C3=97 compatibility =C3=97 grant evidence=
+. Proprietary
+state: RevealedProviderCapacity, CompletionProbability,
+ClaimFailureRisk, EvidenceCompleteness, ExpectedMargin/Latency.
+Immediate route: opportunity packets. Receipt: claim/reject, quote,
+won/lost, install, grant outcome.
+2. Fault/model =E2=86=92 exact MPN/substitute =E2=86=92 repair-or-replace: =
+4.96, PILOT
++ PLANT. Inputs: model/serial-family =C3=97 fault =C3=97 MPN =C3=97 superse=
+ssion =C3=97
+stock/price =C3=97 labour =C3=97 resale/replacement =C3=97 recall. State:
+RepairabilityAtTime, SubstituteSuccessRate, ExpectedRepairMargin.
+Receipt: part ordered, fit/no-fit, repair success, time/cost, resale.
+3. Property =E2=86=92 solar/battery/heat-pump intervention =E2=86=92 provid=
+er/outcome:
+4.94, PRESELL + PLANT. Inputs: UPRN/EPC =C3=97 physical state =C3=97 tariff=
+/grid
+=C3=97 intervention =C3=97 MCS capability =C3=97 live capacity. State:
+SiteInterventionFit and completion likelihood. Receipt:
+survey/quote/win/install/performance.
+4. Capability =E2=86=92 training/qualification =E2=86=92 first paid physica=
+l job:
+4.88, PILOT. State: MarginalCapabilityValue(place,time). Kill if
+outcomes stop at clicks/enrolment.
+5. Regulation/grant =E2=86=92 required physical work =E2=86=92 provider: 4.=
+86, PLANT.
+State: RegulationToWorkOpportunity. Must terminate in executable work.
+6. Grid/site viability: 4.66, PILOT. Buyer:
+developer/installer/project owner. State: SiteViabilityAtTime.
+Receipt: application, quote, accepted/rejected,
+connection/energisation.
+7. Broken-item arbitrage: 4.51, DERIVATIVE. Valuable only on top of
+repair/MPN garden.
+8. GPU mine/rent/inference/sell: 3.87, WATCH. Promote only with
+proprietary physical machine telemetry/outcomes.
+
+EXACT BUYER EVIDENCE
+Towsty: =C2=A325 claimed heat-pump lead, MCS required, brief before claim.
+ChargerFit: EV lead from =C2=A315, charged only when installer wins,
+photo-based remote quoting. Trade Quote Network: EV subscriptions =C2=A349
+local, =C2=A399 county, =C2=A3149 multi-county, =C2=A3179 London, =C2=A3349=
+ national; max
+three trades per lead. Lead Pronto: EV booked appointments from =C2=A3130;
+heat-pump leads from =C2=A315. UK Energy Partnership: =C2=A325=E2=80=93=C2=
+=A3100 exclusive
+pre-qualified energy lead. Payaca: =C2=A3299/month qualifying accelerator;
+=C2=A31,199 Growth; =C2=A31,999 Scale; =C2=A33,199 Scale Max; =C2=A31,500 o=
+nboarding.
+GoInstall: =C2=A330/user/month Starter; =C2=A355 Standard; =C2=A375 Profess=
+ional.
+OZEV Workplace Charging Scheme: authorised installer claims for
+customer; up to 75% of purchase/installation cost, capped at
+=C2=A3500/socket and 40 sockets; final scheme year ends 31 March 2027;
+state-funded education institutions up to =C2=A32,000/socket. These confirm
+category budgets, not POW willingness-to-pay.
+
+GARDEN DEPENDENCY GRAPH
+SITE/ASSET ID =E2=86=92 PHYSICAL STATE =E2=86=92 RULE/ELIGIBILITY =E2=86=92=
+ INTERVENTION =E2=86=92
+REQUIRED CAPABILITY =E2=86=92 PROVIDER/CREDENTIALS =E2=86=92 GEOGRAPHY =C3=
+=97 REVEALED
+CAPACITY =E2=86=92 OPPORTUNITY PACKET =E2=86=92 CLAIM/REJECT(reason) =E2=86=
+=92
+SURVEY/DIAGNOSIS =E2=86=92 QUOTE =E2=86=92 WON/LOST =E2=86=92 INSTALL/REPAI=
+R =E2=86=92 EVIDENCE/CLAIM
+=E2=86=92 ACCEPT/REJECT/RESUBMIT =E2=86=92 COST/TIME/PERFORMANCE/RESALE =E2=
+=86=92 learned
+routing.
+Every edge/event carries provenance and CONFIRMED/INFERRED/UNKNOWN.
+Core proprietary states: RevealedProviderCapacity,
+SiteInterventionFit, ClaimFailureRisk, ExpectedCompletionTime,
+ExpectedRepairMargin, MarginalCapabilityValue and ultimately
+P(profitable completion | site/asset, intervention, provider, place,
+time).
+
+PRESELL NOW
+Week-one deliverable: 20 permissioned Executable Opportunity Packets
+across five EV/heat-pump/solar installers plus a parallel 30-case
+repair-routing benchmark. Each packet: site facts, intervention,
+eligibility/grant path, accreditation requirements, evidence
+checklist, blockers, current economics and CLAIM | REJECT(reason) with
+one next action. No personal customer data without consent.
+
+10 reachable archetypes/channels: OZEV solo installers; MCS heat-pump
+installers; MCS solar/battery installers; NICEIC electricians
+expanding into EV/renewables; NAPIT installers; small clean-tech
+installers using spreadsheets; installer businesses using
+Payaca/GoInstall-class tools; landlord/property EV installers;
+state-funded education EV contractors; appliance/electronics
+repair/refurbishment SMEs.
+
+Pilot: free 7-day feed, max 3=E2=80=935 packets per business, no integratio=
+n;
+response by CLAIM/REJECT plus structured reason; manually close
+survey/quote/job/claim loop.
+Validation question: Did this packet cause or materially accelerate a
+profitable action you otherwise would not have completed as
+efficiently, and will you return the quote/job/claim outcome so POW
+can improve the next match?
+Evidence before charging: =E2=89=A55 businesses, =E2=89=A520 opportunities,=
+ =E2=89=A550%
+explicit claim/reject receipts, =E2=89=A55 surveys/quotes, =E2=89=A52 compl=
+eted jobs
+or documented admin savings, =E2=89=A52 businesses independently asking to
+continue or accepting paid continuation. Pricing remains UNKNOWN.
+t=3D0: deterministic eligibility, accreditation/geography matching,
+evidence checklists, current part/job economics. 6 months:
+claim/reject propensity, rejection reasons, response latency, local
+revealed capacity, part-fit outcomes. 12 months:
+quote/win/completion/claim-success and repair-margin distributions. 36
+months: conditional routing with provider/site/asset-specific outcome
+priors and genuine time moat.
+
+OUTCOME LOOP
+OFFERED =E2=86=92 CLAIMED/REJECTED(reason) =E2=86=92 CONTACTED =E2=86=92 SU=
+RVEYED/DIAGNOSED =E2=86=92
+QUOTED(value) =E2=86=92 WON/LOST(reason) =E2=86=92 PART_ORDERED/INSTALLED =
+=E2=86=92
+EVIDENCE_SUBMITTED =E2=86=92 CLAIM_ACCEPTED/REJECTED/RESUBMITTED =E2=86=92 =
+PAID =E2=86=92
+PERFORMANCE/RESALE_OBSERVED.
+Required keys: opportunity_id, site_or_asset_id, provider_id,
+intervention_id, action_id, effective_at, observed_at, provenance,
+confidence. Reject reasons: OUT_OF_AREA, NO_CAPACITY,
+NO_CERTIFICATION, BAD_ECONOMICS, UNSUITABLE_SITE_OR_ASSET,
+PART_UNAVAILABLE, TIMING, OTHER.
+
+KILL REASONS
+Kill generic lead marketplace without returned outcomes. Kill grant
+finder stopping at eligibility. Kill static installer directory as
+business; retain as identity infrastructure. Kill CRM clone without
+cross-business learned routing. Kill repair database without
+part/order/fit/repair/resale receipts. Kill training recommender whose
+terminal event is enrolment. Kill standalone broken-item marketplace
+scraper. Kill GPU routing if it remains commodity price comparison.
+
+NEXT-HOUR QUEUE
+1. Map exact OZEV WCS claim/evidence/rejection/resubmission states and
+what can be captured with installer consent.
+2. Design canonical Opportunity =E2=86=92 Claim/Reject =E2=86=92 OutcomeRec=
+eipt schema.
+3. Build 20 no-PII EV/heat-pump opportunity packets.
+4. Benchmark 30 repair cases: model =E2=86=92 MPN =E2=86=92 substitute =E2=
+=86=92 live
+price/stock =E2=86=92 repair value =E2=86=92 fit/outcome.
+5. Normalize 50 installer acquisition/workflow products by price,
+exclusivity, qualification, geography and returned outcomes.
+6. Test whether photo-based remote quoting materially improves actionabilit=
+y.
+
+MACHINE-READABLE APPENDIX
+{"probe":"POW_BUYER_ACTION","run":"2026-09-21T17:31:52+07:00","collector_de=
+ployed":false,"material_delta":"CLAIM_OR_WIN_PRICING_VALIDATES_REVEALED_CAP=
+ACITY_AND_ACTION_RECEIPT_WEDGE","ranked":[["SITE_INSTALLER_JOB_GRANT_OUTCOM=
+E",5.00,"PRESELL_PLANT"],["EXACT_REPAIR_ROUTING",4.96,"PILOT_PLANT"],["PROP=
+ERTY_CLEANTECH_ROUTE",4.94,"PRESELL_PLANT"],["CAPABILITY_TO_FIRST_PAID_JOB"=
+,4.88,"PILOT"],["REGULATION_TO_PHYSICAL_WORK",4.86,"PLANT"],["GRID_SITE_VIA=
+BILITY",4.66,"PILOT"],["BROKEN_ITEM_ARBITRAGE",4.51,"DERIVATIVE"],["GPU_ROU=
+TING",3.87,"WATCH"]],"pow_willingness_to_pay":"UNKNOWN","core_receipt":"CLA=
+IM_REJECT_QUOTE_JOB_CLAIM_OUTCOME","garden_state":["REVEALED_PROVIDER_CAPAC=
+ITY","SITE_INTERVENTION_FIT","CLAIM_FAILURE_RISK","EXPECTED_COMPLETION_TIME=
+","EXPECTED_REPAIR_MARGIN"]}

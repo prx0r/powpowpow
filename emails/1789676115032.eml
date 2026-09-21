@@ -1,0 +1,476 @@
+Received: from mail-yw1-x112b.google.com (2607:f8b0:4864:20::112b)
+        by cloudflare-email.net (cloudflare) id n41kKjrISVgE
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 20:15:14 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=bUbfuMLGNyxM6VbltBr9mBaY0aGAeZIjfCD6TMTha0KbWscNfklhvMlE2K3w1BTN1rl8Xu7dt
+	cIUUH6SZ21Ge2LyVIrkeKHBYeDUV5YHuenvjU2o2cflpxgZkB+jQObrXQlb5nR8sX7X4YUllR0x
+	NjHBjvww0hvff2oo+Sd7Y4HrTK8IlwoCgir1fOg0h3KtCFy0MssuIDq7YDS2FtxzItWtpZP7pez
+	4cIqbRc8oOBX9r0/u+D8lqXLk7mT1RHm8Nhs+A3IE/u0OUwZs6yWt5iAi+VEtMpvWfbBLqtfTIb
+	agwfp30NlhwgXGWd5wIi4D8yboQk0ajX8Uvk8jDckO0g==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789676114; x=1790280914; bh=NW+35+BE
+	n154gpFD17VyvNtf44LSr9Y8h8PDCG8HY3E=; b=Nv0Fcyz0EwdSyXfnKHn+W8JADePvEF/t9dK
+	NuXgNVHYwoA7wg22hUU+rvrNY2PxehFerqOKg9xx7zdYbJmKiUmIw8ZPV3xmcpugsw63sqQLnJJ
+	rx33nSTCQNmC3l2JwXSQVh6Je2s0zQGFEP4e2o9w+jWdMccVpUxr14BIvPldL8BQ7zh4fxABRU+
+	7iTvxlthHdEKctykjBeRTjtR/+q8LeMjtrt7EFU4PiruEiX2qWmX8qAE/e5v/x2e45mKCJSrC8g
+	aVQ6sWbJbcJq2Ltkf2DfVoVZ56b855Lmg9BNSlFyXv9BjdCU40ez1anCrjmF5wfC77I2BXnKj2E
+	5m5NhpQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=k4g45PT5;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yw1-x112b.google.com) smtp.helo=mail-yw1-x112b.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::112b as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::112b"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::112b as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:20::112b; envelope-from="tradesprior@gmail.com"; helo=mail-yw1-x112b.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=k4g45PT5;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yw1-x112b.google.com) smtp.helo=mail-yw1-x112b.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::112b as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::112b"
+X-CF-SpamH-Score: 0
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-87c938111a7so8140427b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 13:15:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789676114; cv=none;
+        d=google.com; s=arc-20260327;
+        b=seXT4BGbAygQnMcIN0De5kJHVdaUbKxRM/zoi4vx6VKbdyp49KvtqI4Vj9sBpNFXy6
+         KZ17IFfmlcD9/38AK17akQw4XFK3qhHsf+QasAgyKIRvxl3BrmwMw4EVFSLdtjNV7C+a
+         mzULHIkIl06a27OX3kuuiDPlrg/VEU9bhupDkCC/EkfdZZtRPvlGddMkKn18ZwhPRti4
+         awAkdI0xiyQRXEGCxitRewxZveYDOKmTlmHSdHixNqUmD/EsXwpzuSaOeWs5X5VoLzUP
+         m9G7jsA1MHLnozqxNr6WvPtDfhPU9hLXRIwmho/+hlX4M0Ry5SI2ScXzTEWBeDSWe7RC
+         izxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=NW+35+BEn154gpFD17VyvNtf44LSr9Y8h8PDCG8HY3E=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=SbJ/5H2JsMD62T5D40scwyUjYy/1sRCFNtpViLABEBDwCX+rv9Ecqw55apvVrbTftp
+         nQrNW1oGmUisXRQq8jj7KvfBCqu8L5G2ilh//0qCgsrXgXw9CGRm+++XShc+2os23JVd
+         mpZug3mftUHwvgiciqgBGSKOXHy7Vcym35mbomh1KjaH3/6HJwpeyh6xVDSfcwJXvPZM
+         WhUFGF83FCPd+jeudrnhxj2TZx2IfDGMjZUuIckyQhzkjr1GXtmXiYMLUh83zHHLc2WK
+         drTMLqd/gXYb7CFgzkUmUczjP0xBushW6vebq3r4yBw/RNIzfJNESqTBRnse/+NMyXbr
+         /YrA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789676114; x=1790280914; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=NW+35+BEn154gpFD17VyvNtf44LSr9Y8h8PDCG8HY3E=;
+        b=k4g45PT5FRga5hrjE+Cw6Y6gE1hQgTQRzCmmcbWvR57ZiYvITiipRlC9hu9fpqiX+s
+         pkP/hWD0JS/+4om4upE414G+QAP49Ru9GncWzBdm/32PZB7+LxzkkWPdLOU3d7gijDAU
+         lXyMaa3V8fOD4gV7/21lwmjyn2tB7F0GGlSDZtCwZMGFXMPTu6a6/2SyMkhDAj+N/rOe
+         ShmNCaEFpbygIK1YEu7RZ4YVa/PCgcIuBHOfOkt5rurvyDthmeP/igpf1xVmMF+MroA2
+         rJsSSNksx2dyIw0xHZNE+voGxO/Z1Mm43q0qmU+2up6R8S4OzZL/i9irqRrGQfx6GtxV
+         aqfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789676114; x=1790280914;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=NW+35+BEn154gpFD17VyvNtf44LSr9Y8h8PDCG8HY3E=;
+        b=aL/RTGlkgMeLPDU2nZubRL2ka9IsNwKdJLP+5TtNq9omBfCjAVXBjbQc2C44rbNiFu
+         28/0TXyp3gxao4vVPaVRnnIaWW/9K4yXlOm4aK936lwGQegVMUT+VpHnmA3jCsX4cGIt
+         vUe4xTwQT8yWeXtOlACwyvPqfAKH7AT0+7nIQDZFf81Z9YLiXyf8P3wmtdxMsC17BbJP
+         Lnj9zdxUXOIiAxSJ1WbJ2IQ0YUE7L0oew65pGFFHTJd7To7mAgdQcy2BYsVGPXwRyy7a
+         bSRcq2+ESNQXgU2Ctm5hI+R8vXAJQsC44bQ/reWAQ4gX09Dqk8pw1CGwXYJwsd7gb9qq
+         YtYA==
+X-Gm-Message-State: AFuF++mQjKUxUeXDht2NZeFCRI9K4M81hvFCOC4RJgYSR/29WQ50pUCw
+	HoyzVP+Nvsc1w/t2WLaC0d5k5zbPu2geeT8gVxSUahnjS56rBsXLb3uKRDx74YAQqC/0gyqKq6c
+	wb/2J7L1j18630vgOVUt4Q+loVbcKWECubg==
+X-Gm-Gg: AYBFou2EYqOjYaZ77VYS+57iUF7HbWmXp4n1pz/kZjunkuOwqHqxP9M0t/ds/rFMdWF
+	31Q+qk6oucLl/xzMxvXwAxidriQl8x/fXEcplYnFRudhRWyuOregDJZWS3l4QtPwSHsIKC6xNkg
+	tO3UZ5B1UW5iBdINZxycnI2zL5pboNiYgiHIzT3Bd9MKgA0pwloJg8nhRK5zhKj2D+VKu4tRJnO
+	m8En3RcoclPNAyD7mL1qddELMAX2wBO8hw/gS4PhddXwRvsiE5c1kWRr2KOzSGvTuC33Dg62ol9
+	kWKtW84MkpPMfxiIGUJNTNJKPx5CDPiQalcHAjAkEL6o8T3yr6DcRVCozsFQeRODNZfBFsX6fEj
+	Vwe6oGHGU/upcpU/DPH0oo/0qdNoPnKtoUjPXE4/YRUIkJRARPtDrpsqxx8b6hpDIrNIAfNFS
+X-Received: by 2002:a05:690c:360e:b0:892:f73b:a5a6 with SMTP id
+ 00721157ae682-89445a5eab6mr11275437b3.20.1789676113792; Thu, 17 Sep 2026
+ 13:15:13 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 05:15:13 +0900
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 05:15:13 +0900
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 05:15:13 +0900
+X-Gm-Features: AcwNN1VXbJINWq9ZhGNeD0WqN4TFcioR4jU_BEHRG6zCy0DqvDdqFQ8Yg7__QVE
+Message-ID: <CAPdrGe=1DWPeKoo4mgcaiCoM6m_Keq192c-Zmfsb1ur5ToiQFQ@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_peer_review_1=2F5_=E2=80=94_current_HEAD_verdict_=2B_STO?=
+	=?UTF-8?Q?P=2DSHIP_P0s?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000000693b9065bb37193"
+
+--0000000000000693b9065bb37193
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Reviewed prx0r/pmail at master HEAD 4146b360b607f4c6c99ad8def61313f38282cf3=
+1
+(tree 6c71345c5664adb5515c1e73d8a8f20044e04fcf).
+
+High-level verdict: the domain model is good, but the commit message
+overstates implementation maturity. Treat this repo as a strong scaffold,
+not as a working anonymous communications stack yet. Do not add more
+providers/features until the trust boundary is real.
+
+STOP-SHIP P0s
+
+   1. RECEIPT AUTHENTICITY IS NOT YET SECURE
+   src/qp/receipts.ts is described as =E2=80=9CObsigna-compatible=E2=80=9D =
+but is a custom
+   envelope implementation. Do not ship/claim Obsigna compatibility until
+   using the actual protocol/SDK/conformance vectors.
+
+Current weaknesses:
+
+   - canonicalization is ordinary JSON.stringify, not RFC 8785/JCS
+   - signer_key is carried inside the receipt and verifier trusts it
+   directly
+   - receipt hash excludes signer/signature
+   - chain therefore binds an unsigned semantic payload, not an
+   authenticated issuer identity
+   - attacker can preserve the semantic payload/receipt_hash, re-sign with
+   a different key, replace signer_key/signature, and basic verification st=
+ill
+   succeeds unless an external trusted-key binding is enforced
+   - issuer is just a string; no trust registry/attested key binding
+   - chain verification only checks prev_receipt_hash; it does not verify
+   every signature, trusted issuer, semantic replay, or log inclusion
+
+Fix: STOP extending this file. Integrate agent-receipts/obsigna properly.
+Use its canonicalization, signature/conformance and signer daemon. QP
+remains an extension. A verifier MUST receive/resolve an expected trusted
+signer identity/key separately from untrusted receipt fields.
+
+   1. QP REPLAY DOES NOT ENFORCE THE CONSTITUTION
+   src/qp/kernel.ts still has the same class of issues we found in cmail:
+
+
+   - evidence only checked for non-empty provenance fields; e.claim_id is
+   not required to equal the target claim ID
+   - evidence IDs are not recomputed from canonical evidence content
+   - response_hash / normalized_payload_hash are not recomputed
+   - collector program/runtime hashes are not checked against a frozen
+   ProgramManifest
+   - provenance_policy_hash and independence_policy_hash are never enforced
+   - judge functions are supplied by caller; only count is checked, not
+   bundle identity/hash
+   - gate count/bundle identity not checked
+   - judge_results_root and gate_results_root are fields but not
+   recomputed/verified
+   - state_before_root/proposal_root/state_after_root are not
+   deterministically recomputed
+   - transition_program_hash is not checked against the ProofSpec
+   - proof_requirement TRUE_AND_AUTHORITY is ignored
+   - authority/signature is not verified
+   - prev_receipt_hash/chain is not verified by semantic replay
+   - qp_signature is not verified
+   - freshness uses spec.freshness[e.class] || 3600; a legitimate zero
+   value is replaced, unknown evidence classes silently get 1 hour, and
+   future-dated evidence can pass
+
+Required redesign: runtime loads frozen ProofSpec + ProgramManifest itself.
+Caller supplies IDs/input, never arbitrary judge/gate functions. Replay
+recomputes every root/hash/signature from persisted artifacts in a fresh
+process.
+
+   1. PROOFSPECS ARE DOCUMENTATION, NOT EXECUTABLE CONTRACTS
+   Example proofspecs/xmr_payment_received.v1.json contains placeholder
+   strings such as sha256:judgeInvoiceObserved, sha256:none, empty
+   bundle_hash, etc. There is no production ProofSpec
+   registry/compiler/program-manifest path in src/.
+
+Do not call these ContractRoots until all referenced hashes are actual
+content hashes of executable/schema/config artifacts.
+
+   1. AUTHORITY CHECKS ARE COSMETIC
+   src/mcp/server.ts validates only:
+
+
+   - grant exists in an in-memory Map
+   - action string matches
+   - expiry
+   - max_uses > 0
+
+It does NOT validate:
+
+   - grant signature / trusted issuer
+   - grant.subject =3D=3D authenticated principal/agent
+   - exact canonical payload_hash
+   - provider/resource/amount/currency/scope constraints
+   - revoked status
+   - nonce/replay
+   - durable atomic use count
+   - parent delegation
+   - effect idempotency
+
+And max_uses is never decremented/consumed atomically after execution.
+
+Replace custom trust with an AuthorityProvider abstraction (Grantex-backed
+if useful) plus QP exact-payload/budget constraint checks. All
+consequential effects go through durable PREPARE/RESERVE before provider
+call.
+
+   1. MCP SURFACE ADVERTISES TOOLS THAT ARE NOT IMPLEMENTED
+   The tool list contains 13 tools, but dispatch currently omits at least:
+
+
+   - pmail.bridges.list
+   - pmail.phone.search
+   - pmail.phone.renew
+   - pmail.phone.sms.send
+
+Several =E2=80=9Cimplemented=E2=80=9D handlers are placeholders:
+
+   - pmail.receipt.get =3D> store not connected
+   - pmail.receipt.verify =3D> verifier not connected
+   - pmail.simplex.send =3D> returns pending text; does not call adapter
+   - pmail.simplex.address.create =3D> random local ID; does not call adapt=
+er
+   - pmail.phone.provision =3D> returns pending_authorization; no effect
+   gateway
+   - pmail.xmr.invoice =3D> random invoice ID; no wallet RPC/MoneroPay
+
+Tests currently verify shape/strings rather than actual side effects.
+
+   1.
+
+   XMR CORE IS MISSING
+   The build plan required src/payments/, MoneroPay/monero-wallet-rpc,
+   fresh subaddresses, payment observation, confirmation tracking,
+   partial-payment handling and idempotent capability minting. Current sour=
+ce
+   tree has no payment implementation. Do this before expanding phone
+   functionality.
+   2.
+
+   TOR IS A PLACEHOLDER THAT FALSE-PROVES REACHABILITY
+   src/core/tor.ts returns placeholder.onion / generate-on-first-run.onion;
+   verifyReachability() currently returns reachable=3Dtrue without making a
+   Tor request. This must never feed a TRUE QP claim.
+   3.
+
+   AGENT VAULT IS NOT ACTUALLY INTEGRATED
+   src/core/secrets.ts invents /session, /inject, /ref semantics and then
+   returns the original unmodified Request. The comments explicitly say MVP=
+.
+   Treat this as an interface sketch only. Integrate actual upstream Agent
+   Vault API/proxy; do not emulate it.
+   4.
+
+   DSTACK IS A PLACEHOLDER
+   DStackAttestor assumes /health, /attest, /verify endpoints and delegates
+   verification to the same service. Replace with actual dstack SDK/API and
+   offline/independent TDX quote verification where possible. LocalAttestor
+   must be DEV_ONLY and must never satisfy runtime_attested=3DTRUE in
+   production policy.
+   5.
+
+   REPO HYGIENE
+
+
+   - master branch is unprotected
+   - HEAD commit is unsigned
+   - GitHub reports no CI/status checks on HEAD
+   - package.json says type: commonjs while TS config uses module: ESNext /
+   Bundler; normalize runtime packaging
+   - README claims =E2=80=9CEvery action is cryptographically verified=E2=
+=80=9D and
+   =E2=80=9Ccredentials never leave the vault,=E2=80=9D which is not true y=
+et. Rewrite status
+   honestly until gates pass.
+
+Next email gives the exact cryptographic/log/reputation architecture to
+implement before more product work.
+
+--0000000000000693b9065bb37193
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Reviewed <code>prx0r/pmail</code> at <code>master</code> HEAD <code>4146=
+b360b607f4c6c99ad8def61313f38282cf31</code> (tree <code>6c71345c5664adb5515=
+c1e73d8a8f20044e04fcf</code>).</p>
+<p>High-level verdict: the domain model is good, but the commit message ove=
+rstates implementation maturity. Treat this repo as a strong scaffold, not =
+as a working anonymous communications stack yet. Do not add more providers/=
+features until the trust boundary is real.</p>
+<p>STOP-SHIP P0s</p>
+<ol>
+<li>RECEIPT AUTHENTICITY IS NOT YET SECURE<br>
+<code>src/qp/receipts.ts</code> is described as =E2=80=9CObsigna-compatible=
+=E2=80=9D but is a custom envelope implementation. Do not ship/claim Obsign=
+a compatibility until using the actual protocol/SDK/conformance vectors.</l=
+i>
+</ol>
+<p>Current weaknesses:</p>
+<ul>
+<li>canonicalization is ordinary <code>JSON.stringify</code>, not RFC 8785/=
+JCS</li>
+<li><code>signer_key</code> is carried inside the receipt and verifier trus=
+ts it directly</li>
+<li>receipt hash excludes signer/signature</li>
+<li>chain therefore binds an unsigned semantic payload, not an authenticate=
+d issuer identity</li>
+<li>attacker can preserve the semantic payload/receipt_hash, re-sign with a=
+ different key, replace signer_key/signature, and basic verification still =
+succeeds unless an external trusted-key binding is enforced</li>
+<li><code>issuer</code> is just a string; no trust registry/attested key bi=
+nding</li>
+<li>chain verification only checks <code>prev_receipt_hash</code>; it does =
+not verify every signature, trusted issuer, semantic replay, or log inclusi=
+on</li>
+</ul>
+<p>Fix: STOP extending this file. Integrate <code>agent-receipts/obsigna</c=
+ode> properly. Use its canonicalization, signature/conformance and signer d=
+aemon. QP remains an extension. A verifier MUST receive/resolve an expected=
+ trusted signer identity/key separately from untrusted receipt fields.</p>
+<ol>
+<li>QP REPLAY DOES NOT ENFORCE THE CONSTITUTION<br>
+<code>src/qp/kernel.ts</code> still has the same class of issues we found i=
+n cmail:</li>
+</ol>
+<ul>
+<li>evidence only checked for non-empty provenance fields; <code>e.claim_id=
+</code> is not required to equal the target claim ID</li>
+<li>evidence IDs are not recomputed from canonical evidence content</li>
+<li>response_hash / normalized_payload_hash are not recomputed</li>
+<li>collector program/runtime hashes are not checked against a frozen Progr=
+amManifest</li>
+<li><code>provenance_policy_hash</code> and <code>independence_policy_hash<=
+/code> are never enforced</li>
+<li>judge functions are supplied by caller; only count is checked, not bund=
+le identity/hash</li>
+<li>gate count/bundle identity not checked</li>
+<li>judge_results_root and gate_results_root are fields but not recomputed/=
+verified</li>
+<li>state_before_root/proposal_root/state_after_root are not deterministica=
+lly recomputed</li>
+<li>transition_program_hash is not checked against the ProofSpec</li>
+<li>proof_requirement TRUE_AND_AUTHORITY is ignored</li>
+<li>authority/signature is not verified</li>
+<li>prev_receipt_hash/chain is not verified by semantic replay</li>
+<li>qp_signature is not verified</li>
+<li>freshness uses <code>spec.freshness[e.class] || 3600</code>; a legitima=
+te zero value is replaced, unknown evidence classes silently get 1 hour, an=
+d future-dated evidence can pass</li>
+</ul>
+<p>Required redesign: runtime loads frozen ProofSpec + ProgramManifest itse=
+lf. Caller supplies IDs/input, never arbitrary judge/gate functions. Replay=
+ recomputes every root/hash/signature from persisted artifacts in a fresh p=
+rocess.</p>
+<ol>
+<li>PROOFSPECS ARE DOCUMENTATION, NOT EXECUTABLE CONTRACTS<br>
+Example <code>proofspecs/xmr_payment_received.v1.json</code> contains place=
+holder strings such as <code>sha256:judgeInvoiceObserved</code>, <code>sha2=
+56:none</code>, empty bundle_hash, etc. There is no production ProofSpec re=
+gistry/compiler/program-manifest path in <code>src/</code>.</li>
+</ol>
+<p>Do not call these ContractRoots until all referenced hashes are actual c=
+ontent hashes of executable/schema/config artifacts.</p>
+<ol>
+<li>AUTHORITY CHECKS ARE COSMETIC<br>
+<code>src/mcp/server.ts</code> validates only:</li>
+</ol>
+<ul>
+<li>grant exists in an in-memory Map</li>
+<li>action string matches</li>
+<li>expiry</li>
+<li>max_uses &gt; 0</li>
+</ul>
+<p>It does NOT validate:</p>
+<ul>
+<li>grant signature / trusted issuer</li>
+<li>grant.subject =3D=3D authenticated principal/agent</li>
+<li>exact canonical payload_hash</li>
+<li>provider/resource/amount/currency/scope constraints</li>
+<li>revoked status</li>
+<li>nonce/replay</li>
+<li>durable atomic use count</li>
+<li>parent delegation</li>
+<li>effect idempotency</li>
+</ul>
+<p>And max_uses is never decremented/consumed atomically after execution.</=
+p>
+<p>Replace custom trust with an <code>AuthorityProvider</code> abstraction =
+(Grantex-backed if useful) plus QP exact-payload/budget constraint checks. =
+All consequential effects go through durable PREPARE/RESERVE before provide=
+r call.</p>
+<ol>
+<li>MCP SURFACE ADVERTISES TOOLS THAT ARE NOT IMPLEMENTED<br>
+The tool list contains 13 tools, but dispatch currently omits at least:</li=
+>
+</ol>
+<ul>
+<li><code>pmail.bridges.list</code></li>
+<li><code>pmail.phone.search</code></li>
+<li><code>pmail.phone.renew</code></li>
+<li><code>pmail.phone.sms.send</code></li>
+</ul>
+<p>Several =E2=80=9Cimplemented=E2=80=9D handlers are placeholders:</p>
+<ul>
+<li><code>pmail.receipt.get</code> =3D&gt; store not connected</li>
+<li><code>pmail.receipt.verify</code> =3D&gt; verifier not connected</li>
+<li><code>pmail.simplex.send</code> =3D&gt; returns pending text; does not =
+call adapter</li>
+<li><code>pmail.simplex.address.create</code> =3D&gt; random local ID; does=
+ not call adapter</li>
+<li><code>pmail.phone.provision</code> =3D&gt; returns pending_authorizatio=
+n; no effect gateway</li>
+<li><code>pmail.xmr.invoice</code> =3D&gt; random invoice ID; no wallet RPC=
+/MoneroPay</li>
+</ul>
+<p>Tests currently verify shape/strings rather than actual side effects.</p=
+>
+<ol>
+<li>
+<p>XMR CORE IS MISSING<br>
+The build plan required <code>src/payments/</code>, MoneroPay/monero-wallet=
+-rpc, fresh subaddresses, payment observation, confirmation tracking, parti=
+al-payment handling and idempotent capability minting. Current source tree =
+has no payment implementation. Do this before expanding phone functionality=
+.</p>
+</li>
+<li>
+<p>TOR IS A PLACEHOLDER THAT FALSE-PROVES REACHABILITY<br>
+<code>src/core/tor.ts</code> returns <code>placeholder.onion</code> / <code=
+>generate-on-first-run.onion</code>; <code>verifyReachability()</code> curr=
+ently returns reachable=3Dtrue without making a Tor request. This must neve=
+r feed a TRUE QP claim.</p>
+</li>
+<li>
+<p>AGENT VAULT IS NOT ACTUALLY INTEGRATED<br>
+<code>src/core/secrets.ts</code> invents <code>/session</code>, <code>/inje=
+ct</code>, <code>/ref</code> semantics and then returns the original unmodi=
+fied Request. The comments explicitly say MVP. Treat this as an interface s=
+ketch only. Integrate actual upstream Agent Vault API/proxy; do not emulate=
+ it.</p>
+</li>
+<li>
+<p>DSTACK IS A PLACEHOLDER<br>
+<code>DStackAttestor</code> assumes <code>/health</code>, <code>/attest</co=
+de>, <code>/verify</code> endpoints and delegates verification to the same =
+service. Replace with actual dstack SDK/API and offline/independent TDX quo=
+te verification where possible. LocalAttestor must be DEV_ONLY and must nev=
+er satisfy <code>runtime_attested=3DTRUE</code> in production policy.</p>
+</li>
+<li>
+<p>REPO HYGIENE</p>
+</li>
+</ol>
+<ul>
+<li>master branch is unprotected</li>
+<li>HEAD commit is unsigned</li>
+<li>GitHub reports no CI/status checks on HEAD</li>
+<li>package.json says <code>type: commonjs</code> while TS config uses <cod=
+e>module: ESNext</code> / Bundler; normalize runtime packaging</li>
+<li>README claims =E2=80=9CEvery action is cryptographically verified=E2=80=
+=9D and =E2=80=9Ccredentials never leave the vault,=E2=80=9D which is not t=
+rue yet. Rewrite status honestly until gates pass.</li>
+</ul>
+<p>Next email gives the exact cryptographic/log/reputation architecture to =
+implement before more product work.</p>
+
+--0000000000000693b9065bb37193--

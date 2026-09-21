@@ -1,0 +1,532 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id L11nalURp67O
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 05:23:46 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=RwU5ciLcsgCFw8f+Z6y6GUiViYok2baFI9SmnKH5Osyv5JYllaiBlnGKu3NKs0K+XGUuJkOh0
+	St7Z5T83tykwQXwgk38bCbpygKa/vNjfqJz8dk+/T1wJiMZjxluaf0tHpBLB2vzmU2T+ErStXLv
+	BDuoPp6O9niw0bygerkhVHBRbUa0bCqNBuJlukk/zfd1i6iEKSS9rZXBZT5H3jI0ujtZbkMWIHZ
+	mt7BU7lPrbCLEEjZcrW1QxqGG38ivkbb8cZDjI6dRt9dTwTt9tkC8Z8iDwUDZyFtyMP6P5qirIK
+	BHuiN6PQMR2ZEeZo0iw2vcceEH1tvU6YsB8R8ggFeqFw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789968226; x=1790573026; bh=5QVak4H6
+	go2udK55qPrsD6gFowGlcY/xb+58jSq/mig=; b=gtf4JgN/kn2hAEhRjxv/q8+adfygk1/ya8K
+	eCcnvk8MzhMGIA4iOjBQbT9iuvG9XL8kAYwed35PYWQRwaGFOLES9xDY+WG5l1WggLk/Mcy73SK
+	auh/KbvrNte7Vvc72vYOe59mSQaQrd6AdI1F6dBjUJY3ZNn3GONdRMDo/ZwgbJJJDCHlIzI3nNu
+	C/n2zk0L099aasKd2cPxZXIanwm769SR4GXkwPMFogi8n+dkR6AA8CRdFb//e3vcijVLIZrGFf3
+	QyDy8og4+XmiJ9zfw2e5uk347wS0PjrZzAaJTemeT9vCDwoAceSBE8wRi0rWchHfGkVHiSVnt+T
+	JBS4sOw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XSH5CH5a;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XSH5CH5a;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab19125so2381250d50.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 22:23:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789968226; cv=none;
+        d=google.com; s=arc-20260327;
+        b=TCgpi2HwNXpSfqRz/IaLNCqxljOLD8WNwLOX3RIGXZPAw0Vf3lq7G71P3Depg2Vfdb
+         JviiOL7vAMeOJxwScR72s8L6r4NvofGHraRhzRPm2ESviLgeWSW53JVtTu9aMwO3EyPw
+         bvNosUVvCQgIKc8ZGU/qbq1yxnTrNMvoF6iMrdMaviaJxChHbKJwQlXGbB/7INp4MDm7
+         P6RRYm11bryGFWpQ09ai0KsiPhyBaLU2SaVcm13yfBNBJhM6fFSLYreRDa798kzniVCZ
+         yHZDkXtdLZfWWJwTyhz1aYNs2Y/fLYWQbzpD9Mr2crZfJ0h4l6zy3DNA36YychSG/1km
+         VaJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=5QVak4H6go2udK55qPrsD6gFowGlcY/xb+58jSq/mig=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=i+hMXtHVSBw2UU/q38DKzfubPId4kM0X4RxQPWqtEwfcUyvxz0AAtSeCv0M5qTEwiS
+         Dxcb7tWdAKXnHDjTzH1wOpwmEvP7kC3enWPJnebotsAxg+w5rh1bxDfLM+4H2DmWzq9o
+         mvt/QajanNPNupehyVP3nREwXMS7YmQ1U0SAXcgYRdWDQg3lNYJ0vAWYTb0oaFi+QNWa
+         q8prwImczoBoWxPpxa6c8ztGEGdHows4K+D3xdVZJKnTaUbV5YjB7S8b2ObC3K4jxXaM
+         1E+OcL4QXAqrlDb6FffeUjByv2nAfuTDhn+5xdNtpneKv5yD/gO2CyZLLax3pygguY7k
+         awpw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789968226; x=1790573026; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=5QVak4H6go2udK55qPrsD6gFowGlcY/xb+58jSq/mig=;
+        b=XSH5CH5aE0dA1sk5YPymcc7577aR54/05AfoeCr6qyU6nbOh14SVNJED1cYTrjtpO6
+         N91LrHiq+Dl/ttV3T8P2AG29K/Vzxw5BoI7pjCeVmEIdXVv3+sTBCa7JmBgoxauWPg+S
+         7JCyPgMUXCy7olSdj77bYDB47g8LH/hvuggFTho0VbZ7xqmq+0qRza+OWqpKS98CGorJ
+         j7900COxhAoA1pdJdC4IiUs23YpLuHX+WSt4+Z2MIkiuas2IgOhA+sbbnuJaIcBrWxFo
+         biwcyCKbZQcIGgCFIPIj36PYLdBQUlp6HY7IrTpR3tLtOLW9eS3DQV/kq4Xh0J5o4aVR
+         q1Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789968226; x=1790573026;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=5QVak4H6go2udK55qPrsD6gFowGlcY/xb+58jSq/mig=;
+        b=lddOl1MkiZJ+PalequJvhARryseHfOxhblRhl9X0vQL7ptgC8+KAe42Y3jq+U77u1U
+         xC7gGY9fbji2JGmc2ke9BHW7tvFfIGdz7kzKo/Et4/J00ho7WfnW6qgHwagbOoTqXmCZ
+         FgMDb+JHXea54s4382rVnPGnBkadGeZQpPGaMNAScgwwo/js8kLvDttbdAOKQx/n8kLc
+         kt0bZrOe6hmK3B7HfdOFPL4F/O/ZSlffpAVVg1DWJFaPfTmE1/7EaJj07napjMkaPEiW
+         XTbkb8ctTEPKvT/S0PoqZXkl2ArJxUtqgLOhC6siWy8CAm3mSKB0b9kABK9R6k2WwZ0k
+         SulA==
+X-Gm-Message-State: AFuF++kZGA1vd0htgkDUd+9xqcBeInNeIDRFGswz/2Kkz/ZG5qSbEtjQ
+	YX/wbVsTXCCoiJKWjCugdOH39OAdLsX+yoOAiL7x9kzuM0QJNmkXRrWW5Yea9284ijHkmzXOBdP
+	I1iIKw636CjYL38VOEVnDYOlmAMjNpMoGyw==
+X-Gm-Gg: AYBFou3Oc3Pg5cegCXJ0b8JblJPJCRCv9GEbh+3mJpNJ6S9rLZ+xdSv8nlE4XM+k3kd
+	r9mXQbEis3KCtyYLmuY272lEv/FbWh9YUwAUqbqBkvhrLkg1NgWb1wlQ1Rebq5b9OBbj0RpqC/k
+	SXZuMalMcZ37ateexOGogS+O1mdxyzh+KQUc+i47AKozE/pUf2PxRBEISU5dzfB6OCWb0rO0wwz
+	F53T4mqq9kXUZlxMUzRmKngR4RdK2zdZJg/b9o332QFlLsnxYRTeJ1pYEOhtVmODrjSbqA+Rjad
+	PaKbjhKA0LQK7uZLoQV2IHJGcLlPiTk/qBvDapBf4H7R5W7z08cx5iOmEoUE8W+YYZB2bi04YF8
+	4ROYx0q0fkgELIYC2kQvJ6GtngNV2gi7PqdLbOl4lNy6ZUd5X3B0rVbIjXaIVAXckhOAH9IO0LA
+	==
+X-Received: by 2002:a53:ac8f:0:b0:671:3e2c:30f0 with SMTP id
+ 956f58d0204a3-6717fc63379mr2917591d50.4.1789968225996; Sun, 20 Sep 2026
+ 22:23:45 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 00:23:45 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 00:23:45 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 00:23:45 -0500
+X-Gm-Features: AcwNN1VkkR0psBB-j0yi1lDpDkLWpo3oj_ISZsRb-Ws75ajVqe9xW53H5Y_USzQ
+Message-ID: <CAPdrGekv2E0P0Air2c43Nt0Gyxa0-NnbiOZozSH9QvtB9gPJgg@mail.gmail.com>
+Subject: =?UTF-8?B?UE9XIFByb2JlIOKAlCBDb25zdHJhaW50cyDigJQgMjAyNi0wOS0yMSAxMjoyMyBJQ1Q=?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000004514c3065bf774f0"
+
+--0000000000004514c3065bf774f0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS CONSTRAINT / SEESAW PROBE =E2=80=94 2026-09-21 12:23 ICT Execut=
+ive
+delta
+
+*CONFIRMED =E2=80=94 new highest-information constraint experiment:* CMP470=
+ turns
+the UK=E2=80=99s battery queue from a generic connection bottleneck into a
+measurable *shadow-price intervention*. Ofgem opened a minded-to-approve
+consultation on 17 Sep 2026. The mechanism is intended to force
+oversubscribed technologies to demonstrate commitment through financial
+security. Ofgem says NESO already removed 40% of grid-level battery
+capacity that failed the 2025 criteria, yet 83 GW remains prioritised plus
+7 GW operational=E2=80=94roughly three times projected storage requirements=
+. This
+creates a rare prospective causal experiment: fee/security shock -> project
+stay/exit -> queue capacity released -> connection dates/points ->
+downstream capital allocation.
+
+*CONFIRMED:* NESO=E2=80=99s overall queue remains >738 GW versus 200=E2=80=
+=93225 GW of
+clean generation capacity required for 2030. Gate 2 Phase 1 transmission
+offers were scheduled to finish mid-Sep 2026; distribution Phase 1
+continues to mid-Nov; Phase 2 runs into 2027. POW should collect
+project-level transitions now.
+
+*INFERRED:* the most valuable POW Constraint State is no longer simply
+queue_size; it is CommitmentAdjustedQueue: MW weighted by Gate state,
+observed financial commitment/security, planning readiness and subsequent
+survival.
+Ranked constraints
+
+   1. *Battery/grid connection oversubscription + commitment security =E2=
+=80=94
+   5.00 =E2=80=94 PLANT HARD.* Constraint evidence 5/5; supply lag 5/5;
+   shadow-price observability 5/5; time moat 5/5; agent action 5/5. New CMP=
+470
+   gives an explicit financial shadow-price intervention.
+   2. *Local network capacity / flex -> physical response =E2=80=94 4.98 =
+=E2=80=94 PLANT.*
+   Join primary-transformer loading/headroom with flex requirements, dispat=
+ch
+   and subsequent loading.
+   3. *Transformer/cable manufacturing capacity =E2=80=94 4.90 =E2=80=94 PL=
+ANT/JOIN.* Long
+   lead times and elevated prices indicate real equipment scarcity; collect
+   procurement/lead-time state where lawful rather than commentary.
+   4. *Heat-pump transaction-capable installer supply =E2=80=94 4.84 =E2=80=
+=94 PILOT.*
+   Demand is subsidised (=C2=A37,500 standard BUS heat-pump grant; up to =
+=C2=A39,000 for
+   qualifying oil/LPG off-gas homes until Mar 2027), while government is
+   subsidising installer training up to =C2=A3500. Local scarcity itself re=
+mains
+   UNKNOWN until demand is joined to installers, quotes and jobs.
+   5. *EV installation capacity =E2=80=94 4.66 =E2=80=94 PILOT.* Strong act=
+ion graph, but
+   installer shortage remains unproven.
+   6. *Repair/component capacity =E2=80=94 4.31 =E2=80=94 PILOT.* Needs con=
+tinuously
+   observable stock/lead-time + repair-demand + resale spread before promot=
+ion.
+   7. *Generic =E2=80=98green skills shortage=E2=80=99 =E2=80=94 KILL.* Tra=
+ining subsidies and
+   rhetoric do not prove binding local transaction capacity.
+
+Seesaw map 1 =E2=80=94 CMP470 / batteries
+
+Innovation/event: Connections Reform + proposed OTCF.
+Demand driver: battery/storage developers competing for scarce connection
+capacity.
+Constraint proxy: exact NESO project/Gate/MW/date/point transitions;
+technology oversubscription.
+Shadow-price proxy: required OTCF/security per MW and cancellation exposure=
+.
+Capital allocation: security posted, project retained, delayed, resized or
+exited.
+Supply response: queue exits release scarce connection capacity; viable
+projects progress.
+Expected lag: immediate security decision -> months for queue reshuffle ->
+years for energisation.
+Geography: connection point / DNO / transmission region.
+Falsifier: fee changes financial paperwork but does not predict exits,
+dates or released MW.
+
+POW Constraint State:
+intensity =3D oversubscribed_MW / target_MW
+shadow_price =3D incremental_security_GBP_per_MW
+supply_response_velocity =3D exited_or_resized_MW / day
+relaxation =3D time_to_connection_date_improvement
+action =3D rank projects/sites by expected connection value net of security
+burden.
+Seesaw map 2 =E2=80=94 heat-pump installer capability
+
+Event: BUS demand support + Heat Training Grant.
+Demand: =C2=A37,500 standard ASHP/GSHP grant; temporary additional =C2=A31,=
+500 for
+qualifying oil/LPG off-gas properties.
+Constraint proxies: MCS/competent-person installer density, quote
+availability, time-to-install, BUS applications/installations.
+Shadow-price: quote premium, wait time, lead cost and grant utilisation.
+Supply response: training completions -> scheme membership -> first
+installation -> repeat installations.
+Lag: training can be <=3D1 week for experienced heating engineers, but
+certification and first-job activation create additional lag.
+Falsifier: trained/authorised installer supply rises while quote/wait-time
+measures do not improve, implying another bottleneck (property suitability,
+equipment, customer economics, grid or demand quality).
+Exact source stack / rights
+
+   - NESO Connections Reform pages + TEC/project register: official public
+   data; preserve exact project IDs, Gate, MW, owner, connection point/date
+   and every observed version. Cadence: every official update plus daily
+   observation. Cost: =C2=A30 expected.
+   - Ofgem CMP470 consultation/decision trail: official public documents;
+   consultation opened 17 Sep and closes 1 Oct 2026. Snapshot every
+   publication/change. Cost =C2=A30.
+   - DNO open-data portals: headroom, primary loading and flex datasets
+   where licensed for reuse. Canonical key must resolve substation/primary =
+IDs
+   + geography + observation time.
+   - GOV.UK Heat Training Grant: public official guidance; last updated 8
+   Sep 2026. Up to =C2=A3500 per eligible trainee; use provider/location/ca=
+pability
+   as supply-side identity infrastructure.
+   - BUS official scheme data/guidance: public official aggregates plus
+   consenting installer receipts for actual quote/install outcome.
+
+PLANT NOW =E2=80=94 CommitmentAdjustedQueue
+
+Canonical project key: exact NESO project ID. Never fuzzy-collapse IDs
+without provenance.
+
+Temporal schema: project_id, observed_at, effective_at, technology, owner,
+mw, gate, connection_point, connection_date, security_regime, security_gbp,
+security_gbp_per_mw, planning_state, event_type, provenance, confidence,
+raw_hash.
+
+Events: GATE_CHANGE, MW_CHANGE, DATE_CHANGE, POINT_CHANGE,
+SECURITY_REQUIREMENT, SECURITY_POSTED, PROJECT_EXIT, PROJECT_RESIZE,
+SOURCE_CORRECTION.
+
+First transformations: CommitmentAdjustedQueueMW,
+ExitHazardAfterSecurityShock, QueueElasticityToShadowPrice, ReleasedMW,
+ConnectionDateImprovementAfterExit.
+
+1-day validation: freeze current NESO register + CMP470 state and resolve
+all battery/storage projects into exact project identities.
+1-week validation: classify all observed project changes and establish
+baseline survival/resize/date-drift distributions before any final CMP470
+implementation.
+Kill raw-mirror moat if NESO exposes complete version history; retain the
+causal intervention/outcome join.
+Counterfactuals / falsifiers
+
+CMP470 narrative dies if project-level security exposure cannot be
+resolved, or exposed projects do not exit/resize at a materially different
+rate from controls. Grid scarcity may migrate rather than relax: released
+queue MW is not success unless connection dates/points or energisation
+improve. Transformer/cable scarcity is not the binding constraint if
+project delay remains unchanged after equipment lead times normalise.
+Heat-pump skills are not binding if high-grant/high-demand areas with low
+installer density do not show longer waits, higher quotes or lower
+completion rates.
+Geographic hotspots
+
+*CONFIRMED:* CMP470 specifically targets technology oversubscription rather
+than a single geography, so do not invent a hotspot from national MW alone.
+POW should derive hotspots at connection-point/DNO level from project
+identities.
+
+*INFERRED:* rural/off-gas heat-pump markets are a useful treatment cohort
+because qualifying properties can currently receive the enhanced =C2=A39,00=
+0
+grant; installer-capacity pressure must still be measured rather than
+assumed.
+Next-hour queue
+
+   1. Freeze the battery subset of the NESO project register and build the
+   pre-CMP470 baseline.
+   2. Extract the final CMP470 parameter alternatives and map every version
+   to project-level security exposure.
+   3. Define matched controls: non-oversubscribed technologies + battery
+   projects whose existing securities exceed the fee.
+   4. Resolve DNO/connection-point geography for battery projects so
+   released MW can be localized.
+   5. Build one heat-pump locality panel: BUS activity =C3=97
+   installer/certification density =C3=97 training-provider supply =C3=97 o=
+bserved
+   quote/wait outcomes.
+
+Machine-readable appendix { "probe":"POW_CONSTRAINT_SEESAW",
+"run":"2026-09-21T12:23:03+07:00", "material_delta":true,
+"top_constraint":{ "id":"BATTERY_CONNECTION_COMMITMENT", "score":5.0,
+"status":"PLANT_HARD", "new_intervention":"CMP470_OTCF",
+"observed_queue_context_gw":">738", "battery_prioritised_gw":83,
+"battery_operational_gw":7, "key_transformation":"CommitmentAdjustedQueue"
+}, "ranked":[ ["BATTERY_CONNECTION_COMMITMENT",5.00,"PLANT_HARD"],
+["LOCAL_GRID_FLEX_PHYSICAL_RESPONSE",4.98,"PLANT"],
+["TRANSFORMER_CABLE_CAPACITY",4.90,"PLANT_JOIN"],
+["HEAT_PUMP_TRANSACTION_CAPACITY",4.84,"PILOT"],
+["EV_INSTALLATION_CAPACITY",4.66,"PILOT"] ],
+"confidence":{"CMP470":"CONFIRMED","local_heat_pump_scarcity":"UNKNOWN","Co=
+mmitmentAdjustedQueue_value":"INFERRED"},
+"collector_deployed":false }
+
+Sources: Ofgem CMP470 consultation (17 Sep 2026); Ofgem battery queue press
+release (17 Sep 2026); NESO Connections Reform and timeline; GOV.UK Heat
+Training Grant (updated 8 Sep 2026); GOV.UK Boiler Upgrade Scheme current
+grant guidance.
+
+--0000000000004514c3065bf774f0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS CONSTRAINT / SEESAW PROBE =E2=80=94 2026-09-21 12:23 ICT
+
+Executive delta
+<p><strong>CONFIRMED =E2=80=94 new highest-information constraint experimen=
+t:</strong> CMP470 turns the UK=E2=80=99s battery queue from a generic conn=
+ection bottleneck into a measurable <em>shadow-price intervention</em>. Ofg=
+em opened a minded-to-approve consultation on 17 Sep 2026. The mechanism is=
+ intended to force oversubscribed technologies to demonstrate commitment th=
+rough financial security. Ofgem says NESO already removed 40% of grid-level=
+ battery capacity that failed the 2025 criteria, yet 83 GW remains prioriti=
+sed plus 7 GW operational=E2=80=94roughly three times projected storage req=
+uirements. This creates a rare prospective causal experiment: fee/security =
+shock -&gt; project stay/exit -&gt; queue capacity released -&gt; connectio=
+n dates/points -&gt; downstream capital allocation.</p>
+<p><strong>CONFIRMED:</strong> NESO=E2=80=99s overall queue remains &gt;738=
+ GW versus 200=E2=80=93225 GW of clean generation capacity required for 203=
+0. Gate 2 Phase 1 transmission offers were scheduled to finish mid-Sep 2026=
+; distribution Phase 1 continues to mid-Nov; Phase 2 runs into 2027. POW sh=
+ould collect project-level transitions now.</p>
+<p><strong>INFERRED:</strong> the most valuable POW Constraint State is no =
+longer simply <code>queue_size</code>; it is <code>CommitmentAdjustedQueue<=
+/code>: MW weighted by Gate state, observed financial commitment/security, =
+planning readiness and subsequent survival.</p>
+
+Ranked constraints
+<ol>
+<li><strong>Battery/grid connection oversubscription + commitment security =
+=E2=80=94 5.00 =E2=80=94 PLANT HARD.</strong> Constraint evidence 5/5; supp=
+ly lag 5/5; shadow-price observability 5/5; time moat 5/5; agent action 5/5=
+. New CMP470 gives an explicit financial shadow-price intervention.</li>
+<li><strong>Local network capacity / flex -&gt; physical response =E2=80=94=
+ 4.98 =E2=80=94 PLANT.</strong> Join primary-transformer loading/headroom w=
+ith flex requirements, dispatch and subsequent loading.</li>
+<li><strong>Transformer/cable manufacturing capacity =E2=80=94 4.90 =E2=80=
+=94 PLANT/JOIN.</strong> Long lead times and elevated prices indicate real =
+equipment scarcity; collect procurement/lead-time state where lawful rather=
+ than commentary.</li>
+<li><strong>Heat-pump transaction-capable installer supply =E2=80=94 4.84 =
+=E2=80=94 PILOT.</strong> Demand is subsidised (=C2=A37,500 standard BUS he=
+at-pump grant; up to =C2=A39,000 for qualifying oil/LPG off-gas homes until=
+ Mar 2027), while government is subsidising installer training up to =C2=A3=
+500. Local scarcity itself remains UNKNOWN until demand is joined to instal=
+lers, quotes and jobs.</li>
+<li><strong>EV installation capacity =E2=80=94 4.66 =E2=80=94 PILOT.</stron=
+g> Strong action graph, but installer shortage remains unproven.</li>
+<li><strong>Repair/component capacity =E2=80=94 4.31 =E2=80=94 PILOT.</stro=
+ng> Needs continuously observable stock/lead-time + repair-demand + resale =
+spread before promotion.</li>
+<li><strong>Generic =E2=80=98green skills shortage=E2=80=99 =E2=80=94 KILL.=
+</strong> Training subsidies and rhetoric do not prove binding local transa=
+ction capacity.</li>
+</ol>
+
+Seesaw map 1 =E2=80=94 CMP470 / batteries
+<p>Innovation/event: Connections Reform + proposed OTCF.<br>
+Demand driver: battery/storage developers competing for scarce connection c=
+apacity.<br>
+Constraint proxy: exact NESO project/Gate/MW/date/point transitions; techno=
+logy oversubscription.<br>
+Shadow-price proxy: required OTCF/security per MW and cancellation exposure=
+.<br>
+Capital allocation: security posted, project retained, delayed, resized or =
+exited.<br>
+Supply response: queue exits release scarce connection capacity; viable pro=
+jects progress.<br>
+Expected lag: immediate security decision -&gt; months for queue reshuffle =
+-&gt; years for energisation.<br>
+Geography: connection point / DNO / transmission region.<br>
+Falsifier: fee changes financial paperwork but does not predict exits, date=
+s or released MW.</p>
+<p>POW Constraint State:<br>
+<code>intensity =3D oversubscribed_MW / target_MW</code><br>
+<code>shadow_price =3D incremental_security_GBP_per_MW</code><br>
+<code>supply_response_velocity =3D exited_or_resized_MW / day</code><br>
+<code>relaxation =3D time_to_connection_date_improvement</code><br>
+<code>action =3D rank projects/sites by expected connection value net of se=
+curity burden</code>.</p>
+
+Seesaw map 2 =E2=80=94 heat-pump installer capability
+<p>Event: BUS demand support + Heat Training Grant.<br>
+Demand: =C2=A37,500 standard ASHP/GSHP grant; temporary additional =C2=A31,=
+500 for qualifying oil/LPG off-gas properties.<br>
+Constraint proxies: MCS/competent-person installer density, quote availabil=
+ity, time-to-install, BUS applications/installations.<br>
+Shadow-price: quote premium, wait time, lead cost and grant utilisation.<br=
+>
+Supply response: training completions -&gt; scheme membership -&gt; first i=
+nstallation -&gt; repeat installations.<br>
+Lag: training can be &lt;=3D1 week for experienced heating engineers, but c=
+ertification and first-job activation create additional lag.<br>
+Falsifier: trained/authorised installer supply rises while quote/wait-time =
+measures do not improve, implying another bottleneck (property suitability,=
+ equipment, customer economics, grid or demand quality).</p>
+
+Exact source stack / rights
+<ul>
+<li>NESO Connections Reform pages + TEC/project register: official public d=
+ata; preserve exact project IDs, Gate, MW, owner, connection point/date and=
+ every observed version. Cadence: every official update plus daily observat=
+ion. Cost: =C2=A30 expected.</li>
+<li>Ofgem CMP470 consultation/decision trail: official public documents; co=
+nsultation opened 17 Sep and closes 1 Oct 2026. Snapshot every publication/=
+change. Cost =C2=A30.</li>
+<li>DNO open-data portals: headroom, primary loading and flex datasets wher=
+e licensed for reuse. Canonical key must resolve substation/primary IDs + g=
+eography + observation time.</li>
+<li><a href=3D"http://GOV.UK">GOV.UK</a> Heat Training Grant: public offici=
+al guidance; last updated 8 Sep 2026. Up to =C2=A3500 per eligible trainee;=
+ use provider/location/capability as supply-side identity infrastructure.</=
+li>
+<li>BUS official scheme data/guidance: public official aggregates plus cons=
+enting installer receipts for actual quote/install outcome.</li>
+</ul>
+
+PLANT NOW =E2=80=94 CommitmentAdjustedQueue
+<p>Canonical project key: exact NESO project ID. Never fuzzy-collapse IDs w=
+ithout provenance.</p>
+<p>Temporal schema: <code>project_id, observed_at, effective_at, technology=
+, owner, mw, gate, connection_point, connection_date, security_regime, secu=
+rity_gbp, security_gbp_per_mw, planning_state, event_type, provenance, conf=
+idence, raw_hash</code>.</p>
+<p>Events: <code>GATE_CHANGE</code>, <code>MW_CHANGE</code>, <code>DATE_CHA=
+NGE</code>, <code>POINT_CHANGE</code>, <code>SECURITY_REQUIREMENT</code>, <=
+code>SECURITY_POSTED</code>, <code>PROJECT_EXIT</code>, <code>PROJECT_RESIZ=
+E</code>, <code>SOURCE_CORRECTION</code>.</p>
+<p>First transformations: <code>CommitmentAdjustedQueueMW</code>, <code>Exi=
+tHazardAfterSecurityShock</code>, <code>QueueElasticityToShadowPrice</code>=
+, <code>ReleasedMW</code>, <code>ConnectionDateImprovementAfterExit</code>.=
+</p>
+<p>1-day validation: freeze current NESO register + CMP470 state and resolv=
+e all battery/storage projects into exact project identities.<br>
+1-week validation: classify all observed project changes and establish base=
+line survival/resize/date-drift distributions before any final CMP470 imple=
+mentation.<br>
+Kill raw-mirror moat if NESO exposes complete version history; retain the c=
+ausal intervention/outcome join.</p>
+
+Counterfactuals / falsifiers
+<p>CMP470 narrative dies if project-level security exposure cannot be resol=
+ved, or exposed projects do not exit/resize at a materially different rate =
+from controls. Grid scarcity may migrate rather than relax: released queue =
+MW is not success unless connection dates/points or energisation improve. T=
+ransformer/cable scarcity is not the binding constraint if project delay re=
+mains unchanged after equipment lead times normalise. Heat-pump skills are =
+not binding if high-grant/high-demand areas with low installer density do n=
+ot show longer waits, higher quotes or lower completion rates.</p>
+
+Geographic hotspots
+<p><strong>CONFIRMED:</strong> CMP470 specifically targets technology overs=
+ubscription rather than a single geography, so do not invent a hotspot from=
+ national MW alone. POW should derive hotspots at connection-point/DNO leve=
+l from project identities.</p>
+<p><strong>INFERRED:</strong> rural/off-gas heat-pump markets are a useful =
+treatment cohort because qualifying properties can currently receive the en=
+hanced =C2=A39,000 grant; installer-capacity pressure must still be measure=
+d rather than assumed.</p>
+
+Next-hour queue
+<ol>
+<li>Freeze the battery subset of the NESO project register and build the pr=
+e-CMP470 baseline.</li>
+<li>Extract the final CMP470 parameter alternatives and map every version t=
+o project-level security exposure.</li>
+<li>Define matched controls: non-oversubscribed technologies + battery proj=
+ects whose existing securities exceed the fee.</li>
+<li>Resolve DNO/connection-point geography for battery projects so released=
+ MW can be localized.</li>
+<li>Build one heat-pump locality panel: BUS activity =C3=97 installer/certi=
+fication density =C3=97 training-provider supply =C3=97 observed quote/wait=
+ outcomes.</li>
+</ol>
+
+Machine-readable appendix
+
+<code>{
+  &quot;probe&quot;:&quot;POW_CONSTRAINT_SEESAW&quot;,
+  &quot;run&quot;:&quot;2026-09-21T12:23:03+07:00&quot;,
+  &quot;material_delta&quot;:true,
+  &quot;top_constraint&quot;:{
+    &quot;id&quot;:&quot;BATTERY_CONNECTION_COMMITMENT&quot;,
+    &quot;score&quot;:5.0,
+    &quot;status&quot;:&quot;PLANT_HARD&quot;,
+    &quot;new_intervention&quot;:&quot;CMP470_OTCF&quot;,
+    &quot;observed_queue_context_gw&quot;:&quot;&gt;738&quot;,
+    &quot;battery_prioritised_gw&quot;:83,
+    &quot;battery_operational_gw&quot;:7,
+    &quot;key_transformation&quot;:&quot;CommitmentAdjustedQueue&quot;
+  },
+  &quot;ranked&quot;:[
+    [&quot;BATTERY_CONNECTION_COMMITMENT&quot;,5.00,&quot;PLANT_HARD&quot;]=
+,
+    [&quot;LOCAL_GRID_FLEX_PHYSICAL_RESPONSE&quot;,4.98,&quot;PLANT&quot;],
+    [&quot;TRANSFORMER_CABLE_CAPACITY&quot;,4.90,&quot;PLANT_JOIN&quot;],
+    [&quot;HEAT_PUMP_TRANSACTION_CAPACITY&quot;,4.84,&quot;PILOT&quot;],
+    [&quot;EV_INSTALLATION_CAPACITY&quot;,4.66,&quot;PILOT&quot;]
+  ],
+  &quot;confidence&quot;:{&quot;CMP470&quot;:&quot;CONFIRMED&quot;,&quot;lo=
+cal_heat_pump_scarcity&quot;:&quot;UNKNOWN&quot;,&quot;CommitmentAdjustedQu=
+eue_value&quot;:&quot;INFERRED&quot;},
+  &quot;collector_deployed&quot;:false
+}
+</code>
+<p>Sources: Ofgem CMP470 consultation (17 Sep 2026); Ofgem battery queue pr=
+ess release (17 Sep 2026); NESO Connections Reform and timeline; <a href=3D=
+"http://GOV.UK">GOV.UK</a> Heat Training Grant (updated 8 Sep 2026); <a hre=
+f=3D"http://GOV.UK">GOV.UK</a> Boiler Upgrade Scheme current grant guidance=
+.</p>
+
+--0000000000004514c3065bf774f0--

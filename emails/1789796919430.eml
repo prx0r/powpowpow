@@ -1,0 +1,446 @@
+Received: from mail-yx1-xb131.google.com (2607:f8b0:4864:20::b131)
+        by cloudflare-email.net (cloudflare) id PEUOwnDIBUNI
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 05:48:39 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=B/x/QSNgBus0q+cHdWvi7rOTFnnyzU0z8IJ9EtjgJn2piybUq/BbS7LjQd3ZjIJjo10kiXuId
+	B61dlpX5HEycHXj9lbwukYZXrpq28861eCTZf0jokGT4vSa1Q6UNqH/tOAs8anVkLLyppMyGqAv
+	7NxKKY94opQ/c3RD5swzVb5EhzPxvcDXdRx51OSETtJkJzl7STCwkQJQ/ZHu7cAQX8TnDMRP5zG
+	4KnIyUiuvUO+UeKCmiu0m3kGEMhZXEGxtlojN+ysP+ex2W6M7Sk2ISeSNwan5YAMNiS+7/LKZZU
+	ZrYWCjTWgfS09HMyHkl4nlJk65gHgk8nlzOVo8ZSTm0Q==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789796919; x=1790401719; bh=wQvvdIwC
+	lx/aob+2EKhUaCAlcQeed2mXwHqsAMpXcXg=; b=ZZ0mD5fRsH37e4GND0zjIrlH1G0ESAac9pG
+	E/dDYak0imENpMhZPiTMWnwsgzFhpgJvHIumhG6jmpvnDabpZWQyGgNNqSK/e1uXxwn0xucqJvA
+	jRou4vTafhstVvIpNdLHd02SI2rTnKaJBiRHkS7jhcO4od7HP2X842QMs8jngsNjGIiOPwTHDNz
+	iVFNDLRU0H+9ejdjgxYrGtzE3PhW9/73lbMYoQWeyny7uNFwrFfaedffMokb1tqXpiy7dLhowTQ
+	hh8HM5aeeSIhg0j6mSHjVWWpqr9SedGplNTdrm7Lp4aFKiIXqCLcv3tXtACi4mUxsyoXmqnh/8A
+	fNwt51g==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mcaPQjIx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb131.google.com) smtp.helo=mail-yx1-xb131.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b131 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b131"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b131 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:20::b131; envelope-from="tradesprior@gmail.com"; helo=mail-yx1-xb131.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mcaPQjIx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb131.google.com) smtp.helo=mail-yx1-xb131.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b131 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b131"
+X-CF-SpamH-Score: 0
+Received: by mail-yx1-xb131.google.com with SMTP id 956f58d0204a3-66c9995ca60so1420638d50.1
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 22:48:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789796919; cv=none;
+        d=google.com; s=arc-20260327;
+        b=AqzFplNHu8ay/UC2UJdmcI1LgO2XfyHst0S9+cKkIRbakN9pBCoxK160+TcKLlBA2A
+         jdftUWeFqc9ktRn8tiDYFMo7QeTKTRzVWrAZtNQmUC8eNJwLHJcBXy0zMgh6JpHln2Ow
+         +qVqrXdJLtFmwscj6FrwGQe142fd2qzRJ+ppvAc4cypigBfC0/Z1ONDeolqFoun7zLEO
+         vDlOhQZrJbxSFDtkXB5JwfhWyfuzGBpf/cY1z9RX9f8iCSk+RcLllj+yobszH8qiL2QH
+         SAh7PAroxtziYksV4wvFu0UYKwpNzgR5tVGXWT8iNGO9wjdnFko1Vcettn3uYvkacD04
+         Sgaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=wQvvdIwClx/aob+2EKhUaCAlcQeed2mXwHqsAMpXcXg=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=HlWbhV/3CSwdHdtSf2NKtZCYZH8tsvai+ajQUF7GZ4Hv7UgimJ3Fpml+hE4papT6z2
+         1wo/EJgplOqdAc6FEYZ6cX6gZojVuH0f1CMDdNGnInaYxXioTNwaenwiqjafnXwdeGy3
+         QFMrhNDX1vJ0QssuDmckHBsXowzAuyDgPzq1BMBcbVCoFWRJRgkv68EebJkLgQKkCGcL
+         8DcgkwvBc8MZo5vL1xrJSNMroxAVhQpBksw2Fuv5J5tCje7IFko7MbvUTTdJ80vzs7NM
+         UFaI7KEDGAXhfOBdbmmt2IVtWO7NR7jEDE/frMCDeFP4q68Nbw2rGRhAKKuvvYvEgywE
+         AZWg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789796919; x=1790401719; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=wQvvdIwClx/aob+2EKhUaCAlcQeed2mXwHqsAMpXcXg=;
+        b=mcaPQjIxJjjiGXE2whFWCAXv1T9t9rlUF2Tfvi2Y4sUFWXq33I0YdQX1PTiWtIMa8D
+         AUPDkYkQ6+iMiPV4FcVnc9G9VocBMWzufF7206VdnYMA3gHmdPneVs77FitjuqvZ5oc1
+         ZOS8dUwTtFdJtWMX3jXLg1XrWuL3uBvqVGE1EfNZELzJMpDALOmO4WsS4o7BrAe+tT0e
+         3lIjVjZAqwkmhawYCkInNOW1AHiCACHGaXzgVk4m7j3HDrTu78QKZaiJtibaXRaErooL
+         Ns5bI+9QaxYZiRDDhCEDVgchm8Qgrile6FU9N0MfbACv212NTs/WPFHto1brPveooJJz
+         H1cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789796919; x=1790401719;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=wQvvdIwClx/aob+2EKhUaCAlcQeed2mXwHqsAMpXcXg=;
+        b=xszv4+vIHow8l3Gvgr+j7DfPz6nTkPut6mKBpw/7qYzN1h3Qs4EBueDSFVFqyLTgxN
+         0jaNcTtcms/dfaS/shlGqIkSaDfFsjCiuW6efsfgpF4zf6Pk7VCw7adPx3pOLqUnG2hH
+         McnZ1R2lHZNglVlLcciJmur21j8FzatkwRxnvhGfsKJi8pSGpqYl40fDVfs477wyIGIn
+         bx6IFx2YgjojUfpD12VKwInnWyC5SbFtpf9gO5Hrwix4L9o8yP/rI71iXMkPXn1y2mlW
+         iDmlMhVnLk0vyKDjPxyFUp5GHIPmS3Becb64QkFtoPKjpkN5DuA/Wdv1aIK8QgXH3emm
+         3Xkw==
+X-Gm-Message-State: AFuF++k47DnTbEpdxjOraS3UJHOjGZYYpiJCxufzra2LPdQxeGmHIyzf
+	EJTzxQxfg/ipMeW3d+rV5tLoUqMCZQtqpuEj7pVDs3yfRSC89lsIwa9jsjgDeSzufKHdzQVoPJ0
+	nhBt/Uqb0sOJ9tPc1SUBJ23eRpSbkC8cG9w==
+X-Gm-Gg: AYBFou2x5S4vw0gq1VH0ZNEcpVgZQ8+bVzVf0enubomFg5BE0ALjQ+FJUkvmVvVMQgy
+	Tio2lO7XI5/JzZP8EJaFOomzuHgQSS4W7ag5O8YOpgksWCJgRF2mexBwpmEsH1dMVXpt/0w8Bto
+	cqNgKGuYVdWph6UjbmeGtLfTBw0xD9qKuqAtvD0Hxw4NXw1Qql6q2hG/zh19a926F9iScBFq4CA
+	OcouI7lCKm93EOBhPF0jCpmdq9+Db0BuePvdHyzzCmnIaZ0YLSHXSNWVuxXk0KSvnDnkiYQ2pAI
+	RQDnso9BMCu3znU+33ffW4nc7s6KYRq11pVqzym0WCQkV9SgWATzv4TpcP+f9cN6kV4HWb8ecDN
+	YXor2ejJDYGlqbiLI5QhqdzmVnGrD6PQUbQGXd5zJ7aqXpsshmaefMKCEwkuwoSxb+0dyA2E=
+X-Received: by 2002:a05:690e:4192:b0:66f:c1bc:406d with SMTP id
+ 956f58d0204a3-671704be964mr2241507d50.53.1789796918616; Fri, 18 Sep 2026
+ 22:48:38 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 00:48:38 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 00:48:38 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 00:48:38 -0500
+X-Gm-Features: AcwNN1U9ZayCdmyxGQuIuwAUxETYI7aMCZmwV96NmjqO4A1fFstqv1A9DWFQh5Q
+Message-ID: <CAPdrGekKp=-3g8G0m9KZWZrhvFs2cueQaV5=Tvt85RRhy4mq6A@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D19_12=3A48_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_3_strong_signals?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000008de5eb065bcf91f3"
+
+--0000000000008de5eb065bcf91f3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+Prior Sent state recovered through the 11:50 report. Semantic duplicates
+rejected unless new independent evidence materially strengthens a cluster.
+
+3 STRONG SIGNALS
+
+   1.
+
+   PREVIEW MUST BE A CONTRACT, NOT JUST A SALES TEASER =E2=80=94 BUILD/TEST=
+ =E2=80=94 HIGH
+   Source: https://dodowish.com/products/dodowish-custom-3d-figure-keychain
+   Platform: personalized-gift product reviews
+   Date: Sep 5, 2026
+   Customer language: =E2=80=9CIt has a very strange look to the face, esp =
+the
+   eyes, that does not look like the preview rendering.=E2=80=9D
+   Wanted/problem: The buyer approved/expected one likeness and received a
+   materially different face.
+   Current workaround/product: custom 3D pet figure generated from an
+   uploaded photo.
+   Roast.pet implication: once the buyer presses YES, THAT=E2=80=99S THEM, =
+freeze
+   an identity reference and automatically compare every downstream card/vi=
+deo
+   frame against it. The preview promise is worthless if animation or later
+   generation changes eyes, markings, proportions or expression.
+   Occasion/audience: personalized pet gift; general.
+   Independent elsewhere: YES =E2=80=94 prior state already contains Moonpi=
+g praise
+   for arriving exactly as previewed, plus likeness complaints. This is new
+   negative evidence showing preview drift itself causes disappointment.
+   Prototype: save approved reference + identity landmarks; run
+   final-output visual similarity/marking checks; fail closed to regenerati=
+on
+   if identity drifts.
+   2.
+
+   CUSTOMERS WANT CHOICE BETWEEN RENDERS, NOT ONLY REVISION AFTER FAILURE =
+=E2=80=94
+   BUILD/TEST =E2=80=94 MEDIUM-HIGH
+   Source: https://dodowish.com/products/personalized-3d-figurine-from-phot=
+o
+   Platform: personalized-gift reviews
+   Date: Sep 9, 2026
+   Customer language: buyer said they =E2=80=9Cliked the option to see diff=
+erent
+   versions and pick the one=E2=80=9D they liked most.
+   Wanted/problem: subjective likeness/style is easier to resolve by
+   selecting among candidates than describing corrections.
+   Current workaround/product: custom pet 3D figurine.
+   Roast.pet implication: initial identity-proof step should generate 2=E2=
+=80=933
+   inexpensive candidate pet cards/heads and ask PICK THE ONE THAT LOOKS MO=
+ST
+   LIKE THEM, then allow correction. This can reduce open-ended revision
+   friction.
+   Occasion/audience: pet owner / personalized keepsake.
+   Independent elsewhere: PARTIAL =E2=80=94 free previews/regenerations rec=
+ur
+   strongly, but explicit preference for choosing among versions is a disti=
+nct
+   mechanism.
+   Prototype: A/B test one render + regenerate versus three thumbnails +
+   choose. Measure checkout conversion, generation cost and revision rate.
+   3.
+
+   DELIVERY DATE UNCERTAINTY IS ITSELF A PURCHASE OBJECTION =E2=80=94 BUILD=
+/TEST =E2=80=94
+   HIGH
+   Source: https://dodowish.com/products/dodowish-custom-3d-figure-keychain
+   Platform: personalized-gift reviews
+   Date: Sep 3, 2026
+   Customer paraphrase: buyer was pleased with the product but said
+   customers need much clearer communication about the timeline from purcha=
+se
+   to receipt and would order =E2=80=9Ca month or two before=E2=80=9D the n=
+eeded date next
+   time.
+   Wanted/problem: not merely faster shipping; confidence that the
+   personalized gift will exist before the occasion.
+   Current workaround/product: order far earlier than necessary.
+   Roast.pet implication: lead with a hard digital SLA and separate it from
+   physical fulfillment: =E2=80=9CRoast video ready by X; printable card av=
+ailable
+   immediately; physical card estimated by Y.=E2=80=9D Ask the occasion dat=
+e and warn
+   before checkout if physical arrival is risky.
+   Occasion/audience: birthdays and deadline-bound gifts.
+   Independent elsewhere: YES =E2=80=94 this materially strengthens the est=
+ablished
+   last-minute/delivery cluster with explicit evidence that uncertainty
+   changes future purchasing behavior.
+   Prototype: occasion-date field =E2=86=92 live promise: DIGITAL READY
+   [date/time], PHYSICAL ETA [date]. Offer digital-first fallback
+   automatically.
+
+RECURRING CLUSTER STATE =E2=80=94 directional counts from accepted independ=
+ent
+evidence recovered across prior reports + this run (counts are evidence
+instances, not market prevalence):
+=E2=80=A2 Exact likeness / identity fidelity: VERY STRONG, 10+ independent =
+signals;
++ preview-drift evidence this run.
+=E2=80=A2 Preview / proof / revisions before commitment: VERY STRONG, 7+; +
+candidate-selection mechanism this run.
+=E2=80=A2 Deadline certainty / instant digital / fulfillment reliability: V=
+ERY
+STRONG, 8+; + explicit purchase-timing objection this run.
+=E2=80=A2 Multi-pet / separate photos / whole household: STRONG, 6+.
+=E2=80=A2 Pet personality / quirks / recipient-specific context: STRONG, 5+=
+.
+=E2=80=A2 Physical + QR/video bundle: MODERATE-STRONG, multiple independent
+products/signals.
+=E2=80=A2 Photo guidance: STRONG; eye-level, sharp eyes/face, markings and =
+multiple
+angles supported.
+=E2=80=A2 Stable pet voice / authentic audio: MODERATE.
+=E2=80=A2 Editable jokes / genuinely funnier output: plausible but direct
+customer-language evidence remains weaker than likeness/delivery.
+=E2=80=A2 Memorial: strong demand for faithful sentimental remembrance;
+memorial-with-humor remains UNKNOWN.
+=E2=80=A2 AR specifically: UNKNOWN; evidence supports QR=E2=86=92browser vi=
+deo, not AR
+demand.
+=E2=80=A2 Sports-themed roast / colleague roast / kid-vs-adult modes: UNKNO=
+WN /
+insufficient direct evidence.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Exact individual likeness that survives every downstream
+   transformation.
+   2. Preview before commitment, now improved to 2=E2=80=933 candidate vers=
+ions +
+   explicit approval lock.
+   3. Deadline certainty: instant digital fallback plus transparent
+   physical ETA tied to occasion date.
+   4. Multi-pet composition from separate photos.
+   5. Personality-rich personalization: quirks, characteristic
+   expression/accessories, recipient relationship and optional authentic pe=
+t
+   audio.
+
+STRONGEST UNMET NEED
+A personalized comedy gift that is unmistakably THEIR specific pet and
+remains that pet from preview through final talking video/card. The market
+has many generic transformations; repeated evidence says identity fidelity
+is the fragile part.
+
+EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW
+After upload, show 2=E2=80=933 cheap identity candidates and ask =E2=80=9CW=
+hich one is most
+THEM?=E2=80=9D Then display =E2=80=9CIdentity locked =E2=80=94 final card/v=
+ideo will preserve this
+approved pet.=E2=80=9D This combines two evidenced trust mechanisms without=
+ adding
+a long form.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE
+=E2=80=9CYour Dog Roasts Them =E2=80=94 Pick the Version That Looks Most Li=
+ke Them =E2=80=94
+Personalized Talking Pet Birthday Video + Printable QR Card =E2=80=94 Insta=
+nt
+Digital Gift.=E2=80=9D
+The differentiated promise is not merely AI video; it is buyer-selected
+likeness + deadline-safe delivery.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not treat an approved preview as permission to regenerate the pet freely
+in later scenes. Current evidence includes a buyer whose final face did not
+resemble the preview. If our video model mutates the approved pet, the
+flashy animation destroys the trust created by the preview. Identity
+consistency should outrank scene variety.
+
+SEARCH NOTE
+This run reviewed fresh 2026 personalized-pet/gift reviews plus broader pet
+portrait, multi-pet, QR/video, memorial, funny-card and photo-quality
+results. Most surfaced material repeated established clusters and was
+rejected. No credible new direct demand was found for AR, sports roasts,
+colleague roasts, kid/adult roast modes or memorial comedy.
+
+--0000000000008de5eb065bcf91f3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>Prior Sent state recovered through the 11:50 report. Semantic duplicates=
+ rejected unless new independent evidence materially strengthens a cluster.=
+</p>
+<p>3 STRONG SIGNALS</p>
+<ol>
+<li>
+<p>PREVIEW MUST BE A CONTRACT, NOT JUST A SALES TEASER =E2=80=94 BUILD/TEST=
+ =E2=80=94 HIGH<br>
+Source: <a href=3D"https://dodowish.com/products/dodowish-custom-3d-figure-=
+keychain">https://dodowish.com/products/dodowish-custom-3d-figure-keychain<=
+/a><br>
+Platform: personalized-gift product reviews<br>
+Date: Sep 5, 2026<br>
+Customer language: =E2=80=9CIt has a very strange look to the face, esp the=
+ eyes, that does not look like the preview rendering.=E2=80=9D<br>
+Wanted/problem: The buyer approved/expected one likeness and received a mat=
+erially different face.<br>
+Current workaround/product: custom 3D pet figure generated from an uploaded=
+ photo.<br>
+Roast.pet implication: once the buyer presses YES, THAT=E2=80=99S THEM, fre=
+eze an identity reference and automatically compare every downstream card/v=
+ideo frame against it. The preview promise is worthless if animation or lat=
+er generation changes eyes, markings, proportions or expression.<br>
+Occasion/audience: personalized pet gift; general.<br>
+Independent elsewhere: YES =E2=80=94 prior state already contains Moonpig p=
+raise for arriving exactly as previewed, plus likeness complaints. This is =
+new negative evidence showing preview drift itself causes disappointment.<b=
+r>
+Prototype: save approved reference + identity landmarks; run final-output v=
+isual similarity/marking checks; fail closed to regeneration if identity dr=
+ifts.</p>
+</li>
+<li>
+<p>CUSTOMERS WANT CHOICE BETWEEN RENDERS, NOT ONLY REVISION AFTER FAILURE =
+=E2=80=94 BUILD/TEST =E2=80=94 MEDIUM-HIGH<br>
+Source: <a href=3D"https://dodowish.com/products/personalized-3d-figurine-f=
+rom-photo">https://dodowish.com/products/personalized-3d-figurine-from-phot=
+o</a><br>
+Platform: personalized-gift reviews<br>
+Date: Sep 9, 2026<br>
+Customer language: buyer said they =E2=80=9Cliked the option to see differe=
+nt versions and pick the one=E2=80=9D they liked most.<br>
+Wanted/problem: subjective likeness/style is easier to resolve by selecting=
+ among candidates than describing corrections.<br>
+Current workaround/product: custom pet 3D figurine.<br>
+Roast.pet implication: initial identity-proof step should generate 2=E2=80=
+=933 inexpensive candidate pet cards/heads and ask PICK THE ONE THAT LOOKS =
+MOST LIKE THEM, then allow correction. This can reduce open-ended revision =
+friction.<br>
+Occasion/audience: pet owner / personalized keepsake.<br>
+Independent elsewhere: PARTIAL =E2=80=94 free previews/regenerations recur =
+strongly, but explicit preference for choosing among versions is a distinct=
+ mechanism.<br>
+Prototype: A/B test one render + regenerate versus three thumbnails + choos=
+e. Measure checkout conversion, generation cost and revision rate.</p>
+</li>
+<li>
+<p>DELIVERY DATE UNCERTAINTY IS ITSELF A PURCHASE OBJECTION =E2=80=94 BUILD=
+/TEST =E2=80=94 HIGH<br>
+Source: <a href=3D"https://dodowish.com/products/dodowish-custom-3d-figure-=
+keychain">https://dodowish.com/products/dodowish-custom-3d-figure-keychain<=
+/a><br>
+Platform: personalized-gift reviews<br>
+Date: Sep 3, 2026<br>
+Customer paraphrase: buyer was pleased with the product but said customers =
+need much clearer communication about the timeline from purchase to receipt=
+ and would order =E2=80=9Ca month or two before=E2=80=9D the needed date ne=
+xt time.<br>
+Wanted/problem: not merely faster shipping; confidence that the personalize=
+d gift will exist before the occasion.<br>
+Current workaround/product: order far earlier than necessary.<br>
+Roast.pet implication: lead with a hard digital SLA and separate it from ph=
+ysical fulfillment: =E2=80=9CRoast video ready by X; printable card availab=
+le immediately; physical card estimated by Y.=E2=80=9D Ask the occasion dat=
+e and warn before checkout if physical arrival is risky.<br>
+Occasion/audience: birthdays and deadline-bound gifts.<br>
+Independent elsewhere: YES =E2=80=94 this materially strengthens the establ=
+ished last-minute/delivery cluster with explicit evidence that uncertainty =
+changes future purchasing behavior.<br>
+Prototype: occasion-date field =E2=86=92 live promise: DIGITAL READY [date/=
+time], PHYSICAL ETA [date]. Offer digital-first fallback automatically.</p>
+</li>
+</ol>
+<p>RECURRING CLUSTER STATE =E2=80=94 directional counts from accepted indep=
+endent evidence recovered across prior reports + this run (counts are evide=
+nce instances, not market prevalence):<br>
+=E2=80=A2 Exact likeness / identity fidelity: VERY STRONG, 10+ independent =
+signals; + preview-drift evidence this run.<br>
+=E2=80=A2 Preview / proof / revisions before commitment: VERY STRONG, 7+; +=
+ candidate-selection mechanism this run.<br>
+=E2=80=A2 Deadline certainty / instant digital / fulfillment reliability: V=
+ERY STRONG, 8+; + explicit purchase-timing objection this run.<br>
+=E2=80=A2 Multi-pet / separate photos / whole household: STRONG, 6+.<br>
+=E2=80=A2 Pet personality / quirks / recipient-specific context: STRONG, 5+=
+.<br>
+=E2=80=A2 Physical + QR/video bundle: MODERATE-STRONG, multiple independent=
+ products/signals.<br>
+=E2=80=A2 Photo guidance: STRONG; eye-level, sharp eyes/face, markings and =
+multiple angles supported.<br>
+=E2=80=A2 Stable pet voice / authentic audio: MODERATE.<br>
+=E2=80=A2 Editable jokes / genuinely funnier output: plausible but direct c=
+ustomer-language evidence remains weaker than likeness/delivery.<br>
+=E2=80=A2 Memorial: strong demand for faithful sentimental remembrance; mem=
+orial-with-humor remains UNKNOWN.<br>
+=E2=80=A2 AR specifically: UNKNOWN; evidence supports QR=E2=86=92browser vi=
+deo, not AR demand.<br>
+=E2=80=A2 Sports-themed roast / colleague roast / kid-vs-adult modes: UNKNO=
+WN / insufficient direct evidence.</p>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE</p>
+<ol>
+<li>Exact individual likeness that survives every downstream transformation=
+.</li>
+<li>Preview before commitment, now improved to 2=E2=80=933 candidate versio=
+ns + explicit approval lock.</li>
+<li>Deadline certainty: instant digital fallback plus transparent physical =
+ETA tied to occasion date.</li>
+<li>Multi-pet composition from separate photos.</li>
+<li>Personality-rich personalization: quirks, characteristic expression/acc=
+essories, recipient relationship and optional authentic pet audio.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+A personalized comedy gift that is unmistakably THEIR specific pet and rema=
+ins that pet from preview through final talking video/card. The market has =
+many generic transformations; repeated evidence says identity fidelity is t=
+he fragile part.</p>
+<p>EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW<br>
+After upload, show 2=E2=80=933 cheap identity candidates and ask =E2=80=9CW=
+hich one is most THEM?=E2=80=9D Then display =E2=80=9CIdentity locked =E2=
+=80=94 final card/video will preserve this approved pet.=E2=80=9D This comb=
+ines two evidenced trust mechanisms without adding a long form.</p>
+<p>BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Dog Roasts Them =E2=80=94 Pick the Version That Looks Most Li=
+ke Them =E2=80=94 Personalized Talking Pet Birthday Video + Printable QR Ca=
+rd =E2=80=94 Instant Digital Gift.=E2=80=9D<br>
+The differentiated promise is not merely AI video; it is buyer-selected lik=
+eness + deadline-safe delivery.</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not treat an approved preview as permission to regenerate the pet freely=
+ in later scenes. Current evidence includes a buyer whose final face did no=
+t resemble the preview. If our video model mutates the approved pet, the fl=
+ashy animation destroys the trust created by the preview. Identity consiste=
+ncy should outrank scene variety.</p>
+<p>SEARCH NOTE<br>
+This run reviewed fresh 2026 personalized-pet/gift reviews plus broader pet=
+ portrait, multi-pet, QR/video, memorial, funny-card and photo-quality resu=
+lts. Most surfaced material repeated established clusters and was rejected.=
+ No credible new direct demand was found for AR, sports roasts, colleague r=
+oasts, kid/adult roast modes or memorial comedy.</p>
+
+--0000000000008de5eb065bcf91f3--

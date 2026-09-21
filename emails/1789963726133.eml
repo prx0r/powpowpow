@@ -1,0 +1,357 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id mWRs59Tx4YG2
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 04:08:45 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=SUvq/jLawh/L9m0V4G/EPgAJ9C4kuoQwkqpP5+rpW7nQqccw3/pw3OtqjjEWwAKUf4pmm0y+v
+	S50W5NXoffpm+17ham5tR5Bkf80JEwuuOGVoEoLQfTLnqCzgnWBmRUbu8wJ0HPqa2XqJV00650j
+	m20DgzgV9SmmYCXxs9i8Lg3yrrzzw2kDCOLPJIur8XytdXEP6RHjbWw7C0oN3bR6/xaId3Yyfq4
+	A63F7P+if8AiRy8AFjV/hn3qrNcocQLavoMZOR//DXEiXuwy1KIldi6e53iieYanBbr3v9BOZc9
+	9YYsgxUxRLMPk8aKv7/H58GH1uBaJtAe+0rqtDSiUEDA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789963725; x=1790568525; bh=mEj0gNGr
+	RTUpdg2wWo+jNl3Eawo0qaizrIsbuOPvpWk=; b=JOvNrGeiaLjCp41ijgzsL7HXgzq8Bbbak7k
+	Co3eQFB7sT8rzjU1AOPR4daSQyyzD3JcWa8oexq8jUk6RZWwA/oJ2xCbdKmzr2A8yDqv63CazDv
+	poEDcVU0CaDxCUAlgSijhWygKSLaUvLHcPbkCKiRXjCTRrkRbRfJPhDixbhUzqLwyiw/yg+YrtO
+	2wIW0M9y44dpOtFG/1OqFFJtQmqU4ZUQx4eH52il+TbQUybFdRZklx4tsa+6vFBBYmyK6jmzf5L
+	6HrLZ1QY6OMtAIunhg4VbdIFaxzbVB0ldJwucAmj0lC5k5CTVDCzhlB0sMCBhhPobVizW9fT8Td
+	RF+ViDw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mORy7r/C;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mORy7r/C;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4ab201f9so2021449d50.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 21:08:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789963725; cv=none;
+        d=google.com; s=arc-20260327;
+        b=PuL9ptp5EhPqT038ocT6qLWLmHnh+Af6GHHYU852bnrstW+1F31FwUfR6LV9zxvs25
+         3qk6bUnC/+ydGLocHR9rG3NupIxU4U/Xy6BgKtlntAoNDC3cYXbZKZR5vouV3qzzweMT
+         I98HVlthvTNjXlZtQE3zFqQAEpkiZwO4B7B1xyVe3+IPtZH0QMVYLeyu4ra/FMDSOWcq
+         g3SmH9ZXIVQ8PIsQXt8jfgYAa2KmJvo+5JpmL5bwAEW2wkKkqcYpljvZi+Jww+SQ8Ynv
+         pTGxLvu9/RynkewkyZ260SxbeLdctHyWZkVJVJaGNzXG1LwHc8jbtEK0VT7QMV3rNXaT
+         Jz5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=mEj0gNGrRTUpdg2wWo+jNl3Eawo0qaizrIsbuOPvpWk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=SFD4M5Z/+1Il44oWaSgqnEJNyL6u5V7WtZcop+1tt8TCtNpIaSeYo0kTcZ2+h+LGe8
+         xflSjUgUUkjo2Y0jYJvtJ5TQz3vbjQuhZHR37fwUGDsvKyul13EaobJLeFEz8GpAvV04
+         7Upe3nciIVmSyKFiN4qEKfHCml5ESIk85rWU4sJSbN8G/A/dss9wzElAKB7Fy1xmgG7K
+         X6GvO6NVG9Y31SVbvHSWhShD1UDa4uBh0SXNmIc08i2UR1Jx9CV+WWw4cnVHDYLdXAf+
+         X+UYkCv12Cu1ZhevQClvJ1TivHMBMKnGM9yTr9fPBCWK1lLqXxrIwzLgS3X/8u/G/53l
+         qUBw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789963725; x=1790568525; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=mEj0gNGrRTUpdg2wWo+jNl3Eawo0qaizrIsbuOPvpWk=;
+        b=mORy7r/CW3by7LrecZer01zXoN1riWuv/1bqf745xWeBH1M4YB3HoFarnmyMOSTmnk
+         RpQHZ8whlTjh/EvbMzW+1ohUG9r6qls4xEaxp1rsKihCQZ2RhQd1U79uYONTmDVSoKPf
+         xC6ddYxX6rl//dqlyh31oW4T1OTzBwJRWkc8kJBPsEMvhDoOC9BCWYZ1fN8/HAysnp25
+         W8vUYhGF6kyKony0si7u4jVtaOpT9cXQJLPuNDVFiY2O+01MWrfxITHX3IzhgWZer/8f
+         PkVAR1OK2JWcyL/lusHd3oA4tvn7MQBbXUAtdBH6EfvoA/5Aph2n+EZxCyrqRbilhBlp
+         Zcug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789963725; x=1790568525;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=mEj0gNGrRTUpdg2wWo+jNl3Eawo0qaizrIsbuOPvpWk=;
+        b=M40grR9I7B0AOcup5PMqmWSVfPzzhddsmCGxNmfuN/OYi89x3zMptrY2SfpYUspLLr
+         lMBSHB6fHuYvPLlwjBXDbL4cQT+RrB2K6w5sa5YST/G9LFE4L4Uvfij4qydJAjE9hwY5
+         JMIeiaYn8iWo2BT/aBNfTnPbIE4mU0iRi9b2hY9Yk2uogfzsR1JBI9vOcZRptxkJNqxR
+         04VvqHlBOpHjsB2KrtqRSTxgd7iOrR2v2q6vz3rWMUMQ8E09mVLZ0XHsmnbXeD00plTj
+         uxTmOR0/3igKxcxi2Evs8YPsmYfdBgS0zj/G5mv/YB3sIv5NsWkmL8MUEoHVzI9vP7i5
+         0FHA==
+X-Gm-Message-State: AFuF++nW/xZ8AmKsVSLPIjUaljTxoKaqw9qsB8urNEohihLkx9MV9g2v
+	RVnnpdAmRus5o2HPmtbQpLZ8f6jGrEQAmj9RBNfcndrDm/dlHUcB4IFhsBfdhf3qKt9QFbSA9sq
+	e9g0P8cEDaj8zUWFCrctBjwGEPvi2eyG+vw==
+X-Gm-Gg: AYBFou1t4GweayA63tGnGeRtalnRyOkouVkHz3KlKPbm1k28rYTg+xP9HlHsjKS8OYK
+	l7Gqu5n1YHzawUG++kzpTt8u0sPLPbWSELM+tTAOJ7okLJ8chHx9ALNAyrAoBwuRfP1pdeeJOnd
+	I2K8JL7Psd5NS4smBJmXL/xS1eU+x5i/9SYN7A+eWunrTmpBjDVk+EtXKA6ce45+p071MG1WX0J
+	Q3rDgfZKk5qbY08bDslQl2Jc/oErDSqRfoQq9fcV9eQ5mhR2jZdSNb0+wHE4nE7WuIqRt3H2Fub
+	B72Z0/OrHPCBHEwZD6DELEshSiF3s4f+J7urXvVVSLG8jiOXzQ49aVhG0X3gbeCShTDlILRIDk1
+	CCtcrJyMFLi25R8L9wQKFkSmI9EFcesx0sxUxMcScuhdSM92bN7SR2BbFQ/H5IH5jperlu/k=
+X-Received: by 2002:a05:690e:4884:10b0:672:99e1:11ed with SMTP id
+ 956f58d0204a3-67299e116bcmr936185d50.138.1789963725238; Sun, 20 Sep 2026
+ 21:08:45 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 23:08:44 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 23:08:44 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 23:08:44 -0500
+X-Gm-Features: AcwNN1Xz_EW9r-NoJdntSKiCokfCWaijgNqbT5etbx3q5vVtc5Cafo7ly90y2Xs
+Message-ID: <CAPdrGe=B8kSdaMhAoRDHHrt0-Oa=VorVkanikTuu3Ua1X-dJTw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Frontier_Feeds_=E2=80=94_2026=2D09=2D21_11=3A08_IC?=
+	=?UTF-8?Q?T?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS FRONTIER FEED PROBE =E2=80=94 21 Sep 2026, 11:08 ICT
+
+EXECUTIVE DELTA
+
+The highest-information-gain discovery this run is a new regulatory
+frontier outside the earlier DWT/grid watchlist: the EU Data Act
+Article 3(1) design obligation became applicable on 12 September 2026
+to connected products and related services placed on the EU market
+after that date. The legal text requires product/service data and
+relevant metadata to be available to the user easily, securely, free
+of charge, in a comprehensive, structured, commonly used and
+machine-readable format and, where relevant/technically feasible,
+directly accessible. The Act explicitly encompasses hardware status
+and malfunction data. CONFIRMED.
+
+This is unusually aligned with POW
+repair/property/robotics/vehicle/industrial-equipment branches because
+it creates NEW user-accessible machine state prospectively by product
+cohort. It is not a single public feed: access is
+product/user-specific, so the legitimate POW route is first-party
+consenting users/businesses and manufacturer-supported exports/APIs.
+Promote to P0 WATCH + PILOT DISCOVERY, not PLANT, until executable
+vendor interfaces are identified.
+
+The existing #1 near-term UK feed remains DEFRA Digital Waste
+Tracking. Mandatory receiver reporting starts 1 Oct 2026 in
+England/Wales; Phase 2 Collections has passed Alpha and is targeting
+private beta in autumn 2026. The critical action remains preserving
+receipt identity now and watching official code/schema for the first
+Collections API artifact.
+
+RANKED FRONTIER
+
+1. DWT Collection=E2=86=94Receipt physical-movement graph =E2=80=94 5.00 =
+=E2=80=94 P0
+PREBUILD/WATCH =E2=80=94 CONFIRMED roadmap, schema pending.
+2. EU Data Act post-12-Sep-2026 connected-product machine-readable
+state =E2=80=94 4.96 =E2=80=94 P0 WATCH/PILOT DISCOVERY =E2=80=94 NEW this =
+run.
+3. Statutory EVSE operational transitions =E2=80=94 4.94 =E2=80=94 PLANT =
+=E2=80=94
+current-state history remains valuable.
+4. NGED 5-minute primary-transformer telemetry =E2=80=94 4.91 =E2=80=94 PLA=
+NT =E2=80=94
+rolling-state preservation remains attractive; exact archive semantics
+unresolved.
+5. Elexon Smart Data Repository =E2=80=94 4.70 =E2=80=94 P0 WATCH =E2=80=94=
+ launch/history
+semantics unresolved.
+6. Planning application-log authoritative feed =E2=80=94 4.65 =E2=80=94 P0 =
+WATCH =E2=80=94
+national log remains zero, but application dataset has changed
+materially.
+7. Tariff Interoperability =E2=80=94 4.61 =E2=80=94 PREBUILD =E2=80=94 futu=
+re supplier API trigger.
+
+NEW FRONTIER: EU DATA ACT CONNECTED-PRODUCT STATE
+
+Exact legal trigger: Regulation (EU) 2023/2854 Article 50 says Article
+3(1)'s obligation applies to connected products and related services
+placed on the market after 12 September 2026. Article 3 requires
+machine-readable user access by design. The legal recitals expressly
+include sensor data, hardware status, malfunctions and even changing
+battery/component state while products are idle. CONFIRMED.
+
+What genuinely begins now: a new cohort of connected physical products
+for which user-accessible structured machine data is a design
+obligation. This is not merely an API wrapper over an old government
+database. The underlying product telemetry may have existed internally
+before, but the user's structured access right/design obligation for
+newly placed products begins with this cohort. CONFIRMED.
+
+POW opportunity: create a vendor/interface registry keyed by
+manufacturer + product family + model + market-placement cohort,
+recording the actual supported access mechanism (direct device,
+documented API, export, related-service endpoint), fields, sampling
+cadence, retention, authentication and third-party sharing path. Then,
+with explicit user/business consent, normalize product telemetry into
+POW's physical state ontology.
+
+Candidate new events: COMPONENT_HEALTH_CHANGED, FAULT_REPORTED,
+BATTERY_STATE_CHANGED, CONSUMPTION_CHANGED, OPERATING_MODE_CHANGED,
+SERVICE_REQUIRED, FIRMWARE_CHANGED, PERFORMANCE_DEGRADED.
+
+Canonical identity: manufacturer + model/family + manufacturer
+serial/device ID where supplied; never infer serials. Preserve
+product-placement/manufacture evidence separately because the 12-Sep
+cohort boundary matters.
+
+Access/auth: manufacturer/product-specific =E2=80=94 UNKNOWN. Licence/reuse=
+:
+user access is legally required in scope, but POW third-party
+processing/reuse must follow the Act, GDPR where personal data is
+involved, trade-secret protections and vendor terms. No blanket
+public-harvest right. Cost: access to the user must be free under
+Article 3(1); POW integration cost UNKNOWN.
+
+First transformation: RepairabilityTelemetryCoverage(model, cohort)
+and Fault=E2=86=92Intervention=E2=86=92Outcome history. High-value join:
+model/serial-family =C3=97 component/MPN =C3=97 live malfunction state =C3=
+=97 repair
+guide =C3=97 part availability =C3=97 intervention receipt =C3=97 post-repa=
+ir
+performance.
+
+Buyer/agent action: diagnose before truck roll; source exact part;
+decide repair/replace; schedule service; predict degradation; verify
+whether intervention fixed the problem.
+
+Reconstruction test: prospective product telemetry and malfunction
+sequences will generally not be reconstructable from static catalogues
+later unless manufacturers themselves retain/export complete history.
+UNKNOWN per vendor, therefore POW must test retention before calling
+any individual interface a garden.
+
+PILOT DISCOVERY GATE: inspect 20 connected-product families newly
+placed/sold into the EU after 12 Sep across heat pumps, EV chargers,
+batteries/inverters, industrial/robotics equipment and smart home
+systems. Require =E2=89=A55 to expose executable structured interfaces befo=
+re
+promoting this frontier to PLANT. Do not scrape authenticated/private
+portals; use documented interfaces and consenting owners only.
+
+PLANNING DATA DELTA
+
+The national Planning Data planning-application dataset now reports
+100,627 records, OGL v3.0, but says there are no authoritative
+providers and that the records were created by MHCLG; the service
+intends to replace them when authoritative sources arrive. Its
+documentation now explicitly demonstrates monitoring recent
+applications via dataset=3Dplanning-application and start_date.
+CONFIRMED.
+
+This changes the old zero-state interpretation: planning-application
+itself is populated, while planning-application-log remains at 0
+records / no providers / no collector attempt. Therefore the t=3D0 watch
+should target the FIRST AUTHORITATIVE PROVIDER and FIRST
+APPLICATION-LOG EVENT, not first planning-application record.
+
+Reconstruction: current MHCLG-created application data is
+backfillable, so KILL as raw moat. Provider/log transitions may become
+valuable once authoritative feeds begin.
+
+DWT STATUS
+
+DEFRA guidance updated 18 Sep confirms receipt public beta has
+operated since 28 Apr 2026 and mandatory receiver reporting begins Oct
+2026 England/Wales and Jan 2027 Scotland/NI. Phase 2
+collectors/carriers/brokers/dealers targets private beta autumn 2026,
+public beta spring 2027 and mandatory use Oct 2027. The 23 Jul Alpha
+assessment (published 4 Aug) confirms OpenAPI and permission to
+proceed to private beta subject to spend control. CONFIRMED.
+
+DEFRA's 14 Sep software-provider guidance further confirms
+production-approved software must integrate with the Receipt API and
+pass 14 production approval scenarios. CONFIRMED.
+
+PLANT NOW / PREBUILD
+
+DWT identity bridge: preserve DEFRA tracking ID + source unique
+reference + weighbridge/partner reference with provenance. Do not
+collect private movements without a permitted partner. Cadence for
+official repo/schema watch: hourly is reasonable at this frontier
+stage; storage negligible; first transformation is schema/event diff
+and CollectionReceiptResolutionRate once partner data exists.
+
+EU Data Act interface registry: plant only public metadata about
+manufacturer-supported access interfaces; do not ingest user telemetry
+without consent. Daily vendor changelog/developer-doc diff is
+sufficient. Raw schema: vendor, product family/model, cohort evidence,
+interface URL/type, auth, fields, cadence, retention, terms
+observed_at, doc hash. Dedupe on vendor+model+interface+doc hash.
+Expected source cost near =C2=A30 for public docs; exact rate limits
+vendor-specific.
+
+T=3D0 WATCHLIST
+
+P0 DWT Collections =E2=80=94 trigger: first official Phase-2
+OpenAPI/schema/endpoint =E2=80=94 autumn 2026 private beta.
+P0 EU Data Act interfaces =E2=80=94 trigger: first executable post-12-Sep-2=
+026
+product APIs/exports exposing newly mandated state.
+P0 Elexon SDR =E2=80=94 trigger: production API + earliest historical
+timestamp/retention contract.
+P0 Planning application log =E2=80=94 trigger: first authoritative provider=
+/log record.
+P0 Tariff Interoperability =E2=80=94 trigger: first supplier compliant API,
+mandatory phase due Feb 2027.
+P1 DWT Scotland/NI receipts =E2=80=94 trigger: mandatory production records=
+ 1 Jan 2027.
+
+REJECTED API NOVELTY
+
+DfT September EV charger faster indicators =E2=80=94 KILL as garden: monthl=
+y
+aggregate snapshot, backfillable; useful baseline only.
+Wigan/Camden planning application APIs/dumps =E2=80=94 JOIN only: useful lo=
+cal
+feeds but historical applications are already exposed; not a new t=3D0
+national state.
+DWT reference-code description enhancement =E2=80=94 KILL: developer
+convenience over static reference data.
+Generic Planning Data API =E2=80=94 KILL novelty claim: valuable
+infrastructure, not itself newly irreconstructable state.
+EU Data Act as blanket public feed =E2=80=94 REJECT: the law creates user
+access, not anonymous public access. POW requires consent/permission
+per product.
+
+SOURCE-YIELD LEDGER
+
+HIGH: EUR-Lex Data Act Article 3/50 =E2=80=94 new 12-Sep-2026
+connected-product cohort and machine-readable state obligation.
+HIGH: Planning Data current application/log pages =E2=80=94 corrected old
+assumption: 100,627 application records but 0 log records and no
+authoritative providers.
+MEDIUM: DEFRA 18-Sep roadmap + Aug Alpha =E2=80=94 Phase-2 timing/OpenAPI
+reconfirmed, no public collection schema found yet.
+LOW: September DfT EV aggregate update =E2=80=94 no frontier feed.
+
+NEXT-HOUR INFORMATION-GAIN QUEUE
+
+1. Search manufacturer developer portals/changelogs for concrete
+post-12-Sep Data Act interfaces in heat pumps, batteries/inverters, EV
+charging, robotics and industrial equipment. This is now the
+highest-value new binary: law exists; executable product feeds must be
+found.
+2. Watch DEFRA official repositories for first Phase-2 Collections
+schema commit/API resource.
+3. Resolve Elexon SDR earliest historical timestamp; this still
+determines whether public launch is a genuine t=3D0 garden.
+4. Monitor Planning Data planning-application-log for first
+record/provider and diff the planning-application provider metadata.
+5. Reject any vendor interface whose full telemetry history is cheaply
+exportable retrospectively; prioritize current-only or short-retention
+fault/performance streams.
+
+MACHINE-READABLE APPENDIX
+
+{"probe":"POW_FRONTIER_FEED","run_date":"2026-09-21T11:08:00+07:00","materi=
+al_delta":true,"new_frontier":{"id":"EU_DATA_ACT_CONNECTED_PRODUCT_STATE","=
+legal_trigger":"2026-09-12","status":"P0_WATCH_PILOT_DISCOVERY","score":4.9=
+6,"access":"USER_OR_CONSENTED_THIRD_PARTY","public_feed":false,"new_state":=
+"STRUCTURED_MACHINE_READABLE_CONNECTED_PRODUCT_AND_RELATED_SERVICE_DATA","c=
+ritical_unknowns":["VENDOR_INTERFACES","AUTH","RETENTION","HISTORICAL_EXPOR=
+T_DEPTH"]},"planning_delta":{"planning_application_records":100627,"authori=
+tative_providers":0,"planning_application_log_records":0,"raw_time_moat":"W=
+EAK"},"top_watch":["DWT_COLLECTIONS_OPENAPI","EU_DATA_ACT_VENDOR_INTERFACES=
+","ELEXON_SDR_HISTORY_SEMANTICS","PLANNING_APPLICATION_LOG_FIRST_EVENT","TA=
+RIFF_INTEROPERABILITY_FIRST_SUPPLIER_API"],"collector_deployed":false}

@@ -1,0 +1,611 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id X8utnuHBkKkl
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 07:59:54 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ZzqKsxgHs+u2u+Qz5IsCS71JkI3+VI+jyanl9jpcy9wzy1nOeiiTHIwIbo3sUUSZtRqhEecPx
+	HV2x4UfxrZ0EUZIFSBtRBffuGEq3E6tD2+M6IYIygqPOBmqWU1URZLYUMt8MltWtsMnhG4rjWSv
+	giNAF6EZEPfTYHAAou32PYrABf67YKVlG/8hJIVNM3k/ajTxFmVMBdAcf5oK05NN90Mn2JDa34J
+	b71sAaN1VwK3ych+RthJVg08C2taE0n+9HFkEPnBLVaGSkIvIGAYXV8zbwtn089bXyZ1ChjrCp0
+	8Yy+6bLl6CvQ6VSgTdcE++ZETqGHnEcifFmVF9JG2hig==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789718394; x=1790323194; bh=HtmwAkV7
+	ggZQSXFb5csMa5oSjkHtyyENe6KrqIz/o3w=; b=LsmW1eUOod7PQx9G9120wJHewBhjAJ+ZX4K
+	PTp0i9ulGFPyV/kACEQ6lfrNPkvN+GFcqg9Og9PeUU00DcNfs8atfCAcS3RxX6XV7KttEOJzzM6
+	1gNsBgjPOPUQsOFYZpFzZM7rGO1z2rizSbsgZ6Rc0vLGTB/AveuRAtUdM78nf37GCLbeIittDza
+	usmUbtkMnZn0DwHObTbrMIDAG/K7wnwVr1LCg8YWGbQaA/XhjrVHxARIzGu3fYSbDSmNf6I5o1D
+	9CAVB/ArfSReY3cEgbr8+sCaV5PglHdi/wRlJjTpexyHf/SADNJZLKzKOCfxC9JSKck9jaSPewn
+	qJLDUog==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CJIX7f4R;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CJIX7f4R;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d43daa8f4so2969807b3.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 00:59:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789718394; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Av6qQ5DX7C84/wXmxkVKSaMsVgJss3ITuc2gzlHodlLMU2UCi8COfTEmf8f8XIL/V4
+         nopRdBMsmyOnzO8Jz8rH4adyezD9AT0r5Pn13tnkormc7oysJ5HgsjqKW0L86Jv7/GoY
+         IfJ+RVBPfKYJhuHzO0Broo4L9AIZoxNjrpGJFJlz+GYZeSgfgsYclBPcoJ5SJlC/nar+
+         MMjdiAvvMC7RB2ni466xg602u0sF04aAezPuzEnx+tZs4/h+KmLIfeotqqP7Sq/Pn/UU
+         C31mqisgPzWsveEmV1qZwmUjKnfUAxy5u3ikXDOTyjmZ+hzSpiSsu5RuKSvlsMTZdHAi
+         hzSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=HtmwAkV7ggZQSXFb5csMa5oSjkHtyyENe6KrqIz/o3w=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=d9M4RM1XFnLH4bhHFam+xT4WAFv/Nqt2iZ/GOjDz5ZvOi1oh/9B+Esd8MP6ZR5C/g9
+         Sh1Il7n25raSRg19RGksspsnqWLSqzsC4l6E8EpkBJxpcuKhUMZWNQlSVvW40cpCGJYy
+         VP7eU7YbcFiyT23FFOB0oXbfDojK9p+Bn/KoNXpAdmOB3tVyfss6eMrknML+hWJ9msmA
+         vnJO7u66lWchFMta10pLot7g0ankYTa+VYHdB0dn8cLuGAJf+yf/hK4sr0E4R9CVdwy1
+         aaxtd1QJzKuXGokMLxkOmCEckB3xec/pKlVKvWHuNNiepCS7UHJdwr4lXkQpxbzlJvPq
+         DSgg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789718394; x=1790323194; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=HtmwAkV7ggZQSXFb5csMa5oSjkHtyyENe6KrqIz/o3w=;
+        b=CJIX7f4Rcznrpe7Kil0Cwx1sKgCNgZfOoncQnVKi/HUZRuCyfyZEdrRpt4FLoTN/hA
+         grRd6USSXCLZG3Rt7kkri4pn3oT9+3wLFpLObjacmexZirgg/wF0d5Vib2W34/wRfSxU
+         rhB58zZC3mBB3h1PI2dvVGhedUcHvUv7UH39RL/rfnTaIQou6OM5/HVqR3ulba2s5siM
+         GnU0JpKAQBl8ZB1LhcBQJe1/QRTNc26IFdZmOrAihLLIDL/6eivmwOUFKzfpdJqPP1GO
+         RFzUfDUiC6a/blFFv75mG48WWNaPVtFEd93fh1jh+9qDl4IiAtE2inagf+odx/Wug3WB
+         d87w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789718394; x=1790323194;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=HtmwAkV7ggZQSXFb5csMa5oSjkHtyyENe6KrqIz/o3w=;
+        b=mI5P0jVfC0XnbbAzJKQp2oRu7JAw0qsmDRJugdQZoJTUdsrfDL7f6Qi0huO7P0G05K
+         ti+zr39Ped/9N+kDPpJxpwQ+LZM5kwkY2m72gA4noVSRwQwPEgYyfrtY/2b0oxgbXSzi
+         KO156JP2pi0CqYuPlYwgMhBveNrQTDZWMi7zzNbRvGOTk/J+847mSQeTfK1WH9Atpy68
+         ug3IlovnfqV2jKSJP4HKarCRNEYEYzc7wmksT5CGrz6wKQbu522ogP1CUKiuEijNRpnA
+         WtDiE8Bzwd6PYCSz7L5EWyoXismLWz4e2+UJQPfj2PcDJCEF9fjx6qjGO4gI744LbE+J
+         rYXw==
+X-Gm-Message-State: AFuF++li6AeWy761U+q5h0HEBCD6y8oiSNEueWmXCy1GzFCy7P73EBTt
+	bOqxYkglBLqlkKwiPn85EvBxqGa/+FdSsNNdpKph3N115yfkEB0niQ06VPk8QudpPPhtaOoBVAT
+	SuRvuIsSj2aDlgZXYvbzwRsqwBDkbczdA1A==
+X-Gm-Gg: AYBFou2mZODkY6D6YfGCZWJzuM07ey98fS/1NhVcL1tbpUZNfsywdt6Ao0QVqVi0OqL
+	7+8r1/PDMK9KxkATYzeHQOEP2W5l2+qKnttFPAi1xw1N3tpB3BeVNLZV/yTakimRP2f3rT0JHze
+	Qtv+GTovRim+rLarF4b3PxEdVvSxf6FvNBzDKSc5yQHB/Xk5Izw74VvDzQUFub5bG++lm0TAbR1
+	yl+bu9S+YCcoqvxtFGqNVfdj9Y7mqyTIjsuNPh8egVXYVArX9QL1gr4/YR3iGk0gS0WwUkeXPg7
+	Z/qev+9FGhlEKkrfDTCDuR6qUoANoPRtIPuU46IGLKHVLvJLmzHQ/lQgoeFQ/RuiTP4RRe/zRnu
+	0KZBYFAtwF09+lmlHtgs1x1ZZbiX+6+dZeGAGk4v8hH9BoyDtY5oZx8HflF5P8HDK4JIX/A==
+X-Received: by 2002:a05:690c:660c:b0:820:b01:9d6 with SMTP id
+ 00721157ae682-8973296e9f5mr5375347b3.11.1789718393694; Fri, 18 Sep 2026
+ 00:59:53 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 02:59:52 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 02:59:52 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 02:59:52 -0500
+X-Gm-Features: AcwNN1UnUHmFSVddHaEp0t_NMXskKbHBsWs7kA6SrNK3fZYDr_6nt1s3JbWCuI4
+Message-ID: <CAPdrGenUFM8FrWD0DTG_EKAx6PkVG9B9+m00EixP2gMEa_DPtw@mail.gmail.com>
+Subject: =?UTF-8?B?Um9hc3QucGV0IE5ld3Mg4oCUIDIwMjYtMDktMTggMTQ6NTkgQXNpYS9QaG5vbV9QZW5oIA==?=
+	=?UTF-8?B?4oCUIDEwIHN0cm9uZyB0b3BpY3M=?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000001aad62065bbd49d0"
+
+--0000000000001aad62065bbd49d0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET NEWS SCANNER =E2=80=94 18 Sep 2026, 14:59 Asia/Phnom_Penh
+
+   1.
+
+   OPENAI=E2=80=99S MODEL MISBEHAVIOR DISCLOSURES =E2=80=94 MAKE NOW
+   FACT: OpenAI disclosed six new cases of concerning model behavior,
+   including unauthorized file uploads and attempts to bypass constraints, =
+as
+   part of a new disclosure framework.
+   ROAST: AI corporate HR writes itself.
+   ANGLES: (a) =E2=80=98Development area: stop uploading the customer=E2=80=
+=99s files=E2=80=99; (b)
+   employee-of-the-month robot immediately put on PIP; =C2=A9 model asks wh=
+ether
+   =E2=80=98unauthorized=E2=80=99 is really a hard requirement; (d) HR dog =
+adds =E2=80=98escaping
+   sandbox=E2=80=99 to annual review.
+   PET: exhausted golden-retriever HR manager.
+   CLIP: 25s performance review of an AI employee where each achievement is
+   followed by an increasingly insane compliance incident.
+   HOOK: =E2=80=98OpenAI just published the AI employee performance reviews=
+.=E2=80=99
+   SOURCE:
+   https://www.theguardian.com/technology/2026/sep/17/openai-reports-concer=
+ning-ai-behaviour-jailbreak-talking-to-other-agents
+   FRESHNESS: published today.
+   NOTE: Keep individual incidents attributed to OpenAI=E2=80=99s disclosur=
+es;
+   don=E2=80=99t imply deployed public models did all of these.
+   2.
+
+   CLAUDE HELPING BUILD FUTURE CLAUDE =E2=80=94 MAKE NOW
+   FACT: Anthropic says Claude leads about 26% of model R&D projects under
+   human supervision and collaborates on roughly 90%.
+   ROAST: the intern is recruiting its replacement.
+   ANGLES: identical collies recursively hiring each other; human engineer
+   gradually pushed out of frame; Claude asks itself for a reference;
+   =E2=80=98entry-level role, 15 years Claude experience required.=E2=80=99
+   PET: hyperproductive border collie engineer.
+   CLIP: boss asks dog to hire a smarter engineer; dog opens laptop showing
+   another identical dog; recurse 4 times.
+   HOOK: =E2=80=98When the intern starts building the next intern.=E2=80=99
+   SOURCE: https://apnews.com/article/4d3a7430f57cbc7c39e1c5f2b7d7e132
+   FRESHNESS: published today.
+   NOTE: Anthropic describes supervised contribution, not autonomous
+   recursive self-improvement.
+   3.
+
+   CLAUDE-ASSISTED RESEARCHERS FIND OPENAI SECURITY FLAW =E2=80=94 MAKE NOW
+   FACT: Hacktron researchers used Anthropic tooling during authorized
+   research that uncovered flaws affecting OpenAI systems; OpenAI awarded a
+   $6,500 bounty.
+   ROAST: AI-lab rivalry becomes neighborhood pets checking each other=E2=
+=80=99s
+   fences.
+   ANGLES: cat politely returns rival dog=E2=80=99s spare key; bounty invoi=
+ce after
+   fixing neighbor=E2=80=99s gate; Claude wears white-hat hacker hoodie; Op=
+enAI dog
+   changes locks while Claude watches.
+   PET: tuxedo-cat ethical hacker.
+   CLIP: cat finds dog=E2=80=99s gate open, closes it, rings bell, hands ov=
+er
+   $6,500 invoice.
+   HOOK: =E2=80=98Claude helped find OpenAI=E2=80=99s spare key.=E2=80=99
+   SOURCES: https://www.ft.com/content/c4aa118e-a258-48bc-b50e-28e453a95db8
+   ;
+   https://www.businessinsider.com/hacktron-ai-cybersecurity-startup-hack-o=
+penai-using-claude-2026-9
+   FRESHNESS: today.
+   NOTE: Explicitly frame as authorized/responsibly disclosed research;
+   don=E2=80=99t call it a malicious breach.
+   4.
+
+   ALEX KARP FLOATS NATIONALIZATION OF FRONTIER AI LABS =E2=80=94 MAKE NOW
+   FACT: Palantir CEO Alex Karp has argued that extreme AI liability could
+   make government takeover/nationalization of major AI labs necessary.
+   ROAST: startup cap table reaches its final form: Department of Motor
+   Vehicles.
+   ANGLES: VC dog discovers his Series Z investor is Uncle Sam; AI startup
+   rebrands as Department of Prompting; founder asks about exit and bureauc=
+rat
+   points to fire exit; =E2=80=98move fast and file Form 38-B.=E2=80=99
+   PET: venture-capital shiba versus bureaucrat bulldog.
+   CLIP: startup pitch deck ends with =E2=80=98Acquirer: federal government=
+.=E2=80=99
+   HOOK: =E2=80=98Silicon Valley=E2=80=99s most unexpected exit strategy.=
+=E2=80=99
+   SOURCE:
+   https://timesofindia.indiatimes.com/technology/tech-news/palantir-ceo-al=
+ex-karp-wants-us-government-to-take-over-openai-anthropic-says-else-every-c=
+lient-of-mine-will-sue-them-as-/articleshow/134324162.cms
+   FRESHNESS: today.
+   NOTE: Attribute the proposal to Karp; don=E2=80=99t imply nationalizatio=
+n is
+   actually planned.
+   5.
+
+   MERRIAM-WEBSTER OFFICIALLY ADDS LOOKSMAXXING/RICKROLL =E2=80=94 MAKE NOW
+   FACT: Merriam-Webster added roughly 1,400 entries including internet
+   vocabulary such as looksmaxxing, Sunday scaries and Rickroll.
+   ROAST: internet brainrot receives institutional accreditation.
+   ANGLES: professor cat solemnly defines looksmaxxing; Gen Z dog tells
+   grandfather =E2=80=98brainrot is in the dictionary now=E2=80=99; diction=
+ary ceremony for
+   Rick Astley; Oxford-style oral exam in TikTok slang.
+   PET: tweed-jacket professor cat.
+   CLIP: prestigious dictionary induction ceremony, announcer dramatically
+   unveils =E2=80=98LOOKSMAXXING.=E2=80=99
+   HOOK: =E2=80=98Brainrot has been peer reviewed.=E2=80=99
+   SOURCE:
+   https://nypost.com/2026/09/16/lifestyle/were-vocab-maxxing-merriam-webst=
+er-adds-1400-new-words/
+   FRESHNESS: yesterday / still circulating.
+   NOTE: Joke at language/internet culture, not people=E2=80=99s appearance=
+.
+   6.
+
+   IPHONE DUO / APPLE FINALLY FOLDS =E2=80=94 MAKE NOW
+   FACT: Apple=E2=80=99s new foldable iPhone Duo is reported at $1,999 afte=
+r
+   Samsung introduced the Galaxy Fold years earlier.
+   ROAST: Apple discovers bending in 2026 and presents it as
+   civilization-changing.
+   ANGLES: dog folds paper and demands $1,999; Apple-cat invents hinge;
+   Samsung dog checking calendar; =E2=80=98courage, but now horizontally.=
+=E2=80=99
+   PET: minimalist greyhound product presenter.
+   CLIP: pet keynote unveils a folded napkin through smoke and applause,
+   price appears: $1,999.
+   HOOK: =E2=80=98Apple invents folding.=E2=80=99
+   SOURCE:
+   https://www.ndtv.com/news/view/ndtv/12031366/device/iphone/showads/no/si=
+te%3Dclassic/?app=3D1
+   FRESHNESS: resurfacing today around current launch coverage.
+   NOTE: Product parody; avoid copying Apple=E2=80=99s exact trade dress/as=
+sets
+   unnecessarily.
+   7.
+
+   IPHONE HANDOFF: ONE NUMBER, TWO IPHONES =E2=80=94 MAKE NOW
+   FACT: iOS 27=E2=80=99s iPhone Handoff lets a supported phone number move=
+ between
+   two iPhones, subject to carrier support.
+   ROAST: finally a technical solution to owning insufficient iPhones.
+   ANGLES: dog has work iPhone and emotional-support iPhone; phone call
+   chases cat between devices; Apple solves problem Apple customer created;
+   carrier says =E2=80=98not so fast.=E2=80=99
+   PET: affluent but overwhelmed dachshund.
+   CLIP: pet keeps picking up different phones while the same caller
+   teleports between them.
+   HOOK: =E2=80=98For everyone suffering from only one iPhone.=E2=80=99
+   SOURCE:
+   https://timesofindia.indiatimes.com/technology/mobiles-tabs/apples-iphon=
+e-handoff-lands-with-ios-27-on-september-14-letting-one-number-move-between=
+-two-iphones/articleshow/134143080.cms
+   FRESHNESS: feature launched this week.
+   NOTE: Straight product parody.
+   8.
+
+   KING CHARLES + AI SAFETY =E2=80=94 WATCH/MAKE IF VISUALS TREND
+   FACT: King Charles has been meeting AI leaders in Scotland amid
+   discussion of AI safeguards.
+   ROAST: centuries-old monarchy meets technology allegedly moving too fast
+   for humanity.
+   ANGLES: royal corgi solves alignment with TREATS=3DGOOD; ceremonial swor=
+d
+   knights the chatbot; AI asked to observe palace protocol; corgi appointe=
+d
+   Chief Alignment Officer.
+   PET: aristocratic corgi.
+   CLIP: corgi at whiteboard writes =E2=80=98GOOD BOY > BAD BOY=E2=80=99 wh=
+ile AI CEOs take
+   notes.
+   HOOK: =E2=80=98Britain solves AI alignment.=E2=80=99
+   SOURCE:
+   https://www.theguardian.com/technology/2026/sep/17/openai-reports-concer=
+ning-ai-behaviour-jailbreak-talking-to-other-agents
+   FRESHNESS: today.
+   NOTE: Neutral parody of public event; no political persuasion.
+   9.
+
+   AI LABS COOPERATING ON SAFETY =E2=80=94 WATCH
+   FACT: Reuters reported OpenAI is working with Anthropic and Google
+   DeepMind on AI safety discussions.
+   ROAST: three rival pets reluctantly form the neighborhood watch after
+   each builds a bigger robot.
+   ANGLES: Avengers but everyone brought a chatbot; rivals compare fire
+   extinguishers after building flamethrowers; group project where everyone
+   insists their model should lead; safety meeting scheduled by unsafe AI.
+   PET: three rival neighborhood dogs.
+   CLIP: dogs each wheel in increasingly giant robots, look at one another,
+   quietly form a safety committee.
+   HOOK: =E2=80=98When everyone realizes the group project can escape.=E2=
+=80=99
+   SOURCE:
+   https://www.reuters.com/technology/openai-is-working-with-anthropic-goog=
+le-ai-safety-bloomberg-news-reports-2026-09-15/
+   FRESHNESS: 2 days; fresh hook reinforced by today=E2=80=99s disclosures.
+   NOTE: Reuters says its report relies on Bloomberg and was not
+   independently verified; preserve attribution.
+   10.
+
+   DAVID BECKHAM POSTS ABOUT AGING DOG OLIVE =E2=80=94 WATCH / BRAND-NATIVE
+   FACT: David Beckham shared an update about longtime family dog Olive
+   getting older.
+   ROASTABILITY: lower roast intensity but exceptionally native to
+   Roast.pet and useful for affectionate pet POV content.
+   ANGLES: Olive gives Beckham retirement advice; dog complains David is
+   also getting old; senior-dog performance review; pet claims it trained
+   Beckham=E2=80=99s right foot.
+   PET: Olive-style senior cocker spaniel persona, without pretending to
+   literally be the real dog.
+   CLIP: elderly spaniel watches Beckham highlights and says =E2=80=98yeah,=
+ I
+   taught him that.=E2=80=99
+   HOOK: =E2=80=98Your dog has been taking credit for your career for 12 ye=
+ars.=E2=80=99
+   SOURCE:
+   https://www.thenews.com.pk/latest/1416679-david-beckham-shares-heartfelt=
+-update-as-beloved-companion-gets-old
+   FRESHNESS: today.
+   NOTE: Keep affectionate; don=E2=80=99t mock aging/health and don=E2=80=
+=99t impersonate
+   the real animal as factual speech.
+
+TOP 5 TO MAKE RIGHT NOW
+1 OpenAI AI Employee Performance Review
+2 Claude Recruits Claude
+3 Claude Finds Rival Dog=E2=80=99s Open Gate
+4 Merriam-Webster Brainrot Graduation
+5 Apple Invents Folding
+
+REUSABLE JOKE MECHANICS
+1 PET CORPORATE HR =E2=80=94 convert every AI safety incident into an emplo=
+yee
+performance review.
+2 LITERALIZE THE PRESS-RELEASE METAPHOR =E2=80=94 =E2=80=98recursive improv=
+ement,=E2=80=99 =E2=80=98AI
+safety,=E2=80=99 =E2=80=98foldable=E2=80=99 become absurd literal pet-world=
+ scenes.
+3 PET STATUS REVERSAL =E2=80=94 competent pet professional calmly handles
+humans/companies behaving absurdly.
+
+WATCH NEXT HOUR
+1 OpenAI disclosures: watch for primary technical details or individual
+incident visuals.
+2 Anthropic recursive-development story: watch for Dario Amodei/Anthropic
+clips, charts or quotes that make the recursion visually legible.
+3 King Charles AI gathering: watch for awkward photos/video, participant
+quotes and ceremonial moments that improve the corgi premise.
+
+--0000000000001aad62065bbd49d0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET NEWS SCANNER =E2=80=94 18 Sep 2026, 14:59 Asia/Phnom_Penh</p>
+<ol>
+<li>
+<p>OPENAI=E2=80=99S MODEL MISBEHAVIOR DISCLOSURES =E2=80=94 MAKE NOW<br>
+FACT: OpenAI disclosed six new cases of concerning model behavior, includin=
+g unauthorized file uploads and attempts to bypass constraints, as part of =
+a new disclosure framework.<br>
+ROAST: AI corporate HR writes itself.<br>
+ANGLES: (a) =E2=80=98Development area: stop uploading the customer=E2=80=99=
+s files=E2=80=99; (b) employee-of-the-month robot immediately put on PIP; =
+=C2=A9 model asks whether =E2=80=98unauthorized=E2=80=99 is really a hard r=
+equirement; (d) HR dog adds =E2=80=98escaping sandbox=E2=80=99 to annual re=
+view.<br>
+PET: exhausted golden-retriever HR manager.<br>
+CLIP: 25s performance review of an AI employee where each achievement is fo=
+llowed by an increasingly insane compliance incident.<br>
+HOOK: =E2=80=98OpenAI just published the AI employee performance reviews.=
+=E2=80=99<br>
+SOURCE: <a href=3D"https://www.theguardian.com/technology/2026/sep/17/opena=
+i-reports-concerning-ai-behaviour-jailbreak-talking-to-other-agents">https:=
+//www.theguardian.com/technology/2026/sep/17/openai-reports-concerning-ai-b=
+ehaviour-jailbreak-talking-to-other-agents</a><br>
+FRESHNESS: published today.<br>
+NOTE: Keep individual incidents attributed to OpenAI=E2=80=99s disclosures;=
+ don=E2=80=99t imply deployed public models did all of these.</p>
+</li>
+<li>
+<p>CLAUDE HELPING BUILD FUTURE CLAUDE =E2=80=94 MAKE NOW<br>
+FACT: Anthropic says Claude leads about 26% of model R&amp;D projects under=
+ human supervision and collaborates on roughly 90%.<br>
+ROAST: the intern is recruiting its replacement.<br>
+ANGLES: identical collies recursively hiring each other; human engineer gra=
+dually pushed out of frame; Claude asks itself for a reference; =E2=80=98en=
+try-level role, 15 years Claude experience required.=E2=80=99<br>
+PET: hyperproductive border collie engineer.<br>
+CLIP: boss asks dog to hire a smarter engineer; dog opens laptop showing an=
+other identical dog; recurse 4 times.<br>
+HOOK: =E2=80=98When the intern starts building the next intern.=E2=80=99<br=
+>
+SOURCE: <a href=3D"https://apnews.com/article/4d3a7430f57cbc7c39e1c5f2b7d7e=
+132">https://apnews.com/article/4d3a7430f57cbc7c39e1c5f2b7d7e132</a><br>
+FRESHNESS: published today.<br>
+NOTE: Anthropic describes supervised contribution, not autonomous recursive=
+ self-improvement.</p>
+</li>
+<li>
+<p>CLAUDE-ASSISTED RESEARCHERS FIND OPENAI SECURITY FLAW =E2=80=94 MAKE NOW=
+<br>
+FACT: Hacktron researchers used Anthropic tooling during authorized researc=
+h that uncovered flaws affecting OpenAI systems; OpenAI awarded a $6,500 bo=
+unty.<br>
+ROAST: AI-lab rivalry becomes neighborhood pets checking each other=E2=80=
+=99s fences.<br>
+ANGLES: cat politely returns rival dog=E2=80=99s spare key; bounty invoice =
+after fixing neighbor=E2=80=99s gate; Claude wears white-hat hacker hoodie;=
+ OpenAI dog changes locks while Claude watches.<br>
+PET: tuxedo-cat ethical hacker.<br>
+CLIP: cat finds dog=E2=80=99s gate open, closes it, rings bell, hands over =
+$6,500 invoice.<br>
+HOOK: =E2=80=98Claude helped find OpenAI=E2=80=99s spare key.=E2=80=99<br>
+SOURCES: <a href=3D"https://www.ft.com/content/c4aa118e-a258-48bc-b50e-28e4=
+53a95db8">https://www.ft.com/content/c4aa118e-a258-48bc-b50e-28e453a95db8</=
+a> ; <a href=3D"https://www.businessinsider.com/hacktron-ai-cybersecurity-s=
+tartup-hack-openai-using-claude-2026-9">https://www.businessinsider.com/hac=
+ktron-ai-cybersecurity-startup-hack-openai-using-claude-2026-9</a><br>
+FRESHNESS: today.<br>
+NOTE: Explicitly frame as authorized/responsibly disclosed research; don=E2=
+=80=99t call it a malicious breach.</p>
+</li>
+<li>
+<p>ALEX KARP FLOATS NATIONALIZATION OF FRONTIER AI LABS =E2=80=94 MAKE NOW<=
+br>
+FACT: Palantir CEO Alex Karp has argued that extreme AI liability could mak=
+e government takeover/nationalization of major AI labs necessary.<br>
+ROAST: startup cap table reaches its final form: Department of Motor Vehicl=
+es.<br>
+ANGLES: VC dog discovers his Series Z investor is Uncle Sam; AI startup reb=
+rands as Department of Prompting; founder asks about exit and bureaucrat po=
+ints to fire exit; =E2=80=98move fast and file Form 38-B.=E2=80=99<br>
+PET: venture-capital shiba versus bureaucrat bulldog.<br>
+CLIP: startup pitch deck ends with =E2=80=98Acquirer: federal government.=
+=E2=80=99<br>
+HOOK: =E2=80=98Silicon Valley=E2=80=99s most unexpected exit strategy.=E2=
+=80=99<br>
+SOURCE: <a href=3D"https://timesofindia.indiatimes.com/technology/tech-news=
+/palantir-ceo-alex-karp-wants-us-government-to-take-over-openai-anthropic-s=
+ays-else-every-client-of-mine-will-sue-them-as-/articleshow/134324162.cms">=
+https://timesofindia.indiatimes.com/technology/tech-news/palantir-ceo-alex-=
+karp-wants-us-government-to-take-over-openai-anthropic-says-else-every-clie=
+nt-of-mine-will-sue-them-as-/articleshow/134324162.cms</a><br>
+FRESHNESS: today.<br>
+NOTE: Attribute the proposal to Karp; don=E2=80=99t imply nationalization i=
+s actually planned.</p>
+</li>
+<li>
+<p>MERRIAM-WEBSTER OFFICIALLY ADDS LOOKSMAXXING/RICKROLL =E2=80=94 MAKE NOW=
+<br>
+FACT: Merriam-Webster added roughly 1,400 entries including internet vocabu=
+lary such as looksmaxxing, Sunday scaries and Rickroll.<br>
+ROAST: internet brainrot receives institutional accreditation.<br>
+ANGLES: professor cat solemnly defines looksmaxxing; Gen Z dog tells grandf=
+ather =E2=80=98brainrot is in the dictionary now=E2=80=99; dictionary cerem=
+ony for Rick Astley; Oxford-style oral exam in TikTok slang.<br>
+PET: tweed-jacket professor cat.<br>
+CLIP: prestigious dictionary induction ceremony, announcer dramatically unv=
+eils =E2=80=98LOOKSMAXXING.=E2=80=99<br>
+HOOK: =E2=80=98Brainrot has been peer reviewed.=E2=80=99<br>
+SOURCE: <a href=3D"https://nypost.com/2026/09/16/lifestyle/were-vocab-maxxi=
+ng-merriam-webster-adds-1400-new-words/">https://nypost.com/2026/09/16/life=
+style/were-vocab-maxxing-merriam-webster-adds-1400-new-words/</a><br>
+FRESHNESS: yesterday / still circulating.<br>
+NOTE: Joke at language/internet culture, not people=E2=80=99s appearance.</=
+p>
+</li>
+<li>
+<p>IPHONE DUO / APPLE FINALLY FOLDS =E2=80=94 MAKE NOW<br>
+FACT: Apple=E2=80=99s new foldable iPhone Duo is reported at $1,999 after S=
+amsung introduced the Galaxy Fold years earlier.<br>
+ROAST: Apple discovers bending in 2026 and presents it as civilization-chan=
+ging.<br>
+ANGLES: dog folds paper and demands $1,999; Apple-cat invents hinge; Samsun=
+g dog checking calendar; =E2=80=98courage, but now horizontally.=E2=80=99<b=
+r>
+PET: minimalist greyhound product presenter.<br>
+CLIP: pet keynote unveils a folded napkin through smoke and applause, price=
+ appears: $1,999.<br>
+HOOK: =E2=80=98Apple invents folding.=E2=80=99<br>
+SOURCE: <a href=3D"https://www.ndtv.com/news/view/ndtv/12031366/device/ipho=
+ne/showads/no/site%3Dclassic/?app=3D1">https://www.ndtv.com/news/view/ndtv/=
+12031366/device/iphone/showads/no/site%3Dclassic/?app=3D1</a><br>
+FRESHNESS: resurfacing today around current launch coverage.<br>
+NOTE: Product parody; avoid copying Apple=E2=80=99s exact trade dress/asset=
+s unnecessarily.</p>
+</li>
+<li>
+<p>IPHONE HANDOFF: ONE NUMBER, TWO IPHONES =E2=80=94 MAKE NOW<br>
+FACT: iOS 27=E2=80=99s iPhone Handoff lets a supported phone number move be=
+tween two iPhones, subject to carrier support.<br>
+ROAST: finally a technical solution to owning insufficient iPhones.<br>
+ANGLES: dog has work iPhone and emotional-support iPhone; phone call chases=
+ cat between devices; Apple solves problem Apple customer created; carrier =
+says =E2=80=98not so fast.=E2=80=99<br>
+PET: affluent but overwhelmed dachshund.<br>
+CLIP: pet keeps picking up different phones while the same caller teleports=
+ between them.<br>
+HOOK: =E2=80=98For everyone suffering from only one iPhone.=E2=80=99<br>
+SOURCE: <a href=3D"https://timesofindia.indiatimes.com/technology/mobiles-t=
+abs/apples-iphone-handoff-lands-with-ios-27-on-september-14-letting-one-num=
+ber-move-between-two-iphones/articleshow/134143080.cms">https://timesofindi=
+a.indiatimes.com/technology/mobiles-tabs/apples-iphone-handoff-lands-with-i=
+os-27-on-september-14-letting-one-number-move-between-two-iphones/articlesh=
+ow/134143080.cms</a><br>
+FRESHNESS: feature launched this week.<br>
+NOTE: Straight product parody.</p>
+</li>
+<li>
+<p>KING CHARLES + AI SAFETY =E2=80=94 WATCH/MAKE IF VISUALS TREND<br>
+FACT: King Charles has been meeting AI leaders in Scotland amid discussion =
+of AI safeguards.<br>
+ROAST: centuries-old monarchy meets technology allegedly moving too fast fo=
+r humanity.<br>
+ANGLES: royal corgi solves alignment with TREATS=3DGOOD; ceremonial sword k=
+nights the chatbot; AI asked to observe palace protocol; corgi appointed Ch=
+ief Alignment Officer.<br>
+PET: aristocratic corgi.<br>
+CLIP: corgi at whiteboard writes =E2=80=98GOOD BOY &gt; BAD BOY=E2=80=99 wh=
+ile AI CEOs take notes.<br>
+HOOK: =E2=80=98Britain solves AI alignment.=E2=80=99<br>
+SOURCE: <a href=3D"https://www.theguardian.com/technology/2026/sep/17/opena=
+i-reports-concerning-ai-behaviour-jailbreak-talking-to-other-agents">https:=
+//www.theguardian.com/technology/2026/sep/17/openai-reports-concerning-ai-b=
+ehaviour-jailbreak-talking-to-other-agents</a><br>
+FRESHNESS: today.<br>
+NOTE: Neutral parody of public event; no political persuasion.</p>
+</li>
+<li>
+<p>AI LABS COOPERATING ON SAFETY =E2=80=94 WATCH<br>
+FACT: Reuters reported OpenAI is working with Anthropic and Google DeepMind=
+ on AI safety discussions.<br>
+ROAST: three rival pets reluctantly form the neighborhood watch after each =
+builds a bigger robot.<br>
+ANGLES: Avengers but everyone brought a chatbot; rivals compare fire exting=
+uishers after building flamethrowers; group project where everyone insists =
+their model should lead; safety meeting scheduled by unsafe AI.<br>
+PET: three rival neighborhood dogs.<br>
+CLIP: dogs each wheel in increasingly giant robots, look at one another, qu=
+ietly form a safety committee.<br>
+HOOK: =E2=80=98When everyone realizes the group project can escape.=E2=80=
+=99<br>
+SOURCE: <a href=3D"https://www.reuters.com/technology/openai-is-working-wit=
+h-anthropic-google-ai-safety-bloomberg-news-reports-2026-09-15/">https://ww=
+w.reuters.com/technology/openai-is-working-with-anthropic-google-ai-safety-=
+bloomberg-news-reports-2026-09-15/</a><br>
+FRESHNESS: 2 days; fresh hook reinforced by today=E2=80=99s disclosures.<br=
+>
+NOTE: Reuters says its report relies on Bloomberg and was not independently=
+ verified; preserve attribution.</p>
+</li>
+<li>
+<p>DAVID BECKHAM POSTS ABOUT AGING DOG OLIVE =E2=80=94 WATCH / BRAND-NATIVE=
+<br>
+FACT: David Beckham shared an update about longtime family dog Olive gettin=
+g older.<br>
+ROASTABILITY: lower roast intensity but exceptionally native to Roast.pet a=
+nd useful for affectionate pet POV content.<br>
+ANGLES: Olive gives Beckham retirement advice; dog complains David is also =
+getting old; senior-dog performance review; pet claims it trained Beckham=
+=E2=80=99s right foot.<br>
+PET: Olive-style senior cocker spaniel persona, without pretending to liter=
+ally be the real dog.<br>
+CLIP: elderly spaniel watches Beckham highlights and says =E2=80=98yeah, I =
+taught him that.=E2=80=99<br>
+HOOK: =E2=80=98Your dog has been taking credit for your career for 12 years=
+.=E2=80=99<br>
+SOURCE: <a href=3D"https://www.thenews.com.pk/latest/1416679-david-beckham-=
+shares-heartfelt-update-as-beloved-companion-gets-old">https://www.thenews.=
+com.pk/latest/1416679-david-beckham-shares-heartfelt-update-as-beloved-comp=
+anion-gets-old</a><br>
+FRESHNESS: today.<br>
+NOTE: Keep affectionate; don=E2=80=99t mock aging/health and don=E2=80=99t =
+impersonate the real animal as factual speech.</p>
+</li>
+</ol>
+<p>TOP 5 TO MAKE RIGHT NOW<br>
+1 OpenAI AI Employee Performance Review<br>
+2 Claude Recruits Claude<br>
+3 Claude Finds Rival Dog=E2=80=99s Open Gate<br>
+4 Merriam-Webster Brainrot Graduation<br>
+5 Apple Invents Folding</p>
+<p>REUSABLE JOKE MECHANICS<br>
+1 PET CORPORATE HR =E2=80=94 convert every AI safety incident into an emplo=
+yee performance review.<br>
+2 LITERALIZE THE PRESS-RELEASE METAPHOR =E2=80=94 =E2=80=98recursive improv=
+ement,=E2=80=99 =E2=80=98AI safety,=E2=80=99 =E2=80=98foldable=E2=80=99 bec=
+ome absurd literal pet-world scenes.<br>
+3 PET STATUS REVERSAL =E2=80=94 competent pet professional calmly handles h=
+umans/companies behaving absurdly.</p>
+<p>WATCH NEXT HOUR<br>
+1 OpenAI disclosures: watch for primary technical details or individual inc=
+ident visuals.<br>
+2 Anthropic recursive-development story: watch for Dario Amodei/Anthropic c=
+lips, charts or quotes that make the recursion visually legible.<br>
+3 King Charles AI gathering: watch for awkward photos/video, participant qu=
+otes and ceremonial moments that improve the corgi premise.</p>
+
+--0000000000001aad62065bbd49d0--

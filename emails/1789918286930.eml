@@ -1,0 +1,453 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id gciUeSJAwVpJ
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 15:31:26 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=cd6mQ4Sz8vYb44/NNp87j1eJzLubAfWSdWBhCUoyGindwlAPNC06UEc1NUPMnZxaXtrWVDXt+
+	ws3ibS9qGrBi43hUoC2h8+A+PRa42v2Aj3GmMBjuBZ7A8l8VKGun/qCSFZcdmQbOPGUo6fh7uGJ
+	x3GRmv5gFx0GlvDotoZ+W4JxPU0LgsYd8p9dUZNhL8cyxpUnWRaxZbYUxKAlK3a/iZvaz3QZ6/N
+	Pi+4PwB7mFmU/S6b7TbhfPfDrcUIXWZtTUj7YJPYYXrGjvup2LRBnul5WkSErHX2XQccGWLG5wB
+	vwFJBzdquH2rG0eo5uJVfkLH+vzD82j7hiTPqyZXFkpQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789918286; x=1790523086; bh=0iNJc74/
+	OThk6ypmV64rQixXPdWRFbymgnpK7T1hRMI=; b=Mth1073ZVBABCLTJSfilNkKxYETGBDCb+zM
+	aKdmEj7heQwEuhdQYZOhysiyrDxmfbiHsoAptyGdBvBI3H1axI0zg8tOZWSA/MOiP0SMqZ/XbzT
+	22KK+LpVH9IS3oKkqK7Pd8bawNAIM7hqjYyC0flcHEsEnvjsjDqaSv5lMFtKXiWBH8vev6aVSOw
+	EUNlKfBZgUXj1A8j01IlwhDY1DW0782Ay1ioP0OkIyyeAOOdpj1QbSRobQ4VoDKpXviOindigwp
+	XE263Sgi4mgoFNjFgFtgwgbvPfd5Y6MansTpra4xsMop2DxMK3P4sc8trfAcExTgyTueR07WPvh
+	oDpCLoQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=JbRTITtB;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=JbRTITtB;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-895eaf306cfso16522847b3.1
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 08:31:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789918286; cv=none;
+        d=google.com; s=arc-20260327;
+        b=WKyP5sttE4etDy4hgdXeVbAUMczGDgUC/3vfWTzDcCPFYZ9IIEb1MuMKPhj8FxIvHt
+         wnmER/4o4dtt0Bup0UCbS/VeTsiVIGwj5TO0Q2lID6LX74tt9JC1N1T+tBG0oygSBzot
+         f8cprNvMQasAVNju8LXyE/oW2JPwdJuphzRhk8tkYwwLFRP6ocADKuwVQRV97PY4NKgh
+         H2aORLsJ+H9cniXWlUuqBeBfHe9JBVz1XkjEdbBNIHXQPFQcUY9TwUGrEnpTcJrvgSEm
+         jf8ZLwtH5y14XNurghbpy4M3cHEWyC92YKUiNHKErKCPvFGDQbzM7gqCKay6swcSDOIU
+         FK4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=0iNJc74/OThk6ypmV64rQixXPdWRFbymgnpK7T1hRMI=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Z80+3Od6YA3WrsT/gTJPC3tOGHzAzr5fYkBNkVhoMdkcjR/XIY5q1twlGgxbj9v/K+
+         DgGipJWfx85eUHrg6GgU2eX2q/6YQmPFhijhVOsrABoxTKePOlFmdBeH2CgJXwjyFNLn
+         Qj5X0k7s0hu8vr0WsEdcEH+FwbE5PTIhX+YVaL0wW6LHXMKgkuUlfTjUWztLmDfWOWaD
+         HhVq//D03/BQWRdIPUCLmyRx8HnVTXeOuqMCg/PlQj3yBAWQ+kRKgPU8Xw4AI3u5WQhI
+         7ZV+/MUncJJ+x+6d1jyLxSldUdfb8pw/eCdUGs9zdOKzeuiPQrQKqqAx318rfpxYvbDd
+         UqdA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789918286; x=1790523086; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=0iNJc74/OThk6ypmV64rQixXPdWRFbymgnpK7T1hRMI=;
+        b=JbRTITtBF5FCuryd0AFMs1Pr2tBz/qQAtuvt8DBzp3vNVadBsuOX4PXX0Sbcoyclra
+         pxcQc6H5Tkn0Vp6rlG7xJ8SPZ6FXdhQJcYv7VNEHKgusA4TjrzMrkTFX4x/5iZa2nzqF
+         Ib8+I1Fp0iyG0JcgR4x0+FOIweVlQkyBWa7eN1erPcC8UCf34DjP3IfmxrpTE37Ei+hu
+         3QDyI4qaTXB0NNT9u3pPjgNWYg7laIr9Lrfl61RR7Fb7fX4QJxromzcvcrX/xqUFzCtK
+         L8pac5mmW3T56/LW1gfgzTZ9oJ3Spj81ziBs4nF3d3P39pByY7pQbInlGZytXQle4HKy
+         kxEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789918286; x=1790523086;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=0iNJc74/OThk6ypmV64rQixXPdWRFbymgnpK7T1hRMI=;
+        b=vJmGxvgFoUn0GlsbiKVhYh7OOlAjPgsIU0ofHU8+jwwA1GppIXLOxOFNZH7DhavdcH
+         Q6rY6K3ZHTsoNLnTgm8RpcixxT2MLxqBudq462KdeNM1YW3o96lkv2oOrwSKsYFLsz3u
+         hLvH/iNJy1QnD1VFg8JdevYwmvUM0aCcqnpTYnzmhqfBJAu0bFvh8C9ZCPz279HU9Ex3
+         sWG82vZ2alsKUjICUPIKSEFFnurP5q/kElwjfDIPuK0MQzuvF5p2A0jjHOQgK3gdDbvW
+         53rQUhPJBUA4enS1+NNiOCFuordbBOj9NALozgUUmdldQeTtb8mCW/9o/5i7BVUB2Jbp
+         9cMg==
+X-Gm-Message-State: AFuF++mXZL/kLuOCXdtywLaO1l6BsOJTvh04Z1ifP10fJA2WTunwhqYW
+	2yqnno6V2quQm4Ds4gADrk/zwbEENRg4b3JlOYBm7/00h3q+GmCMrxihGVQ1uWXlVuDGHJM83Gw
+	pDkA29enM/xLWVxkvaz9VSOQhTMNyBHArCA==
+X-Gm-Gg: AYBFou3oFXij+/QwwP33p7ZxKu95+Kj83Ih+Qgd2j4MzQDSfIx1Ks689KQ/hThgX2UP
+	30lSE7S92L67Gor2YwtbeTEWq92r0xg5nDn5x8ROx4Cbzw1jUx0LtB8a8jY12zDPLng05EERs7K
+	/bVPC91uBbNDeff74P4gPrkrn94qVb211UXG0uryettwYc7IX/cmvoNNpQEdOqbuYu6snhSqBpF
+	3ROruzW+JkpURaXHHZLVsvAfkhkYB7tXfzevLNzNG2LjaAkCa43X0L+BXiJCtesN9OOwCF5hJAi
+	t5mU1nV51uKAJ6/DLTEx7giMgRBcjsFhild0HXbJQuJlA+oYnnZDpsHI5qc23Hbn7XoRJfkaAa3
+	DoCZ0gdHKtsSJJR7U5SQlzpFlz2QrCjh2zFYAsWJ+iRq9X2rubxur0cBnc9SoiGjHWgu1fC52TA
+	QWl8nuJ+390A==
+X-Received: by 2002:a05:690c:a78a:b0:873:5ddf:d866 with SMTP id
+ 00721157ae682-897353a1fd4mr18526737b3.49.1789918285801; Sun, 20 Sep 2026
+ 08:31:25 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 10:31:25 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 10:31:25 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 10:31:25 -0500
+X-Gm-Features: AcwNN1We_-Z4ayD-H1qbJ1dMTHwJ6RbwLlMeqoydNPzZpmfVvTOJ8UP-bJWlrn0
+Message-ID: <CAPdrGekXeODjkg-n6oDJ+EbkxsKd6CJ38MYfi=8mo38+uP2FPA@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Buyer_Actions_=E2=80=94_2026=2D09=2D20_22=3A30_ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS BUYER / ACTION PROBE =E2=80=94 20 Sep 2026 22:30 ICT
+
+EXECUTIVE DELTA
+
+The strongest new commercial wedge is not generic renewable lead
+qualification. It is a paid pre-survey / pre-dispatch decision whose
+outcome POW can subsequently observe.
+
+Two existing markets put hard prices on this decision boundary:
+=E2=80=A2 Commercial solar feasibility is already sold as an independent
+product at roughly =C2=A3500=E2=80=93=C2=A32,500/site. RJsol publishes =C2=
+=A3500=E2=80=93=C2=A3800 remote
+assessments, =C2=A3800=E2=80=93=C2=A31,200 site assessments and =C2=A31,200=
+=E2=80=93=C2=A32,000 complex
+projects; Stage1Energy cites =C2=A3825=E2=80=93=C2=A32,500 independent comm=
+ercial
+rooftop studies. CONFIRMED observed asking prices.
+=E2=80=A2 Appliance repair diagnosis itself is monetized: current UK repair=
+ers
+publish =C2=A350=E2=80=93=C2=A3125 callout/diagnostic charges, with parts e=
+xtra. Repair
+software also has recurring budgets: HiveSuite =C2=A334.99=E2=80=93=C2=A349=
+9.99/month,
+ServiceMate =C2=A3129/month first user + =C2=A359/additional user, Taskrol
+$29/month Basic and $129/month Pro. CONFIRMED observed prices.
+
+This sharpens POW into two first products that share the same primitive:
+
+PREDICT BEFORE PHYSICAL VISIT =E2=86=92 ACTION =E2=86=92 PHYSICAL VISIT/INT=
+ERVENTION =E2=86=92
+SURPRISE/OUTCOME =E2=86=92 UPDATE MODEL.
+
+Ranked action surfaces (weighted score /5):
+1. Repair dispatch + exact part + repair/replace: 4.83 =E2=80=94 PLANT/PRES=
+ELL
+2. Commercial solar/site pre-feasibility =E2=86=92 survey/DNO/install: 4.79=
+ =E2=80=94
+PRESELL NOW
+3. Broken-item arbitrage using repair graph: 4.53 =E2=80=94 PILOT after #1
+identity works
+4. EV charger pre-survey + installer routing: 4.45 =E2=80=94 PILOT;
+qualification itself commoditizing
+5. Heat-pump pre-survey/surprise model: 4.38 =E2=80=94 PILOT
+6. Grid/site connection viability: 4.36 =E2=80=94 strong value, slower sale=
+s cycle
+7. Sole-trader physical opportunity routing: 4.12 =E2=80=94 derivative of
+underlying gardens
+8. GPU mine/rent/inference/sell: 3.89 =E2=80=94 economic action strong; buy=
+er
+acquisition less proven
+KILL: generic renewable leads, generic quote calculators, static house
+passport, generic repair CRM.
+
+1) REPAIR DISPATCH / EXACT PART / REPAIR-OR-REPLACE
+Buyer: appliance repair sole trader, multi-engineer repair firm,
+refurbisher, landlord maintenance operator.
+Pain: whether to accept job; likely fault; exact part/revision; what
+to carry; whether first visit can fix it; whether repair is
+economically rational.
+Current alternative: engineer memory + manuals + distributor search +
+CRM history + paid diagnostic visit.
+Buyer evidence: AF Appliances publishes =C2=A350 diagnosis + =C2=A340 stand=
+ard
+repair labour; Fix Reliable =C2=A3125 fixed visit; Appliance Kings =C2=A390
+callout/diagnosis/labour; HiveSuite =C2=A334.99=E2=80=93=C2=A3499.99/month;=
+ ServiceMate
+=C2=A3129/month + =C2=A359/user; Taskrol $29/$129 monthly tiers. CONFIRMED
+prices, not POW willingness-to-pay.
+Input graph: manufacturer/model/serial-family =E2=86=92 symptom/fault =E2=
+=86=92 repair
+documentation/recall =E2=86=92 exact MPN =E2=86=92 supersessions/substitute=
+s =E2=86=92 live
+stock/price =E2=86=92 engineer capability/location =E2=86=92 appliance
+resale/replacement value.
+Proprietary state: P(fault|model,symptom), P(fix|model,fault,part),
+first-visit-fix probability, part-carry EV, expected repair surplus,
+observed part substitution success.
+Immediate route: free/low-friction pre-dispatch report for a real job;
+later API/CRM integration or per-engineer subscription. INFERRED
+monetization.
+Outcome receipt: actual diagnosis, part fitted, labour/time,
+first-visit fix, second visit, abandoned repair, invoice,
+callback/warranty.
+Distribution: direct repair shops; CMail; CRM/API integration;
+eventually Muse consumer repair/replace flow and parts affiliate
+routing.
+Legal/permission: public/manual/licensed data only; business must
+consent to job/outcome ingestion; manufacturer manual/parts rights
+need source-by-source review.
+
+2) COMMERCIAL SOLAR / SITE PRE-FEASIBILITY
+Buyer: commercial property owner, landlord, solar installer, energy
+consultant, portfolio operator.
+Pain: is this site worth spending survey/engineering/DNO time on, and
+what kills it?
+Current alternative: installer desktop qualification, independent
+feasibility consultant, site survey.
+Buyer evidence: RJsol remote =C2=A3500=E2=80=93=C2=A3800; site =C2=A3800=E2=
+=80=93=C2=A31,200; complex
+=C2=A31,200=E2=80=93=C2=A32,000. Stage1Energy reports =C2=A3825=E2=80=93=C2=
+=A32,500 independent
+feasibility and =C2=A3800=E2=80=93=C2=A31,500+ consultant day rates. Lead P=
+ronto charges
+from =C2=A3150/commercial solar lead and =C2=A3250/booked appointment. CONF=
+IRMED
+asking prices.
+Input graph: UPRN/site geometry/roof =E2=86=92 planning constraints =E2=86=
+=92 EPC/load
+=E2=86=92 solar resource =E2=86=92 tariff =E2=86=92 DNO/grid/node =E2=86=92=
+ equipment/cost =E2=86=92 installer
+capability =E2=86=92 grant/rule state.
+Proprietary state: P(site proceeds), predicted feasible kW, grid-risk
+probability, predicted survey blockers, predicted capex band,
+SURVEY_SURPRISE, DNO outcome probability, quote error.
+Immediate route: sell/offer a one-page GO / SURVEY / STOP site brief
+before an =C2=A3800=E2=80=93=C2=A32,500 feasibility engagement; refer viabl=
+e jobs to
+installers/consultants. Pricing for POW itself UNKNOWN.
+Outcome receipt: survey findings, quoted system, DNO
+application/result, final design, installed kW, actual capex,
+generation/performance.
+Distribution: Muse site check; commercial-property outreach; installer
+API; lead-gen/affiliate/referral; CMail.
+Legal/permission: public/open property/planning/grid sources where
+licensed; first-party bills/site documents only with consent; avoid
+implying engineering certification.
+
+3) BROKEN-ITEM ARBITRAGE
+Buyer: refurbisher, reseller, repairer, side-hustle operator.
+Decision: BUY/WATCH/IGNORE a broken listing.
+Input graph: listing/model/condition/ask =E2=86=92 repair OutcomeGraph =E2=
+=86=92 part
+availability/cost =E2=86=92 sold/resale comps =E2=86=92 fees/logistics.
+State: expected realized margin and probability distribution, not a
+generic resale estimate.
+Transaction: alert or agent-assisted acquisition once platform
+permissions permit.
+Receipt: buy price, actual fault, repair cost/time, sale price, days-to-sal=
+e.
+Garden: inherits exact-model repair outcomes and creates unusually
+clean P&L labels.
+Monetization: UNKNOWN; test after repair identity works.
+
+4) EV CHARGER PRE-SURVEY
+Buyer: homeowner/fleet/installer.
+Evidence: typical install =C2=A3800=E2=80=93=C2=A31,500; ChargedEV publishe=
+s a =C2=A360
+physical site survey for jobs not remotely assessable; current
+installer software/lead markets show =C2=A310=E2=80=93=C2=A350/lead ranges.=
+ CONFIRMED
+observed prices.
+Whitespace: NOT instant quoting=E2=80=94GetEVQuote already does
+installer-specific instant prices. POW should predict NON-STANDARD
+WORK / SURVEY SURPRISE and route to an appropriate installer.
+Graph: UPRN/property/electrical answers =E2=86=92 parking/cable route =E2=
+=86=92
+charger/tariff/grant =E2=86=92 installer/certification/geography =E2=86=92 =
+live
+EVSE/grid state.
+Outcome: survey surprise, isolation/earthing/groundworks, quote delta,
+install success/time/cost.
+
+5) HEAT-PUMP PRE-SURVEY
+Buyer: homeowner/installer/design consultant.
+Observed survey economics: ASHP surveys from =C2=A3250; ASHP+heat-loss
+=C2=A3350; standalone heat-loss =C2=A3150; broader independent heat-loss/de=
+sign
+work commonly =C2=A3100=E2=80=93=C2=A3700 depending route. CONFIRMED asking=
+ prices.
+Do not compete on EPC/grant lookup. Predict hidden work, survey
+surprise and quote error; learn from actual survey/install outcome.
+
+GARDEN DEPENDENCY GRAPH
+
+IDENTITY SPINE
+ asset/model/serial | UPRN/site | company/installer | part/MPN
+        =E2=86=93
+LIVE STATE
+ stock/price | grid/headroom | tariff/grant | installer capacity | listing =
+state
+        =E2=86=93
+PRE-ACTION TRANSFORMATION
+ likely fault | compatibility | site viability | hidden-work
+probability | expected economics
+        =E2=86=93
+ACTION
+ dispatch / carry part / survey / DNO apply / buy / install
+        =E2=86=93
+OUTCOME RECEIPT
+ actual fault / actual part / surprise / quote / cost / duration /
+success / resale/performance
+        =E2=86=93
+PROPRIETARY STATE
+ prediction error + intervention response by identity/place/time
+        =E2=86=BA
+
+The common moat is not the static graph. It is PHYSICAL PREDICTION
+ERROR THROUGH TIME.
+
+PRESELL NOW =E2=80=94 WEEK ONE
+
+Deliverable: =E2=80=9CPOW Before You Roll=E2=80=9D v0. Two manually-support=
+ed decision
+cards only:
+A) appliance repair dispatch card;
+B) commercial solar/site GO/SURVEY/STOP card.
+
+Repair card: likely fault; exact candidate parts and confidence;
+current availability; carry recommendation; repair/replace economics;
+unresolved questions.
+Solar card: site identity; rough viable capacity;
+planning/grid/property flags; expected survey blockers; what must be
+verified physically; GO/SURVEY/STOP; provenance/confidence.
+
+10 reachable buyer archetypes/public channels:
+1 independent appliance repairer;
+2 2=E2=80=9310 engineer repair company;
+3 appliance refurbisher;
+4 landlord/letting maintenance operator;
+5 used-appliance reseller;
+6 small commercial solar installer;
+7 solar design/feasibility consultant;
+8 commercial landlord/property manager;
+9 farm/industrial-roof owner or adviser;
+10 public UK repair/renewables trade groups, directories and LinkedIn
+communities.
+
+Low-friction pilot: 5 repair businesses =C3=97 10 completed jobs plus 5
+solar/energy businesses =C3=97 5 completed/recent sites. POW generates its
+prediction WITHOUT seeing the outcome, then the business reveals the
+actual result.
+
+Exact validation questions:
+Repair: =E2=80=9CIf you had this before dispatch, would it have changed
+whether you accepted the job, which part you carried, or whether you
+expected a second visit?=E2=80=9D
+Solar: =E2=80=9CIf you had this before spending survey/engineering time, wo=
+uld
+it have changed whether you progressed the site or what you checked
+first?=E2=80=9D
+Then: =E2=80=9CWhat did the physical visit discover that POW did not know?=
+=E2=80=9D
+
+Evidence before charging:
+=E2=80=A2 >=3D100 repair predictions or equivalent evidence volume;
+=E2=80=A2 >=3D25 site predictions;
+=E2=80=A2 >=3D15% of cases where information would materially alter
+preparation/progression;
+=E2=80=A2 >=3D5 verified avoided trips, wrong parts, dead sites or other me=
+asurable costs;
+=E2=80=A2 >=3D3 businesses voluntarily submit a second batch;
+=E2=80=A2 >=3D1 asks for ongoing access/integration.
+These are POW validation gates, not market willingness-to-pay claims.
+
+What works now: identity resolution, public rules, public
+physical/economic state, deterministic checks, weak priors,
+evidence/provenance, human-reviewed recommendation.
+6 months: model-specific faults/parts, site-surprise distributions,
+installer/engineer outcome priors, quote-error distributions.
+12 months: geography =C3=97 asset/site =C3=97 actor outcome models;
+first-visit-fix and site-progression probabilities; observed
+compatibility graph.
+36 months: longitudinal prediction =E2=86=92 intervention =E2=86=92 consequ=
+ence graph
+with enough history to route work and capital based on observed
+outcomes rather than generic rules.
+
+OUTCOME LOOP
+Every recommendation gets prediction_id + action_id. Require outcome
+fields with CONFIRMED/INFERRED/UNKNOWN provenance. Measure
+decision_changed, actual_cost, actual_duration, success, surprise
+class, state_after, economic_outcome. Never silently train on an
+inferred outcome as confirmed.
+
+KILL REASONS
+=E2=80=A2 Generic solar/heat-pump lead generation: budgets exist but garden
+weak and market crowded.
+=E2=80=A2 Generic EV quote engine: current products already provide instant
+installer-specific pricing.
+=E2=80=A2 Static house passport: useful identity substrate, insufficient
+executable decision.
+=E2=80=A2 Generic repair CRM: existing software already owns workflow.
+=E2=80=A2 Repair intelligence without reliable exact-model/MPN resolution:
+kill commercial promise if model=E2=86=92part accuracy is inadequate.
+=E2=80=A2 Commercial solar pre-feasibility without later survey/DNO/install
+outcomes: good service, bad POW garden.
+=E2=80=A2 GPU routing without actual host/rental/energy outcomes: attractiv=
+e
+calculator, weak compounding graph.
+
+NEXT-HOUR QUEUE
+1. Choose one appliance family and test exact model=E2=86=92MPN=E2=86=92sup=
+ersession
+coverage on 100 jobs.
+2. Build prediction_v0 before reading outcomes.
+3. Define 60-second repair outcome receipt.
+4. Build one commercial-solar site card from
+UPRN=E2=86=92roof/property=E2=86=92planning=E2=86=92grid=E2=86=92economics.
+5. Compare card against a real =C2=A3500=E2=80=93=C2=A32,500 feasibility re=
+port checklist.
+6. Define SURVEY_SURPRISE taxonomy shared by solar/EV/heat-pump jobs.
+7. Test whether one OutcomeGraph schema handles both repair and site work.
+8. Recruit pilots only after the cards are useful enough to show, not
+by pitching a broad POW platform.
+
+MACHINE-READABLE APPENDIX
+{
+  "probe":"POW_BUYER_ACTION",
+  "run_date":"2026-09-20T22:30:00+07:00",
+  "delta":"paid pre-visit decisions are the best commercial wedge;
+physical outcome receipts are the moat",
+  "ranked":[
+    {"id":"repair_dispatch_part_outcome","score":4.83,"status":"PRESELL_PLA=
+NT","confidence":"CONFIRMED
+buyer spend; UNKNOWN POW WTP"},
+    {"id":"commercial_solar_prefeasibility_outcome","score":4.79,"status":"=
+PRESELL_NOW","observed_market_price_gbp_per_site":[500,2500],"confidence":"=
+CONFIRMED
+asking prices"},
+    {"id":"broken_item_arbitrage","score":4.53,"status":"PILOT_AFTER_REPAIR=
+_IDENTITY"},
+    {"id":"ev_presurvey_surprise","score":4.45,"status":"PILOT"},
+    {"id":"heatpump_presurvey_surprise","score":4.38,"status":"PILOT"},
+    {"id":"grid_site_viability","score":4.36,"status":"PLANT_B2B"}
+  ],
+  "core_garden":"prediction -> action -> physical intervention ->
+observed consequence",
+  "highest_information_gain_next":"prove exact repair identity and one
+commercial-site pre-feasibility card against real outcomes"
+}
+
+SOURCE NOTES
+Taskrol: https://taskrol.com/
+HiveSuite: https://www.hivesuite.co.uk/appliance-repair-software
+ServiceMate: https://about.servicemate.app/
+RJsol: https://rjsolarconsultancy.co.uk/pricing.html
+Stage1Energy: https://stage1energy.com/insights/solar-feasibility-study-cos=
+t-uk
+Lead Pronto commercial solar: https://leadpronto.co.uk/commercial-solar-lea=
+ds/
+GetEVQuote: https://www.getevquote.co.uk/
+Vertex surveys: https://vertex-surveys.co.uk/pricing.html
+AF Appliances: https://afappliances.co.uk/pricing
+Fix Reliable: https://fixreliable.com/pricing
+Appliance Kings: https://www.appliancekings.co.uk/pricing/

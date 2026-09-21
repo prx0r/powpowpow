@@ -1,0 +1,1509 @@
+Received: from mail-yx2-x21.google.com (2607:f8b0:4864:41::21)
+        by cloudflare-email.net (cloudflare) id HYmWwM6VSo25
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 12:15:37 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ZujGvln293QGoSi9DqlHKFwVvek/YgeMw8Um1xWx8Tp0RVobJMJFdsjT8828kPA6pcmTrl7A2
+	CFuiPHgMyF7djwgN6zduwAi7r/yg1ZftgMkdXmN/eo/QGHjrKFXKdlNK0lPqw2SjimxRL5y2mEA
+	GhokveQzF1/ZKDp3ZiC66cPsiOLX/5Ubl8C9PiKtY+ZIWk2byAukwkhnzIKLg4Wp0AJQTiYzUEU
+	96x5bd+9BgsFUOoNDOQM5ZZEdo1davD47e2EVUr8XWgNQJ28yofj3ztXolgJHIr8z9rsPU7gWp4
+	FMRf8O8dCVd3WVK+lfp1WXLOe/vCvBBSYXHn7o6HRSSg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:References:In-Reply-To:from:reply-to:cc:resent-date
+	:resent-from:resent-to:resent-cc:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789906537; x=1790511337; bh=sjFxTVKq
+	BZnsjsB0ywf6iRKMIIDFBch4DTCosu0UpJA=; b=AAG7VOMFENiqpfINk7GuTzz2qDF5j0krtHP
+	F99zsyz+kq9ZVkj6+KQedAG1Fgz/eZDDlyehMpguRoEifaAh4JIjqUuIy+1PvA0VT3ZL0p3LQvh
+	1dZZsY1w40gXgKquvhOcPAa5apG55V2LCjja2mrFeiACt3X7gUB8pGvnrgtIVt9Y9SkWJzvMaD7
+	szKwQ4MEUKGKnrdDd0Is/RfGw15QC+cMJqFQ3sOqRsy6q6XvLk8OT7l1ZMtU0cxW/eis1u2GVtO
+	8jyjI+eEdg5G2hZVA9SOvEJSj0p34ymR0aGfGsvcb9eREKNixLO9tpQCTWMTlPDO+H8LvyMA0cR
+	DcvIVQg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qktGO5CV;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x21.google.com) smtp.helo=mail-yx2-x21.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::21 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::21"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::21 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::21; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x21.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qktGO5CV;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x21.google.com) smtp.helo=mail-yx2-x21.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::21 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::21"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x21.google.com with SMTP id 00721157ae682-85d43da99easo17140987b3.1
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 05:15:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789906537; cv=none;
+        d=google.com; s=arc-20260327;
+        b=VWzJjw6VLhjAzZ31MZsJG//uPixr0lX0y7873McAILqfjn/GQmP95pBq4ZwklvkhqT
+         ETgIHdhIfxtdFLo+k9ksjeykYzFrmY/BuY1fqR4sEbKmAbqH3a0/YQVi6VLs8EoY0fY+
+         l579v/H6k4e/h4GdUJqEg3uwjRShJ0Heefnh/ov942pLKCYF+XLKo7nm3HWPNIvuUE1p
+         Zf4REL+yiRi8iZISvTD8+amOd2kd/IzrIGnmB/avs7w5Ua4V9lMgZBXFsa2XXFsLDwCm
+         mL2gsRzv5OivuvkjM3HXQug7Y4AuFVrzCdIeU+CHgtWpq+UYimQeS543aXAEtKMhwYWP
+         klYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:references:in-reply-to
+         :dkim-signature;
+        bh=sjFxTVKqBZnsjsB0ywf6iRKMIIDFBch4DTCosu0UpJA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=HNmxWObqX3i+esS/jTzSK6aAGxiUNuZ9mTdZu/x23jMBT6AB84ZD3wQVr6HrQ+Xmn9
+         PxSH4886cXd+UecNaO6EtKM4t/Kw/ABziYV5MuHlkGevsoULGvHVZ1YFXhhOyxs3NPOa
+         AREeLzmJe/khipk/hAKICt4wApcrhwYX/G/9M88DGZVA4WiifzwGR2y068dZXX8ER79B
+         0SFVMxfsnktAFz4pnTFl7+X0IvrD9zqP4UUPaE6P547cFtMDS2LOgao+Rwmi8fmipXPf
+         u5qqiMudLU70prEVuuoq7stQkFhnFm3NivcVd5JMYPEOzYIVfG/I00ZIYB0iLjjO1luI
+         QNuA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789906537; x=1790511337; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=sjFxTVKqBZnsjsB0ywf6iRKMIIDFBch4DTCosu0UpJA=;
+        b=qktGO5CVP3cETOJTciht3AwB5iXuOb/k1G5m67+HlVF/nS359d6skIxVJb6LfoSMk6
+         wfXwJ8R35Qd7VJYjPolT5VTe8SgtdHRJjRFiOKqfOvjSuC/JbbN31KFma3KVgLjA4MUL
+         rKOyiNs/sllFJVRbcg9OYdY5hNcdZl+o2IInX9dmlE6ypPc6I0VOlKDlyMZwwVOz6mxm
+         CUijEaIXP7SRXCU8mcDpVSjbKyJMZg+2lsGB0dvkt3j1I57gNzhO5suRXhCb2h11RJUF
+         BdfyCOuxaxs9t6yK0sAyhw8Bcg7ekS/SvUXA9UtYPrSviE02ttBSq57ULVDfUOBUiFVU
+         cT/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789906537; x=1790511337;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=sjFxTVKqBZnsjsB0ywf6iRKMIIDFBch4DTCosu0UpJA=;
+        b=a7hbhokv4uI3+7D1wYBVvNkC+cUz0Zv2CDwR3867INb6akBk0wcbUjq6XZu+aNf4P+
+         VB2FiNF5vIsP7ZckVEYJOqJetCFmzjTPsvpX9npANMposmTpbZM0/mUq/BYUR4xlxy9b
+         aBg0fwEc+WTjCj3COoDmQGu0xRIwzAPJIHHA3zOoGAJ/0+47HGwn/lUJIfOf6GlK0wsI
+         Aw/IDxmb1haykBMdlmY2kmkzrA46Ifn0NMZrLr0ngpx2MJHDwWTWVaRA10IB2wbMdA+W
+         jwS2THh0UQmpeaTb7GbzuB9lo804OiLt+WqJbILw915GnvYEfNtWPgXh0iR3NG1XuJ9q
+         e1eQ==
+X-Gm-Message-State: AFuF++nx6vK/LJbZGW4zPhqTIflOW7UTQNYnovYX7ibrQDOjrIUCNG5h
+	8MlmngJcsWniHMurwTJljhz8axdFOfkpEMHF4CjLfmeWLUInghF+Q81Bqlq89OWEm3n+qKX4OLS
+	ThpTMSJjDv/i5fC2VOetlu106Z3fFivTTpQ==
+X-Gm-Gg: AYBFou0EW7V1j6wCHs3vKOj8/RjsL3irmPi7AdxBifK6VmiPam3zVNiu8wI0hUbHxA6
+	mW6u1r4b1dY1siADNpL5hhN8mnyrYHtQ9Bh2e1gOqj/gBd96wXAqHGtEC0N5yTJ3EKGJwCR9fgM
+	LdE3V7GyQl692Fvi4XV7IdLEwN7GKmYyMsjIpLrPGVufjSeHM5B2uqp0BDqJORtusOMNaQplkCz
+	f5t1CzNZanYoFYRbl+H87jriJjk5zQLG2RFlTbG5Z03Ix7fMsDsWA0w67eBQCmZC+KlMgh/pT/V
+	07COYoMDq0MTRyf/WNHu3M4uZvxyKAUW30C9H78CiexDw7wRS8ngKS8ofUKn3AFbnTfIOq34zwO
+	9gJx67PKs3WydDqmVP5sIn/sDVbMrORU7EkApUHb43RfihNNronAso2s813MxGQRp5RsWn7yl
+X-Received: by 2002:a05:690c:7483:b0:897:8290:98a1 with SMTP id
+ 00721157ae682-8978290c17emr23647877b3.63.1789906536683; Sun, 20 Sep 2026
+ 05:15:36 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:15:36 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:15:36 -0500
+In-Reply-To: <CAPdrGenx91k8DNvKaRabyaHKUR4fkE+Jy2Om65HsYqOFUxS1=Q@mail.gmail.com>
+References: <CAPdrGenx91k8DNvKaRabyaHKUR4fkE+Jy2Om65HsYqOFUxS1=Q@mail.gmail.com>
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 07:15:36 -0500
+X-Gm-Features: AcwNN1WN3dlLOnQFKGvC5b8u8AmMM2e7xo7eBQsMTw09I8M2F5JJEpqkKdZOMy8
+Message-ID: <CAPdrGenFEimgN_10yutoPWfcq5KfAffYHji7A5p_ZKodKO1rCw@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_POW=2ESYSTEMS_=E2=80=94_Historical_Data_Lake_=2B_Subdomai?=
+	=?UTF-8?Q?n_Dev_Plan?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000004cdc2f065be9174f"
+
+--0000000000004cdc2f065be9174f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Forwarding because this POW/PTech material was sent to the personal inbox
+earlier in this conversation but not to Intelligent Others. Preserve this
+as current project context/source material.
+
+
+---------- Forwarded message ---------
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 07:14:29 -0500
+Subject: POW.SYSTEMS =E2=80=94 Historical Data Lake + Subdomain Dev Plan
+To: tradesprior@gmail.com
+
+POW.SYSTEMS =E2=80=94 Data Garden Infrastructure & Development Plan Core
+engineering principle
+
+*Capture first, normalize second, productize last.*
+
+Anything ephemeral should begin landing raw immediately even if the
+ontology is imperfect. Normalization can be rerun against preserved raw
+history. Missing history cannot be recreated later.
+
+POW should become a continuously growing historical tape of the UK physical
+economy.
+
+Core garden formula:
+
+*unique transformation =C3=97 continuous collection =C3=97 time*
+
+Universal object:
+
+*physical resource =C3=97 capability =C3=97 constraint =C3=97 person =C3=97=
+ place =C3=97 time*
+1. One shared company/data lake, many specialist POW systems
+
+Do not create separate technical companies or disconnected databases.
+
+Use:
+
+pow.systems
+=E2=94=9C=E2=94=80=E2=94=80 mining.pow.systems
+=E2=94=9C=E2=94=80=E2=94=80 repair.pow.systems
+=E2=94=9C=E2=94=80=E2=94=80 grid.pow.systems
+=E2=94=9C=E2=94=80=E2=94=80 ev.pow.systems
+=E2=94=9C=E2=94=80=E2=94=80 parts.pow.systems
+=E2=94=9C=E2=94=80=E2=94=80 skills.pow.systems
+=E2=94=9C=E2=94=80=E2=94=80 home.pow.systems
+=E2=94=9C=E2=94=80=E2=94=80 api.pow.systems
+=E2=94=94=E2=94=80=E2=94=80 mcp.pow.systems
+
+Each should feel like a specialist product/company to users and agents, but
+underneath they share:
+
+   - one identity graph
+   - one source registry
+   - one historical lake
+   - one event model
+   - one outcome graph
+
+*Split the products, not the data.*
+
+The current PowPowPow project becomes the mining/compute branch rather than
+a separate architecture.
+2. Storage architecture
+
+Use Cloudflare R2 as the durable historical lake.
+
+Recommended buckets:
+
+   - pow-raw =E2=80=94 immutable original observations
+   - pow-lake =E2=80=94 normalized Parquet/Iceberg tables
+   - pow-private =E2=80=94 future consented household/business/user data
+   - pow-artifacts =E2=80=94 reports, exports, generated research and snaps=
+hots
+
+Use D1 only as a small control plane:
+
+   - collector state
+   - source registry
+   - schedules
+   - health
+   - run metadata
+   - IDs
+   - small indexes
+
+Do not put the historical lake in D1.
+3. Bronze =E2=86=92 Silver =E2=86=92 Gold BRONZE
+
+What the source actually said.
+
+Store immutable raw observations with:
+
+   - source_id
+   - run_id
+   - requested_at
+   - received_at
+   - request metadata
+   - HTTP status
+   - source timestamp
+   - raw payload
+   - payload hash
+   - schema/version
+   - licence/retention policy
+   - collector version
+
+Example R2 path:
+
+raw/
+domain=3Dev/
+source=3Dgridserve_ocpi/
+year=3D2026/
+month=3D09/
+day=3D20/
+hour=3D18/
+run=3D/
+observations.jsonl.zst
+
+For bulk sources, preserve the exact original CSV/ZIP/JSON/Parquet.
+
+For high-frequency APIs, batch into compressed hourly JSONL rather than
+creating millions of tiny objects.
+SILVER
+
+Normalize observations into canonical physical/economic state and resolve
+identity.
+GOLD
+
+Produce proprietary transformations, joins, historical metrics and
+actionable outputs.
+
+Then:
+
+GOLD
+=E2=86=92 agent action
+=E2=86=92 real-world outcome
+=E2=86=92 OutcomeGraph
+=E2=86=92 better transformations
+4. Source manifests
+
+Every source gets a checked-in manifest.
+
+Example:
+
+source_id: dfe.apprenticeship_adverts
+domain: skills
+
+access:
+type: api
+auth: subscription_key
+
+cadence: 30m
+
+identity:
+primary_key: vacancyReference
+
+history:
+official_backfill: partial
+irreversibility: high
+
+rights:
+retention: permitted
+redistribution: review
+commercial_use: review
+
+collector:
+runtime: worker
+version: 1
+
+freshness_slo: 60m
+max_collection_gap: 2h
+
+The registry should explicitly record:
+
+   - can retain raw?
+   - for how long?
+   - can publish raw?
+   - can publish derived data?
+   - commercial use?
+   - attribution required?
+
+Do not assume every public API allows indefinite raw redistribution.
+5. Generic collector SDK
+
+Every source should implement only:
+
+Collector
+=E2=94=9C=E2=94=80=E2=94=80 fetch()
+=E2=94=9C=E2=94=80=E2=94=80 parse()
+=E2=94=9C=E2=94=80=E2=94=80 canonical_ids()
+=E2=94=9C=E2=94=80=E2=94=80 health()
+=E2=94=94=E2=94=80=E2=94=80 checkpoint()
+
+The platform handles:
+
+schedule
+=E2=86=92 fetch
+=E2=86=92 hash
+=E2=86=92 store raw
+=E2=86=92 record run
+=E2=86=92 queue normalization
+=E2=86=92 normalize
+=E2=86=92 compare previous state
+=E2=86=92 emit events
+=E2=86=92 run transformations
+
+Adding a new source should ideally require:
+
+sources/fuel_finder/source.yaml
+sources/fuel_finder/collector.py
+sources/fuel_finder/normalize.py
+sources/fuel_finder/tests/
+
+No standalone mini-app.
+6. Shared observation/event model Observation
+
+entity_id
+entity_type
+source_id
+source_entity_id
+observed_at
+effective_at
+place_id
+payload_hash
+raw_uri
+confidence
+provenance
+Event
+
+entity_id
+event_type
+state_before
+state_after
+effective_at
+observed_at
+evidence[]
+confidence
+
+Generic event types:
+
+CREATED
+UPDATED
+DISAPPEARED
+REAPPEARED
+
+PRICE_CHANGED
+STOCK_CHANGED
+CAPACITY_CHANGED
+STATUS_CHANGED
+
+FAULT_STARTED
+FAULT_RESOLVED
+
+OWNER_CHANGED
+
+CONSTRAINT_STARTED
+CONSTRAINT_RELAXED
+
+QUALIFICATION_GAINED
+QUALIFICATION_LOST
+
+PART_SUPERSEDED
+
+RECALL_ISSUED
+
+REPAIR_ATTEMPTED
+REPAIR_SUCCEEDED
+REPAIR_FAILED
+
+ACTION_EXECUTED
+OUTCOME_OBSERVED
+
+This is what allows EV, grid, components, skills, mining and repair to live
+in the same system.
+7. R2 lakehouse layout
+
+pow-lake/
+
+observations/
+events/
+entities/
+identifiers/
+edges/
+
+grid_projects/
+grid_nodes/
+evse_state/
+component_offers/
+vehicle_faults/
+repair_attempts/
+apprenticeships/
+training_providers/
+tariffs/
+compute_state/
+
+Store normalized data as Parquet.
+
+Use Iceberg/R2 Data Catalog or similar as the query/index layer where
+useful, but keep raw R2 objects + Parquet canonical and rebuildable.
+8. Runtime split
+
+Cloudflare handles:
+
+   - scheduling
+   - lightweight API collection
+   - queues
+   - control state
+   - raw storage
+   - simple normalization
+   - public API/MCP
+
+VPS handles:
+
+   - DuckDB
+   - Polars
+   - PyArrow
+   - PyIceberg
+   - large bulk imports
+   - fuzzy identity resolution
+   - geospatial joins
+   - Parquet compaction
+   - marketplace/browser collection
+   - large transformations
+   - backtests
+
+Avoid forcing heavy data work into Workers.
+9. Core control tables source_registry
+
+source_id
+domain
+enabled
+cadence
+next_run
+runtime
+priority
+irreversibility_score
+retention_policy
+collector_version
+collection_runs
+
+run_id
+source_id
+started_at
+finished_at
+status
+records_seen
+records_changed
+raw_bytes
+payload_hash
+error
+source_health
+
+source_id
+last_attempt
+last_success
+last_change
+consecutive_failures
+expected_next
+schema_changed
+freshness_status
+
+The operational dashboard should make gaps obvious:
+
+EV OCPI HEALTHY
+NESO TEC HEALTHY
+Mouser HEALTHY
+Apprentices HEALTHY
+Fuel Finder FAILED
+
+Collector reliability is part of the moat. A year of history with
+unexplained holes is much less valuable.
+10. Storage efficiency
+
+For large feeds that barely change:
+
+poll
+=E2=86=92 hash
+
+same hash:
+record successful poll
+do not duplicate giant payload
+
+new hash:
+store new raw payload
+emit change
+
+For truly dynamic feeds such as EV status:
+
+EVSE_ID | timestamp | status
+
+Store a compact continuous state tape plus periodic complete raw snapshots
+for forensic recovery.
+11. Prioritize by irreversibility CLASS A =E2=80=94 COLLECT NOW
+
+State disappears and cannot be cheaply reconstructed later.
+
+   - EV live availability
+   - component inventory
+   - component lead time
+   - marketplace state
+   - dynamic tariffs
+   - grid outages
+   - connection queue snapshots
+   - apprenticeship adverts
+   - compute economics
+   - supplier availability
+
+CLASS B =E2=80=94 COLLECT SOON
+
+Some history exists, but not necessarily our exact state tape.
+
+   - Companies House stream
+   - OPSS recalls
+   - installer registers
+   - planning changes
+   - training-provider state
+
+CLASS C =E2=80=94 INGEST WHEN NEEDED
+
+Historical backfill already exists.
+
+   - MOT bulk
+   - EPC
+   - Land Registry
+   - historic Elexon
+   - Open Repair Alliance
+   - OpenWrt
+   - PCI IDs
+
+Engineering priority should follow irreversibility, not ease of ingestion.
+
+MOT can wait because it can be downloaded later.
+
+Yesterday=E2=80=99s charger status cannot.
+12. Repo structure
+
+Create a new umbrella repo:
+
+pow/
+=E2=94=9C=E2=94=80=E2=94=80 kernel/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 collection/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 provenance/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 observations/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 events/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 identity/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 geography/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 transformations/
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 outcomes/
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 sources/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 neso/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 ukpn/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 apprenticeships/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 companies_house/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 mouser/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 digikey/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 fuel_finder/
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 =E2=80=A6
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 domains/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 mining/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 repair/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 grid/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 ev/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 parts/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 skills/
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 home/
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 products/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 web/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 api/
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 mcp/
+=E2=94=82
+=E2=94=94=E2=94=80=E2=94=80 ops/
+=E2=94=9C=E2=94=80=E2=94=80 cloudflare/
+=E2=94=9C=E2=94=80=E2=94=80 collectors/
+=E2=94=94=E2=94=80=E2=94=80 monitoring/
+
+Migrate existing PowPowPow into domains/mining/ while preserving Git
+history.
+13. Domain transformations mining.pow.systems
+
+network_state
+hardware_state
+electricity_state
+
+=E2=86=92 profitability
+=E2=86=92 opportunity cost
+=E2=86=92 allocate compute
+repair.pow.systems
+
+asset
+fault
+part
+availability
+repair method
+user skill
+market value
+
+=E2=86=92 repair feasibility
+=E2=86=92 expected repair value
+grid.pow.systems
+
+node
+headroom
+queue
+faults
+projects
+reinforcement
+
+=E2=86=92 constraint state
+=E2=86=92 connection pressure
+skills.pow.systems
+
+occupation
+qualification
+training
+apprenticeship
+certification
+demand
+
+=E2=86=92 skill scarcity
+=E2=86=92 route to capability
+
+Each domain is independently useful but can join every other domain.
+14. MCP architecture
+
+Build one backend:
+
+mcp.pow.systems
+
+Namespaces:
+
+mining.*
+repair.*
+grid.*
+ev.*
+parts.*
+skills.*
+home.*
+pow.*
+
+Specialist endpoints such as repair.pow.systems/mcp can expose only the
+relevant namespace.
+
+Likely tools:
+
+repair.assess_asset()
+repair.find_local_opportunities()
+
+ev.configure_home_charger()
+
+grid.site_state()
+
+skills.find_training_path()
+
+mining.allocate_compute()
+
+home.optimize()
+
+pow.find_actions()
+
+The high-level call eventually takes:
+
+person
+assets
+skills
+house
+location
+capital
+constraints
+
+and queries all relevant POW systems.
+15. Evidence-first MCP responses
+
+Never return unsupported advice like:
+
+=E2=80=9CRepair it. Expected profit =C2=A383.=E2=80=9D
+
+Return an evidence envelope:
+
+action: REPAIR
+expected_value: =C2=A383
+confidence: 0.71
+
+inputs:
+broken_market: =E2=80=A6
+working_market: =E2=80=A6
+component_cost: =E2=80=A6
+repair_prior: =E2=80=A6
+
+observed_at: =E2=80=A6
+freshness: =E2=80=A6
+
+sources: [=E2=80=A6]
+unknowns: [=E2=80=A6]
+
+calculation_version: repair.ev.v3
+
+POW should become evidence infrastructure for agents.
+16. OutcomeGraph
+
+Initially POW observes reality.
+
+Later Muse/agents execute recommendations.
+
+Examples:
+
+recommended charger
+=E2=86=92 charger purchased
+=E2=86=92 installer chosen
+=E2=86=92 install completed
+=E2=86=92 actual cost
+=E2=86=92 reliability
+
+or:
+
+broken laptop bought
+=E2=86=92 predicted fault
+=E2=86=92 repair attempted
+=E2=86=92 part used
+=E2=86=92 repair succeeded
+=E2=86=92 sold for =C2=A3X
+
+Store that as:
+
+prediction
+=E2=86=92 action
+=E2=86=92 intervention
+=E2=86=92 cost/time
+=E2=86=92 result
+=E2=86=92 resale/performance/customer outcome
+
+Nobody can backfill proprietary execution outcomes later.
+
+This becomes the deepest moat.
+17. Build order this week P0
+
+   - create prx0r/pow umbrella repo
+   - create R2 pow-raw and pow-lake
+   - configure retention where source rights permit
+   - implement source manifest contract
+   - implement raw writer
+   - implement collection-run ledger
+   - implement source health
+   - start all Class-A collectors immediately
+
+P1
+
+   - normalized Observation/Event schema
+   - Parquet compactor
+   - entity/identifier system
+   - first Iceberg/query tables
+   - migrate PowPowPow into mining namespace
+
+P2
+
+   - repair transforms
+   - grid transforms
+   - skills transforms
+   - unified API/MCP
+
+P3
+
+   - product-specific subdomains and interfaces
+
+Critical principle:
+
+*The Class-A collectors should start before the rest of the architecture is
+finished.*
+
+Even:
+
+cron
+=E2=86=92 Python
+=E2=86=92 API
+=E2=86=92 compressed JSON
+=E2=86=92 R2
+
+is good enough for Day 0.
+
+Normalization can be rerun later.
+
+Missing history cannot.
+One-year target
+
+By September 2027 the POW lake should contain a continuous tape from
+September 20, 2026 onward of:
+
+   - grid capacity
+   - grid failures
+   - connection queues
+   - EV charger availability
+   - charging prices
+   - fuel prices
+   - component stock
+   - component lead times
+   - part supersessions
+   - repair/failure evidence
+   - product recalls
+   - apprenticeship demand
+   - training supply
+   - certified trades capacity
+   - companies/projects/sites
+   - compute economics
+   - mining economics
+   - electricity economics
+   - market prices
+
+And later:
+
+   - POW recommendations
+   - actions
+   - actual outcomes
+
+The killer asset is not any individual frontend such as repair.pow.systems
+or mining.pow.systems.
+
+Those are interfaces.
+
+The real asset is:
+
+*the continuously preserved physical-economic state of the UK, resolved
+into common entities and places from a known Day 0.*
+
+--0000000000004cdc2f065be9174f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Forwarding because this POW/PTech material was sent to the personal inbo=
+x earlier in this conversation but not to Intelligent Others. Preserve this=
+ as current project context/source material.</p>
+<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">--=
+-------- Forwarded message ---------<br>From: Prior Trades &lt;<a href=3D"m=
+ailto:tradesprior@gmail.com">tradesprior@gmail.com</a>&gt;<br>Date: Sun, 20=
+ Sep 2026 07:14:29 -0500<br>Subject: POW.SYSTEMS =E2=80=94 Historical Data =
+Lake + Subdomain Dev Plan<br>To: <a href=3D"mailto:tradesprior@gmail.com">t=
+radesprior@gmail.com</a></div><br>POW.SYSTEMS =E2=80=94 Data Garden Infrast=
+ructure &amp; Development Plan
+
+Core engineering principle
+<p><strong>Capture first, normalize second, productize last.</strong></p>
+<p>Anything ephemeral should begin landing raw immediately even if the onto=
+logy is imperfect. Normalization can be rerun against preserved raw history=
+. Missing history cannot be recreated later.</p>
+<p>POW should become a continuously growing historical tape of the UK physi=
+cal economy.</p>
+<p>Core garden formula:</p>
+<p><strong>unique transformation =C3=97 continuous collection =C3=97 time</=
+strong></p>
+<p>Universal object:</p>
+<p><strong>physical resource =C3=97 capability =C3=97 constraint =C3=97 per=
+son =C3=97 place =C3=97 time</strong></p>
+
+
+
+1. One shared company/data lake, many specialist POW systems
+<p>Do not create separate technical companies or disconnected databases.</p=
+>
+<p>Use:</p>
+<p>pow.systems<br>
+=E2=94=9C=E2=94=80=E2=94=80 mining.pow.systems<br>
+=E2=94=9C=E2=94=80=E2=94=80 repair.pow.systems<br>
+=E2=94=9C=E2=94=80=E2=94=80 grid.pow.systems<br>
+=E2=94=9C=E2=94=80=E2=94=80 ev.pow.systems<br>
+=E2=94=9C=E2=94=80=E2=94=80 parts.pow.systems<br>
+=E2=94=9C=E2=94=80=E2=94=80 skills.pow.systems<br>
+=E2=94=9C=E2=94=80=E2=94=80 home.pow.systems<br>
+=E2=94=9C=E2=94=80=E2=94=80 api.pow.systems<br>
+=E2=94=94=E2=94=80=E2=94=80 mcp.pow.systems</p>
+<p>Each should feel like a specialist product/company to users and agents, =
+but underneath they share:</p>
+<ul>
+<li>one identity graph</li>
+<li>one source registry</li>
+<li>one historical lake</li>
+<li>one event model</li>
+<li>one outcome graph</li>
+</ul>
+<p><strong>Split the products, not the data.</strong></p>
+<p>The current PowPowPow project becomes the mining/compute branch rather t=
+han a separate architecture.</p>
+
+
+
+2. Storage architecture
+<p>Use Cloudflare R2 as the durable historical lake.</p>
+<p>Recommended buckets:</p>
+<ul>
+<li><code>pow-raw</code> =E2=80=94 immutable original observations</li>
+<li><code>pow-lake</code> =E2=80=94 normalized Parquet/Iceberg tables</li>
+<li><code>pow-private</code> =E2=80=94 future consented household/business/=
+user data</li>
+<li><code>pow-artifacts</code> =E2=80=94 reports, exports, generated resear=
+ch and snapshots</li>
+</ul>
+<p>Use D1 only as a small control plane:</p>
+<ul>
+<li>collector state</li>
+<li>source registry</li>
+<li>schedules</li>
+<li>health</li>
+<li>run metadata</li>
+<li>IDs</li>
+<li>small indexes</li>
+</ul>
+<p>Do not put the historical lake in D1.</p>
+
+
+
+3. Bronze =E2=86=92 Silver =E2=86=92 Gold
+
+BRONZE
+<p>What the source actually said.</p>
+<p>Store immutable raw observations with:</p>
+<ul>
+<li>source_id</li>
+<li>run_id</li>
+<li>requested_at</li>
+<li>received_at</li>
+<li>request metadata</li>
+<li>HTTP status</li>
+<li>source timestamp</li>
+<li>raw payload</li>
+<li>payload hash</li>
+<li>schema/version</li>
+<li>licence/retention policy</li>
+<li>collector version</li>
+</ul>
+<p>Example R2 path:</p>
+<p>raw/<br>
+domain=3Dev/<br>
+source=3Dgridserve_ocpi/<br>
+year=3D2026/<br>
+month=3D09/<br>
+day=3D20/<br>
+hour=3D18/<br>
+run=3D/<br>
+observations.jsonl.zst</p>
+<p>For bulk sources, preserve the exact original CSV/ZIP/JSON/Parquet.</p>
+<p>For high-frequency APIs, batch into compressed hourly JSONL rather than =
+creating millions of tiny objects.</p>
+
+SILVER
+<p>Normalize observations into canonical physical/economic state and resolv=
+e identity.</p>
+
+GOLD
+<p>Produce proprietary transformations, joins, historical metrics and actio=
+nable outputs.</p>
+<p>Then:</p>
+<p>GOLD<br>
+=E2=86=92 agent action<br>
+=E2=86=92 real-world outcome<br>
+=E2=86=92 OutcomeGraph<br>
+=E2=86=92 better transformations</p>
+
+
+
+4. Source manifests
+<p>Every source gets a checked-in manifest.</p>
+<p>Example:</p>
+<p>source_id: dfe.apprenticeship_adverts<br>
+domain: skills</p>
+<p>access:<br>
+type: api<br>
+auth: subscription_key</p>
+<p>cadence: 30m</p>
+<p>identity:<br>
+primary_key: vacancyReference</p>
+<p>history:<br>
+official_backfill: partial<br>
+irreversibility: high</p>
+<p>rights:<br>
+retention: permitted<br>
+redistribution: review<br>
+commercial_use: review</p>
+<p>collector:<br>
+runtime: worker<br>
+version: 1</p>
+<p>freshness_slo: 60m<br>
+max_collection_gap: 2h</p>
+<p>The registry should explicitly record:</p>
+<ul>
+<li>can retain raw?</li>
+<li>for how long?</li>
+<li>can publish raw?</li>
+<li>can publish derived data?</li>
+<li>commercial use?</li>
+<li>attribution required?</li>
+</ul>
+<p>Do not assume every public API allows indefinite raw redistribution.</p>
+
+
+
+5. Generic collector SDK
+<p>Every source should implement only:</p>
+<p>Collector<br>
+=E2=94=9C=E2=94=80=E2=94=80 fetch()<br>
+=E2=94=9C=E2=94=80=E2=94=80 parse()<br>
+=E2=94=9C=E2=94=80=E2=94=80 canonical_ids()<br>
+=E2=94=9C=E2=94=80=E2=94=80 health()<br>
+=E2=94=94=E2=94=80=E2=94=80 checkpoint()</p>
+<p>The platform handles:</p>
+<p>schedule<br>
+=E2=86=92 fetch<br>
+=E2=86=92 hash<br>
+=E2=86=92 store raw<br>
+=E2=86=92 record run<br>
+=E2=86=92 queue normalization<br>
+=E2=86=92 normalize<br>
+=E2=86=92 compare previous state<br>
+=E2=86=92 emit events<br>
+=E2=86=92 run transformations</p>
+<p>Adding a new source should ideally require:</p>
+<p>sources/fuel_finder/source.yaml<br>
+sources/fuel_finder/collector.py<br>
+sources/fuel_finder/normalize.py<br>
+sources/fuel_finder/tests/</p>
+<p>No standalone mini-app.</p>
+
+
+
+6. Shared observation/event model
+
+Observation
+<p>entity_id<br>
+entity_type<br>
+source_id<br>
+source_entity_id<br>
+observed_at<br>
+effective_at<br>
+place_id<br>
+payload_hash<br>
+raw_uri<br>
+confidence<br>
+provenance</p>
+
+Event
+<p>entity_id<br>
+event_type<br>
+state_before<br>
+state_after<br>
+effective_at<br>
+observed_at<br>
+evidence[]<br>
+confidence</p>
+<p>Generic event types:</p>
+<p>CREATED<br>
+UPDATED<br>
+DISAPPEARED<br>
+REAPPEARED</p>
+<p>PRICE_CHANGED<br>
+STOCK_CHANGED<br>
+CAPACITY_CHANGED<br>
+STATUS_CHANGED</p>
+<p>FAULT_STARTED<br>
+FAULT_RESOLVED</p>
+<p>OWNER_CHANGED</p>
+<p>CONSTRAINT_STARTED<br>
+CONSTRAINT_RELAXED</p>
+<p>QUALIFICATION_GAINED<br>
+QUALIFICATION_LOST</p>
+<p>PART_SUPERSEDED</p>
+<p>RECALL_ISSUED</p>
+<p>REPAIR_ATTEMPTED<br>
+REPAIR_SUCCEEDED<br>
+REPAIR_FAILED</p>
+<p>ACTION_EXECUTED<br>
+OUTCOME_OBSERVED</p>
+<p>This is what allows EV, grid, components, skills, mining and repair to l=
+ive in the same system.</p>
+
+
+
+7. R2 lakehouse layout
+<p>pow-lake/</p>
+<p>observations/<br>
+events/<br>
+entities/<br>
+identifiers/<br>
+edges/</p>
+<p>grid_projects/<br>
+grid_nodes/<br>
+evse_state/<br>
+component_offers/<br>
+vehicle_faults/<br>
+repair_attempts/<br>
+apprenticeships/<br>
+training_providers/<br>
+tariffs/<br>
+compute_state/</p>
+<p>Store normalized data as Parquet.</p>
+<p>Use Iceberg/R2 Data Catalog or similar as the query/index layer where us=
+eful, but keep raw R2 objects + Parquet canonical and rebuildable.</p>
+
+
+
+8. Runtime split
+<p>Cloudflare handles:</p>
+<ul>
+<li>scheduling</li>
+<li>lightweight API collection</li>
+<li>queues</li>
+<li>control state</li>
+<li>raw storage</li>
+<li>simple normalization</li>
+<li>public API/MCP</li>
+</ul>
+<p>VPS handles:</p>
+<ul>
+<li>DuckDB</li>
+<li>Polars</li>
+<li>PyArrow</li>
+<li>PyIceberg</li>
+<li>large bulk imports</li>
+<li>fuzzy identity resolution</li>
+<li>geospatial joins</li>
+<li>Parquet compaction</li>
+<li>marketplace/browser collection</li>
+<li>large transformations</li>
+<li>backtests</li>
+</ul>
+<p>Avoid forcing heavy data work into Workers.</p>
+
+
+
+9. Core control tables
+
+source_registry
+<p>source_id<br>
+domain<br>
+enabled<br>
+cadence<br>
+next_run<br>
+runtime<br>
+priority<br>
+irreversibility_score<br>
+retention_policy<br>
+collector_version</p>
+
+collection_runs
+<p>run_id<br>
+source_id<br>
+started_at<br>
+finished_at<br>
+status<br>
+records_seen<br>
+records_changed<br>
+raw_bytes<br>
+payload_hash<br>
+error</p>
+
+source_health
+<p>source_id<br>
+last_attempt<br>
+last_success<br>
+last_change<br>
+consecutive_failures<br>
+expected_next<br>
+schema_changed<br>
+freshness_status</p>
+<p>The operational dashboard should make gaps obvious:</p>
+<p>EV OCPI       HEALTHY<br>
+NESO TEC      HEALTHY<br>
+Mouser        HEALTHY<br>
+Apprentices   HEALTHY<br>
+Fuel Finder   FAILED</p>
+<p>Collector reliability is part of the moat. A year of history with unexpl=
+ained holes is much less valuable.</p>
+
+
+
+10. Storage efficiency
+<p>For large feeds that barely change:</p>
+<p>poll<br>
+=E2=86=92 hash</p>
+<p>same hash:<br>
+record successful poll<br>
+do not duplicate giant payload</p>
+<p>new hash:<br>
+store new raw payload<br>
+emit change</p>
+<p>For truly dynamic feeds such as EV status:</p>
+<p>EVSE_ID | timestamp | status</p>
+<p>Store a compact continuous state tape plus periodic complete raw snapsho=
+ts for forensic recovery.</p>
+
+
+
+11. Prioritize by irreversibility
+
+CLASS A =E2=80=94 COLLECT NOW
+<p>State disappears and cannot be cheaply reconstructed later.</p>
+<ul>
+<li>EV live availability</li>
+<li>component inventory</li>
+<li>component lead time</li>
+<li>marketplace state</li>
+<li>dynamic tariffs</li>
+<li>grid outages</li>
+<li>connection queue snapshots</li>
+<li>apprenticeship adverts</li>
+<li>compute economics</li>
+<li>supplier availability</li>
+</ul>
+
+CLASS B =E2=80=94 COLLECT SOON
+<p>Some history exists, but not necessarily our exact state tape.</p>
+<ul>
+<li>Companies House stream</li>
+<li>OPSS recalls</li>
+<li>installer registers</li>
+<li>planning changes</li>
+<li>training-provider state</li>
+</ul>
+
+CLASS C =E2=80=94 INGEST WHEN NEEDED
+<p>Historical backfill already exists.</p>
+<ul>
+<li>MOT bulk</li>
+<li>EPC</li>
+<li>Land Registry</li>
+<li>historic Elexon</li>
+<li>Open Repair Alliance</li>
+<li>OpenWrt</li>
+<li>PCI IDs</li>
+</ul>
+<p>Engineering priority should follow irreversibility, not ease of ingestio=
+n.</p>
+<p>MOT can wait because it can be downloaded later.</p>
+<p>Yesterday=E2=80=99s charger status cannot.</p>
+
+
+
+12. Repo structure
+<p>Create a new umbrella repo:</p>
+<p>pow/<br>
+=E2=94=9C=E2=94=80=E2=94=80 kernel/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 collection/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 provenance/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 observations/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 events/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 identity/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 geography/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 transformations/<br>
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 outcomes/<br>
+=E2=94=82<br>
+=E2=94=9C=E2=94=80=E2=94=80 sources/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 neso/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 ukpn/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 apprenticeships/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 companies_house/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 mouser/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 digikey/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 fuel_finder/<br>
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 =E2=80=A6<br>
+=E2=94=82<br>
+=E2=94=9C=E2=94=80=E2=94=80 domains/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 mining/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 repair/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 grid/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 ev/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 parts/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 skills/<br>
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 home/<br>
+=E2=94=82<br>
+=E2=94=9C=E2=94=80=E2=94=80 products/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 web/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 api/<br>
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 mcp/<br>
+=E2=94=82<br>
+=E2=94=94=E2=94=80=E2=94=80 ops/<br>
+=E2=94=9C=E2=94=80=E2=94=80 cloudflare/<br>
+=E2=94=9C=E2=94=80=E2=94=80 collectors/<br>
+=E2=94=94=E2=94=80=E2=94=80 monitoring/</p>
+<p>Migrate existing PowPowPow into <code>domains/mining/</code> while prese=
+rving Git history.</p>
+
+
+
+13. Domain transformations
+
+mining.pow.systems
+<p>network_state<br>
+hardware_state<br>
+electricity_state</p>
+<p>=E2=86=92 profitability<br>
+=E2=86=92 opportunity cost<br>
+=E2=86=92 allocate compute</p>
+
+repair.pow.systems
+<p>asset<br>
+fault<br>
+part<br>
+availability<br>
+repair method<br>
+user skill<br>
+market value</p>
+<p>=E2=86=92 repair feasibility<br>
+=E2=86=92 expected repair value</p>
+
+grid.pow.systems
+<p>node<br>
+headroom<br>
+queue<br>
+faults<br>
+projects<br>
+reinforcement</p>
+<p>=E2=86=92 constraint state<br>
+=E2=86=92 connection pressure</p>
+
+skills.pow.systems
+<p>occupation<br>
+qualification<br>
+training<br>
+apprenticeship<br>
+certification<br>
+demand</p>
+<p>=E2=86=92 skill scarcity<br>
+=E2=86=92 route to capability</p>
+<p>Each domain is independently useful but can join every other domain.</p>
+
+
+
+14. MCP architecture
+<p>Build one backend:</p>
+<p>mcp.pow.systems</p>
+<p>Namespaces:</p>
+<p>mining.*<br>
+repair.*<br>
+grid.*<br>
+ev.*<br>
+parts.*<br>
+skills.*<br>
+home.*<br>
+pow.*</p>
+<p>Specialist endpoints such as repair.pow.systems/mcp can expose only the =
+relevant namespace.</p>
+<p>Likely tools:</p>
+<p>repair.assess_asset()<br>
+repair.find_local_opportunities()</p>
+<p>ev.configure_home_charger()</p>
+<p>grid.site_state()</p>
+<p>skills.find_training_path()</p>
+<p>mining.allocate_compute()</p>
+<p>home.optimize()</p>
+<p>pow.find_actions()</p>
+<p>The high-level call eventually takes:</p>
+<p>person<br>
+assets<br>
+skills<br>
+house<br>
+location<br>
+capital<br>
+constraints</p>
+<p>and queries all relevant POW systems.</p>
+
+
+
+15. Evidence-first MCP responses
+<p>Never return unsupported advice like:</p>
+<p>=E2=80=9CRepair it. Expected profit =C2=A383.=E2=80=9D</p>
+<p>Return an evidence envelope:</p>
+<p>action: REPAIR<br>
+expected_value: =C2=A383<br>
+confidence: 0.71</p>
+<p>inputs:<br>
+broken_market: =E2=80=A6<br>
+working_market: =E2=80=A6<br>
+component_cost: =E2=80=A6<br>
+repair_prior: =E2=80=A6</p>
+<p>observed_at: =E2=80=A6<br>
+freshness: =E2=80=A6</p>
+<p>sources: [=E2=80=A6]<br>
+unknowns: [=E2=80=A6]</p>
+<p>calculation_version: repair.ev.v3</p>
+<p>POW should become evidence infrastructure for agents.</p>
+
+
+
+16. OutcomeGraph
+<p>Initially POW observes reality.</p>
+<p>Later Muse/agents execute recommendations.</p>
+<p>Examples:</p>
+<p>recommended charger<br>
+=E2=86=92 charger purchased<br>
+=E2=86=92 installer chosen<br>
+=E2=86=92 install completed<br>
+=E2=86=92 actual cost<br>
+=E2=86=92 reliability</p>
+<p>or:</p>
+<p>broken laptop bought<br>
+=E2=86=92 predicted fault<br>
+=E2=86=92 repair attempted<br>
+=E2=86=92 part used<br>
+=E2=86=92 repair succeeded<br>
+=E2=86=92 sold for =C2=A3X</p>
+<p>Store that as:</p>
+<p>prediction<br>
+=E2=86=92 action<br>
+=E2=86=92 intervention<br>
+=E2=86=92 cost/time<br>
+=E2=86=92 result<br>
+=E2=86=92 resale/performance/customer outcome</p>
+<p>Nobody can backfill proprietary execution outcomes later.</p>
+<p>This becomes the deepest moat.</p>
+
+
+
+17. Build order this week
+
+P0
+<ul>
+<li>create prx0r/pow umbrella repo</li>
+<li>create R2 pow-raw and pow-lake</li>
+<li>configure retention where source rights permit</li>
+<li>implement source manifest contract</li>
+<li>implement raw writer</li>
+<li>implement collection-run ledger</li>
+<li>implement source health</li>
+<li>start all Class-A collectors immediately</li>
+</ul>
+
+P1
+<ul>
+<li>normalized Observation/Event schema</li>
+<li>Parquet compactor</li>
+<li>entity/identifier system</li>
+<li>first Iceberg/query tables</li>
+<li>migrate PowPowPow into mining namespace</li>
+</ul>
+
+P2
+<ul>
+<li>repair transforms</li>
+<li>grid transforms</li>
+<li>skills transforms</li>
+<li>unified API/MCP</li>
+</ul>
+
+P3
+<ul>
+<li>product-specific subdomains and interfaces</li>
+</ul>
+<p>Critical principle:</p>
+<p><strong>The Class-A collectors should start before the rest of the archi=
+tecture is finished.</strong></p>
+<p>Even:</p>
+<p>cron<br>
+=E2=86=92 Python<br>
+=E2=86=92 API<br>
+=E2=86=92 compressed JSON<br>
+=E2=86=92 R2</p>
+<p>is good enough for Day 0.</p>
+<p>Normalization can be rerun later.</p>
+<p>Missing history cannot.</p>
+
+
+
+One-year target
+<p>By September 2027 the POW lake should contain a continuous tape from Sep=
+tember 20, 2026 onward of:</p>
+<ul>
+<li>grid capacity</li>
+<li>grid failures</li>
+<li>connection queues</li>
+<li>EV charger availability</li>
+<li>charging prices</li>
+<li>fuel prices</li>
+<li>component stock</li>
+<li>component lead times</li>
+<li>part supersessions</li>
+<li>repair/failure evidence</li>
+<li>product recalls</li>
+<li>apprenticeship demand</li>
+<li>training supply</li>
+<li>certified trades capacity</li>
+<li>companies/projects/sites</li>
+<li>compute economics</li>
+<li>mining economics</li>
+<li>electricity economics</li>
+<li>market prices</li>
+</ul>
+<p>And later:</p>
+<ul>
+<li>POW recommendations</li>
+<li>actions</li>
+<li>actual outcomes</li>
+</ul>
+<p>The killer asset is not any individual frontend such as repair.pow.syste=
+ms or mining.pow.systems.</p>
+<p>Those are interfaces.</p>
+<p>The real asset is:</p>
+<p><strong>the continuously preserved physical-economic state of the UK, re=
+solved into common entities and places from a known Day 0.</strong></p></di=
+v>
+
+--0000000000004cdc2f065be9174f--

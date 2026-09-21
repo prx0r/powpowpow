@@ -1,20 +1,32 @@
 """
-Cross-Chain Factor Table Builder
-Computes comparable metrics across all chains.
+Cross-venue factor table — built from daily STATE, not stale snapshots.
+
+Each row is measured from warehouse daily_state (mid closes, depth,
+spreads, trade flow) joined to chain fundamentals (emission). Fields
+that are still assumed carry an explicit methodology flag; nothing
+silently inherits the old hardcoded 0.6 sell fraction.
+
+Also merges the latest derived_signal per asset when present.
 """
 
+import glob
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
-CHAINS_DIR = '/home/box/powpowpow/chains'
+from core import utcnow  # noqa: E402
+
+CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 FACTORS_DIR = os.path.join(CHAINS_DIR, 'factors')
 os.makedirs(FACTORS_DIR, exist_ok=True)
 
-# Load all data
+CALCULATION_VERSION = "factors-state-v1"
+
+
 def load_json(filename):
     path = os.path.join(CHAINS_DIR, filename)
     if os.path.exists(path):
@@ -22,103 +34,133 @@ def load_json(filename):
             return json.load(f)
     return {}
 
-FUNDAMENTALS = load_json('chain_fundamentals.json')
-MINER_REVENUE = load_json('miner_revenue.json')
-GITHUB_STATS = load_json('github_stats.json')
 
-def compute_factors():
-    """Compute cross-chain factors."""
+def read_states(date):
+    rows = []
+    for chain in ('venue', 'safetrade'):
+        for f in glob.glob(os.path.join(
+                BASE_DIR, 'warehouse', 'normalized', 'daily_state',
+                f'chain={chain}', 'date=*', 'hour=*.jsonl')):
+            with open(f) as fh:
+                for line in fh:
+                    try:
+                        r = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+                    if r.get('date') == date:
+                        rows.append(r)
+    return rows
+
+
+def read_signals(date):
+    sigs = {}
+    for f in glob.glob(os.path.join(
+            BASE_DIR, 'warehouse', 'normalized', 'derived_signal',
+            'chain=*', 'date=*', 'hour=*.jsonl')):
+        with open(f) as fh:
+            for line in fh:
+                try:
+                    r = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if r.get('date') == date and r.get('signal') == 'miner_pressure':
+                    sigs[r.get('asset')] = r
+    return sigs
+
+
+def compute_factors(date=None):
+    date = date or datetime.now(timezone.utc).strftime('%Y-%m-%d')
     print(f"\n{'='*60}")
-    print(f"Computing Cross-Chain Factors — {datetime.now()}")
+    print(f"Computing Factors from STATE — {date}")
     print(f"{'='*60}")
-    
+
+    fund_all = load_json('chain_fundamentals.json')
+    states = read_states(date)
+    sigs = read_signals(date)
+
+    by_sym = {}
+    for s in states:
+        sym = (s.get('symbol') or '').upper()
+        a = by_sym.setdefault(sym, {'bid': 0.0, 'ask': 0.0, 'spreads': [],
+                                    'close': None, 'buy': 0.0, 'sell': 0.0,
+                                    'vol': 0.0, 'trades': 0, 'venues': set(),
+                                    'gaps': 0})
+        a['bid'] += s.get('bid_notional_20_mean') or 0
+        a['ask'] += s.get('ask_notional_20_mean') or 0
+        if s.get('spread_bps_median') is not None:
+            a['spreads'].append(s['spread_bps_median'])
+        if s.get('mid_close'):
+            a['close'] = s['mid_close']
+        a['buy'] += s.get('trade_buy_notional') or 0
+        a['sell'] += s.get('trade_sell_notional') or 0
+        a['vol'] += s.get('trade_notional_sum') or 0
+        a['trades'] += s.get('n_trades') or 0
+        a['venues'].add(s.get('venue'))
+        a['gaps'] += s.get('gap_events') or 0
+
     factors = {}
-    
-    for symbol in FUNDAMENTALS:
-        fund = FUNDAMENTALS[symbol]
-        revenue = MINER_REVENUE.get(symbol, {})
-        github = GITHUB_STATS.get(symbol, {})
-        
-        sell_pressure = revenue.get('sell_pressure', {})
-        miner_burden = revenue.get('miner_burden', {})
-        
-        # Basic metrics
-        daily_emission_usd = sell_pressure.get('daily_emission_usd', 0) or 0
-        market_cap = revenue.get('market_cap', 0) or 0
-        volume_24h = revenue.get('volume_24h', 0) or 0
-        
-        # Factor calculations
-        factors[symbol] = {
-            'timestamp': datetime.now().isoformat(),
-            'symbol': symbol,
+    for sym, a in sorted(by_sym.items()):
+        fund = fund_all.get(sym, {}) or {}
+        emission = fund.get('daily_emission')
+        price = a['close']
+        emission_usd = emission * price if emission and price else None
+        sig = sigs.get(sym, {})
+        row = {
+            'timestamp': utcnow(),
+            'calculation_version': CALCULATION_VERSION,
+            'date': date,
+            'symbol': sym,
             'name': fund.get('name'),
             'chain_type': fund.get('type'),
-            
-            # Issuance factors
-            'issuance_usd_24h': daily_emission_usd,
-            'issuance_to_mcap': daily_emission_usd / market_cap if market_cap > 0 else None,
-            'issuance_to_volume': daily_emission_usd / volume_24h if volume_24h > 0 else None,
-            
-            # Sell pressure factors
-            'sell_pressure_usd_24h': sell_pressure.get('daily_sell_pressure_usd', 0),
-            'sell_fraction': sell_pressure.get('sell_fraction', 0.6),
-            
-            # Dilution factors
-            'dilution_pressure': miner_burden.get('dilution_pressure'),
-            'absorption_ratio': miner_burden.get('absorption_ratio'),
-            
-            # Supply factors
+            'venues': sorted(a['venues']),
+            # Measured from STATE
+            'price_usd': price,
+            'bid_notional_20_sum': round(a['bid'], 2),
+            'ask_notional_20_sum': round(a['ask'], 2),
+            'spread_bps_median': (sorted(a['spreads'])[len(a['spreads']) // 2]
+                                  if a['spreads'] else None),
+            'trade_notional_24h': round(a['vol'], 2),
+            'trade_buy_notional': round(a['buy'], 2),
+            'trade_sell_notional': round(a['sell'], 2),
+            'trade_count_24h': a['trades'],
+            'gap_events_24h': a['gaps'],
+            # Emission-joined (needs fundamentals price coverage)
+            'daily_emission_native': emission,
+            'issuance_usd_24h': round(emission_usd, 2) if emission_usd else None,
+            'burden_vs_book': round(emission_usd / a['bid'], 3)
+            if emission_usd and a['bid'] > 0 else None,
+            'issuance_to_volume': round(emission_usd / a['vol'], 3)
+            if emission_usd and a['vol'] > 0 else None,
+            # Assumed until miner-flow measurement (disclosed, not hidden)
+            'sell_fraction': None,
+            'sell_methodology': 'unmeasured — miner exchange flow not yet observed; '
+                                'see signals.py assumptions',
+            # Signal join
+            'miner_pressure': sig.get('direction'),
+            'miner_pressure_strength': sig.get('strength'),
+            'miner_pressure_version': sig.get('version'),
+            # Static context
             'max_supply': fund.get('max_supply'),
-            'circulating_supply': revenue.get('circulating_supply'),
-            'supply_issued_pct': (revenue.get('circulating_supply', 0) / fund.get('max_supply', 1) * 100) if fund.get('max_supply') else None,
-            
-            # Mining factors
             'mining_algo': fund.get('mining_algo'),
             'useful_output': fund.get('useful_output'),
-            'block_time': fund.get('block_time'),
-            
-            # Development factors
-            'github_stars': github.get('total_stars', 0),
-            'github_commits_7d': github.get('total_commits_7d', 0),
-            'active_developers': github.get('active_developers', 0),
-            
-            # Derived factors
-            'security_spend_usd_24h': daily_emission_usd,  # XMR-style comparison
-            'compute_efficiency': None,  # Needs external compute data
-            'fundamental_momentum': None,  # Needs historical data
         }
-        
-        # Print summary
-        f = factors[symbol]
-        print(f"\n[{symbol}] {fund.get('name')}")
-        print(f"  Issuance: ${f['issuance_usd_24h']:,.0f}/day")
-        print(f"  Dilution: {f['dilution_pressure']:.4%}/yr" if f['dilution_pressure'] else "  Dilution: N/A")
-        print(f"  Absorption: {f['absorption_ratio']:.1f}x" if f['absorption_ratio'] else "  Absorption: N/A")
-        print(f"  Sell pressure: ${f['sell_pressure_usd_24h']:,.0f}/day")
-        print(f"  GitHub: {f['github_stars']} stars, {f['github_commits_7d']} commits/7d")
-    
-    # Save factors
+        factors[sym] = row
+        iss = f"${row['issuance_usd_24h']:,.0f}/d" if row['issuance_usd_24h'] else "n/a"
+        bur = f"{row['burden_vs_book']:.1f}x" if row['burden_vs_book'] else "n/a"
+        print(f"  {sym:6} {iss:>14} burden={bur:>8} "
+              f"spread={str(row['spread_bps_median']):>8} sig={row['miner_pressure']} "
+              f"[{','.join(row['venues'])}]")
+
     output_file = os.path.join(FACTORS_DIR, 'cross_chain_factors.json')
     with open(output_file, 'w') as f:
         json.dump(factors, f, indent=2, default=str)
-    print(f"\n[SAVED] {output_file}")
-    
-    # Create comparison table
-    print(f"\n{'='*60}")
-    print("CROSS-CHAIN COMPARISON")
-    print(f"{'='*60}")
-    print(f"{'Symbol':8} {'Name':12} {'Issuance $/d':>14} {'Dilution':>10} {'Absorption':>12} {'GitHub':>8}")
-    print("-" * 70)
-    
-    for symbol, f in sorted(factors.items(), key=lambda x: x[1].get('issuance_usd_24h', 0) or 0, reverse=True):
-        issuance = f"${f['issuance_usd_24h']:,.0f}" if f['issuance_usd_24h'] else "N/A"
-        dilution = f"{f['dilution_pressure']:.2%}" if f['dilution_pressure'] else "N/A"
-        absorption = f"{f['absorption_ratio']:.1f}x" if f['absorption_ratio'] else "N/A"
-        github = f"{f['github_stars']}"
-        
-        print(f"{symbol:8} {f['name']:12} {issuance:>14} {dilution:>10} {absorption:>12} {github:>8}")
-    
+    print(f"\n[SAVED] {output_file} ({len(factors)} symbols)")
     return factors
 
+
 if __name__ == '__main__':
-    compute_factors()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--date', default=None)
+    args = ap.parse_args()
+    compute_factors(args.date)

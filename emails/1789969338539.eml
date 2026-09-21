@@ -1,0 +1,674 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id FUB8Bq1xFm0V
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 05:42:18 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=iHKMZH0NEUlgnLi4ChF7Wq1sCPL/5RbBaL7uMBXkJ3gSel9je03N7URDrdR1xUM2EKew8GHqh
+	qMDupjWkJTdQgx6AQUnlo0cunA1jizt/8cvt/nTqrDMmb5mRqnzxDdidkA5fGDTTCsAiPwxNjio
+	K+XUEOPqlg0I0jGeLwyV0UMEFHYpgUdeIIe3XSwpa9iI6rc2Yn/yeLLGB8zN/gn/1LfW/sQokly
+	WEYeH8NLgY0XIY/0MF5vFjilbH83WmbH6vQj+ozcwzzePlUvAabma9elEY1ng7m2wnsHYex48vU
+	9Izk++pCP56ZecjPGVJDo9NF18c5LXaOs2GE9LfWaF1A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789969338; x=1790574138; bh=iixFdHpJ
+	CjuXiUt6+QBzngpHtm5bP4h6wh5SKr1oExk=; b=Hib7N3yuNqD0dTCmxYw0fq6IPV9jsF01SzT
+	44DeFldMBk8h4hvlEBMysEhpDkCB1GO2vr5zMjFo4wvo1TIvUKoQTX52+Q321GIDx7nn7l+k+9J
+	McoM/0WNVY3UV6XSxNv4fb3/4FSSS30eFPwCBSX4GW7nj/FP1HCddSlbxNV3rAfqI7RWegZE94W
+	ILOdlAuFgI1ByD5nALYa0oUptbE8mnRz9Qyl2mdKCd5zgmdPsfbPsl578ajapc3l+eWAApUlbZt
+	6NgkiigOJymiLRoufvPMg2YMmlzt++XbtNGh+KcMJlKxs2GzI7/W/nqmRWEgxOqaj4maQ32mVLd
+	haLXArA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=NNATH9wa;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=NNATH9wa;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-89666ee9b3bso14788247b3.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 22:42:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789969338; cv=none;
+        d=google.com; s=arc-20260327;
+        b=UvYv62+EP8POFrdGXeAtwdhwDUsOaEQa/2e7ow+h4jbPS+ITJQSjJY7vaWpT/ihCx1
+         rKzsi5/4B1jnPO524r/UNsjsSR2xs8CoS9eo+77IrTtARMAaUTlYjeq9TIz0H6MpvIOZ
+         00oFcIEuQVoWve6I7icUwz2/T4Wi3lFzJLMeRsvwWTE3M/9UmmDcPmYEA0kZaIJ2Ug6x
+         xGBYOVaUFAJaOt+HiDzNFjsrwmsEdjq+gGBXyLRddAZka7tenhC4qVRYMhgsaLvr7h81
+         bCMBnnMOF+UM1D0t5IlccLUllJ14jf90l5FsiQavNIOeaYdWgBMdEfpdi55ZExCmsPzU
+         /EHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=iixFdHpJCjuXiUt6+QBzngpHtm5bP4h6wh5SKr1oExk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=U21J9NjRdG1OUtWlMF32TVc7mZBRDzC1rRRbGeTNMAPrWzcE+YCK/3GroWD5vKxOmT
+         rWVEDXT+Irv27bSe6pmHmik4+1DMi7luRSKldOxKrGYTjY7ihk3mQ+V7ZL+ZTKBcyu8d
+         c6eDXe12Mx9M8Wn/qxYpJh2bKmwZxA2vMPxcWmkImHgFdxuIVu+aYMrT0OFxzc+JkG/c
+         gyrldnyX247Qk95Chn+2w+VXS6is0PTZwrhxmf5NBtOLrwUHEWERkwFnrmGxoxq8T7JG
+         71+EujJsjeb8gUQUWe8FN00n43H7MwFuRYXR7ngbY+NxkAKZHWSSKcaXJLh+SgcFdDKm
+         6jBg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789969338; x=1790574138; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=iixFdHpJCjuXiUt6+QBzngpHtm5bP4h6wh5SKr1oExk=;
+        b=NNATH9waohWHE8FYt4Fk+U+DLWBtOPpituicLcyFMfY2Rp/fBrY4XDnPTDYorto1vS
+         GE0Z+w8J/3O410Xp/hPk2tE2jJlLpDEaqHON+zzeiJLHod7upGpLHkepyNCKGFhxcpZS
+         SIClk1qjdir6V8CEFO3i9pvQxAC6gOii28bvWVWmlhpkelQm176r5AEKy+dS+2HNweXZ
+         0MpXH7lhj0C4BmtyhRqSMndMv0qacAyJT6aNRykfi8jI083m79xwsTtgEeKUR7fnL5m8
+         ltAe1zr4B5N3HIxyGNuw3u1cEUfwfSDz1CfMCXMfeJOeAhNWHII30QpMSkMuPVdfofty
+         UX8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789969338; x=1790574138;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=iixFdHpJCjuXiUt6+QBzngpHtm5bP4h6wh5SKr1oExk=;
+        b=mPhaFSx8UTCO/YOJC+MtiBSzGURwTGJrdR9038GHTT/FDytiPvRhfvjNgrGTR4WKq7
+         Ma0u8+txcgrJKxA1DPt5vaDNwjuSZpW/OhsCerF2NtfHDXoDLx5h3C8qexZfQvTxCpj1
+         FK++v+heogSq+hcaYKsQ7MEQIwqtBkWTPrqWRKRVVqZmNRshcYbZy6nzQJb1Yv33oB1H
+         TUjBPv+L50I1Wpge3XzetC/Ql1M4xhKt1CFawdw+tEJq8+LkbZrKyqLveG+VH4gfSlbf
+         TbPtnYXXis6CU6vYsIJUTmrdIof6XzinuD+0IFTrOaLPRFbupFjUK0U2n05di7Bu4Ufv
+         eyRQ==
+X-Gm-Message-State: AFuF++k1ph2ZqlTcrGZ6XFdxapI6b8ok/frA05Q5M+DLk2vIfUl55/5p
+	8Ne/LHTNw/fFy3+riIOvlqn5OlCMsMO15+sdOzI8KpEalVmGG5kHHc25GgvF/zEMbUW12ZZ0izL
+	VJKvS2F7kKtYmktoiV0VJ3Ux7Nqaz+MJg0Q==
+X-Gm-Gg: AYBFou2r66JNbFXNrwzYxc22iIoW49s1wJ89Q9IDy1jFHt+yhsDsaXHwgtjdGu91bJt
+	WseAKNS07rr0HgKXNY2alOHqzJAhQ6h5eRxbnfgZ1M1kpFyQ2q3gyZJnKZakM72kU6w/tfIiAvN
+	AVKWcmsNnxu9qVQoREPTRjtuSRUsZ6oKr+YkBEzwAaDXTEcwSDQ/rnwpL3rdxMInq/C09vF1EZx
+	aZqki8VX8Oj5nerB06XGoZHCbsyw697dMcO9kTD+iv5YFxcXg7WXwegd2ewb5mGvdAuQbfCBDwP
+	+ctNNCb51+36aKsZUwvvMTwxLy7uMrQVKbH3Casy7W+NN6a8crqgD57ACXNJrYgTzKxenG/YvQs
+	+uQD7yhF4oC0GcM+/QVoLTY9+erJyIaE4ytf6MBbxcfABsDhifZhb+od1J73VUKFuSfGppbc=
+X-Received: by 2002:a05:690c:e196:10b0:887:b388:9934 with SMTP id
+ 00721157ae682-89735f6de46mr35301457b3.22.1789969337613; Sun, 20 Sep 2026
+ 22:42:17 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 00:42:17 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 00:42:17 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 00:42:17 -0500
+X-Gm-Features: AcwNN1V7Er6it9roRpo8KnLzqoaV5zrG-rHXXAF0XzrCLMu4zpubj-yG2TC7Tug
+Message-ID: <CAPdrGem8ebRF3qf=pKM01+w61QSb-uFG2eaeb84=f_2u52WuNw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Joins_=26_Outcomes_=E2=80=94_2026=2D09=2D21_12=3A41_?=
+	=?UTF-8?Q?ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000870194065bf7b678"
+
+--000000000000870194065bf7b678
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS JOIN / OUTCOME PROBE =E2=80=94 2026-09-21 12:41 ICT Executive d=
+elta
+
+The roadwork =E2=86=92 bus outcome garden strengthens materially because St=
+reet
+Manager supports event-versioned roadwork updates *and API notification
+subscriptions*, while BODS is legally reusable, nationally mandated
+operational telemetry with 10=E2=80=9330 second source updates. The moat is=
+ not
+either feed: it is the continuously resolved intervention/outcome tape.
+
+A second important conclusion is negative: vehicle =E2=86=92 MOT defect =E2=
+=86=92 later MOT
+is highly joinable but is *not a strong raw time moat* because DVSA
+provides bulk history plus delta files containing complete vehicle records
+whenever a vehicle is created/updated/deleted. Keep MOT as outcome labels
+and identity infrastructure, not as the primary garden.
+
+A third frontier remains WATCH: Planning Data=E2=80=99s planning-applicatio=
+n-log
+still has 0 records, no providers, and no collector attempt. Its controlled
+status vocabulary already includes application submission, document check,
+missing-document request, consultation start/end, appeal and expiry. The
+first authoritative provider can create a new site/project lifecycle join
+if events begin prospectively rather than being fully backfilled.
+Ranked joins
+
+   1. *Street Manager roadwork =E2=86=92 BODS vehicle journey =E2=86=92 del=
+ay/recovery =E2=80=94
+   5.00 =E2=80=94 PLANT NOW*
+   2. *MCS installation =E2=86=92 BUS/CHMM =E2=86=92 consenting operating/f=
+inancial outcome
+   =E2=80=94 4.98 =E2=80=94 PARTNER PLANT*
+   3. *Grid project =E2=86=92 NESO Gate/date/point =E2=86=92 planning =E2=
+=86=92
+   construction/energisation =E2=80=94 4.97 =E2=80=94 PLANT*
+   4. *Transformer/node =E2=86=92 flow =E2=86=92 flexibility intervention =
+=E2=86=92 physical
+   response =E2=80=94 4.96 =E2=80=94 PLANT*
+   5. *EVSE =E2=86=92 status/tariff =E2=86=92 site/grid/installer =E2=86=92=
+ charging outcome =E2=80=94 4.94
+   =E2=80=94 PLANT*
+   6. *Vehicle =E2=86=92 MOT defect =E2=86=92 repair action =E2=86=92 later=
+ MOT =E2=80=94 4.45 =E2=80=94
+   JOIN/OUTCOME LABEL, raw moat killed*
+   7. *Site/UPRN =E2=86=92 planning application lifecycle =E2=86=92 decisio=
+n/build outcome
+   =E2=80=94 4.40 today / potentially 4.95 at authoritative t=3D0 =E2=80=94=
+ WATCH*
+   8. *Model/MPN =E2=86=92 recall =E2=86=92 repair/substitute =E2=86=92 cus=
+tomer outcome =E2=80=94 4.31 =E2=80=94
+   PILOT*
+
+Deep dive: roadwork =E2=86=92 bus causal outcome Exact source stack
+
+*Street Manager Event API*
+
+   - Official guidance:
+   https://www.gov.uk/guidance/find-and-use-roadworks-data
+   - API surface includes permit/activity event_reference, event_type,
+   work/activity reference, coordinates, proposed and actual dates, status,
+   traffic-management type, USRN, event_time, object_reference, and version=
+.
+   - Current v7 sandbox Swagger exposes GET /works/updates, POST
+   /permits/search, plus /api-notifications/subscribe, /unsubscribe, and
+   /subscriptions.
+   - Public roadworks data is free to view via API; account/API access is
+   the realistic permission path.
+
+*Bus Open Data Service (BODS)*
+
+   - Official guidance:
+   https://www.gov.uk/guidance/find-and-use-bus-open-data
+   - Local bus timetable/location/fares data in England is freely available
+   for commercial and non-commercial reuse.
+   - Vehicle locations use SIRI-VM. Operators must publish location updates
+   every 10=E2=80=9330 seconds; the profile contains VehicleJourneyRef, Veh=
+icleRef,
+   RecordedAtTime, coordinates and journey/call information.
+   - API consumers register for an account/key. DfT warns abusive overuse
+   can lead to access being switched off, so POW should use a bounded regio=
+nal
+   collector first.
+
+Canonical identity graph
+
+StreetManager.object_reference/version -> USRN + geometry -> affected road
+segment -> route geometry -> VehicleJourneyRef -> VehicleRef(day-scoped) ->
+scheduled calls -> observed SIRI-VM trajectory
+
+Every edge stores status =E2=88=88 {CONFIRMED, INFERRED, UNKNOWN}, confiden=
+ce,
+method, source, observed_at, and raw provenance.
+
+Important identity semantics:
+
+   - object_reference + version =3D intervention version identity.
+   - USRN is the stable street join but geometry is required because one
+   USRN can cover more road than the actual works footprint.
+   - VehicleJourneyRef is the preferred operational journey key and is
+   defined to correspond to timetable identity.
+   - VehicleRef must be consistent through the day, but should not be
+   assumed to be a permanent physical-bus identity across days without
+   additional evidence.
+
+Temporal event schema
+
+ROADWORK_PROPOSED, ROADWORK_UPDATED, ROADWORK_STARTED, ROADWORK_CANCELLED,
+ROADWORK_ENDED, TRAFFIC_MANAGEMENT_CHANGED, BUS_ENTERED_EXPOSURE,
+BUS_EXITED_EXPOSURE, DELAY_DELTA, RECOVERY.
+
+Fields: entity_key, event_type, effective_at, observed_at, source_version,
+raw_hash, confidence, provenance.
+First proprietary transformations
+
+RoadworkImpact(work_type, traffic_management, road_segment, time)
+
+ExcessJourneySeconds =3D observed segment time - matched counterfactual
+segment time
+
+RecoveryHalfLife =3D time after intervention end until journey performance
+returns halfway to baseline
+
+InterventionReliability =3D P(actual disruption | proposed work attributes)
+
+Eventually: ExpectedDisruptionCost(action, place, time) and
+BestInterventionWindow.
+Outcome acquisition
+
+No private/person-level data required. Outcomes are public operational
+consequences: journey time, lateness, cancellation/absence proxy, recovery.
+A later commercial layer can accept consenting fleet/local-authority
+outcome data, but it is not required to plant the garden.
+Smallest coverage test
+
+Start with one dense English urban authority for 24 hours.
+
+   1. Subscribe/poll Street Manager updates and preserve every observed
+   version.
+   2. Select works with precise geometry + USRN + actual timing.
+   3. Resolve bus routes intersecting a buffered works geometry.
+   4. Capture affected SIRI-VM journeys plus matched same-route/time
+   controls.
+   5. Compute segment traversal and schedule deviation before/during/after.
+
+Day-1 gates: =E2=89=A598% Street Manager identity continuity; =E2=89=A595% =
+works with
+usable USRN/geometry among selected sample; =E2=89=A590% journey identity
+resolution; =E2=89=A590% expected telemetry coverage.
+
+Week-1 gates: =E2=89=A5100 treatment windows; =E2=89=A570% credible matched=
+ controls; =E2=89=A590%
+manually reviewed exposure precision; =E2=89=A580% interventions produce en=
+ough
+observations for an effect estimate.
+
+Kill the causal product if exposure precision <80% or matched-control
+construction remains systematically confounded. Keep the raw joined tape if
+identity quality remains high.
+Join-quality metrics
+
+Track per join:
+
+   - stable-ID coverage
+   - exact-match rate
+   - alias/fuzzy-match rate
+   - geospatial-only match rate
+   - unresolved rate
+   - one-to-many ambiguity rate
+   - source disagreement rate
+   - ownership/name-change survival
+   - taxonomy reconciliation loss
+   - manual-review precision by confidence bucket
+   - identity continuity over 1d/7d/30d
+
+For inferred edges, never collapse provenance. CONFIRMED requires
+source-native identity or deterministic official-key match. INFERRED
+requires explicit matching method and confidence. UNKNOWN is preserved
+rather than forced.
+MOT correction / moat test
+
+DVSA=E2=80=99s MOT History API covers vehicle/test history back to 2005 for
+cars/motorcycles/vans and exposes bulk + delta files. Delta files contain a
+complete vehicle record, including test history, whenever a vehicle is
+created, updated or deleted. Therefore POW cannot justify continuous MOT
+collection merely as historical preservation.
+
+Use MOT instead as a public outcome label:
+vehicle registration -> defect/advisory -> inferred repair interval ->
+later MOT result/mileage.
+
+A proprietary moat requires the missing intervention: consenting repair
+invoice/part receipt, agent-booked repair, or workshop outcome. Without
+that, the repair itself remains latent.
+Planning t=3D0 watch
+
+Planning Data planning-application-log currently reports:
+
+   - records: 0
+   - providers: none
+   - collector: no attempt
+   - licence: OGL v3
+
+The schema vocabulary already includes full-application-submitted,
+local-planning-authority-document-check, request-missing-document,
+public-consultation-start/end, decision-appealed, appeal-granted/refused,
+and expired.
+
+Trigger: first authoritative provider OR record count > 0. Immediately
+freeze the first executable dataset and test whether earlier events are
+backfilled. If complete historical lifecycle is supplied, raw time moat
+fails. If only prospective state begins, promote to PLANT HARD and join
+site/UPRN/geography =E2=86=92 constraints =E2=86=92 application events =E2=
+=86=92 decision =E2=86=92
+physical build.
+Product safety join
+
+OPSS PSD is the regulatory source; public Product Recalls and Alerts is a
+filtered publication layer. In 2024/25 PSD received 1,418 notifications
+covering 1,792 products, while OPSS published hundreds of recall/safety
+notices. The useful POW object is not a mirror of alerts but model/identifi=
+er
+-> installed/owned asset -> corrective action -> repair/replacement outcome=
+.
+
+Plant only if model identity resolution is strong enough. Target =E2=89=A59=
+0% exact
+model/brand resolution in a 100-alert sample; otherwise treat recalls as
+enrichment until manufacturer identifiers improve.
+Counterevidence
+
+   - BODS policy mentions historic punctuality data, so POW must not claim
+   all historical bus performance is unreconstructable. The stronger moat i=
+s
+   the exact high-frequency trajectory joined to the contemporaneous
+   *version* of a specific road intervention.
+   - Roadworks and congestion are confounded by weather, incidents, events,
+   school calendars and recurrent peaks. Matched controls are mandatory.
+   - VehicleRef is not proven to be permanent vehicle identity; scope it to
+   operational-day identity unless separately resolved.
+   - MOT history is explicitly backfillable and therefore fails the raw
+   time-moat gate.
+   - Planning application log has no authoritative data today, so it is
+   WATCH, not deployed.
+
+Next-hour information-gain queue
+
+   1. Resolve Street Manager production API authentication, documented
+   request limits and notification semantics; run a bounded t0 fetch if
+   permitted.
+   2. Resolve BODS consumer API exact endpoint/key/rate guidance and
+   determine whether raw high-frequency historical SIRI-VM is retained and =
+for
+   how long.
+   3. Build the deterministic roadwork=E2=86=94route exposure join on a 20-=
+work
+   sample; manually score precision.
+   4. Poll Planning Data application-log for first provider/non-zero record=
+.
+   5. Sample 100 OPSS recalls and measure exact model/identifier coverage
+   before investing in the recall=E2=86=92repair graph.
+
+Machine-readable appendix { "probe":"POW_JOIN_OUTCOME",
+"run":"2026-09-21T12:41:00+07:00", "material_delta":true, "top_join":{
+"id":"STREETMANAGER_BODS_OUTCOME", "score":5.0, "status":"PLANT_NOW",
+"raw_sources":["Street Manager Event API","BODS SIRI-VM","BODS
+TransXChange"],
+"transformations":["RoadworkImpact","ExcessJourneySeconds","RecoveryHalfLif=
+e","InterventionReliability"],
+"outcome":"bus operational degradation and recovery" }, "corrections":[{
+"id":"MOT_CONTINUOUS_HISTORY", "status":"KILL_RAW_MOAT_KEEP_OUTCOME_LABEL",
+"reason":"DVSA bulk and delta files backfill complete vehicle/test history"
+}], "watch":[{ "id":"PLANNING_APPLICATION_LOG", "records":0, "providers":0,
+"trigger":"first authoritative provider or record_count > 0" }],
+"collector_deployed":false }
+
+--000000000000870194065bf7b678
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS JOIN / OUTCOME PROBE =E2=80=94 2026-09-21 12:41 ICT
+
+Executive delta
+<p>The roadwork =E2=86=92 bus outcome garden strengthens materially because=
+ Street Manager supports event-versioned roadwork updates <strong>and API n=
+otification subscriptions</strong>, while BODS is legally reusable, nationa=
+lly mandated operational telemetry with 10=E2=80=9330 second source updates=
+. The moat is not either feed: it is the continuously resolved intervention=
+/outcome tape.</p>
+<p>A second important conclusion is negative: vehicle =E2=86=92 MOT defect =
+=E2=86=92 later MOT is highly joinable but is <strong>not a strong raw time=
+ moat</strong> because DVSA provides bulk history plus delta files containi=
+ng complete vehicle records whenever a vehicle is created/updated/deleted. =
+Keep MOT as outcome labels and identity infrastructure, not as the primary =
+garden.</p>
+<p>A third frontier remains WATCH: Planning Data=E2=80=99s <code>planning-a=
+pplication-log</code> still has 0 records, no providers, and no collector a=
+ttempt. Its controlled status vocabulary already includes application submi=
+ssion, document check, missing-document request, consultation start/end, ap=
+peal and expiry. The first authoritative provider can create a new site/pro=
+ject lifecycle join if events begin prospectively rather than being fully b=
+ackfilled.</p>
+
+Ranked joins
+<ol>
+<li><strong>Street Manager roadwork =E2=86=92 BODS vehicle journey =E2=86=
+=92 delay/recovery =E2=80=94 5.00 =E2=80=94 PLANT NOW</strong></li>
+<li><strong>MCS installation =E2=86=92 BUS/CHMM =E2=86=92 consenting operat=
+ing/financial outcome =E2=80=94 4.98 =E2=80=94 PARTNER PLANT</strong></li>
+<li><strong>Grid project =E2=86=92 NESO Gate/date/point =E2=86=92 planning =
+=E2=86=92 construction/energisation =E2=80=94 4.97 =E2=80=94 PLANT</strong>=
+</li>
+<li><strong>Transformer/node =E2=86=92 flow =E2=86=92 flexibility intervent=
+ion =E2=86=92 physical response =E2=80=94 4.96 =E2=80=94 PLANT</strong></li=
+>
+<li><strong>EVSE =E2=86=92 status/tariff =E2=86=92 site/grid/installer =E2=
+=86=92 charging outcome =E2=80=94 4.94 =E2=80=94 PLANT</strong></li>
+<li><strong>Vehicle =E2=86=92 MOT defect =E2=86=92 repair action =E2=86=92 =
+later MOT =E2=80=94 4.45 =E2=80=94 JOIN/OUTCOME LABEL, raw moat killed</str=
+ong></li>
+<li><strong>Site/UPRN =E2=86=92 planning application lifecycle =E2=86=92 de=
+cision/build outcome =E2=80=94 4.40 today / potentially 4.95 at authoritati=
+ve t=3D0 =E2=80=94 WATCH</strong></li>
+<li><strong>Model/MPN =E2=86=92 recall =E2=86=92 repair/substitute =E2=86=
+=92 customer outcome =E2=80=94 4.31 =E2=80=94 PILOT</strong></li>
+</ol>
+
+Deep dive: roadwork =E2=86=92 bus causal outcome
+
+Exact source stack
+<p><strong>Street Manager Event API</strong></p>
+<ul>
+<li>Official guidance: <a href=3D"https://www.gov.uk/guidance/find-and-use-=
+roadworks-data">https://www.gov.uk/guidance/find-and-use-roadworks-data</a>=
+</li>
+<li>API surface includes permit/activity <code>event_reference</code>, <cod=
+e>event_type</code>, work/activity reference, coordinates, proposed and act=
+ual dates, status, traffic-management type, USRN, <code>event_time</code>, =
+<code>object_reference</code>, and <code>version</code>.</li>
+<li>Current v7 sandbox Swagger exposes <code>GET /works/updates</code>, <co=
+de>POST /permits/search</code>, plus <code>/api-notifications/subscribe</co=
+de>, <code>/unsubscribe</code>, and <code>/subscriptions</code>.</li>
+<li>Public roadworks data is free to view via API; account/API access is th=
+e realistic permission path.</li>
+</ul>
+<p><strong>Bus Open Data Service (BODS)</strong></p>
+<ul>
+<li>Official guidance: <a href=3D"https://www.gov.uk/guidance/find-and-use-=
+bus-open-data">https://www.gov.uk/guidance/find-and-use-bus-open-data</a></=
+li>
+<li>Local bus timetable/location/fares data in England is freely available =
+for commercial and non-commercial reuse.</li>
+<li>Vehicle locations use SIRI-VM. Operators must publish location updates =
+every 10=E2=80=9330 seconds; the profile contains <code>VehicleJourneyRef</=
+code>, <code>VehicleRef</code>, <code>RecordedAtTime</code>, coordinates an=
+d journey/call information.</li>
+<li>API consumers register for an account/key. DfT warns abusive overuse ca=
+n lead to access being switched off, so POW should use a bounded regional c=
+ollector first.</li>
+</ul>
+
+Canonical identity graph
+<p><code>StreetManager.object_reference/version -&gt; USRN + geometry -&gt;=
+ affected road segment -&gt; route geometry -&gt; VehicleJourneyRef -&gt; V=
+ehicleRef(day-scoped) -&gt; scheduled calls -&gt; observed SIRI-VM trajecto=
+ry</code></p>
+<p>Every edge stores <code>status =E2=88=88 {CONFIRMED, INFERRED, UNKNOWN}<=
+/code>, <code>confidence</code>, <code>method</code>, <code>source</code>, =
+<code>observed_at</code>, and raw provenance.</p>
+<p>Important identity semantics:</p>
+<ul>
+<li><code>object_reference + version</code> =3D intervention version identi=
+ty.</li>
+<li>USRN is the stable street join but geometry is required because one USR=
+N can cover more road than the actual works footprint.</li>
+<li><code>VehicleJourneyRef</code> is the preferred operational journey key=
+ and is defined to correspond to timetable identity.</li>
+<li><code>VehicleRef</code> must be consistent through the day, but should =
+not be assumed to be a permanent physical-bus identity across days without =
+additional evidence.</li>
+</ul>
+
+Temporal event schema
+<p><code>ROADWORK_PROPOSED</code>, <code>ROADWORK_UPDATED</code>, <code>ROA=
+DWORK_STARTED</code>, <code>ROADWORK_CANCELLED</code>, <code>ROADWORK_ENDED=
+</code>, <code>TRAFFIC_MANAGEMENT_CHANGED</code>, <code>BUS_ENTERED_EXPOSUR=
+E</code>, <code>BUS_EXITED_EXPOSURE</code>, <code>DELAY_DELTA</code>, <code=
+>RECOVERY</code>.</p>
+<p>Fields: <code>entity_key</code>, <code>event_type</code>, <code>effectiv=
+e_at</code>, <code>observed_at</code>, <code>source_version</code>, <code>r=
+aw_hash</code>, <code>confidence</code>, <code>provenance</code>.</p>
+
+First proprietary transformations
+<p><code>RoadworkImpact(work_type, traffic_management, road_segment, time)<=
+/code></p>
+<p><code>ExcessJourneySeconds =3D observed segment time - matched counterfa=
+ctual segment time</code></p>
+<p><code>RecoveryHalfLife =3D time after intervention end until journey per=
+formance returns halfway to baseline</code></p>
+<p><code>InterventionReliability =3D P(actual disruption | proposed work at=
+tributes)</code></p>
+<p>Eventually: <code>ExpectedDisruptionCost(action, place, time)</code> and=
+ <code>BestInterventionWindow</code>.</p>
+
+Outcome acquisition
+<p>No private/person-level data required. Outcomes are public operational c=
+onsequences: journey time, lateness, cancellation/absence proxy, recovery. =
+A later commercial layer can accept consenting fleet/local-authority outcom=
+e data, but it is not required to plant the garden.</p>
+
+Smallest coverage test
+<p>Start with one dense English urban authority for 24 hours.</p>
+<ol>
+<li>Subscribe/poll Street Manager updates and preserve every observed versi=
+on.</li>
+<li>Select works with precise geometry + USRN + actual timing.</li>
+<li>Resolve bus routes intersecting a buffered works geometry.</li>
+<li>Capture affected SIRI-VM journeys plus matched same-route/time controls=
+.</li>
+<li>Compute segment traversal and schedule deviation before/during/after.</=
+li>
+</ol>
+<p>Day-1 gates: =E2=89=A598% Street Manager identity continuity; =E2=89=A59=
+5% works with usable USRN/geometry among selected sample; =E2=89=A590% jour=
+ney identity resolution; =E2=89=A590% expected telemetry coverage.</p>
+<p>Week-1 gates: =E2=89=A5100 treatment windows; =E2=89=A570% credible matc=
+hed controls; =E2=89=A590% manually reviewed exposure precision; =E2=89=A58=
+0% interventions produce enough observations for an effect estimate.</p>
+<p>Kill the causal product if exposure precision &lt;80% or matched-control=
+ construction remains systematically confounded. Keep the raw joined tape i=
+f identity quality remains high.</p>
+
+Join-quality metrics
+<p>Track per join:</p>
+<ul>
+<li>stable-ID coverage</li>
+<li>exact-match rate</li>
+<li>alias/fuzzy-match rate</li>
+<li>geospatial-only match rate</li>
+<li>unresolved rate</li>
+<li>one-to-many ambiguity rate</li>
+<li>source disagreement rate</li>
+<li>ownership/name-change survival</li>
+<li>taxonomy reconciliation loss</li>
+<li>manual-review precision by confidence bucket</li>
+<li>identity continuity over 1d/7d/30d</li>
+</ul>
+<p>For inferred edges, never collapse provenance. <code>CONFIRMED</code> re=
+quires source-native identity or deterministic official-key match. <code>IN=
+FERRED</code> requires explicit matching method and confidence. <code>UNKNO=
+WN</code> is preserved rather than forced.</p>
+
+MOT correction / moat test
+<p>DVSA=E2=80=99s MOT History API covers vehicle/test history back to 2005 =
+for cars/motorcycles/vans and exposes bulk + delta files. Delta files conta=
+in a complete vehicle record, including test history, whenever a vehicle is=
+ created, updated or deleted. Therefore POW cannot justify continuous MOT c=
+ollection merely as historical preservation.</p>
+<p>Use MOT instead as a public outcome label:<br>
+<code>vehicle registration -&gt; defect/advisory -&gt; inferred repair inte=
+rval -&gt; later MOT result/mileage</code>.</p>
+<p>A proprietary moat requires the missing intervention: consenting repair =
+invoice/part receipt, agent-booked repair, or workshop outcome. Without tha=
+t, the repair itself remains latent.</p>
+
+Planning t=3D0 watch
+<p>Planning Data <code>planning-application-log</code> currently reports:</=
+p>
+<ul>
+<li>records: 0</li>
+<li>providers: none</li>
+<li>collector: no attempt</li>
+<li>licence: OGL v3</li>
+</ul>
+<p>The schema vocabulary already includes <code>full-application-submitted<=
+/code>, <code>local-planning-authority-document-check</code>, <code>request=
+-missing-document</code>, <code>public-consultation-start/end</code>, <code=
+>decision-appealed</code>, <code>appeal-granted/refused</code>, and <code>e=
+xpired</code>.</p>
+<p>Trigger: first authoritative provider OR record count &gt; 0. Immediatel=
+y freeze the first executable dataset and test whether earlier events are b=
+ackfilled. If complete historical lifecycle is supplied, raw time moat fail=
+s. If only prospective state begins, promote to PLANT HARD and join site/UP=
+RN/geography =E2=86=92 constraints =E2=86=92 application events =E2=86=92 d=
+ecision =E2=86=92 physical build.</p>
+
+Product safety join
+<p>OPSS PSD is the regulatory source; public Product Recalls and Alerts is =
+a filtered publication layer. In 2024/25 PSD received 1,418 notifications c=
+overing 1,792 products, while OPSS published hundreds of recall/safety noti=
+ces. The useful POW object is not a mirror of alerts but <code>model/identi=
+fier -&gt; installed/owned asset -&gt; corrective action -&gt; repair/repla=
+cement outcome</code>.</p>
+<p>Plant only if model identity resolution is strong enough. Target =E2=89=
+=A590% exact model/brand resolution in a 100-alert sample; otherwise treat =
+recalls as enrichment until manufacturer identifiers improve.</p>
+
+Counterevidence
+<ul>
+<li>BODS policy mentions historic punctuality data, so POW must not claim a=
+ll historical bus performance is unreconstructable. The stronger moat is th=
+e exact high-frequency trajectory joined to the contemporaneous <em>version=
+</em> of a specific road intervention.</li>
+<li>Roadworks and congestion are confounded by weather, incidents, events, =
+school calendars and recurrent peaks. Matched controls are mandatory.</li>
+<li>VehicleRef is not proven to be permanent vehicle identity; scope it to =
+operational-day identity unless separately resolved.</li>
+<li>MOT history is explicitly backfillable and therefore fails the raw time=
+-moat gate.</li>
+<li>Planning application log has no authoritative data today, so it is WATC=
+H, not deployed.</li>
+</ul>
+
+Next-hour information-gain queue
+<ol>
+<li>Resolve Street Manager production API authentication, documented reques=
+t limits and notification semantics; run a bounded t0 fetch if permitted.</=
+li>
+<li>Resolve BODS consumer API exact endpoint/key/rate guidance and determin=
+e whether raw high-frequency historical SIRI-VM is retained and for how lon=
+g.</li>
+<li>Build the deterministic roadwork=E2=86=94route exposure join on a 20-wo=
+rk sample; manually score precision.</li>
+<li>Poll Planning Data application-log for first provider/non-zero record.<=
+/li>
+<li>Sample 100 OPSS recalls and measure exact model/identifier coverage bef=
+ore investing in the recall=E2=86=92repair graph.</li>
+</ol>
+
+Machine-readable appendix
+
+<code>{
+  &quot;probe&quot;:&quot;POW_JOIN_OUTCOME&quot;,
+  &quot;run&quot;:&quot;2026-09-21T12:41:00+07:00&quot;,
+  &quot;material_delta&quot;:true,
+  &quot;top_join&quot;:{
+    &quot;id&quot;:&quot;STREETMANAGER_BODS_OUTCOME&quot;,
+    &quot;score&quot;:5.0,
+    &quot;status&quot;:&quot;PLANT_NOW&quot;,
+    &quot;raw_sources&quot;:[&quot;Street Manager Event API&quot;,&quot;BOD=
+S SIRI-VM&quot;,&quot;BODS TransXChange&quot;],
+    &quot;transformations&quot;:[&quot;RoadworkImpact&quot;,&quot;ExcessJou=
+rneySeconds&quot;,&quot;RecoveryHalfLife&quot;,&quot;InterventionReliabilit=
+y&quot;],
+    &quot;outcome&quot;:&quot;bus operational degradation and recovery&quot=
+;
+  },
+  &quot;corrections&quot;:[{
+    &quot;id&quot;:&quot;MOT_CONTINUOUS_HISTORY&quot;,
+    &quot;status&quot;:&quot;KILL_RAW_MOAT_KEEP_OUTCOME_LABEL&quot;,
+    &quot;reason&quot;:&quot;DVSA bulk and delta files backfill complete ve=
+hicle/test history&quot;
+  }],
+  &quot;watch&quot;:[{
+    &quot;id&quot;:&quot;PLANNING_APPLICATION_LOG&quot;,
+    &quot;records&quot;:0,
+    &quot;providers&quot;:0,
+    &quot;trigger&quot;:&quot;first authoritative provider or record_count =
+&gt; 0&quot;
+  }],
+  &quot;collector_deployed&quot;:false
+}
+</code>
+
+--000000000000870194065bf7b678--

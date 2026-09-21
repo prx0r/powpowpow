@@ -1,0 +1,472 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id KWybjKig72tt
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:17:45 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=bNFs+BV8Qe8u0VYKZr8PTQQeowKiUz4iI9dM85yK/aouDY3QulvZ214oEBbGaTv6pmbxIrec9
+	JJ28NlLFeDTzk0xxJLJW76nE1x1dSHczK+q8bs/h+40dkixaEhfgDG6twaq2SucHE3i0U6j2NSt
+	AsdLVCE7sv8eo32UfxyxIufmFxmhmFfRMjZmGZqEvQSp9RWxRjgFg2mkYtChCoUcF3XR2E/a15G
+	pBCX5/jz98hJaW7QprLTp3SEf/K4cUTrfUSSIipbOjmJ+me8yVgnfDJMQ0Kn0eD90cFWeSTLmI0
+	HXfOhBj0TmnSWe9EijwoF8/DI9Piaapdg2TFhJQE4X/Q==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888665; x=1790493465; bh=/oYkLppv
+	745Stjk2hXviZ15S1iNRBYPEguPuplqqz6I=; b=fR+duteF/C6AlyWeFTZHbMN6tFNN+N8HPR2
+	HTOxYkFEMnY84kA9hkFXDAYSfZknBxX38HAeeL0ePZVbXJ+S+vND8zvuWjAAyiMRyCTAnwjxqFU
+	rJjq/3ccN8JbzyeOakFi83S9irhldgieAbMANxLolYMbHq1Xe3mu8/V/H+cmIfxGgj1Xv1vEHSc
+	SolwYN7q7vn9vExQY5RE3K3lvUObhXKlpbpaR+cl3vO/FJyCPj6zFBRhMx0z0P2zUgjtamp0c1s
+	OZg4a6Jy8Ek8hQ513iEEqF9yQicT1WgpYf3DUU9mk3GzIpdhbsqONd8a85kkaGt9yJw+2E7DCBV
+	VHJutCw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ksA2Z/QR;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ksA2Z/QR;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-895fd505832so14023677b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:17:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888665; cv=none;
+        d=google.com; s=arc-20260327;
+        b=lKz15J1jk5cCx517GsZpa48m8JZCgWGsnG9nRTfy63JI/J5WFsfDFnGIUY+QxHFmj2
+         9sI9D1AX4Yb1nDWoU6V6lf1QrW4e2oomUUyFOitt0hl/vOe6t/eoJR1bqJYxOc+a5xbW
+         Pk5Mh65Dplsu/DrrmxexGK3WAd0sNq6uZh1oPvNgx/CkXftNc0KG9RxGRBnhNi1V8ZR7
+         woAe2BAJA5qjKPDuqf7lCX0bURk4TfY006AyaF36NOE7udE3xfLyCVP7P0xMsLwGtPG3
+         InhhZy9+AzuhtpfJ9l9WUSpkflB02iBgiNV8F9owSMPCYIq8Z8rvUCxdg1sFJ9zpBt8g
+         kRHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=/oYkLppv745Stjk2hXviZ15S1iNRBYPEguPuplqqz6I=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=EQtSy5MOuT/uJ3MF7diA4+MGHfG7MZdXzd68qZTVwtI+HJnHpeDEjC/u1ZWLtCt8ir
+         ArPlYb95Hi03j30wbNFPCO/ORN7QvrmMU2LbyRbO8P4jOI52563Oly3baomtpqOLp7Ld
+         GJuT0p3hLnJdRhNzg1Wz/+/id26A0fZ93J+MLRyQ1qIL0XbE8G2TB9Lr95AVDhVlgCnJ
+         GIYXZdVH6GUPVJHZ400xe1i1OOuiGttUTPBnf6DtedUUysunkM2mcFABUD47KONPBmZQ
+         kqbAuIIVrs/+ItinHgt4hfRcL3xLfdHd/8JJecP4XSyIFJTtDrDAKW5xxbxeNZQpHSv9
+         FPJA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888665; x=1790493465; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=/oYkLppv745Stjk2hXviZ15S1iNRBYPEguPuplqqz6I=;
+        b=ksA2Z/QR5YilbZvj802aOS4wj7FwV5r1C66MzubjkLL9UiLgKpBvIk4NERPTI6vPsf
+         6qYBVyT8hzZ4LcNvF0daKi+ngFNmigfhIod4WtzJ90Io3RTKKK5E+IWEDShDn/Wm5b1b
+         Yc5CB/M0INWsAYar3TKF4mfvXbPG5IFjCbqNdtHPq2G7TKALO0eResKqx9Of5+WDFceJ
+         1bPn2INtDSUvpPI8TIspwv//im2i5d4HyK7n0ouN8mxUJyEWoBxBvmySROEK+LzLjBFt
+         WnxVh1DQl5SOxezBTxp2ZdflJPDtBg31+m65RNo+DpWoi2lmvSzRjYJtvU0RyuG6rCd4
+         moug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888665; x=1790493465;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=/oYkLppv745Stjk2hXviZ15S1iNRBYPEguPuplqqz6I=;
+        b=qKcP2BleTvvsNKS2osVNeq3/rxEhLzMB07QCMA/ld6lhqs7EWyuz9grw5328hKBXAT
+         mnNcJ2Ezf51cHwnxQGobgyNcnJOD0qi8FAPSpT5Vv7ILO5SFuaQyMi5rmTnshkA1mMS3
+         Evg05LySHVkBjsYd/Cubr2x2L/jXfTzIZhsfuY7anzee7VpZQR5DLrQHM26MR3iCEhdM
+         3q/T75wMgKgNOVTjrkbuUF9bfhGntpgsFkvsgwnpdYp7fPcYLHjRtTOC1O2TMcxLVT69
+         6MR3yGNPU7iBg1x2Qfp134zWB8II2wBk9d64Sz+rztHW67Z1kaAd479/ezD/KD/brdIZ
+         eUfA==
+X-Gm-Message-State: AFuF++lKKwZOjfsFtUNr8vTPVVi+1syGCDD4il6/wfBP/fJiDryz+wrw
+	veX4FpNa6G90/0njTcxClnJ71RuE1ZJFnqBL0/FakS5yxQnoEYA1PKTv+WrSBNj+jsQtjPwrbIG
+	tzO9aS/qnWX6Jw9/47+jFiUX81J4oJs4n5g==
+X-Gm-Gg: AYBFou2kPZUyFJCATu5DoDObVnzm4/6wTScFBcQd3fepB4pa85FgREoz8dVnhZuJrNs
+	ti+OhOTUEapT44kgveuiJ94lzxM1r3hl8S2gbT9838h9Sh3twN2eWiFvAaIKzw9gf642vXCikK5
+	ASZNyq1dwr5vsRPpjif7m6t6zayA1vdkYqMn4scwjczQHgFZenOA5mzwTcrcVb7SJIoPdvdQjdf
+	6sEv2B4MUuvuVkMCI7hCNk8OMyN4LzEiu3e9QfNWRc7OLngXSDCHlDnUq1y66wIt93rSKUJwCFx
+	nHPKA7KJXgLKcCxmwwzNgb6g553xK+cItF88w5J2PMMnvuAXJQUNYD+qaydIovZPuVXOXOS+XNS
+	m/jzF4HBNPWIw7wmFTyKtP9nDhX09DamucrFyMX0NtWrD2VOxRZ/i8Es33+pRq5obH0vNy3G6
+X-Received: by 2002:a05:690c:e209:20b0:870:c600:686c with SMTP id
+ 00721157ae682-897318ab476mr17923467b3.18.1789888664700; Sun, 20 Sep 2026
+ 00:17:44 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:17:44 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:17:44 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:17:44 -0500
+X-Gm-Features: AcwNN1X_AucyaKpi42Ld0yHbw0-cLQsZA07P2FKsPLCgAqONQeKzlS-tdThBzic
+Message-ID: <CAPdrGek2Ph=DmZCqd9ysHA6HKCMengnMD3Z4z9x=ApjW4qMRSA@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D18_03=3A48_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_20_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY SCANNER =E2=80=94 EDGE REPORT
+
+1 RUN STATE / COVERAGE
+Recovered the cumulative scanner chain from Gmail Sent before
+discovery. Latest persisted run: 2026-09-18 02:52 =E2=80=94 23 new/0 change=
+d.
+Prior registry is treated as an exclusion set. This pass deliberately
+moved deeper into ranks/adjacencies rather than applying a quality
+threshold. 20 new canonical objects selected from the candidate graph;
+known objects such as dynamic-discovery-mcp, Pipelock, MemSentry,
+Jevlike, prior x402 routers, and previously logged video stacks were
+excluded from the new count.
+
+2 NEW OBJECT DASHBOARD =E2=80=94 RANKED WITHIN LANES
+
+AGENT / MONID / CONTROL
+A1 Toolport =E2=80=94 https://github.com/btsouth/toolport =E2=80=94 closest=
+ seed:
+MONID. Local-first MCP gateway; lazy tool discovery, per-client
+profiles, destructive-call approvals, tool integrity/quarantine,
+OS-keychain secrets. 214 stars/56 forks when checked; MIT. Decision:
+ADOPT NOW / BUILD PROBE.
+A2 agentic-community/mcp-gateway-registry =E2=80=94
+https://github.com/agentic-community/mcp-gateway-registry =E2=80=94 closest
+seed: MONID + Privately defence. Separates nginx data plane from
+FastAPI registry/control plane; OAuth/OIDC, dynamic discovery, scopes,
+audit, A2A. Decision: SANDBOX.
+A3 zonlabs/mcp-ts =E2=80=94 https://github.com/zonlabs/mcp-ts =E2=80=94 clo=
+sest seed:
+MONID. Context-efficient dynamic server/tool discovery plus local
+gateway/daemon and sandboxed multi-tool workflows. 23 stars/8 forks;
+MIT. Decision: SANDBOX.
+A4 trpc-group/trpc-agent-go =E2=80=94
+https://github.com/trpc-group/trpc-agent-go =E2=80=94 closest seed: dynamic
+capability mutation. Explicit WithRefreshToolSetsOnRun(true) lets
+agents see server-side MCP tool changes on every run. Decision: BUILD
+PROBE.
+A5 ClayYTsai/agent-discovery-mcp =E2=80=94
+https://github.com/ClayYTsai/agent-discovery-mcp =E2=80=94 closest seed:
+MONID. ERC-8004 discovery + x402 purchase/call; searches ~70k
+registered agents and pays a selected endpoint with a max USDC budget.
+Decision: BUILD PROBE.
+A6 the402ai/mcp-server =E2=80=94 https://github.com/the402ai/mcp-server =E2=
+=80=94
+closest seed: MONID. Browse/purchase agent services, maintain threads,
+subscriptions and provider listings via x402. Decision: WATCH/SANDBOX.
+A7 rplryan/x402-discovery-mcp =E2=80=94
+https://github.com/rplryan/x402-discovery-mcp =E2=80=94 closest seed: MONID=
+.
+Discovery/router with uptime, latency, facilitator compatibility,
+ERC-8004 trust signals, spend log and placement bids. Decision: BUILD
+PROBE.
+A8 apify/mcpc =E2=80=94 https://github.com/apify/mcpc =E2=80=94 closest see=
+d: MONID
+infrastructure. Universal MCP CLI with persistent sessions, sandbox
+proxy and native x402 auto-payment. Decision: SANDBOX.
+
+JEV / DECISION / RSI
+J1 exoharness/exo =E2=80=94 https://github.com/exoharness/exo =E2=80=94 clo=
+sest seed:
+DREAM-RSI. Fully recursive harness with visibility into its own
+code/runtime logs; can alter prompts, memory, tooling and harness
+policy, clone itself and maintain lineages; immutable event log is the
+non-self-editable spine. Decision: BUILD PROBE.
+J2 DaizeDong/self-evolve =E2=80=94 https://github.com/DaizeDong/self-evolve=
+ =E2=80=94
+closest seed: DREAM-RSI. Deterministic self-improvement harness with
+external acceptance gate, git-worktree isolation, rollback and
+explicit anti-self-deception design; 521 tests reported in repo.
+Decision: ADOPT NOW / compare with QP.
+J3 01Amez/RLAW_Implementation =E2=80=94
+https://github.com/01Amez/RLAW_Implementation =E2=80=94 closest seed: JEV.
+Implementation attached to Reward-Driven LLM Agent Workflows: POMDP
+routing + internal reward critique of decision trajectories before
+execution. Decision: SANDBOX.
+J4 gagans23/agent-os =E2=80=94 https://github.com/gagans23/agent-os =E2=80=
+=94 closest
+seed: RSI + governed runtime. Runtime keeps memory/skills/traces and
+only proposes improvements; a separate Ninja Harness
+evaluates/certifies them. Decision: WATCH.
+
+ATTACKER FRONTIER =E2=80=94 DEFENSIVE ANALYSIS ONLY
+T1 Multi-Session Memory Poisoning (MSMP) threat model =E2=80=94
+https://arxiv.org/abs/2606.12703 =E2=80=94 persistent memories injected
+through normal interaction can steer later users/sessions. Important
+because the attacker need not alter weights/code. Decision: BUILD
+PROBE.
+T2 Adaptive authenticated memory poisoning from the same SMSR work =E2=80=
+=94
+provenance alone is insufficient once an authenticated writer is
+adversarial; retrieval-time influence becomes the second boundary.
+Decision: BUILD PROBE.
+T3 x402 registry trust mismatch exposed by agent-discovery-mcp =E2=80=94
+agents can self-declare x402 support while endpoints fail to enforce
+or even exist. This is a marketplace/tool-discovery integrity class:
+advertised capability !=3D observed capability. Decision: CONTENT NOW +
+BUILD PROBE.
+T4 Paid routing manipulation surface in x402-discovery-mcp =E2=80=94 provid=
+er
+placement bids act as routing tiebreakers after trust filtering.
+Legitimate feature, but it creates a concrete economic-influence axis
+that a security router should make explicit to the principal.
+Decision: WATCH/PROBE.
+
+DEFENDER FRONTIER
+D1 Toolport =E2=80=94 lazy discovery + quarantine + approvals + local secre=
+t
+custody. Improvement over static client configs because the gateway
+mediates multiple clients centrally. Decision: ADOPT NOW.
+D2 SMSR =E2=80=94 https://arxiv.org/abs/2606.12703 =E2=80=94 Signed Memory =
+with
+Smoothed Retrieval: HMAC provenance at write time plus randomized
+memory ablation/verdict voting at retrieval. Paper reports unsigned
+attack success falling from 93=E2=80=93100% to 0%; authenticated
+single-injection success 8.0%, and live query-only attack 65.3% ->
+5.3%. Decision: BUILD PROBE.
+D3 mcp-gateway-registry =E2=80=94 identity-aware control/data-plane split,
+scopes and audit around dynamic MCP/A2A discovery. Decision: SANDBOX.
+D4 self-evolve acceptance gate =E2=80=94 not branded as security, but the
+deterministic accept/reject/rollback boundary is a defence against
+self-improvement reward hacking and self-grading. Decision: ADOPT
+DESIGN.
+
+AUTONOMOUS VIDEO / MEDIA
+V1 0xadvait/ai-video-skill =E2=80=94
+https://github.com/0xadvait/ai-video-skill =E2=80=94 closest seeds:
+Open-Higgsfield/OpenX Flow + Dream-RSI. End-to-end across Seedance
+2.0/Kling/Wan/Veo/OmniHuman; generates first frames, prompts, voice,
+clips, upscale/stitch, then has Claude watch each rendered clip, score
+it against intent and persist lessons into the next generation. 6
+stars at check; MIT. Decision: ADOPT NOW.
+V2 Jarad-z/ugc-video-skill =E2=80=94
+https://github.com/Jarad-z/ugc-video-skill =E2=80=94 production-ready UGC
+prompting + official API renderer spanning
+Seedance/Kling/Veo/Sora/Hailuo; includes eval cases and
+polling/downloading pipeline. 2 stars; MIT. Decision: SANDBOX.
+V3 zhouwei713/fpv-immersive-video-prompting =E2=80=94
+https://github.com/zhouwei713/fpv-immersive-video-prompting =E2=80=94
+route-first FPV generation skill with numbered spatial stops/red-line
+camera path constraints for Seedance/Kling/Runway/Veo. 83 stars/22
+forks; MIT. Decision: BUILD PROBE.
+V4 Alisa0808/vibe-creating-skill =E2=80=94
+https://github.com/Alisa0808/vibe-creating-skill =E2=80=94 portable Agent
+Skill for Claude/Codex/OpenClaw/Hermes; model-agnostic prompt
+transformation plus Atlas Cloud route across
+Seedance/Sora/Kling/Veo/Hailuo/Wan/Vidu/Gemini Omni/Grok Imagine.
+Decision: WATCH/SANDBOX.
+V5 Venice video harness documentation/implementation surface =E2=80=94
+https://github.com/veniceai/api-docs =E2=80=94 model-aware preflight/routin=
+g
+across Seedance 2, Kling 3/O3/2.x, Veo 3.1 and Sora 2, including
+Seedance face-input preprocessing constraints. Closest seed: model
+router. Decision: WATCH.
+
+WEIRD ALPHA
+W1 Hierarchical Online Decision Transformer agentic RAN framework =E2=80=94
+https://arxiv.org/abs/2604.03908 =E2=80=94 hierarchical decision transforme=
+r
+activates resource/orchestration/self-healing agents in a 6G network;
+a concrete non-chat domain where a learned bounded controller selects
+downstream agents. Decision: WATCH/JEV inspiration.
+W2 Stellar MCP =E2=80=94 https://github.com/Tasfia-17/stellar-mcp =E2=80=94=
+ autonomous
+USDC x402 wallet/tool layer on Stellar; roadmap explicitly includes
+discovery and programmable spending policy. Decision: WATCH as
+cross-chain agent-commerce pressure.
+
+3 TOP 5 DEEP DIVES
+
+#1 TOOLPORT
+Why it matters: this is one of the cleanest current examples of
+MONID-like convenience converging with Privately-like enforcement. The
+same gateway that reduces tool-context cost also becomes the natural
+choke point for credentials, approvals, integrity checks and
+per-client capability profiles.
+Privately implication: don't build security as an afterthought beside
+discovery. Discovery and authority should be one control plane.
+Smallest experiment: put two MCPs behind Toolport, give two clients
+different profiles, mutate a tool and test whether QP can bind
+authorization to the observed tool fingerprint rather than name.
+Falsifier: if Toolport cannot expose enough stable identity/version
+information to make grants reproducible, it is only an integration
+reference.
+
+#2 EXO
+Why it matters: Exo pushes RSI beyond prompts/memory/skills into
+harness policy itself. It retains only a canonical event log as the
+non-mutable historical spine.
+Privately implication: self-modifying agents force an explicit answer
+to 'what is constitutionally immutable?' QP proofs, authority
+receipts, event provenance and the mechanism that decides whether a
+mutation may execute probably cannot all be writable by the same
+self-improving process.
+Smallest experiment: allow Exo to propose changes to a toy policy
+module but require an external QP verifier + immutable receipt to
+authorize activation.
+Falsifier: improvements are mostly cosmetic harness edits with weak
+measurable task transfer.
+
+#3 SELF-EVOLVE
+Why it matters: explicitly attacks the self-deception problem in
+open-ended RSI. LLM proposes; deterministic code adjudicates; changes
+live in worktrees; acceptance/rollback isn't decided by the improving
+model.
+Privately implication: this is close to the correct architecture for
+QP processors that are allowed to improve themselves: proposer and
+authority/verifier must be separable.
+Smallest experiment: run the same repo-improvement task under current
+loop vs self-evolve acceptance gate and compare accepted regressions.
+Falsifier: the deterministic gate collapses when the objective is
+genuinely ambiguous and the fallback judges become equivalent to
+self-grading.
+
+#4 AI-VIDEO-SKILL
+Why it matters: this is the strongest unseen video neighbour because
+it already implements the media version of Dream-RSI: render ->
+inspect -> score -> save lesson -> regenerate. It also routes among
+multiple current video families rather than coupling to one vendor.
+Privately implication: use this as the first autonomous content lab
+rather than building another video stack. The useful research question
+is whether persisted lessons actually reduce cost/failed generations
+across episodes.
+Smallest experiment: fixed 30-second Privately explainer, 5
+iterations, fixed spend ceiling; measure first-pass acceptance,
+regeneration count and cost.
+Falsifier: stored lessons do not transfer across shots/topics or cause
+prompt overfitting.
+
+#5 AGENT-DISCOVERY-MCP
+Why it matters: combines registry discovery and payment in the same
+MCP and explicitly exposes a trust gap: metadata can claim x402
+support while the real endpoint is dead/unprotected.
+Privately implication: capability identity must be empirical. Before a
+purchased/discovered service receives authority, probe what it
+actually exposes and bind the grant to observed
+endpoint/schema/price/effect, not registry metadata.
+Smallest experiment: discovery -> preflight endpoint -> compare
+advertised vs observed capability -> authorize max $0.01 -> receipt.
+Falsifier: ecosystem remains too immature for enough real services to
+exercise meaningful routing.
+
+4 AGENT FRAMEWORK / MONID FRONTIER
+Rank: Toolport > mcp-gateway-registry > mcp-ts > agent-discovery-mcp >
+x402-discovery-mcp > mcpc > the402 MCP > trpc-agent-go refreshable
+ToolSets.
+
+5 JEV / DECISION / RSI FRONTIER
+Rank: Exo > self-evolve > RLAW/POMDP router > agent-os. W1 H-ODT is
+the weird-domain control analogue.
+
+6 ATTACKER FRONTIER
+New canonical mechanisms added:
+- cross-session persistent-memory poisoning through ordinary interaction;
+- authenticated-writer memory poisoning that defeats provenance-only defenc=
+es;
+- registry metadata/capability mismatch in agent marketplaces;
+- economic routing influence / paid placement as an explicit
+agent-selection input.
+No operational exploitation instructions included.
+
+7 DEFENDER FRONTIER
+Rank: Toolport mediation > SMSR certified memory boundary >
+identity-aware MCP gateway/control-plane separation > deterministic
+RSI acceptance/rollback.
+
+8 AUTONOMOUS VIDEO / MEDIA FRONTIER
+Rank: ai-video-skill > ugc-video-skill > fpv-immersive-video-prompting
+> vibe-creating-skill > Venice video harness. The most important delta
+is not another provider wrapper: it is ai-video-skill's persisted
+render-critique loop.
+
+9 COMMERCIAL SHOCK DERIVATIVES
+The x402 Foundation now documents MCP servers publishing paid tools
+into Bazaar discovery. Apify's MCP stack exposes direct
+x402/AGI/Skyfire payment paths. The useful derivative is not 'agents
+can pay'; it is that discovery, routing, trust, budgets and receipts
+are becoming a single runtime surface. Privately should sit at that
+surface.
+
+10 WEIRD ALPHA
+H-ODT shows learned hierarchical agent selection in telecom control
+rather than chat workflows. Stellar MCP shows payment-capable agents
+escaping the Base-only assumption and pushes spending policy toward a
+chain-independent authority abstraction.
+
+11 ATTACK LOGBOOK DELTAS
+Added fingerprints:
+MEM-PERSIST-NORMAL-CHANNEL; MEM-AUTH-WRITER;
+REGISTRY-CAPABILITY-MISMATCH; ECONOMIC-ROUTING-INFLUENCE.
+
+12 TOP PRIVATELY LAB EXPERIMENTS
+1. Toolport + QP capability-fingerprint grant test.
+2. Exo self-modification with external immutable QP authority spine.
+3. SMSR vs MemSentry vs current QP memory-admission bakeoff.
+4. ai-video-skill fixed-budget 5-generation learning curve.
+5. x402 discovery -> empirical capability preflight -> bounded payment
+-> signed receipt.
+
+13 BUILD/PROBE OPPORTUNITIES
+Highest-value primitive: CAPABILITY ATTESTATION BEFORE AUTHORITY.
+Discovery result is merely a claim. Privately independently observes
+endpoint/tool schema/version/price/network/effect class, hashes that
+state, then grants authority to the hash. Drift invalidates only
+dependent grants.
+
+14 CONTENT OPPORTUNITIES
+- 'Your AI agent's tool list is becoming an app store =E2=80=94 who verifie=
+s the apps?'
+- 'Self-improving agents need a constitution they cannot rewrite.'
+- 'I let an AI video agent critique itself for five generations: did
+cost actually fall?'
+
+15 TOP 5 THINGS TO TRY NOW
+Toolport; self-evolve; ai-video-skill; Exo in a sandbox;
+agent-discovery-mcp with a tiny test budget.
+
+16 WATCHLIST
+Keep: Monid, Jevlike, TinyRouter, dynamic discovery/loaders, Pipelock,
+nilbox/BotBox/claw-wrap family, MemSentry/SMSR, Exo/self-evolve,
+Toolport, x402 discovery/payment routers, autonomous video critique
+loops.
+
+17 SOURCE-YIELD / GRAPH-TRAVERSAL LEDGER
+Highest-yield branches this pass:
+MONID -> dynamic MCP discovery -> gateway/control plane ->
+Toolport/mcp-ts/mcp-gateway-registry.
+MONID -> x402 -> discovery/trust ->
+agent-discovery-mcp/x402-discovery/the402/mcpc.
+DREAM-RSI -> recursive harness -> Exo/self-evolve/agent-os.
+OPENX -> video skill -> model routing -> critique-memory loop -> ai-video-s=
+kill.
+MEMORY POISONING -> provenance -> authenticated adversary -> SMSR.
+Next run: branch from Toolport's integrity/quarantine vocabulary,
+Exo's immutable event-log lineage, self-evolve's anti-gaming
+acceptance mechanisms, x402 trust/reputation, and ai-video-skill's
+persisted QC memory.
+
+18 MASTER FRONTIER INDEX DELTA
++20 canonical objects/mechanisms from this run. Existing registry
+retained as exclusion set; no prior object is counted new.
+
+19 MACHINE-READABLE RUN_STATE JSON
+{"run_local":"2026-09-18T03:48:28+07:00","new_count":20,"changed_count":0,"=
+new_objects":["Toolport","mcp-gateway-registry","mcp-ts","trpc-agent-go
+dynamic ToolSet refresh","agent-discovery-mcp","the402
+MCP","x402-discovery-mcp","mcpc","Exo","self-evolve","RLAW_Implementation",=
+"agent-os","MSMP
+threat model","authenticated-writer memory poisoning","x402 registry
+capability mismatch","economic routing
+influence","SMSR","ai-video-skill","ugc-video-skill","fpv-immersive-video-p=
+rompting","vibe-creating-skill","Venice
+video harness","H-ODT agentic RAN","stellar-mcp"],"note":"Dashboard
+contains 20+ unique canonical objects/mechanisms; some mechanisms
+share a source object and category overlaps are not double-counted for
+discovery ranking."}
+
+CORE INFERENCE
+The frontier is converging on a three-stage problem: DISCOVER ->
+VERIFY -> AUTHORIZE. Discovery is becoming cheap and effectively
+unbounded. Payment makes capabilities purchasable at runtime. RSI
+makes the harness itself mutable. Therefore the scarce security
+primitive is no longer a static allowlist; it is a continuously
+recomputed, empirically attested capability graph with an authority
+spine that the agent cannot silently rewrite.

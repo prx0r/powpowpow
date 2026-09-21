@@ -1,0 +1,1382 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id JGRV3BAb9EcP
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 12:49:11 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=Pq2R1O299lm83RI8bvAKia8JgbCiGJpoAf0DZSH+zYIbZrVd9oO1PKAnL+5HtxtsOEDYx313N
+	NpxIgbJFm16MPVHSYZeZwL3nO1UXU3U5Og2qo6F034ShyAQPVmlzn/AnH3+eK2196rfT7AzfzCi
+	etgmn5bIyMGjKKv1X/Iqkk34rHxXPJP45b5t13pxEyn8OjCUv5LSnh3U6ZAfLDtjw58W8h11ubN
+	PI0GAMuGeAG+HKZ535/2tNrcg21C3rNp4WxOxfjQkTbXwKXB0WQ6wB9AJZx1i1pC2yag3OnDH8+
+	ddRUOULJAKQ3GHAkWEH0ahz7+TtlL/fSFmezYWOc8PMA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789822151; x=1790426951; bh=vO9XPY9X
+	Ow2gzRu7ZwcDbguzeDWIPoRdfHoOUIbb3nU=; b=EOJ38eYjEG5O7xi/1aGl9frzsGu1iBWtvp8
+	VMigNLlJdq2n5t4Omf3oH49dIFVDaqL6P0jCX/PjkGuf3o7B9VKm/zxZOjTLrWlqaXzP65XDuMx
+	Gb/S0NvdlxU7DhNvuicSn8razHehO4v22Be9OBxvXBxS6vLVr2zyVsHEovkIp6q38gFATsrkVkl
+	HjyJI+gk8PM0Qz8Skrx2qb+KNGxbfWqQlrsCKCRwNuTBdLis2rPu6M4VoQ89DYW2o3+R8h4wlju
+	a7Xp1eSqlIFggu0JYjmjmDJy0JGYDpUi3okneQgKtS5o3R1itqooitH1T3eMZfihT12UDO9UoIG
+	D9DDpeQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VHBtJWhR;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VHBtJWhR;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4aae3147so1212012d50.1
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 05:49:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789822151; cv=none;
+        d=google.com; s=arc-20260327;
+        b=njZFQQAM0EpLwOp+4feiAoJkeTxWOZCyt6GZpgU1JM10xdptL8iY65xWA+/aumPfbD
+         QVfXmUrAoID9AH2jxXx9P7S3Yi1BwZB5WRBtlM7YisDYr6LbqlNgDqYxGc2xE4hQmVUF
+         FDStCvKPjW3QbR2lZZ8ah10aV5oSmt240p1Z60h/uGyM4SEYmRCa6jxd8V+hFt7hkmhz
+         nnaxMqa93JUWe9Fgeh46HlsZ6gccpsrV4ZswRvE+vRmSOzQgBzawuKfNNQ8o/eEhh311
+         E9MOFdUjHBYUxq52r2+M6vPhJtaZleJrUI88m2c92bJC+RWsLl/IRYuAmJeGK6575AXo
+         RxXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=vO9XPY9XOw2gzRu7ZwcDbguzeDWIPoRdfHoOUIbb3nU=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=nqF4eCReM3rEC7Ns9Gs6TZnMhbQH06o/OBkCJa1bx4vwyAW8voappki+BegmrPz88q
+         OG6IBqRuZD1h5KXvXbfU+IUQtSZQZYdNp4vSOpJa1K0AuuWljrsKBpgAh7UuLIbNg/kw
+         Iawx5Xvqi/puTwZ+ABZZtr2eV4On34utZs80MMEIvx8gWb+Tk9d6AeirTTqBvf1agcNR
+         KCs1V7MrJAH++5Su4qst9/jPd9O43NfNSmtsSALteMED3Cft4jVXC83Wo1DWK88JwVpy
+         yN66SROkQsaqJYNpTr1MIHmw+QVYhsW6znDiHK1VI0y4jVMFaJAGgeVeEp417b6lh5CN
+         lsXA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789822151; x=1790426951; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=vO9XPY9XOw2gzRu7ZwcDbguzeDWIPoRdfHoOUIbb3nU=;
+        b=VHBtJWhRFnpQqlsqhUoyl1BtRIm2vTB31d1vp8CgRivPyWa2u5zbqoGCbnrMiYtPdc
+         y4M7vI/m3nIudHDBs+G0XmMT4kDFWIAyrRQbs3VmcbY4IFJuw088p8UQxDqQe3bA15xY
+         ByVdMTpZVkiZDrNsV5iVur6qLRWddlGMG8bl8i8PmH0HwCnIyKxRGuLEFSp3gpQ6D+19
+         sQpMcccOOF7S39V+t+fv8PYqCyj1hS7/8JmfSL+m5a7n2UDUywcWbUt9vSwjvv9Qgq1D
+         ToljaP7O5L0LgZGi+EZYGlCdZSwOE3HGf8S1veaFlApqxjkq7fjmWqirAzTWbTukR89L
+         sDJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789822151; x=1790426951;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=vO9XPY9XOw2gzRu7ZwcDbguzeDWIPoRdfHoOUIbb3nU=;
+        b=YH8Srw3D16FhN7Mx7/GTd1nqvV4qXTguZ6dR2smLgUZMun4KJRNBV8bzjW7C2uv4yf
+         QeqZDlxSE7Twx7l6WcpA7LQ7ZUoeKzEFVRGeWYoIVvtv/iLmVBGc/BfgF6uaeSFn0jdc
+         M+bdnA8IFY1q8+QoOodcfimStyKAzke1RGMOB1N2Yj/3yBmjfDEJQr9vAfEQ+52CMM4A
+         6rmqaRMI32fEjvt+A6kRLyvtFtSfHdTUreYB2hnJVMvTeG/YIkParO5xFUQxyCZ2MuJS
+         TfS7u2BzmEC5lmRyhiGgq+fOiJ1tZ3846x6J5yutW3t9PtWiGTRPlYOInKQof6eL94Sh
+         oemw==
+X-Gm-Message-State: AFuF++n8DHB02DDO2J/VdmCeqvnAq3vY5GsA8Q5ytK+dceQkdolWRMJr
+	wMpLb8YnHRa0EqyRDN11hZgTTyHhhBE1X1Tosl0r2ZzGdlhbW7au4TAIXQMQttMOho3YXX15Fp/
+	bthuWPvlGKCidOs1E+gKwkvE0YYoVapcolQ==
+X-Gm-Gg: AYBFou2orF64l7cY9GeQtlt+yGM8Q0dxjU/MrLm7KiNZbRbApSOn6EtfxYxJJ2OeC0f
+	Dk3cBUy259kSlx2lfmx92x1jGt54Vm8Nv8N4C66CV4WzvJjHVdkVy1VMWGaasKlb/1SZrIMRPXF
+	JVsxFVFSjz3xgXeTZlwpzSqulb3ZNrsQLKZHyhu07QgcHcElT3D0GyqiQdRAm4tlf6VMVvXVInM
+	I29prag3297MsZQVoD9fWhtWPkZ6F8GruZ5XsAuc5dtdKOgY7Pa3vuWuj1iW4ka+F+dZsbBk7Ji
+	SMJsewtAkFPTRpbc4YR/WKrkeafLZvGu+RU/Whk9SD+MMtt+DyZ29zgBMwIoXeHkf+47ky5mZHy
+	XBQbYxRfazxr7LqMl9RFy1Q9COms0Wd30j3J2gf+y08YJaueg02wOrEZ0BN0wpHh/CyH7lYlL5Q
+	==
+X-Received: by 2002:a05:690e:1206:b0:672:a0d3:a73f with SMTP id
+ 956f58d0204a3-672a0d3aa52mr193556d50.79.1789822150579; Sat, 19 Sep 2026
+ 05:49:10 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 07:49:09 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 07:49:09 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 07:49:09 -0500
+X-Gm-Features: AcwNN1VOvIWz6UR1Pya6Di8CTWxC-JSmwlmKTLxAm_Dl9bmkXmSjvgenPUOFckU
+Message-ID: <CAPdrGenC9BhQg+rjw+RK1yuu-oZavteR99xq9iYnx=ZO=Je3Kg@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_=E2=80=94_Lean_Dev_Plan_=2B_FunnyLabs_Phase_2?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet + Funny Module + FunnyLabs =E2=80=94 Lean Dev Plan
+
+GOAL
+
+Ship a real, buyable Roast.pet store fast.
+
+Do NOT build a giant commerce platform, marketplace router, humour
+model, RL system, or generic agent stack first.
+
+The first sprint succeeds when:
+
+1. 10 genuinely funny Roast.pet cards are live and purchasable on Etsy.
+2. Each can accept a pet photo and minimal personalization.
+3. A rendered print-ready card can be produced from that input.
+4. Prodigi can print and ship the result.
+5. The same templates can later be called by Muse.
+6. FunnyLabs/social experimentation starts only AFTER the store is live.
+
+CORE PRODUCT
+
+Roast.pet is not "AI pet avatars."
+
+Roast.pet is:
+
+"Upload your pet. We make them say something genuinely funny."
+
+The wedge is:
+- personalised comedy
+- pets
+- cards first
+- fast fulfilment
+- topical/current humour
+- optional savage/edgy tone
+
+The infrastructure is intentionally boring:
+
+Etsy
+=E2=86=92 collect order + personalization
+=E2=86=92 funny/template selection
+=E2=86=92 render design
+=E2=86=92 Prodigi
+=E2=86=92 print + ship
+
+Muse later uses the same underlying card-generation function directly.
+
+The durable differentiator is not the print provider or image model.
+
+It is:
+- joke quality
+- format choice
+- personal relevance
+- timely humour
+- consistent brand voice
+- learning which combinations actually make people laugh and buy
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 0 =E2=80=94 SCOPE FREEZE
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Do not build yet:
+- generic commerce router
+- Printify clone
+- complex marketplace abstraction
+- custom foundational humour model
+- sophisticated RL
+- broad POD catalog
+- large web editor
+- customer-facing design canvas
+- automated multi-provider routing
+- complex agent-commerce MCP
+- full FunnyLabs platform
+- synthetic-comedian product
+
+Use existing providers for everything replaceable.
+
+Canonical stack:
+
+Etsy
+=E2=86=92 personalization intake
+
+Small Roast.pet backend
+=E2=86=92 joke/template selection
+=E2=86=92 render request
+
+Bannerbear / Placid / similar template renderer
+=E2=86=92 production asset
+
+Prodigi
+=E2=86=92 print + ship
+
+Later:
+Muse
+=E2=86=92 same backend directly
+
+Later:
+FunnyLabs
+=E2=86=92 supplies better templates / humour priors
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 1 =E2=80=94 TEN CARD SPRINT
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Target:
+
+10 cards live on Etsy.
+
+Use ONE core physical card SKU initially if possible.
+
+Do not launch shirts first.
+Do not launch mugs first.
+Do not launch posters first.
+
+Cards are the best wedge because:
+- humour-native
+- low price
+- easy gifting use case
+- high urgency
+- personalization has obvious value
+- easier asset geometry
+- faster testing
+- lower fulfilment complexity
+
+Each listing should have:
+- excellent thumbnail
+- clear joke premise
+- one obvious personalization flow
+- one physical card format
+- one price
+- minimal choices
+
+
+THE FIRST 10 CARD FORMATS
+
+1. PET THOUGHT BUBBLE
+
+Visual:
+human visibly worried/sad/serious
+pet calm/stupid/selfish
+
+Comedy mechanism:
+human existential problem vs pet trivial concern
+
+Works for:
+- AGI
+- work
+- money
+- relationships
+- ageing
+- birthdays
+- current events
+
+Example structure:
+Human:
+"Will AGI replace me?"
+
+Pet:
+"Will dinner still be at six?"
+
+
+2. PET STAND-UP
+
+Visual:
+pet at microphone / podium / small comedy stage
+
+Comedy mechanism:
+pet roasting owner directly
+
+Inputs:
+- pet photo
+- recipient name
+- 1=E2=80=933 facts
+- roast level
+
+This is the most important bridge into later FunnyLabs/Pogtown work.
+
+
+3. PET PERFORMANCE REVIEW
+
+Visual:
+corporate performance-review document / HR card
+
+Comedy mechanism:
+pet evaluates owner like an employee
+
+Categories:
+- food delivery
+- walks
+- punctuality
+- leadership
+- emotional stability
+
+Great for:
+- office humour
+- birthdays
+- partners
+- coworkers
+
+
+4. BREAKING NEWS
+
+Visual:
+fake news / urgent bulletin
+
+Comedy mechanism:
+recipient/pet behavior treated as nationally important event
+
+Inputs:
+- person
+- pet
+- one embarrassing fact
+- optional topical reference
+
+
+5. PET THERAPIST
+
+Visual:
+pet as therapist/doctor
+
+Comedy mechanism:
+pet "diagnoses" owner's habits
+
+Great for:
+- anxiety jokes
+- dating
+- work
+- crypto
+- phones/social media
+- ageing
+
+
+6. BIRTHDAY INCIDENT REPORT
+
+Visual:
+official incident/accident report
+
+Comedy mechanism:
+recipient reaching current age framed as an operational failure
+
+Inputs:
+- name
+- age
+- 1=E2=80=932 known habits
+- pet photo optional
+
+
+7. PET SEARCH HISTORY
+
+Visual:
+browser/search UI parody
+
+Comedy mechanism:
+pet search queries reveal owner/pet relationship
+
+Example:
+"how to report owner for late breakfast"
+"can dogs legally change families"
+"why does human say 'one sec' for 40 minutes"
+
+Very easy to personalise.
+
+
+8. HUMAN VS PET PRIORITIES
+
+Visual:
+split-panel or two-column contrast
+
+Comedy mechanism:
+human serious concern / pet trivial concern
+
+This should become the main topical/current-events format.
+
+Ideal for:
+- AGI
+- politics-adjacent culture without needing partisan messaging
+- jobs
+- sports
+- dating
+- money
+- internet trends
+
+
+9. PET COMPLAINT DEPARTMENT
+
+Visual:
+formal complaint letter / customer service / tribunal
+
+Comedy mechanism:
+pet files official complaint about owner
+
+Inputs:
+- pet
+- owner name
+- one specific habit
+- severity
+
+
+10. ROAST.PET WILDCARD
+
+Listing promise:
+"Upload your pet. Tell us about the person. We'll choose the funniest forma=
+t."
+
+This is the most important future-facing listing.
+
+It exercises:
+- humour selection
+- format routing
+- personal context
+- creative judgment
+
+Initially this can be manually reviewed.
+
+Do NOT automate it fully before sales prove demand.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 2 =E2=80=94 PERSONALIZATION SCHEMA
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Keep Etsy inputs small.
+
+Recommended intake:
+
+1. Upload your pet photo
+2. Who is this for?
+3. Occasion
+4. Tell us 1=E2=80=933 things about them
+5. Roast level:
+   - Mild
+   - Roast
+   - Savage
+
+Optional:
+- topical/current references allowed? yes/no
+
+Do not make the buyer write the joke.
+
+The value proposition is:
+"Give us context. We make it funny."
+
+
+STANDARD ORDER OBJECT
+
+{
+  "listing_id": "...",
+  "template_id": "...",
+  "pet_image": "...",
+  "recipient_name": "...",
+  "occasion": "...",
+  "facts": ["..."],
+  "roast_level": "mild|roast|savage",
+  "topical_ok": true,
+  "shipping": {...}
+}
+
+For static/non-personalized cards:
+- no custom fields required
+- fixed artwork
+- fixed copy
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 3 =E2=80=94 TEMPLATE RENDERING
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Do not build your own design editor.
+
+Use Bannerbear, Placid, or equivalent.
+
+Each card template should expose named layers:
+
+PET_IMAGE
+OWNER_IMAGE optional
+HEADLINE
+SUBHEAD
+PUNCHLINE
+NAME
+AGE optional
+FOOTER optional
+BRAND_MARK
+
+Store per-template:
+- canvas dimensions
+- bleed
+- safe area
+- image crop rules
+- typography
+- max character counts
+- allowed line count
+- front design
+- inside design if needed
+- Prodigi target SKU
+- render mapping
+
+Example internal template object:
+
+{
+  "id": "pet_standup_v1",
+  "renderer_template_id": "...",
+  "prodigi_sku": "...",
+  "front": {
+    "headline_max": 60,
+    "punchline_max": 140
+  },
+  "required_inputs": [
+    "pet_image",
+    "recipient_name"
+  ],
+  "optional_inputs": [
+    "fact_1",
+    "fact_2",
+    "occasion"
+  ]
+}
+
+
+MINIMAL BACKEND
+
+POST /render/card
+
+Input:
+{
+  "template_id": "pet_standup_v1",
+  "pet_image": "...",
+  "headline": "...",
+  "punchline": "...",
+  "recipient_name": "..."
+}
+
+Output:
+{
+  "front_asset_url": "...",
+  "inside_asset_url": "...",
+  "preview_url": "...",
+  "print_asset_url": "..."
+}
+
+That is enough.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 4 =E2=80=94 HUMOUR GENERATION V0
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Do not build a humour model yet.
+
+Use a frontier LLM with a very small structured contract.
+
+Input:
+- template type
+- recipient
+- facts
+- pet context
+- occasion
+- roast level
+- topical context optional
+
+Output:
+3 candidates.
+
+Each candidate:
+{
+  "premise": "...",
+  "headline": "...",
+  "punchline": "...",
+  "visual_note": "...",
+  "risk_flags": []
+}
+
+Then:
+- human picks one initially
+- or model ranks them
+- render chosen candidate
+
+The first objective is not automation.
+
+The first objective is:
+"Can we consistently produce cards people actually want to send?"
+
+
+IMPORTANT:
+Do not let every card sound like generic ChatGPT humour.
+
+Force structural diversity.
+
+Examples:
+- dry
+- absurd
+- savage
+- observational
+- fake-official
+- current/topical
+
+If all three candidates are variations of the same joke, regenerate.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 5 =E2=80=94 PRODIGI FULFILMENT
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Prodigi is the factory.
+
+V0 can be semi-manual.
+
+Flow:
+
+Etsy order
+=E2=86=92 order held / not yet fulfilled
+=E2=86=92 generate final card
+=E2=86=92 render production asset
+=E2=86=92 upload/apply asset
+=E2=86=92 review
+=E2=86=92 release Prodigi order
+=E2=86=92 tracking returned
+
+This is acceptable for the first sales.
+
+Do not waste time automating fulfilment before the cards are good.
+
+Only automate when manual handling starts becoming annoying.
+
+
+LATER API FLOW
+
+POST /fulfil/card
+
+Input:
+{
+  "prodigi_sku": "...",
+  "front_asset_url": "...",
+  "inside_asset_url": "...",
+  "shipping_address": {...}
+}
+
+Output:
+{
+  "order_id": "...",
+  "status": "...",
+  "tracking": null
+}
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 6 =E2=80=94 ETSY STORE STRUCTURE
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Store:
+ROAST.PET
+
+Positioning:
+"Funny personalised cards and gifts from your pet."
+
+Primary promise:
+"Upload your pet. We'll make them say something hilarious."
+
+Do not lead with:
+- AI
+- AI-generated
+- avatar
+- print-on-demand
+- generative design
+
+Those are implementation details.
+
+
+LISTING MIX
+
+Start with:
+
+10 personalised card listings
+
+PLUS
+
+10=E2=80=9330 static/non-personalized funny cards as quickly as you can
+produce genuinely good jokes.
+
+Why static matters:
+- cheap to buy
+- fast to create
+- no fulfilment complexity from custom design
+- lets current humour become products immediately
+- gives store more inventory
+- gives socials a direct monetization path
+
+Example:
+a topical joke works on social
+=E2=86=92 fixed card version
+=E2=86=92 personalized pet version
+=E2=86=92 maybe shirt later
+
+
+PRICE LADDER
+
+Do not optimize price immediately.
+
+Conceptually:
+
+=C2=A3
+static joke card
+
+=C2=A3=C2=A3
+photo/name personalization
+
+=C2=A3=C2=A3=C2=A3
+full custom roast / wildcard
+
+Test actual price points from sales.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 7 =E2=80=94 STATIC HUMOUR LOOP
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Create non-personalized designs alongside custom cards.
+
+Workflow:
+
+current event / meme / observation
+=E2=86=92 write 10 joke premises
+=E2=86=92 choose 2=E2=80=933
+=E2=86=92 make social posts
+=E2=86=92 if one lands, turn into:
+   - card
+   - personalized card
+   - maybe shirt
+
+This should be extremely fast.
+
+The advantage is not inventory.
+There is no inventory.
+
+The advantage is speed from joke =E2=86=92 product.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 8 =E2=80=94 MUSE INTEGRATION
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Only after the card engine works.
+
+Muse should not need to know Bannerbear or Prodigi.
+
+Expose one clean tool:
+
+create_funny_card({
+  recipient,
+  occasion,
+  context,
+  pet_image,
+  humour_level,
+  use_user_context
+})
+
+The backend:
+1. chooses template
+2. generates jokes
+3. ranks/selects
+4. renders
+5. previews
+6. orders
+
+Muse contributes:
+- personal context
+- preferences
+- conversational intent
+- recipient knowledge
+- urgency
+
+Roast.pet contributes:
+- humour identity
+- templates
+- design language
+- card-generation logic
+
+Prodigi contributes:
+- atoms
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PHASE 9 =E2=80=94 FUNNYLABS
+AFTER INITIAL SPRINT
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+FunnyLabs is NOT a launch blocker.
+
+Start only once:
+- store is live
+- templates exist
+- social output is flowing
+- there is something to learn from
+
+FunnyLabs purpose:
+
+"Learn what humans actually find funny."
+
+Not:
+"train a giant humour model."
+
+Use social content as a cheap experimental surface.
+
+
+REUSE /KILLELLA
+
+The /killella repo already contains important primitives:
+
+Comedian
+=E2=86=92 ActVersion
+=E2=86=92 Appearance
+=E2=86=92 audience reaction
+=E2=86=92 patch/new version
+
+That is useful for FunnyLabs.
+
+Keep:
+- immutable comedian/persona versions
+- fixed challenge environments
+- performance metadata
+- audience reaction signals
+- compare versions over time
+
+Do not carry over unrelated complexity.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+FUNNYLABS EXPERIMENT DESIGN
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+The most useful experiments are controlled comparisons.
+
+
+EXPERIMENT A:
+SAME JOKE, DIFFERENT CHARACTER
+
+Example:
+exact same 45-second set performed by:
+
+A. depressed dog
+B. manic goblin
+C. corporate CEO
+
+Hold constant:
+- wording
+- topic
+- runtime
+- posting channel where possible
+- publish window
+
+Measure:
+- hook retention
+- completion
+- rewatches
+- shares
+- comments
+- follows
+- likes
+- clicks
+
+Question:
+How much does character affect humour?
+
+
+EXPERIMENT B:
+SAME CHARACTER, DIFFERENT JOKE
+
+Hold avatar/persona constant.
+
+Vary:
+- absurdism
+- roast
+- observational
+- topical
+- misdirection
+- deadpan
+- escalation
+
+Question:
+Which structures work for which character?
+
+
+EXPERIMENT C:
+SAME PREMISE, DIFFERENT DELIVERY
+
+Hold premise constant.
+
+Vary:
+- voice
+- pacing
+- pause placement
+- facial expression
+- visual staging
+
+Question:
+How much does delivery alter response?
+
+
+EXPERIMENT D:
+SAME MATERIAL, DIFFERENT PERSONALIZATION DEPTH
+
+Compare:
+- generic
+- first-name only
+- one personal fact
+- multiple contextual facts
+
+Question:
+When does personalization become funnier vs creepy?
+
+
+EXPERIMENT E:
+TIMELY VS EVERGREEN
+
+Same format.
+
+One topical/current.
+One timeless.
+
+Measure:
+- initial reach
+- decay curve
+- share rate
+- conversion to product
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+FUNNYLABS DATA MODEL
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Keep it tiny.
+
+For every social clip:
+
+{
+  "clip_id": "...",
+  "character_id": "...",
+  "character_version": "...",
+  "joke_id": "...",
+  "premise": "...",
+  "structure": [
+    "absurdism",
+    "misdirection",
+    "escalation"
+  ],
+  "topic": "...",
+  "timely": true,
+  "duration": 48.2,
+  "voice": "...",
+  "visual_format": "...",
+  "posted_at": "...",
+  "platform": "...",
+  "metrics": {
+    "views": 0,
+    "avg_watch": 0,
+    "completion": 0,
+    "rewatches": 0,
+    "shares": 0,
+    "comments": 0,
+    "likes": 0,
+    "follows": 0,
+    "shop_clicks": 0,
+    "sales": 0
+  }
+}
+
+Do not make one fake "funny score" yet.
+
+Keep the raw signals.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SOCIAL SIGNAL PRIORITY
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Roughly stronger signals:
+
+purchase
+share
+replay
+comment quoting/repeating joke
+completion
+follow
+like
+impression
+
+But do not collapse them immediately.
+
+Different behaviours may represent different kinds of humour.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+KILLELLA INSIGHTS TO PRESERVE
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+From the earlier work, useful comedy dimensions include:
+
+- absurdist logic
+- escalation
+- misdirection
+- non-sequitur
+- deadpan commitment
+- wordplay / coinage
+- callbacks
+- anomaly detection
+- contradiction
+- status inversion
+- surprise
+- specificity
+- recurring themes / character lore
+
+These become metadata tags for experiments.
+
+Do not pretend they are universal laws.
+They are hypotheses to test.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+POGTOWN / SYNTHETIC COMEDIANS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Later FunnyLabs can generate persistent comedians.
+
+Each comedian should have:
+
+- stable identity
+- visual form
+- voice
+- worldview
+- comedy style
+- recurring topics
+- boundaries
+- immutable version history
+
+Example:
+
+comedian_id: depressed_dog
+version: 4
+
+style:
+- dry
+- low-energy
+- self-deprecating
+- observational
+
+devices:
+- deadpan
+- understatement
+- callbacks
+
+topics:
+- owners
+- food
+- AGI
+- work
+
+Then update versions based on real performance.
+
+Do not silently mutate a character.
+
+Keep:
+v1
+v2
+v3
+...
+
+This lets you measure improvement.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SOCIAL =E2=86=92 COMMERCE LOOP
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+This is the key long-term loop:
+
+social joke test
+=E2=86=92 winner identified
+=E2=86=92 convert into card template
+=E2=86=92 sell static version
+=E2=86=92 sell personalized version
+=E2=86=92 measure purchases
+=E2=86=92 feed result back into FunnyLabs
+
+And the reverse:
+
+personalized card format sells well
+=E2=86=92 turn it into recurring social bit
+=E2=86=92 test characters/topics
+=E2=86=92 generate more variants
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+TOPICAL HUMOUR FEED
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Later, add a small current-events input.
+
+Do NOT build a giant news engine.
+
+Just supply:
+- major AI/AGI news
+- internet memes
+- football/sports events
+- workplace culture
+- relationships/dating discourse
+- seasonal events
+
+For each:
+- topic
+- date
+- freshness window
+- possible joke frames
+- audience
+- brand/platform risks
+
+FunnyLabs tests the frames.
+
+Roast.pet turns winners into products.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PRIVACY / MUSE CONTEXT
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+If Muse uses personal history to make jokes:
+
+- ask permission
+- pass only relevant summary
+- avoid sensitive/private details by default
+- allow "mild / savage / no history"
+- never expose information the recipient should not know
+
+The benefit is:
+"this feels genuinely personal"
+
+The danger is:
+"why the hell does this card know that?"
+
+Stay on the right side of that line.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+REPO SHAPE
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Keep initial repo small:
+
+/roastpet
+  /app
+  /api
+    render-card.ts
+    fulfil-card.ts
+    generate-jokes.ts
+  /templates
+    pet-thought-bubble/
+    pet-standup/
+    performance-review/
+    breaking-news/
+    pet-therapist/
+    birthday-incident/
+    search-history/
+    priorities/
+    complaint/
+    wildcard/
+  /providers
+    renderer.ts
+    prodigi.ts
+    etsy.ts
+    llm.ts
+  /schemas
+    order.ts
+    template.ts
+    joke.ts
+  /tests
+  /docs
+
+Later:
+
+/funnylabs
+  /characters
+  /experiments
+  /events
+  /analysis
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SPRINT 1 TASK LIST
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+1. Pick one Prodigi greeting-card SKU.
+2. Get exact print dimensions/bleed/safe area.
+3. Create one renderer account.
+4. Build one canonical card template end-to-end.
+5. Make /render/card work.
+6. Print one real sample.
+7. Build Etsy personalization fields.
+8. Create 10 card concepts.
+9. Render strong listing thumbnails/mockups.
+10. Publish 10 listings.
+11. Make first order fulfilment flow work manually/semi-manually.
+12. Record every failure in a tiny checklist.
+13. Fix only what blocks orders.
+
+DONE when:
+someone can discover card =E2=86=92 upload pet =E2=86=92 pay =E2=86=92 you =
+can produce correct
+card =E2=86=92 Prodigi can ship it.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SPRINT 2 TASK LIST
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+1. Add joke generation endpoint.
+2. Generate 3 candidates per personalized order.
+3. Add human approval screen if needed.
+4. Add static card catalog.
+5. Add 10=E2=80=9330 non-personalized designs.
+6. Add social posts for each strong joke.
+7. Track which jokes create clicks/sales.
+8. Automate Prodigi handoff if volume justifies it.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SPRINT 3 =E2=80=94 FUNNYLABS START
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+1. Reuse Killella Comedian / ActVersion ideas.
+2. Define 3 recurring Pogtown comedians.
+3. Give all 3 same 10 joke sets.
+4. Publish controlled experiments.
+5. Capture raw social performance data.
+6. Run inverse experiment: same character, 3 material styles.
+7. Add joke-structure tags.
+8. Identify first repeatable patterns.
+9. Feed winners into Roast.pet templates.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+SUCCESS METRICS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+INITIAL STORE
+
+Primary:
+- 10 cards live
+- first paid order
+- fulfilment success
+- no manual graphic-design bottleneck
+
+Then:
+- listing CTR
+- purchase conversion
+- personalization completion
+- refund rate
+- fulfilment errors
+- margin
+
+
+HUMOUR
+
+Track:
+- user selects candidate without edits
+- share rate
+- repeat purchase
+- social replay/share
+- card format conversion
+- which facts produce better personalization
+- which joke structures repeatedly win
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+WHAT WE ARE ACTUALLY BUILDING
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Near term:
+
+A funny Etsy card store.
+
+Slightly deeper:
+
+A reusable personalised-comedy card generator that Muse can call.
+
+Later:
+
+A humour module for agents.
+
+Research layer:
+
+FunnyLabs learns which combinations of:
+- joke
+- character
+- delivery
+- timing
+- personalization
+- format
+
+actually make humans laugh, share, and buy.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+NORTH STAR
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Do not become an AI print-on-demand company.
+
+Do not become an AI avatar company.
+
+Do not become a generic Etsy automation tool.
+
+Become the place that is actually funny.
+
+Roast.pet is the first commercial surface.
+
+Muse is the interface.
+
+Prodigi is the factory.
+
+The renderer is disposable infrastructure.
+
+FunnyLabs eventually supplies the learning loop.
+
+The first job is simply:
+
+MAKE TEN CARDS THAT ARE GENUINELY FUNNY AND GET THEM LIVE.

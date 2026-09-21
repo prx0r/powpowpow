@@ -1,0 +1,292 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id YRVdmvQhS8xq
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:16:25 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=Ek9HM5Djcvi/uQVQNeZ51ROgYtL+62m1O1lDXJ0JfVntoxi4pIGXo7Ys6yPjcjpYgFq+Wt4q8
+	OMH4mNLgF9zPU/PHxIQ0nreX7SKysViW2PuiaSjofxI6OZMvrPOaJAhCqr73UGObj39WxvPQV51
+	ScaPFkIC6BqYu4s2cXKAEU3ICKTJ/QBjrsqpn1RuABoz2rqzTxxWslue182cDhc49MxXyU92PmT
+	cp3hzfZuwcD1RTs2x65VSrD00OEmBbBxzB2LnOfLU0m337m1jTrqz3o6DBrYObsY26+qomx46Nu
+	vYidQct6ZFehhJTNxOfXAD+0Q8bliaqw6EzIWk+6Rf9g==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888585; x=1790493385; bh=E21c3U/u
+	CD5gQeOgYbiNXXYLbLD3gTMeNzEoS0NTAOs=; b=J0cyBnOI37uT6nvv9HvCADWHHAcsQ8k1UfI
+	OVwQGwVBt0ieIdqPluiH3Ux2QHdwF+s4U2uY3nlwCr0IFiNIHiqUFBcjEXkSYCws4jASgctbNEm
+	fYrVMp4ZIS3IXjJIeiBn1YyipI2P+iXV7xAYXhbIuc7J3UrXXHxQROVC0GXEXYOoY3YWQ7w+0QU
+	dAItiUwbFpApwLDbG25raSlLTqDDOaNtG/L7dAaUJ0LMV96fiGu1VQnakminFMAdmnsqkYa+KUJ
+	ZHAbZNGb8A47wviWH3yc51bn5ko2l4bDta2jTq6PhTFx80jt9BZabnBYKUrz4q8pTDdv4kQRkbq
+	LhOtwuA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=poBEjqZr;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=poBEjqZr;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d45ae011cso18801357b3.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:16:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888585; cv=none;
+        d=google.com; s=arc-20260327;
+        b=csukQfFIDaRPMUYt41cwdLY1Z453QjNhxy7FbIYHUwRRABG7hHov59vvYs1/7ROB+x
+         vwcSLA8fE61rSE53gp86GoVWXSe1Faq1zvCu2B5u1jC/NnrCFbAb7Ml2qWX4Ap33SDh2
+         7ZbprMZG2N8kaxNQdCNoyPFo/m1YTfSoFwfht+jfDgdFb5pJtJimfy9V8aC9n0FkHzcw
+         6rYZtIw/ltaqq0uQe5uPa7E+v9OXfMpMRLsUgLfbWrX0A7XCKZgiaA+g8q5op6I/Ft+m
+         /VgHWGpX7Hhdu35iCg43bWvKRyB4zHjCptyPIVcJXkT/Y5i82LOHZTOWnI4BRXphkJAH
+         knOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=E21c3U/uCD5gQeOgYbiNXXYLbLD3gTMeNzEoS0NTAOs=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Giac2qcTfooML6sVgqMxpRRj0xHBIIdsoMqRqEhlWqaPeG4DX8CPE5eZqzUo4v1Epz
+         TPIpI8ThJRay+6IHAIG9jOSYvkt69JRQtWK8ciXtej230VzCqzQ0UELoPq1Y/xsjEa4X
+         Akov5p2sHMKZmgWImRnqH5v4/7qBE16cUqM1paIo59uBpyApro8nmKZFESrz03vOgDJi
+         T6iF/4daBIa0F+7JzvyK8NAg7pmWEwNgxA/tWUqiI9cQOffZhFQ98R9+M2JOgqfIpTZF
+         moRx4CkVrS2VvwOcE4Il3AT8P46vcQhw8MO3PLom1kAidj/yzUgGieRoIebUQNtPUaZL
+         2FSA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888585; x=1790493385; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=E21c3U/uCD5gQeOgYbiNXXYLbLD3gTMeNzEoS0NTAOs=;
+        b=poBEjqZrlwtyicVbqvrYLuVzu5F2nbtNPZ2RA4Mx46v8omqWcQxsiJ4/Lp8sn/o9Hw
+         rk/rYo77dUim9nfSyxlHLfuN3xKlTDJrWtC09d/wgypeHYMUwABdSLC6wLY+hihxhUM8
+         MsiuC7/kwa15DCYBP3ZQdATmfQeWxcP55RxeRysNCWhTUpsAVRARevlSGXIKOtDn368D
+         OmWGy6zxjf+LFAllY1RvCVGIEkbx/KsDL7RGG8vwwkNyChbWVZyNKjZlBb30cJOkcrAG
+         C+L7JfGRLPq3LOkmQlxzvPNNJE16G3QvjX8CO6Ugi+EL3lRtwkZ1s8z2dchSL7my6ILY
+         elFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888585; x=1790493385;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=E21c3U/uCD5gQeOgYbiNXXYLbLD3gTMeNzEoS0NTAOs=;
+        b=bjObNF/0DiMWhjZ+Tu4EBsz2DGHXAvG2U+HnBIUOqVEWPu0/MmNUWru+oETuZlkDnO
+         iXsTyKHFW/Bkck2er4mXVBhgRfsF1+J4YHdBO+qGlofiGg/suholrHeUyKZhWYH0HTBd
+         YCLQt6fC7yTJ6RYE8+FU/jyo7Cvieo7fxA5TW6/Mn19IwK4RZPqf1hvv283p3YVH3pXw
+         btBbFErtQ/yu5kZtAXUplrp/GJmomPUprqgS9XRgQRPHzwY6JCDL/0GXYrYGAJolAekX
+         pVWCQERjLW69hXKkTfjCQLxBGlwo2Tow6x32VoOfy38GGh5B4kkSVH3upihEJA8NHFKc
+         p5WQ==
+X-Gm-Message-State: AFuF++nSP2x66vQveKiDO2aJF1YgonM5pnk9Az710QdQUQUtki6/vsoM
+	iq8LakulRuGMQSbI6dV5OU48BDZhCAGkav7a78tZpuFJHF79V0Te8Ma5wHC/fYau5f4OnNHT8Y8
+	oWFvv9s4rp6Pr+Y+6+NkSGKA69Jjk0bE+8w==
+X-Gm-Gg: AYBFou0lcpESNS4GYxw7/AwpSNe7ZCoMvFiWLkulOHPVQxxfL/Ig3i6J8tj66rt/Dtd
+	ON4J6knaOhIGIAzp1pCnqUnc9yccvoNaw7gfO24Gx55TU3In/v4TB7aMBva4NOBJfvYFfSX2ldF
+	cGnHoviJKuuskU8v4AKxUOf9gSWGOD45xm2zgb0IQ5cyaAk/WrAGKWf9JS2JYmh6RECD7kLQVKd
+	6H34sNAjJiYG/C83g3O9LAv88fbEYmEystCUL8GHCrRhhSo2a+9nEt1yEl+gu1D2TgZqZay22a/
+	cdsYaDHK4zSGN/MgYRipxuYBJFDMeHxWu3R/7TgI0tfVuXo7AEbJOyspkVR7j79q7x0Y4Mo6w9/
+	/cVzU3IJ3TJRU48X4Scf6ckOrtk2JfohBEDHcT3KTw8sS5WGQbhQVZMlKpwpB8C/Xc4kKhRq/EQ
+	OIjX54kNk=
+X-Received: by 2002:a05:690c:e206:10b0:873:5bb2:6c37 with SMTP id
+ 00721157ae682-89736b3c8e0mr14116427b3.62.1789888584987; Sun, 20 Sep 2026
+ 00:16:24 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:24 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:24 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:16:24 -0500
+X-Gm-Features: AcwNN1Uqe4c31qlRV1Msw1d-aN6Xm1KbWQ3rr2_gQw9hnPeisQbHqUrgz8gVyPc
+Message-ID: <CAPdrGemf95sbM0NJCFY2b8TWcQNEzU4O=hj03kYV08L8qHOmzw@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D20_06=3A2?=
+	=?UTF-8?Q?3_Asia=2FPhnom=5FPenh_=E2=80=94_3_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET WEIRD BUILDER PROJECTS =E2=80=94 2026-09-20 06:23 Asia/Phnom_Penh
+
+This pass screened 25+ plausible projects/results across GitHub and
+adjacent web results for pet generation, POD/Etsy automation, caption
+rendering, animal CV, WebAR, transparent video, matting, pose and
+identity consistency. Prior-run finds were deduplicated. Three new
+projects are strong enough to retain rather than padding the report.
+
+1) PRESSWORK =E2=80=94 https://github.com/brac/presswork
+Creator: brac
+Activity: surfaced current, crawled 3 days ago
+License: verify repository license before copying code
+Verdict: COPY MECHANISM / BENCHMARK
+
+What it solves: the boring autonomous commerce state machine after
+Roast.pet has generated a finished product asset. Presswork is a
+four-agent Etsy/POD pipeline: Scout =E2=86=92 Design =E2=86=92 Listing =E2=
+=86=92 Ledger,
+coordinated through Supabase. The useful part for Roast.pet is not its
+trend scouting or generic art generation; it is the job handoff/state
+model. Status columns enforce pending =E2=86=92 processing =E2=86=92 done/e=
+rror, while
+SELECT ... FOR UPDATE SKIP LOCKED prevents two workers claiming the
+same job. It separates design_packages, listings and orders, and
+leaves physical fulfillment to Etsy's native Printify integration.
+
+Install/route: Supabase + separate Railway services/cron workers. Etsy
+live credentials are optional; it runs against mocks until enabled.
+Dependencies/hardware: ordinary cloud services; no GPU requirement for
+orchestration.
+Evidence: concrete schema, worker schedules, locking strategy,
+human-review gate and explicit POD economics are documented.
+Code/work replaced: potentially most of the order/listing/fulfillment
+orchestration and concurrency logic we would otherwise write around
+Etsy/Printify.
+Integration difficulty: MEDIUM.
+Maintenance risk: LOW-MEDIUM for the state-machine ideas; Etsy API
+remains upstream risk.
+Exact experiment: model one fake Roast.pet order as immutable stages:
+intake_approved =E2=86=92 pet_package_ready =E2=86=92 roast_video_ready =E2=
+=86=92
+print_assets_ready =E2=86=92 listing_ready =E2=86=92 printify_ready =E2=86=
+=92 fulfilled. Run
+two workers concurrently against 100 fake orders, intentionally crash
+workers mid-stage, and prove no duplicate listings/products are
+created. Keep HUMAN_REVIEW_ENABLED=3Dtrue.
+
+Why it matters: this reinforces a strong architectural rule. Roast.pet
+should not be one giant workflow. Each expensive artifact should be a
+durable package handed to the next idempotent worker. Failures should
+resume at the failed stage, never restart the whole order.
+
+2) AI PET PORTRAIT =E2=80=94 https://github.com/SamurAIGPT/ai-pet-portrait
+Creator: SamurAIGPT
+Activity: current enough to expose nano-banana-2-edit/MuAPI workflow;
+crawled last month
+License: MIT
+Verdict: COPY/FORK CUSTOMER + ASYNC GENERATION SHELL
+
+What it solves: much of the generic pet-personalization SaaS plumbing
+surrounding generation. It already implements up-to-five pet reference
+uploads, asynchronous image generation, webhook-backed result
+delivery, persisted creations/gallery, mobile UI, authentication,
+credits and Stripe billing.
+
+The most relevant mechanism is the async generation contract: browser
+uploads references =E2=86=92 generation request is persisted =E2=86=92 exte=
+rnal image
+provider works asynchronously =E2=86=92 webhook writes completed output int=
+o
+Postgres =E2=86=92 gallery reflects result. That is extremely close to
+Roast.pet's customer-facing generation shell, except our output is a
+verified pet package + roast rather than a portrait.
+
+Install/route: Next.js 14, Prisma/Postgres, NextAuth, Stripe, MuAPI;
+deployable on Vercel. Local setup is npm install + Prisma database +
+provider keys.
+Dependencies/hardware: no local GPU; external generation API.
+Evidence: live demo, explicit webhook endpoint, persisted gallery,
+multi-image upload and complete documented app structure.
+Code/work replaced: potentially the first version of customer
+upload/history/status/result plumbing, auth, webhook delivery and
+gallery UI.
+Integration difficulty: MEDIUM.
+Maintenance risk: MEDIUM because its exact provider stack is
+replaceable and should not become core.
+Exact experiment: fork only the upload =E2=86=92 job =E2=86=92 webhook =E2=
+=86=92 gallery path.
+Replace MuAPI-specific job payload with Roast.pet's provider-neutral
+generation_job record. Submit five reference photos and return a fake
+pet-package preview through the webhook. If this works cleanly, do not
+build the customer async job shell from scratch.
+
+Important: do not inherit its credit/billing assumptions blindly. The
+reusable part is the async pet-generation product shell, not its
+business model or provider choice.
+
+3) SUBIT =E2=80=94 https://github.com/fariraimasocha/subit
+Creator: fariraimasocha
+Activity: surfaced current, crawled last month
+License: verify before source reuse
+Verdict: COPY CAPTION PREVIEW/EXPORT CONTRACT
+
+What it solves: caption editing where browser preview and final FFmpeg
+output agree. Subit transcribes video, exposes editable word-level
+captions and styles, then burns them into MP4. The unusually useful
+design choice is that preview and export share the same positioning
+formula, reducing the classic 'looks right in browser, shifts in
+render' problem.
+
+Install/API/demo route: web dashboard + Whisper transcription + FFmpeg
+render; uploaded bytes can go directly browser=E2=86=92R2 rather than throu=
+gh
+the app server.
+Dependencies/hardware: Whisper path + FFmpeg; ordinary browser frontend.
+Evidence: repository documents the project lifecycle and explicitly
+states preview/export agreement by construction.
+Code/work replaced: our custom caption positioning/editor math and
+potentially direct-upload plumbing.
+Integration difficulty: LOW-MEDIUM.
+Maintenance risk: LOW for the mechanism.
+Exact experiment: represent one Roast.pet vertical caption style using
+the same positioning function in browser preview and ASS/FFmpeg
+export. Render 20 lines at 1080=C3=971920, including very long/short words,
+and pixel-compare caption bounding boxes. If deterministic, make this
+the rule for all Roast.pet text overlays.
+
+This is complementary to HeadTTS from the prior run: HeadTTS should
+still supply known word timing for generated speech. Subit is useful
+for how those timings become editable, predictable rendered
+captions=E2=80=94not for retranscribing our own TTS.
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+1. A home-grown distributed order state machine. Copy Presswork's
+durable stage/status + row-locking pattern.
+2. Generic customer upload =E2=86=92 async generation =E2=86=92 webhook =E2=
+=86=92 gallery
+infrastructure. ai-pet-portrait already demonstrates the exact product
+shell.
+3. A second Etsy/Printify fulfillment universe. Presswork deliberately
+relies on Etsy=E2=86=94Printify native fulfillment where possible; we shoul=
+d
+too.
+4. Separate caption positioning logic for preview and export. One
+coordinate formula must drive both.
+5. Retry-the-whole-order behavior. Every artifact should be durable
+and every stage idempotent/resumable.
+
+MOST SURPRISING HOBBY PROJECT
+Presswork. It is not visually exciting, but it solves the part most
+likely to become painful once Roast.pet gets real orders: autonomous
+workers racing, failing, retrying and handing assets to Etsy/Printify
+without duplicating products. That is higher leverage than another
+generation model.
+
+FASTEST INTEGRATION WIN
+Copy Presswork's job-state/locking pattern into a tiny fake-order
+harness before touching real Etsy credentials. This can validate the
+production architecture without spending money or risking storefront
+mutations.
+
+ONE REPO/AUTHOR WORTH FOLLOWING
+brac/presswork =E2=80=94 because it is actively working on the exact
+autonomous Etsy/POD operational layer Roast.pet will need after the
+media pipeline works.
+
+ARCHITECTURE UPDATE
+The clean end-to-end system is increasingly:
+
+customer upload
+=E2=86=92 async generation job
+=E2=86=92 canonical pet package
+=E2=86=92 state generation + deterministic QA
+=E2=86=92 roast/video/print artifacts
+=E2=86=92 immutable design package
+=E2=86=92 listing worker
+=E2=86=92 Etsy/Printify bridge
+=E2=86=92 order/ledger worker
+
+Each arrow is a persisted state transition, not an in-memory chain.
+That lets us swap image/video models constantly while the commerce
+machinery stays boring and reliable.

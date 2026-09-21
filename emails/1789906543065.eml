@@ -1,0 +1,3029 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id a7VlQlyYxtwL
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 12:15:42 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=T3bJJQClWv10c3qcckxt4FB/USHx0Y1zKglt49e4fdQApvOIdrvRqOEjmyvY3bKNInl9Wxntd
+	FF7pS3DjdLhcJ/kJAwQIeX+F4fB4GT6eHX0gttk20I2luXpoADeeTaH9gtQCtrFZSlaty9EBa7O
+	yzA9LLwt5vSZr7rJqJCShE9UP5gXAaTRrZ4JE5EtMV7L3EYxAnCya3aFkvjJ2x5jE24HiuRe+lp
+	5v0PpLOI1QFlOOSbHBVav1Qx/a2NQzcS/M3agfqLdwXvyLes9T7Mj3hIykK1kwEICFhwYlB/+GN
+	IAbTil5ovQxZSMUiAiilR/TY59gbbQgkTW9hyXEyy5vA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:References:In-Reply-To:from:reply-to:cc:resent-date
+	:resent-from:resent-to:resent-cc:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789906542; x=1790511342; bh=skC2tniH
+	/7Q7YS7lRt+qaDw/EwhthWVTjlFVTJdS6pk=; b=e6HQv3Fb1sTr5zdtWKKYjJOPYFB+6HTEmoh
+	bCZT8ExYfX5/lJ13C/4JsfF1DrIkxzy6XPjqxR5f79IVKm5Xbd0QGvJoJiNEbbC0vCBZ8+ZCR5z
+	ajfoygEsC+UM3VryStuD5waBmM78gF9BgnxvGPaIJYpNSigqy5ej/lcWVqwcVlAoW6eAgfMT8Yd
+	fwFrwj3JZvf5Ft2MMC/35y1TM9QbTnl0d8fLcxeFdAGJY6U24LA6P80J13K/nG9VCztJ/r9RUKi
+	arZQOxs3+MlbuFGhtu6vTZm7JH6x1+9kJzdGWU6YYS9ykf0fb3CeVRYi5ACVp2IPtFPG5pgfuvV
+	jbxzntQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XM3c4aOB;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XM3c4aOB;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d43f9b120so17902757b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 05:15:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789906542; cv=none;
+        d=google.com; s=arc-20260327;
+        b=syWX9EIAKO19A6c+cPIseM+J1VL6JeZFDbB7Icw9KT5sES2jz06Q8OuR+5ftk1gEjZ
+         m2apTGmEA43MuGjhWoAdzzIffQHFLnOwRbvtuD8X+jxktXSKRsv63X/+HjzESErpm+5s
+         tFeurbEOogy1yD5sNBK9VccAj0KkclfmYeYkJAvX2KvXxlzt56x9Ck0v1xwhta1nlRLP
+         rsL5RrR/xO4jkKcWvilSZmVcwanCRkT4LMIk7BzOfz8HGq13cgbMtsgzubUsaqtVs9C8
+         Irw7vKM7qNP7zTzMlLu3+nyMB6hByNNGjsGmEYyypxAGfW3plViq0pQhfXjzQbge3WLf
+         t1Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:references:in-reply-to
+         :dkim-signature;
+        bh=skC2tniH/7Q7YS7lRt+qaDw/EwhthWVTjlFVTJdS6pk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=PbVrmT1A4jHERNiKx0TC2sLSOAKuHJJLFziEcBuhYnf9CQABFl1rZi/7+IqkT8kCu5
+         /ypqQ8+EXAtu8QiwYlPlztxYb7ipPArcnQ29TiyQ2s487FOG4z8YNjmhlk6ZUVCLOyjt
+         t2r7k15h/imtjENS7NkvUXxHx580IdFjlMZ9hUwfcGiZqx9BleD93dcHfkQGpfcNtX6y
+         /2LopmL+F3p3DUXWZQ6Q2VPeBRXV57bi9+F6ingiFfNYKUwfFyO55/BfLkieUM0BVsl/
+         E7W07V8CPAv7TE6nKqeglVr9sL4m+g783yNtWF8/lm/GuhO13kRMKt1piNblFFurYVbR
+         gROA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789906542; x=1790511342; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=skC2tniH/7Q7YS7lRt+qaDw/EwhthWVTjlFVTJdS6pk=;
+        b=XM3c4aOB1HURYubyMmtB5wl9SQWaiWBy12awhgXfTv7+2m/4BEnR3wTzA9NbqQ5Sen
+         roVt+3ytRRA0qr8sOEURATL3VY8jVNLT+YmznBztzbTiBhqPM8ibl5Ql5fY4GXnlCI4u
+         R2QypC4bgNF9mwxOrURMMuhl6jj4X1tkIYdsr5/TgmBh/m2bGzGM6FEz9rcnlbq3jbsV
+         5qEUFct9Hh+QMOTVaoyfxT1VmFMMnBrpoc07iV142MOpndhk9mqAsFr+ty5wkjI09vKe
+         Q+mdnC4b+dKw+wBJ/ChY2FDirtevltC7IzOptEYh2jZ56lPTd0owFqZw7bHmvK/5qE3v
+         KsAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789906542; x=1790511342;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=skC2tniH/7Q7YS7lRt+qaDw/EwhthWVTjlFVTJdS6pk=;
+        b=xTOogyT/9yd7zdc03N+/hj0MqP48dzTOQ4cr51QkRos9WVpXvLB9wE6+Ke6s/mpngV
+         Eegw1dkqlQ+3lvvJxFUdHs2xDeUYf5Bfz/68x+1qxBR6qM93xp+/Q0ZJycQ1GSAGKX+H
+         h2Ycg3aqqW8e8xCnVyNtrDuzIfyOdGLkaP/XoMhQQ92h3IeYvM4axkf9//cVCrvPw1LS
+         9F5+sbsZphHkPxuznEdIrzxhrFsn4weEsA6fGVnnEgnxVoHFN8S10YU7aoFfq/nDUUTW
+         kwiSYrzjddrQU6G7quIhCLRNwfx4/3qZYTCR6mKnZ/rzWxp3EeWUM2Or03nbn1QMZOau
+         GQOQ==
+X-Gm-Message-State: AFuF++lPZCQhXZ7ZJZ8CRUwKl1Mb4iNQRZnyDite298jvWhEn582yR5F
+	A46ZJHRfDrBpAY6aRn3/VEowACiLeQwgRMQroIyrYIezQEnnIgwb9fruhKPO2MJ79/JkOcFgFig
+	sSo5E3I7gBMPF3kI/C7m5Xg/YsW1Fwy5o3Q==
+X-Gm-Gg: AYBFou3f6oBamwA1NNCKiZD9Zuz8Zh+eyel6OVYuJMleRO5el1OuvzT/xXp6F4ZRo7p
+	mWVf2YYwiGtT+us/G5pbEUC2W4a1+ccmcN1+wba7hHOCEPNeWAwdG8T7DeFAPVI1by32tKLfm4I
+	SUiGx9DjyhbOvKOiGCJQZSiw11SPlDjWhO1/FUlJEhEK/xw9dAl51aW3KXvpdJNi5JV8RPp8V05
+	dzpEUXqfpkvugcuHG0qlG47C8G8OdarB5uHm+Rhc1G52wOvE7UC2976f005+CNd1Q7r9OOXy/Bc
+	bbaCPOVPI64aSWA/+05rJBYGBNlvKRHwPUSYpDqYBRn11Wbe9QDyDVbVvKktOocgJy+XIP0DhJ3
+	B5Uq+ckQG+b8vVMZxFyNcr+8VGRiHEsfzHAGJdJhlUjs3L3QjAIApan4wCnOuBp7xJd79s//U
+X-Received: by 2002:a05:690c:6e84:b0:85e:688f:3c52 with SMTP id
+ 00721157ae682-897346e35e2mr23849297b3.33.1789906542171; Sun, 20 Sep 2026
+ 05:15:42 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:15:41 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:15:41 -0500
+In-Reply-To: <CAPdrGeknx6aQhyYTR9t0cmQXeHxXJC8eg0-faLxqD6P0pwOx6g@mail.gmail.com>
+References: <CAPdrGeknx6aQhyYTR9t0cmQXeHxXJC8eg0-faLxqD6P0pwOx6g@mail.gmail.com>
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 07:15:41 -0500
+X-Gm-Features: AcwNN1WIbKUN8I_M1pR7eX3eVMHN-OzrAcA_hqnzV5kLPlomTpPIZM-RTzebsAI
+Message-ID: <CAPdrGek=qTrLO7Uyg1NHij=G0KD+-YSNz3deaQUef-RVAASSTg@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_POW=2ESYSTEMS_=E2=80=94_All_Sources_=2B_Transformations_P?=
+	=?UTF-8?Q?lanting_Dossier?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000a0996a065be91758"
+
+--000000000000a0996a065be91758
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Forwarding because this POW/PTech material was sent to the personal inbox
+earlier in this conversation but not to Intelligent Others. Preserve this
+as current project context/source material.
+
+
+---------- Forwarded message ---------
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 06:50:08 -0500
+Subject: POW.SYSTEMS =E2=80=94 All Sources + Transformations Planting Dossi=
+er
+To: tradesprior@gmail.com
+
+POW.SYSTEMS =E2=80=94 Source + Transformation Dossier Core rule
+
+*Data-garden moat =3D unique transformation =C3=97 continuous collection =
+=C3=97 time*
+
+POW should not collect data because it is interesting. Every source should
+feed a common event pipeline:
+
+OBSERVE =E2=86=92 ARCHIVE RAW =E2=86=92 NORMALIZE =E2=86=92 RESOLVE IDENTIT=
+Y =E2=86=92 DIFF =E2=86=92 EMIT EVENT =E2=86=92
+TRANSFORM =E2=86=92 JOIN =E2=86=92 ACTION =E2=86=92 OUTCOME
+
+Universal object:
+
+*physical resource =C3=97 capability =C3=97 constraint =C3=97 person =C3=97=
+ place =C3=97 time*
+
+The source is never the moat by itself. The moat is the historical
+transformed state and the joins/outcomes built over it.
+1. GRID / ELECTRICITY NESO Transmission Entry Capacity / connection
+registers
+
+Source:
+https://www.neso.energy/data-portal/transmission-entry-capacity-tec-registe=
+r/tec_register
+
+Collect:
+
+   - project ID/name
+   - developer/owner
+   - capacity MW
+   - technology
+   - connection point
+   - connection date
+   - gate/status
+   - row additions/removals/changes
+
+Cadence:
+
+   - each official release; currently Tuesday/Friday for TEC register
+   - archive raw every release forever
+
+Transformations:
+
+   - entered_queue
+   - capacity_changed
+   - connection_date_moved
+   - gate_changed
+   - owner_changed
+   - disappeared
+   - connected
+   - probable_cancelled
+
+Derived:
+
+   - queue_age
+   - date_slippage_days
+   - project_survival_rate
+   - MW_added / MW_removed
+   - MW_at_risk
+   - developer delivery rate
+   - queue churn
+   - speculative_queue_score
+   - connection_probability by region/technology/developer
+   - constraint_pressure by node
+
+Join:
+NESO =C3=97 DNO headroom =C3=97 planning =C3=97 Companies House =C3=97 REPD=
+ =C3=97 grid
+reinforcement =C3=97 site/property
+UK Power Networks / live network state
+
+Open-data portal:
+https://open-data.org.uk/
+
+Important dataset family:
+UKPN National Energy Outage / network operational feeds
+
+Collect:
+
+   - live faults/outages
+   - affected geography
+   - start/end time
+   - restoration updates
+   - network constraint events
+   - curtailment
+   - power flow/headroom where available
+   - flexibility events
+
+Transformations:
+
+   - outage_started
+   - outage_updated
+   - outage_restored
+   - constraint_started
+   - constraint_relaxed
+   - curtailment_event
+   - reinforcement_effect
+
+Derived:
+
+   - outage frequency
+   - outage duration survival curve
+   - restoration reliability
+   - local reliability score
+   - constraint-hours
+   - curtailment-hours
+   - grid stress index
+   - local power scarcity
+   - reliability trend
+
+Join:
+site/UPRN =C3=97 EV =C3=97 solar =C3=97 battery =C3=97 compute =C3=97 busin=
+ess =C3=97 grid node
+Northern Powergrid headroom / capacity
+
+API/data portal:
+https://northernpowergrid.opendatasoft.com/explore/dataset/heatmapdemanddat=
+a/api/
+
+Collect:
+
+   - firm capacity
+   - max demand
+   - contracted demand
+   - generation
+   - constraints
+   - fault levels
+   - demand headroom
+   - generation headroom
+   - planned interventions
+
+Transformations:
+
+   - headroom_delta
+   - constraint_intensification
+   - constraint_relaxation
+   - planned_capacity_added
+   - contracted_capacity_consumed
+
+Derived:
+
+   - spare_capacity_ratio
+   - headroom_velocity
+   - connection_pressure
+   - node_constraint_score
+   - expected_relaxation_time
+
+Elexon
+
+Developer portal:
+https://developer.data.elexon.co.uk/
+
+Collect:
+
+   - system prices
+   - demand
+   - generation
+   - imbalance
+   - BM data
+   - constraint-related market state
+   - standing/reference data where useful
+
+Transformations:
+
+   - electricity_input_cost
+   - volatility
+   - scarcity periods
+   - generation mix state
+   - system stress
+
+Derived:
+
+   - productive electricity cost
+   - mining/inference electricity threshold
+   - battery opportunity windows
+   - price volatility
+   - price =C3=97 grid-constraint joins
+
+Important:
+Raw Elexon history is already strong, so use mainly as JOIN/TRANSFORMATION
+substrate rather than pretending archive alone is a moat.
+Octopus / household tariff APIs
+
+Use:
+
+   - import tariff
+   - export tariff
+   - agile/time-of-use price
+   - tariff region
+   - standing charge
+   - pricing window
+
+Transformations:
+
+   - actual energy input cost by 30m/time period
+   - best charge/discharge window
+   - compute marginal cost
+   - EV charge cost
+   - solar/battery arbitrage state
+
+Derived:
+
+   - =C2=A3/kWh productive cost
+   - charge_now / delay / export decision
+   - effective annual tariff profile
+
+2. EV / MOBILITY Public Charge Point Regulations / OCPI
+
+Guidance:
+https://www.gov.uk/government/publications/the-public-charge-point-regulati=
+ons-2023-guidance/public-charge-point-regulations-2023-guidance
+
+Key fact:
+Public CPOs must expose machine-readable reference + availability data and
+status changes quickly; historical availability is not required to be
+preserved.
+
+This is a core time-moat feed.
+
+Collect per EVSE:
+
+   - operator
+   - immutable location/location ID
+   - EVSE ID
+   - connector
+   - power
+   - tariff
+   - AVAILABLE
+   - CHARGING
+   - RESERVED
+   - OUTOFORDER
+   - INOPERATIVE
+   - timestamp
+
+Cadence:
+
+   - consume feed/webhook/OCPI status at appropriate near-real-time cadence
+   - preserve every state transition
+
+Transformations:
+
+   - availability transition tape
+   - outage episode
+   - occupancy episode
+   - tariff change
+   - connector state change
+
+Derived:
+
+   - true uptime
+   - mean time between failures
+   - mean time to recovery
+   - occupancy pressure
+   - unavailable-hours
+   - site saturation
+   - operator reliability
+   - connector reliability
+   - effective price/kWh history
+   - geographic charger scarcity
+   - local EV charging pressure
+
+Join:
+EV model =C3=97 charger compatibility =C3=97 property =C3=97 home charger =
+=C3=97 grid =C3=97 solar =C3=97
+battery =C3=97 tariff =C3=97 installer
+GRIDSERVE OCPI
+
+Documentation:
+https://www.gridserve.com/wp-content/uploads/2024/11/GRIDSERVE-PCPR-API-Dev=
+eloper-Documentation.pdf
+
+Goal:
+
+   - validate credential route
+   - ingest locations/tariffs/status
+   - add to CPO endpoint registry
+
+CPO endpoint census
+
+Create canonical table:
+
+cpo
+endpoint
+ocpi_version
+public_discovery
+auth_type
+free_access
+locations_access
+tariffs_access
+status_access
+retention_rights
+coverage
+observed_at
+
+Transformation:
+
+   - endpoint_accessibility_score
+   - market_coverage_score
+   - compliant_public_feed_score
+
+This itself becomes useful infrastructure.
+Fuel Finder
+
+Official guidance:
+https://www.gov.uk/guidance/access-the-latest-fuel-prices-and-forecourt-dat=
+a-via-api-or-email
+
+Collect:
+
+   - forecourt
+   - brand
+   - address
+   - facilities
+   - opening hours
+   - petrol/diesel prices
+   - price timestamp
+
+Cadence:
+
+   - API near-real-time
+   - twice-daily CSV as resilience/fallback
+
+Transformations:
+
+   - price_changed
+   - cheapest_local_fuel
+   - station_price_rank
+   - geographic spread
+
+Derived:
+
+   - petrol/diesel local energy cost
+   - EV vs ICE energy-cost comparison
+   - forecourt competition
+   - price dispersion
+   - mobility energy inflation
+
+DVSA MOT history
+
+Docs:
+https://documentation.history.mot.api.gov.uk/
+
+Collect:
+
+   - make/model
+   - age
+   - mileage
+   - test date
+   - pass/fail
+   - defect category
+   - advisory
+   - complete historical tests
+
+Use weekly full bulk + daily deltas.
+
+Transformations:
+
+   - first_fault
+   - recurring_fault
+   - age_at_fault
+   - mileage_at_fault
+   - fault_cluster
+   - repeat_failure
+
+Derived:
+
+   - failure hazard by model/age/mileage
+   - recurring fault probability
+   - expected repair burden
+   - reliability cohort
+   - likely next-fault classes
+
+Join:
+MOT =C3=97 part MPN =C3=97 repair guide =C3=97 recall =C3=97 used value =C3=
+=97 labour
+3. COMPONENTS / REPAIR Mouser API
+
+Docs:
+https://www.mouser.com/en/api-search/
+
+Collect:
+
+   - manufacturer
+   - MPN
+   - stock
+   - lifecycle
+   - MOQ
+   - order multiple
+   - lead time
+   - suggested replacement
+   - price breaks
+
+Transformations:
+
+   - stock_change
+   - lead_time_change
+   - price_change
+   - lifecycle_change
+   - EOL
+   - replacement_announced
+
+Derived:
+
+   - component scarcity
+   - lead-time inflation
+   - substitution graph
+   - replacement risk
+   - repair feasibility
+   - parts-cost history
+
+DigiKey APIs
+
+Docs:
+https://www.digikey.com/en/resources/api-solutions-faqs
+
+Collect:
+
+   - MPN
+   - stock
+   - price breaks
+   - availability
+   - product metadata
+   - alternative parts
+
+Transformation:
+Same as Mouser plus cross-distributor disagreement.
+
+Derived:
+
+   - true market availability
+   - distributor concentration
+   - lowest-cost substitute
+   - stock-out consensus
+   - lead-time divergence
+
+Join:
+Mouser =C3=97 DigiKey =C3=97 asset models =C3=97 faults =C3=97 repair guide=
+s
+Open Repair Alliance
+
+Downloads:
+https://openrepair.org/open-data/downloads/
+
+Collect:
+
+   - device category
+   - age where available
+   - problem
+   - attempted repair
+   - result
+   - barrier
+   - repair event context
+
+Transformations:
+
+   - fault =E2=86=92 intervention =E2=86=92 result
+   - repairability prior
+   - barrier classification
+
+Derived:
+
+   - repair success rate
+   - failure category frequency
+   - repair barrier frequency
+   - repairability by product category
+   - age vs repair outcome
+
+Long-term:
+Replace broad priors with exact-model first-party outcome data generated by
+POW users.
+iFixit
+
+API:
+https://www.ifixit.com/api/2.0/doc/
+
+Collect:
+
+   - guide identity
+   - device identity
+   - guide steps
+   - parts/tools
+   - modification dates
+   - repair topic graph
+
+Important:
+Audit commercial/licensing constraints before using as unrestricted
+production data.
+
+Transformations:
+
+   - model =E2=86=92 repair procedure
+   - model =E2=86=92 required tools
+   - model =E2=86=92 component
+   - procedure complexity
+   - repair-step graph
+
+Derived:
+
+   - skill compatibility
+   - estimated repair complexity
+   - tool requirement
+   - procedure availability
+
+OPSS product safety / recalls
+
+Feed:
+https://www.gov.uk/product-safety-alerts-reports-recalls
+
+Collect:
+
+   - product/model
+   - brand
+   - category
+   - hazard
+   - corrective action
+   - recall/modification/withdrawal
+   - date
+
+Transformations:
+
+   - safety_event
+   - recall_event
+   - modification_required
+   - resale_block
+   - repair_warning
+
+Derived:
+
+   - product-risk state
+   - model safety history
+   - repair/resale eligibility
+   - safety-adjusted resale value
+
+Join:
+recall =C3=97 component =C3=97 repair guide =C3=97 marketplace =C3=97 asset
+4. SKILLS / TRADES / TRAINING DfE apprenticeship adverts
+
+API:
+https://api.apprenticeships.education.gov.uk/vacancies
+Docs:
+https://beta-find-and-use-an-api.education.gov.uk/api/display-advert-api-2
+Signup:
+https://developer.apprenticeships.education.gov.uk/third-party-accounts/reg=
+ister
+
+Collect:
+
+   - vacancy reference
+   - employer
+   - occupation/standard
+   - provider
+   - location(s)
+   - salary
+   - posting date
+   - closing date
+   - description
+   - live/closed state
+
+Cadence:
+30=E2=80=9360m list polling, detail fetch only on new/changed refs.
+
+Transformations:
+
+   - NEW
+   - EDIT
+   - LOCATION_CHANGE
+   - SALARY_CHANGE
+   - CLOSING_DATE_CHANGE
+   - EARLY_CLOSE
+   - DISAPPEARED
+   - PROBABLE_REPOST
+
+Derived:
+
+   - vacancy lifetime
+   - employer hiring velocity
+   - hard-to-fill score
+   - repost rate
+   - local skill pressure
+   - salary pressure
+   - training demand
+
+Join:
+apprenticeships =C3=97 training providers =C3=97 qualifications =C3=97 cert=
+ification =C3=97
+installations =C3=97 procurement =C3=97 local geography
+DfE Register of Training Providers
+
+Docs:
+https://register-of-training-providers.education.gov.uk/api-docs/get/provid=
+ers
+
+Collect:
+
+   - provider identity
+   - UKPRN
+   - accreditation/status
+   - provider changes
+   - changed_since
+
+Transformations:
+
+   - provider_added
+   - provider_removed
+   - provider_status_changed
+   - capability_added/removed
+
+Derived:
+
+   - local training capacity
+   - training-provider density
+   - response to skill bottlenecks
+   - training supply velocity
+
+Ofqual regulated qualifications
+
+Plant:
+
+   - qualification identity
+   - awarding organisation
+   - level
+   - subject/occupation
+   - qualification status
+   - updates/withdrawals
+
+Transformations:
+
+   - qualification introduced
+   - withdrawn
+   - superseded
+   - route_to_skill graph
+
+Derived:
+
+   - time/cost path to capability
+   - qualification scarcity
+   - skill portability
+
+Competent Person / self-certification schemes
+
+Government framework:
+https://www.gov.uk/government/publications/self-certification-schemes-manda=
+tory-technical-competence-requirements
+
+Collect public register state where legally available:
+
+   - person/business
+   - scheme
+   - trade
+   - certification
+   - geography
+   - status
+
+Transformations:
+
+   - certified
+   - certification changed
+   - removed
+   - capability gained/lost
+
+Derived:
+
+   - qualified supplier density
+   - local certified-capacity
+   - skill bottleneck
+   - service eligibility
+
+TrustMark
+
+Business-search integration:
+https://github.com/trustmark-2005-ltd/TrustMark-BusinessSearch-Integration
+
+Use permissioned integration rather than scraping where possible.
+
+Collect:
+
+   - registered business
+   - service/trade
+   - geography
+   - trust/certification attributes
+
+Transformation:
+
+   - supplier-capability graph
+   - service-area graph
+
+5. PROPERTY / HOUSE PASSPORT Planning Data
+
+Docs:
+https://www.planning.data.gov.uk/docs
+
+Collect authoritative/open planning and land constraints.
+
+Keys:
+
+   - UPRN
+   - address
+   - lat/lon
+   - planning authority
+   - dataset/entity IDs
+
+Use as JOIN substrate more than time moat.
+
+Transformations:
+
+   - site_constraints
+   - permitted_actions
+   - nearby/planning context
+   - planning-event links
+
+Derived:
+
+   - site suitability
+   - constraint surface
+   - solar/EV/heat-pump/planning eligibility context
+
+EPC data
+
+Service:
+https://get-energy-performance-data.communities.gov.uk/
+
+Collect:
+
+   - UPRN/address
+   - certificate
+   - building type
+   - energy performance
+   - heating
+   - recommendations
+   - floor area and useful property fields where licensed/available
+
+Transformations:
+
+   - house capability baseline
+   - upgrade candidates
+   - heating/energy state
+
+Derived:
+
+   - solar/battery/heat-pump suitability features
+   - house passport seed
+
+HM Land Registry Price Paid
+
+Downloads:
+https://www.gov.uk/government/statistical-data-sets/price-paid-data-downloa=
+ds
+
+Collect:
+
+   - transactions
+   - price
+   - date
+   - property type
+   - UPRN lookup where provided
+
+Transformation:
+
+   - property economic state
+   - local transaction price
+   - turnover
+
+Derived:
+
+   - asset-value context
+   - house-upgrade economics
+   - local affordability / ROI denominator
+
+6. HEAT PUMPS / SOLAR / BATTERIES Boiler Upgrade Scheme
+
+Ofgem:
+https://www.ofgem.gov.uk/data/bus-monthly-scheme-update
+Statistics:
+https://www.gov.uk/government/collections/boiler-upgrade-scheme-statistics
+
+Collect:
+
+   - voucher/application counts
+   - redeemed grants
+   - technology
+   - region
+   - cost
+   - monthly evolution
+
+Transformations:
+
+   - grant demand
+   - installation demand
+   - conversion
+   - regional growth
+
+Derived:
+
+   - heat-pump demand pressure
+   - public-subsidy effect
+   - local installer demand
+
+Join:
+BUS =C3=97 installer register =C3=97 apprenticeships =C3=97 training provid=
+ers =C3=97 MCS
+installation state =C3=97 EPC
+MCS installation system / public dashboards
+
+Portal:
+https://certificate.microgenerationcertification.org/
+
+Collect legally accessible public aggregate/near-real-time installation
+information.
+
+Track:
+
+   - solar PV
+   - battery/storage where available
+   - heat pumps
+   - installation geography
+   - installer/company
+
+Transformation:
+
+   - installed_base_growth
+   - installer_activity
+   - technology penetration
+
+Derived:
+
+   - service/repair installed-base opportunity
+   - installer demand
+   - local technology adoption
+
+Do not attempt restricted database access without permission.
+Smart Export Guarantee
+
+Ofgem:
+https://www.ofgem.gov.uk/environmental-and-social-schemes/smart-export-guar=
+antee-seg
+
+Track supplier export tariffs/terms where accessible.
+
+Transformations:
+
+   - export-rate change
+   - eligibility change
+
+Derived:
+
+   - solar export economics
+   - solar/battery dispatch economics
+
+7. COMPUTE / GPU / MINING
+
+Use existing PowPowPow collectors:
+
+   - Qubic
+   - Monero
+   - Kaspa
+   - Akash / compute markets
+   - GPU/CPU workload economics
+
+Transformations:
+
+   - issuance
+   - rewards per compute
+   - miner margin
+   - network difficulty/hashrate
+   - supply pressure
+   - rental yield
+   - inference yield
+   - electricity-adjusted output
+
+Universal action comparison:
+
+GAME
+MINE
+RENT
+INFERENCE
+SELL
+REPAIR
+REUSE
+IDLE
+
+Derived:
+
+   - =C2=A3/hour by action
+   - =C2=A3/kWh by action
+   - opportunity cost of compute
+   - best current use
+   - switch threshold
+
+Do not encode belief that one use persists forever.
+8. HARDWARE CAPABILITY / REUSE OpenWrt supported devices
+
+https://openwrt.org/supported_devices
+
+Collect:
+
+   - device
+   - vendor
+   - model
+   - hardware
+   - support state
+
+Transformation:
+
+   - exact device =E2=86=92 programmable network capability
+
+Zigbee2MQTT
+
+https://www.zigbee2mqtt.io/supported-devices/
+
+Collect:
+
+   - vendor/model
+   - supported features
+   - compatibility
+
+Transformation:
+
+   - device =E2=86=92 capability =E2=86=92 home integration
+
+Home Assistant integrations
+
+https://www.home-assistant.io/integrations
+
+Collect:
+
+   - integration
+   - product/service ecosystem
+   - supported capability
+
+Transformation:
+
+   - physical asset =E2=86=92 controllable capability
+
+PCI ID Repository
+
+https://pci-ids.ucw.cz/
+
+Collect daily snapshots:
+
+   - vendor ID
+   - device ID
+   - subsystem IDs
+   - names
+
+Transformation:
+
+   - raw hardware ID =E2=86=92 canonical hardware identity
+
+These are not strong time moats themselves; they are CapabilityGraph
+substrate.
+9. COMPANY / IDENTITY Companies House Streaming API
+
+Docs:
+https://developer-specs.company-information.service.gov.uk/streaming-api/gu=
+ides/overview
+
+Collect real-time changes:
+
+   - company profile
+   - officers
+   - insolvency
+   - filing/charges where relevant
+   - company state changes
+
+Transformations:
+
+   - owner/operator changed
+   - company status changed
+   - operator birth/death
+   - corporate identity continuity
+
+Join:
+company =E2=86=94 installer =E2=86=94 grid project =E2=86=94 tender =E2=86=
+=94 planning =E2=86=94 repair business =E2=86=94
+training provider
+
+This is excellent for maintaining temporal identity instead of repeatedly
+rebuilding Companies House snapshots.
+10. TRANSPORT / PHYSICAL INTERVENTION Street Manager
+
+Plant roadwork/intervention state where API/public-access terms permit.
+
+Collect:
+
+   - works reference
+   - permit
+   - USRN
+   - geography
+   - timing
+   - work type
+   - planned/active/completed state
+
+Transformation:
+
+   - physical intervention event
+
+BODS
+
+Join bus operational data.
+
+Transform:
+roadworks
+=E2=86=92 actual vehicle/journey impact
+=E2=86=92 excess traversal/delay
+=E2=86=92 recovery time
+
+Derived:
+
+   - intervention impact
+   - disruption severity
+   - recovery curve
+   - roadwork-type response function
+
+This is the archetype for the whole OutcomeGraph:
+*event =E2=86=92 physical system before =E2=86=92 intervention =E2=86=92 re=
+sponse =E2=86=92 recovery =E2=86=92
+outcome*
+11. TRADE / IMPORT / LOGISTICS HMRC UK Trade Tariff Developer Portal
+
+Track:
+
+   - commodity code
+   - duty
+   - VAT
+   - quota
+   - origin/country measures
+   - effective date
+
+Transform:
+
+   - effective landed-cost shock
+   - tariff change
+   - quota pressure
+
+Derived:
+
+   - imported component cost shock
+   - industry exposure
+   - parts-cost risk
+
+Join:
+commodity =C3=97 component =C3=97 UK companies =C3=97 repair =C3=97 manufac=
+turing
+
+Raw tariff history may be reconstructable; the moat is the normalized
+company/component exposure graph.
+12. WASTE / MATERIAL RECOVERY / END-OF-LIFE Environment Agency public
+registers
+
+Directory:
+https://www.api.gov.uk/ea/public-registers-for-environmental-information/
+
+Potential sources:
+
+   - End-of-Life Vehicle sites
+   - waste operators
+   - carriers/brokers
+   - environmental permits
+
+Transformation:
+
+   - repair/reuse/recycling network
+   - material-recovery capability by geography
+   - end-of-life routing
+
+Derived:
+
+   - reuse vs recycle options
+   - part-harvesting network
+   - local circular-economy capacity
+
+Potential future join:
+broken asset =E2=86=92 repair =E2=86=92 part harvest =E2=86=92 recycler =E2=
+=86=92 recovered material
+13. MARKETPLACE / VALUE SURFACES eBay Browse API / permitted marketplace
+APIs
+
+Use official APIs/permissioned routes rather than indiscriminate scraping
+where possible.
+
+Collect:
+
+   - listing ID
+   - model
+   - condition
+   - ask
+   - seller/location
+   - availability
+   - listing start/end where available
+
+Transformations:
+
+   - broken ask
+   - used ask
+   - working ask
+   - listing disappearance
+   - price change
+   - relist
+
+Important:
+Do NOT equate disappearance with sale.
+
+Derived:
+
+   - ask spread
+   - broken-vs-working spread
+   - repair headroom
+   - active inventory
+   - price dispersion
+   - liquidity proxies only when supported
+
+Audit retention/API terms before archiving at scale.
+COMMON TRANSFORMATIONS POW SHOULD IMPLEMENT ONCE
+
+Every collector should emit into shared primitives.
+Observation
+
+entity_id
+entity_type
+source
+observed_at
+event_time
+place_id
+raw_ref
+payload_hash
+provenance
+confidence
+Generic Event
+
+entity_id
+event_type
+state_before
+state_after
+event_time
+observed_at
+source
+confidence
+Identity edges
+
+source_entity
+target_entity
+relation
+confidence
+evidence
+valid_from
+valid_to
+Generic derived event classes
+
+NEW
+UPDATED
+DISAPPEARED
+REAPPEARED
+PRICE_CHANGED
+STOCK_CHANGED
+CAPACITY_CHANGED
+STATUS_CHANGED
+OWNER_CHANGED
+LOCATION_CHANGED
+FAULT_STARTED
+FAULT_RESOLVED
+CONSTRAINT_STARTED
+CONSTRAINT_RELAXED
+QUALIFICATION_GAINED
+QUALIFICATION_LOST
+RECALL_ISSUED
+PART_SUPERSEDED
+REPAIR_ATTEMPTED
+REPAIR_SUCCEEDED
+REPAIR_FAILED
+ACTION_EXECUTED
+OUTCOME_OBSERVED
+CORE DERIVED GRAPHS AssetGraph
+
+What physically exists.
+CapabilityGraph
+
+What an asset/person/robot can do.
+ComponentGraph
+
+What an asset contains / depends on.
+CompatibilityGraph
+
+What works with what.
+ConstraintGraph
+
+What limits activity now.
+MarketGraph
+
+What inputs/outputs currently cost.
+SkillGraph
+
+Who/what is capable of performing transformations.
+PlaceGraph
+
+UPRN/postcode/grid/council/planning/geographic context.
+ActionGraph
+
+What transformations are possible.
+OutcomeGraph
+
+What actually happened after an intervention.
+HIGH-VALUE CROSS-SOURCE TRANSFORMATIONS Repair Opportunity
+
+asset
+=C3=97 fault prior
+=C3=97 component
+=C3=97 component availability
+=C3=97 repair procedure
+=C3=97 user skill
+=C3=97 broken ask
+=C3=97 working ask
+=C3=97 resale liquidity
+
+=E2=86=92 expected repair value
+=E2=86=92 repair feasibility
+=E2=86=92 skill fit
+=E2=86=92 expected time
+=E2=86=92 expected margin
+=E2=86=92 action recommendation
+EV Home Setup
+
+EV
+=C3=97 house
+=C3=97 EPC
+=C3=97 electrical capability
+=C3=97 solar
+=C3=97 battery
+=C3=97 tariff
+=C3=97 grid
+=C3=97 charger compatibility
+=C3=97 grant
+=C3=97 installer availability
+
+=E2=86=92 charger shortlist
+=E2=86=92 installation feasibility
+=E2=86=92 expected charging cost
+=E2=86=92 solar/battery effect
+=E2=86=92 grant eligibility
+=E2=86=92 installer route
+Physical Skill Opportunity
+
+person
+=C3=97 skill
+=C3=97 location
+=C3=97 certification
+=C3=97 training route
+=C3=97 apprenticeship demand
+=C3=97 local installed base
+=C3=97 regulation
+=C3=97 supplier density
+=C3=97 procurement
+
+=E2=86=92 what skill to learn
+=E2=86=92 training path
+=E2=86=92 capital required
+=E2=86=92 opportunity density
+=E2=86=92 likely physical work available
+Grid Site Opportunity
+
+site
+=C3=97 grid headroom
+=C3=97 queue pressure
+=C3=97 outage reliability
+=C3=97 electricity tariff
+=C3=97 planning
+=C3=97 property
+=C3=97 connectivity
+=C3=97 available hardware
+
+=E2=86=92 site viability
+=E2=86=92 expected constraint
+=E2=86=92 best productive use
+=E2=86=92 connection risk
+=E2=86=92 power-adjusted opportunity
+Compute Allocation
+
+GPU/CPU
+=C3=97 electricity
+=C3=97 mining
+=C3=97 inference
+=C3=97 rental
+=C3=97 resale
+=C3=97 depreciation
+
+=E2=86=92 =C2=A3/hour by action
+=E2=86=92 =C2=A3/kWh by action
+=E2=86=92 best current action
+=E2=86=92 switch threshold
+House Optimization
+
+house passport
+=C3=97 energy
+=C3=97 EV
+=C3=97 compute
+=C3=97 tools
+=C3=97 appliance state
+=C3=97 user skills
+=C3=97 local grid
+=C3=97 legislation
+=C3=97 local service supply
+
+=E2=86=92 repair
+=E2=86=92 sell
+=E2=86=92 install
+=E2=86=92 repurpose
+=E2=86=92 charge
+=E2=86=92 mine
+=E2=86=92 rent
+=E2=86=92 learn
+=E2=86=92 hire
+Constraint / Seesaw
+
+Innovation/Event
+=E2=86=92 =CE=94Constraint
+=E2=86=92 =CE=94ShadowPrice
+=E2=86=92 Capital Allocation
+=E2=86=92 Supply Response
+=E2=86=92 Constraint Relaxation
+
+Measure:
+
+   - constraint intensity
+   - shadow-price proxy
+   - supply-response velocity
+   - expected relaxation time
+   - geography
+   - exposed actions
+
+WHAT TO PLANT FIRST
+
+Tier 1 =E2=80=94 start/keep immediately:
+
+   - NESO queue snapshots
+   - DNO headroom/constraint state
+   - UKPN live outage state
+   - EV OCPI state CPO-by-CPO
+   - Fuel Finder
+   - DfE apprenticeship lifecycle
+   - DfE training-provider changes
+   - Companies House Streaming
+   - Mouser component state
+   - DigiKey component state
+   - OPSS recall feed
+   - MOT bulk + deltas
+   - Open Repair Alliance
+   - existing PowPowPow compute collectors
+
+Tier 2 =E2=80=94 ingest/join substrate:
+
+   - EPC
+   - Planning Data
+   - Land Registry
+   - Elexon
+   - Octopus tariffs
+   - Ofqual
+   - MCS public installation state
+   - OpenWrt
+   - Zigbee2MQTT
+   - Home Assistant
+   - PCI IDs
+   - EA environmental registers
+   - REPD
+   - BODS
+   - Street Manager
+
+Tier 3 =E2=80=94 permission/terms work:
+
+   - iFixit commercial use audit
+   - marketplace/eBay retention audit
+   - TrustMark access agreement
+   - individual CPO OCPI credentials
+   - restricted MCS/installer data
+   - other company APIs discovered by probes
+
+THE IMPORTANT RULE
+
+Do not build 30 unrelated scrapers.
+
+Build one POW garden kernel:
+
+fetch
+=E2=86=92 raw archive
+=E2=86=92 normalize
+=E2=86=92 resolve identity
+=E2=86=92 diff
+=E2=86=92 event
+=E2=86=92 transformation
+=E2=86=92 join
+=E2=86=92 action
+=E2=86=92 outcome
+
+Every source should plug into that.
+
+The end-state asset is not =E2=80=9Ca pile of UK APIs.=E2=80=9D
+
+It is:
+
+*a machine-readable historical memory of what physical resources existed,
+what they could do, what constrained them, what actions were available,
+what those actions cost, and what happened next.*
+
+--000000000000a0996a065be91758
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Forwarding because this POW/PTech material was sent to the personal inbo=
+x earlier in this conversation but not to Intelligent Others. Preserve this=
+ as current project context/source material.</p>
+<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">--=
+-------- Forwarded message ---------<br>From: Prior Trades &lt;<a href=3D"m=
+ailto:tradesprior@gmail.com">tradesprior@gmail.com</a>&gt;<br>Date: Sun, 20=
+ Sep 2026 06:50:08 -0500<br>Subject: POW.SYSTEMS =E2=80=94 All Sources + Tr=
+ansformations Planting Dossier<br>To: <a href=3D"mailto:tradesprior@gmail.c=
+om">tradesprior@gmail.com</a></div><br>POW.SYSTEMS =E2=80=94 Source + Trans=
+formation Dossier
+
+Core rule
+<p><strong>Data-garden moat =3D unique transformation =C3=97 continuous col=
+lection =C3=97 time</strong></p>
+<p>POW should not collect data because it is interesting. Every source shou=
+ld feed a common event pipeline:</p>
+<p>OBSERVE =E2=86=92 ARCHIVE RAW =E2=86=92 NORMALIZE =E2=86=92 RESOLVE IDEN=
+TITY =E2=86=92 DIFF =E2=86=92 EMIT EVENT =E2=86=92 TRANSFORM =E2=86=92 JOIN=
+ =E2=86=92 ACTION =E2=86=92 OUTCOME</p>
+<p>Universal object:</p>
+<p><strong>physical resource =C3=97 capability =C3=97 constraint =C3=97 per=
+son =C3=97 place =C3=97 time</strong></p>
+<p>The source is never the moat by itself. The moat is the historical trans=
+formed state and the joins/outcomes built over it.</p>
+
+
+
+1. GRID / ELECTRICITY
+
+NESO Transmission Entry Capacity / connection registers
+<p>Source:<br>
+<a href=3D"https://www.neso.energy/data-portal/transmission-entry-capacity-=
+tec-register/tec_register">https://www.neso.energy/data-portal/transmission=
+-entry-capacity-tec-register/tec_register</a></p>
+<p>Collect:</p>
+<ul>
+<li>project ID/name</li>
+<li>developer/owner</li>
+<li>capacity MW</li>
+<li>technology</li>
+<li>connection point</li>
+<li>connection date</li>
+<li>gate/status</li>
+<li>row additions/removals/changes</li>
+</ul>
+<p>Cadence:</p>
+<ul>
+<li>each official release; currently Tuesday/Friday for TEC register</li>
+<li>archive raw every release forever</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>entered_queue</li>
+<li>capacity_changed</li>
+<li>connection_date_moved</li>
+<li>gate_changed</li>
+<li>owner_changed</li>
+<li>disappeared</li>
+<li>connected</li>
+<li>probable_cancelled</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>queue_age</li>
+<li>date_slippage_days</li>
+<li>project_survival_rate</li>
+<li>MW_added / MW_removed</li>
+<li>MW_at_risk</li>
+<li>developer delivery rate</li>
+<li>queue churn</li>
+<li>speculative_queue_score</li>
+<li>connection_probability by region/technology/developer</li>
+<li>constraint_pressure by node</li>
+</ul>
+<p>Join:<br>
+NESO =C3=97 DNO headroom =C3=97 planning =C3=97 Companies House =C3=97 REPD=
+ =C3=97 grid reinforcement =C3=97 site/property</p>
+
+
+
+UK Power Networks / live network state
+<p>Open-data portal:<br>
+<a href=3D"https://open-data.org.uk/">https://open-data.org.uk/</a></p>
+<p>Important dataset family:<br>
+UKPN National Energy Outage / network operational feeds</p>
+<p>Collect:</p>
+<ul>
+<li>live faults/outages</li>
+<li>affected geography</li>
+<li>start/end time</li>
+<li>restoration updates</li>
+<li>network constraint events</li>
+<li>curtailment</li>
+<li>power flow/headroom where available</li>
+<li>flexibility events</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>outage_started</li>
+<li>outage_updated</li>
+<li>outage_restored</li>
+<li>constraint_started</li>
+<li>constraint_relaxed</li>
+<li>curtailment_event</li>
+<li>reinforcement_effect</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>outage frequency</li>
+<li>outage duration survival curve</li>
+<li>restoration reliability</li>
+<li>local reliability score</li>
+<li>constraint-hours</li>
+<li>curtailment-hours</li>
+<li>grid stress index</li>
+<li>local power scarcity</li>
+<li>reliability trend</li>
+</ul>
+<p>Join:<br>
+site/UPRN =C3=97 EV =C3=97 solar =C3=97 battery =C3=97 compute =C3=97 busin=
+ess =C3=97 grid node</p>
+
+
+
+Northern Powergrid headroom / capacity
+<p>API/data portal:<br>
+<a href=3D"https://northernpowergrid.opendatasoft.com/explore/dataset/heatm=
+apdemanddata/api/">https://northernpowergrid.opendatasoft.com/explore/datas=
+et/heatmapdemanddata/api/</a></p>
+<p>Collect:</p>
+<ul>
+<li>firm capacity</li>
+<li>max demand</li>
+<li>contracted demand</li>
+<li>generation</li>
+<li>constraints</li>
+<li>fault levels</li>
+<li>demand headroom</li>
+<li>generation headroom</li>
+<li>planned interventions</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>headroom_delta</li>
+<li>constraint_intensification</li>
+<li>constraint_relaxation</li>
+<li>planned_capacity_added</li>
+<li>contracted_capacity_consumed</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>spare_capacity_ratio</li>
+<li>headroom_velocity</li>
+<li>connection_pressure</li>
+<li>node_constraint_score</li>
+<li>expected_relaxation_time</li>
+</ul>
+
+
+
+Elexon
+<p>Developer portal:<br>
+<a href=3D"https://developer.data.elexon.co.uk/">https://developer.data.ele=
+xon.co.uk/</a></p>
+<p>Collect:</p>
+<ul>
+<li>system prices</li>
+<li>demand</li>
+<li>generation</li>
+<li>imbalance</li>
+<li>BM data</li>
+<li>constraint-related market state</li>
+<li>standing/reference data where useful</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>electricity_input_cost</li>
+<li>volatility</li>
+<li>scarcity periods</li>
+<li>generation mix state</li>
+<li>system stress</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>productive electricity cost</li>
+<li>mining/inference electricity threshold</li>
+<li>battery opportunity windows</li>
+<li>price volatility</li>
+<li>price =C3=97 grid-constraint joins</li>
+</ul>
+<p>Important:<br>
+Raw Elexon history is already strong, so use mainly as JOIN/TRANSFORMATION =
+substrate rather than pretending archive alone is a moat.</p>
+
+
+
+Octopus / household tariff APIs
+<p>Use:</p>
+<ul>
+<li>import tariff</li>
+<li>export tariff</li>
+<li>agile/time-of-use price</li>
+<li>tariff region</li>
+<li>standing charge</li>
+<li>pricing window</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>actual energy input cost by 30m/time period</li>
+<li>best charge/discharge window</li>
+<li>compute marginal cost</li>
+<li>EV charge cost</li>
+<li>solar/battery arbitrage state</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>=C2=A3/kWh productive cost</li>
+<li>charge_now / delay / export decision</li>
+<li>effective annual tariff profile</li>
+</ul>
+
+
+
+2. EV / MOBILITY
+
+Public Charge Point Regulations / OCPI
+<p>Guidance:<br>
+<a href=3D"https://www.gov.uk/government/publications/the-public-charge-poi=
+nt-regulations-2023-guidance/public-charge-point-regulations-2023-guidance"=
+>https://www.gov.uk/government/publications/the-public-charge-point-regulat=
+ions-2023-guidance/public-charge-point-regulations-2023-guidance</a></p>
+<p>Key fact:<br>
+Public CPOs must expose machine-readable reference + availability data and =
+status changes quickly; historical availability is not required to be prese=
+rved.</p>
+<p>This is a core time-moat feed.</p>
+<p>Collect per EVSE:</p>
+<ul>
+<li>operator</li>
+<li>immutable location/location ID</li>
+<li>EVSE ID</li>
+<li>connector</li>
+<li>power</li>
+<li>tariff</li>
+<li>AVAILABLE</li>
+<li>CHARGING</li>
+<li>RESERVED</li>
+<li>OUTOFORDER</li>
+<li>INOPERATIVE</li>
+<li>timestamp</li>
+</ul>
+<p>Cadence:</p>
+<ul>
+<li>consume feed/webhook/OCPI status at appropriate near-real-time cadence<=
+/li>
+<li>preserve every state transition</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>availability transition tape</li>
+<li>outage episode</li>
+<li>occupancy episode</li>
+<li>tariff change</li>
+<li>connector state change</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>true uptime</li>
+<li>mean time between failures</li>
+<li>mean time to recovery</li>
+<li>occupancy pressure</li>
+<li>unavailable-hours</li>
+<li>site saturation</li>
+<li>operator reliability</li>
+<li>connector reliability</li>
+<li>effective price/kWh history</li>
+<li>geographic charger scarcity</li>
+<li>local EV charging pressure</li>
+</ul>
+<p>Join:<br>
+EV model =C3=97 charger compatibility =C3=97 property =C3=97 home charger =
+=C3=97 grid =C3=97 solar =C3=97 battery =C3=97 tariff =C3=97 installer</p>
+
+
+
+GRIDSERVE OCPI
+<p>Documentation:<br>
+<a href=3D"https://www.gridserve.com/wp-content/uploads/2024/11/GRIDSERVE-P=
+CPR-API-Developer-Documentation.pdf">https://www.gridserve.com/wp-content/u=
+ploads/2024/11/GRIDSERVE-PCPR-API-Developer-Documentation.pdf</a></p>
+<p>Goal:</p>
+<ul>
+<li>validate credential route</li>
+<li>ingest locations/tariffs/status</li>
+<li>add to CPO endpoint registry</li>
+</ul>
+
+
+
+CPO endpoint census
+<p>Create canonical table:</p>
+<p>cpo<br>
+endpoint<br>
+ocpi_version<br>
+public_discovery<br>
+auth_type<br>
+free_access<br>
+locations_access<br>
+tariffs_access<br>
+status_access<br>
+retention_rights<br>
+coverage<br>
+observed_at</p>
+<p>Transformation:</p>
+<ul>
+<li>endpoint_accessibility_score</li>
+<li>market_coverage_score</li>
+<li>compliant_public_feed_score</li>
+</ul>
+<p>This itself becomes useful infrastructure.</p>
+
+
+
+Fuel Finder
+<p>Official guidance:<br>
+<a href=3D"https://www.gov.uk/guidance/access-the-latest-fuel-prices-and-fo=
+recourt-data-via-api-or-email">https://www.gov.uk/guidance/access-the-lates=
+t-fuel-prices-and-forecourt-data-via-api-or-email</a></p>
+<p>Collect:</p>
+<ul>
+<li>forecourt</li>
+<li>brand</li>
+<li>address</li>
+<li>facilities</li>
+<li>opening hours</li>
+<li>petrol/diesel prices</li>
+<li>price timestamp</li>
+</ul>
+<p>Cadence:</p>
+<ul>
+<li>API near-real-time</li>
+<li>twice-daily CSV as resilience/fallback</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>price_changed</li>
+<li>cheapest_local_fuel</li>
+<li>station_price_rank</li>
+<li>geographic spread</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>petrol/diesel local energy cost</li>
+<li>EV vs ICE energy-cost comparison</li>
+<li>forecourt competition</li>
+<li>price dispersion</li>
+<li>mobility energy inflation</li>
+</ul>
+
+
+
+DVSA MOT history
+<p>Docs:<br>
+<a href=3D"https://documentation.history.mot.api.gov.uk/">https://documenta=
+tion.history.mot.api.gov.uk/</a></p>
+<p>Collect:</p>
+<ul>
+<li>make/model</li>
+<li>age</li>
+<li>mileage</li>
+<li>test date</li>
+<li>pass/fail</li>
+<li>defect category</li>
+<li>advisory</li>
+<li>complete historical tests</li>
+</ul>
+<p>Use weekly full bulk + daily deltas.</p>
+<p>Transformations:</p>
+<ul>
+<li>first_fault</li>
+<li>recurring_fault</li>
+<li>age_at_fault</li>
+<li>mileage_at_fault</li>
+<li>fault_cluster</li>
+<li>repeat_failure</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>failure hazard by model/age/mileage</li>
+<li>recurring fault probability</li>
+<li>expected repair burden</li>
+<li>reliability cohort</li>
+<li>likely next-fault classes</li>
+</ul>
+<p>Join:<br>
+MOT =C3=97 part MPN =C3=97 repair guide =C3=97 recall =C3=97 used value =C3=
+=97 labour</p>
+
+
+
+3. COMPONENTS / REPAIR
+
+Mouser API
+<p>Docs:<br>
+<a href=3D"https://www.mouser.com/en/api-search/">https://www.mouser.com/en=
+/api-search/</a></p>
+<p>Collect:</p>
+<ul>
+<li>manufacturer</li>
+<li>MPN</li>
+<li>stock</li>
+<li>lifecycle</li>
+<li>MOQ</li>
+<li>order multiple</li>
+<li>lead time</li>
+<li>suggested replacement</li>
+<li>price breaks</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>stock_change</li>
+<li>lead_time_change</li>
+<li>price_change</li>
+<li>lifecycle_change</li>
+<li>EOL</li>
+<li>replacement_announced</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>component scarcity</li>
+<li>lead-time inflation</li>
+<li>substitution graph</li>
+<li>replacement risk</li>
+<li>repair feasibility</li>
+<li>parts-cost history</li>
+</ul>
+
+
+
+DigiKey APIs
+<p>Docs:<br>
+<a href=3D"https://www.digikey.com/en/resources/api-solutions-faqs">https:/=
+/www.digikey.com/en/resources/api-solutions-faqs</a></p>
+<p>Collect:</p>
+<ul>
+<li>MPN</li>
+<li>stock</li>
+<li>price breaks</li>
+<li>availability</li>
+<li>product metadata</li>
+<li>alternative parts</li>
+</ul>
+<p>Transformation:<br>
+Same as Mouser plus cross-distributor disagreement.</p>
+<p>Derived:</p>
+<ul>
+<li>true market availability</li>
+<li>distributor concentration</li>
+<li>lowest-cost substitute</li>
+<li>stock-out consensus</li>
+<li>lead-time divergence</li>
+</ul>
+<p>Join:<br>
+Mouser =C3=97 DigiKey =C3=97 asset models =C3=97 faults =C3=97 repair guide=
+s</p>
+
+
+
+Open Repair Alliance
+<p>Downloads:<br>
+<a href=3D"https://openrepair.org/open-data/downloads/">https://openrepair.=
+org/open-data/downloads/</a></p>
+<p>Collect:</p>
+<ul>
+<li>device category</li>
+<li>age where available</li>
+<li>problem</li>
+<li>attempted repair</li>
+<li>result</li>
+<li>barrier</li>
+<li>repair event context</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>fault =E2=86=92 intervention =E2=86=92 result</li>
+<li>repairability prior</li>
+<li>barrier classification</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>repair success rate</li>
+<li>failure category frequency</li>
+<li>repair barrier frequency</li>
+<li>repairability by product category</li>
+<li>age vs repair outcome</li>
+</ul>
+<p>Long-term:<br>
+Replace broad priors with exact-model first-party outcome data generated by=
+ POW users.</p>
+
+
+
+iFixit
+<p>API:<br>
+<a href=3D"https://www.ifixit.com/api/2.0/doc/">https://www.ifixit.com/api/=
+2.0/doc/</a></p>
+<p>Collect:</p>
+<ul>
+<li>guide identity</li>
+<li>device identity</li>
+<li>guide steps</li>
+<li>parts/tools</li>
+<li>modification dates</li>
+<li>repair topic graph</li>
+</ul>
+<p>Important:<br>
+Audit commercial/licensing constraints before using as unrestricted product=
+ion data.</p>
+<p>Transformations:</p>
+<ul>
+<li>model =E2=86=92 repair procedure</li>
+<li>model =E2=86=92 required tools</li>
+<li>model =E2=86=92 component</li>
+<li>procedure complexity</li>
+<li>repair-step graph</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>skill compatibility</li>
+<li>estimated repair complexity</li>
+<li>tool requirement</li>
+<li>procedure availability</li>
+</ul>
+
+
+
+OPSS product safety / recalls
+<p>Feed:<br>
+<a href=3D"https://www.gov.uk/product-safety-alerts-reports-recalls">https:=
+//www.gov.uk/product-safety-alerts-reports-recalls</a></p>
+<p>Collect:</p>
+<ul>
+<li>product/model</li>
+<li>brand</li>
+<li>category</li>
+<li>hazard</li>
+<li>corrective action</li>
+<li>recall/modification/withdrawal</li>
+<li>date</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>safety_event</li>
+<li>recall_event</li>
+<li>modification_required</li>
+<li>resale_block</li>
+<li>repair_warning</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>product-risk state</li>
+<li>model safety history</li>
+<li>repair/resale eligibility</li>
+<li>safety-adjusted resale value</li>
+</ul>
+<p>Join:<br>
+recall =C3=97 component =C3=97 repair guide =C3=97 marketplace =C3=97 asset=
+</p>
+
+
+
+4. SKILLS / TRADES / TRAINING
+
+DfE apprenticeship adverts
+<p>API:<br>
+<a href=3D"https://api.apprenticeships.education.gov.uk/vacancies">https://=
+api.apprenticeships.education.gov.uk/vacancies</a><br>
+Docs:<br>
+<a href=3D"https://beta-find-and-use-an-api.education.gov.uk/api/display-ad=
+vert-api-2">https://beta-find-and-use-an-api.education.gov.uk/api/display-a=
+dvert-api-2</a><br>
+Signup:<br>
+<a href=3D"https://developer.apprenticeships.education.gov.uk/third-party-a=
+ccounts/register">https://developer.apprenticeships.education.gov.uk/third-=
+party-accounts/register</a></p>
+<p>Collect:</p>
+<ul>
+<li>vacancy reference</li>
+<li>employer</li>
+<li>occupation/standard</li>
+<li>provider</li>
+<li>location(s)</li>
+<li>salary</li>
+<li>posting date</li>
+<li>closing date</li>
+<li>description</li>
+<li>live/closed state</li>
+</ul>
+<p>Cadence:<br>
+30=E2=80=9360m list polling, detail fetch only on new/changed refs.</p>
+<p>Transformations:</p>
+<ul>
+<li>NEW</li>
+<li>EDIT</li>
+<li>LOCATION_CHANGE</li>
+<li>SALARY_CHANGE</li>
+<li>CLOSING_DATE_CHANGE</li>
+<li>EARLY_CLOSE</li>
+<li>DISAPPEARED</li>
+<li>PROBABLE_REPOST</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>vacancy lifetime</li>
+<li>employer hiring velocity</li>
+<li>hard-to-fill score</li>
+<li>repost rate</li>
+<li>local skill pressure</li>
+<li>salary pressure</li>
+<li>training demand</li>
+</ul>
+<p>Join:<br>
+apprenticeships =C3=97 training providers =C3=97 qualifications =C3=97 cert=
+ification =C3=97 installations =C3=97 procurement =C3=97 local geography</p=
+>
+
+
+
+DfE Register of Training Providers
+<p>Docs:<br>
+<a href=3D"https://register-of-training-providers.education.gov.uk/api-docs=
+/get/providers">https://register-of-training-providers.education.gov.uk/api=
+-docs/get/providers</a></p>
+<p>Collect:</p>
+<ul>
+<li>provider identity</li>
+<li>UKPRN</li>
+<li>accreditation/status</li>
+<li>provider changes</li>
+<li>changed_since</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>provider_added</li>
+<li>provider_removed</li>
+<li>provider_status_changed</li>
+<li>capability_added/removed</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>local training capacity</li>
+<li>training-provider density</li>
+<li>response to skill bottlenecks</li>
+<li>training supply velocity</li>
+</ul>
+
+
+
+Ofqual regulated qualifications
+<p>Plant:</p>
+<ul>
+<li>qualification identity</li>
+<li>awarding organisation</li>
+<li>level</li>
+<li>subject/occupation</li>
+<li>qualification status</li>
+<li>updates/withdrawals</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>qualification introduced</li>
+<li>withdrawn</li>
+<li>superseded</li>
+<li>route_to_skill graph</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>time/cost path to capability</li>
+<li>qualification scarcity</li>
+<li>skill portability</li>
+</ul>
+
+
+
+Competent Person / self-certification schemes
+<p>Government framework:<br>
+<a href=3D"https://www.gov.uk/government/publications/self-certification-sc=
+hemes-mandatory-technical-competence-requirements">https://www.gov.uk/gover=
+nment/publications/self-certification-schemes-mandatory-technical-competenc=
+e-requirements</a></p>
+<p>Collect public register state where legally available:</p>
+<ul>
+<li>person/business</li>
+<li>scheme</li>
+<li>trade</li>
+<li>certification</li>
+<li>geography</li>
+<li>status</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>certified</li>
+<li>certification changed</li>
+<li>removed</li>
+<li>capability gained/lost</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>qualified supplier density</li>
+<li>local certified-capacity</li>
+<li>skill bottleneck</li>
+<li>service eligibility</li>
+</ul>
+
+
+
+TrustMark
+<p>Business-search integration:<br>
+<a href=3D"https://github.com/trustmark-2005-ltd/TrustMark-BusinessSearch-I=
+ntegration">https://github.com/trustmark-2005-ltd/TrustMark-BusinessSearch-=
+Integration</a></p>
+<p>Use permissioned integration rather than scraping where possible.</p>
+<p>Collect:</p>
+<ul>
+<li>registered business</li>
+<li>service/trade</li>
+<li>geography</li>
+<li>trust/certification attributes</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>supplier-capability graph</li>
+<li>service-area graph</li>
+</ul>
+
+
+
+5. PROPERTY / HOUSE PASSPORT
+
+Planning Data
+<p>Docs:<br>
+<a href=3D"https://www.planning.data.gov.uk/docs">https://www.planning.data=
+.gov.uk/docs</a></p>
+<p>Collect authoritative/open planning and land constraints.</p>
+<p>Keys:</p>
+<ul>
+<li>UPRN</li>
+<li>address</li>
+<li>lat/lon</li>
+<li>planning authority</li>
+<li>dataset/entity IDs</li>
+</ul>
+<p>Use as JOIN substrate more than time moat.</p>
+<p>Transformations:</p>
+<ul>
+<li>site_constraints</li>
+<li>permitted_actions</li>
+<li>nearby/planning context</li>
+<li>planning-event links</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>site suitability</li>
+<li>constraint surface</li>
+<li>solar/EV/heat-pump/planning eligibility context</li>
+</ul>
+
+
+
+EPC data
+<p>Service:<br>
+<a href=3D"https://get-energy-performance-data.communities.gov.uk/">https:/=
+/get-energy-performance-data.communities.gov.uk/</a></p>
+<p>Collect:</p>
+<ul>
+<li>UPRN/address</li>
+<li>certificate</li>
+<li>building type</li>
+<li>energy performance</li>
+<li>heating</li>
+<li>recommendations</li>
+<li>floor area and useful property fields where licensed/available</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>house capability baseline</li>
+<li>upgrade candidates</li>
+<li>heating/energy state</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>solar/battery/heat-pump suitability features</li>
+<li>house passport seed</li>
+</ul>
+
+
+
+HM Land Registry Price Paid
+<p>Downloads:<br>
+<a href=3D"https://www.gov.uk/government/statistical-data-sets/price-paid-d=
+ata-downloads">https://www.gov.uk/government/statistical-data-sets/price-pa=
+id-data-downloads</a></p>
+<p>Collect:</p>
+<ul>
+<li>transactions</li>
+<li>price</li>
+<li>date</li>
+<li>property type</li>
+<li>UPRN lookup where provided</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>property economic state</li>
+<li>local transaction price</li>
+<li>turnover</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>asset-value context</li>
+<li>house-upgrade economics</li>
+<li>local affordability / ROI denominator</li>
+</ul>
+
+
+
+6. HEAT PUMPS / SOLAR / BATTERIES
+
+Boiler Upgrade Scheme
+<p>Ofgem:<br>
+<a href=3D"https://www.ofgem.gov.uk/data/bus-monthly-scheme-update">https:/=
+/www.ofgem.gov.uk/data/bus-monthly-scheme-update</a><br>
+Statistics:<br>
+<a href=3D"https://www.gov.uk/government/collections/boiler-upgrade-scheme-=
+statistics">https://www.gov.uk/government/collections/boiler-upgrade-scheme=
+-statistics</a></p>
+<p>Collect:</p>
+<ul>
+<li>voucher/application counts</li>
+<li>redeemed grants</li>
+<li>technology</li>
+<li>region</li>
+<li>cost</li>
+<li>monthly evolution</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>grant demand</li>
+<li>installation demand</li>
+<li>conversion</li>
+<li>regional growth</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>heat-pump demand pressure</li>
+<li>public-subsidy effect</li>
+<li>local installer demand</li>
+</ul>
+<p>Join:<br>
+BUS =C3=97 installer register =C3=97 apprenticeships =C3=97 training provid=
+ers =C3=97 MCS installation state =C3=97 EPC</p>
+
+
+
+MCS installation system / public dashboards
+<p>Portal:<br>
+<a href=3D"https://certificate.microgenerationcertification.org/">https://c=
+ertificate.microgenerationcertification.org/</a></p>
+<p>Collect legally accessible public aggregate/near-real-time installation =
+information.</p>
+<p>Track:</p>
+<ul>
+<li>solar PV</li>
+<li>battery/storage where available</li>
+<li>heat pumps</li>
+<li>installation geography</li>
+<li>installer/company</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>installed_base_growth</li>
+<li>installer_activity</li>
+<li>technology penetration</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>service/repair installed-base opportunity</li>
+<li>installer demand</li>
+<li>local technology adoption</li>
+</ul>
+<p>Do not attempt restricted database access without permission.</p>
+
+
+
+Smart Export Guarantee
+<p>Ofgem:<br>
+<a href=3D"https://www.ofgem.gov.uk/environmental-and-social-schemes/smart-=
+export-guarantee-seg">https://www.ofgem.gov.uk/environmental-and-social-sch=
+emes/smart-export-guarantee-seg</a></p>
+<p>Track supplier export tariffs/terms where accessible.</p>
+<p>Transformations:</p>
+<ul>
+<li>export-rate change</li>
+<li>eligibility change</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>solar export economics</li>
+<li>solar/battery dispatch economics</li>
+</ul>
+
+
+
+7. COMPUTE / GPU / MINING
+<p>Use existing PowPowPow collectors:</p>
+<ul>
+<li>Qubic</li>
+<li>Monero</li>
+<li>Kaspa</li>
+<li>Akash / compute markets</li>
+<li>GPU/CPU workload economics</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>issuance</li>
+<li>rewards per compute</li>
+<li>miner margin</li>
+<li>network difficulty/hashrate</li>
+<li>supply pressure</li>
+<li>rental yield</li>
+<li>inference yield</li>
+<li>electricity-adjusted output</li>
+</ul>
+<p>Universal action comparison:</p>
+<p>GAME<br>
+MINE<br>
+RENT<br>
+INFERENCE<br>
+SELL<br>
+REPAIR<br>
+REUSE<br>
+IDLE</p>
+<p>Derived:</p>
+<ul>
+<li>=C2=A3/hour by action</li>
+<li>=C2=A3/kWh by action</li>
+<li>opportunity cost of compute</li>
+<li>best current use</li>
+<li>switch threshold</li>
+</ul>
+<p>Do not encode belief that one use persists forever.</p>
+
+
+
+8. HARDWARE CAPABILITY / REUSE
+
+OpenWrt supported devices
+<p><a href=3D"https://openwrt.org/supported_devices">https://openwrt.org/su=
+pported_devices</a></p>
+<p>Collect:</p>
+<ul>
+<li>device</li>
+<li>vendor</li>
+<li>model</li>
+<li>hardware</li>
+<li>support state</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>exact device =E2=86=92 programmable network capability</li>
+</ul>
+
+
+
+Zigbee2MQTT
+<p><a href=3D"https://www.zigbee2mqtt.io/supported-devices/">https://www.zi=
+gbee2mqtt.io/supported-devices/</a></p>
+<p>Collect:</p>
+<ul>
+<li>vendor/model</li>
+<li>supported features</li>
+<li>compatibility</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>device =E2=86=92 capability =E2=86=92 home integration</li>
+</ul>
+
+
+
+Home Assistant integrations
+<p><a href=3D"https://www.home-assistant.io/integrations">https://www.home-=
+assistant.io/integrations</a></p>
+<p>Collect:</p>
+<ul>
+<li>integration</li>
+<li>product/service ecosystem</li>
+<li>supported capability</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>physical asset =E2=86=92 controllable capability</li>
+</ul>
+
+
+
+PCI ID Repository
+<p><a href=3D"https://pci-ids.ucw.cz/">https://pci-ids.ucw.cz/</a></p>
+<p>Collect daily snapshots:</p>
+<ul>
+<li>vendor ID</li>
+<li>device ID</li>
+<li>subsystem IDs</li>
+<li>names</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>raw hardware ID =E2=86=92 canonical hardware identity</li>
+</ul>
+<p>These are not strong time moats themselves; they are CapabilityGraph sub=
+strate.</p>
+
+
+
+9. COMPANY / IDENTITY
+
+Companies House Streaming API
+<p>Docs:<br>
+<a href=3D"https://developer-specs.company-information.service.gov.uk/strea=
+ming-api/guides/overview">https://developer-specs.company-information.servi=
+ce.gov.uk/streaming-api/guides/overview</a></p>
+<p>Collect real-time changes:</p>
+<ul>
+<li>company profile</li>
+<li>officers</li>
+<li>insolvency</li>
+<li>filing/charges where relevant</li>
+<li>company state changes</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>owner/operator changed</li>
+<li>company status changed</li>
+<li>operator birth/death</li>
+<li>corporate identity continuity</li>
+</ul>
+<p>Join:<br>
+company =E2=86=94 installer =E2=86=94 grid project =E2=86=94 tender =E2=86=
+=94 planning =E2=86=94 repair business =E2=86=94 training provider</p>
+<p>This is excellent for maintaining temporal identity instead of repeatedl=
+y rebuilding Companies House snapshots.</p>
+
+
+
+10. TRANSPORT / PHYSICAL INTERVENTION
+
+Street Manager
+<p>Plant roadwork/intervention state where API/public-access terms permit.<=
+/p>
+<p>Collect:</p>
+<ul>
+<li>works reference</li>
+<li>permit</li>
+<li>USRN</li>
+<li>geography</li>
+<li>timing</li>
+<li>work type</li>
+<li>planned/active/completed state</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>physical intervention event</li>
+</ul>
+
+
+
+BODS
+<p>Join bus operational data.</p>
+<p>Transform:<br>
+roadworks<br>
+=E2=86=92 actual vehicle/journey impact<br>
+=E2=86=92 excess traversal/delay<br>
+=E2=86=92 recovery time</p>
+<p>Derived:</p>
+<ul>
+<li>intervention impact</li>
+<li>disruption severity</li>
+<li>recovery curve</li>
+<li>roadwork-type response function</li>
+</ul>
+<p>This is the archetype for the whole OutcomeGraph:<br>
+<strong>event =E2=86=92 physical system before =E2=86=92 intervention =E2=
+=86=92 response =E2=86=92 recovery =E2=86=92 outcome</strong></p>
+
+
+
+11. TRADE / IMPORT / LOGISTICS
+
+HMRC UK Trade Tariff Developer Portal
+<p>Track:</p>
+<ul>
+<li>commodity code</li>
+<li>duty</li>
+<li>VAT</li>
+<li>quota</li>
+<li>origin/country measures</li>
+<li>effective date</li>
+</ul>
+<p>Transform:</p>
+<ul>
+<li>effective landed-cost shock</li>
+<li>tariff change</li>
+<li>quota pressure</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>imported component cost shock</li>
+<li>industry exposure</li>
+<li>parts-cost risk</li>
+</ul>
+<p>Join:<br>
+commodity =C3=97 component =C3=97 UK companies =C3=97 repair =C3=97 manufac=
+turing</p>
+<p>Raw tariff history may be reconstructable; the moat is the normalized co=
+mpany/component exposure graph.</p>
+
+
+
+12. WASTE / MATERIAL RECOVERY / END-OF-LIFE
+
+Environment Agency public registers
+<p>Directory:<br>
+<a href=3D"https://www.api.gov.uk/ea/public-registers-for-environmental-inf=
+ormation/">https://www.api.gov.uk/ea/public-registers-for-environmental-inf=
+ormation/</a></p>
+<p>Potential sources:</p>
+<ul>
+<li>End-of-Life Vehicle sites</li>
+<li>waste operators</li>
+<li>carriers/brokers</li>
+<li>environmental permits</li>
+</ul>
+<p>Transformation:</p>
+<ul>
+<li>repair/reuse/recycling network</li>
+<li>material-recovery capability by geography</li>
+<li>end-of-life routing</li>
+</ul>
+<p>Derived:</p>
+<ul>
+<li>reuse vs recycle options</li>
+<li>part-harvesting network</li>
+<li>local circular-economy capacity</li>
+</ul>
+<p>Potential future join:<br>
+broken asset =E2=86=92 repair =E2=86=92 part harvest =E2=86=92 recycler =E2=
+=86=92 recovered material</p>
+
+
+
+13. MARKETPLACE / VALUE SURFACES
+
+eBay Browse API / permitted marketplace APIs
+<p>Use official APIs/permissioned routes rather than indiscriminate scrapin=
+g where possible.</p>
+<p>Collect:</p>
+<ul>
+<li>listing ID</li>
+<li>model</li>
+<li>condition</li>
+<li>ask</li>
+<li>seller/location</li>
+<li>availability</li>
+<li>listing start/end where available</li>
+</ul>
+<p>Transformations:</p>
+<ul>
+<li>broken ask</li>
+<li>used ask</li>
+<li>working ask</li>
+<li>listing disappearance</li>
+<li>price change</li>
+<li>relist</li>
+</ul>
+<p>Important:<br>
+Do NOT equate disappearance with sale.</p>
+<p>Derived:</p>
+<ul>
+<li>ask spread</li>
+<li>broken-vs-working spread</li>
+<li>repair headroom</li>
+<li>active inventory</li>
+<li>price dispersion</li>
+<li>liquidity proxies only when supported</li>
+</ul>
+<p>Audit retention/API terms before archiving at scale.</p>
+
+
+
+COMMON TRANSFORMATIONS POW SHOULD IMPLEMENT ONCE
+<p>Every collector should emit into shared primitives.</p>
+
+Observation
+<p>entity_id<br>
+entity_type<br>
+source<br>
+observed_at<br>
+event_time<br>
+place_id<br>
+raw_ref<br>
+payload_hash<br>
+provenance<br>
+confidence</p>
+
+Generic Event
+<p>entity_id<br>
+event_type<br>
+state_before<br>
+state_after<br>
+event_time<br>
+observed_at<br>
+source<br>
+confidence</p>
+
+Identity edges
+<p>source_entity<br>
+target_entity<br>
+relation<br>
+confidence<br>
+evidence<br>
+valid_from<br>
+valid_to</p>
+
+Generic derived event classes
+<p>NEW<br>
+UPDATED<br>
+DISAPPEARED<br>
+REAPPEARED<br>
+PRICE_CHANGED<br>
+STOCK_CHANGED<br>
+CAPACITY_CHANGED<br>
+STATUS_CHANGED<br>
+OWNER_CHANGED<br>
+LOCATION_CHANGED<br>
+FAULT_STARTED<br>
+FAULT_RESOLVED<br>
+CONSTRAINT_STARTED<br>
+CONSTRAINT_RELAXED<br>
+QUALIFICATION_GAINED<br>
+QUALIFICATION_LOST<br>
+RECALL_ISSUED<br>
+PART_SUPERSEDED<br>
+REPAIR_ATTEMPTED<br>
+REPAIR_SUCCEEDED<br>
+REPAIR_FAILED<br>
+ACTION_EXECUTED<br>
+OUTCOME_OBSERVED</p>
+
+
+
+CORE DERIVED GRAPHS
+
+AssetGraph
+<p>What physically exists.</p>
+
+CapabilityGraph
+<p>What an asset/person/robot can do.</p>
+
+ComponentGraph
+<p>What an asset contains / depends on.</p>
+
+CompatibilityGraph
+<p>What works with what.</p>
+
+ConstraintGraph
+<p>What limits activity now.</p>
+
+MarketGraph
+<p>What inputs/outputs currently cost.</p>
+
+SkillGraph
+<p>Who/what is capable of performing transformations.</p>
+
+PlaceGraph
+<p>UPRN/postcode/grid/council/planning/geographic context.</p>
+
+ActionGraph
+<p>What transformations are possible.</p>
+
+OutcomeGraph
+<p>What actually happened after an intervention.</p>
+
+
+
+HIGH-VALUE CROSS-SOURCE TRANSFORMATIONS
+
+Repair Opportunity
+<p>asset<br>
+=C3=97 fault prior<br>
+=C3=97 component<br>
+=C3=97 component availability<br>
+=C3=97 repair procedure<br>
+=C3=97 user skill<br>
+=C3=97 broken ask<br>
+=C3=97 working ask<br>
+=C3=97 resale liquidity</p>
+<p>=E2=86=92 expected repair value<br>
+=E2=86=92 repair feasibility<br>
+=E2=86=92 skill fit<br>
+=E2=86=92 expected time<br>
+=E2=86=92 expected margin<br>
+=E2=86=92 action recommendation</p>
+
+
+
+EV Home Setup
+<p>EV<br>
+=C3=97 house<br>
+=C3=97 EPC<br>
+=C3=97 electrical capability<br>
+=C3=97 solar<br>
+=C3=97 battery<br>
+=C3=97 tariff<br>
+=C3=97 grid<br>
+=C3=97 charger compatibility<br>
+=C3=97 grant<br>
+=C3=97 installer availability</p>
+<p>=E2=86=92 charger shortlist<br>
+=E2=86=92 installation feasibility<br>
+=E2=86=92 expected charging cost<br>
+=E2=86=92 solar/battery effect<br>
+=E2=86=92 grant eligibility<br>
+=E2=86=92 installer route</p>
+
+
+
+Physical Skill Opportunity
+<p>person<br>
+=C3=97 skill<br>
+=C3=97 location<br>
+=C3=97 certification<br>
+=C3=97 training route<br>
+=C3=97 apprenticeship demand<br>
+=C3=97 local installed base<br>
+=C3=97 regulation<br>
+=C3=97 supplier density<br>
+=C3=97 procurement</p>
+<p>=E2=86=92 what skill to learn<br>
+=E2=86=92 training path<br>
+=E2=86=92 capital required<br>
+=E2=86=92 opportunity density<br>
+=E2=86=92 likely physical work available</p>
+
+
+
+Grid Site Opportunity
+<p>site<br>
+=C3=97 grid headroom<br>
+=C3=97 queue pressure<br>
+=C3=97 outage reliability<br>
+=C3=97 electricity tariff<br>
+=C3=97 planning<br>
+=C3=97 property<br>
+=C3=97 connectivity<br>
+=C3=97 available hardware</p>
+<p>=E2=86=92 site viability<br>
+=E2=86=92 expected constraint<br>
+=E2=86=92 best productive use<br>
+=E2=86=92 connection risk<br>
+=E2=86=92 power-adjusted opportunity</p>
+
+
+
+Compute Allocation
+<p>GPU/CPU<br>
+=C3=97 electricity<br>
+=C3=97 mining<br>
+=C3=97 inference<br>
+=C3=97 rental<br>
+=C3=97 resale<br>
+=C3=97 depreciation</p>
+<p>=E2=86=92 =C2=A3/hour by action<br>
+=E2=86=92 =C2=A3/kWh by action<br>
+=E2=86=92 best current action<br>
+=E2=86=92 switch threshold</p>
+
+
+
+House Optimization
+<p>house passport<br>
+=C3=97 energy<br>
+=C3=97 EV<br>
+=C3=97 compute<br>
+=C3=97 tools<br>
+=C3=97 appliance state<br>
+=C3=97 user skills<br>
+=C3=97 local grid<br>
+=C3=97 legislation<br>
+=C3=97 local service supply</p>
+<p>=E2=86=92 repair<br>
+=E2=86=92 sell<br>
+=E2=86=92 install<br>
+=E2=86=92 repurpose<br>
+=E2=86=92 charge<br>
+=E2=86=92 mine<br>
+=E2=86=92 rent<br>
+=E2=86=92 learn<br>
+=E2=86=92 hire</p>
+
+
+
+Constraint / Seesaw
+<p>Innovation/Event<br>
+=E2=86=92 =CE=94Constraint<br>
+=E2=86=92 =CE=94ShadowPrice<br>
+=E2=86=92 Capital Allocation<br>
+=E2=86=92 Supply Response<br>
+=E2=86=92 Constraint Relaxation</p>
+<p>Measure:</p>
+<ul>
+<li>constraint intensity</li>
+<li>shadow-price proxy</li>
+<li>supply-response velocity</li>
+<li>expected relaxation time</li>
+<li>geography</li>
+<li>exposed actions</li>
+</ul>
+
+
+
+WHAT TO PLANT FIRST
+<p>Tier 1 =E2=80=94 start/keep immediately:</p>
+<ul>
+<li>NESO queue snapshots</li>
+<li>DNO headroom/constraint state</li>
+<li>UKPN live outage state</li>
+<li>EV OCPI state CPO-by-CPO</li>
+<li>Fuel Finder</li>
+<li>DfE apprenticeship lifecycle</li>
+<li>DfE training-provider changes</li>
+<li>Companies House Streaming</li>
+<li>Mouser component state</li>
+<li>DigiKey component state</li>
+<li>OPSS recall feed</li>
+<li>MOT bulk + deltas</li>
+<li>Open Repair Alliance</li>
+<li>existing PowPowPow compute collectors</li>
+</ul>
+<p>Tier 2 =E2=80=94 ingest/join substrate:</p>
+<ul>
+<li>EPC</li>
+<li>Planning Data</li>
+<li>Land Registry</li>
+<li>Elexon</li>
+<li>Octopus tariffs</li>
+<li>Ofqual</li>
+<li>MCS public installation state</li>
+<li>OpenWrt</li>
+<li>Zigbee2MQTT</li>
+<li>Home Assistant</li>
+<li>PCI IDs</li>
+<li>EA environmental registers</li>
+<li>REPD</li>
+<li>BODS</li>
+<li>Street Manager</li>
+</ul>
+<p>Tier 3 =E2=80=94 permission/terms work:</p>
+<ul>
+<li>iFixit commercial use audit</li>
+<li>marketplace/eBay retention audit</li>
+<li>TrustMark access agreement</li>
+<li>individual CPO OCPI credentials</li>
+<li>restricted MCS/installer data</li>
+<li>other company APIs discovered by probes</li>
+</ul>
+
+
+
+THE IMPORTANT RULE
+<p>Do not build 30 unrelated scrapers.</p>
+<p>Build one POW garden kernel:</p>
+<p>fetch<br>
+=E2=86=92 raw archive<br>
+=E2=86=92 normalize<br>
+=E2=86=92 resolve identity<br>
+=E2=86=92 diff<br>
+=E2=86=92 event<br>
+=E2=86=92 transformation<br>
+=E2=86=92 join<br>
+=E2=86=92 action<br>
+=E2=86=92 outcome</p>
+<p>Every source should plug into that.</p>
+<p>The end-state asset is not =E2=80=9Ca pile of UK APIs.=E2=80=9D</p>
+<p>It is:</p>
+<p><strong>a machine-readable historical memory of what physical resources =
+existed, what they could do, what constrained them, what actions were avail=
+able, what those actions cost, and what happened next.</strong></p></div>
+
+--000000000000a0996a065be91758--

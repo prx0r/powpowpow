@@ -1,0 +1,847 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id ViOuQl4TXtmx
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 04:30:31 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=OcGLD1sXr53ybc0QMw0OjfM50ii/+etVeJtl42IERO5QvfCEs1HBMRJU+8tbqgMRrdewid3Nz
+	lEmbOUygvhHsRkDLfy8Vheb5H2x6a05d1SoiFMSekLjNJWP98qPhEKnznpy8I3kzbPd15NAsNND
+	W2dzBSUh+3PLphUMXS+XyB/05KTC3wFTYodNaTa1FpmsEb1kylwcJIMZYmx0Sv/y+xXqThGeI7t
+	nxQOZTHoCsedO5dErPW1tRh6ItRe12xT1XHXELmqGEPTjoZdR5U2PC9zPw+5l8r6xGkltXFbMeZ
+	hU/90mohzUw4w/yuuIBm6i8qbHFVEAvuS11jZ8lfg5EQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789965031; x=1790569831; bh=xLP3ZxdT
+	8/nHrHK0GvJUSPYWJSPy7rWRjKWlMiZH4q0=; b=LUSSaogdksYf4/DsQiJYK4m9t4rdiMiHgJh
+	JKgAmFKNzDbmifBTkEVpwe5VnFn8PmMZQuBB/8DYjEcTlmQjaCdrpFErcKrMSsHQSbpqEJ78qf3
+	/XCSROtbY923wPyMUmqIKKBFNb+m0XhbUPaCExzwg1vP1OY4UxGMTnkWeTYrjnZ26q1rRNgcWRu
+	Lc8FaUBed7haOHgLOa2j+tAPMY6EETsd83d+87qkrnAKs842yZ+gbD9637cHIwPTo7rDBB6wRZ/
+	5+De6Xj3ZSVg0J4Bd3JezOS9UChffDMxiBgeDmBM59VtME6/JM4vad2Bus9HtxbVXK6I+lRubaR
+	jIhYq6A==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=QEnYe+XJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=QEnYe+XJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43daa8f4so15604657b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 21:30:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789965031; cv=none;
+        d=google.com; s=arc-20260327;
+        b=aHFfl3YJBeavZkGqIaDToQCy4Zkzuy5Xk49uvf+2U6Nat3XpCQxB5+SUzemhx/Hjje
+         v7on09xREe5m/vPcrpik74qAC2xlaDQ0A9xhBGc8Pna+GzckOmYvfLiLsuN0Gmnq68Np
+         iJ1/0S8R4T5jgG309TFykbG6lmXwsn7BVZKs4LS8dL4JMoiF6iMHsT/8qg3rFAwmXUBX
+         QTYVMCWwTUE9WKT3LO4xZd9drFW+5HkC7mHGYDXx4XNu7976UwaPokuvIGVOy1MhrUhp
+         mSez6Xk65o4uFKxtO3Cv8X3MtL7zxaSuHSI8r1eVIIcIo8kTMRObtgT0ZQhet2NVhxSm
+         6fAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=xLP3ZxdT8/nHrHK0GvJUSPYWJSPy7rWRjKWlMiZH4q0=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Cap3NRkwRfvWef96oxy9s84whyoTDlOF9l74tjI+Z6EHmK+GMGsKMaPz8hqWO60aq9
+         0ilSX9C3+oPU1us2OtByZlyyEBwx89tw7M9LTwzFsR76Bes8CWoNaq8OZj5iLHZ3T2C9
+         YhXiSHWioQgjX5swv25W+A6PBMO0xxkdJ25hLwYhmDhBW9I94U8ka1A3gQoyvo/MWzkf
+         zH4I3jmIi1vHFrcDKreqV5t2JbFzWw55pdGbTdKlbffSG+Cir2yL/anRVf5xhqlFSrO0
+         QWu2Y4PZJ1EjXVHAMJWgQYQuLxbUoZet0aRxb+CNCIdNloVUEBIWIVDHI8Kfur0V8s/R
+         NQrQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789965031; x=1790569831; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=xLP3ZxdT8/nHrHK0GvJUSPYWJSPy7rWRjKWlMiZH4q0=;
+        b=QEnYe+XJGI6OW0A+AMmIiR875qVLW08p0BOWJRfXbSVYiaPvxUfJprDmE772feQRPI
+         JXcwoFBmLTjkSX7JlJE24H077TWJhtSnWvglL0NlDnYveEhJc9BtGpGtFtqV8IT88WKg
+         rbiytsxhgf2LABMXAhRwOQ7s3Ud6mq5rp49HHfugiFaf4YjtdIoMcOFv5cFt+2DY6snb
+         PMq6oZjgu9Bd9ZBc5yv5LjIslsy2/3uNNzDPsqXt+STKlwo4Q175p7H3SaIy8/K9QaS9
+         EI98K1uDR46YWYhYv6nrL2Rrj6QjlKXD0bqIlBfLPkSsrYx9LeNm/6uoOKeimEFpJ79/
+         hp3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789965031; x=1790569831;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=xLP3ZxdT8/nHrHK0GvJUSPYWJSPy7rWRjKWlMiZH4q0=;
+        b=Pw/mWT0m2fPqrkAvMOvPl5dr2IjFC5Sb4UfHMbZgkdopLVp7V4aQ0n9S0bKpeW99ui
+         VVCnicuxBeX4HDDYe79MO6fetppJnocZtv1UWuDcgtm9b987dXH+2sX5djQ2lrRDVWgk
+         bz7ez2QWHpF+KNdI0y4FJP99KIkHseXMaEh3tQWJVGq7Cm6RtM/wCKN6igHNKSW7drCz
+         oxa3KqPj13PGev0HX0f60p9xkQ+qHlbeBGqDwogFsWcM9+PquZRy1C4guhUPyNpgELGy
+         j6Zixq7OLPB1GV2yI919aSmN3CqZ7JP9/7Oja43oV1LVbED6W/RiZzxAnoHrzM1OSSJ1
+         n/CQ==
+X-Gm-Message-State: AFuF++nC7W87co16jw6sOQi0v2Ri0OyqG2F3M3eiGtHt2TJ3g3x9IpqY
+	gBUfW8gMv8uU3RNnDZ9zm6hf+U2gYSmcxw3mfzSd5ykXSQF+zEV2dfQjy5NBW8QwKRwufmmluz6
+	nNpyivWZNRkm5vqgwZe1Tvr6uKySAB1JC4A==
+X-Gm-Gg: AYBFou0irualRdNkAJw3JqrHdVGseWHWZyPJQ5PdqDaMX9FfBS5VTCdyGW2+ZYBb+Wk
+	dfk9Ei95qMPISY7JzoauiGYmm0rFXvFBGLKuuzU8qUmwQIEs+zt6+Z9K5LBAiqtpnQmqA9pE+I+
+	Jrrz5yAxKBZ0KSxTnaSvVGSSMy+AI2EUZ3T6Bmiji0kULteQOFTu+47kS+lXqpY7+gciy53iH+3
+	ZEnXh6UYsTn1dX8J2n+U8VZi9P8nCOWT6TdEBG9WIv3Dj8aeO9VbnzzI3EY2C2IVKJ51t+j3LiB
+	gqmpK9zp28BykkTF+tPIf9kU1HS/VdtkVzHNXPJpwuv/zgG3YdK8yZKo0JmRofpzBXXpfCSfxat
+	DrDDY6C6ID2/sm6KjLHbQI/CD7VniNMUnDccCAn3q9fwXtqg4QC1mToQomrq6gI5RgoxbKA==
+X-Received: by 2002:a05:690e:144f:b0:672:99e1:11d5 with SMTP id
+ 956f58d0204a3-67299e115c3mr1642617d50.114.1789965030619; Sun, 20 Sep 2026
+ 21:30:30 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 23:30:28 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 23:30:28 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 23:30:28 -0500
+X-Gm-Features: AclHuK_0SH6v_-tx8ggvfetY0c9AI5QMY7UzQqmwUROoSDb0fBQ2gzFMTOic72I
+Message-ID: <CAPdrGekzi4Bgwk98+wFuONo=iFC0rncMocL=3QfqokRPvG1BXw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Buyer_Actions_=E2=80=94_2026=2D09=2D21_11=3A29_ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000cf7d7e065bf6b58b"
+
+--000000000000cf7d7e065bf6b58b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS Buyer / Action Probe =E2=80=94 21 Sep 2026, 11:29 ICT Executive=
+ delta
+
+*Material delta: installer demand acquisition is now directly
+price-observable, which gives POW a much cleaner presale wedge for
+Capability Activation.*
+
+The strongest new evidence is not another grant. UK heat-pump installers
+already pay explicitly for demand: Lead Pronto publicly offers exclusive
+heat-pump leads from *=C2=A315/lead*, while Nebelli sells survey-qualified
+exclusive leads and describes a typical air-source installation as
+*=C2=A38,000=E2=80=93=C2=A314,000
+of work*. A separate 2026 benchmark model from Flock estimates exclusive
+qualified heat-pump leads at =C2=A384=E2=80=93=C2=A3131, but explicitly lab=
+els those numbers
+as a model rather than survey evidence, so POW should not treat them as
+observed market clearing prices.
+
+This sharpens the #1 product from a generic Capability Unlock Report into
+an executable *Capability =E2=86=92 Qualified Work Router*:
+
+current capability =E2=86=92 missing authorization/training/equipment =E2=
+=86=92 jobs
+unlocked =E2=86=92 lead/quote =E2=86=92 job won/lost =E2=86=92 invoice =E2=
+=86=92 repeat work
+
+The moat is not the lead. It is learning which capability upgrade actually
+converts into paid physical work for a specific person/company/place/time.
+
+A second high-value action surface is EV-grant execution. OZEV=E2=80=99s 20=
+26
+scheme now provides up to *=C2=A3500/socket*, WCS covers up to 75% of
+purchase/installation costs up to =C2=A3500/socket and 40 sockets, and only
+OZEV-authorised installers can claim. For flats/renters and residential
+landlords, the new platform introduced 1 Apr 2026 has *no installer
+claim-status portal*; installers instead receive email notifications when
+claims need evidence, are declined, or approved. Initial assessment can
+take up to 10 working days. That creates an unusually agent-native
+workflow: eligibility =E2=86=92 quote =E2=86=92 approved installer =E2=86=
+=92 evidence pack =E2=86=92 claim
+=E2=86=92 email state =E2=86=92 resolution.
+Ranked action surfaces
+# Surface Score State Why now
+1 Capability =E2=86=92 qualified work =E2=86=92 first paid job *5.00* *PRES=
+ELL NOW* paid
+lead market + grant/training rails
+2 EV site =E2=86=92 grant =E2=86=92 installer =E2=86=92 evidence =E2=86=92 =
+claim outcome *4.99*
+*PRESELL/PILOT* explicit =C2=A3 grant + fragmented claim workflow
+3 Property =E2=86=92 heat-pump suitability =E2=86=92 BUS installer =E2=86=
+=92 installation *4.96*
+PILOT =C2=A3233.1m grants paid in 2025/26
+4 Repair/replace =E2=86=92 exact part =E2=86=92 repair receipt *4.90* PILOT=
+ observed =C2=A335
+remote diagnosis / =C2=A380=E2=80=93=C2=A3300 repair economics
+5 Broken-item =E2=86=92 part/repair =E2=86=92 resale arbitrage *4.41* DERIV=
+ATIVE only
+survives if repair outcomes compound
+6 Grid/site =E2=86=92 viable connection/configuration *4.38* B2B PILOT high
+decision value, slower outcome loop
+7 GPU mine/rent/inference/sell routing *3.82* WATCH economics observable
+but weak identity/outcome moat so far Exact buyer evidence 1. Capability =
+=E2=86=92
+qualified work
+
+*Buyer/user:* heating engineers, electricians, HVAC/refrigeration
+engineers, plumbers, solar/EV installers and small building-services firms.
+
+*Painful decision:* =E2=80=9CWhich adjacent capability should I spend time/=
+money
+acquiring, and will it actually produce work in my patch?=E2=80=9D
+
+*Current alternative:* training-provider marketing, generic job boards,
+lead vendors, installer directories and intuition.
+
+*Observed transaction evidence:* Heat Training Grant discounts eligible
+heat-pump training by up to *=C2=A3500*; training normally takes at least t=
+hree
+days. Lead Pronto advertises heat-pump leads from *=C2=A315 each*, pay-per-=
+lead
+with no long-term contract. Nebelli explicitly sells survey-qualified
+exclusive leads and frames one heat-pump install as =C2=A38k=E2=80=93=C2=A3=
+14k of work. These
+establish that installers already spend to acquire demand, but do *not*
+establish willingness to pay POW.
+
+*Exact input graph:* company/person =E2=86=92 current qualifications/certif=
+ications
+=E2=86=92 geography =E2=86=92 technology scope =E2=86=92 training/certifica=
+tion gap =E2=86=92 equipment
+requirement =E2=86=92 live jobs/leads/procurement =E2=86=92 quote =E2=86=92=
+ outcome.
+
+*Proprietary transformed state:* P(first_paid_job | capability_upgrade,
+company, place, time) plus TimeToFirstRevenue and ActivationFriction.
+
+*Immediate presale:* manually produce three adjacent capability paths and
+attach each to real current work the firm could pursue after activation.
+
+*Receipt:* training booking, certification change, lead accepted, quote
+submitted, job won/lost, invoice amount, completion date.
+
+*Distribution:* Muse recommendation, CMail outbound to public business
+contacts, installer communities, training-provider/referral partnerships,
+lead-gen/API.
+
+*Legal/permission:* public business/certification data can seed identity;
+individual outcomes, invoices and private lead data require consent. Do not
+infer personal qualifications from weak name matching.
+2. EV grant + installer + claim router
+
+*Buyer/user:* SMEs/workplaces, landlords, flat owners/renters and
+OZEV-authorised installers.
+
+*Painful decision:* eligibility, charger/site configuration, authorised
+installer, evidence requirements, grant timing and claim follow-up.
+
+*Observed budget:* WCS supports up to 75% of purchase/installation, capped
+at *=C2=A3500/socket =C3=97 40 sockets*. Residential schemes can provide up=
+ to
+=C2=A3500/socket. State-funded education can receive up to =C2=A32,000/sock=
+et.
+Typical market quotes published by current installers/comparison sites put
+domestic installs roughly around =C2=A3700=E2=80=93=C2=A31,500 depending on=
+ site complexity;
+treat those as market examples, not official averages.
+
+*Critical workflow delta:* the new 2026 residential grant platform has no
+installer claim-status portal. Claim state arrives by email; photo evidence
+includes charger close-up, model/serial, parking-space view and wider site
+view. This is exactly the kind of fragmented operational workflow an
+authorised agent can organize with user permission.
+
+*Input graph:* site/property =E2=86=92 parking/access =E2=86=92 electrical =
+state =E2=86=92
+vehicle/use =E2=86=92 grant eligibility =E2=86=92 eligible charger =E2=86=
+=92 authorised installer =E2=86=92
+quote =E2=86=92 application =E2=86=92 evidence =E2=86=92 claim state =E2=86=
+=92 installed serial =E2=86=92 operating
+outcome.
+
+*Transformed state:* GrantAdjustedInstalledCost, ClaimFriction,
+InstallerGrantSuccess, TimeToApproval, eventually
+InstalledOutcome(site,charger,installer).
+
+*Immediate route:* free/low-cost eligibility + evidence checklist;
+installer lead/referral or paid workflow assistance only where permitted
+and disclosed.
+
+*Outcome receipt:* application/claim emails, final invoice, installed
+model/serial, approval/decline, installation date and optional subsequent
+charger health.
+3. Heat-pump property =E2=86=92 installer transaction
+
+*Buyer:* property owner plus MCS installer.
+
+*Evidence:* Ofgem reports *=C2=A3233.1m* of BUS grants paid in scheme year
+2025/26 across *31,104* installations; *1,789 active installers* were
+registered and the top ten generated 36.5% of applications.
+
+*Decision:* whether the property is suitable, which configuration, which
+installer, grant-adjusted cost, and whether to proceed.
+
+*Garden:* property/design state + installer identity + quote + installation
++ MCS/BUS outcome + consenting operating performance.
+
+*Monetization:* installer lead/referral, workflow software or paid property
+decision report are *INFERRED*; BUS spend proves transaction scale, not POW
+willingness-to-pay.
+4. Repair-or-replace + exact part
+
+*Buyer/user:* households, repairers, refurbishers and broken-item buyers.
+
+*Observed economics:* current UK appliance-repair businesses publish
+labour/call-out economics around *=C2=A380=E2=80=93=C2=A3190 labour*, most =
+single-fault
+repairs *=C2=A380=E2=80=93=C2=A3300 all-in*, and one provider sells live re=
+mote diagnosis for
+*=C2=A335*. Another publishes a =C2=A390 call-out including diagnosis/labou=
+r plus
+parts. These are observed supplier prices, not market-wide averages.
+
+*Decision:* diagnose =E2=86=92 identify exact part/substitute =E2=86=92 est=
+imate repair
+probability/cost/time =E2=86=92 repair or replace =E2=86=92 optionally resa=
+le.
+
+*Input graph:* model/serial-family =E2=86=92 fault/symptom =E2=86=92 compon=
+ent/MPN =E2=86=92
+supersession/compatibility =E2=86=92 stock/price/lead-time =E2=86=92 repair=
+ guide =E2=86=92 labour
+capability =E2=86=92 replacement/resale price.
+
+*Proprietary state:* ExpectedRepairValue =3D
+P(success|fault,part,model,repairer) =C3=97 post-repair value =E2=88=92 par=
+ts =E2=88=92 labour =E2=88=92
+downtime.
+
+*Immediate transaction:* =C2=A3-priced remote triage/part basket/referral i=
+s
+demonstrably an existing category. POW willingness-to-pay remains UNKNOWN.
+
+*Receipt:* part purchased, repair attempted, success/failure, labour time,
+returned part, resale price. This is the compounding garden.
+Garden dependency graph
+
+IDENTITY =E2=86=92 CURRENT PHYSICAL/CAPABILITY STATE =E2=86=92 LIVE ECONOMI=
+C OPPORTUNITY =E2=86=92
+ELIGIBILITY/CONSTRAINT TRANSFORM =E2=86=92 RECOMMENDED ACTION =E2=86=92 AGE=
+NT EXECUTION =E2=86=92
+RECEIPT =E2=86=92 OUTCOME =E2=86=92 UPDATED PRIOR
+
+Shared primitives:
+
+   - Company/PersonCapability(place,t)
+   - PropertyPhysicalState(UPRN,t)
+   - AssetModelPartIdentity(t)
+   - SchemeEligibility(t)
+   - LiveDemand/Lead/Procurement(t)
+   - Quote/Action(t)
+   - OutcomeReceipt(t+=CE=94)
+
+The same receipt kernel should power every harness. Do not build separate
+outcome systems for EV, heat pumps and repair.
+PRESELL NOW Week-one deliverable
+
+*POW Work Unlock =E2=80=94 one-page executable opportunity map for a real s=
+mall
+physical-tech business.*
+
+For each business:
+
+   1. resolve current certified/observable capabilities;
+   2. identify three adjacent capability or scheme paths;
+   3. attach each path to current paid work/lead/procurement evidence;
+   4. show exact missing edge: training, authorization, equipment, site
+   eligibility or part;
+   5. estimate only directly supported costs; label unknowns;
+   6. provide the first executable action/link/contact route;
+   7. request outcome permission.
+
+10 reachable buyer archetypes/public channels
+
+   1. MCS heat-pump installers;
+   2. heating engineers considering heat pumps;
+   3. OZEV-authorised EV installers;
+   4. NICEIC/NAPIT electrical contractors;
+   5. solar/battery installers;
+   6. HVAC/refrigeration firms;
+   7. domestic appliance repairers;
+   8. refurbishers/eBay repair sellers;
+   9. facilities-maintenance SMEs;
+   10. small landlords/workplaces actively eligible for EV grants.
+
+Use public company contact channels, trade forums/directories where contact
+is permitted, and consenting partner introductions. No personal/private
+scraping.
+Low-friction pilot
+
+10 businesses =C3=97 3 opportunities. Free initial report in exchange for a
+binary outcome callback/receipt at 7 and 30 days.
+
+*Exact validation question:* =E2=80=9CDid this recommendation cause you to =
+take an
+action you would not otherwise have taken, and did that action produce a
+quote, booked job or paid job?=E2=80=9D
+
+Do not ask merely whether they liked the report.
+Evidence that justifies charging
+
+   - =E2=89=A53/10 businesses execute a surfaced action;
+   - =E2=89=A52 generate a real quote/lead/application;
+   - =E2=89=A51 reaches paid work;
+   - businesses request refreshed opportunities without prompting;
+   - a buyer volunteers to pay for the next report/lead/workflow.
+
+No price should be invented before this. Existing =C2=A315+ lead pricing
+demonstrates a budget category, not POW=E2=80=99s price.
+Time moat
+
+*Day 1:* public identity, certification, scheme eligibility, current
+jobs/leads, public prices, current parts/stock.
+
+*6 months:* activation conversion, quote-to-win rates, installer claim
+friction, part/fault repair success.
+
+*12 months:* TimeToFirstRevenue, seasonal/local opportunity conversion,
+installer/repairer outcome priors.
+
+*36 months:* MarginalLifetimeEconomicValue(capability/action,
+person/company, place, time) and
+ExpectedRepairValue(model,fault,part,repairer,t) become difficult to
+reconstruct externally.
+Outcome loop
+
+recommendation =E2=86=92 click/contact/application =E2=86=92 quote =E2=86=
+=92 accepted/rejected =E2=86=92
+physical intervention =E2=86=92 invoice/grant/part receipt =E2=86=92 perfor=
+mance/failure =E2=86=92
+repeat transaction
+
+Every event stores effective_at, observed_at, canonical identities,
+confidence, provenance and consent basis. Missing outcome is itself a
+state, not success.
+Kill reasons
+
+*KILL:* generic training directory =E2=80=94 no outcome loop.
+
+*KILL:* generic installer directory =E2=80=94 identity without decision/out=
+come.
+
+*KILL:* grant finder =E2=80=94 backfillable rules without execution.
+
+*KILL:* repair-manual mirror =E2=80=94 useful reference, weak time moat.
+
+*KILL:* job-board mirror =E2=80=94 demand without capability/outcome identi=
+ty.
+
+*WATCH:* GPU router =E2=80=94 useful decision but current evidence still po=
+ints to
+rapidly arbitraged public economics and weak proprietary receipt capture.
+
+*SURVIVE:* capability =E2=86=92 live work =E2=86=92 first paid job.
+
+*SURVIVE:* EV eligibility =E2=86=92 authorised installer =E2=86=92 evidence=
+/claim =E2=86=92
+installed outcome.
+
+*SURVIVE:* fault =E2=86=92 exact part =E2=86=92 repair =E2=86=92 resale/per=
+formance receipt.
+Next-hour queue
+
+   1. Build 20 real SME capability graphs and attach three live work
+   opportunities to each.
+   2. Sample 50 MCS/OZEV installers and quantify public identity resolution
+   + service-area coverage.
+   3. Map the 2026 EV grant email/evidence workflow into an agent state
+   machine and identify which steps can be executed only with explicit user
+   authorization.
+   4. Collect 30 current appliance repair price/fault/part examples and
+   test whether model/MPN resolution is good enough for a repair-value pilo=
+t.
+   5. Measure lead-market economics from first-party vendor pricing, but
+   keep modeled lead benchmarks separate from observed prices.
+
+Machine-readable appendix { "probe":"POW_BUYER_ACTION",
+"run_date":"2026-09-21T11:29:30+07:00", "material_delta":true,
+"top_surface":{"id":"CAPABILITY_TO_QUALIFIED_WORK","score":5.0,"status":"PR=
+ESELL_NOW"},
+"new_evidence":{"heat_pump_lead_price_observed_from_gbp":15,"heat_pump_proj=
+ect_value_supplier_claim_gbp":[8000,14000],"wcs_grant_per_socket_gbp":500,"=
+wcs_socket_limit":40,"bus_2025_26_paid_gbp":233100000,"bus_2025_26_installa=
+tions":31104,"bus_active_installers":1789,"remote_appliance_diagnosis_obser=
+ved_gbp":35},
+"promoted_workflow":{"id":"EV_GRANT_CLAIM_AGENT","score":4.99,"status":"PRE=
+SELL_PILOT","claim_status_channel":"EMAIL","portal_status_tracking":false},
+"critical_receipts":["FIRST_PAID_JOB","QUOTE_OUTCOME","GRANT_CLAIM_OUTCOME"=
+,"REPAIR_SUCCESS","INVOICE","RESALE_PRICE"],
+"monetization":"INFERRED_UNTIL_PILOT", "collector_deployed":false }
+
+--000000000000cf7d7e065bf6b58b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS Buyer / Action Probe =E2=80=94 21 Sep 2026, 11:29 ICT
+
+Executive delta
+<p><strong>Material delta: installer demand acquisition is now directly pri=
+ce-observable, which gives POW a much cleaner presale wedge for Capability =
+Activation.</strong></p>
+<p>The strongest new evidence is not another grant. UK heat-pump installers=
+ already pay explicitly for demand: Lead Pronto publicly offers exclusive h=
+eat-pump leads from <strong>=C2=A315/lead</strong>, while Nebelli sells sur=
+vey-qualified exclusive leads and describes a typical air-source installati=
+on as <strong>=C2=A38,000=E2=80=93=C2=A314,000 of work</strong>. A separate=
+ 2026 benchmark model from Flock estimates exclusive qualified heat-pump le=
+ads at =C2=A384=E2=80=93=C2=A3131, but explicitly labels those numbers as a=
+ model rather than survey evidence, so POW should not treat them as observe=
+d market clearing prices.</p>
+<p>This sharpens the #1 product from a generic Capability Unlock Report int=
+o an executable <strong>Capability =E2=86=92 Qualified Work Router</strong>=
+:</p>
+<p><code>current capability =E2=86=92 missing authorization/training/equipm=
+ent =E2=86=92 jobs unlocked =E2=86=92 lead/quote =E2=86=92 job won/lost =E2=
+=86=92 invoice =E2=86=92 repeat work</code></p>
+<p>The moat is not the lead. It is learning which capability upgrade actual=
+ly converts into paid physical work for a specific person/company/place/tim=
+e.</p>
+<p>A second high-value action surface is EV-grant execution. OZEV=E2=80=99s=
+ 2026 scheme now provides up to <strong>=C2=A3500/socket</strong>, WCS cove=
+rs up to 75% of purchase/installation costs up to =C2=A3500/socket and 40 s=
+ockets, and only OZEV-authorised installers can claim. For flats/renters an=
+d residential landlords, the new platform introduced 1 Apr 2026 has <strong=
+>no installer claim-status portal</strong>; installers instead receive emai=
+l notifications when claims need evidence, are declined, or approved. Initi=
+al assessment can take up to 10 working days. That creates an unusually age=
+nt-native workflow: eligibility =E2=86=92 quote =E2=86=92 approved installe=
+r =E2=86=92 evidence pack =E2=86=92 claim =E2=86=92 email state =E2=86=92 r=
+esolution.</p>
+
+Ranked action surfaces
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Surface</th>
+<th>Score</th>
+<th>State</th>
+<th>Why now</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Capability =E2=86=92 qualified work =E2=86=92 first paid job</td>
+<td><strong>5.00</strong></td>
+<td><strong>PRESELL NOW</strong></td>
+<td>paid lead market + grant/training rails</td>
+</tr>
+<tr>
+<td>2</td>
+<td>EV site =E2=86=92 grant =E2=86=92 installer =E2=86=92 evidence =E2=86=
+=92 claim outcome</td>
+<td><strong>4.99</strong></td>
+<td><strong>PRESELL/PILOT</strong></td>
+<td>explicit =C2=A3 grant + fragmented claim workflow</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Property =E2=86=92 heat-pump suitability =E2=86=92 BUS installer =E2=86=
+=92 installation</td>
+<td><strong>4.96</strong></td>
+<td>PILOT</td>
+<td>=C2=A3233.1m grants paid in 2025/26</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Repair/replace =E2=86=92 exact part =E2=86=92 repair receipt</td>
+<td><strong>4.90</strong></td>
+<td>PILOT</td>
+<td>observed =C2=A335 remote diagnosis / =C2=A380=E2=80=93=C2=A3300 repair =
+economics</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Broken-item =E2=86=92 part/repair =E2=86=92 resale arbitrage</td>
+<td><strong>4.41</strong></td>
+<td>DERIVATIVE</td>
+<td>only survives if repair outcomes compound</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Grid/site =E2=86=92 viable connection/configuration</td>
+<td><strong>4.38</strong></td>
+<td>B2B PILOT</td>
+<td>high decision value, slower outcome loop</td>
+</tr>
+<tr>
+<td>7</td>
+<td>GPU mine/rent/inference/sell routing</td>
+<td><strong>3.82</strong></td>
+<td>WATCH</td>
+<td>economics observable but weak identity/outcome moat so far</td>
+</tr>
+</tbody>
+</table>
+
+Exact buyer evidence
+
+1. Capability =E2=86=92 qualified work
+<p><strong>Buyer/user:</strong> heating engineers, electricians, HVAC/refri=
+geration engineers, plumbers, solar/EV installers and small building-servic=
+es firms.</p>
+<p><strong>Painful decision:</strong> =E2=80=9CWhich adjacent capability sh=
+ould I spend time/money acquiring, and will it actually produce work in my =
+patch?=E2=80=9D</p>
+<p><strong>Current alternative:</strong> training-provider marketing, gener=
+ic job boards, lead vendors, installer directories and intuition.</p>
+<p><strong>Observed transaction evidence:</strong> Heat Training Grant disc=
+ounts eligible heat-pump training by up to <strong>=C2=A3500</strong>; trai=
+ning normally takes at least three days. Lead Pronto advertises heat-pump l=
+eads from <strong>=C2=A315 each</strong>, pay-per-lead with no long-term co=
+ntract. Nebelli explicitly sells survey-qualified exclusive leads and frame=
+s one heat-pump install as =C2=A38k=E2=80=93=C2=A314k of work. These establ=
+ish that installers already spend to acquire demand, but do <strong>not</st=
+rong> establish willingness to pay POW.</p>
+<p><strong>Exact input graph:</strong> <code>company/person =E2=86=92 curre=
+nt qualifications/certifications =E2=86=92 geography =E2=86=92 technology s=
+cope =E2=86=92 training/certification gap =E2=86=92 equipment requirement =
+=E2=86=92 live jobs/leads/procurement =E2=86=92 quote =E2=86=92 outcome</co=
+de>.</p>
+<p><strong>Proprietary transformed state:</strong> <code>P(first_paid_job |=
+ capability_upgrade, company, place, time)</code> plus <code>TimeToFirstRev=
+enue</code> and <code>ActivationFriction</code>.</p>
+<p><strong>Immediate presale:</strong> manually produce three adjacent capa=
+bility paths and attach each to real current work the firm could pursue aft=
+er activation.</p>
+<p><strong>Receipt:</strong> training booking, certification change, lead a=
+ccepted, quote submitted, job won/lost, invoice amount, completion date.</p=
+>
+<p><strong>Distribution:</strong> Muse recommendation, CMail outbound to pu=
+blic business contacts, installer communities, training-provider/referral p=
+artnerships, lead-gen/API.</p>
+<p><strong>Legal/permission:</strong> public business/certification data ca=
+n seed identity; individual outcomes, invoices and private lead data requir=
+e consent. Do not infer personal qualifications from weak name matching.</p=
+>
+
+2. EV grant + installer + claim router
+<p><strong>Buyer/user:</strong> SMEs/workplaces, landlords, flat owners/ren=
+ters and OZEV-authorised installers.</p>
+<p><strong>Painful decision:</strong> eligibility, charger/site configurati=
+on, authorised installer, evidence requirements, grant timing and claim fol=
+low-up.</p>
+<p><strong>Observed budget:</strong> WCS supports up to 75% of purchase/ins=
+tallation, capped at <strong>=C2=A3500/socket =C3=97 40 sockets</strong>. R=
+esidential schemes can provide up to =C2=A3500/socket. State-funded educati=
+on can receive up to =C2=A32,000/socket. Typical market quotes published by=
+ current installers/comparison sites put domestic installs roughly around =
+=C2=A3700=E2=80=93=C2=A31,500 depending on site complexity; treat those as =
+market examples, not official averages.</p>
+<p><strong>Critical workflow delta:</strong> the new 2026 residential grant=
+ platform has no installer claim-status portal. Claim state arrives by emai=
+l; photo evidence includes charger close-up, model/serial, parking-space vi=
+ew and wider site view. This is exactly the kind of fragmented operational =
+workflow an authorised agent can organize with user permission.</p>
+<p><strong>Input graph:</strong> <code>site/property =E2=86=92 parking/acce=
+ss =E2=86=92 electrical state =E2=86=92 vehicle/use =E2=86=92 grant eligibi=
+lity =E2=86=92 eligible charger =E2=86=92 authorised installer =E2=86=92 qu=
+ote =E2=86=92 application =E2=86=92 evidence =E2=86=92 claim state =E2=86=
+=92 installed serial =E2=86=92 operating outcome</code>.</p>
+<p><strong>Transformed state:</strong> <code>GrantAdjustedInstalledCost</co=
+de>, <code>ClaimFriction</code>, <code>InstallerGrantSuccess</code>, <code>=
+TimeToApproval</code>, eventually <code>InstalledOutcome(site,charger,insta=
+ller)</code>.</p>
+<p><strong>Immediate route:</strong> free/low-cost eligibility + evidence c=
+hecklist; installer lead/referral or paid workflow assistance only where pe=
+rmitted and disclosed.</p>
+<p><strong>Outcome receipt:</strong> application/claim emails, final invoic=
+e, installed model/serial, approval/decline, installation date and optional=
+ subsequent charger health.</p>
+
+3. Heat-pump property =E2=86=92 installer transaction
+<p><strong>Buyer:</strong> property owner plus MCS installer.</p>
+<p><strong>Evidence:</strong> Ofgem reports <strong>=C2=A3233.1m</strong> o=
+f BUS grants paid in scheme year 2025/26 across <strong>31,104</strong> ins=
+tallations; <strong>1,789 active installers</strong> were registered and th=
+e top ten generated 36.5% of applications.</p>
+<p><strong>Decision:</strong> whether the property is suitable, which confi=
+guration, which installer, grant-adjusted cost, and whether to proceed.</p>
+<p><strong>Garden:</strong> property/design state + installer identity + qu=
+ote + installation + MCS/BUS outcome + consenting operating performance.</p=
+>
+<p><strong>Monetization:</strong> installer lead/referral, workflow softwar=
+e or paid property decision report are <strong>INFERRED</strong>; BUS spend=
+ proves transaction scale, not POW willingness-to-pay.</p>
+
+4. Repair-or-replace + exact part
+<p><strong>Buyer/user:</strong> households, repairers, refurbishers and bro=
+ken-item buyers.</p>
+<p><strong>Observed economics:</strong> current UK appliance-repair busines=
+ses publish labour/call-out economics around <strong>=C2=A380=E2=80=93=C2=
+=A3190 labour</strong>, most single-fault repairs <strong>=C2=A380=E2=80=93=
+=C2=A3300 all-in</strong>, and one provider sells live remote diagnosis for=
+ <strong>=C2=A335</strong>. Another publishes a =C2=A390 call-out including=
+ diagnosis/labour plus parts. These are observed supplier prices, not marke=
+t-wide averages.</p>
+<p><strong>Decision:</strong> diagnose =E2=86=92 identify exact part/substi=
+tute =E2=86=92 estimate repair probability/cost/time =E2=86=92 repair or re=
+place =E2=86=92 optionally resale.</p>
+<p><strong>Input graph:</strong> <code>model/serial-family =E2=86=92 fault/=
+symptom =E2=86=92 component/MPN =E2=86=92 supersession/compatibility =E2=86=
+=92 stock/price/lead-time =E2=86=92 repair guide =E2=86=92 labour capabilit=
+y =E2=86=92 replacement/resale price</code>.</p>
+<p><strong>Proprietary state:</strong> <code>ExpectedRepairValue =3D P(succ=
+ess|fault,part,model,repairer) =C3=97 post-repair value =E2=88=92 parts =E2=
+=88=92 labour =E2=88=92 downtime</code>.</p>
+<p><strong>Immediate transaction:</strong> =C2=A3-priced remote triage/part=
+ basket/referral is demonstrably an existing category. POW willingness-to-p=
+ay remains UNKNOWN.</p>
+<p><strong>Receipt:</strong> part purchased, repair attempted, success/fail=
+ure, labour time, returned part, resale price. This is the compounding gard=
+en.</p>
+
+Garden dependency graph
+<p><code>IDENTITY =E2=86=92 CURRENT PHYSICAL/CAPABILITY STATE =E2=86=92 LIV=
+E ECONOMIC OPPORTUNITY =E2=86=92 ELIGIBILITY/CONSTRAINT TRANSFORM =E2=86=92=
+ RECOMMENDED ACTION =E2=86=92 AGENT EXECUTION =E2=86=92 RECEIPT =E2=86=92 O=
+UTCOME =E2=86=92 UPDATED PRIOR</code></p>
+<p>Shared primitives:</p>
+<ul>
+<li><code>Company/PersonCapability(place,t)</code></li>
+<li><code>PropertyPhysicalState(UPRN,t)</code></li>
+<li><code>AssetModelPartIdentity(t)</code></li>
+<li><code>SchemeEligibility(t)</code></li>
+<li><code>LiveDemand/Lead/Procurement(t)</code></li>
+<li><code>Quote/Action(t)</code></li>
+<li><code>OutcomeReceipt(t+=CE=94)</code></li>
+</ul>
+<p>The same receipt kernel should power every harness. Do not build separat=
+e outcome systems for EV, heat pumps and repair.</p>
+
+PRESELL NOW
+
+Week-one deliverable
+<p><strong>POW Work Unlock =E2=80=94 one-page executable opportunity map fo=
+r a real small physical-tech business.</strong></p>
+<p>For each business:</p>
+<ol>
+<li>resolve current certified/observable capabilities;</li>
+<li>identify three adjacent capability or scheme paths;</li>
+<li>attach each path to current paid work/lead/procurement evidence;</li>
+<li>show exact missing edge: training, authorization, equipment, site eligi=
+bility or part;</li>
+<li>estimate only directly supported costs; label unknowns;</li>
+<li>provide the first executable action/link/contact route;</li>
+<li>request outcome permission.</li>
+</ol>
+
+10 reachable buyer archetypes/public channels
+<ol>
+<li>MCS heat-pump installers;</li>
+<li>heating engineers considering heat pumps;</li>
+<li>OZEV-authorised EV installers;</li>
+<li>NICEIC/NAPIT electrical contractors;</li>
+<li>solar/battery installers;</li>
+<li>HVAC/refrigeration firms;</li>
+<li>domestic appliance repairers;</li>
+<li>refurbishers/eBay repair sellers;</li>
+<li>facilities-maintenance SMEs;</li>
+<li>small landlords/workplaces actively eligible for EV grants.</li>
+</ol>
+<p>Use public company contact channels, trade forums/directories where cont=
+act is permitted, and consenting partner introductions. No personal/private=
+ scraping.</p>
+
+Low-friction pilot
+<p>10 businesses =C3=97 3 opportunities. Free initial report in exchange fo=
+r a binary outcome callback/receipt at 7 and 30 days.</p>
+<p><strong>Exact validation question:</strong> =E2=80=9CDid this recommenda=
+tion cause you to take an action you would not otherwise have taken, and di=
+d that action produce a quote, booked job or paid job?=E2=80=9D</p>
+<p>Do not ask merely whether they liked the report.</p>
+
+Evidence that justifies charging
+<ul>
+<li>=E2=89=A53/10 businesses execute a surfaced action;</li>
+<li>=E2=89=A52 generate a real quote/lead/application;</li>
+<li>=E2=89=A51 reaches paid work;</li>
+<li>businesses request refreshed opportunities without prompting;</li>
+<li>a buyer volunteers to pay for the next report/lead/workflow.</li>
+</ul>
+<p>No price should be invented before this. Existing =C2=A315+ lead pricing=
+ demonstrates a budget category, not POW=E2=80=99s price.</p>
+
+Time moat
+<p><strong>Day 1:</strong> public identity, certification, scheme eligibili=
+ty, current jobs/leads, public prices, current parts/stock.</p>
+<p><strong>6 months:</strong> activation conversion, quote-to-win rates, in=
+staller claim friction, part/fault repair success.</p>
+<p><strong>12 months:</strong> TimeToFirstRevenue, seasonal/local opportuni=
+ty conversion, installer/repairer outcome priors.</p>
+<p><strong>36 months:</strong> <code>MarginalLifetimeEconomicValue(capabili=
+ty/action, person/company, place, time)</code> and <code>ExpectedRepairValu=
+e(model,fault,part,repairer,t)</code> become difficult to reconstruct exter=
+nally.</p>
+
+Outcome loop
+<p><code>recommendation =E2=86=92 click/contact/application =E2=86=92 quote=
+ =E2=86=92 accepted/rejected =E2=86=92 physical intervention =E2=86=92 invo=
+ice/grant/part receipt =E2=86=92 performance/failure =E2=86=92 repeat trans=
+action</code></p>
+<p>Every event stores <code>effective_at</code>, <code>observed_at</code>, =
+canonical identities, confidence, provenance and consent basis. Missing out=
+come is itself a state, not success.</p>
+
+Kill reasons
+<p><strong>KILL:</strong> generic training directory =E2=80=94 no outcome l=
+oop.</p>
+<p><strong>KILL:</strong> generic installer directory =E2=80=94 identity wi=
+thout decision/outcome.</p>
+<p><strong>KILL:</strong> grant finder =E2=80=94 backfillable rules without=
+ execution.</p>
+<p><strong>KILL:</strong> repair-manual mirror =E2=80=94 useful reference, =
+weak time moat.</p>
+<p><strong>KILL:</strong> job-board mirror =E2=80=94 demand without capabil=
+ity/outcome identity.</p>
+<p><strong>WATCH:</strong> GPU router =E2=80=94 useful decision but current=
+ evidence still points to rapidly arbitraged public economics and weak prop=
+rietary receipt capture.</p>
+<p><strong>SURVIVE:</strong> capability =E2=86=92 live work =E2=86=92 first=
+ paid job.</p>
+<p><strong>SURVIVE:</strong> EV eligibility =E2=86=92 authorised installer =
+=E2=86=92 evidence/claim =E2=86=92 installed outcome.</p>
+<p><strong>SURVIVE:</strong> fault =E2=86=92 exact part =E2=86=92 repair =
+=E2=86=92 resale/performance receipt.</p>
+
+Next-hour queue
+<ol>
+<li>Build 20 real SME capability graphs and attach three live work opportun=
+ities to each.</li>
+<li>Sample 50 MCS/OZEV installers and quantify public identity resolution +=
+ service-area coverage.</li>
+<li>Map the 2026 EV grant email/evidence workflow into an agent state machi=
+ne and identify which steps can be executed only with explicit user authori=
+zation.</li>
+<li>Collect 30 current appliance repair price/fault/part examples and test =
+whether model/MPN resolution is good enough for a repair-value pilot.</li>
+<li>Measure lead-market economics from first-party vendor pricing, but keep=
+ modeled lead benchmarks separate from observed prices.</li>
+</ol>
+
+Machine-readable appendix
+
+<code>{
+  &quot;probe&quot;:&quot;POW_BUYER_ACTION&quot;,
+  &quot;run_date&quot;:&quot;2026-09-21T11:29:30+07:00&quot;,
+  &quot;material_delta&quot;:true,
+  &quot;top_surface&quot;:{&quot;id&quot;:&quot;CAPABILITY_TO_QUALIFIED_WOR=
+K&quot;,&quot;score&quot;:5.0,&quot;status&quot;:&quot;PRESELL_NOW&quot;},
+  &quot;new_evidence&quot;:{&quot;heat_pump_lead_price_observed_from_gbp&qu=
+ot;:15,&quot;heat_pump_project_value_supplier_claim_gbp&quot;:[8000,14000],=
+&quot;wcs_grant_per_socket_gbp&quot;:500,&quot;wcs_socket_limit&quot;:40,&q=
+uot;bus_2025_26_paid_gbp&quot;:233100000,&quot;bus_2025_26_installations&qu=
+ot;:31104,&quot;bus_active_installers&quot;:1789,&quot;remote_appliance_dia=
+gnosis_observed_gbp&quot;:35},
+  &quot;promoted_workflow&quot;:{&quot;id&quot;:&quot;EV_GRANT_CLAIM_AGENT&=
+quot;,&quot;score&quot;:4.99,&quot;status&quot;:&quot;PRESELL_PILOT&quot;,&=
+quot;claim_status_channel&quot;:&quot;EMAIL&quot;,&quot;portal_status_track=
+ing&quot;:false},
+  &quot;critical_receipts&quot;:[&quot;FIRST_PAID_JOB&quot;,&quot;QUOTE_OUT=
+COME&quot;,&quot;GRANT_CLAIM_OUTCOME&quot;,&quot;REPAIR_SUCCESS&quot;,&quot=
+;INVOICE&quot;,&quot;RESALE_PRICE&quot;],
+  &quot;monetization&quot;:&quot;INFERRED_UNTIL_PILOT&quot;,
+  &quot;collector_deployed&quot;:false
+}
+</code>
+
+--000000000000cf7d7e065bf6b58b--

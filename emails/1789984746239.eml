@@ -1,0 +1,352 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id dVOKJGTCc7AK
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 09:59:05 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=OxmG06h7M3SK05dTyy+a0YLA9RT8JztNSI16rZhmmxEAMchjKx72puFj2lQ8Hhj8vrw9gXw/a
+	etoyWTFCyROMy/jDj4cG58zgrQot9ndujFMAoz7o0NCmDoJtXJF1MaBw+y2kIBI2mjF0c8kq8Gu
+	UgZPW6hiImNwMVoc2XohqnybGImv8qfH+4xG5pe53Fhn9HTFwlwtNK9KVV6RkIP9tzCpxci47bX
+	BDvnGSr9AYsh2+YJESrWo+JpkZyjENMGFfORIWZ34oGcWxKJxV7ZYG+nvIPf7w4skKVn/AAJKDU
+	CxHP8fC0fCTqWCYJWLJh3Kj1WXB8IeKhpj+vbCX2mqdg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789984746; x=1790589546; bh=Cc1t9T7P
+	a0NgWEXPeAQq7TBjGq68OuVPZSAvZmpT7yY=; b=CJDB41/4sL0RceFljRdKWoUCpJuLKSJobqz
+	qtXBocbdUUZFgMoEWygEB6apW8MAUVlOrBsxk4uOeBd/5fqoLJRT2EK+vF0ZZ9z827Kf6/mL8u7
+	mm5oarPlVygoFGytQ+h6oJpMq+t0nKYbOQztwX7RjBVZPqEhG+9XMIBiPh//9Dch7ZYDW9CxwCv
+	F8DYetaalQVFYF2ZUlQpExpi5WLCQDIsie4i9L55AE1r7lWDNn+7kdFUIw1104MCGRoiqeUk+l3
+	6sv7trr3yH66c1g1XAhbqsd0oLAQdnK2ldzNsWJhEJ+YFtgY11IDpG0iQemirsRuqTMaqTzTppM
+	BvS88GQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=lLPOaCep;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=lLPOaCep;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-85d43ac8d1eso19269287b3.2
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 02:59:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789984745; cv=none;
+        d=google.com; s=arc-20260327;
+        b=FqitDCFnQNugtVMTWCYYFX1SoXZdHOR+NZrjzOeba/FN5N3qeokptJkwNDMXhKBAFl
+         xagn06pPgfRCFKnKpY5XoxGOnvrQmxe/4wmZBTti6UPlxj9eAGwI0i0dksTtd6R0d0mO
+         v+2Te0bNFHNIw/s4I+N5IOBRUqKITfsR3ZApUbqKk4gTulHZmLsb1nunrlcbQYMo6aKD
+         cPGNdqBWPkUes5b0aA2n7RXwkf/nxzRZ7+lowdnLAdq1l7x4zG7sk6/bYGYaVeq0mUUJ
+         T9tdpfWn7wSDmdmGmzZWZDGV2iZszi7wIUevdHbaoHuBhEA0BGCaUSIL2i9XUC+FxqxS
+         irdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=Cc1t9T7Pa0NgWEXPeAQq7TBjGq68OuVPZSAvZmpT7yY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=s9wzQizoz7/iAhY7yqU4OIOogVemfFm7mgZR75goXknICBr4SOjS2c5I+KFvW6GK8g
+         j62Caq8qkRAj3GkFTaFfJ55aQ/741E7rtXUnN+K1uC8hjrK/rjEsLbjNyJ/a7hVWIGqY
+         Cr4bMny4vx9dDpeopDnKxQVyDTs8Yam2BDlI3NijKWqeXkKeny0c6qBmOUAo4JlXfjjV
+         NJ/WVcTvwBvghIJHxEbA77zRMODzUWzNT3OH9jEdtHBAR3Wy30Z4mDRci6+y9tDCNhhQ
+         WGbwm7QvTGtDIlWh+2j6V7ZQlbU+hAD/oyqdUb2Ay4f7092PYRXzRY/EcmR+qwBf8kCE
+         L0+w==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789984745; x=1790589545; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Cc1t9T7Pa0NgWEXPeAQq7TBjGq68OuVPZSAvZmpT7yY=;
+        b=lLPOaCepl4F/g8UW5xLjyMxFT9ot21eGa03uj0nwukrkm7j0NRlZAmQ1nDGX3VivB6
+         XYFVWOn/sdXR3FDKnXIPZcmR0htIVuLCza64Vv7xfy/2dEesCZg24WtOeqkYooON5PsW
+         8VKK1lqqyt/2808JhHqJpjkMZpoB9iWwLP1WziGscJi0DZMAxD6cu2JTBMIl84R6d3gN
+         BFCSPs4Ehwl4VwaIM7LPq4l6pph8zu7q52hIH9RGmR2GvT5bmyYXcgW4gu2z1PaCtcFu
+         aKVviMmdHNGsb8bWBVZtk/OCC19z5imQxy0VytwrU8UiKhfBb3EkbUIoJvqGazs5MeI3
+         +4dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789984745; x=1790589545;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Cc1t9T7Pa0NgWEXPeAQq7TBjGq68OuVPZSAvZmpT7yY=;
+        b=YRwtSTNuqnzr1Sa3rRZjz/i1QoGIdltB2b7SA8w5/LEhAAVZpN3vIFP1ZJHQ16mpGE
+         tHDGw7UKrQAu+P+lvdV2hTt2NSnBDivI13PglKNeZxBXOprtrOjxU9KQ1GUM9WluirxP
+         31KmbGm83rPyEcffWyjwfzGRKMT8oXlUF+woNGAuV4LnlOjzlPLumR0LKOsUZIANKTY8
+         bOguRvltvD7tbgMRwv+ijhtwg0aia75ZUvP+YuC2B2YhwWsIEh1F0tsm3Q6FREimnGn+
+         12T0O2j/01xdfHzBrmV/7tkVkWw9i2p6POe2WzSTbkmmvAKw3cpAO66ryqwSHtJH5k/G
+         gASg==
+X-Gm-Message-State: AFuF++mGKSeHlVdli98TeT44SPbsyWNr2/S5i5UvleXORi0fuF9DrkO0
+	QcF4zo0azjjliVMRrVxapUQhyfbYq2xsilrQS0azt5RWvlzr5ae9h2nCmYiqXjrNzseTXq7cJj4
+	Tv1I+l6JQcqYlyC5sdTKEtEU8prAmhWBmbw==
+X-Gm-Gg: AYBFou0r085SlbBistD/9gazf8lTJhe5A3OzlTx4Q12fsOy3PatX0umsvhrcXRWHLi3
+	7qYtrE82Kl/Uyjkt7Vi4COcRL+APWDb6OPAKeJmxgWD7TDSHUpldna/YGiGHOee+W8NZnFA8RdY
+	oYO72ImwyoNHn4i2ikr2YLATx7JsrxpT1PaA9RtNuiN3hLhVn7e1KQltY3iAuDqpM6ygEDF48Y6
+	ekmlEesaQgvRz8zr4mywDL74mZBDW+M3XktjGMMBQy3vom2O3aLY3S/hIYrQ7X5Lv+i8ReaFWze
+	I6Ue5F6fyRQLiJl3o24h/fkIcdLW35USga6ZR223pRtHV6NTyM2Vi1xty1Xg2E0GbGb3Kh3FEZ/
+	x1DsEh0kXDk9vypcraBkZBPDDQnMtjBVarixR/MV3rs2F80unSEYHVSiJUDak3LwUC0dhkduM
+X-Received: by 2002:a05:690c:4002:b0:87f:c20c:67a5 with SMTP id
+ 00721157ae682-89733a161acmr26785157b3.29.1789984745362; Mon, 21 Sep 2026
+ 02:59:05 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 04:59:03 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 04:59:03 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 04:59:03 -0500
+X-Gm-Features: AcwNN1UN3scULDy9LaYCwwBA4NiJI5tU98_u-CQVA3NV7lopsl2LLHG7Hwt0q9o
+Message-ID: <CAPdrGe=2eHwN8O_yJKT=G7YR0FDNP6jpUXmpNyk7GSE0NJYpFA@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Live_State_=E2=80=94_2026=2D09=2D21_16=3A58_ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS LIVE STATE PROBE =E2=80=94 2026-09-21 16:58 ICT
+
+EXECUTIVE DELTA
+Material promotion: CHAR.GY OPEN OCPI TRANSITION TAPE =3D PLANT NOW / 5.00.
+
+This run finally resolves the biggest EVSE blocker from prior probes:
+an identifiable UK CPO has a first-party documented, unauthenticated
+open-data route. char.gy's own support page names
+https://char.gy/open-ocpi/locations and /tariffs. UK Public Charge
+Point Regulations guidance requires CPOs to expose reference +
+availability data free, machine-readable, under OGL; EVSE status
+changes must be reflected within 30 seconds; historical data is
+explicitly NOT expected to be made public. That combination is almost
+exactly the POW garden thesis: legally open current state + mandated
+fast mutation + no mandated history.
+
+CONFIRMED: endpoint paths; public/OGL regulatory basis; status
+freshness obligation; tariff publication; history not required.
+INFERRED: collecting every changed EVSE/tariff state creates history
+that will be hard to reconstruct later.
+UNKNOWN: char.gy-specific published rate limit and retention; whether
+every status transition can be observed under polling; current
+response size from this runtime.
+
+RANKED DASHBOARD
+1. char.gy EVSE status/tariff transition tape =E2=80=94 5.00 =E2=80=94 PLAN=
+T NOW (promoted)
+2. NGED primary 5-minute physical state =E2=80=94 4.99 =E2=80=94 PLANT HARD=
+ pending
+retention test
+3. NESO OBP Non-BM reserve state =E2=80=94 4.97 =E2=80=94 PLANT NOW pending
+superseded-version test
+4. NGED flex =E2=86=92 physical response =E2=80=94 4.96 =E2=80=94 PLANT
+5. NESO TEC semantic transitions =E2=80=94 4.94 =E2=80=94 PLANT transformat=
+ion / KILL
+raw snapshots
+6. Apprenticeship vacancy lifecycle =E2=80=94 4.58 =E2=80=94 PILOT
+7. EV backend/protocol infrastructure events =E2=80=94 4.20 =E2=80=94 WATCH
+
+TOP DEEP DIVE =E2=80=94 CHAR.GY
+Exact source:
+GET https://char.gy/open-ocpi/locations
+GET https://char.gy/open-ocpi/tariffs
+First-party documentation: char.gy Public Charge Point Regulations
+2023 support article.
+Rights: OGL v3 regulatory requirement for required public-charge-point
+data; free of charge.
+Auth: none indicated by first-party open-data publication; anonymous
+operation independently observed.
+Rate limit: UNKNOWN. Do not hammer endpoint until headers/limits are measur=
+ed.
+Cost: =C2=A30 source cost.
+Cadence: regulation requires EVSE status changes reflected within 30
+seconds. Start conservatively at 60 s incremental polling, then
+tighten only if server guidance permits.
+
+Observed API mechanics from an independent live probe dated
+2026-07-27: pagination via limit/offset; date_from/date_to filter on
+last_updated; ETag; x-total-count; default page 50. These mechanics
+are secondary evidence until POW verifies them directly. date_from is
+particularly valuable because it permits low-load incremental
+harvesting rather than fleet-wide snapshots.
+
+Canonical identities:
+location =3D country_code + party_id + location.id
+EVSE =3D country_code + party_id + evse.uid (and preserve evse_id where sup=
+plied)
+connector =3D EVSE key + connector.id
+tariff =3D country_code + party_id + tariff.id
+
+Raw state: preserve full OCPI Location/EVSE/Connector/Tariff object,
+source timestamp, observed_at, HTTP validators, payload hash and raw
+response provenance.
+
+Normalized event schema:
+source,country_code,party_id,location_id,evse_uid,connector_id,tariff_id,ev=
+ent_type,old_value,new_value,effective_at,last_updated,observed_at,lat,lon,=
+max_power_kw,status,price_component,currency,payload_hash,schema_version.
+
+Events:
+EVSE_STATUS_CHANGED
+OUTAGE_START
+OUTAGE_END
+TARIFF_CHANGED
+CONNECTOR_CHANGED
+POWER_CAPABILITY_CHANGED
+LOCATION_ADDED
+LOCATION_REMOVED
+IDENTITY_CORRECTION
+STALE_STATE
+
+Idempotency: canonical_object_key =C3=97 last_updated =C3=97
+normalized_payload_hash. Never overwrite; append transitions. If the
+same hash recurs, update observation metadata rather than duplicate
+semantic state.
+
+Expected load: at 60-second cadence =3D 43,200 polling cycles/month.
+Because date_from can potentially return only changed objects, actual
+requests/storage should be low relative to full snapshots, but
+response sizes and pagination MUST be measured before estimating
+GB/month. Begin at 5 minutes for 24 h if rate-limit headers are
+absent, then tighten after confirming behaviour.
+
+First proprietary transformations:
+EVSEReliability(evse, rolling window)
+OutageDurationDistribution(evse/site/place)
+EffectiveChargingCapacity(place,t) =3D =CE=A3(kW =C3=97 availability =C3=97=
+ reliability
+=C3=97 temporal_fit)
+TariffVolatility(site,t)
+PricePerReliableKW(place,t)
+FailureHazard(model/site/time)
+RepairRecoveryLatency
+TariffChange=E2=86=92Utilisation proxy once outcome data becomes available.
+
+Muse/agent action: route a driver to the charger maximizing reliable
+kW / detour / price; identify chronically unreliable local capacity;
+identify locations where apparent charger count overstates usable
+capacity; route repair/investment opportunities; later match
+CPO/site/grid/installer outcomes.
+
+Joins: EVSE =E2=86=92 coordinates =E2=86=92 UPRN/site where resolvable =E2=
+=86=92 grid
+node/headroom =E2=86=92 tariff =E2=86=92 installer/operator =E2=86=92 road/=
+parking
+restrictions =E2=86=92 local demand. Infrastructure changelog events become
+causal covariates so backend migration is not mislabeled hardware
+failure.
+
+PLANT NOW
+Collector v0:
+1. GET /locations incrementally using date_from =3D previous successful
+watermark minus overlap window.
+2. GET /tariffs on same cycle or when referenced tariff IDs/last_updated ch=
+ange.
+3. Preserve raw JSON immutably.
+4. Normalize objects and compute object hash.
+5. Diff against latest known object state.
+6. Emit semantic transition events.
+7. Advance watermark only after durable write.
+8. Daily manifest: request count, bytes, objects, changes, duplicate
+rate, lag(last_updated=E2=86=92observed_at), HTTP errors, missing-ID rate.
+
+1-day validation: verify stable IDs; measure endpoint
+headers/rates/bytes; confirm date_from semantics; observe at least one
+mutation or explicitly record none; compare random EVSE current status
+against char.gy map; quantify observation lag.
+1-week validation: determine whether superseded states remain
+retrievable; calculate transition count/status dwell times; compare
+derived rapid-network reliability where possible against operator
+published reliability; manually audit 50 transitions; verify tariff
+changes.
+Kill threshold: if full historical transitions are already cheaply
+queryable from char.gy or another authoritative archive with
+timestamps, KILL raw mirroring and retain only POW transformations. If
+date_from is snapshot-only but superseded states disappear, promote to
+PLANT HARD.
+
+T0 SAMPLE
+Attempted direct endpoint access in this run, but the web execution
+environment could not fetch the endpoint. No t0 payload is claimed.
+Secondary live probing on 2026-07-27 observed anonymous HTTP 200,
+pagination, ETag/date filters and thousands of location objects.
+Collector is NOT deployed.
+
+SOURCE / ACCESS TABLE
+char.gy /open-ocpi/locations =E2=80=94 first-party public endpoint;
+OGL-required data; no auth; rate UNKNOWN; 30 s source freshness
+obligation for status; =C2=A30; PLANT NOW.
+char.gy /open-ocpi/tariffs =E2=80=94 same; tariff/reference changes; =C2=A3=
+0; PLANT NOW.
+NGED 5-min primary state =E2=80=94 official structured source; retention
+UNKNOWN; PLANT pending test.
+NESO OBP Non-BM =E2=80=94 official open data; =C2=A30; superseded-state ret=
+ention
+UNKNOWN; PLANT NOW.
+DfE Display Advert API v2 =E2=80=94 API key; 150 requests/5 min; vacancy
+lifecycle; PILOT. Version 2 required since 1 Apr 2026.
+
+RECONSTRUCTION TEST
+The EVSE case is unusually strong: government guidance explicitly says
+historical data is NOT expected to be publicly available, while
+current status must update within 30 seconds. At D+7, take 100
+POW-observed status/tariff transitions and attempt reconstruction
+using only then-current char.gy/public official interfaces. Measure
+exact transition recall and timing recall. <80% exact transition
+reconstruction =3D strong time moat. >95% reconstruction =3D raw tape
+KILL; retain transformed reliability/effective-capacity graph.
+
+COUNTEREVIDENCE
+Do not infer physical hardware failure from OFFLINE/OUTOFORDER alone;
+backend migrations, communications failures, maintenance and
+payment-terminal failure can produce downtime. Preserve
+reason/provenance when available and join operator changelogs.
+Do not equate charger count with capacity: effective kW and availability ma=
+tter.
+Do not mirror static location/reference data as the moat: only
+transitions + cross-source consequence graph qualify.
+OCPI open-data obligations do not mean every CPO offers a convenient
+anonymous endpoint; char.gy is promoted because a first-party route is
+documented.
+
+SEED LEDGER
+PLANT =E2=80=94 CHAR_GY_EVSE_TRANSITION_TAPE
+PLANT =E2=80=94 NGED_PRIMARY_5MIN_STATE (retention unresolved)
+PLANT =E2=80=94 NESO_OBP_NON_BM_STATE (retention unresolved)
+PLANT =E2=80=94 NGED_FLEX_OUTCOME
+PLANT =E2=80=94 NESO_TEC_SEMANTIC_TRANSITIONS
+PILOT =E2=80=94 APPRENTICESHIP_VACANCY_LIFECYCLE
+WATCH =E2=80=94 OTHER_CPO_OCPI_PERMISSION_PATHS
+WATCH =E2=80=94 EV_BACKEND_PROTOCOL_EVENTS
+KILL =E2=80=94 GENERIC_EV_CHARGER_COUNT_MIRROR
+KILL =E2=80=94 NESO_SKIP_RATE_RAW_MIRROR
+KILL =E2=80=94 TEC_RAW_SNAPSHOT_MIRROR
+
+NEXT-HOUR INFORMATION-GAIN QUEUE
+1. Execute char.gy endpoint from a normal HTTP runtime and save the
+first raw t0 manifest.
+2. Measure headers, pagination, date_from semantics, bytes/request,
+total EVSE count, status distribution and tariff count.
+3. Run 5-minute polling initially; tighten only after rate behaviour is kno=
+wn.
+4. Test whether old last_updated object versions remain queryable.
+5. Continue OBP superseded-version retention experiment.
+6. Resolve NGED D/D+2/D+7 retention.
+Do not broaden into weak categories until these tests resolve.
+
+MACHINE-READABLE APPENDIX
+{"probe":"POW_LIVE_STATE","run":"2026-09-21T16:58:07+07:00","collector_depl=
+oyed":false,"material_delta":"CHAR_GY_PUBLIC_OCPI_PROMOTED","seeds":[["CHAR=
+_GY_EVSE_TRANSITION_TAPE",5.00,"PLANT_NOW"],["NGED_PRIMARY_5MIN",4.99,"PLAN=
+T"],["NESO_OBP_NON_BM",4.97,"PLANT_NOW"],["NGED_FLEX_OUTCOME",4.96,"PLANT"]=
+,["NESO_TEC_TRANSITIONS",4.94,"PLANT"],["APPRENTICESHIP_LIFECYCLE",4.58,"PI=
+LOT"]],"char_gy":{"locations":"https://char.gy/open-ocpi/locations","tariff=
+s":"https://char.gy/open-ocpi/tariffs","rights":"OGL-required
+public data","auth":"none","source_cost_gbp_month":0,"rate_limit":"UNKNOWN"=
+,"history_requirement":"NOT_REQUIRED","status_update_requirement_seconds":3=
+0},"critical_unknowns":["CHAR_GY_RATE_LIMIT","CHAR_GY_SUPERSEDED_VERSION_RE=
+TENTION","NGED_RETENTION","OBP_VERSION_RETENTION"]}
+
+Sources: GOV.UK Public Charge Point Regulations 2023 guidance; char.gy
+first-party Public Charge Point Regulations 2023 support
+documentation; DfE Apprenticeship service developer hub; APIs.io
+generated char.gy OpenAPI used only as secondary evidence of live
+endpoint mechanics.

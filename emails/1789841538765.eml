@@ -1,0 +1,339 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id xhyLjqk59SUX
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 18:12:18 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=cEwhiQitG+Kdcj5X2zaMHHu5ZLB03au7agiQ142N5d71U8FOVZ6RdbR4e940qFvbdFHD87A+d
+	09l9ctKP2zIlID4ZSdDUPn5HzQbnwWb02+EUpK9AKBJ/qGqzm+eXQDD1DGz1/5fT6qqKB7KzV2l
+	/XzEnUh54vrr2harE4EV6UexhOkAKdc3A+Xe0pagCbWhQVY32WvwP7Ty6tzY++fscr4zhCnE3QB
+	1rMhs1ZzFb+xD4JHSPrzvkfsQ9KwmOvzcMCwDhKOIj5lT5JoaKxX539cHMvDJlX4oCKnTyOIYdG
+	+q3Svfo4UIrUYvU72nId4W7hAWspD4Z6GnyHGaIB+rRA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789841538; x=1790446338; bh=5NEnsgzO
+	nAMJlV++HJDAAK6lPx7VwQv6bqsAOgO6sMI=; b=QerpEpFkrJ+7IKNBav+RXQx7aYLJa8wEgKK
+	1luSLyghOlFiuzenDI1gaFiSxgvtoAxepU8WL9Ny6RsJuKW/QgIesHfbJKAd4pR0qwztFYX8aGW
+	y7BWcRR8bwuZW7nrCq04U93VzAizsee3tTx9NSExuwi51DfFdH6Nh0+CkighF5PmGWcvztCE9yX
+	pmdp28/K2QCanzx2D/34acHys8KK2X62yquINciKQdx1TnpMmOfrNm1B4XQnU5tOPFgt2MH8hPQ
+	GiiHSJAAC4l8ij7qMGe1djriPUE8LqvHitZXSwGabEjDX4cRD28Y16HSsnu8iWjK83gaLUN+bBC
+	t0fSbJA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HUhuSh2/;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HUhuSh2/;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 1
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43ac8d1eso13063377b3.2
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 11:12:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789841538; cv=none;
+        d=google.com; s=arc-20260327;
+        b=SV9jXrhZiVizhBKMzXzQdT7cmUuEb7A4MiHqcpvRwvrF3z6Mklb0FQNCaVyEbS0ss1
+         GToJ2aXFIYIsfJhrbwPs+/N82RkYOvX/lEAwFBl6uFtz9nnyiGVdJJckJ+MdRqqqjmCR
+         iCCsdBtwjKLZhw5hdDg+Un2DaiRtjpf8aAS6IHAyMDJbBWTDpMyn4lb1j6RL5/d1FaZS
+         G+2GYqNUhpM1B+p9ebTTv0rn4wmMQe8NCt/JEl1NhH8Ahiq1QKS5rsEhxs435DHlzVFx
+         wsH6jxURK/YMxLT3EwU2Is7fe4f8vWSJqbEIfDigSlx2qpj9W53EsQ4khy2ACgN5cphO
+         fMmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=5NEnsgzOnAMJlV++HJDAAK6lPx7VwQv6bqsAOgO6sMI=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=TiAitSkbj8WhagWdzAE5oF26QoOzDZIuC3MZzrKMR+IxXxWGzuNVi6cyJ4rswU3td4
+         kPKXITEs/zm71EIeJQd4wZJke3d9i4MKsKfgDB9OY4A6FbW7eb7jjy9BbYn0Q48WVWCl
+         ow93YS0PE26H4PXG20zbIYeAo/aUg36hjtvM8/h1Fa81bwkqVBS3oBwOTLZLFvI82hd/
+         LyOhx49ckjnKLP0aV85vWaPW2tyDNYBA6pbEDA9LzyiZagAUj9nfWalCfFwyp6rGy+mM
+         SawV1t3inlsHvNoDEmVdoDA5D6YLhwTYnFNPAHtEA8O99Xh2tGmwf2AcDnCcObxcGraq
+         5j/A==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789841538; x=1790446338; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=5NEnsgzOnAMJlV++HJDAAK6lPx7VwQv6bqsAOgO6sMI=;
+        b=HUhuSh2/4bRrO4zYLd8LCKzjdUArLVEqbLtyrGsrt3tjvlbe7PXOGc2FMa6JdJ9gzE
+         ADAjaEKZG2rXrSiogyIwAydsJjeho89PIqc2r5W2/FPbW7nr1QyjxuDhhVm+8uhfa0Q7
+         TVOiR7y/5mTmviTnmj8X7UP2kzXFTZ6MzI0tELwMN7DfLmGBnovxXhGBbxnzO0XAQEFk
+         BOQmgKrmtk85X7H5oaa6OjuERj2JNGehE5eWzzsKcH9u6hNhtBWnTS8+K2/t/e+znFuA
+         X2OUjswVFpl/Gnc7b/55vttXZRhVT40zIZyxrs/u7svT4A5Dx2Ny+wb/v7f8gCA41pXU
+         oEKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789841538; x=1790446338;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=5NEnsgzOnAMJlV++HJDAAK6lPx7VwQv6bqsAOgO6sMI=;
+        b=IPma8pDdwDMzWBff/4yWuRnnRMD32PpssWRV8YAuFNEq62yncvyLNL5INd15dh0xaC
+         WkoXN+b5OVRUSWHgTUiSwcMlLmv3y6Ptu5utoX5NTFh9qB86hb2hqIkz2SpJ+ZdhveoW
+         4E9crvMz375zXb9t3hDRp4VWHSvW1S0RDCK5v9o/RzkhWsLy4Q1tKx2OGtN5gBa8o9BP
+         LJBKPJzp6Yp/MvWt9VdpZiN0vd8O/HhdHkuzbPc2oKkbrcMsgjX88OED5a4zAIjn30PV
+         FjNTSqQOuUmK+RmDlO3n1Cnqw3gXU3ye9Y6vmgSjhAf90aDh1k1vdl3NmZfxRki7S0fK
+         gqqw==
+X-Gm-Message-State: AFuF++mNwJN3yya3ro0cQ0URZxQ2QYqOpk5Vbg5kPdT24rPpUJthzubM
+	ZlLmp1bn+XtpoY7kNNnzbktf3hMes3X8RBrZFnAgmS8wXLNUiM/qyzNWf+4nSwBjXxgTWvZUqUw
+	9MkkKkxw6JH8AiMZxS6WRFqp2fp+OHwRalw==
+X-Gm-Gg: AYBFou3QS9xZzyK/XuxdDUiIAVI++yQku2NvQY9eZutorn5teQ83WAwWZ/qVFrYBEJQ
+	3tsBgKUbbSBLp/0PoewKBOWOyWCfQsJrfjXBSH7+kHAqd3oGGLFDWlxpTfis15YZCM0VetkUI0G
+	JGF/5eIWf1aF9IetJNqnk2SgbFxUd4v2JBsX0Q7a1oJvUW12q4/pKszWBKEnwwwSSooEIrr7aal
+	eb4/b6UCuE+1y08V+kS0gw0nUhqoP8WZedkGLML7lEKS55ZWbCUQER3Jy1rCv60LqyrQbWyTC6+
+	792ZeGERnUU44X8zGG35SHFabflnhAoq17KBqvHN8jYEBaTJu7VuTOgCrgOkQq8+WH0BjuHBi4h
+	HRi1Ds/dXKxYzX16ckcXMhIW97Kj7sP7EBEFEoaf6RSFHPpSS07jHxz8QZxqiDR4zvbUcVf3l
+X-Received: by 2002:a05:690c:4002:b0:87f:c20c:67a5 with SMTP id
+ 00721157ae682-89733a161acmr17067297b3.29.1789841537838; Sat, 19 Sep 2026
+ 11:12:17 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 13:12:17 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 13:12:17 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 13:12:17 -0500
+X-Gm-Features: AcwNN1XpkWm7V5EPokJwuYm6RVPYMVLvTb4onMqwAPRHvgg1ZVU2uCL0Azeq_ng
+Message-ID: <CAPdrGemKn11AnUVWPwdMBaTBm7k1RuYaVj_Nbcxm4+03U1aY3A@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Frontier_Stack_=E2=80=94_2026=2D09=2D20_01=3A12_Asia=2FP?=
+	=?UTF-8?Q?hnom=5FPenh_=E2=80=94_1_useful_find?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000001133b6065bd9f55e"
+
+--0000000000001133b6065bd9f55e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Frontier Stack =E2=80=94 1 useful find Realtime-Venus (inclusionA=
+I / Ant
+Group + Tsinghua) =E2=80=94 TEST
+
+Source: https://huggingface.co/inclusionAI/Realtime-Venus
+Release: 2026-09-16 (fresh open-weight release; technical report
+arXiv:2609.13814)
+
+WHAT CHANGED
+A genuinely open, Apache-2.0, 9B full-duplex multimodal interaction stack
+has appeared with downloadable weights and runnable code. There are two
+checkpoints: Realtime-Venus-Omni (video/images + audio + text =E2=86=92 tex=
+t +
+speech) and Realtime-Venus-Audio (audio + text =E2=86=92 text + speech). Un=
+like
+ordinary STT=E2=86=92LLM=E2=86=92TTS pipelines, it keeps perceiving while s=
+peaking,
+distinguishes backchannels/interruption/correction/redirection, can
+proactively respond to audiovisual events, and emits asynchronous requests
+to a companion harness without blocking the live conversation.
+
+ROAST.PET CAPABILITY
+This is specifically interesting for the QR/AR V2: a pet can continuously
+watch/listen to its owner, interrupt naturally, react to something
+happening on camera, and delegate a harder roast/retrieval task while
+conversation continues. More importantly, it offers a self-hosted
+alternative to GPT-Live/Grok Voice/Murf-style cloud voice infrastructure,
+making PetPersona portable.
+
+INPUTS / OUTPUTS
+Omni: streaming video/images + 16kHz-class audio + text =E2=86=92 text + na=
+tive
+speech. Audio checkpoint: audio + text =E2=86=92 text + native speech. Cont=
+ext:
+40,960 tokens. Speech uses discrete S3 tokens plus a streaming
+flow-matching decoder.
+
+INSTALL / API ROUTE
+No hosted inference provider is currently listed. Download from Hugging
+Face (inclusionAI/Realtime-Venus) and run with Python 3.10 + CUDA + FFmpeg
+via Hugging Face Transformers/custom code. The companion Realtime-Venus
+Harness provides asynchronous delegation/tool integration.
+
+PRICING
+Weights/code: $0. Infrastructure cost only. No serverless/API price exists
+yet.
+
+COMMERCIAL LICENSE
+Apache-2.0 according to the official Hugging Face model card. This is
+materially cleaner for commercial experimentation than several recent
+video-model community licenses.
+
+PRIVACY / SELF-HOSTING
+Strong: downloadable weights and local inference mean customer
+conversational audio/video can remain inside Roast.pet infrastructure. This
+is the main reason it clears the scanner threshold despite not being part
+of V1.
+
+QUALITY / LATENCY CONSTRAINTS
+Very early release. Both checkpoints are 9B BF16; the distributed files are
+large and practical GPU memory is substantial. No mature hosted endpoint or
+production SLA. The authors report full-duplex/interruption benchmarks, but
+Roast.pet still needs a real conversational test because pet-comedy timing
+is not a benchmark target. The Omni path also does not itself animate the
+canonical pet image; it is the conversational brain/voice layer, not the
+avatar renderer.
+
+EXACT ROAST.PET USE CASE
+QR on card/T-shirt =E2=86=92 browser camera/mic =E2=86=92 Realtime-Venus se=
+ssion seeded
+with PetPersona/customer facts =E2=86=92 pet notices owner/environment,
+interrupts/reacts/roasts =E2=86=92 optional avatar renderer drives the pet =
+visual.
+Keep the fixed V1 video path unchanged.
+
+SMALLEST TEST
+Do not integrate AR/video first. Rent a suitable GPU for one hour and run
+Realtime-Venus-Audio with one PetPersona. Perform 20 scripted two-minute
+sessions containing interruptions, backchannels, corrections and delayed
+punchlines. Compare against GPT-Live/Grok/Murf on: first-audio latency,
+interruption correctness, punchlines/minute, controllability, voice
+quality, VRAM and actual $/session. Only test Omni camera input if Audio
+wins.
+
+DECISION: TEST =E2=80=94 not ADOPT. It is too early for production, but it =
+is the
+first recent open stack that materially changes the ownership/privacy
+economics of the interactive-pet path.
+TOP 5 STACK CHANGES TO TEST NOW
+
+   1. Realtime-Venus-Audio vs hosted live-voice providers for the future
+   PetPersona/QR path.
+   2. H3 Max vs LongCat vs Wan on the fixed hard-pet lip-sync corpus.
+   3. P-Video-2-Pro Speed for cheap best-of-N draft motion.
+   4. Local PetPrep =E2=86=92 fur/edge QC =E2=86=92 hosted fallback.
+   5. Multi-take TTS =E2=86=92 comedy ranking =E2=86=92 animate only winner=
+ =E2=86=92 AV-QC/retry.
+
+CHEAPEST MEANINGFUL CAPABILITY IMPROVEMENT
+
+PetPrep/local segmentation remains effectively $0 marginal inference.
+Realtime-Venus is also $0 software/model cost, but requires GPU compute, so
+it is not automatically cheaper than hosted live voice at low volume.
+BIGGEST CAPABILITY SHOCK THIS HOUR
+
+Not a new image/video generator: a genuinely downloadable Apache-2.0
+full-duplex audiovisual model now makes a private/self-hosted interactive
+Roast.pet technically plausible without building STT=E2=86=92LLM=E2=86=92TT=
+S orchestration
+ourselves.
+CONCRETE STACK SIMPLIFICATION
+
+Formalize one LivePetBrain interface now, but do not build the UI around
+any provider:
+PetPersona + live audio/video =E2=86=92 LivePetBrain =E2=86=92 response aud=
+io/text +
+events/delegations.
+Backends can then be RealtimeVenus | GPT-Live | Grok | Murf. The visual pet
+renderer remains downstream and independent.
+
+No other sufficiently fresh, verified Roast.pet-specific release cleared
+the bar this run; mature unchanged tools and marketing-only launches were
+excluded.
+
+--0000000000001133b6065bd9f55e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Frontier Stack =E2=80=94 1 useful find
+
+Realtime-Venus (inclusionAI / Ant Group + Tsinghua) =E2=80=94 TEST
+<p>Source: <a href=3D"https://huggingface.co/inclusionAI/Realtime-Venus">ht=
+tps://huggingface.co/inclusionAI/Realtime-Venus</a><br>
+Release: 2026-09-16 (fresh open-weight release; technical report arXiv:2609=
+.13814)</p>
+<p>WHAT CHANGED<br>
+A genuinely open, Apache-2.0, 9B full-duplex multimodal interaction stack h=
+as appeared with downloadable weights and runnable code. There are two chec=
+kpoints: Realtime-Venus-Omni (video/images + audio + text =E2=86=92 text + =
+speech) and Realtime-Venus-Audio (audio + text =E2=86=92 text + speech). Un=
+like ordinary STT=E2=86=92LLM=E2=86=92TTS pipelines, it keeps perceiving wh=
+ile speaking, distinguishes backchannels/interruption/correction/redirectio=
+n, can proactively respond to audiovisual events, and emits asynchronous  r=
+equests to a companion harness without blocking the live conversation.</p>
+<p>ROAST.PET CAPABILITY<br>
+This is specifically interesting for the QR/AR V2: a pet can continuously w=
+atch/listen to its owner, interrupt naturally, react to something happening=
+ on camera, and delegate a harder roast/retrieval task while conversation c=
+ontinues. More importantly, it offers a self-hosted alternative to GPT-Live=
+/Grok Voice/Murf-style cloud voice infrastructure, making PetPersona portab=
+le.</p>
+<p>INPUTS / OUTPUTS<br>
+Omni: streaming video/images + 16kHz-class audio + text =E2=86=92 text + na=
+tive speech. Audio checkpoint: audio + text =E2=86=92 text + native speech.=
+ Context: 40,960 tokens. Speech uses discrete S3 tokens plus a streaming fl=
+ow-matching decoder.</p>
+<p>INSTALL / API ROUTE<br>
+No hosted inference provider is currently listed. Download from Hugging Fac=
+e (<code>inclusionAI/Realtime-Venus</code>) and run with Python 3.10 + CUDA=
+ + FFmpeg via Hugging Face Transformers/custom code. The companion Realtime=
+-Venus Harness provides asynchronous delegation/tool integration.</p>
+<p>PRICING<br>
+Weights/code: $0. Infrastructure cost only. No serverless/API price exists =
+yet.</p>
+<p>COMMERCIAL LICENSE<br>
+Apache-2.0 according to the official Hugging Face model card. This is mater=
+ially cleaner for commercial experimentation than several recent video-mode=
+l community licenses.</p>
+<p>PRIVACY / SELF-HOSTING<br>
+Strong: downloadable weights and local inference mean customer conversation=
+al audio/video can remain inside Roast.pet infrastructure. This is the main=
+ reason it clears the scanner threshold despite not being part of V1.</p>
+<p>QUALITY / LATENCY CONSTRAINTS<br>
+Very early release. Both checkpoints are 9B BF16; the distributed files are=
+ large and practical GPU memory is substantial. No mature hosted endpoint o=
+r production SLA. The authors report full-duplex/interruption benchmarks, b=
+ut Roast.pet still needs a real conversational test because pet-comedy timi=
+ng is not a benchmark target. The Omni path also does not itself animate th=
+e canonical pet image; it is the conversational brain/voice layer, not the =
+avatar renderer.</p>
+<p>EXACT ROAST.PET USE CASE<br>
+QR on card/T-shirt =E2=86=92 browser camera/mic =E2=86=92 Realtime-Venus se=
+ssion seeded with PetPersona/customer facts =E2=86=92 pet notices owner/env=
+ironment, interrupts/reacts/roasts =E2=86=92 optional avatar renderer drive=
+s the pet visual. Keep the fixed V1 video path unchanged.</p>
+<p>SMALLEST TEST<br>
+Do not integrate AR/video first. Rent a suitable GPU for one hour and run R=
+ealtime-Venus-Audio with one PetPersona. Perform 20 scripted two-minute ses=
+sions containing interruptions, backchannels, corrections and delayed punch=
+lines. Compare against GPT-Live/Grok/Murf on: first-audio latency, interrup=
+tion correctness, punchlines/minute, controllability, voice quality, VRAM a=
+nd actual $/session. Only test Omni camera input if Audio wins.</p>
+<p>DECISION: TEST =E2=80=94 not ADOPT. It is too early for production, but =
+it is the first recent open stack that materially changes the ownership/pri=
+vacy economics of the interactive-pet path.</p>
+
+TOP 5 STACK CHANGES TO TEST NOW
+<ol>
+<li>Realtime-Venus-Audio vs hosted live-voice providers for the future PetP=
+ersona/QR path.</li>
+<li>H3 Max vs LongCat vs Wan on the fixed hard-pet lip-sync corpus.</li>
+<li>P-Video-2-Pro Speed for cheap best-of-N draft motion.</li>
+<li>Local PetPrep =E2=86=92 fur/edge QC =E2=86=92 hosted fallback.</li>
+<li>Multi-take TTS =E2=86=92 comedy ranking =E2=86=92 animate only winner =
+=E2=86=92 AV-QC/retry.</li>
+</ol>
+
+CHEAPEST MEANINGFUL CAPABILITY IMPROVEMENT
+<p>PetPrep/local segmentation remains effectively $0 marginal inference. Re=
+altime-Venus is also $0 software/model cost, but requires GPU compute, so i=
+t is not automatically cheaper than hosted live voice at low volume.</p>
+
+BIGGEST CAPABILITY SHOCK THIS HOUR
+<p>Not a new image/video generator: a genuinely downloadable Apache-2.0 ful=
+l-duplex audiovisual model now makes a private/self-hosted interactive Roas=
+t.pet technically plausible without building STT=E2=86=92LLM=E2=86=92TTS or=
+chestration ourselves.</p>
+
+CONCRETE STACK SIMPLIFICATION
+<p>Formalize one <code>LivePetBrain</code> interface now, but do not build =
+the UI around any provider:<br>
+<code>PetPersona + live audio/video =E2=86=92 LivePetBrain =E2=86=92 respon=
+se audio/text + events/delegations</code>.<br>
+Backends can then be <code>RealtimeVenus | GPT-Live | Grok | Murf</code>. T=
+he visual pet renderer remains downstream and independent.</p>
+<p>No other sufficiently fresh, verified Roast.pet-specific release cleared=
+ the bar this run; mature unchanged tools and marketing-only launches were =
+excluded.</p>
+
+--0000000000001133b6065bd9f55e--

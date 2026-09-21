@@ -1,0 +1,309 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id eiXRq0qE4bit
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 12:11:21 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ekYsPYFAPBPdjgjBJv/MMtcu+jFXf10za6cCHDJ9NEpBdY+cqxSqjInuZQFr9fug3TkV5OiN+
+	oFsPwij46TOWBaJNQzrJHNt0OWVGty3rVleMLxUg4X23CqIRHgqxeD94UOZlIsQYVNF+bgXYkX/
+	aam+bEjDYFpfOWs6jorDdhxMN0sbB2i8BZgFa4DU0gBcSXMQlGW6jtOcbxWr02giNzKcFzBZAMl
+	TcD4F2UuYdyreNemQTKkxu3LXOZykb+7kwzu8f6iJTqrS7lx83P0v9o7pJnaQSuLPDjivX7H+dM
+	3UFUcZkg8Mn01gcOXaQOMNpHYo3PkO7m2mqv63MvAm0A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789906281; x=1790511081; bh=td04Njhk
+	Nq40IcAQEZtL7xECp0NzrEuN7DPQjMF7jx0=; b=a+qf+CxnRljXaSViG34RPtSX5RtCODo0Jcz
+	EUXQ1qxEbeQXu7hVR0ZVVBGHFIgXo6uLp5XktwZpJQtB2vY3V8wIH88P/MPsOiWEr65qKCS4omF
+	T99SB9DZohPksYcpKutVnc/y4qblVqyM9b/xhJTqcUhHMPJKrxo701DiayW1IkV6UfNhWU0jVCp
+	6lAy0JEuM2fOzFY2U13tG+gLmp3WtRpc8dhBYAGa05JDdSppHXUcKUUQokITeqWxfAxPEXI9NuX
+	mcwAmiFI7rhkE34Ntk7AGIEq2zlMKF6t76L8LqXkHpxhgRal9lVAYPQwcjh7+96CRhTFTd54pTM
+	BSUWy7g==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=hdWZtx9D;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=hdWZtx9D;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e56a1b327so1644073d50.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 05:11:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789906281; cv=none;
+        d=google.com; s=arc-20260327;
+        b=dLyhAaC73EYG6lCPvNKJ8K6Os11GHTBWFbrhKAYUKH10x1tyDX99iW07hD2elJiJwl
+         peDVUv/AwzAGHxwqdyTUlNabuS7JAV2T+Uws82zSIXwH1ZBpb1iyEJzh04Fp5N1VUW5l
+         kFUx0qbn8LuAiZVWCtXLJDhrkYx3vexY5Igsnzz+ZTLysyAsMe24m6nvjqt0zGYWICF1
+         c3UIHbcZ1iuyVAtGOIRhH1coV6ENO8DDnxaHu6HJxBQuyBCHwtvg+DLFEAbzvjoeDexv
+         dJsUKA8ZcrPJxuWgv+dMxmLVjk4jqAJRjmCYSoK2Unv6UIPV3FJ6u85kNCKCZhsAbHhu
+         2VWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=td04NjhkNq40IcAQEZtL7xECp0NzrEuN7DPQjMF7jx0=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=VT/crirWcPd3+NV9VC9Txv+Xipvbk/oSnKO4GRwG4PsGY+2zRWDWh4ROIgLpJv6BdV
+         XHAc3NEG5fTyswS6jUuSUJOwWLsvkLGRDMHqphEkX5RK1xxLvqPdhTi0HOY7pKNwGfFP
+         4YGjhP6RkhbdH5Ba1Gf41BJqke/FiXjj8S9zdnyYDV21ZqWLeiDtXgqQRxpRq0brAKuG
+         MOTaprHQGFzjl7fVP5NRg9QcJsQ5D7HZiLXZR+alrx3A6QPlw+R3TL0VRzwqgP+pKbKw
+         PxKkEe26cFM+G7VKU/jg4foFbagGSiDNDmZiB2Tn4719FGN0aNxm8XNKoV4pbftqVYis
+         CFvA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789906281; x=1790511081; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=td04NjhkNq40IcAQEZtL7xECp0NzrEuN7DPQjMF7jx0=;
+        b=hdWZtx9Dj/82HOVHAu2VhL93TEZ8zru/W4apqzAHWODBfzyvFLN0CWWN2bnWSm+xSf
+         6wOzvMZmw6hJq9NjTLBK/HkbtyQroXl+iWQuJGY0hi+ANk0zAJi2m8QN2zqL0hAsu2Fs
+         xkvSBz8FXAcOh7/mxppK8b8UuyeJIMXT3HiucZI6CVoI+Oz3w5xmPbFWqhGERi4gKHtf
+         qiRiwgQqspJ2kEaQuqSQIMvhZ9mW4ENpHZmropbJE+rVtChU9YS9Cuz71LQW6r9Q4AZo
+         Ld86p9a5AQhNeRS9n5DjFH3OkOUyGMfvzawlY+wfWbIKO/xsxvnvXwhnVpYBm4Nag6+y
+         zmpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789906281; x=1790511081;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=td04NjhkNq40IcAQEZtL7xECp0NzrEuN7DPQjMF7jx0=;
+        b=X07nSLvmeLx8UM+M99higec7SffGBK6pSA7f8zSowH2oZc3ENSXC3EFC6YDDCBVATc
+         ukwa/Ibz7vHTzlEmKuCxx8LTxn6+t/yecvd5XyV0SVBhhE3Ih/XR3ufcEcGmV8qRz9zs
+         a14SJ0QkAZdft5frIkyd3rudYfDgiai6ApWxhZgmZUqtyF4dr85IYMZ+RRYRYFG1GfhS
+         G99fGGAVaJ1Rns+YmayAD0GTcV6d63KOdAc838DWqzyKcVRBCLzShQ4v843sf+1HhJ1E
+         6op2VdIpcJsR3gWWO5fO6tX4lfJWvtjXkK98B5yZE/IP3sfg44Zr4kydFMo4GeSJ/drh
+         QPdw==
+X-Gm-Message-State: AFuF++ly8RORly5TzNaoNfzCeoNQi4y0qbEs6Nrk472LaJRFP1uD8i6e
+	YS5QnTnoroSrqX74EUXpeOSCCMEWCUOhoapc8BOli47bEtjBb9DLhja0vamE1GMN/J9HSHRBicM
+	blgUj8j3QI4EBSpubkvpleQMNqUqtNfxA4Q==
+X-Gm-Gg: AYBFou1Ap37eYBjJIDaUtEV6+7VAeVmPbBf/8W3Ij5A/F8i9O5Gt2Ya1qU5Ck7l5k4X
+	NOoebYsK2nnsg2USvHEhxrB3IhPP7J8IdPcBR/MBrphsd6I3fZJ9pgkb0CSjiKvgYuSBfqXUhDh
+	kzp9IY1MbHagZPhm+yj1oqENpoumekEPAVDYQGCTsl902LOLBZejj1ihO4Psk5eHNCtMsl+B8WN
+	QBXWa678EsPPn8vzRwNLfCWvbj9SBvUW5Zz6KZc1rVUmWq7Am5kcqufNS5EQaB6vReOTkNyTd9n
+	CorhtyjIdMsnjRDetOFAIQVR7cKPlUg3lpsIOLM4Qqu45/KdKUoHfpDP/wyZehyq5hDtgMXt2//
+	kOGNVBvSauvvoQyGSKlrEODTD2kxyqSnvW45nPTqdcfIiTl9AOckfz1Y3v8gRTG6RYcSDCGCPxg
+	==
+X-Received: by 2002:a05:690e:d81:b0:671:70e2:7c4b with SMTP id
+ 956f58d0204a3-6717fe8be8dmr2217169d50.102.1789906280913; Sun, 20 Sep 2026
+ 05:11:20 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:11:20 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:11:20 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 07:11:20 -0500
+X-Gm-Features: AcwNN1Uz9RPAbXkzeJyN1TZzr-svPtCph4EtX5zfvVqTEapOyoxFuXyD6WWUDdE
+Message-ID: <CAPdrGe=ZWv1dQvGdvz71mtt-5zvKZOatt-Z-UPa8MhMCdnSWow@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Frontier_Feeds_=E2=80=94_2026=2D09=2D20_19=3A08?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS FRONTIER FEED PROBE =E2=80=94 20 Sep 2026 19:08 ICT
+
+EXECUTIVE DELTA
+
+Highest-information discovery this run: a new GB-wide outage-data
+standard is becoming operational across DNOs. UK Power Networks
+announced its National Energy Outage API on 6 Aug 2026. Its feed is
+sourced from ADMS, includes planned and unplanned outages, follows the
+ENA National Energy Outage API design, updates every 15 minutes,
+suppresses incidents affecting <=3D5 customers where they cannot be
+aggregated, and is CC-BY-4.0. Electricity North West also exposes
+NEO-format state every 15 minutes; evidence now indicates all six GB
+DNOs have reusable live incident feeds, although licensing/access
+differs. This is exactly POW state: place =C3=97 physical network =C3=97 ou=
+tage
+=C3=97 customers affected =C3=97 restoration time =C3=97 time. Promote GB O=
+UTAGE TAPE
+to PLANT/PILOT with UKPN as the clean first collector and expand
+network-by-network only after licence verification.
+
+Second discovery: UKPN=E2=80=99s Constraints Real Time Meter Readings is a
+much stronger physical constraint sensor than generic grid queue data.
+It exposes constraint_id, current amps, trim/release limits, breach
+flag and timestamp, refreshing approximately once per minute. It
+directly measures when physical transformers/cables approach or cross
+curtailment limits. This is not newly launched this week, so it is not
+a frontier-launch win, but it is a high-value unresolved seed. Future
+development will add reasons for non-constraint-driven curtailment;
+schema monitoring should start now.
+
+Third discovery: DEFRA Digital Waste Tracking is a major t=3D0 WATCHLIST
+event. Public beta opened 28 Apr 2026; mandatory receipt reporting
+starts 1 Oct 2026 in England/Wales and Jan 2027 Scotland/NI. The
+Receipt API is public-beta v1.1, with seven endpoints and an official
+OpenAPI spec. But movement records are authenticated operational data,
+not a public read feed. POW must NOT pretend this is collectable.
+Watch for future public aggregate/open-data outputs; the mandate is
+creating a genuinely new national physical-material movement graph
+from Oct 2026.
+
+Fourth: UK Fuel Finder is a genuine 2026 machine-readable mandate:
+launched 2 Feb 2026, all forecourts must report price changes within
+30 minutes, with current price, operator/brand, amenities and
+timestamps available via API/CSV. However third parties already
+preserve daily per-forecourt history back to 16 Feb 2026 for free.
+Reject generic daily mirroring. Only sub-daily price-transition
+capture remains potentially differentiated.
+
+RANKED FRONTIER
+1. UKPN / GB National Energy Outage live state =E2=80=94 4.69/5 =E2=80=94 P=
+LANT/PILOT.
+Launch evidence: UKPN 6 Aug 2026. 15-min ephemeral state. Action:
+outage-aware EV charging, repair/service routing, site reliability,
+backup-power decisions.
+2. UKPN DERMS real-time constraint meter state =E2=80=94 4.62/5 =E2=80=94 P=
+LANT after
+free-account access verification. ~1-minute physical current vs
+trim/release threshold. Strong transformation: constraint stress and
+breach-duration tape.
+3. DEFRA Digital Waste Tracking =E2=80=94 4.55 potential =E2=80=94 WATCH t=
+=3D0.
+Mandatory 1 Oct 2026; public beta since 28 Apr. New material-flow
+state but not publicly readable.
+4. NESO Connections Reform / identifier transition =E2=80=94 4.51 =E2=80=94=
+ PLANT
+existing. Preserve Project ID -> Project No bridge and Gate
+transitions.
+5. Fuel Finder sub-daily forecourt price changes =E2=80=94 3.84 =E2=80=94 P=
+ILOT. New 2
+Feb 2026 mandate, but daily history already widely archived.
+6. UKPN Low Voltage Tender Rounds =E2=80=94 3.72 =E2=80=94 WATCH/ENRICH. Ne=
+wly
+published 28 Jul 2026; useful street-transformer-level flexibility
+demand but not sufficiently ephemeral yet.
+
+PLANT NOW =E2=80=94 UKPN NATIONAL ENERGY OUTAGE
+Official dataset family:
+https://ukpowernetworks.opendatasoft.com/explore/assets/ukpn-national-energ=
+y-outage/
+; metadata: https://ukpowernetworks.opendatasoft.com/api/v2/catalog/dataset=
+s/ukpn-national-energy-outage
+. Free portal registration required to view data. Licence: CC-BY-4.0.
+Cadence: 15 minutes. Formats: CSV/JSON/GeoJSON. No paid tier
+identified. Rate limit: UNKNOWN; use publisher cadence, not
+high-frequency polling. First collector: every 15 min fetch current
+JSON/CSV export after free registration, persist headers/hash/raw
+bytes. Canonical key: publisher incident/fault reference where
+supplied; otherwise DNO + incident reference. Raw: timestamped JSON.
+Normalized: dno, incident_id, observed_at, planned_flag, status,
+start_time, estimated_restore_time, customers_affected, geopoint/area,
+source_updated_at. Dedupe: dno + incident_id + source_updated_at +
+payload_hash. First transformation: OUTAGE_OPENED,
+CUSTOMER_COUNT_CHANGED, ETR_CHANGED, OUTAGE_RESOLVED; derive duration,
+customer-minutes, ETR error and recurrence by local network geography.
+Day proof: capture >=3D4 consecutive snapshots and reconstruct
+transitions. Week proof: compare reconstructed incidents against
+publisher/live-map state and quantify ETR revisions. Cost =C2=A30 source.
+Storage likely <<1 GB/month compressed at 15-min cadence.
+
+PLANT NOW =E2=80=94 UKPN CONSTRAINT REAL-TIME METER READINGS
+Dataset family:
+https://ukpowernetworks.opendatasoft.com/explore/assets/ukpn-constraints-re=
+al-time-meter-readings/
+; metadata identifier ukpn-constraints-real-time-meter-readings. Free
+registration required. Licence shown by open-data index as CC-BY-4.0.
+Feed refresh process is approximately once/minute. Public fields
+described by publisher: timestamp, constraint_id, present_amps_value,
+trim_amps, release_limit_amps, breach_flag, constraint_description;
+DER name only where user has access. Rate limit UNKNOWN: poll at 60s
+only after portal access confirms this is acceptable. Canonical key
+constraint_id. Dedupe constraint_id + timestamp + payload_hash.
+Transformation: utilisation=3Damps/trim; BREACH_STARTED/ENDED; minutes
+above 90/95/100%; recovery slope; recurring constraint pressure. Join
+to sensitivity factors, GSP, grid/primary sites, ECR, flexibility
+tenders and project queues. Day proof: observe real variation and
+stable IDs. Week proof: identify repeated near-breach constraints and
+compare with curtailment events. =C2=A30 source if free registration
+remains sufficient.
+
+T=3D0 WATCHLIST
+A. DEFRA Digital Waste Tracking: mandatory England/Wales 1 Oct 2026;
+Scotland/NI 1 Jan 2027. Monitor official GitHub changelog/OpenAPI and
+GOV.UK for any public read/aggregate export. Do not collect private
+receipt records without being an authorised participant. The backend
+preserves full revision history internally, making public aggregates
+potentially extraordinarily valuable if opened later.
+B. DEFRA Waste Collectors phase: private beta autumn 2026, public beta
+spring 2027, mandatory Oct 2027 according to current ecosystem
+guidance. Verify against DEFRA primary docs before promotion.
+C. UKPN Constraints feed: watch schema for promised reason field for
+non-constraint-driven curtailment.
+D. UKPN open-data news: schema/news feed for new operational datasets.
+Recent 2026 launches include NEO API (6 Aug), LV Tender Rounds (28
+Jul), beta Carbon Intensity (29 May), 2026 Network Development Plan (1
+May).
+E. Retail Energy Code Consumer Consent Solution: consultation launched
+7 Sep 2026. Potential future consented machine-readable household
+energy data access; not public operational feed yet.
+
+REJECTED API NOVELTY
+Fuel Finder generic archive: reject. It is genuinely new mandated
+data, but free third-party per-forecourt daily history already exists
+from 16 Feb 2026; a daily mirror no longer earns a moat. Only
+intra-day transitions may survive.
+DEFRA Receipt API as feed: reject for collection now. It is an
+authenticated submission/retrieval service for participants, not an
+open national waste-movement read API.
+NESO schema renames on 9/17 Sep: reject as novelty. They improve
+consistency but expose no new physical state.
+NESO Skip Rates: useful and updated daily, but created Dec 2024 and
+historical files are preserved; not a t=3D0 frontier feed.
+
+SOURCE-YIELD LEDGER
+Highest yield: DNO open-data portal news/changelogs (UKPN NEO launch);
+regulatory implementation guidance + official GitHub/OpenAPI (DEFRA
+waste); DNO operational dataset descriptions (DERMS constraints);
+mandatory-price-transparency guidance (Fuel Finder). Low yield:
+generic API launch searches and broad vendor developer searches.
+
+NEXT-HOUR INFORMATION GAIN
+1. Verify UKPN NEO account/API export mechanics and exact rate limit.
+2. Enumerate all six DNO live outage sources, licence, exact endpoint,
+incident IDs and schema compatibility; build a GB NEO matrix.
+3. Determine whether any DNO publishes historical outage records; if
+none, raise outage tape irreversibility score.
+4. Verify UKPN Constraints dataset account access, rate limit and
+whether history endpoint exists.
+5. Find creation/first-publication date for Constraints Real Time
+Meter Readings and curtailment history.
+6. Monitor promised new non-constraint-curtailment reason field.
+7. Inspect UKPN Low Voltage Tender Rounds exact schema and whether
+each tender round is immutable/history-preserved.
+8. Inspect DEFRA DWT changelog since v1.1 for fields that become
+mandatory on 1 Oct.
+9. Search DEFRA policy for planned public/open-data outputs from DWT;
+do not infer public access from the submission API.
+10. Test Fuel Finder whether API can expose price changes faster than
+twice-daily CSV and whether free archives preserve intraday
+transitions.
+
+MACHINE SUMMARY
+{"run":"2026-09-20T19:08:56+07:00","frontier":[{"id":"gb_neo_outage_tape","=
+status":"PLANT_PILOT","score":4.69,"launch":"UKPN
+announced 2026-08-06","cadence":"15m","cost":0,"licence":"CC-BY-4.0
+UKPN","irreversible":"likely; historical completeness to
+verify"},{"id":"ukpn_derms_constraint_meter","status":"PLANT_PENDING_ACCESS=
+_VERIFY","score":4.62,"cadence":"~1m","cost":0,"fields":["constraint_id","t=
+imestamp","present_amps_value","trim_amps","release_limit_amps","breach_fla=
+g"],"next":"verify
+free account/API
+rate/history"},{"id":"defra_digital_waste_tracking","status":"WATCH_T0","sc=
+ore_potential":4.55,"public_beta":"2026-04-28","mandatory_england_wales":"2=
+026-10-01","public_read_feed":false,"next":"watch
+for public aggregate/open-data
+surface"},{"id":"fuel_finder_intraday","status":"PILOT","score":3.84,"launc=
+h":"2026-02-02","mandate":"price
+changes within 30m","daily_history_competition":true}],"kills":["generic
+Fuel Finder daily mirror","DEFRA Receipt API as public read
+feed","NESO schema rename novelty","NESO Skip Rates as frontier
+launch"],"top_next":"build six-DNO outage endpoint/licence/history
+matrix"}

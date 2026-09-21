@@ -1,0 +1,609 @@
+Received: from mail-yx1-xb12f.google.com (2607:f8b0:4864:20::b12f)
+        by cloudflare-email.net (cloudflare) id 4VO9sGpWAwOl
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 14:00:23 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=feZQ34ZoslPtmmjmOvCgwErOKwpJGqz9K+Caqx1dRuwavJ4IMovV0NgWT5c7Btq/t9hA7Ov6i
+	tABCMTunGhLKW6CLFqDykwN8Kajz8rvzx7rpBsScKyi+vn1hsy7Mwx4SSOnmI6dwW2fO1orZkg1
+	lx48gnCbCA4S96+04weQEeNUBoUmTRHVGJ1UtvXyunf1JAvrGuyovc5U1OET3u7QaagYj07N+yS
+	43UtAACnAql5FJIrQVNAPO2cM0Us5RVYKpOM75QEEakU2N1Qt1dFttGuTZMTGSgsh8f3ktEP/PS
+	w4FPVp6NvkIJeohAsSq60cCzVqDsDZSC2lMu4yG0IrBg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789653623; x=1790258423; bh=EyRkf6xF
+	24bgKmbm3C3VNquDxqPUaEr/wojx5eZBz1o=; b=A+tXDYZxZRwmbZ0Eokzcm4squYTUvJLQ8fp
+	fuRjGdGCZM20tBYiiGsvuKsX9nv1UBYKTABf+ZBdi+bVQqR53Pia1yI0GjPGCGlwXlMebsjFd0G
+	hPADi/wlY5upOdW93SG1ADrzivGPNSRzJhiwpJD+whBjAklPhpxOKLUT2GdAWi2sTSOmMekjaqV
+	wJkl9bHXxa+Tu8HzMyFRof8lhZ3cm6vCqQUa3CIJNtAWp0X+ZNyWrM79VK0vxOeFU3Uc7T6+OtM
+	RgOwTx/dJIACa8S7mHxDgo3iuiVyt7zTgbN0Fke3O3gbR2SgEky8xOgkf5Ka654StFUwzQq1WTG
+	woVoP+A==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XfhisP+6;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb12f.google.com) smtp.helo=mail-yx1-xb12f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b12f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b12f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b12f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:20::b12f; envelope-from="tradesprior@gmail.com"; helo=mail-yx1-xb12f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XfhisP+6;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb12f.google.com) smtp.helo=mail-yx1-xb12f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b12f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b12f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx1-xb12f.google.com with SMTP id 956f58d0204a3-6714595153cso380152d50.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 07:00:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789653622; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ZtE8B7RLe5zWN5Ifo39F2FfWZVC1zr3J9EygxUlCaxGk1p3X4kIOBICSRIxa4MQl/I
+         btVB6iSDmr9PqV5jzXvRu9glpQ+K73Nolt+yb7Kn8BeomflIlXvR2wv0OdUsZlzz4TNa
+         w4qAfM/xidyAaPzgLWTtMOYmXRlI3wKLJ+ygYKOgEVewkjjhZfn7HV7coelScthJSTAb
+         Q1MFsB9uMeYoBIW+u+4hdtl2KdqcbQ/eYs2woJOxn+v47j5+7KXf3dJb7jiZfs6iLxz6
+         icBtqgzrh/n5RKj/AY7tLeqVd3xv972ZnuDTr1CIChWk2oQH+iTcSjkQgy86TF7gjpkh
+         Ol9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=EyRkf6xF24bgKmbm3C3VNquDxqPUaEr/wojx5eZBz1o=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=aQDy3sjca1CWTxITpkx8DsTVTaGVEkuusGIIDnRAeRO4C4S38aI7+BvDnHBLWRzXIq
+         nVt0vJcBAiXmhjZTFegm0aCZgOMtQjBWwIOygevsjX1f+9dCLvYfQ6wlMH1tRxGF5kA1
+         BVABp62NOb1E6qYOx0vyxOn3FtZTC3HPn8TYSXL8bptlwoRFBmRkqY3aujweV2nc9TDN
+         jxe6h7ZWwqHbGFVDZCIv3dRqgcIYHJ9CQZDMBJ7PuBFvKIGIhnTvzCDRh3SXf1bJMj8j
+         o2Gr4TKIDaXOMMKzf5oQrL9u9S3px6dQeNFh5rt8X4MsQByFbXbAkC5EraRM+j5Po/UR
+         qUgQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789653622; x=1790258422; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=EyRkf6xF24bgKmbm3C3VNquDxqPUaEr/wojx5eZBz1o=;
+        b=XfhisP+6VYIXqu2Ib1Yz2HgE11N7a1Q0L78xA3yS1ga64bWFbAb4j8dRrM65t3fW+a
+         L/VNaf2MF+AfUZwoDIWVQS8/vzy/4srql3zdDcJwl9JlggFDhKMC0xgXN9Rmntp37PKU
+         7I+Qs3wSmFxKirRCrNZtwPrc9BlPj2VdUB1OeFZjleJomhAPPLtg7L+F0bEQYLA0pPp6
+         qDYNaE9yvF/x64qq82NCGjVLH6PMfrGwDkr5+V0rt2MfrulqzOYlAb/DwE8hsDeibjql
+         dbF+6tmcKYRS2mgnoWcAZyGVwoqPmd2maYpA1UcpsnzpnlwxWJEWk5z/ibM2D8Whj3JG
+         YQAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789653622; x=1790258422;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=EyRkf6xF24bgKmbm3C3VNquDxqPUaEr/wojx5eZBz1o=;
+        b=FPorxtocvVeMFYazBOkJV1co57PeHLJgRG4LdEDpRPOHJJk+lME832fg0EAzEzoSK+
+         DWNgbsWS1R/yCeqgCHV9FZ1jsyI7yLy7G6H0gWgw41m6sEnpqSykPCN4tNzxFih2cs0f
+         6ZbkuvvPJzjqu7TvJVDv3hkntu56TOPuYp77nTfu71hgce8hRs6FhakRj/V8oxoC+lM3
+         LLvvVMVdv0j7qLmuGOkwk8NZv9ozIKK4x93iuNJE3mIJ6aOCpXrNzVQGUaeehtiHFkXO
+         AN101D9rSRR1pROZnOCQlspt6ANIsdE5gzBE7q0S+xS8h1V8uIlu4YPYssg6y8a8NuFp
+         P2qw==
+X-Gm-Message-State: AFuF++nchdYvAZP0pxPBlQeCo4UVU2oERGSM3/6OzaicmCJnBzwKGgT9
+	oDZcDNDzJwPOOoW1TdwwmdVd5VfThPIB+bCv1AzdZMsaE83534lmI5oPbLVENV7VnrxzqLE+w1X
+	oWV4IWvCu7ooAvOIM7WURUtvR3KxiLXT1Ww==
+X-Gm-Gg: AYBFou3KJGp1qWCPfOOkiT6uplJS1oRSDjyo4UPJMRlLgzwmlRA5PZGANemAuy97Qir
+	RRV3l/6lRvmRvv2kHgqhHCcWqWNYQfa6Ie+P5vuqzf2K7GGue7zboWl6oIWLLY/EkPTblqlUNNo
+	t05WTuRC69zIEzYRTsJMOXf/7n8OAJzAvN0lVnZazqpKvwEujBPh7tBylC+fHRRZhqroG2oAuGP
+	xhSAi3BLoTDHj4nCAQYmUdmRoOCmTA/5llvos0P6E9Xo1h6Dio2fSoV99eJTrAB+86Uw8iGXZGA
+	DQlEcCdIB4VTqi9I2jlzpQman1D2MklaSYzV0BPf6UdTG/A9ZidcDYVvCqiUCDFJsRoHmD1Cs/b
+	qb6UMY3djNo6f3V5jUYvQskskXw9iog7XGx4oMr10m6zTmgaRLmPpjcWXJwJxahcnWFqDlwhcdw
+	==
+X-Received: by 2002:a53:d015:0:b0:671:4e45:10d0 with SMTP id
+ 956f58d0204a3-67170352d9amr775351d50.19.1789653621918; Thu, 17 Sep 2026
+ 07:00:21 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 10:00:20 -0400
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 10:00:20 -0400
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 10:00:20 -0400
+X-Gm-Features: AcwNN1W4cWapKYXhePPLjoVMrNTDeYIDhDr9zTkWXxSHeuiIipf1jYxLClqGpZs
+Message-ID: <CAPdrGe=zu9My=4D1h-soGTed0Vwf4GncYA_ZHhVPOiS7j_LemQ@mail.gmail.com>
+Subject: =?UTF-8?B?Y21haWwgUVAgcm9vdC1vZi10cnVzdCByZWJ1aWxkIOKAlCBjb250aW51YXRpb24gwqcxOQ==?=
+	=?UTF-8?B?4oCTMjU=?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000067d034065bae34aa"
+
+--00000000000067d034065bae34aa
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+19. Source/build identity
+
+For every QP program/probe/adapter record:
+
+   - git repository
+   - commit SHA
+   - tree SHA
+   - build hash
+   - program bundle hash
+   - runtime/dependency lock hash
+   - deployment identifier
+
+Never use master/main/latest/mutable tags inside proof roots.
+20. Security boundary
+
+Keep the trusted base small:
+TrustBase =3D canonical hashing + QP verifier/settler + signature
+verification + tiny probe/effect runtime + immutable program bundles
+
+LLMs, planners, browser automation, provider adapters, target JSON, task
+orchestration and UI are outside the constitutional trust base.
+
+Workers propose.
+Probes observe.
+Judges judge.
+QP commits.
+
+No self-promotion.
+21. Required adversarial tests
+
+Truth semantics:
+
+   - missing evidence =3D> UNKNOWN
+   - malformed evidence =3D> UNKNOWN unless explicitly falsifying
+   - any FALSE required leaf dominates an AND-DAG
+   - any UNKNOWN required leaf blocks TRUE
+   - all required TRUE =3D> TRUE
+   - stale evidence =3D> UNKNOWN/rejected
+
+Claim identity:
+
+   - mailbox B evidence cannot prove mailbox A
+   - handle H2 cannot prove H1
+   - account A2 cannot prove A1
+
+Provenance:
+
+   - tampered payload hash fails
+   - wrong collector program hash fails
+   - inadmissible evidence class fails
+   - same-channel evidence rejected where independent readback is required
+
+Program roots:
+
+   - change one judge byte =3D> different ContractRoot or verification fail=
+ure
+   - runtime/config/dependency hash change =3D> fail under old root
+
+Authority:
+
+   - invalid signature =3D> denied
+   - expired grant =3D> denied
+   - wrong subject =3D> denied
+   - wrong action =3D> denied
+   - payload mutation after signing =3D> denied
+   - price over cap =3D> denied
+   - reused one-shot nonce =3D> denied
+   - truth TRUE without grant =3D> effect denied
+   - valid grant without required prerequisite truth =3D> effect denied
+
+Effects:
+
+   - provider POST success + readback failure =3D> target claim UNKNOWN / n=
+o
+   success receipt
+   - provider POST failure =3D> no target success receipt
+   - successful readback =3D> settled receipt
+   - idempotency prevents duplicate spend/effect
+   - reserve succeeds then executor crashes =3D> reconciliation state; gran=
+t
+   is not silently reusable
+
+Replay:
+
+   - canonical receipt replay =3D> PASS
+   - mutate evidence =3D> FAIL
+   - mutate gate result =3D> FAIL
+   - mutate state_after =3D> FAIL
+   - mutate authority reference =3D> FAIL
+   - wrong historical freshness evaluation =3D> FAIL
+
+Non-circularity:
+
+   - worker self-report success:true cannot satisfy target claim without
+   admissible evidence
+   - target JSON cannot mint a trusted proof simply by naming it
+   - task done cannot settle a world-state claim
+
+22. Suggested module structure src/qp/ canonical.ts hash.ts types.ts
+contracts.ts claims.ts evidence.ts programs.ts actuality.ts gates.ts
+grants.ts reserve.ts transition.ts receipts.ts replay.ts store.ts host.ts
+src/probes/ cloudflare.ts dns.ts emailChallenge.ts telnyx.ts
+smsChallenge.ts socials/ src/effects/ cloudflareDomain.ts cloudflareDns.ts
+telnyxNumber.ts emailSend.ts socials/ proofspecs/ domain_available.v1.json
+domain_owned.v1.json dns_configured.v1.json email_route_configured.v1.json
+email_receives.v1.json phone_owned.v1.json sms_receives.v1.json
+handle_available.v1.json account_owned.v1.json handle_bound.v1.json
+oauth_authorized.v1.json can_post.v1.json email_send_accepted.v1.json
+email_delivered.v1.json 23. Migration order A =E2=80=94 Freeze and secure
+
+   - pin baseline commit/tree
+   - authenticate MCP
+   - quarantine unauthenticated consequential operations
+   - add regression tests around current live functions
+
+B =E2=80=94 Build QP kernel in isolation
+
+Implement:
+
+   - canonical serialization/hashing
+   - ContractRoot
+   - Claim / Evidence / Actuality
+   - ProgramBundle hashing
+   - grants and signatures
+   - reservation/consumption
+   - TransitionReceipt
+   - replay
+   - append-only store/event chain
+
+Do not connect effects yet.
+C =E2=80=94 Prove one vertical end-to-end
+
+Use inbound email because EVP-1 already has the correct core idea:
+domain_owned -> dns_configured -> email_route_configured -> email_receives
+
+Require a real nonce round-trip and demonstrate independent replay from
+stored artifacts.
+D =E2=80=94 Make one real effect QP-only
+
+Use domain purchase or phone purchase:
+signed grant -> reserve -> effect -> provider readback -> target proof ->
+TransitionReceipt -> reconciliation
+
+Then eliminate the old direct bypass.
+E =E2=80=94 Migrate remaining consequential effects
+
+   - DNS/email wiring
+   - phone purchase/configuration
+   - outbound email
+   - social/account writes
+   - OAuth mutation
+   - posting
+
+F =E2=80=94 Rebuild setup.social orchestration over QP claims
+
+Targets become desired proof sets. The planner resolves UNKNOWN claims by
+choosing admissible probes/effects. Mission completion is determined only
+by settled required claims.
+24. Desired end-state
+
+A request like:
+Set up privately.win everywhere
+
+should compile into desired claims, not imperative scripts:
+domain_owned(privately.win) email_receives(agents@privately.win)
+phone_owned(...) account_owned(youtube,...)
+handle_bound(youtube,...,privatelywin) account_owned(x,...)
+handle_bound(x,...,privatelywin) ...
+
+QP determines which are TRUE / FALSE / UNKNOWN.
+
+UNKNOWN claims trigger admissible proof routes. Some routes are pure
+observation. Some require a world-changing effect. Those require authority.
+After any effect, independent evidence/readback is used to settle the
+target claim.
+
+The reusable primitive is:
+DesiredState -> unresolved claims -> evidence/effect routes -> bounded
+authority where required -> world interaction -> independent readback -> QP
+settlement -> new canonical state
+
+That is what everything else should span outward from.
+25. Definition of done
+
+Do not call this QP-complete until all are true:
+
+   - [ ] no consequential provider action is reachable without
+   authenticated principal + valid QP grant
+   - [ ] canonical claim truth is TRUE/FALSE/UNKNOWN
+   - [ ] frozen ContractRoot pins exact
+   semantics/programs/freshness/authority rules
+   - [ ] evidence carries provenance and content identity
+   - [ ] external effects use independent post-effect readback where
+   possible
+   - [ ] no successful target claim settles when readback is UNKNOWN
+   - [ ] facts and authority use different object types and graph edges
+   - [ ] TransitionReceipts are content-addressed, signed and append-only
+   - [ ] deterministic independent replay passes on canonical receipts
+   - [ ] task/mission status is projection only and cannot promote truth
+   - [ ] target JSON cannot invent trusted proof semantics
+   - [ ] inbound email round-trip proves the exact mailbox
+   - [ ] phone ownership uses provider account readback
+   - [ ] social availability and account ownership are separate claims
+   - [ ] OAuth scope authorization is explicitly proven
+   - [ ] direct bypass routes are removed or inaccessible
+   - [ ] adversarial proof/authority/replay tests pass
+
+The target is not more QP-looking JSON. The target is one unavoidable
+constitutional boundary between an agent saying something happened,
+evidence showing what happened, and the system being permitted to change
+the world.
+
+--00000000000067d034065bae34aa
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+19. Source/build identity
+<p>For every QP program/probe/adapter record:</p>
+<ul>
+<li>git repository</li>
+<li>commit SHA</li>
+<li>tree SHA</li>
+<li>build hash</li>
+<li>program bundle hash</li>
+<li>runtime/dependency lock hash</li>
+<li>deployment identifier</li>
+</ul>
+<p>Never use master/main/latest/mutable tags inside proof roots.</p>
+
+20. Security boundary
+<p>Keep the trusted base small:</p>
+
+<code>TrustBase =3D
+  canonical hashing
++ QP verifier/settler
++ signature verification
++ tiny probe/effect runtime
++ immutable program bundles
+</code>
+<p>LLMs, planners, browser automation, provider adapters, target JSON, task=
+ orchestration and UI are outside the constitutional trust base.</p>
+<p>Workers propose.<br>
+Probes observe.<br>
+Judges judge.<br>
+QP commits.</p>
+<p>No self-promotion.</p>
+
+21. Required adversarial tests
+<p>Truth semantics:</p>
+<ul>
+<li>missing evidence =3D&gt; UNKNOWN</li>
+<li>malformed evidence =3D&gt; UNKNOWN unless explicitly falsifying</li>
+<li>any FALSE required leaf dominates an AND-DAG</li>
+<li>any UNKNOWN required leaf blocks TRUE</li>
+<li>all required TRUE =3D&gt; TRUE</li>
+<li>stale evidence =3D&gt; UNKNOWN/rejected</li>
+</ul>
+<p>Claim identity:</p>
+<ul>
+<li>mailbox B evidence cannot prove mailbox A</li>
+<li>handle H2 cannot prove H1</li>
+<li>account A2 cannot prove A1</li>
+</ul>
+<p>Provenance:</p>
+<ul>
+<li>tampered payload hash fails</li>
+<li>wrong collector program hash fails</li>
+<li>inadmissible evidence class fails</li>
+<li>same-channel evidence rejected where independent readback is required</=
+li>
+</ul>
+<p>Program roots:</p>
+<ul>
+<li>change one judge byte =3D&gt; different ContractRoot or verification fa=
+ilure</li>
+<li>runtime/config/dependency hash change =3D&gt; fail under old root</li>
+</ul>
+<p>Authority:</p>
+<ul>
+<li>invalid signature =3D&gt; denied</li>
+<li>expired grant =3D&gt; denied</li>
+<li>wrong subject =3D&gt; denied</li>
+<li>wrong action =3D&gt; denied</li>
+<li>payload mutation after signing =3D&gt; denied</li>
+<li>price over cap =3D&gt; denied</li>
+<li>reused one-shot nonce =3D&gt; denied</li>
+<li>truth TRUE without grant =3D&gt; effect denied</li>
+<li>valid grant without required prerequisite truth =3D&gt; effect denied</=
+li>
+</ul>
+<p>Effects:</p>
+<ul>
+<li>provider POST success + readback failure =3D&gt; target claim UNKNOWN /=
+ no success receipt</li>
+<li>provider POST failure =3D&gt; no target success receipt</li>
+<li>successful readback =3D&gt; settled receipt</li>
+<li>idempotency prevents duplicate spend/effect</li>
+<li>reserve succeeds then executor crashes =3D&gt; reconciliation state; gr=
+ant is not silently reusable</li>
+</ul>
+<p>Replay:</p>
+<ul>
+<li>canonical receipt replay =3D&gt; PASS</li>
+<li>mutate evidence =3D&gt; FAIL</li>
+<li>mutate gate result =3D&gt; FAIL</li>
+<li>mutate state_after =3D&gt; FAIL</li>
+<li>mutate authority reference =3D&gt; FAIL</li>
+<li>wrong historical freshness evaluation =3D&gt; FAIL</li>
+</ul>
+<p>Non-circularity:</p>
+<ul>
+<li>worker self-report <code>success:true</code> cannot satisfy target clai=
+m without admissible evidence</li>
+<li>target JSON cannot mint a trusted proof simply by naming it</li>
+<li>task <code>done</code> cannot settle a world-state claim</li>
+</ul>
+
+22. Suggested module structure
+
+<code>src/qp/
+  canonical.ts
+  hash.ts
+  types.ts
+  contracts.ts
+  claims.ts
+  evidence.ts
+  programs.ts
+  actuality.ts
+  gates.ts
+  grants.ts
+  reserve.ts
+  transition.ts
+  receipts.ts
+  replay.ts
+  store.ts
+  host.ts
+
+src/probes/
+  cloudflare.ts
+  dns.ts
+  emailChallenge.ts
+  telnyx.ts
+  smsChallenge.ts
+  socials/
+
+src/effects/
+  cloudflareDomain.ts
+  cloudflareDns.ts
+  telnyxNumber.ts
+  emailSend.ts
+  socials/
+
+proofspecs/
+  domain_available.v1.json
+  domain_owned.v1.json
+  dns_configured.v1.json
+  email_route_configured.v1.json
+  email_receives.v1.json
+  phone_owned.v1.json
+  sms_receives.v1.json
+  handle_available.v1.json
+  account_owned.v1.json
+  handle_bound.v1.json
+  oauth_authorized.v1.json
+  can_post.v1.json
+  email_send_accepted.v1.json
+  email_delivered.v1.json
+</code>
+
+23. Migration order
+
+A =E2=80=94 Freeze and secure
+<ul>
+<li>pin baseline commit/tree</li>
+<li>authenticate MCP</li>
+<li>quarantine unauthenticated consequential operations</li>
+<li>add regression tests around current live functions</li>
+</ul>
+
+B =E2=80=94 Build QP kernel in isolation
+<p>Implement:</p>
+<ul>
+<li>canonical serialization/hashing</li>
+<li>ContractRoot</li>
+<li>Claim / Evidence / Actuality</li>
+<li>ProgramBundle hashing</li>
+<li>grants and signatures</li>
+<li>reservation/consumption</li>
+<li>TransitionReceipt</li>
+<li>replay</li>
+<li>append-only store/event chain</li>
+</ul>
+<p>Do not connect effects yet.</p>
+
+C =E2=80=94 Prove one vertical end-to-end
+<p>Use inbound email because EVP-1 already has the correct core idea:</p>
+
+<code>domain_owned
+ -&gt; dns_configured
+ -&gt; email_route_configured
+ -&gt; email_receives
+</code>
+<p>Require a real nonce round-trip and demonstrate independent replay from =
+stored artifacts.</p>
+
+D =E2=80=94 Make one real effect QP-only
+<p>Use domain purchase or phone purchase:</p>
+
+<code>signed grant
+ -&gt; reserve
+ -&gt; effect
+ -&gt; provider readback
+ -&gt; target proof
+ -&gt; TransitionReceipt
+ -&gt; reconciliation
+</code>
+<p>Then eliminate the old direct bypass.</p>
+
+E =E2=80=94 Migrate remaining consequential effects
+<ul>
+<li>DNS/email wiring</li>
+<li>phone purchase/configuration</li>
+<li>outbound email</li>
+<li>social/account writes</li>
+<li>OAuth mutation</li>
+<li>posting</li>
+</ul>
+
+F =E2=80=94 Rebuild setup.social orchestration over QP claims
+<p>Targets become desired proof sets. The planner resolves UNKNOWN claims b=
+y choosing admissible probes/effects. Mission completion is determined only=
+ by settled required claims.</p>
+
+24. Desired end-state
+<p>A request like:</p>
+
+<code>Set up privately.win everywhere
+</code>
+<p>should compile into desired claims, not imperative scripts:</p>
+
+<code>domain_owned(privately.win)
+email_receives(agents@privately.win)
+phone_owned(...)
+account_owned(youtube,...)
+handle_bound(youtube,...,privatelywin)
+account_owned(x,...)
+handle_bound(x,...,privatelywin)
+...
+</code>
+<p>QP determines which are TRUE / FALSE / UNKNOWN.</p>
+<p>UNKNOWN claims trigger admissible proof routes. Some routes are pure obs=
+ervation. Some require a world-changing effect. Those require authority. Af=
+ter any effect, independent evidence/readback is used to settle the target =
+claim.</p>
+<p>The reusable primitive is:</p>
+
+<code>DesiredState
+  -&gt; unresolved claims
+  -&gt; evidence/effect routes
+  -&gt; bounded authority where required
+  -&gt; world interaction
+  -&gt; independent readback
+  -&gt; QP settlement
+  -&gt; new canonical state
+</code>
+<p>That is what everything else should span outward from.</p>
+
+25. Definition of done
+<p>Do not call this QP-complete until all are true:</p>
+<ul>
+<li>[ ] no consequential provider action is reachable without authenticated=
+ principal + valid QP grant</li>
+<li>[ ] canonical claim truth is TRUE/FALSE/UNKNOWN</li>
+<li>[ ] frozen ContractRoot pins exact semantics/programs/freshness/authori=
+ty rules</li>
+<li>[ ] evidence carries provenance and content identity</li>
+<li>[ ] external effects use independent post-effect readback where possibl=
+e</li>
+<li>[ ] no successful target claim settles when readback is UNKNOWN</li>
+<li>[ ] facts and authority use different object types and graph edges</li>
+<li>[ ] TransitionReceipts are content-addressed, signed and append-only</l=
+i>
+<li>[ ] deterministic independent replay passes on canonical receipts</li>
+<li>[ ] task/mission status is projection only and cannot promote truth</li=
+>
+<li>[ ] target JSON cannot invent trusted proof semantics</li>
+<li>[ ] inbound email round-trip proves the exact mailbox</li>
+<li>[ ] phone ownership uses provider account readback</li>
+<li>[ ] social availability and account ownership are separate claims</li>
+<li>[ ] OAuth scope authorization is explicitly proven</li>
+<li>[ ] direct bypass routes are removed or inaccessible</li>
+<li>[ ] adversarial proof/authority/replay tests pass</li>
+</ul>
+<p>The target is not more QP-looking JSON. The target is one unavoidable co=
+nstitutional boundary between an agent saying something happened, evidence =
+showing what happened, and the system being permitted to change the world.<=
+/p>
+
+--00000000000067d034065bae34aa--

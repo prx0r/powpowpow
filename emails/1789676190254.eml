@@ -1,0 +1,625 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id L10Aq49q0szy
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 20:16:29 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=f+oQR8/+9GeXySzfm5UiOBQNRADs38uik7j4afzLu8gHZFEuE7+rwkK19CU+UOLCSQhewB8qe
+	2Bk7Eq6fV+UzKQqwUDpdg1Fx8diJkhLmsBCwmqjRTAg/lfjv55ZEeLqnOQuii+Z4/xqka2NAale
+	B+DbHhBr9ybT5zInViWPmZDtGNrzpNTnyZDL2Fwa0Ngj9oM3P9SUhMaIQ3mCMvqlYXDLcFko0qF
+	SElBuyIwVv0yRuxj3Ed120TfJUrrbcd1gsczE6jAR/c1G0mgfG+3VHf/B/dAqITrnxJQ8wS95n9
+	WY0i8TZaWJuowCyIoi5r8rTNDkjBMutFpSxLiB0z5cBw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789676189; x=1790280989; bh=1n23bWk0
+	QcL2XBtZsPVDUBjjoijBgCzs36bUNcgkPro=; b=celF5bho4Rn5VnXh4J9BhUYjiX8LHw2z/eF
+	WaaR4W1BcDh1ZpuA00YlC2you8+ikpENLfe/x3OAo6xcS2p/z9RFUGKXuggu2bILUN+4te9LXKm
+	9PWuEePJOBuL0TZo824n2B1K9JMPu9efsItCfr7wzl7Mr1zhDfswxBYzC334vnjPiQIq+BHAIiH
+	Jzt6u3FyhBBkSB75qiTlmTtbEPtpPXNUz2gNc+POzj6AHNNbBsrOK8wLMa6vgQ29uUprSgCWmQd
+	ZRKP4GAMlkOumC2r2qbXoQwm+up2yZ+AcPVgFs5CN0REK1lYma0knJcF89QYwhXzJUZeRKmmzZd
+	yskJqfw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=eLlaiAc0;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=eLlaiAc0;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d46e4cdcdso64727b3.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 13:16:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789676189; cv=none;
+        d=google.com; s=arc-20260327;
+        b=p3xtNhMsjD3h6EUFxa2TSL2dTiTeiMsuTjRkXI2hQurkPT6YHwEv+GABEi65rlTYdR
+         Vy+my/zWD4gPKMGTNR/JPa7szg86LkcUxADfD9Us4cIF3ESF/KbRtY/Y97bNQS9FdjA9
+         qbripzZ4qygij0dqtcw1zPDWvBfONuoagmD30TPNJ9RILoKuD6JNJY6S0lA4rZBZYtws
+         UeZBFefi0mjHQC+PRrDi96mbjmmzRe+1Jg6RIdP9i7dO6gSubjWYrC+J5Mf5DzKBjW8s
+         TXK3U70MHmPOJ9g+bIr+4q/mq18QovJYSnbjym6PHnfeoFzXpHWoB6K17/gWNIeDPaqW
+         /Pxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=1n23bWk0QcL2XBtZsPVDUBjjoijBgCzs36bUNcgkPro=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=SA3pyBD1cjqrCGOkahp0wmjRxtLa3jez7IUigx2FxzsUbEt4naUG/PwCM/dOYaukNv
+         dAFSqh15fTKvGiMBYzX+CiUOKrqz0vCCJtNhF4OCAzJgJPDsD0xOx849T6fn5wmzLQWR
+         sfliAIjusgZz9rE7STQ3yvSJ/WJrsH22QQfk9Ynhpd+H8CKgvIiuyxH2qWiz8xtKJ6b/
+         SsZV0QSs6+OWDSrHR28nT1ZOtsTncbfLJultRAzhHRnQVFr4rIFLFSq/Pb/gX5XO5VIP
+         6N+TLxmyRheoQEXqZebbi4GI55fboSQRYqQVCldX6l35RriZ9oLElWbcLrdL9Dx1EWW3
+         foyg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789676189; x=1790280989; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=1n23bWk0QcL2XBtZsPVDUBjjoijBgCzs36bUNcgkPro=;
+        b=eLlaiAc0vEsr0LpQh4RUJZbTeKm5bioRYtkejFuFuCv1xN29TovW/xHt8IRy2m6HnV
+         VoifXhOcDLsl4yhqMc4XL181xwvcoQmXN2HiZSbx46HQD6NywyjPRisMargzzbVQ8zyd
+         Db3A084CfDJjpai0G7vHX7R/ZOsLFytNCRQx4GRiczi/Wf4RJh16rxgTgG/T4aixeFLY
+         147XdgvN0b0ae3fzMcznc+7YtYxQ6xboGr4qXPFZYi86WWHbcAuUfm+HHqLJclaD+px2
+         hiLL7c0WJ2qWXn7wgqwgCxBlhK+qT6ukwoucxxSFvxCdByVXZgU6Fgkn04E9znHG1KaK
+         9obg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789676189; x=1790280989;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=1n23bWk0QcL2XBtZsPVDUBjjoijBgCzs36bUNcgkPro=;
+        b=ofOPub9xeUOaDbMd8f0LhakMmPV1YOWq196+5TTLqhmzWvhJ1pjvytXGbLWGecYtXe
+         tdxVR1/ePy9I7Tus+jkqs2PHphIwgzM/ZGJcQCuSWfMHZnH2Xo7eMlmsJHzK9zG0BNUz
+         c4bfjTCuJW0QHMfEYOcJgvBZ+y6arlvf8wjJNMbSbERSGYVo9hczRs5S1r+d0kZUUfHy
+         Q3VWLbDbjXh18LTQRFJlJ9fdAMgQ024QIor7LcLjJhqhkDq991f9WaNsZ4jSiGr8vB5v
+         peBwfGeXmi9B5u2qOi4blAFmr2o9WCAP4GprQvDb/Xeo71x8o9Ic9jlHwDGCauBUTomk
+         pIAQ==
+X-Gm-Message-State: AFuF++lfS4VwWrppnWN5ZAzX18cMFSkQILYP/hKcaS2FCpfj7DeTXAWX
+	g8Bm3dv/puz8oX/03nGhh+0B+EWZQ3j50RDpBT0mKtnoVMaySLOvpdjm0WP9Cr1D6f+QTHxj77x
+	oW/XzO0ycmKe+4tLVxSkKIaj43MWzzy5x/A==
+X-Gm-Gg: AYBFou24xCmuF7eh99xSzVvK1TlC0IP84/7Nkb2bbaIik5xjbLHTJNRpK9Ay+nZWbcA
+	2bakPNYEp5FBJmUXJh2qhxAukda+X2e1JBEsDa+pWJ35YSanwtPPAYXSYBs78l+1VqFHZBP7ZKx
+	h++uYGjVVAnxCadVr7MDMY68KwSCt7SlbvpH0DmHgyE8l4zI/0N0G0zbbbPBG50Vdy87fw41YXu
+	f3MiP+qCpi5BVNEW+BpA8DFHQdV+kiV3s309i9yHSYJggKlwIfEZ4Q+B3GpHJlmczw9eTy8RS8p
+	A9VbeK8YHyrZREY5keL6wrTGBry0IFf6MVvCNiMgDcqAXkgkklqN5UYOew1RUu/kln3qnuT9RN7
+	uhx5QTryyzdNXiDYAsmDknYUl7/jYHE8xanv7ej4N/GOVB/it8ZZsmXDYw4uIFnahb+LyDW8qXq
+	sxc/rlsao=
+X-Received: by 2002:a05:690c:498f:b0:80b:9114:3b7b with SMTP id
+ 00721157ae682-89734eb5189mr1516947b3.17.1789676189140; Thu, 17 Sep 2026
+ 13:16:29 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 15:16:28 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 15:16:28 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 15:16:28 -0500
+X-Gm-Features: AcwNN1UniKh1WYUqiVr1mxhhLABJI_ZsGGutMX_1PzUeESVkeZbqp_of5IVI_6Q
+Message-ID: <CAPdrGe==ZfCx3ZqZEcjRHB9BeB7ydREHT_LmCvPAeJ=Wx8-Ogg@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_peer_review_3=2F5_=E2=80=94_XMR_funding=2C_capabilities=2C?=
+	=?UTF-8?Q?_authority_=2B_durable_state?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000844ed6065bb375eb"
+
+--000000000000844ed6065bb375eb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This phase makes the anonymous lifecycle real. Current pmail.xmr.invoice
+and session/capability code are placeholders/in-memory semantics; replace
+them with a durable XMR-funded capability system.
+
+SOURCE STATE REVIEWED
+prx0r/pmail master @ 4146b360b607f4c6c99ad8def61313f38282cf31.
+
+   1. BUILD REAL src/payments/
+   Current source tree has no payment implementation despite BUILD-PLAN
+   requiring it.
+
+Create:
+src/payments/ types.ts invoices.ts moneropay.ts wallet-rpc.ts
+observations.ts reconciliation.ts
+
+Prefer MoneroPay as a sidecar / HTTP API where it fits; use
+monero-wallet-rpc semantics directly only where needed. Do NOT write wallet
+crypto or transaction parsing.
+
+Upstream:
+
+   - https://github.com/moneropay/moneropay
+   - https://github.com/moneropay/go-monero
+
+
+   1. INVOICE MODEL
+
+interface XmrInvoice { id: string; session_id: string; subaddress_index:
+number; address_commitment: string; // avoid leaking public receipt details
+expected_atomic: bigint; created_at: string; expires_at?: string;
+min_confirmations: number; state:
+"OPEN"|"PARTIAL"|"SEEN"|"CONFIRMED"|"EXPIRED"|"CANCELLED"; }
+
+Persist mapping invoice -> exact session -> expected amount -> fresh
+subaddress.
+Never infer payment from callback alone.
+
+   1. PAYMENT OBSERVATION
+   A provider callback is a wake-up signal, not truth.
+   Observer reads wallet/MoneroPay state and emits immutable evidence
+   containing at minimum:
+
+
+   - invoice ID
+   - subaddress/account index binding
+   - expected amount
+   - observed amount
+   - confirmation count / block height
+   - observed_at
+   - source/runtime/program hashes
+   - canonical response hash
+
+QP rules:
+TRUE =3D exact invoice + amount policy satisfied + confirmation policy
+satisfied
+FALSE =3D only when there is positive contradictory evidence defined by spe=
+c
+UNKNOWN =3D node unavailable, callback only, timeout, insufficient
+confirmations, ambiguous/partial state
+
+Do not map network/provider error to FALSE.
+
+   1. PARTIAL / OVER PAYMENT POLICY
+   Freeze behavior in policy, not ad hoc code.
+
+Suggested MVP:
+
+   - underpayment -> PARTIAL / claim UNKNOWN until expiry; no capability
+   - exact payment -> mint configured credits/capability
+   - overpayment -> deterministic credit policy, e.g. credit exact observed
+   amount or cap at quote; choose one and commit policy hash
+   - duplicate wallet observation/callback -> no duplicate capability
+
+
+   1. CAPABILITY MODEL NEEDS A SECRET, NOT A PREDICTABLE ID
+   Current capability ID is deterministic from session.id + invoiceId + typ=
+e.
+   Fine as an identifier, NOT safe as a bearer credential.
+
+Split:
+interface CapabilityRecord { id: string; // public lookup ID token_hash:
+string; // hash of random 256-bit bearer token session_id: string;
+subject?: string; // operator/agent binding scopes: string[];
+budget_atomic?: bigint; issued_from_payment_root?: string; issued_at:
+string; expires_at?: string; max_uses?: number; uses: number; revoked_at?:
+string; }
+
+Return the raw random token once. Persist only token hash.
+Use constant-time comparison where relevant.
+
+   1. DURABLE ATOMIC MINT/USE
+   Current existingCapabilities: Capability[] and used:boolean are
+   in-memory. They cannot enforce exactly-once under concurrency/restart.
+
+Need database transaction/unique constraints:
+
+   - UNIQUE(payment_settlement_root, capability_type) or equivalent
+   - atomic compare-and-increment uses
+   - durable revocation
+   - idempotency key on every effect
+
+Tests must include two simultaneous callbacks and restart/replay.
+
+   1. SESSION STATE
+   Current fundSession() only accepts UNFUNDED and ignores invoiceId.
+   Clarify lifecycle:
+
+NEW/UNFUNDED -> invoice OPEN -> payment CONFIRMED -> ACTIVE -> LOW_BALANCE
+/ EXHAUSTED -> top-up -> ACTIVE -> REVOKED terminal unless explicit restore
+policy
+
+Allow top-up without creating double-credit ambiguity. Credits must be
+ledger entries, not only mutable aggregate bigint.
+
+Create append-only accounting entries:
+CreditLedgerEntry { id session_id delta_atomic reason source_root
+created_at }
+
+Balance =3D derived sum, optionally cached.
+
+   1. AUTHORITY PROVIDER
+   Create:
+
+src/authority/ provider.ts grantex.ts local-test.ts qp-constraints.ts
+
+Use Grantex where useful:
+https://github.com/mishrasanjeev/grantex
+
+But QP MUST independently bind consequential effects to exact proposal hash
+and constraints.
+
+AuthorityDecision should include:
+
+   - issuer/principal
+   - agent/subject
+   - action
+   - payload_hash
+   - constraints_hash
+   - provider/resource
+   - max amount/currency
+   - issued/expires
+   - authorization_ref
+   - valid
+
+MCP path must never accept an unsigned Grant just because it appears in an
+in-memory Map.
+
+   1. EXACT PAYLOAD HASH
+   For every state-changing tool, server constructs canonical proposal from
+   validated schema, then hashes it.
+
+Example phone provision proposal:
+{ action: "pmail.phone.provision", provider_id, product_id, quote_root,
+max_amount, currency, payment_source, privacy_policy_root, idempotency_key
+}
+
+Grant payload hash MUST equal canonical proposal hash. Mutating
+provider/product/amount/body/to after authorization must fail before
+adapter invocation.
+
+   1. EFFECT JOURNAL
+   Implement before real spend/provider actions:
+
+PROPOSED -> AUTHORIZED -> PREPARED -> EXECUTING -> EXECUTED_UNVERIFIED ->
+PROVEN_TRUE | PROVEN_FALSE | UNKNOWN_RECONCILE
+
+Persist before external call:
+
+   - proposal root
+   - authority ref/root
+   - budget reservation
+   - effect spec root
+   - idempotency key
+   - expected resulting claim
+   - attempt number/timestamps
+
+On timeout/crash never blindly repeat a spend. Reconcile provider state
+first.
+
+   1. MCP CORRECTIONS
+   Classify tools explicitly into:
+   A. anonymous bootstrap allowed without prior principal/grant,
+   rate-limited
+   B. read-only authenticated/unauthenticated as policy says
+   C. consequential exact-authority tools
+
+pmail.session.create can intentionally be anonymous bootstrap, but document
+that exception and apply resource/rate/PoW/payment-abuse controls. Do not
+call it =E2=80=9Cstate-changing grant enforced=E2=80=9D if it is deliberate=
+ly exempt.
+
+All listed MCP tools MUST have dispatch handlers or not be advertised.
+
+   1. FIRST REAL E2E PAYMENT ACCEPTANCE TEST
+
+create anonymous session -> create fresh XMR invoice/subaddress -> send
+testnet/stagenet or controlled real small payment -> callback/wakeup ->
+independent wallet readback -> insufficient confirmations =3D> UNKNOWN ->
+enough confirmations =3D> TRUE -> mint random bearer capability atomically =
+->
+duplicate callback =3D> no second mint -> restart process -> same
+callback/readback =3D> still no second mint -> capability spend/consume
+atomically -> QP receipt + log inclusion
+
+Do not move on until this is reproducible.
+
+ADVERSARIAL TESTS REQUIRED
+
+   - wrong invoice cannot fund session
+   - payment to different subaddress cannot fund session
+   - partial payment no capability
+   - callback without wallet evidence no capability
+   - amount mutation denied
+   - expired/revoked authority denied
+   - wrong subject denied
+   - wrong provider/product denied
+   - concurrent double callback mints once
+   - capability token guess impossible; ID alone insufficient
+   - use count survives restart
+   - crash after provider accepted but before receipt =3D> reconcile, no
+   duplicate spend
+
+This XMR-funded lifecycle is the core of PMail/Privately. Make it real
+before adding more UI.
+
+--000000000000844ed6065bb375eb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>This phase makes the anonymous lifecycle real. Current <code>pmail.xmr.i=
+nvoice</code> and session/capability code are placeholders/in-memory semant=
+ics; replace them with a durable XMR-funded capability system.</p>
+<p>SOURCE STATE REVIEWED<br>
+<code>prx0r/pmail</code> master @ <code>4146b360b607f4c6c99ad8def61313f3828=
+2cf31</code>.</p>
+<ol>
+<li>BUILD REAL <code>src/payments/</code><br>
+Current source tree has no payment implementation despite BUILD-PLAN requir=
+ing it.</li>
+</ol>
+<p>Create:</p>
+
+<code>src/payments/
+  types.ts
+  invoices.ts
+  moneropay.ts
+  wallet-rpc.ts
+  observations.ts
+  reconciliation.ts
+</code>
+<p>Prefer MoneroPay as a sidecar / HTTP API where it fits; use <code>monero=
+-wallet-rpc</code> semantics directly only where needed. Do NOT write walle=
+t crypto or transaction parsing.</p>
+<p>Upstream:</p>
+<ul>
+<li><a href=3D"https://github.com/moneropay/moneropay">https://github.com/m=
+oneropay/moneropay</a></li>
+<li><a href=3D"https://github.com/moneropay/go-monero">https://github.com/m=
+oneropay/go-monero</a></li>
+</ul>
+<ol>
+<li>INVOICE MODEL</li>
+</ol>
+
+<code>interface XmrInvoice {
+  id: string;
+  session_id: string;
+  subaddress_index: number;
+  address_commitment: string; // avoid leaking public receipt details
+  expected_atomic: bigint;
+  created_at: string;
+  expires_at?: string;
+  min_confirmations: number;
+  state: &quot;OPEN&quot;|&quot;PARTIAL&quot;|&quot;SEEN&quot;|&quot;CONFIR=
+MED&quot;|&quot;EXPIRED&quot;|&quot;CANCELLED&quot;;
+}
+</code>
+<p>Persist mapping invoice -&gt; exact session -&gt; expected amount -&gt; =
+fresh subaddress.<br>
+Never infer payment from callback alone.</p>
+<ol>
+<li>PAYMENT OBSERVATION<br>
+A provider callback is a wake-up signal, not truth.<br>
+Observer reads wallet/MoneroPay state and emits immutable evidence containi=
+ng at minimum:</li>
+</ol>
+<ul>
+<li>invoice ID</li>
+<li>subaddress/account index binding</li>
+<li>expected amount</li>
+<li>observed amount</li>
+<li>confirmation count / block height</li>
+<li>observed_at</li>
+<li>source/runtime/program hashes</li>
+<li>canonical response hash</li>
+</ul>
+<p>QP rules:<br>
+TRUE =3D exact invoice + amount policy satisfied + confirmation policy sati=
+sfied<br>
+FALSE =3D only when there is positive contradictory evidence defined by spe=
+c<br>
+UNKNOWN =3D node unavailable, callback only, timeout, insufficient confirma=
+tions, ambiguous/partial state</p>
+<p>Do not map network/provider error to FALSE.</p>
+<ol>
+<li>PARTIAL / OVER PAYMENT POLICY<br>
+Freeze behavior in policy, not ad hoc code.</li>
+</ol>
+<p>Suggested MVP:</p>
+<ul>
+<li>underpayment -&gt; PARTIAL / claim UNKNOWN until expiry; no capability<=
+/li>
+<li>exact payment -&gt; mint configured credits/capability</li>
+<li>overpayment -&gt; deterministic credit policy, e.g. credit exact observ=
+ed amount or cap at quote; choose one and commit policy hash</li>
+<li>duplicate wallet observation/callback -&gt; no duplicate capability</li=
+>
+</ul>
+<ol>
+<li>CAPABILITY MODEL NEEDS A SECRET, NOT A PREDICTABLE ID<br>
+Current capability ID is deterministic from <code><a href=3D"http://session=
+.id">session.id</a> + invoiceId + type</code>. Fine as an identifier, NOT s=
+afe as a bearer credential.</li>
+</ol>
+<p>Split:</p>
+
+<code>interface CapabilityRecord {
+  id: string;              // public lookup ID
+  token_hash: string;      // hash of random 256-bit bearer token
+  session_id: string;
+  subject?: string;        // operator/agent binding
+  scopes: string[];
+  budget_atomic?: bigint;
+  issued_from_payment_root?: string;
+  issued_at: string;
+  expires_at?: string;
+  max_uses?: number;
+  uses: number;
+  revoked_at?: string;
+}
+</code>
+<p>Return the raw random token once. Persist only token hash.<br>
+Use constant-time comparison where relevant.</p>
+<ol>
+<li>DURABLE ATOMIC MINT/USE<br>
+Current <code>existingCapabilities: Capability[]</code> and <code>used:bool=
+ean</code> are in-memory. They cannot enforce exactly-once under concurrenc=
+y/restart.</li>
+</ol>
+<p>Need database transaction/unique constraints:</p>
+<ul>
+<li>UNIQUE(payment_settlement_root, capability_type) or equivalent</li>
+<li>atomic compare-and-increment uses</li>
+<li>durable revocation</li>
+<li>idempotency key on every effect</li>
+</ul>
+<p>Tests must include two simultaneous callbacks and restart/replay.</p>
+<ol>
+<li>SESSION STATE<br>
+Current <code>fundSession()</code> only accepts UNFUNDED and ignores invoic=
+eId. Clarify lifecycle:</li>
+</ol>
+
+<code>NEW/UNFUNDED
+  -&gt; invoice OPEN
+  -&gt; payment CONFIRMED
+  -&gt; ACTIVE
+  -&gt; LOW_BALANCE / EXHAUSTED
+  -&gt; top-up -&gt; ACTIVE
+  -&gt; REVOKED terminal unless explicit restore policy
+</code>
+<p>Allow top-up without creating double-credit ambiguity. Credits must be l=
+edger entries, not only mutable aggregate bigint.</p>
+<p>Create append-only accounting entries:</p>
+
+<code>CreditLedgerEntry {
+  id
+  session_id
+  delta_atomic
+  reason
+  source_root
+  created_at
+}
+</code>
+<p>Balance =3D derived sum, optionally cached.</p>
+<ol>
+<li>AUTHORITY PROVIDER<br>
+Create:</li>
+</ol>
+
+<code>src/authority/
+  provider.ts
+  grantex.ts
+  local-test.ts
+  qp-constraints.ts
+</code>
+<p>Use Grantex where useful:<br>
+<a href=3D"https://github.com/mishrasanjeev/grantex">https://github.com/mis=
+hrasanjeev/grantex</a></p>
+<p>But QP MUST independently bind consequential effects to exact proposal h=
+ash and constraints.</p>
+<p><code>AuthorityDecision</code> should include:</p>
+<ul>
+<li>issuer/principal</li>
+<li>agent/subject</li>
+<li>action</li>
+<li>payload_hash</li>
+<li>constraints_hash</li>
+<li>provider/resource</li>
+<li>max amount/currency</li>
+<li>issued/expires</li>
+<li>authorization_ref</li>
+<li>valid</li>
+</ul>
+<p>MCP path must never accept an unsigned <code>Grant</code> just because i=
+t appears in an in-memory Map.</p>
+<ol>
+<li>EXACT PAYLOAD HASH<br>
+For every state-changing tool, server constructs canonical proposal from va=
+lidated schema, then hashes it.</li>
+</ol>
+<p>Example phone provision proposal:</p>
+
+<code>{
+  action: &quot;pmail.phone.provision&quot;,
+  provider_id,
+  product_id,
+  quote_root,
+  max_amount,
+  currency,
+  payment_source,
+  privacy_policy_root,
+  idempotency_key
+}
+</code>
+<p>Grant payload hash MUST equal canonical proposal hash. Mutating provider=
+/product/amount/body/to after authorization must fail before adapter invoca=
+tion.</p>
+<ol>
+<li>EFFECT JOURNAL<br>
+Implement before real spend/provider actions:</li>
+</ol>
+
+<code>PROPOSED
+-&gt; AUTHORIZED
+-&gt; PREPARED
+-&gt; EXECUTING
+-&gt; EXECUTED_UNVERIFIED
+-&gt; PROVEN_TRUE | PROVEN_FALSE | UNKNOWN_RECONCILE
+</code>
+<p>Persist before external call:</p>
+<ul>
+<li>proposal root</li>
+<li>authority ref/root</li>
+<li>budget reservation</li>
+<li>effect spec root</li>
+<li>idempotency key</li>
+<li>expected resulting claim</li>
+<li>attempt number/timestamps</li>
+</ul>
+<p>On timeout/crash never blindly repeat a spend. Reconcile provider state =
+first.</p>
+<ol>
+<li>MCP CORRECTIONS<br>
+Classify tools explicitly into:<br>
+A. anonymous bootstrap allowed without prior principal/grant, rate-limited<=
+br>
+B. read-only authenticated/unauthenticated as policy says<br>
+C. consequential exact-authority tools</li>
+</ol>
+<p><code>pmail.session.create</code> can intentionally be anonymous bootstr=
+ap, but document that exception and apply resource/rate/PoW/payment-abuse c=
+ontrols. Do not call it =E2=80=9Cstate-changing grant enforced=E2=80=9D if =
+it is deliberately exempt.</p>
+<p>All listed MCP tools MUST have dispatch handlers or not be advertised.</=
+p>
+<ol>
+<li>FIRST REAL E2E PAYMENT ACCEPTANCE TEST</li>
+</ol>
+
+<code>create anonymous session
+-&gt; create fresh XMR invoice/subaddress
+-&gt; send testnet/stagenet or controlled real small payment
+-&gt; callback/wakeup
+-&gt; independent wallet readback
+-&gt; insufficient confirmations =3D&gt; UNKNOWN
+-&gt; enough confirmations =3D&gt; TRUE
+-&gt; mint random bearer capability atomically
+-&gt; duplicate callback =3D&gt; no second mint
+-&gt; restart process
+-&gt; same callback/readback =3D&gt; still no second mint
+-&gt; capability spend/consume atomically
+-&gt; QP receipt + log inclusion
+</code>
+<p>Do not move on until this is reproducible.</p>
+<p>ADVERSARIAL TESTS REQUIRED</p>
+<ul>
+<li>wrong invoice cannot fund session</li>
+<li>payment to different subaddress cannot fund session</li>
+<li>partial payment no capability</li>
+<li>callback without wallet evidence no capability</li>
+<li>amount mutation denied</li>
+<li>expired/revoked authority denied</li>
+<li>wrong subject denied</li>
+<li>wrong provider/product denied</li>
+<li>concurrent double callback mints once</li>
+<li>capability token guess impossible; ID alone insufficient</li>
+<li>use count survives restart</li>
+<li>crash after provider accepted but before receipt =3D&gt; reconcile, no =
+duplicate spend</li>
+</ul>
+<p>This XMR-funded lifecycle is the core of PMail/Privately. Make it real b=
+efore adding more UI.</p>
+
+--000000000000844ed6065bb375eb--

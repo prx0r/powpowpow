@@ -1,0 +1,320 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id vdqAZEhMYO02
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:16:46 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=MW0RhJztqv2UabZhk8wHj/dMedbpQopnEQio68f9PMXv6h9OoripxGrTDbDA+PKZvuQR7rA+9
+	FABLe594Qh+DpLYOoShyNU+WA2cegnY816F+ey8CzSZubGBYjoI1FS89nhXD6mdNRuP0pBd5zAb
+	oL5QRFwbKMeNIoiTtmRWsXmnJ0BsHKYz62DCYS8eBUjoMEVQF5GeXiOhWrYK1Sbmp5Y/Tx2f0C4
+	NfE72fFk1GNbexbDfksOJROw/ENczILCASrxfmgXBtIqgtfJ4ek4+2/Ru4BbupfuCvFnI4iHDcy
+	SmrzKAfS3AkfJf4fNQFpfmwF0uUum+ghaM1rUKgh51Ow==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888606; x=1790493406; bh=4L0A2Mis
+	vrtGmoFfRK58S++Z8cViY2mJsDbse1k0xSk=; b=DAx46JKga341dlHHhNROlXNuVlsEEvb7fxz
+	neP2dQiHSR1BaokiZrG8QO6dnOhHZcPPzJwwkUHYRZEHuYkb/7sGDRbtFs7GnKe03sYvw4D8Mw3
+	x/coV2CsdJULOVjlJzyJG5YkT2Yc7BeWXA/U58YaaWuXEc6P4CcVfkNze502c+sTx8no95M6nkW
+	hDizeZDHDBhqSSyrHmO11AGzLEcxD4rL/CbH+zIYae2ojqZzQudrXFimGXxhzaleCbhyz82dWvz
+	kmpreDZj/ZxHpJmC23Xn7AKcpnkppI1gP3L6C3lAnNiwjF51KvHoQltIx6LplKOjfn48Fh7xuEK
+	TURVVwg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=JUdnU4I5;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=JUdnU4I5;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-895eaf31683so16028377b3.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:16:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888606; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HGqa002wkkBL3gJD4+8bVK2uANwQI8cZs6hNUcY1J57LH2R0q0mDO2p2RcWDCqRio9
+         Y8ySsytL30GoFwkuGeTlUG2n9kvkc79sFgWL+v4S37gO7Mt2JlCSjetqRnd/DCHAnxRc
+         Wo6vC9/kyz5OXYiNwePI+bnp79pXFWj+fBUmQ8E/mmgDIkBfsn22GooTnRP8KhS7QFGu
+         XKnfSyhHOKOmLCGf2tmT0QlYoIv6eon57pb3G0qdKmqNy7M7Q+GGSuu5QBJRD7dPEf3O
+         NC1M2W0e29BS0TSqFVJq/qEsxrVZvqQ7EvxpHqTwwy+m8BdwEyRQGwiLVnPenzNgPH87
+         sOBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=4L0A2MisvrtGmoFfRK58S++Z8cViY2mJsDbse1k0xSk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=dVPX+V0AmU6UKUUYnoM/9BeFEfajnLtJyhwDoKOLEgS+EX7045/FRUWVcVaJoujc6y
+         KBJqqSoHY3F7O5bxVxiqNiyKqvZRPfONE96aP0K/xvLRbR82AboPbmW/QtUoTMZlD5Cv
+         pmW7F2qIHz4gTWwDTgD510tXvwLUdCUGlEQRj5dqnzJCLoJsNtFHdjd1Q7t1a/CdYN2j
+         vUX9Rb0uAKFrTifQUqSL6L6SNVSpAyrWC4H8scLtDxNZ9wY9VBvNZyePz65Pog839VB2
+         kqRhZspHn2CInP2znHKHRCp/9eO3huQlJa2lyMNpya0FVZIzF3BsFxgisFVWtdWRFs4C
+         3OrA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888606; x=1790493406; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=4L0A2MisvrtGmoFfRK58S++Z8cViY2mJsDbse1k0xSk=;
+        b=JUdnU4I5sHNUYnLY/GakjeZrTU8ajRcWa3UPvFHcKrMjC1gZa0Up95Z7BwAIAESQ78
+         bCtHMB3fo8V87KyKCRBaLnrQWQ7U3RBsFuVJ1hv/svWt1OgMZ3VmxMOBbDzJ3hBRd6qw
+         pU5nu7H5ioimaQWAsYTu0VMJd2iaUiiQjwgrfL5SUKfFum5TpZCQVJ4OsOo3FhlsuEeP
+         DXzWdAJICQ+pdPb4zmdT89esQOzuhl1grp6yoLTja7j0iWBtOdrb7XVz2zcoYEt3AqdD
+         bT0t9vFrBuILwivzdLXi84KwcTMt9c1QdIVVmHwB2Gzepv4vV9vuGO9Wn/Vh7I3YlNEf
+         jhzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888606; x=1790493406;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=4L0A2MisvrtGmoFfRK58S++Z8cViY2mJsDbse1k0xSk=;
+        b=QcL+uHnghh0BxdOUYmKpV8/RwtWiKfwuCDJVlu3P1wM6FoPm8dfoGjtV7HB7Nxj3Sg
+         bCKzpr/ScSDPduSEuqrpkS80Y6mNkQACHhDB48nks7LVX9/snWR8c7OFQ/jzResRjYti
+         PFKp1hhlPIC+rV2Q6jV5+hchYKIFmPfGm1PRj20bRu4uhAl4P21P+XFV3joVFn5PQ2oy
+         PvzEMwn+/d7wR7ccGgwzn09FO++7bwmnEZ3k6r7SAUmcu0AEvOxBgxiv0Ch3t0HSXXUS
+         Dx4FpyslsHcw1jVOxW8iyh7Y8xLFpXG2Z9QqiA7OmaTHYScMKqLlafGwGurITFOo6+Ke
+         ZG5Q==
+X-Gm-Message-State: AFuF++ml+IFt3JlTxpZFDMwwzdRdq2U6B12fviqAWla/vsZHkrWhOu+p
+	a6bFCtdV972gDHDlx7xDQGgFX04oNicjuKKrNTepD/qaRv2azDR6gRsldGQMNLA7iS09xyD0ly8
+	iJg7BwlDHglurySmrgKG3huXOOOL5tV15aA==
+X-Gm-Gg: AYBFou2yW4U6zUEvwECY/JxOp19VQe/UTgUa14JlKgnFKhmK4bGLGV32kOSwtMJm4Gc
+	RSZWGVGTmWvxxufLYVPG5Bvg20ObhOEtb0LpDZGHQMIlJM+7MXjkdKdw62zCa9uSTxpFpEyGKeP
+	2gQNZlHv/a020aqoC95OXHnPMpI9qWC/4E2Co2Shre2fwY6LBF+nAbw422tVarzChtTc0ZSdM0y
+	SAzvkT3b3wE4Oq/GfwnGseNuYKwHuS2s58bySAhoDaBjM7ORUL8zMHOxwHmvVcnc6KiAczm6lnh
+	Kl6CekWiUVCRxgbaZtZe2RzTEq2xZj+n+fSPavkeYHNFtAubV1lgLbAw/1/0H1eOUAv19ZyUbrZ
+	ei5ur2T+SyfD6aOzGq+XQi6lkyKnDsJUGPs+uhbiMG57qr2VR9c3luZnuvUkX0PCpzuQCsWUN
+X-Received: by 2002:a05:690e:1904:b0:671:546d:ba91 with SMTP id
+ 956f58d0204a3-6717fc7d40fmr2257281d50.14.1789888606247; Sun, 20 Sep 2026
+ 00:16:46 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:45 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:45 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:16:45 -0500
+X-Gm-Features: AcwNN1UZ5gVbTK-HozJh6doO-k56Uznwr-1wIfkTPmdly3GJlimv45kd-kLzEDM
+Message-ID: <CAPdrGe=etWDXVz4L=jHjYFQABfvn_QCnayv5Sf3yzMU=0SxkGQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D18_18=3A2?=
+	=?UTF-8?Q?2_Asia=2FPhnom=5FPenh_=E2=80=94_5_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 5 useful projects
+
+Material delta: the standout is HistOracle-production/blabberer, which
+appears to collapse the exact V1 problem we were still planning to
+assemble ourselves: portrait =E2=86=92 nine generated viseme sprites =E2=86=
+=92
+transparent post-processing =E2=86=92 browser lip-sync engine. This is
+substantially closer to Roast.pet than generic LivePortrait or Rhubarb
+wrappers.
+
+1) Blabberer =E2=80=94 REUSE NOW / FORK
+
+URL: https://github.com/HistOracle-production/blabberer
+
+Creator: HistOracle / Editlingo Solutions LLC
+
+Activity: public 2026 project; indexed in the latest scan
+
+License: MIT
+
+Solves: automatically creates 9 Preston-Blair mouth shapes from a
+single portrait, detects the face with MediaPipe, generates mouth
+variants through Gemini/OpenRouter, outputs transparent feathered WebP
+sprites, and includes a zero-framework TypeScript real-time lip-sync
+engine.
+
+Route: Python sprite-generation pipeline + demo/npm install && npm run
+dev; standalone TS engine can be copied directly.
+
+Dependencies/hardware: MediaPipe, image-generation API for sprite
+creation; browser Web Audio for playback. No dedicated GPU required
+for the lip-sync runtime.
+
+Evidence: repository documents the production pipeline extracted from
+HistOracle, an interactive demo, nine-shape output, face
+auto-detection, dual-layer crossfade renderer, and 60fps
+audio/text-informed mouth-state engine.
+
+Work replaced: face crop detection + mouth asset generation +
+postprocessing + mouth-state engine + crossfade renderer =E2=80=94 potentia=
+lly
+most of Roast.pet V1 facial animation.
+
+Difficulty: LOW-MEDIUM. Maintenance risk: LOW-MEDIUM.
+
+Experiment: run one canonical dog podium image and one cat through the
+pipeline. The human MediaPipe crop may fail on pets; if so, bypass
+detection with our existing pet crop and test only the nine-sprite
+generator/postprocessor/runtime. Compare against meme-lipsync and
+Catsync on identity retention and comedy.
+
+2) ScratchLipSyncTool =E2=80=94 COPY MECHANISM
+
+URL: https://github.com/griffpatch/ScratchLipSyncTool
+
+Creator: griffpatch
+
+Activity: indexed within the last month
+
+License: MIT
+
+Solves: browser speech audio =E2=86=92 phonemes =E2=86=92 visemes =E2=86=92=
+ talking sprite,
+using PocketSphinx.js.
+
+Route: runnable GitHub Pages browser app; JS source is small enough to
+inspect directly.
+
+Dependencies/hardware: browser only; PocketSphinx.js; no GPU.
+
+Evidence: live browser tool and Scratch-ready talking-sprite export.
+
+Work replaced: possible server-side Rhubarb dependency for simple
+English roast speech.
+
+Difficulty: LOW. Maintenance risk: MEDIUM because PocketSphinx is older.
+
+Experiment: feed the same 10 Kokoro roast lines to ScratchLipSyncTool
+and Rhubarb. Compare viseme timing. If acceptable, this gives a fully
+browser-side phoneme path.
+
+3) BorderCut =E2=80=94 REUSE NOW for easy photos
+
+URL: https://github.com/kong75/bordercut
+
+Creator: kong75
+
+Activity: indexed last week
+
+License: inspect package/repo license before production integration
+
+Solves: background removal for separable backgrounds in ~8 kB gzipped
+with zero model/runtime dependencies.
+
+Route: @bordercut/core in browser/Worker/Node; also Dart/Flutter.
+
+Dependencies/hardware: none; offline; no GPU/model download.
+
+Evidence: 7.9 kB gzipped TypeScript core, 8.7 kB browser adapter,
+explicit browser/Node support and Remove/Keep guidance for difficult
+images.
+
+Work replaced: running a 50=E2=80=93500 MB matting model on the large fract=
+ion
+of customer photos with clean backgrounds.
+
+Difficulty: LOW. Maintenance risk: LOW.
+
+Experiment: route our 30-photo customer torture set through BorderCut
+first, then fall back to Alphaveil only on low-confidence/visually bad
+results. Measure what percentage avoids model loading entirely.
+
+4) PICORN Background Remover =E2=80=94 WATCH / BENCHMARK
+
+URL: https://github.com/cueqzapper/PICORN-Background-Remover
+
+Creator: cueqzapper
+
+Activity: indexed within the last month
+
+License: browser code MIT; model weights have separate terms and
+require commercial licensing for commercial/hosted use.
+
+Solves: tiny browser neural matte + deterministic edge refinement +
+manual restore/remove brush.
+
+Route: Vite app / ONNX Runtime Web; WebGPU with WASM fallback.
+
+Dependencies/hardware: 1.35 MB ONNX model, browser only.
+
+Evidence: model has ~313k parameters; soft alpha output; guided edge
+refinement; manual trimap refinement; tests and live demo.
+
+Work replaced: heavyweight cutout model plus much of the correction UI.
+
+Difficulty: LOW technically. Maintenance/licensing risk: MEDIUM-HIGH
+because commercial model rights are separate.
+
+Experiment: benchmark fur edges versus Alphaveil/Cutout Studio on 10
+hard pets. Do not integrate until model commercial terms are
+acceptable.
+
+5) Light Converter =E2=80=94 COPY MECHANISM
+
+URL: https://github.com/lightScout/light-converter
+
+Creator: lightScout
+
+Activity: indexed 2026-09-15
+
+License: MIT
+
+Solves: batch browser cutout with a particularly useful automatic
+second pass for uncertain masks.
+
+Route: Astro/Svelte/onnxruntime-web; WebGPU BiRefNet and WASM IS-Net fallba=
+ck.
+
+Dependencies/hardware: browser WebGPU preferred; WASM fallback.
+
+Evidence: automatically triggers a CLAHE contrast-boosted second pass
+when the first mask is uncertain; guided-filter refinement, hole/speck
+cleanup, restore/erase brushes, IndexedDB batch persistence.
+
+Work replaced: quality-gating/retry logic around customer cutouts, not
+just the segmentation model itself.
+
+Difficulty: LOW-MEDIUM. Maintenance risk: LOW-MEDIUM.
+
+Experiment: copy only the uncertainty =E2=86=92 contrast-enhanced retry
+strategy into the preprocessing benchmark. Specifically test
+white/light pets against white walls and black pets in dark interiors.
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+- Nine-mouth sprite generation: test Blabberer first.
+
+- Lip-sync state engine/crossfade renderer: Blabberer=E2=80=99s standalone
+TypeScript engine.
+
+- Phoneme recognition: Rhubarb already works; ScratchLipSyncTool is a
+browser-only fallback worth benchmarking.
+
+- Easy-photo background removal: BorderCut before loading ML.
+
+- Hard-photo retry/refinement logic: copy Light Converter=E2=80=99s
+uncertainty-triggered second pass rather than inventing our own.
+
+Most surprising hobby project
+
+Blabberer. It is almost exactly the missing bridge between =E2=80=9Ccanonic=
+al
+pet image=E2=80=9D and =E2=80=9Cnine reusable mouth states.=E2=80=9D The ke=
+y experiment is
+whether its image-generation prompts/postprocessing generalize to pets
+when we supply the crop ourselves.
+
+Fastest integration win
+
+Blabberer=E2=80=99s TypeScript LipSyncEngine. It is standalone,
+framework-free, uses audio energy plus text-informed mouth
+preferences, hysteresis, minimum hold times and crossfades. We can
+test it against our existing pet sprite assets without adopting the
+rest of the project.
+
+Repo/author worth following
+
+HistOracle-production / Editlingo. Their production need=E2=80=94turn stati=
+c
+historical portraits into cheap interactive talking characters=E2=80=94is
+structurally very close to Roast.pet=E2=80=99s need, so adjacent work is
+unusually likely to transfer.

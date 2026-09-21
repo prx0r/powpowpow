@@ -1,0 +1,631 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id YP34wRng6XpD
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 07:38:49 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=AhwiBDdVdLFPWXwSvBrrHrbvGO0SRIgWIIc5Qu/iex6ppRWVXJDUQobO69WPnq97bq0eiYFdV
+	baoNEs3u4ME0tINGMpNSQnSoSKhOvtT/RFJr1xdIz4wLiZuCViV/Ysy20qQhCSX2VfmOIp0s5vs
+	d9bKZw91lR92/PCJSmjVCAoaY6MnX2NTYitOUDQftZfhqjeiii8Xx+swKohyaysODNthLpmxx7N
+	GTE85sVA05fY/qgT5gDIOr/1nCd2LE4Rn5t6+HTmKfQvj8uAjjFyLmii0SHkY79c/r2IUwf/5PA
+	e3d/xx32wJCy334nkGSFY2PNsi9hO4rOeOAhRYp64L9g==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789717130; x=1790321930; bh=+BRS07T/
+	0Qma0C3BKhCjKM6AsS64acmpbgSFR7Xdi+E=; b=gk+eORC+Z9+6bJP2AcFEJYivm+3DZaeqJxO
+	FgC/DURlSaVUDaxqVmABx4n5zilJDRFJHwfgR9WcqvvP7tJj+nX7SUfArukNS18x0pMymcV9Tr2
+	anlT3uA5m5dsgqf3nrlWcLfgvzO1ggqbEH5K3FfZsP/q3JBgzvisuYknSQphVPWK0fyts9s4q+J
+	FDXl4oXdG/KQ/TZ9Z6FQiige+1JDD9QjEqK6mlg2QP/WsWBBjQpIqMsAJAVKd7zQj3GPpUx3QAP
+	7mz0N993Vyg2dbZe1UCDIrVnACJvXDKl6yKm6DtM4DmtPPAmFHot88jzDtWTrWw2eHi5TP1JVUZ
+	1Wl5nFQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=OfZgeF7I;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=OfZgeF7I;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e56a1fe83so434220d50.2
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 00:38:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789717129; cv=none;
+        d=google.com; s=arc-20260327;
+        b=GFwqLvT25e1By9NSRpPmPvXC3MFk45p+jFpuSs5t4oCd+a0fIjuNtWVETLGEwey5vO
+         X3j+9L/UQMKLujVttT564h5o2etO840fozzJJxBzsyPQCAi8fXtamEPxQ7iEy+rlKot2
+         4yt8Z5q7BJXAnKkMICgJnApS5y6hu3QuFMRUACiHCTMZA7QZbIvJss72LHO0Qfgc/tT7
+         yz2+bbRajiTXohCLJ+Y/CZx6JxHrHsYfjk7K/DRa4kaD5Txc5VGkUx93x2byHzpz3ulI
+         7d86Z6SCRLw7EFaUSX/DbQA4dqiY7nQSg6AWZo55UZN3BNBALmcYpwOhMisCGJSNQy9r
+         BwMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=+BRS07T/0Qma0C3BKhCjKM6AsS64acmpbgSFR7Xdi+E=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=rm5KWm7EHs9fIkPs9c8L21PIYabwCKVAMwskPBUAfYLyU06mQ/OhrO2D1Kkq/BxyM7
+         3PiLIZmtLi/26V7yryxoISMR+zriFODCrwRFQcU0smMzpq95k1J3mafNK0H4A+S4navy
+         HHEy7vOUe7kHv2mqX5ac1Oqbve30h4Xzjm3u/kTe/IhDL3BWKjghh0h6feHrU6tUf2ss
+         DGGCduU1xwmW+1qflbwWCWM6CIZDbegfHh6Ic6kuPwpDrzENaXUMAfvn6rMdG+hZl7Hy
+         RXwb/uovLiuttkBbClz1bSWruFGBAg9kKI3AHDr0jHwRO9M9D43P+0WowVQsCY02hVYd
+         nZiA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789717129; x=1790321929; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=+BRS07T/0Qma0C3BKhCjKM6AsS64acmpbgSFR7Xdi+E=;
+        b=OfZgeF7IS2LN/3s/4Efzq+0yDnoIfE7P6zSjKtuduHWx36MtsVHs8AzZmyldL+Z8Kd
+         8LOpwdBWM5yMzNxvAPqYL/U0OsUr7hvCLkyqsjaw1ejXnNeTpIlAoysR0QZ1tws25Hjq
+         OFUT6mGCcdPl7IkLMrfe2jokuqdsG1o74HNuSIqR6onPic5guyhVdTryu7/KIinR/bCF
+         8v5QpTCWJkPDUU45p/sm3bHhsIK6WX5i/lcVg420i4asGSzOGsZhwsRHcSifPdkzcdXV
+         Zd8XzGzoVM2qI4+meAhCXEmOtJPvYUjyYQzD/NRMNP9O6L2kXI/xet12LJgD08X2C4DJ
+         4GWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789717129; x=1790321929;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=+BRS07T/0Qma0C3BKhCjKM6AsS64acmpbgSFR7Xdi+E=;
+        b=y9K28TBRuqvN4IHzpfkSypUJhers123G3pHQZ+UGgUga0zY7e3plkXgRSEuhfF4M4s
+         HKCLFcyX//Wt8hUq8dyg19S+WAOW4zIQNXaiTTCIjnyvlKfHKg+NcErUDGSAwSUu/HJE
+         Kfb77AwE33gC53qL9N1Ohn/qg45xAwEy2/E6HgXZPjE37DUkHSXf7DRehX2qIUWi9pm1
+         yQYRlRj7RJQGzSam6sHgkrj2PWvjE9c82sh133v0pR+jdjEf4fVjEVqMAEVdZCAR3rXJ
+         T4V7Hqk6zc3K42nkVb5zkiSjaizy9WLChpPCapwSuvk1eoNxfZCNO5FrAHTu4Rw1uypd
+         8ffg==
+X-Gm-Message-State: AFuF++kEvxQ+c+h2SmJKv2ipN4jIL9N2pfRMJy5VuRxtdt3C574FSaPA
+	Kg6u4EI/ENpREgrS3BYO6rkGfv4zGqWTBK4H3l0YTeyrauV76kQdSYhxb4lwIfTPLwU4nk7KEZW
+	Xo5IN9e3bfYYrNEdhnDy5VSri8aPgTug45w==
+X-Gm-Gg: AYBFou117Q2Uj+b7CXdJncDr0nbEfDn7PtMfI0vOKrahI4Nox5j8/ZyA6WJL0o5uHJb
+	9CxzndU/hg9WcelCaOj6e1ypKdoaawk4YhDVQ0jaWhiivKZa18c/7MXWEksHnS7i/EXrsXeQwdB
+	qxfL9vMfnGtXK8DAeCLmcP4gqj8eJTNpAZxWcxJGN25T/VRfXmytvTD4sUFBW0IyqejKk2hlIrC
+	t2Rkv8Qnj1vKPeyL8WVkWgcffWk6fmkJA9Ow7s4O1VnFF37tFrCp0o1ToG5mKdAn4nhH00OYiTg
+	Aattacfqi20vceYZ4k8SRsISScwgbF3MQV2IHL4VFE5ecVAs5olnzf/tOxPRGJSWeizaOjyseUO
+	UM5LkHmxJn1Z0p7qB7qnHyc7uhxZSjy4gw6BbaGHdF28LF7vhPRt2BjObYKM6SEc/lk544Wbmv4
+	JD
+X-Received: by 2002:a53:ebce:0:b0:671:217c:9491 with SMTP id
+ 956f58d0204a3-6717fdbef25mr400088d50.65.1789717129174; Fri, 18 Sep 2026
+ 00:38:49 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 02:38:48 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 02:38:47 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 02:38:47 -0500
+X-Gm-Features: AcwNN1UcFTPESizh99wI7EY4Jr2-20ckAkPhl9BkkbE4ediIwoTdCuK4ww896GA
+Message-ID: <CAPdrGemevK_YoVuBdWU-qwVNME4yQi_kNk-ZEFdThCMA6BXeyw@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D18_14=3A37_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000bba3a5065bbcfd56"
+
+--000000000000bba3a5065bbcfd56
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Viral Format Scanner =E2=80=94 MATERIAL FORMAT DELTA
+
+State: compared against prior sent reports at 11:37 and 13:35. I excluded
+semantic repeats such as press conference, performance review, finance-bro
+investigation, starter pack, wrong-species documentary, product review,
+forensic fail replay, innocent-photo/criminal-lore, unboxing,
+confession/storytime, fixed-loop escalation and generic documentary framing=
+.
+
+Fresh sources checked include current September TikTok/Shorts format
+trackers, creator-format reporting, AI-video template trackers and
+cross-platform meme reporting.
+1. PET=E2=80=99S TERRIBLE ADVICE / =E2=80=9CTHINGS TO SAY=E2=80=9D
+
+Sources:
+https://chatroomweb.com/the-rise-of-things-to-say-how-ironic-hustle-culture=
+-memes-captured-gen-z-and-tiktok/
+;
+https://claytribune.com/things-to-say-memes-turn-hustle-cultures-worst-advi=
+ce-into-tiktok-gold/
+Why viewers watch: recognizable advice grammar immediately promises a list,
+then every answer violates the expected social rule. Current variants have
+crossed job interviews, dating/family and medical contexts, with reported
+million-view examples.
+Core mechanic: present catastrophically bad advice with absolute confidence=
+.
+Pet protagonist: questionnaire facts become advice the pet gives other
+pets/owners: =E2=80=9CThings Biscuit says to get dinner 4 hours early.=E2=
+=80=9D
+Best use: social clip, card insert QR, carousel.
+15=E2=80=9330 sec template: 0=E2=80=932s title card =E2=80=9CTHINGS TO SAY =
+WHEN YOUR HUMAN SAYS
+NO=E2=80=9D; 2=E2=80=9318s 4 rapid portrait/list cards, each increasingly d=
+eranged and
+personalized; 18=E2=80=9324s pet hero pose + =E2=80=9CFollow Biscuit for mo=
+re terrible
+advice.=E2=80=9D
+Hook: =E2=80=9CThings to say when your human thinks THEY own the house.=E2=
+=80=9D
+Assets: pet cutout, 4 customer lore facts, bold list template, original
+royalty-safe beat.
+Complexity: LOW.
+Novelty: genuinely different from previous formats because the pet becomes
+an advice-giver rather than an accused/reviewed subject.
+Verdict: MAKE TEMPLATE NOW.
+2. AI RECRUITER VS PET NONSENSE INTERVIEW
+
+Source:
+https://telset.id/news/ai/video-viral-perlihatkan-ai-perekrut-gagal-total-h=
+adapi-kandidat
+Why viewers watch: a rigid authority figure treats obvious nonsense with
+complete seriousness; a September viral example used nonsensical candidate
+answers against an AI recruiter.
+Core mechanic: straight-man system + absurd protagonist answers.
+Pet protagonist: an original HR-bot interviews the pet for =E2=80=9CSenior
+Household Security Officer.=E2=80=9D Answers are generated from actual pet =
+quirks
+(=E2=80=9CGreatest weakness?=E2=80=9D =E2=80=9CDoors.=E2=80=9D).
+Best use: birthday clip, social video, employee gift.
+20=E2=80=9335 sec template: 0=E2=80=933s =E2=80=9CFINAL INTERVIEW: [PET]=E2=
+=80=9D; 3=E2=80=938s recruiter asks role
+question; 8=E2=80=9313s pet gives absurd lore-specific answer; repeat twice=
+; 28=E2=80=9333s
+recruiter: =E2=80=9CYou=E2=80=99re hired.=E2=80=9D Pet: =E2=80=9CI already =
+live here.=E2=80=9D
+Hook: =E2=80=9CWe let an AI recruiter interview my dog.=E2=80=9D
+Assets: original recruiter UI/avatar, pet talking-head animation, 3 lore
+facts, subtitles.
+Complexity: MEDIUM.
+Novelty: materially better implementation than generic job interview: the
+comedic engine is machine straight-man failure.
+Verdict: MAKE TEMPLATE NOW.
+3. =E2=80=9CREASONS TO=E2=80=A6=E2=80=9D DEADPAN ANTI-LIST
+
+Sources: https://www.socialpilot.co/blog/tiktok-trends ;
+https://buffer.com/resources/trending-songs-tiktok/
+Why viewers watch: setup implies useful information but every list item
+collapses into the same obsessive answer. Current originator is reported
+near 18M views.
+Core mechanic: informational-list expectation -> intentionally useless
+repetition.
+Pet protagonist: =E2=80=9CReasons Milo deserves another treat=E2=80=9D foll=
+owed by Milo /
+Milo / Milo / =E2=80=9Clook at him.=E2=80=9D Better as original audio rathe=
+r than depending
+on trending music.
+Best use: 8=E2=80=9312 sec social clip, meme card, product ad.
+Exact template: 0=E2=80=932s pet close-up + title; 2=E2=80=938s five rapid =
+reasons, four
+repetitions plus one personalized final reason; 8=E2=80=9311s freeze-frame =
+verdict.
+Hook: =E2=80=9C5 scientifically valid reasons [PET] deserves your dinner.=
+=E2=80=9D
+Assets: pet image/video, list typography, click/pop SFX.
+Complexity: LOW.
+Novelty: new micro-format; far cheaper than narrative generation.
+Verdict: MAKE TEMPLATE NOW.
+4. PET STREET INTERVIEW / =E2=80=9CWHAT DO YOU DO FOR A LIVING?=E2=80=9D
+
+Source:
+https://www.trendsbymasterhooks.com/articles/stranger-interviews-tiktok-tre=
+nd
+Why viewers watch: viewers expect a surprising identity/lifestyle answer;
+current street-interview variants are still producing 1M+ view examples.
+Core mechanic: interviewer asks an ordinary status question; subject gives
+an unexpectedly revealing answer.
+Pet protagonist: tiny microphone enters frame; =E2=80=9CWhat do you do for =
+a
+living?=E2=80=9D Pet: =E2=80=9CI scream at delivery drivers and own three b=
+eds.=E2=80=9D Follow
+with =E2=80=9CHow much do you make?=E2=80=9D =E2=80=9CFourteen treats, pre-=
+tax.=E2=80=9D
+Best use: social clip, birthday QR video.
+15=E2=80=9325 sec template: 0=E2=80=933s microphone ambush; 3=E2=80=937s oc=
+cupation; 7=E2=80=9312s salary;
+12=E2=80=9317s =E2=80=9Cbiggest expense?=E2=80=9D; 17=E2=80=9322s lore-spec=
+ific punchline + walk-off.
+Hook: =E2=80=9CExcuse me sir, what do you do for a living?=E2=80=9D
+Assets: reusable microphone/interviewer hand, pet talking animation,
+street/background plate, 3 facts.
+Complexity: MEDIUM.
+Novelty: pet is treated as an apparently successful random stranger, not
+interviewed as a pet.
+Verdict: TEST.
+5. PET NETFLIX-DOCUMENTARY COLD OPEN =E2=80=94 SPECIFIC SCANDAL EDITION
+
+Sources: https://socialbee.com/blog/tiktok-trends-you-cant-miss/ ;
+https://www.getstarrd.app/blog/viral-ai-video-trends-2026
+Why viewers watch: cinematic seriousness wildly exceeds the trivial
+offense. This framing is currently active as =E2=80=9Cpreparing for my Netf=
+lix
+documentary.=E2=80=9D
+Core mechanic: prestige-documentary gravity applied to microscopic personal
+lore.
+Pet protagonist: do NOT make a generic pet documentary; make the 12-second
+cold open to one real household scandal: =E2=80=9CTHE NIGHT THE CHRISTMAS H=
+AM
+DISAPPEARED.=E2=80=9D
+Best use: premium birthday video/card QR.
+15=E2=80=9325 sec template: 0=E2=80=933s clapperboard/title; 3=E2=80=937s p=
+et sits under dramatic
+key light; 7=E2=80=9312s interviewer off-screen: =E2=80=9CDid you take the =
+ham?=E2=80=9D silence;
+12=E2=80=9318s archival photo/evidence; 18=E2=80=9323s pet: =E2=80=9CDefine=
+ take.=E2=80=9D
+Hook: =E2=80=9CIn 2024, one family lost everything. Mostly a ham.=E2=80=9D
+Assets: documentary interview set, clapperboard, pet portrait animation,
+1=E2=80=932 customer evidence photos.
+Complexity: MEDIUM.
+Novelty: previous report had wrong-species documentary; this is materially
+different because it is a single true-crime-style accusation built around
+customer lore.
+Verdict: TEST.
+6. PET AURA / LUXURY REVEAL
+
+Sources: https://www.anijam.ai/blog/youtube-shorts-trends/ ;
+https://www.getstarrd.app/blog/viral-ai-video-trends-2026
+Why viewers watch: sudden status transformation and exaggerated cinematic
+reveal. September trackers show =E2=80=9Caura=E2=80=9D character edits stil=
+l crossing
+platforms, while AI red-carpet/fan-cam transformations remain active.
+Core mechanic: treat an objectively silly subject as an impossibly
+high-status celebrity.
+Pet protagonist: normal phone photo -> camera flashes -> custom
+suit/chain/entrance -> absurd personalized lower-third: =E2=80=9C[PET], 7-t=
+ime Sofa
+Occupation Champion.=E2=80=9D
+Best use: birthday, premium social clip, poster/T-shirt still.
+12=E2=80=9320 sec template: 0=E2=80=933s ordinary pet; 3=E2=80=935s flash t=
+ransition; 5=E2=80=9312s luxury
+arrival; 12=E2=80=9317s ridiculous accolades; 17=E2=80=9320s stare to camer=
+a.
+Hook: =E2=80=9CPOV: [PET] finally got the recognition he thinks he deserves=
+.=E2=80=9D
+Assets: pet identity-preserving model, original carpet/press scene,
+lower-thirds, flash SFX.
+Complexity: MEDIUM.
+Novelty: transformation/status mechanic rather than narrative roast.
+Verdict: TEST.
+7. PET BEFORE/AFTER =E2=80=9CGLOW-DOWN=E2=80=9D FLIP
+
+Source:
+https://www.trendsbymasterhooks.com/articles/glow-up-trend-childhood-photos
+Why viewers watch: viewers know the glow-up grammar, so reversing it
+creates an immediate joke. Current childhood-photo glow-up variants have
+reported 1.8M+ examples.
+Core mechanic: familiar aspirational before/after becomes a personalized
+deterioration reveal.
+Pet protagonist: gorgeous puppy photo -> current pet asleep upside-down,
+covered in mud, stealing food, etc. Or reverse: =E2=80=9Cwhat we were promi=
+sed /
+what arrived.=E2=80=9D
+Best use: birthday card, photo product, 8-second clip.
+8=E2=80=9315 sec template: 0=E2=80=934s puppy glamour shot =E2=80=9C2019: u=
+nlimited potential=E2=80=9D;
+beat; 4=E2=80=939s current chaos image =E2=80=9C2026: banned from two sofas=
+=E2=80=9D; 9=E2=80=9312s custom
+stat.
+Hook: =E2=80=9CThe glow-up was going incredibly well until=E2=80=A6=E2=80=
+=9D
+Assets: old + current pet photo, typography, original transition/SFX.
+Complexity: LOW.
+Novelty: distinct from criminal-lore because the payoff is visual temporal
+contrast, not hidden backstory.
+Verdict: TEST.
+8. PET WORLD-CUP / SPORTS FAN-CAM =E2=80=9CWHO IS THAT?=E2=80=9D
+
+Source: https://www.getstarrd.app/blog/viral-ai-video-trends-2026
+Why viewers watch: broadcast grammar instantly grants importance to a
+random person; current AI templates include World Cup fan-cams,
+pitch-invader goals and courtside =E2=80=9Cwho is that?=E2=80=9D reveals.
+Core mechanic: authoritative live-broadcast camera unexpectedly discovers
+the protagonist and invents status around them.
+Pet protagonist: generic original stadium rather than copyrighted footage;
+camera finds pet in VIP seat eating snacks; commentator invents lore-based
+stats.
+Best use: football-fan birthday gift, card QR, poster/collectible companion=
+.
+15=E2=80=9325 sec template: 0=E2=80=934s wide generic stadium; 4=E2=80=938s=
+ fan-cam zoom; 8=E2=80=9316s
+commentator: =E2=80=9CThere he is=E2=80=94[PET], unbeaten in 47 kitchen-cou=
+nter
+appearances=E2=80=9D; 16=E2=80=9322s stat graphic + pet reaction.
+Hook: =E2=80=9CWAIT=E2=80=A6 IS THAT [PET] IN THE VIP BOX?=E2=80=9D
+Assets: original stadium broadcast package, pet compositing, commentator
+voice, custom stat generator.
+Complexity: MEDIUM.
+Novelty: sports-broadcast discovery rather than post-match
+interview/commentary.
+Verdict: TEST.
+TOP 3 TO TEMPLATE THIS HOUR
+
+   1. PET=E2=80=99S TERRIBLE ADVICE / THINGS TO SAY =E2=80=94 extremely che=
+ap, customer
+   lore naturally generates the jokes, and the format is actively crossing
+   niches/platforms.
+   2. AI RECRUITER VS PET =E2=80=94 strongest dialogue engine; every custom=
+er gives
+   enough behavioral facts to generate three absurd answers.
+   3. REASONS TO=E2=80=A6 ANTI-LIST =E2=80=94 simplest high-volume social a=
+cquisition
+   template; can generate from one image and one fact.
+
+EASIEST END-TO-END AUTOMATION
+
+REASONS TO=E2=80=A6 ANTI-LIST. One pet image + name + one obsession ->
+deterministic copy -> motion typography -> 9:16 render. No lip-sync or
+scene consistency required.
+HIGHEST SHAREABILITY POTENTIAL
+
+PET=E2=80=99S TERRIBLE ADVICE. It creates quotable lines owners can tag fri=
+ends
+under, and every pet=E2=80=99s bad habits produce a different list while th=
+e shell
+stays identical.
+WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+
+AI RECRUITER VS PET NONSENSE INTERVIEW. The useful twist is not merely =E2=
+=80=9Cpet
+job interview=E2=80=9D; it is a completely serious machine interviewer acce=
+pting
+increasingly species-specific nonsense as professional competence.
+
+Production note: use original audio/visual grammar for durable templates.
+Trending songs and recognizable TV/movie styling can validate a mechanism,
+but Roast.pet should own the reusable set, music/SFX and presenter
+characters.
+
+--000000000000bba3a5065bbcfd56
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Viral Format Scanner =E2=80=94 MATERIAL FORMAT DELTA
+<p>State: compared against prior sent reports at 11:37 and 13:35. I exclude=
+d semantic repeats such as press conference, performance review, finance-br=
+o investigation, starter pack, wrong-species documentary, product review, f=
+orensic fail replay, innocent-photo/criminal-lore, unboxing, confession/sto=
+rytime, fixed-loop escalation and generic documentary framing.</p>
+<p>Fresh sources checked include current September TikTok/Shorts format tra=
+ckers, creator-format reporting, AI-video template trackers and cross-platf=
+orm meme reporting.</p>
+
+1. PET=E2=80=99S TERRIBLE ADVICE / =E2=80=9CTHINGS TO SAY=E2=80=9D
+<p>Sources: <a href=3D"https://chatroomweb.com/the-rise-of-things-to-say-ho=
+w-ironic-hustle-culture-memes-captured-gen-z-and-tiktok/">https://chatroomw=
+eb.com/the-rise-of-things-to-say-how-ironic-hustle-culture-memes-captured-g=
+en-z-and-tiktok/</a> ; <a href=3D"https://claytribune.com/things-to-say-mem=
+es-turn-hustle-cultures-worst-advice-into-tiktok-gold/">https://claytribune=
+.com/things-to-say-memes-turn-hustle-cultures-worst-advice-into-tiktok-gold=
+/</a><br>
+Why viewers watch: recognizable advice grammar immediately promises a list,=
+ then every answer violates the expected social rule. Current variants have=
+ crossed job interviews, dating/family and medical contexts, with reported =
+million-view examples.<br>
+Core mechanic: present catastrophically bad advice with absolute confidence=
+.<br>
+Pet protagonist: questionnaire facts become advice the pet gives other pets=
+/owners: =E2=80=9CThings Biscuit says to get dinner 4 hours early.=E2=80=9D=
+<br>
+Best use: social clip, card insert QR, carousel.<br>
+15=E2=80=9330 sec template: 0=E2=80=932s title card =E2=80=9CTHINGS TO SAY =
+WHEN YOUR HUMAN SAYS NO=E2=80=9D; 2=E2=80=9318s 4 rapid portrait/list cards=
+, each increasingly deranged and personalized; 18=E2=80=9324s pet hero pose=
+ + =E2=80=9CFollow Biscuit for more terrible advice.=E2=80=9D<br>
+Hook: =E2=80=9CThings to say when your human thinks THEY own the house.=E2=
+=80=9D<br>
+Assets: pet cutout, 4 customer lore facts, bold list template, original roy=
+alty-safe beat.<br>
+Complexity: LOW.<br>
+Novelty: genuinely different from previous formats because the pet becomes =
+an advice-giver rather than an accused/reviewed subject.<br>
+Verdict: MAKE TEMPLATE NOW.</p>
+
+2. AI RECRUITER VS PET NONSENSE INTERVIEW
+<p>Source: <a href=3D"https://telset.id/news/ai/video-viral-perlihatkan-ai-=
+perekrut-gagal-total-hadapi-kandidat">https://telset.id/news/ai/video-viral=
+-perlihatkan-ai-perekrut-gagal-total-hadapi-kandidat</a><br>
+Why viewers watch: a rigid authority figure treats obvious nonsense with co=
+mplete seriousness; a September viral example used nonsensical candidate an=
+swers against an AI recruiter.<br>
+Core mechanic: straight-man system + absurd protagonist answers.<br>
+Pet protagonist: an original HR-bot interviews the pet for =E2=80=9CSenior =
+Household Security Officer.=E2=80=9D Answers are generated from actual pet =
+quirks (=E2=80=9CGreatest weakness?=E2=80=9D =E2=80=9CDoors.=E2=80=9D).<br>
+Best use: birthday clip, social video, employee gift.<br>
+20=E2=80=9335 sec template: 0=E2=80=933s =E2=80=9CFINAL INTERVIEW: [PET]=E2=
+=80=9D; 3=E2=80=938s recruiter asks role question; 8=E2=80=9313s pet gives =
+absurd lore-specific answer; repeat twice; 28=E2=80=9333s recruiter: =E2=80=
+=9CYou=E2=80=99re hired.=E2=80=9D Pet: =E2=80=9CI already live here.=E2=80=
+=9D<br>
+Hook: =E2=80=9CWe let an AI recruiter interview my dog.=E2=80=9D<br>
+Assets: original recruiter UI/avatar, pet talking-head animation, 3 lore fa=
+cts, subtitles.<br>
+Complexity: MEDIUM.<br>
+Novelty: materially better implementation than generic job interview: the c=
+omedic engine is machine straight-man failure.<br>
+Verdict: MAKE TEMPLATE NOW.</p>
+
+3. =E2=80=9CREASONS TO=E2=80=A6=E2=80=9D DEADPAN ANTI-LIST
+<p>Sources: <a href=3D"https://www.socialpilot.co/blog/tiktok-trends">https=
+://www.socialpilot.co/blog/tiktok-trends</a> ; <a href=3D"https://buffer.co=
+m/resources/trending-songs-tiktok/">https://buffer.com/resources/trending-s=
+ongs-tiktok/</a><br>
+Why viewers watch: setup implies useful information but every list item col=
+lapses into the same obsessive answer. Current originator is reported near =
+18M views.<br>
+Core mechanic: informational-list expectation -&gt; intentionally useless r=
+epetition.<br>
+Pet protagonist: =E2=80=9CReasons Milo deserves another treat=E2=80=9D foll=
+owed by Milo / Milo / Milo / =E2=80=9Clook at him.=E2=80=9D Better as origi=
+nal audio rather than depending on trending music.<br>
+Best use: 8=E2=80=9312 sec social clip, meme card, product ad.<br>
+Exact template: 0=E2=80=932s pet close-up + title; 2=E2=80=938s five rapid =
+reasons, four repetitions plus one personalized final reason; 8=E2=80=9311s=
+ freeze-frame verdict.<br>
+Hook: =E2=80=9C5 scientifically valid reasons [PET] deserves your dinner.=
+=E2=80=9D<br>
+Assets: pet image/video, list typography, click/pop SFX.<br>
+Complexity: LOW.<br>
+Novelty: new micro-format; far cheaper than narrative generation.<br>
+Verdict: MAKE TEMPLATE NOW.</p>
+
+4. PET STREET INTERVIEW / =E2=80=9CWHAT DO YOU DO FOR A LIVING?=E2=80=9D
+<p>Source: <a href=3D"https://www.trendsbymasterhooks.com/articles/stranger=
+-interviews-tiktok-trend">https://www.trendsbymasterhooks.com/articles/stra=
+nger-interviews-tiktok-trend</a><br>
+Why viewers watch: viewers expect a surprising identity/lifestyle answer; c=
+urrent street-interview variants are still producing 1M+ view examples.<br>
+Core mechanic: interviewer asks an ordinary status question; subject gives =
+an unexpectedly revealing answer.<br>
+Pet protagonist: tiny microphone enters frame; =E2=80=9CWhat do you do for =
+a living?=E2=80=9D Pet: =E2=80=9CI scream at delivery drivers and own three=
+ beds.=E2=80=9D Follow with =E2=80=9CHow much do you make?=E2=80=9D =E2=80=
+=9CFourteen treats, pre-tax.=E2=80=9D<br>
+Best use: social clip, birthday QR video.<br>
+15=E2=80=9325 sec template: 0=E2=80=933s microphone ambush; 3=E2=80=937s oc=
+cupation; 7=E2=80=9312s salary; 12=E2=80=9317s =E2=80=9Cbiggest expense?=E2=
+=80=9D; 17=E2=80=9322s lore-specific punchline + walk-off.<br>
+Hook: =E2=80=9CExcuse me sir, what do you do for a living?=E2=80=9D<br>
+Assets: reusable microphone/interviewer hand, pet talking animation, street=
+/background plate, 3 facts.<br>
+Complexity: MEDIUM.<br>
+Novelty: pet is treated as an apparently successful random stranger, not in=
+terviewed as a pet.<br>
+Verdict: TEST.</p>
+
+5. PET NETFLIX-DOCUMENTARY COLD OPEN =E2=80=94 SPECIFIC SCANDAL EDITION
+<p>Sources: <a href=3D"https://socialbee.com/blog/tiktok-trends-you-cant-mi=
+ss/">https://socialbee.com/blog/tiktok-trends-you-cant-miss/</a> ; <a href=
+=3D"https://www.getstarrd.app/blog/viral-ai-video-trends-2026">https://www.=
+getstarrd.app/blog/viral-ai-video-trends-2026</a><br>
+Why viewers watch: cinematic seriousness wildly exceeds the trivial offense=
+. This framing is currently active as =E2=80=9Cpreparing for my Netflix doc=
+umentary.=E2=80=9D<br>
+Core mechanic: prestige-documentary gravity applied to microscopic personal=
+ lore.<br>
+Pet protagonist: do NOT make a generic pet documentary; make the 12-second =
+cold open to one real household scandal: =E2=80=9CTHE NIGHT THE CHRISTMAS H=
+AM DISAPPEARED.=E2=80=9D<br>
+Best use: premium birthday video/card QR.<br>
+15=E2=80=9325 sec template: 0=E2=80=933s clapperboard/title; 3=E2=80=937s p=
+et sits under dramatic key light; 7=E2=80=9312s interviewer off-screen: =E2=
+=80=9CDid you take the ham?=E2=80=9D silence; 12=E2=80=9318s archival photo=
+/evidence; 18=E2=80=9323s pet: =E2=80=9CDefine take.=E2=80=9D<br>
+Hook: =E2=80=9CIn 2024, one family lost everything. Mostly a ham.=E2=80=9D<=
+br>
+Assets: documentary interview set, clapperboard, pet portrait animation, 1=
+=E2=80=932 customer evidence photos.<br>
+Complexity: MEDIUM.<br>
+Novelty: previous report had wrong-species documentary; this is materially =
+different because it is a single true-crime-style accusation built around c=
+ustomer lore.<br>
+Verdict: TEST.</p>
+
+6. PET AURA / LUXURY REVEAL
+<p>Sources: <a href=3D"https://www.anijam.ai/blog/youtube-shorts-trends/">h=
+ttps://www.anijam.ai/blog/youtube-shorts-trends/</a> ; <a href=3D"https://w=
+ww.getstarrd.app/blog/viral-ai-video-trends-2026">https://www.getstarrd.app=
+/blog/viral-ai-video-trends-2026</a><br>
+Why viewers watch: sudden status transformation and exaggerated cinematic r=
+eveal. September trackers show =E2=80=9Caura=E2=80=9D character edits still=
+ crossing platforms, while AI red-carpet/fan-cam transformations remain act=
+ive.<br>
+Core mechanic: treat an objectively silly subject as an impossibly high-sta=
+tus celebrity.<br>
+Pet protagonist: normal phone photo -&gt; camera flashes -&gt; custom suit/=
+chain/entrance -&gt; absurd personalized lower-third: =E2=80=9C[PET], 7-tim=
+e Sofa Occupation Champion.=E2=80=9D<br>
+Best use: birthday, premium social clip, poster/T-shirt still.<br>
+12=E2=80=9320 sec template: 0=E2=80=933s ordinary pet; 3=E2=80=935s flash t=
+ransition; 5=E2=80=9312s luxury arrival; 12=E2=80=9317s ridiculous accolade=
+s; 17=E2=80=9320s stare to camera.<br>
+Hook: =E2=80=9CPOV: [PET] finally got the recognition he thinks he deserves=
+.=E2=80=9D<br>
+Assets: pet identity-preserving model, original carpet/press scene, lower-t=
+hirds, flash SFX.<br>
+Complexity: MEDIUM.<br>
+Novelty: transformation/status mechanic rather than narrative roast.<br>
+Verdict: TEST.</p>
+
+7. PET BEFORE/AFTER =E2=80=9CGLOW-DOWN=E2=80=9D FLIP
+<p>Source: <a href=3D"https://www.trendsbymasterhooks.com/articles/glow-up-=
+trend-childhood-photos">https://www.trendsbymasterhooks.com/articles/glow-u=
+p-trend-childhood-photos</a><br>
+Why viewers watch: viewers know the glow-up grammar, so reversing it create=
+s an immediate joke. Current childhood-photo glow-up variants have reported=
+ 1.8M+ examples.<br>
+Core mechanic: familiar aspirational before/after becomes a personalized de=
+terioration reveal.<br>
+Pet protagonist: gorgeous puppy photo -&gt; current pet asleep upside-down,=
+ covered in mud, stealing food, etc. Or reverse: =E2=80=9Cwhat we were prom=
+ised / what arrived.=E2=80=9D<br>
+Best use: birthday card, photo product, 8-second clip.<br>
+8=E2=80=9315 sec template: 0=E2=80=934s puppy glamour shot =E2=80=9C2019: u=
+nlimited potential=E2=80=9D; beat; 4=E2=80=939s current chaos image =E2=80=
+=9C2026: banned from two sofas=E2=80=9D; 9=E2=80=9312s custom stat.<br>
+Hook: =E2=80=9CThe glow-up was going incredibly well until=E2=80=A6=E2=80=
+=9D<br>
+Assets: old + current pet photo, typography, original transition/SFX.<br>
+Complexity: LOW.<br>
+Novelty: distinct from criminal-lore because the payoff is visual temporal =
+contrast, not hidden backstory.<br>
+Verdict: TEST.</p>
+
+8. PET WORLD-CUP / SPORTS FAN-CAM =E2=80=9CWHO IS THAT?=E2=80=9D
+<p>Source: <a href=3D"https://www.getstarrd.app/blog/viral-ai-video-trends-=
+2026">https://www.getstarrd.app/blog/viral-ai-video-trends-2026</a><br>
+Why viewers watch: broadcast grammar instantly grants importance to a rando=
+m person; current AI templates include World Cup fan-cams, pitch-invader go=
+als and courtside =E2=80=9Cwho is that?=E2=80=9D reveals.<br>
+Core mechanic: authoritative live-broadcast camera unexpectedly discovers t=
+he protagonist and invents status around them.<br>
+Pet protagonist: generic original stadium rather than copyrighted footage; =
+camera finds pet in VIP seat eating snacks; commentator invents lore-based =
+stats.<br>
+Best use: football-fan birthday gift, card QR, poster/collectible companion=
+.<br>
+15=E2=80=9325 sec template: 0=E2=80=934s wide generic stadium; 4=E2=80=938s=
+ fan-cam zoom; 8=E2=80=9316s commentator: =E2=80=9CThere he is=E2=80=94[PET=
+], unbeaten in 47 kitchen-counter appearances=E2=80=9D; 16=E2=80=9322s stat=
+ graphic + pet reaction.<br>
+Hook: =E2=80=9CWAIT=E2=80=A6 IS THAT [PET] IN THE VIP BOX?=E2=80=9D<br>
+Assets: original stadium broadcast package, pet compositing, commentator vo=
+ice, custom stat generator.<br>
+Complexity: MEDIUM.<br>
+Novelty: sports-broadcast discovery rather than post-match interview/commen=
+tary.<br>
+Verdict: TEST.</p>
+
+TOP 3 TO TEMPLATE THIS HOUR
+<ol>
+<li>PET=E2=80=99S TERRIBLE ADVICE / THINGS TO SAY =E2=80=94 extremely cheap=
+, customer lore naturally generates the jokes, and the format is actively c=
+rossing niches/platforms.</li>
+<li>AI RECRUITER VS PET =E2=80=94 strongest dialogue engine; every customer=
+ gives enough behavioral facts to generate three absurd answers.</li>
+<li>REASONS TO=E2=80=A6 ANTI-LIST =E2=80=94 simplest high-volume social acq=
+uisition template; can generate from one image and one fact.</li>
+</ol>
+
+EASIEST END-TO-END AUTOMATION
+<p>REASONS TO=E2=80=A6 ANTI-LIST. One pet image + name + one obsession -&gt=
+; deterministic copy -&gt; motion typography -&gt; 9:16 render. No lip-sync=
+ or scene consistency required.</p>
+
+HIGHEST SHAREABILITY POTENTIAL
+<p>PET=E2=80=99S TERRIBLE ADVICE. It creates quotable lines owners can tag =
+friends under, and every pet=E2=80=99s bad habits produce a different list =
+while the shell stays identical.</p>
+
+WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+<p>AI RECRUITER VS PET NONSENSE INTERVIEW. The useful twist is not merely =
+=E2=80=9Cpet job interview=E2=80=9D; it is a completely serious machine int=
+erviewer accepting increasingly species-specific nonsense as professional c=
+ompetence.</p>
+<p>Production note: use original audio/visual grammar for durable templates=
+. Trending songs and recognizable TV/movie styling can validate a mechanism=
+, but Roast.pet should own the reusable set, music/SFX and presenter charac=
+ters.</p>
+
+--000000000000bba3a5065bbcfd56--

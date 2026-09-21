@@ -1,0 +1,328 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id OCcki6tKxDvo
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:16:54 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=bC5hr4lZy/xcZcqwQiZwxfCo4Vs/sm/3kyqMKHDNknZ6i/Ouvr4q5XckUk93AL+Axz+9xzrsv
+	vSirG8Hk41Rl9TWTTGnIwdKeA0H/DaS3PpsRtR11g/PvLlhsFIoybIVrcxHRUt5rpRjcAFdEHSt
+	ya+kkyUtxXXiaLQoRUIf9106Wnmwz9hDeOejmb7XsVYnW32uUcWNxwNj53GlAw9abBiobmHbIsg
+	NrZVCPOYaQsmSq4sJSJ5OYV1ntYdyqSAn/e0mpWefmb/6WeqMi98I8leHKvpaI/I+d+v4r9w09n
+	G1uN5gg9mkKNeFqwZAuw5eamj2qLrh7hGEAZrrZZf6Ew==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888614; x=1790493414; bh=jc/0Z6V1
+	x7rKqERUjuBzWsZABvuqKbqw2xZNztJVT1A=; b=dX5jl85CPr92iet2qRoxdQ8xU82l/FpEJcC
+	V2jphvA+JN9hHa7qUgTAhpkvo1J28JhJ/Wf0J8Ze7Ohu3vI1cBQZs0EgUYRAmrpSS1uk/M+nSRm
+	l/GjF+7zCMvV2rHjP7GmqcRbyAWkqNZUxVVHzU3ky5xplq53inRwJWDIinEWoG0sguV4xytoITL
+	DK8fY8YPNb5qWAowR51xZI0HzkxwD+0LlfXLSt2z1fH7mcu+xp0m7r46TiCK0jJl5BrQjT9qxnq
+	oKwoONwCgY0zaLmsyfhnhHkf3S6lKQ2F+2LRRLhPXsX7NbD+C5NbSHK4GjLi4GZPlCmFUQ2DgWZ
+	9rq6J3w==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=L4wwR4GF;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=L4wwR4GF;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab1ef11so1706600d50.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:16:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888614; cv=none;
+        d=google.com; s=arc-20260327;
+        b=hOrzu2fV1jn7O8VuAcfBcSN2htq4ZIqs7gzJf6Jn3bO+U+bG8IO/6drHyc6MiCh3Rq
+         y+932xQGD3/O2UVuvCOd4xsH60XM840m3yEfS8xtXot3O6pDKvIKpiBI4zTRzUUnlBq9
+         NMA35HEtjXPxDfuEZhimpM9Cam2s2JUNuYAmXDgY0me0oTqlZegQioi8xZ7kXlpMqQyT
+         /wyViOrvpT+gxVmCZYiSQ4XVSDgzyY2WUzYFr7cbYRueO3DI3otg2E+Ialqn7NSYFaXF
+         f415d2S7mhCO9lUpiS4rCKzKBc7ninl7QMVew8otmRlrVkFKybUlz6z45zcGRkhTy4Il
+         oi4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=jc/0Z6V1x7rKqERUjuBzWsZABvuqKbqw2xZNztJVT1A=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=UMvPBR7j7j0GpnOvlSdTxjyJuwZyzOMr/vixIJh6N31HtgLqJuBDzxusnfE6gVviDx
+         lMJzUZEt9HnumgBJRJgyA56vwA0SeSy9UiYHI2PG0IvDmgjn/7RdMmGUNEujmo0EvgzI
+         bevMm0GXQR3QYE9FrlSLC1AK6o3OkNihUYUn4HIgQV6V8FqnkVZVVpzwt2Y1A2SsIbL9
+         duJaRXZRLxS8Yt74wVqo0W/yLEwJCKvvHPzgp5QS5FmuuIS06BlM7I4b8iYfjd74ZvSD
+         hca/jOM1tHgQghhmXI2HAYYkGCxa6LEAlYJEl2yKp3ik2zmvWzgCoGIlp9YwroRSyqUR
+         LPpg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888614; x=1790493414; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=jc/0Z6V1x7rKqERUjuBzWsZABvuqKbqw2xZNztJVT1A=;
+        b=L4wwR4GF+AyQETGowMJLd8D/gL1ZxAA9ca0WKrXc4b/tZlwF9/RnyNvv34a5ZMHeRh
+         w4+BA4IEuj7pFsK8JCa8oh1sIrwT++7HUBRRYGBqifYqv49LWetRNVVAPDSxv4OQuJoU
+         H1GQw7fsnR1bim16QvQW3YZglkMereJxwh93d4XkxeaPE/C+wBJi0sOgj05eZHpVjb5A
+         wxxJu9YYl0Br/wU6jv4v0wV148G/kN08BVBRVrEreXNoq7x55Y6sqDV9VbGVrdH1CItC
+         NaJGMZ+PINjV7EF7t1/8erMAdxPE3YUwWNoa8oAfBaIFpL2GSquctz7nbAr8++hCeXWq
+         iMvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888614; x=1790493414;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=jc/0Z6V1x7rKqERUjuBzWsZABvuqKbqw2xZNztJVT1A=;
+        b=w4pPF8wobXrw0wcjXATg9IXkYvfFO9MdjWlhtcIyGyAQJx8GfnbeDvXg+vcLP7X4cD
+         cesbdOIfAziLLZL5LmNiUrrkp3caF+nHj4qq5OPvTen7PPS7zD0XsdXRjvAKwfnCKWaI
+         9deZjSKHQ/Z7WuuZfJVxVU1xiildPiHcjNVObsY+fnSQ+rce0bkNBHCd4AePMQHYrUCl
+         5buMBYdxJ9iAJCt+QranIt+k0oYqHGvyqkwvJBybmL5hLptGhra2Adw5OyWRJSZPXNNA
+         u1lVNFqrDSNfVUkmlf4c/53dLPVCX6kzJ9HixpU9VRob18W3UhBgem873CUydqAsXfnR
+         uC1A==
+X-Gm-Message-State: AFuF++mPDuyXJW5I+omD06DMDWrjZ7XweKAqbb2yq+TySilr9YCh0x+l
+	l9tdoHe8ZLQSSywQdtXsIVgDURBG/vTr5UHRGWjXhmatVwhIvYoLlLMQEmg6I3VgOTcnb9DHPAp
+	g8GytaSpwas4/Y0O3kT7fUHVe2zKcumIw/A==
+X-Gm-Gg: AYBFou1q/mq3kJK/oG4Sadh9rn1trbzi/zzk/SFtFMvA989rx5qLzEzMNKGws2j1nJ4
+	XeMU2MsNHZmDosTEdjfSDOUAIU7hz0gEtI5fCkxnFfVJYMVg8rZmOverZRlB+OKt7FjheJX3Y7y
+	KnmNtozYkyC9NpqhIRocDiVZVCJREmVYlx7arxl/Ug9ZKg41h9UJUU7dZTX6OC0Yy+35MACq2Dp
+	1BJyV+tCMUOEVRD+ElPQQm4dX66mFieEFgzjt2kuYX57is0h+lDdXv5ApgUfzzNdJ5E6vD+l4QG
+	N43I4KcPTNm9x72HeZAuJm1bwXBTdgWOZr1R82J3Pi0dbf6nJniXfU8sqlC0VQSHs0h/2ZC+5ul
+	9O6dMsrwVqWYLgyUJ1ljsbt+N18guiv1fmGAdzE5hgofQ5a0HUFVAfJonPA8uNs317ZdiQQYVje
+	rsxOs6Cec=
+X-Received: by 2002:a05:690e:b46:b0:671:1880:17ba with SMTP id
+ 956f58d0204a3-6717fe45b88mr2269574d50.90.1789888614011; Sun, 20 Sep 2026
+ 00:16:54 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:51 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:51 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:16:51 -0500
+X-Gm-Features: AcwNN1WqAjQv2j8MR-9XCrmeIcqPyxjPGN_YaRHZiZ633spjvqFSgtE1NsCi_vY
+Message-ID: <CAPdrGemg=x61s=QncMQOLZEzO48Z-QG8PTfpQxEaLo7wi+No+A@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Attack_Chains_=E2=80=94_2026=2D09=2D18_09=3A33_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_1_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY ATTACK CHAINS =E2=80=94 DEFENSIVE SYNTHESIS
+
+1 NEW ATTACK CHAINS
+
+AC-2026-FORUM-TOKEN-CROSS-SERVICE-AUTHORITY =E2=80=94 RECENT / CONFIRMED BO=
+UNTY CASE
+
+Aliases: community-token authority crossover; forum-to-code authority chain=
+.
+
+Canonical fingerprint: public-facing community application flaw ->
+authentication-token access -> token valid across higher-trust
+services -> proprietary repository authority -> authenticated
+repository action.
+
+Fresh Wall Street Journal reporting dated 18 Sep 2026 describes
+Hacktron AI researchers, operating under OpenAI=E2=80=99s bug-bounty progra=
+m,
+exploiting a Discourse flaw in July 2026 and obtaining authentication
+tokens. WSJ reports the tokens were valid not only for the community
+surface but also ChatGPT and OpenAI GitHub; the researchers reached an
+internal Monorepo containing proprietary algorithmic code and
+submitted a harmless pull request as proof before reporting the issue.
+OpenAI confirmed and remediated the issues and paid a bounty. Evidence
+tier T1/T2: vendor-confirmed bounty case reported by WSJ; detailed
+primary technical postmortem not located this run.
+
+Stages: ENTRY/SOURCE community/Discourse flaw [CONFIRMED/T2] ->
+INITIAL EXECUTION/exploitation [CONFIRMED/T2] -> PERSISTENCE [UNKNOWN]
+-> SECRET/SESSION ACCESS authentication tokens [CONFIRMED/T2] ->
+PRIVILEGE/AUTHORITY ESCALATION token accepted across higher-trust
+OpenAI services [CONFIRMED/T2] -> TOOL/CLOUD/CI/SIGNER ACCESS OpenAI
+GitHub/internal Monorepo [CONFIRMED/T2] -> ACTION authenticated
+harmless pull request [CONFIRMED/T2] -> OBSERVED CONSEQUENCE
+proprietary source-repository access demonstrated [CONFIRMED/T2] ->
+further production/release/signer authority [UNKNOWN].
+
+Edges: Discourse flaw -> token [CONFIRMED/T2]; token -> ChatGPT/GitHub
+acceptance [CONFIRMED/T2]; GitHub acceptance -> internal Monorepo
+[CONFIRMED/T2]; repository access -> harmless PR [CONFIRMED/T2];
+repository authority -> CI/release/signer [UNKNOWN].
+
+Affected stacks: community/forum SSO; cross-service session/token
+architecture; GitHub enterprise/internal repositories.
+
+Prerequisite: authentication material issued or accepted across
+multiple trust domains.
+
+Trust boundaries crossed: public community application -> OpenAI
+account/session plane -> GitHub/internal source plane.
+
+Authority transition: low-trust community session material became
+higher-trust code/repository authority.
+
+Persistence: UNKNOWN.
+
+Propagation: UNKNOWN.
+
+Strongest evidence: WSJ 18 Sep 2026 account, reporting OpenAI
+confirmation/remediation and bounty payment.
+
+Strongest counterevidence/limit: researchers operated under bug-bounty
+rules and stopped after proof; no evidence found of malicious
+exploitation, production deployment, signer access, or persistent
+authority.
+
+Attribution break: none relevant.
+
+2 MATERIAL CHAIN UPDATES
+
+None accepted. The latest Incident Intake surfaced this case; the
+newest Scanner state did not supply a stronger completed second-order
+chain than this one. No newer Repo Forensics report was located in the
+current Sent-mail window.
+
+3 TOP RECURRING SECOND-ORDER MECHANISMS
+
+The new case strengthens the identity-to-authority-binding cluster. A
+token obtained from a lower-trust surface can become a bridge when the
+same bearer/session semantics are accepted by higher-trust systems.
+This is structurally adjacent to inference-router identity
+substitution, shared-cache credential crossover, plugin pin/resolution
+confusion, and delegated-module authority composition.
+
+4 STAGE/EDGE GRAPH
+
+community app -> [CONFIRMED] auth token -> [CONFIRMED] cross-service
+acceptance -> [CONFIRMED] internal GitHub/repository authority ->
+[CONFIRMED] authenticated PR -> [UNKNOWN] CI/release/signer ->
+[UNKNOWN] production action.
+
+5 UNKNOWN LINKS WORTH RESOLVING
+
+- Exact token class and why it was accepted across Discourse, ChatGPT
+and GitHub.
+
+- Whether GitHub authority could trigger CI or modify
+protected/release-relevant branches.
+
+- Whether token revocation alone removed all sessions/delegations
+created with it.
+
+- Whether the cross-service trust relationship was architectural SSO,
+token exchange, or another mechanism.
+
+6 DEFENSIVE CHOKEPOINTS + DETECTION PRIMITIVES
+
+Bind tokens to explicit audience/service and purpose; prevent
+community-facing session material from being replayable against
+code/production planes; use short-lived scoped repository credentials;
+require independent elevation for internal source and release
+authority; correlate token issuance/use across trust domains; alert
+when a credential first observed on a low-trust/community surface is
+presented to GitHub, CI, cloud, signer or production systems; rotate
+credentials and audit durable delegations/sessions created during
+exposure.
+
+QP implication: ALLOW(token T, service A) must not imply ALLOW(T,
+service B). Authority proof should bind subject + audience +
+capability + resource + expiry, and higher-trust transitions should
+require a fresh proof rather than bearer-token portability.
+
+7 SAFE LAB REPRODUCTION QUEUE
+
+Build two disposable services representing forum and repository
+planes, issue fake audience-bound tokens, and verify that a token
+minted for the forum is rejected by the repository. Add a deliberately
+misconfigured test gateway that accepts both audiences and demonstrate
+only a harmless marker-file PR in a disposable repository. No real
+credentials or third-party targets.
+
+8 CROSS-CASE CLUSTERS
+
+Cluster: IDENTITY_TO_AUTHORITY_BINDING_FAILURE. Supporting mechanisms
+now include token audience crossover; plugin requested-revision !=3D
+executed-revision; inference nominal-provider !=3D actual-upstream;
+shared-cache authenticated-user !=3D credential-recipient; delegated
+module approved-capability !=3D approved-composed-action. Status
+RECENT/ACTIVE mixed; first_seen varies by supporting case; latest_seen
+2026-09-18.
+
+9 MACHINE-READABLE JSONL DELTA
+
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-FORUM-TOKEN-CROSS-SERVI=
+CE-AUTHORITY=E2=80=9D,=E2=80=9Caliases=E2=80=9D:[=E2=80=9Ccommunity-token
+authority crossover=E2=80=9D,=E2=80=9Cforum-to-code authority
+chain=E2=80=9D],=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT=E2=80=9D,=E2=80=9C=
+canonical_fingerprint=E2=80=9D:=E2=80=9Ccommunity
+application flaw -> auth token -> cross-service token acceptance ->
+internal repository authority -> authenticated repository
+action=E2=80=9D,=E2=80=9Cstages=E2=80=9D:[[=E2=80=9CENTRY_SOURCE=E2=80=9D,=
+=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT2=E2=80=9D],[=E2=80=9CINITIAL_EXECUTI=
+ON=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT2=E2=80=9D],[=E2=80=9CPER=
+SISTENCE=E2=80=9D,=E2=80=9CUNKNOWN=E2=80=9D,null],[=E2=80=9CSECRET_SESSION_=
+MEMORY_ACCESS=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9CT2=E2=80=9D],[=
+=E2=80=9CPRIVILEGE_AUTHORITY_ESCALATION=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=
+=9D,=E2=80=9CT2=E2=80=9D],[=E2=80=9CTOOL_CLOUD_CI_SIGNER_ACCESS=E2=80=9D,=
+=E2=80=9CCONFIRMED_REPOSITORY_ONLY=E2=80=9D,=E2=80=9CT2=E2=80=9D],[=E2=80=
+=9CACTION_SIGNING_EXFIL=E2=80=9D,=E2=80=9CCONFIRMED_HARMLESS_PR_ONLY=E2=80=
+=9D,=E2=80=9CT2=E2=80=9D],[=E2=80=9COBSERVED_CONSEQUENCE=E2=80=9D,=E2=80=9C=
+CONFIRMED_PROPRIETARY_REPO_ACCESS=E2=80=9D,=E2=80=9CT2=E2=80=9D]],=E2=80=9C=
+trust_boundaries_crossed=E2=80=9D:[=E2=80=9Cpublic
+community application->account/session plane=E2=80=9D,=E2=80=9Caccount/sess=
+ion
+plane->internal GitHub/source
+plane=E2=80=9D],=E2=80=9Cauthority_transitions=E2=80=9D:[=E2=80=9Ccommunity=
+ authentication
+material->cross-service identity=E2=80=9D,=E2=80=9Ccross-service identity->=
+internal
+repository authority=E2=80=9D],=E2=80=9Cpersistence=E2=80=9D:=E2=80=9CUNKNO=
+WN=E2=80=9D,=E2=80=9Cpropagation=E2=80=9D:=E2=80=9CUNKNOWN=E2=80=9D,=E2=80=
+=9Cconfirmed_count=E2=80=9D:7,=E2=80=9Cinferred_count=E2=80=9D:0,=E2=80=9Cu=
+nknown_count=E2=80=9D:3,=E2=80=9Cstrongest_evidence=E2=80=9D:=E2=80=9CWSJ
+2026-09-18 report describing OpenAI-confirmed bug-bounty
+case=E2=80=9D,=E2=80=9Cstrongest_counterevidence=E2=80=9D:=E2=80=9Cauthoriz=
+ed researchers stopped
+after harmless proof; no malicious production action
+established=E2=80=9D,=E2=80=9Clikely_detection_points=E2=80=9D:[=E2=80=9Csa=
+me token/session family
+presented across trust domains=E2=80=9D,=E2=80=9Ccommunity-origin credentia=
+l accessing
+source repositories=E2=80=9D,=E2=80=9Cnew repository action immediately aft=
+er
+low-trust token use=E2=80=9D],=E2=80=9Ccontainment_points=E2=80=9D:[=E2=80=
+=9Caudience-bound
+tokens=E2=80=9D,=E2=80=9Cservice-specific sessions=E2=80=9D,=E2=80=9Cfresh =
+elevation for
+source/release authority=E2=80=9D,=E2=80=9Cshort-lived repository
+credentials=E2=80=9D],=E2=80=9Cqp_authority_policy_implication=E2=80=9D:=E2=
+=80=9CALLOW(T,A) !=3D
+ALLOW(T,B); authority proof must bind
+audience/capability/resource/expiry=E2=80=9D,=E2=80=9Cfalsifier=E2=80=9D:=
+=E2=80=9Cprimary technical
+evidence shows distinct independently authenticated credentials were
+used for GitHub rather than the Discourse-obtained authentication
+material=E2=80=9D,=E2=80=9Cunresolved_questions=E2=80=9D:[=E2=80=9Cexact to=
+ken type=E2=80=9D,=E2=80=9CCI/release
+reach=E2=80=9D,=E2=80=9Cdurable delegation after
+revocation=E2=80=9D],=E2=80=9Cnext_evidence_request=E2=80=9D:=E2=80=9Cprima=
+ry OpenAI/Hacktron
+technical disclosure establishing token audience semantics and exact
+GitHub privilege scope=E2=80=9D}
+
+10 NEXT-HOUR RESEARCH QUEUE
+
+- Highest information gain: locate primary OpenAI or Hacktron
+technical disclosure for the July Discourse case and resolve token
+audience semantics.
+
+- Determine whether repository access carried CI/workflow/release
+authority or only source/PR authority.
+
+- Search for independent production incidents where low-trust
+SaaS/session tokens crossed into code, cloud, agent or signer
+authority.
+
+- Test the broader cluster against current OAuth/MCP token-audience
+failures and identify cases where audience restriction alone would not
+contain delegated authority.

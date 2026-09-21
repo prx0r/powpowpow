@@ -1,0 +1,786 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id EayQZspt0XRM
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 12:15:46 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=G2D0EfPUKb2SaLtVm3Iga/iKnv+hvNaPIe3K2l2XaZG7wL+SSdHRrWxnzdAewfrZOrmQrtwt0
+	kAJZFwAjHnA6938MxnC2/zZ9B+snvSPbqBQo/dqO8kpFar6nDpfsTmng/YjY/mB+V3hy6GJs2Bg
+	I5BmumvBItspvswM9M+QtwCVgZHiVZf+G/7qDo5wB+JGa3AKE+OH7CQKA9yFESZOKQqOXaIE5l3
+	8gHxJWN2C720HPfxvjcgRtsl+bzWLy5IUS4UUMcgWklOvz8V5wdwt4ByBlzVJZnjD+WN7Zwgfgw
+	oXIFZfGJfv6sU7E61bZViYeoNwCFLKrh7i5k2vhsMVXA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:References:In-Reply-To:from:reply-to:cc:resent-date
+	:resent-from:resent-to:resent-cc:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789906546; x=1790511346; bh=2GXdTvDa
+	dXN+bFKCyJF4sAbh5I92IgIe3Y6EVpaTtIQ=; b=bQ5gki9+V0PDh+voircrgMsnIpQ89htV3Mm
+	wxO2mQ8aN2VsH/PiFJllYM8RrvF6ralwe8/nuELwim4LIiFC9pYUMeu/iO17/JGrNKG1o+2UAH/
+	HLmhYh2Y5gLVF8wtmXVUUKwIyuNklCKfZijE8O8ku7zfm51KubZgTd05OTVgZOS6EK/0XQnID8z
+	if/eyY5s36xlHuePeZgmhX2EgvcNb5bSab/xvxyOVt9CF6TBJEEBUf7APANmbyrgLu/qUlwb5g7
+	lDERyLQsCdhPFJ0AbvSdmn3uUqCRc+x7ZmOGtkuR8wjcGgon7y9zjBr314SObc7ulSPNJny9iqu
+	4M9ckwg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Fv7mMpAP;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Fv7mMpAP;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 956f58d0204a3-6729c4030f0so694308d50.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 05:15:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789906546; cv=none;
+        d=google.com; s=arc-20260327;
+        b=pLy1PZC/Gqj9Bjs4TSJo710WH9+/3vJFUiVA4sRekhG45wgdk2HKyQC6Avrj9Nsxf9
+         Uv6Evf2o3EXn38xQ6NzAlUTQpdVyHIfeRJly+KH1MiqMLv9RMM0DvM9ZYvHuTkOsZ+/W
+         DlQJ+tO8mpW4CNBU7edVnjWkp1PgAAEb1+nwXuBSfZVxGXDoNgvIYosAgGOmZ7Vw2HwO
+         PihdNeaUuKjk0Tduq9Z4xt4d5UgqEr5TJc7l0NbPZSeRUihjr4ScmeFJfDznbJgN83uw
+         Ont4dC5ZrS5Lxtt8byhosKGwN0U2Ec/BEcK7AL71KAL2jYtgn7R+nlmdRhsEuUXuAYOs
+         Ii0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:references:in-reply-to
+         :dkim-signature;
+        bh=2GXdTvDadXN+bFKCyJF4sAbh5I92IgIe3Y6EVpaTtIQ=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=DOEAG4gZ/onfmgqK45q1/XPf9btOhRcoXxksexk2M0Xzgc1clTjWZKu8v3NUXwGjHV
+         QVi/8ykcoVXsjOqgGVeyhVDJgZTIRnhqhEyyi7leE3eZVKP9LW3d29SdJR29okB+X6Vd
+         u+csQuBsoFY/bo7NAZL2Q0tSBhwupX+hMCsMU2DsL74LxORJkxEpkr85NFRb5jCkVPMS
+         kSxCRemWlsiugGSOoXOUHdG9D2xthOn6YmSeVWwUAnu1+HbYo02P2jOovRxU1/CZKM7c
+         hR7y62vRkKocptkbIlaVr7vu7xzlBe51l/HjPWUzVFTtercDZvp2X2B77j4GmBVLSFwj
+         wRpA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789906546; x=1790511346; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=2GXdTvDadXN+bFKCyJF4sAbh5I92IgIe3Y6EVpaTtIQ=;
+        b=Fv7mMpAPNRUQ6AmkL30fMdLW/4VEqKZeuPl8KW/hwImEZqeL10WRIZ4fT//LYoL3nc
+         LhVNGFPUOZOeqMTYZcbnHTf3fTAk5k5w2wVmSIt9/fj1RpdMjYVBahR76HaWLHI9sfXB
+         S/Zqox6N3raPuGNZVuxR/VjMFKbVvKEtkWdQGqoIoJtcFd+T4XYm9QueZi8gSYMmCmKV
+         BeSbawU4yOselEVcDlgmf9H9h/FIRpH+IjNmz0R2u2nQQaQcYYEt+/B4mnxexvpiCwfr
+         k50n0sUCBX4yLEO7EZkAhuRuPAyxW6mK8wjOJETfeotFws2u4k6IK3eYgCARdqS/BOg+
+         3QnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789906546; x=1790511346;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=2GXdTvDadXN+bFKCyJF4sAbh5I92IgIe3Y6EVpaTtIQ=;
+        b=lQOzWcAnkVD0ViDgm1J67Y8oLIdQzi5OJXBtY4qr2ndzISRAQJTeDzgdJRK8yOzuDx
+         Adlka+TfjuRaG8m9Z7BalKy3ZTAIscXlZwEDBPwFkSDDUyOyPKTVzXntYnvovzcqENPa
+         DpfKXuhIxJLOl9X6TgdVaOxgxGjjLzhvyw7zIIDGCRalnwwXuYky/Jn2Ew+i+cRqwsQv
+         IDV4Tak9QiIDPi71mdXDSHQWeOO9a7lw45+0CK/l0Jhu/GDeK720XlIlEV25cwcKqI2Y
+         VExlblb84Zcn9ff3RkKvnPD/A4OwYqPTdDx9Gn3ZM30GK8bxAtUu7HlK0PI/kM47uP4I
+         s2xg==
+X-Gm-Message-State: AFuF++k9L/+WpZwXuIAgr3u92CM+b1Rxesc6scQtRoedpkSEF2iLzSK9
+	+J6GW5JVKJHeuXx9dMp/zZtbI3BjDKqe3bmknHU1smkR/I1puM4l7EhDEmnOR2y5UnzjGz5scD7
+	47jeWUcrl3b6hH/L8ai0ewrAOqPLm4qYgyA==
+X-Gm-Gg: AYBFou1ABhjNCk1OGiv/P9oEB5eLp2IZSQtfte/l84XGfEcNDjiYgrjZIA3fJoEBT4j
+	+PqG46piIS5PUoC9PFBdnkl2872Nrg3EJN15ElgHLK+Hs4nZDniErnH38dB6LpWA/6Tcffsdjst
+	PO5UThztxF3R7+TfPh6ywMnrjXc46fngSd/AsFdb+uuHEGEYRSLO41meWJGlv215bFhLkxZwdad
+	sa3JW3jYI1se0FCY7s0MBawTYa9KEjwTKMi6u6UvWQYKuIaHDTCnAFuf3yTM7mqjGu9pVnUXr4N
+	JIZLv+1tNNyWATosCr6rHLk9ZJH1AdFrm8aQnbitMXfg3gnP7fEHJ57bujE/ZyZRaA1fy+mICzK
+	g/Rm6dCfLZY62ULH7C69K5CRcgzljRKvcvqDI9fSXaaXzCYFFAYPEh62ccLgTP0MmHVPvgCmnnG
+	YuG289tY4=
+X-Received: by 2002:a05:690e:bc2:b0:671:1bdd:899 with SMTP id
+ 956f58d0204a3-6717fc960c3mr2211429d50.13.1789906546028; Sun, 20 Sep 2026
+ 05:15:46 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:15:45 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:15:45 -0500
+In-Reply-To: <CAPdrGekHngq=gav4iPb=XOANjrztC1P-c9fUcNYv2bhphA5irA@mail.gmail.com>
+References: <CAPdrGekHngq=gav4iPb=XOANjrztC1P-c9fUcNYv2bhphA5irA@mail.gmail.com>
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 07:15:45 -0500
+X-Gm-Features: AcwNN1VR9tScmdVjE7qQ9wv-Z2wmSNpyDfmK82WdKoqICb1NxYYmRBU4BvGqmbo
+Message-ID: <CAPdrGemUToMRJAgan6F5pYkFCzsP0728UV4C_KYsGvUYw35zmg@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_POW=2ESYSTEMS_=E2=80=94_PTech_=2B_PowPowPow_Review?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000db783e065be91772"
+
+--000000000000db783e065be91772
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Forwarding because this POW/PTech material was sent to the personal inbox
+earlier in this conversation but not to Intelligent Others. Preserve this
+as current project context/source material.
+
+
+---------- Forwarded message ---------
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 05:31:51 -0500
+Subject: POW.SYSTEMS =E2=80=94 PTech + PowPowPow Review
+To: tradesprior@gmail.com
+
+POW.SYSTEMS =E2=80=94 PTech + PowPowPow Review
+
+After reviewing the latest PTech thesis/material against the live
+prx0r/powpowpow repo, I think *pow.systems is the cleaner end-state*.
+
+One caveat: there isn=E2=80=99t currently an accessible prx0r/ptech GitHub =
+repo, so
+this review uses the latest PTech material generated today plus the live
+PowPowPow codebase.
+Core conclusion
+
+PTech is already conceptually the parent of PowPowPow, while PowPowPow
+contains the much more mature operating machinery:
+
+   - immutable raw capture
+   - provenance
+   - versioned transforms
+   - daily state
+   - experiments/backtests
+   - live collectors
+   - a strict =E2=80=9Cevery derived number must resolve back to evidence=
+=E2=80=9D doctrine
+
+So the right move is *not to kill PowPowPow*.
+
+It is to *promote the common machinery and make compute one system inside a
+broader physical-technology economic system*.
+The current conceptual structure PTECH physical technology economics =E2=94=
+=82 =E2=94=9C=E2=94=80=E2=94=80
+repair =E2=94=9C=E2=94=80=E2=94=80 electronics =E2=94=9C=E2=94=80=E2=94=80 =
+solar / batteries =E2=94=9C=E2=94=80=E2=94=80 EV infrastructure =E2=94=9C=
+=E2=94=80=E2=94=80
+robots =E2=94=9C=E2=94=80=E2=94=80 homelab =E2=94=9C=E2=94=80=E2=94=80 3D p=
+rinting =E2=94=9C=E2=94=80=E2=94=80 trade equipment =E2=94=82 =E2=94=94=E2=
+=94=80=E2=94=80 POWPOWPOW
+compute economics =E2=94=9C=E2=94=80=E2=94=80 mining =E2=94=9C=E2=94=80=E2=
+=94=80 inference =E2=94=9C=E2=94=80=E2=94=80 GPU rental =E2=94=9C=E2=94=80=
+=E2=94=80 CPU markets
+=E2=94=9C=E2=94=80=E2=94=80 protocols =E2=94=94=E2=94=80=E2=94=80 crypto ne=
+tworks
+
+This is a useful ontology, but not necessarily the best consumer-facing
+brand structure.
+
+The actual shared thesis is broader:
+PHYSICAL RESOURCE =E2=86=93 capability condition location availability ener=
+gy
+requirement repairability replacement cost productive output market value =
+=E2=86=93
+POSSIBLE ACTIONS =E2=86=93 buy repair upgrade repurpose rent operate mine s=
+erve
+inference sell part-out scrap =E2=86=93 ECONOMIC OUTCOME
+
+That is one system.
+Recommended umbrella POW.SYSTEMS
+
+*The economics of physical technology.*
+POW.SYSTEMS THE ECONOMICS OF PHYSICAL TECHNOLOGY =E2=94=82 =E2=94=8C=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=B4=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+=E2=94=82 COMMON GARDEN =E2=94=82 =E2=94=82 =E2=94=82 =E2=94=82 Source =E2=
+=94=82 =E2=94=82 Observation =E2=94=82 =E2=94=82 Asset =E2=94=82 =E2=94=82 =
+Component =E2=94=82 =E2=94=82
+Place =E2=94=82 =E2=94=82 State =E2=94=82 =E2=94=82 Transformation =E2=94=
+=82 =E2=94=82 Metric =E2=94=82 =E2=94=82 Hypothesis =E2=94=82 =E2=94=82 Out=
+come =E2=94=82
+=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98 =E2=94=82 =E2=94=
+=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=90 =E2=86=93 =E2=86=93 =E2=86=93
+COMPUTE REPAIR POWER =E2=94=82 =E2=94=82 =E2=94=82 Qubic electronics solar =
+Monero components
+batteries GPUs faults EV mining salvage grid inference resale inverters
+rentals repairs tariffs =E2=94=82 =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80 later =E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=90 =E2=86=93 ROBOTICS
+fabrication industrial tools
+
+Externally, I would stop presenting *PTech* as a separate consumer product.
+
+Internally, ptech can remain the physical-technology schema/research
+project during migration.
+Canonical question
+
+The project becomes:
+
+*What is the highest-value use of a physical technological asset right now?=
+*
+
+For a 4090:
+buy =C2=A3X broken =C2=A3Y repair =C2=A3Z parts =C2=A3A mine =E2=86=92 =C2=
+=A3/day rent =E2=86=92 =C2=A3/day serve
+inference =E2=86=92 =C2=A3/day resell =E2=86=92 =C2=A3 part-out =E2=86=92 =
+=C2=A3
+
+For an inverter:
+buy diagnose replace board repair resell install salvage
+
+For a robot:
+asset fault part skills required repair cost productive value resale value
+
+For a tradesperson:
+person skills + tools + location =C3=97 local broken/underpriced assets =C3=
+=97 parts
+availability =C3=97 repair knowledge =C3=97 market demand =E2=86=93 "What c=
+an this person
+profitably fix today?"
+
+This is the same underlying computation as the existing compute allocator.
+Only the action set changes.
+The universal primitive
+
+PTech currently frames the world as:
+ASSET =C3=97 CONDITION =C3=97 PLACE =C3=97 TIME
+
+PowPowPow effectively frames it as:
+RESOURCE =C3=97 WORKLOAD =C3=97 MARKET =C3=97 TIME
+
+Merge them into:
+Opportunity =3D Asset =C3=97 State =C3=97 Action =C3=97 Place =C3=97 Time
+
+Then define:
+V(a) =3D expected economic outcome of action a
+
+and choose:
+a* =3D argmax_a V(a)
+
+That is *Autoassign generalized to the physical economy*.
+
+Repair is an action.
+
+Mining is an action.
+
+Inference is an action.
+
+Selling is an action.
+
+Parting-out is an action.
+
+Installing is an action.
+
+Replacing is an action.
+
+Doing nothing is an action.
+
+This should become the conceptual heart of pow.systems.
+Repo architecture
+
+Do not combine everything by dumping PTech code into PowPowPow.
+
+Extract the generic kernel:
+pow/ =E2=94=9C=E2=94=80=E2=94=80 core/ =E2=94=82 =E2=94=9C=E2=94=80=E2=94=
+=80 source.py =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 observation.py =E2=94=
+=82 =E2=94=9C=E2=94=80=E2=94=80 provenance.py =E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 entity.py =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80=
+ state.py =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 transform.py =E2=94=82 =E2=
+=94=9C=E2=94=80=E2=94=80 hypothesis.py =E2=94=82 =E2=94=9C=E2=94=80=E2=94=
+=80
+experiment.py =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 outcome.py =E2=94=82 =
+=E2=94=9C=E2=94=80=E2=94=80 domains/ =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 =
+compute/ =E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80
+current PowPowPow =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 repair/ =E2=94=82 =
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 current PTech repair =E2=94=82 =E2=94=
+=9C=E2=94=80=E2=94=80 power/ =E2=94=82
+=E2=94=94=E2=94=80=E2=94=80 robotics/ =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80=
+ markets/ =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 exchanges/ =E2=94=82 =E2=94=
+=9C=E2=94=80=E2=94=80 marketplaces/ =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80
+distributors/ =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 energy/ =E2=94=82 =E2=
+=94=94=E2=94=80=E2=94=80 site/
+
+Then remove crypto assumptions from the universal layer:
+chain_id =E2=86=92 system_id network_id =E2=86=92 system_id coin =E2=86=92 =
+asset / instrument miner
+=E2=86=92 supplier
+
+But do *not* abstract away domain metrics like hashrate, epoch, difficulty,
+etc.
+
+Those stay inside domains/compute.
+Site structure
+
+The existing PowPowPow visual system is worth preserving.
+
+Its stark black/white industrial instrumentation style becomes even
+stronger under POW.SYSTEMS.
+
+Suggested site nav:
+POW.SYSTEMS SYSTEMS ASSETS OPPORTUNITIES CHANGES RESEARCH COMPUTE Qubic
+Monero GPU Rental Inference REPAIR Electronics GPUs Networking Power
+Electronics POWER Solar Batteries EV Electricity FABRICATION 3D Printers
+CNC Tools ROBOTICS [grows later]
+
+Critically, coin pages should stop being the primary ontology.
+
+Today:
+/QUBIC /XMR /KAS
+
+Eventually:
+/asset/rtx-4090 /asset/victron-multiplus-ii /asset/bambu-x1c /system/qubic
+/system/monero /system/akash /opportunities /repair /compute /power
+
+Qubic becomes a system consuming CPU resources.
+
+Monero becomes a workload competing for CPU/electricity.
+
+Akash becomes a compute market.
+
+eBay becomes another market.
+
+Mouser becomes a parts market.
+
+Electricity becomes an input market.
+
+That is much deeper than a cryptocurrency fundamentals terminal.
+Recommended product structure BRAND pow.systems PRODUCT economic operating
+system for physical technology KERNEL garden/provenance/state machinery
+SYSTEM 01 Compute =E2=86=90 current PowPowPow SYSTEM 02 Repair =E2=86=90 cu=
+rrent PTech core
+SYSTEM 03 Power SYSTEM 04 Robotics / fabrication OUTPUTS website MCP API
+research opportunities agent execution
+
+*PowPowPow becomes the seed that grew into POW.SYSTEMS rather than a
+project you abandon.*
+Canonical moat POW moat =3D unique economic transformations =C3=97 continuo=
+us
+physical-state collection =C3=97 time
+
+This matches the broader data-garden doctrine:
+unique transformation =C3=97 continuous collection =C3=97 time
+
+The website, MCP, API, research, content and execution agents are outlets.
+
+The historical, provenance-preserving state is the asset.
+
+--000000000000db783e065be91772
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Forwarding because this POW/PTech material was sent to the personal inbo=
+x earlier in this conversation but not to Intelligent Others. Preserve this=
+ as current project context/source material.</p>
+<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">--=
+-------- Forwarded message ---------<br>From: Prior Trades &lt;<a href=3D"m=
+ailto:tradesprior@gmail.com">tradesprior@gmail.com</a>&gt;<br>Date: Sun, 20=
+ Sep 2026 05:31:51 -0500<br>Subject: POW.SYSTEMS =E2=80=94 PTech + PowPowPo=
+w Review<br>To: <a href=3D"mailto:tradesprior@gmail.com">tradesprior@gmail.=
+com</a></div><br>POW.SYSTEMS =E2=80=94 PTech + PowPowPow Review
+<p>After reviewing the latest PTech thesis/material against the live <code>=
+prx0r/powpowpow</code> repo, I think <strong>pow.systems is the cleaner end=
+-state</strong>.</p>
+<p>One caveat: there isn=E2=80=99t currently an accessible <code>prx0r/ptec=
+h</code> GitHub repo, so this review uses the latest PTech material generat=
+ed today plus the live PowPowPow codebase.</p>
+
+Core conclusion
+<p>PTech is already conceptually the parent of PowPowPow, while PowPowPow c=
+ontains the much more mature operating machinery:</p>
+<ul>
+<li>immutable raw capture</li>
+<li>provenance</li>
+<li>versioned transforms</li>
+<li>daily state</li>
+<li>experiments/backtests</li>
+<li>live collectors</li>
+<li>a strict =E2=80=9Cevery derived number must resolve back to evidence=E2=
+=80=9D doctrine</li>
+</ul>
+<p>So the right move is <strong>not to kill PowPowPow</strong>.</p>
+<p>It is to <strong>promote the common machinery and make compute one syste=
+m inside a broader physical-technology economic system</strong>.</p>
+
+
+
+The current conceptual structure
+
+<code>PTECH
+physical technology economics
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 repair
+=E2=94=9C=E2=94=80=E2=94=80 electronics
+=E2=94=9C=E2=94=80=E2=94=80 solar / batteries
+=E2=94=9C=E2=94=80=E2=94=80 EV infrastructure
+=E2=94=9C=E2=94=80=E2=94=80 robots
+=E2=94=9C=E2=94=80=E2=94=80 homelab
+=E2=94=9C=E2=94=80=E2=94=80 3D printing
+=E2=94=9C=E2=94=80=E2=94=80 trade equipment
+=E2=94=82
+=E2=94=94=E2=94=80=E2=94=80 POWPOWPOW
+    compute economics
+    =E2=94=9C=E2=94=80=E2=94=80 mining
+    =E2=94=9C=E2=94=80=E2=94=80 inference
+    =E2=94=9C=E2=94=80=E2=94=80 GPU rental
+    =E2=94=9C=E2=94=80=E2=94=80 CPU markets
+    =E2=94=9C=E2=94=80=E2=94=80 protocols
+    =E2=94=94=E2=94=80=E2=94=80 crypto networks
+</code>
+<p>This is a useful ontology, but not necessarily the best consumer-facing =
+brand structure.</p>
+<p>The actual shared thesis is broader:</p>
+
+<code>PHYSICAL RESOURCE
+      =E2=86=93
+capability
+condition
+location
+availability
+energy requirement
+repairability
+replacement cost
+productive output
+market value
+      =E2=86=93
+POSSIBLE ACTIONS
+      =E2=86=93
+buy
+repair
+upgrade
+repurpose
+rent
+operate
+mine
+serve inference
+sell
+part-out
+scrap
+      =E2=86=93
+ECONOMIC OUTCOME
+</code>
+<p>That is one system.</p>
+
+
+
+Recommended umbrella
+
+POW.SYSTEMS
+<p><strong>The economics of physical technology.</strong></p>
+
+<code>                    POW.SYSTEMS
+
+        THE ECONOMICS OF PHYSICAL TECHNOLOGY
+
+                         =E2=94=82
+              =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+              =E2=94=82   COMMON GARDEN     =E2=94=82
+              =E2=94=82                     =E2=94=82
+              =E2=94=82 Source              =E2=94=82
+              =E2=94=82 Observation         =E2=94=82
+              =E2=94=82 Asset               =E2=94=82
+              =E2=94=82 Component           =E2=94=82
+              =E2=94=82 Place               =E2=94=82
+              =E2=94=82 State               =E2=94=82
+              =E2=94=82 Transformation      =E2=94=82
+              =E2=94=82 Metric              =E2=94=82
+              =E2=94=82 Hypothesis          =E2=94=82
+              =E2=94=82 Outcome             =E2=94=82
+              =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+                         =E2=94=82
+       =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+       =E2=86=93                 =E2=86=93                 =E2=86=93
+    COMPUTE            REPAIR             POWER
+       =E2=94=82                 =E2=94=82                 =E2=94=82
+    Qubic             electronics        solar
+    Monero            components         batteries
+    GPUs              faults             EV
+    mining            salvage            grid
+    inference         resale             inverters
+    rentals           repairs            tariffs
+       =E2=94=82
+       =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80 later =E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+                                           =E2=86=93
+                                      ROBOTICS
+                                      fabrication
+                                      industrial
+                                      tools
+</code>
+<p>Externally, I would stop presenting <strong>PTech</strong> as a separate=
+ consumer product.</p>
+<p>Internally, <code>ptech</code> can remain the physical-technology schema=
+/research project during migration.</p>
+
+
+
+Canonical question
+<p>The project becomes:</p>
+<blockquote>
+<p><strong>What is the highest-value use of a physical technological asset =
+right now?</strong></p>
+</blockquote>
+<p>For a 4090:</p>
+
+<code>buy =C2=A3X
+broken =C2=A3Y
+repair =C2=A3Z
+parts =C2=A3A
+
+mine =E2=86=92 =C2=A3/day
+rent =E2=86=92 =C2=A3/day
+serve inference =E2=86=92 =C2=A3/day
+resell =E2=86=92 =C2=A3
+part-out =E2=86=92 =C2=A3
+</code>
+<p>For an inverter:</p>
+
+<code>buy
+diagnose
+replace board
+repair
+resell
+install
+salvage
+</code>
+<p>For a robot:</p>
+
+<code>asset
+fault
+part
+skills required
+repair cost
+productive value
+resale value
+</code>
+<p>For a tradesperson:</p>
+
+<code>person
+skills + tools + location
+          =C3=97
+local broken/underpriced assets
+          =C3=97
+parts availability
+          =C3=97
+repair knowledge
+          =C3=97
+market demand
+          =E2=86=93
+&quot;What can this person profitably fix today?&quot;
+</code>
+<p>This is the same underlying computation as the existing compute allocato=
+r. Only the action set changes.</p>
+
+
+
+The universal primitive
+<p>PTech currently frames the world as:</p>
+
+<code>ASSET =C3=97 CONDITION =C3=97 PLACE =C3=97 TIME
+</code>
+<p>PowPowPow effectively frames it as:</p>
+
+<code>RESOURCE =C3=97 WORKLOAD =C3=97 MARKET =C3=97 TIME
+</code>
+<p>Merge them into:</p>
+
+<code>Opportunity =3D
+Asset
+=C3=97 State
+=C3=97 Action
+=C3=97 Place
+=C3=97 Time
+</code>
+<p>Then define:</p>
+
+<code>V(a) =3D expected economic outcome of action a
+</code>
+<p>and choose:</p>
+
+<code>a* =3D argmax_a V(a)
+</code>
+<p>That is <strong>Autoassign generalized to the physical economy</strong>.=
+</p>
+<p>Repair is an action.</p>
+<p>Mining is an action.</p>
+<p>Inference is an action.</p>
+<p>Selling is an action.</p>
+<p>Parting-out is an action.</p>
+<p>Installing is an action.</p>
+<p>Replacing is an action.</p>
+<p>Doing nothing is an action.</p>
+<p>This should become the conceptual heart of <code>pow.systems</code>.</p>
+
+
+
+Repo architecture
+<p>Do not combine everything by dumping PTech code into PowPowPow.</p>
+<p>Extract the generic kernel:</p>
+
+<code>pow/
+=E2=94=9C=E2=94=80=E2=94=80 core/
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 source.py
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 observation.py
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 provenance.py
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 entity.py
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 state.py
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 transform.py
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 hypothesis.py
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 experiment.py
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 outcome.py
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 domains/
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 compute/
+=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 current PowPowPow
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 repair/
+=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 current PTech repair
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 power/
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 robotics/
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 markets/
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 exchanges/
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 marketplaces/
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 distributors/
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 energy/
+=E2=94=82
+=E2=94=94=E2=94=80=E2=94=80 site/
+</code>
+<p>Then remove crypto assumptions from the universal layer:</p>
+
+<code>chain_id   =E2=86=92 system_id
+network_id =E2=86=92 system_id
+coin       =E2=86=92 asset / instrument
+miner      =E2=86=92 supplier
+</code>
+<p>But do <strong>not</strong> abstract away domain metrics like hashrate, =
+epoch, difficulty, etc.</p>
+<p>Those stay inside <code>domains/compute</code>.</p>
+
+
+
+Site structure
+<p>The existing PowPowPow visual system is worth preserving.</p>
+<p>Its stark black/white industrial instrumentation style becomes even stro=
+nger under POW.SYSTEMS.</p>
+<p>Suggested site nav:</p>
+
+<code>POW.SYSTEMS
+
+SYSTEMS    ASSETS    OPPORTUNITIES    CHANGES    RESEARCH
+
+COMPUTE
+  Qubic
+  Monero
+  GPU Rental
+  Inference
+
+REPAIR
+  Electronics
+  GPUs
+  Networking
+  Power Electronics
+
+POWER
+  Solar
+  Batteries
+  EV
+  Electricity
+
+FABRICATION
+  3D Printers
+  CNC
+  Tools
+
+ROBOTICS
+  [grows later]
+</code>
+<p>Critically, coin pages should stop being the primary ontology.</p>
+<p>Today:</p>
+
+<code>/QUBIC
+/XMR
+/KAS
+</code>
+<p>Eventually:</p>
+
+<code>/asset/rtx-4090
+/asset/victron-multiplus-ii
+/asset/bambu-x1c
+
+/system/qubic
+/system/monero
+/system/akash
+
+/opportunities
+/repair
+/compute
+/power
+</code>
+<p>Qubic becomes a system consuming CPU resources.</p>
+<p>Monero becomes a workload competing for CPU/electricity.</p>
+<p>Akash becomes a compute market.</p>
+<p>eBay becomes another market.</p>
+<p>Mouser becomes a parts market.</p>
+<p>Electricity becomes an input market.</p>
+<p>That is much deeper than a cryptocurrency fundamentals terminal.</p>
+
+
+
+Recommended product structure
+
+<code>BRAND       pow.systems
+
+PRODUCT     economic operating system
+            for physical technology
+
+KERNEL      garden/provenance/state machinery
+
+SYSTEM 01   Compute
+            =E2=86=90 current PowPowPow
+
+SYSTEM 02   Repair
+            =E2=86=90 current PTech core
+
+SYSTEM 03   Power
+
+SYSTEM 04   Robotics / fabrication
+
+OUTPUTS     website
+            MCP
+            API
+            research
+            opportunities
+            agent execution
+</code>
+<p><strong>PowPowPow becomes the seed that grew into POW.SYSTEMS rather tha=
+n a project you abandon.</strong></p>
+
+
+
+Canonical moat
+
+<code>POW moat
+=3D
+unique economic transformations
+=C3=97 continuous physical-state collection
+=C3=97 time
+</code>
+<p>This matches the broader data-garden doctrine:</p>
+
+<code>unique transformation
+=C3=97 continuous collection
+=C3=97 time
+</code>
+<p>The website, MCP, API, research, content and execution agents are outlet=
+s.</p>
+<p>The historical, provenance-preserving state is the asset.</p></div>
+
+--000000000000db783e065be91772--

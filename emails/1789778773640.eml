@@ -1,0 +1,398 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id 6kjwKcPAEYDI
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 00:46:12 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=Xjktp+b7m8h6up20hlMAlmd/P1ztGhe/xtl8DPfKDJAei1G/xu0jOD+YXxvjbRM7uogku0gDe
+	d6FtVoGu4aYP1I7m9E4SA7Bd3h14yYaGirFV8SdZ5NjnFrpr3KoNxy5J1PwXmeUs6xc+d6o3cVF
+	AnYqjFM29UcPQb5C6NHjFMfBPBSPL1Q6t4P+OV1mmjmLIotNFrgQJdhRhY91gVII/fUogkjZlmc
+	ytht29xBhtBOWoEsBux/US6jBtogeIgue+VdTr3CuecDD3WEPBtyaTSr2xqsic8WHteoptKY5K7
+	CM0iJyV2wIsifvRsz6PJXtBf9sa10IbkCe+LD46O2hZg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789778773; x=1790383573; bh=c+7VrO5p
+	9a/a/PU3uZr5aewt2mlSoOjeaHxP7VH2IiA=; b=bjjDvEuJf8sYbkbkbQNnMKnOCa9tHlP1fd1
+	fUKuPgVi58UdgHlEzSQGsRoR0XB6ojh8rulrV7WOO8sJ9rpBnRcoVy79tQe7r6ABRF0f6KF7hLx
+	NBQ/F9T60QfGj65x6TwRanxCOdmOJCNATzcb0NohDFVJojSi9chuqKRjOytdH+4GEkbRFagHaUn
+	XLaryxgImulycWv6T5RS1At3k5TeVSImeSkq4SRgMBLn8yofHShzNKFShVrAcs62ZY9iFVhBG9o
+	70fOoyR5gOYvkADUpaQkevJLcKNV05SeGOC+QfTsxr0t+07VlR/paL4oKIL2DUfQSvG3YxTp6lK
+	JFnHZWw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IqzFJyAW;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IqzFJyAW;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d43ac6072so13250987b3.0
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 17:46:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789778772; cv=none;
+        d=google.com; s=arc-20260327;
+        b=IFbHCJOZdU0bL/6hUz4XiLeRZosCk1FchHsiD80XjEnQMpPxiA1y52ZkQCND1tJPSi
+         lJchOZdcmXbvvfKGuKubHUaogFkpiUZx13iJYmrNieHMpLNdbAv/UszbLt/7kQYPoTIJ
+         dQLcSqSoBWNDgdY29Gi5fWRiUgTlfVbHPfn8gu5mSu6lcWae290CYH8VDywBYhjIUc3G
+         dEWUrtLWj4sV1CPRDAr/KuMF1cct75dZaQufcWmDHX4+JqkDqZEbxHB6DU/nlcOH6MVo
+         p6ika+417sFxLjDVVbuZoKtbADo2AJ12bZAtgjyVZCwdMRwgeCIx+uHrbtquXlSXRsp7
+         HTqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=c+7VrO5p9a/a/PU3uZr5aewt2mlSoOjeaHxP7VH2IiA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=dsfjA3thvAoK1HTo6qgatn0KcSOvbT6mpkwsepdAuvhwLAD8YBUv5FWO/xA+PrtfA5
+         /aPQ7fya6B6hpe2Chz8Ty1p/nFV3YzVkKuHh+IYfj1jYlJo1wzXl7EYo4CutzSefWg6f
+         wGAZ3DBe4rMs0ZjehwSF3FWFR0T5DnLmlmNrQ7/K+HGs4q4EcxgJzKCIEBdMIyxL2tzV
+         RUsBQAQ0V9U2P5WuOYkpCh/8f25YPGSK/yLjzvG5GwmoepQq+JiStu5UJNqO3aFi737p
+         Lfe+3oIzARMSNEByDNpdZRvNZJazFNjwBIarILl4ruD6vfFAwaNp8IYiKPgFDrOL8dAl
+         wwJQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789778772; x=1790383572; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=c+7VrO5p9a/a/PU3uZr5aewt2mlSoOjeaHxP7VH2IiA=;
+        b=IqzFJyAWgNz17yZKREb1qTaHpf1R4eiApMdeG7OMBxoM9EmJhblWPi/RxSR17L5jJD
+         boqBUG/nVio4ZrnIrekFdIl3J9Gl2KK2TYaEKh0WEW8yyRBGpbMbPSC0vQoC8lF1AcqU
+         2KRjKTcGVQkmOugMT0FqEKE78Ql6Nk9fFflojnO8J/2448uJwiv32wlP6imTwOUf7uNF
+         MeRXsz3q3HHf644GmaOgIeNSiNAD1zEISogYhfGP+oyAKhBGL7QYwvoojYWM1XEQQ12K
+         3SaCWCMT9dfZRxj1uN+iK8WRxud2RaTy3HjQ3Hak2YdXjg64sPa3FKbSc0BOTUAIhruS
+         bLKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789778772; x=1790383572;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=c+7VrO5p9a/a/PU3uZr5aewt2mlSoOjeaHxP7VH2IiA=;
+        b=KoPLhlJIhm0xnL1fvH85pEAtOdMzbeyRcSQ6k6tWBx/VwXdQpumuc8c+kkXjZbdxMi
+         2VlNJqCPhgYo0Ub04NtKEAdtRn1n2yw/thUvmRa/ITHveQrHXcJHKF/UOK+gZxiX83Ku
+         iJocY74x6QTKDK7eezfBUmPHgQ5T+fa8dfHlycO8dcLX2UaLaP1H4MboP85ons0UdhRO
+         nh9M58UQewAnZ1JUyl9/bJN8xmWbQsMe34NrOnnaJAlncM6yja9aQP7TLTp32zJycDgg
+         WGNg0FcQe/ysnvv2BdQhE2WQY0mqkkdrRIflttcz7q9NIKQqX/0G+l4EX11q9ZTc9Y+8
+         cL9w==
+X-Gm-Message-State: AFuF++krAoloha6fVZqvBS8q0tPxUovqgkCAh8wHF/gMXA40VydmtvQw
+	mVrKXTW7EzxhwGjHP6V9RyBYWKnk+E81MzD+OCAlUxOCw8D3meGtd93YroxLY2+S7hNBZK+KZD8
+	SbRSexv5nlgqOsd4QaINhSL+4fBFC3adZHw==
+X-Gm-Gg: AYBFou07yGLRdqoXqI1XRWWArBoAnm9+yF9O6ciJhZT6oHam4ztkmCCdq2Pfz8T9fQE
+	Kd/xWoTrMQtvVw6hIFqqWSJJ4JssLVTIAWC16htML/jjbAl/TNrc19dMiDtaKn6KvQBQ9AuskVm
+	a+piDs/N68rA6oaTx5FQHvN65F4XEMwkQkVicSx6q0O4TP3Ub0ECzzMlQPx7WJuZvxL75+Op1k9
+	n7lL3clMOYiO81uP0OJv0jcpyMnSe2nQTNssJyoNclKik8uXtObVEi1qGQ+c+/s5RkEjdkaum9/
+	l7mmmEqJJ5AItKGfbcrjItxoepL6IIede1ns5q49H5owHrTmuBfJGRqgEBPUrm1tEKicLJ6HJJF
+	pU2bZW/7ZCrqEjRaG6eA8MPGe6p2dDgg+GJAnWYYRsuZJAZP/cGEH1VbUXt+xMvD0vD/nKg==
+X-Received: by 2002:a05:690c:e15c:20b0:893:845c:429d with SMTP id
+ 00721157ae682-89736366b0emr10846487b3.52.1789778772171; Fri, 18 Sep 2026
+ 17:46:12 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 19:46:10 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 19:46:10 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 19:46:10 -0500
+X-Gm-Features: AcwNN1Xo2ZzHKs4jKqkSbEJfY6WHYL_JpOcKJAdxh_3xv-jRRxbUMruqsHFm0lQ
+Message-ID: <CAPdrGe=RiU1hZm=7zdQ3Ft1DoDAm4V2wEpHpHQzeBy1k=CgfSg@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D19_07=3A45_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_3_strong_signals?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000f120e3065bcb57ce"
+
+--000000000000f120e3065bcb57ce
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+Prior Sent state recovered through the 06:48 report. Semantic duplicates
+rejected unless new independent evidence materially strengthens a cluster.
+
+3 MATERIAL SIGNALS
+
+   1.
+
+   REVISION UX: A bad first draft is survivable if correction is
+   frictionless =E2=80=94 HIGH =E2=80=94 BUILD/TEST
+   Source: https://www.riverry.com/products/custom-pet-portrait-print
+   Platform: personalized-pet portrait reviews
+   Customer language: Reviewer Jalyn says she was =E2=80=9Cquite disappoint=
+ed with
+   the first several drafts=E2=80=9D; the seller changed artists, made anot=
+her edit,
+   and ultimately exceeded expectations.
+   Date: current review corpus, accessed 2026-09-19
+   Wanted/problem: Initial likeness can fail repeatedly even in a
+   successful purchase; buyer needs a reliable route from =E2=80=9Cwrong=E2=
+=80=9D to =E2=80=9Cright.=E2=80=9D
+   Current workaround: unlimited revisions + human escalation/change of
+   artist.
+   Roast.pet implication: Do not promise perfect first render. Include
+   one-click structured correction reasons (LIKENESS / MARKINGS / EXPRESSIO=
+N /
+   MOUTH / VOICE / JOKE) and an escalation path after repeated failure. The
+   product promise becomes =E2=80=9Cwe get to recognizable,=E2=80=9D not =
+=E2=80=9CAI always nails it
+   first time.=E2=80=9D
+   Occasion/audience: pet-owner gift broadly.
+   Independent elsewhere: YES =E2=80=94 reinforces prior proof/revision and
+   likeness evidence, but adds the important mechanism that multiple failed
+   drafts need not kill satisfaction.
+   Prototype: deliberately test 30 difficult pet photos; measure first-pass
+   acceptance vs acceptance after one structured correction and after
+   escalation.
+   2.
+
+   COMPOSITE PERSONALISATION: buyers want separate photos merged into one
+   believable gift =E2=80=94 MEDIUM/HIGH =E2=80=94 BUILD/TEST
+   Source: https://www.riverry.com/products/custom-pet-portrait-print
+   Platform: personalized-pet gift product/review ecosystem
+   Evidence: Riverry explicitly answers the recurring ordering question
+   =E2=80=9CCan you combine multiple photos into one painting?=E2=80=9D wit=
+h yes, including
+   separate people/pets and a house, naturally merged.
+   Date: accessed 2026-09-19
+   Wanted/problem: Buyers often do not possess one perfect source image
+   containing every subject they want in the gift.
+   Current workaround: commissioned artist combines multiple source photos.
+   Roast.pet implication: Multi-pet should NOT require a group photo. Let
+   buyers upload Pet A, Pet B, and recipient/context separately; compose th=
+e
+   canonical roast scene from independent identity packs.
+   Occasion/audience: multi-pet households, memorials, family gifts.
+   Independent elsewhere: YES =E2=80=94 materially strengthens prior
+   multi-pet/whole-pack demand by identifying the input mechanism.
+   Prototype: listing image explicitly saying =E2=80=9CPets don=E2=80=99t n=
+eed to be in the
+   same photo.=E2=80=9D A/B against generic =E2=80=9Cup to 3 pets.=E2=80=9D=
+ Track conversion/questions.
+   3.
+
+   PERSONALITY > GENERIC BREED: expression can matter more than decorative
+   complexity =E2=80=94 MEDIUM/HIGH =E2=80=94 BUILD/TEST
+   Source: https://www.reddit.com/r/acrylicpainting/comments/1io9jwd
+   Platform: Reddit pet-portrait discussion
+   Exact short customer/community language: =E2=80=9CIt doesn=E2=80=99t loo=
+k like =E2=80=98a Boston
+   terrier=E2=80=99. It looks like THAT particular dog.=E2=80=9D The commen=
+ter specifically
+   praises the =E2=80=9Cpitiful and judgemental squinty expression=E2=80=9D=
+ and slightly askew
+   ears.
+   Date: 2025-02-13
+   Wanted/problem: Recognition comes from characteristic
+   expression/asymmetry, not merely breed correctness or photorealism.
+   Current workaround: skilled artist manually captures quirks.
+   Roast.pet implication: Add an identity question after upload: =E2=80=9CW=
+hat
+   expression/quirk makes them unmistakably them?=E2=80=9D with examples su=
+ch as
+   squint, crooked ear, tongue out, judgmental stare. Preserve this in both
+   canonical card art and animation.
+   Occasion/audience: personalized pet gifts generally.
+   Independent elsewhere: YES =E2=80=94 strengthens prior personality/lore =
+evidence
+   with concrete visual identity features.
+   Prototype: generate A/B pairs for 20 pets: neutralized expression vs
+   characteristic-expression-preserving output; blind owner
+   recognition/preference test.
+
+UPDATED CLUSTER STATE
+VERY STRONG: exact individual likeness; deadline/instant digital
+resilience; proof-before-commit/trust.
+STRONG: personality/character preservation; structured revision; multi-pet;
+buyer-controlled script/recipient details; clear photo guidance;
+delivery/status resilience.
+STRENGTHENED THIS RUN: multi-source composition (pets need not share a
+photo); expression/asymmetry as identity anchors; graceful recovery from
+bad first drafts.
+WATCH/UNKNOWN: explicit AR demand, kid/adult roast modes, sports-themed
+roast, colleague roast, memorial-with-humor as a comedy format. Do not
+infer demand from product availability alone.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Make it unmistakably MY pet =E2=80=94 markings, face, expression,
+   characteristic asymmetries/accessories.
+   2. Show/prove the personalized result and make corrections easy before
+   final fulfillment.
+   3. Let me include multiple pets even when I only have separate photos of
+   them.
+   4. Let me control recipient facts/joke/script while offering a
+   done-for-me funny default.
+   5. Give me a dependable instant gift path with persistent
+   delivery/status rather than relying on physical shipping or one email.
+
+STRONGEST UNMET NEED
+Recognizable individual pet + actual personality + genuinely
+recipient-specific comedy, with a correction loop robust enough to recover
+when generation misses. Talking-pet video itself is increasingly commodity.
+
+EASIEST CONVERSION-LIFT CHANGE
+Put =E2=80=9CYOUR PETS DO NOT NEED TO BE IN THE SAME PHOTO=E2=80=9D directl=
+y beside the
+multi-pet uploader, then give each pet its own identity card. This removes
+an ordering ambiguity without adding meaningful production cost.
+
+BEST NEW ETSY LISTING IDEA FROM CUSTOMER LANGUAGE
+=E2=80=9CYour Whole Pack Roasts Dad =E2=80=94 2=E2=80=934 Pets, Separate Ph=
+otos OK =E2=80=94 Personalized
+Talking Pet Birthday Video + Printable Card.=E2=80=9D The important evidenc=
+e-backed
+twist is not merely 3+ pets; it is explicitly accepting separate source
+photos and composing them into one coherent scene.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not overinvest in elaborate templates/AR before identity QA. Customer
+evidence repeatedly rewards a simple work that looks like THAT particular
+animal and tolerates initial production failure when revision is effective.
+Decorative technical complexity cannot rescue generic likeness.
+
+Sources:
+https://www.riverry.com/products/custom-pet-portrait-print
+https://www.reddit.com/r/acrylicpainting/comments/1io9jwd
+
+--000000000000f120e3065bcb57ce
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>Prior Sent state recovered through the 06:48 report. Semantic duplicates=
+ rejected unless new independent evidence materially strengthens a cluster.=
+</p>
+<p>3 MATERIAL SIGNALS</p>
+<ol>
+<li>
+<p>REVISION UX: A bad first draft is survivable if correction is frictionle=
+ss =E2=80=94 HIGH =E2=80=94 BUILD/TEST<br>
+Source: <a href=3D"https://www.riverry.com/products/custom-pet-portrait-pri=
+nt">https://www.riverry.com/products/custom-pet-portrait-print</a><br>
+Platform: personalized-pet portrait reviews<br>
+Customer language: Reviewer Jalyn says she was =E2=80=9Cquite disappointed =
+with the first several drafts=E2=80=9D; the seller changed artists, made an=
+other edit, and ultimately exceeded expectations.<br>
+Date: current review corpus, accessed 2026-09-19<br>
+Wanted/problem: Initial likeness can fail repeatedly even in a successful p=
+urchase; buyer needs a reliable route from =E2=80=9Cwrong=E2=80=9D to =E2=
+=80=9Cright.=E2=80=9D<br>
+Current workaround: unlimited revisions + human escalation/change of artist=
+.<br>
+Roast.pet implication: Do not promise perfect first render. Include one-cli=
+ck structured correction reasons (LIKENESS / MARKINGS / EXPRESSION / MOUTH =
+/ VOICE / JOKE) and an escalation path after repeated failure. The product =
+promise becomes =E2=80=9Cwe get to recognizable,=E2=80=9D not =E2=80=9CAI a=
+lways nails it first time.=E2=80=9D<br>
+Occasion/audience: pet-owner gift broadly.<br>
+Independent elsewhere: YES =E2=80=94 reinforces prior proof/revision and li=
+keness evidence, but adds the important mechanism that multiple failed draf=
+ts need not kill satisfaction.<br>
+Prototype: deliberately test 30 difficult pet photos; measure first-pass ac=
+ceptance vs acceptance after one structured correction and after escalation=
+.</p>
+</li>
+<li>
+<p>COMPOSITE PERSONALISATION: buyers want separate photos merged into one b=
+elievable gift =E2=80=94 MEDIUM/HIGH =E2=80=94 BUILD/TEST<br>
+Source: <a href=3D"https://www.riverry.com/products/custom-pet-portrait-pri=
+nt">https://www.riverry.com/products/custom-pet-portrait-print</a><br>
+Platform: personalized-pet gift product/review ecosystem<br>
+Evidence: Riverry explicitly answers the recurring ordering question =E2=80=
+=9CCan you combine multiple photos into one painting?=E2=80=9D with yes, in=
+cluding separate people/pets and a house, naturally merged.<br>
+Date: accessed 2026-09-19<br>
+Wanted/problem: Buyers often do not possess one perfect source image contai=
+ning every subject they want in the gift.<br>
+Current workaround: commissioned artist combines multiple source photos.<br=
+>
+Roast.pet implication: Multi-pet should NOT require a group photo. Let buye=
+rs upload Pet A, Pet B, and recipient/context separately; compose the canon=
+ical roast scene from independent identity packs.<br>
+Occasion/audience: multi-pet households, memorials, family gifts.<br>
+Independent elsewhere: YES =E2=80=94 materially strengthens prior multi-pet=
+/whole-pack demand by identifying the input mechanism.<br>
+Prototype: listing image explicitly saying =E2=80=9CPets don=E2=80=99t need=
+ to be in the same photo.=E2=80=9D A/B against generic =E2=80=9Cup to 3 pet=
+s.=E2=80=9D Track conversion/questions.</p>
+</li>
+<li>
+<p>PERSONALITY &gt; GENERIC BREED: expression can matter more than decorati=
+ve complexity =E2=80=94 MEDIUM/HIGH =E2=80=94 BUILD/TEST<br>
+Source: <a href=3D"https://www.reddit.com/r/acrylicpainting/comments/1io9jw=
+d">https://www.reddit.com/r/acrylicpainting/comments/1io9jwd</a><br>
+Platform: Reddit pet-portrait discussion<br>
+Exact short customer/community language: =E2=80=9CIt doesn=E2=80=99t look l=
+ike =E2=80=98a Boston terrier=E2=80=99. It looks like THAT particular dog.=
+=E2=80=9D The commenter specifically praises the =E2=80=9Cpitiful and judge=
+mental squinty expression=E2=80=9D and slightly askew ears.<br>
+Date: 2025-02-13<br>
+Wanted/problem: Recognition comes from characteristic expression/asymmetry,=
+ not merely breed correctness or photorealism.<br>
+Current workaround: skilled artist manually captures quirks.<br>
+Roast.pet implication: Add an identity question after upload: =E2=80=9CWhat=
+ expression/quirk makes them unmistakably them?=E2=80=9D with examples such=
+ as squint, crooked ear, tongue out, judgmental stare. Preserve this in bot=
+h canonical card art and animation.<br>
+Occasion/audience: personalized pet gifts generally.<br>
+Independent elsewhere: YES =E2=80=94 strengthens prior personality/lore evi=
+dence with concrete visual identity features.<br>
+Prototype: generate A/B pairs for 20 pets: neutralized expression vs charac=
+teristic-expression-preserving output; blind owner recognition/preference t=
+est.</p>
+</li>
+</ol>
+<p>UPDATED CLUSTER STATE<br>
+VERY STRONG: exact individual likeness; deadline/instant digital resilience=
+; proof-before-commit/trust.<br>
+STRONG: personality/character preservation; structured revision; multi-pet;=
+ buyer-controlled script/recipient details; clear photo guidance; delivery/=
+status resilience.<br>
+STRENGTHENED THIS RUN: multi-source composition (pets need not share a phot=
+o); expression/asymmetry as identity anchors; graceful recovery from bad fi=
+rst drafts.<br>
+WATCH/UNKNOWN: explicit AR demand, kid/adult roast modes, sports-themed roa=
+st, colleague roast, memorial-with-humor as a comedy format. Do not infer d=
+emand from product availability alone.</p>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE</p>
+<ol>
+<li>Make it unmistakably MY pet =E2=80=94 markings, face, expression, chara=
+cteristic asymmetries/accessories.</li>
+<li>Show/prove the personalized result and make corrections easy before fin=
+al fulfillment.</li>
+<li>Let me include multiple pets even when I only have separate photos of t=
+hem.</li>
+<li>Let me control recipient facts/joke/script while offering a done-for-me=
+ funny default.</li>
+<li>Give me a dependable instant gift path with persistent delivery/status =
+rather than relying on physical shipping or one email.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+Recognizable individual pet + actual personality + genuinely recipient-spec=
+ific comedy, with a correction loop robust enough to recover when generatio=
+n misses. Talking-pet video itself is increasingly commodity.</p>
+<p>EASIEST CONVERSION-LIFT CHANGE<br>
+Put =E2=80=9CYOUR PETS DO NOT NEED TO BE IN THE SAME PHOTO=E2=80=9D directl=
+y beside the multi-pet uploader, then give each pet its own identity card. =
+This removes an ordering ambiguity without adding meaningful production cos=
+t.</p>
+<p>BEST NEW ETSY LISTING IDEA FROM CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Whole Pack Roasts Dad =E2=80=94 2=E2=80=934 Pets, Separate Ph=
+otos OK =E2=80=94 Personalized Talking Pet Birthday Video + Printable Card.=
+=E2=80=9D The important evidence-backed twist is not merely 3+ pets; it is =
+explicitly accepting separate source photos and composing them into one coh=
+erent scene.</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not overinvest in elaborate templates/AR before identity QA. Customer ev=
+idence repeatedly rewards a simple work that looks like THAT particular ani=
+mal and tolerates initial production failure when revision is effective. De=
+corative technical complexity cannot rescue generic likeness.</p>
+<p>Sources:<br>
+<a href=3D"https://www.riverry.com/products/custom-pet-portrait-print">http=
+s://www.riverry.com/products/custom-pet-portrait-print</a><br>
+<a href=3D"https://www.reddit.com/r/acrylicpainting/comments/1io9jwd">https=
+://www.reddit.com/r/acrylicpainting/comments/1io9jwd</a></p>
+
+--000000000000f120e3065bcb57ce--

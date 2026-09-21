@@ -1,0 +1,564 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id Wkiek6lHvQNd
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 04:46:09 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ac12htSDjlV9oEDeSldf9S5tcTGeZwJL/KuNeNLaNU0G5B1Vhdk7dGBJN25ee7v+VDncimF3h
+	CvmmgGaqpsYwuDVnVdE/Q40SPReR5fBtcC8LuoseNGulmkIA5+Kn6MnqgO9dlSMaRbCJH7gbo2l
+	ngCVXs/7hfbOqE68E1MoNF5gPdsARf9ZyUnxAmiekmhALbrSkFVTYufk6c6lGDp3+RlrV1jNIWS
+	28LhR+o0wdOlKkNMVZY94iMMmYvAWeSIAipoR8kLAD+D6NWLYs/X0TbHZN8NdHEmqkyqQpY/Qnp
+	fT8Oc4mNIqlKewjIbqnO9ad2TBCNYi1yi4uOamtYpIGA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789706769; x=1790311569; bh=scAsE/9M
+	2GOum1ki5dhFGSyQxplytO2j9z9WgFQ///Y=; b=EX5VuG6WObyHxAXv7CQs+dxKi8M81POgZFd
+	LPGd70NgABTId6/efM6n6evv9dIuJWY7j9k6xlCTCYz+Tbj5yLt9AE5iCR/lIzCQnkJton3IBd5
+	xN5H0CBBxzNA2B9ZtmL3UW31Tx/BidlMef/jN3NhH2MbkK54U43AhZQ07E9C3ctStNWZQY4gI6l
+	KCp4wbHiLnGj8OPu69r2ascGdQNdjjo+VbqAeeMqI2HH0wNJDUubFuHayhUVlDvKG5JKjdx7AU9
+	3Xq9rc786XwKTVHPMqxqdmoWDtpz/AoAzNHmWGqTczwV508XDRaj7DNdS+mI/nt1xaYQF1MURuD
+	fvMJ9sg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=KDSzHvzx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=KDSzHvzx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab201ebso293723d50.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 21:46:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789706769; cv=none;
+        d=google.com; s=arc-20260327;
+        b=E7s2+f1/y+1d6/yprSonlQUXIL/2CbLMz/ynup3Iam6QbaOXELfEKn76yUemjkNJH/
+         CibFY5IFcJgxnBWXiu70FjAhcQtRXJiuSlRtMpm/t9LFfhc5MRyRtwdMptzHyIk7L/MW
+         QHlpxIUwuDpdTxeo2W511yUGHVLovDFPEj0e9qXHXF50je/WgHIWoe54/4KaO3QCJBpW
+         mQV07J3n6ZHbONCK5nDnqfEpGGBhmkPES0+8wym0JNRoKZv/rmAzkZqbAExpQNpnifZd
+         jQrQj0/2txlHZy9zYlj/GYzuFXhaBofPeGrNRonNgvkK/5ZO1hGWfr8Aj/s5XEGOSZQF
+         xzAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=scAsE/9M2GOum1ki5dhFGSyQxplytO2j9z9WgFQ///Y=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=hIzAzxJ5a1A1Ber7Iw/Cg+9mRU5jECkiJoSrZwbhMe40Xynxdq4yZ+x17sUhUtVhCT
+         cvG92JrmgkB+wrnMf5sVKFKIzpnyPPqsXa1RjcTp66nx4bIw2cR9RoC8os7OxyF0J6Hr
+         AmfDyyd8wQhfmftqVJEDWR5Xh0IZkop7jwj5an7M7dwXabiTt8IJzfF9rNub7HiNS6A+
+         tEb/L06knFIeQl+QwsF7BdY8jZ02Y+HM8kfBqsGFiRq2a45b4D0amBbppT2x4Bs52v8M
+         4UhoNOhhi5NU7WknhpGRP2/1TwzRt3RCs+IRNJkclOyAO9KviBAEwfSWTD508jqKNzXt
+         weBw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789706769; x=1790311569; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=scAsE/9M2GOum1ki5dhFGSyQxplytO2j9z9WgFQ///Y=;
+        b=KDSzHvzx5QXdfGA9j3wZisT41b0qUnlqsdKdhlj8F57LIMWsSaOnwUPqnMSG44Ri7R
+         sfcqEt6BBqtjGk5BpN2nFBKzCXxvcTC+pKf6LtAaShcSTC9s/skzi1IE1ZHvauD+6FY9
+         JMzlXdQ0DzGrVRGMScUgSkzVSVwWEHH910LG9OenDnPQUecVhZf8e5aQ7h59s6GhZKyC
+         Nuwlpi20SI9tqkkUwduc4SKe2KbTFHdTWdtJRFcqXEVoo6877hfl6y67YQuEIoTmwZWA
+         C0NjnDtfIeoSMzzPUQ5MrDtUKftjk3cApmI41fqJF97pgGcaapj9hxtO+dK+O9zZU5Jy
+         tV3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789706769; x=1790311569;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=scAsE/9M2GOum1ki5dhFGSyQxplytO2j9z9WgFQ///Y=;
+        b=EXQ5kG86kqpry0MrpENRT1ck70480S0YuteOBpZ/2I1m/Q7oU35IE5aNcdZB6iOe0I
+         duYIAuYeGdfP8YbrvYA5+AShVsmcPvWbt92g+1Y6nBpnTX3axw6vKbRLyZmb2ouWOucu
+         yd/Cga2GmjROBJQ+yEpp514p0JU7GnjUAooHIB05NQF6qQQ3TNp2B0JoXmQ7hTjPZPMr
+         dunUjK4/CQ4JRpTLiQh439aaJaaANBNfPtbpzZW0avlbOLAvQWkhxDuTQ5EsL8MUnT25
+         A4yWLpcn8owTtR/R0W+OYtuhwaStMKHt79mgU8VYfPazd/ppwl75/FDK3+jgaH8fNEMN
+         7goQ==
+X-Gm-Message-State: AFuF++l9qT25BJaNsd8i7N1AGPJCj8I3A79nxOP+Jz1MbzL0YxJDZu2v
+	tfpN+I3T27w5a3xOEDKtaZ9bjl9Pd3q8qRR00oltvQnBVE70mumsEOToPcXZ58qxwfcYBmG+gPU
+	984DKPKtCOekSyIDMU/RQ6fvxuIW3RhbxIw==
+X-Gm-Gg: AYBFou2dKzyaultUqzJR9zUWnrSmJ7ArSnX3nLc0SvdVdPa0YquJSbmVQvo/y9qxiZi
+	JF9dR80PhEWRHUE/ev1AyF4P1qnnfbiS5e2z2R0Jv5lzRBPDkQjqdphC7OMfX3Qsuu4V5/VvDFS
+	nd5lFhPOfp95eYQKxv+80c3+QAdDqjTtGvp6QyVAM39RNpk6sPDDdj6D1LkM8X5Nj9oj5TC1VeJ
+	5t4MdlTEhrsbtCDaK8zZnZNo0U8cO2h7KpO/YFhe0OFppVcSH71jlYKPeRlKUNwj5e6sD5X3oe/
+	4BY/mel/d2eyX/h0iDgCihRBMAA/jHcLeAG1n5x1PELsnRsH5AHEZGP6FLLGjWadLL/NCVmf5wY
+	bMPkvLH8xxm8JCXg4Oi0Bc6+AYHE1boxSK5l051Z5SfarbVQTCuo9t8M9BtvrM061l9/qac0=
+X-Received: by 2002:a05:690e:b8d:b0:667:cbb1:5f1b with SMTP id
+ 956f58d0204a3-6718227ed48mr194650d50.6.1789706768673; Thu, 17 Sep 2026
+ 21:46:08 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 21:46:08 -0700
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 21:46:08 -0700
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 21:46:08 -0700
+X-Gm-Features: AcwNN1V8LMeQu220eaW3L-lJwxY7Dh_nNLY3QpGW7zXPYJlzsegPIlIp_DiMZ8Q
+Message-ID: <CAPdrGe=J=ih2uCm3a1tkMMqMzwmwGURpDAqDkpOSVgWGZ25prw@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D18_11=3A45_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_10_strong_signals?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000032ed9a065bba941d"
+
+--00000000000032ed9a065bba941d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Personalisation Gold
+
+No prior Roast.pet Personalisation Gold =E2=80=94 Sent report was found, so=
+ this is
+the baseline state.
+Strong customer signals
+
+   1.
+
+   *Likeness is the trust bottleneck =E2=80=94 HIGH =E2=80=94 BUILD/TEST.* =
+A Reddit Etsy
+   buyer said they spent hundreds and were disappointed because one portrai=
+t
+   was =E2=80=9Cclearly just photoshop=E2=80=9D; another used the wrong sou=
+rce photo despite
+   explicit instructions. Existing premium sellers now answer =E2=80=9CWhat=
+ if it
+   doesn=E2=80=99t look like my pet?=E2=80=9D with redraw/revision guarante=
+es.
+   *Implication:* Roast.pet needs a likeness checkpoint before comedy/AR
+   generation: face crop + markings + eye/ear/color check, then customer
+   approval. Prototype: show canonical pet card preview and one-tap Looks
+   right / fix likeness before generating video.
+   Sources: https://www.reddit.com/r/Etsy/comments/mca19i ;
+   https://www.wilsonandmilo.com/
+   2.
+
+   *Photo-selection mistakes create revision friction =E2=80=94 HIGH =E2=80=
+=94 BUILD/TEST.*
+   Etsy review: =E2=80=9CI had to change photo and make edits twice.=E2=80=
+=9D Another pet-art
+   seller explicitly warns a dark blurry photo can produce =E2=80=9Ca cat t=
+hat is not
+   quite your cat.=E2=80=9D *Implication:* don=E2=80=99t merely ask for a p=
+hoto; score it
+   at upload and explain what is wrong. Prototype: instant photo gate for f=
+ace
+   size, eyes visible, blur, lighting, angle; ask for 2=E2=80=933 photos an=
+d
+label one main
+   likeness photo.
+   Sources:
+   https://www.etsy.com/listing/4355965200/custom-pet-portrait-personalized
+   ; https://pawkeepsake.com/product/hand-painted-portrait-pet-urn/
+   3.
+
+   *Multi-pet is a recurring explicit request =E2=80=94 HIGH =E2=80=94 BUIL=
+D/TEST.*
+   Multiple independent sellers have dedicated FAQs/products answering =E2=
+=80=9CCan
+   you do two pets?=E2=80=9D / =E2=80=9CDo you do multiple pets in one port=
+rait?=E2=80=9D Petventures
+   explicitly supports two or three pets, and Furcasso markets combining pe=
+ts
+   that have never been photographed together. *Implication:* V1 ordering
+   should not assume one pet. Add 1 / 2 / 3 pets, separate photo upload per
+   pet, names/personality notes per pet. Roast mechanic: pets can roast own=
+er
+   together or roast each other.
+   Sources: https://pawkeepsake.com/product/hand-painted-portrait-pet-urn/
+   ;
+   https://www.charandwhiskers.com/products/two-pets-single-line-custom-por=
+trait
+   ; https://petventuresbook.com/ ; https://furcasso.app/multi-pet-portrait
+   4.
+
+   *Last-minute personalized gifts are a real purchase mode =E2=80=94 HIGH =
+=E2=80=94
+   BUILD/TEST.* An Etsy listing explicitly frames the job as =E2=80=9CForgo=
+t a
+   birthday? Running out of time?=E2=80=9D and reviews praise being =E2=80=
+=9Cready super
+   fast.=E2=80=9D Other current pet products advertise 15-minute generation=
+ and
+   digital delivery specifically as a last-minute gift. *Implication:*
+   create a separate Etsy intent/listing: Last Minute Funny Pet Birthday
+   Gift =E2=80=94 Custom Roast Video + Printable Card =E2=80=94 Digital Tod=
+ay.
+   Digital-first delivery should precede optional physical fulfillment.
+   Sources:
+   https://www.etsy.com/listing/4355965200/custom-pet-portrait-personalized
+   ; https://puppy-ai.com/gifts/gifts-for-dog-lovers
+   5.
+
+   *Physical card + scan-to-video is already understandable consumer
+   behavior =E2=80=94 HIGH =E2=80=94 BUILD/TEST.* A Reddit buyer described =
+uploading a
+   goofy birthday video, putting its QR inside a physical card, and their d=
+ad
+   keeping the card on his desk. Current greeting products explicitly sell
+   physical cards that recipients scan to watch video, no app required.
+   *Implication:* Roast.pet=E2=80=99s card=E2=86=92QR/AR roast is not too a=
+lien; make the
+   scan mechanic visually obvious in Etsy thumbnails. Prototype copy: SCAN
+   ME =E2=80=94 your dog has something to say.
+   Sources: https://www.reddit.com/r/GiftIdeas/comments/1l1ccbt ;
+   https://greeting-grams.com/ ;
+   https://magicpaperlabs.com/products/space-dog-ar-video-greeting-card
+   6.
+
+   *No-app reveal is table stakes for interactive cards =E2=80=94 HIGH =E2=
+=80=94
+   BUILD/TEST.* GreetingGrams, Magic Greetings, Gretora and Cherish all
+   remove recipient app-install friction. *Implication:* Roast.pet
+   recipient flow must open directly from native camera/QR into browser
+   AR/video; never require account creation or app download.
+   Sources: https://greeting-grams.com/ ;
+   https://magicpaperlabs.com/products/space-dog-ar-video-greeting-card ;
+   https://gretora.com/ ; https://trycherish.app/
+   7.
+
+   *Preview/approval reduces personalization risk =E2=80=94 HIGH =E2=80=94 =
+BUILD/TEST.*
+   Multi-pet and portrait sellers repeatedly expose preview, approval and
+   revision flows. Furcasso goes further: free preview/no card and up to 10
+   regenerations. *Implication:* Etsy buyers with a zero-review Roast.pet
+   shop need visible risk reversal. Prototype: thumbnail says SEE YOUR PET
+   CARD BEFORE FINAL PRINT; provide one free likeness correction, while
+   joke edits can be constrained separately.
+   Sources: https://furcasso.app/multi-pet-portrait ;
+   https://www.loveinpix.com/products/custom-3pet-portrait ;
+   https://www.etsy.com/ca/shop/PetPortraitsByMarion
+   8.
+
+   *Funny/theatrical pet transformations are validated, but generic AI art
+   is commoditized =E2=80=94 MEDIUM/HIGH =E2=80=94 BUILD/TEST.* A Step Brot=
+hers parody pet
+   portrait has 10/10 positive reviews; one buyer said =E2=80=9CLooks so re=
+al lol.=E2=80=9D
+   Furcasso explicitly lists funny group concepts such as mugshots and want=
+ed
+   posters. *Implication:* sell the *comedic situation* rather than AI pet
+   portrait. Roast podium/card should be a recognizable repeatable format,
+   with the pet=E2=80=99s actual voice/performance as the differentiated la=
+yer.
+   Sources:
+   https://portraitsbyus.com/products/step-brothers-parody-pet-portrait ;
+   https://furcasso.app/multi-pet-portrait
+   9.
+
+   *Personalization depth beyond the pet=E2=80=99s name matters =E2=80=94 M=
+EDIUM =E2=80=94
+   BUILD/TEST.* Current products support dedication, dates, messages and
+   recipient names; one dog card restricts personalization to the front unl=
+ess
+   customers enter a separate bespoke flow. *Implication:* Roast.pet should
+   capture the *recipient* and roast material, not just pet identity.
+   Minimal fields: recipient name, relationship, 1=E2=80=933 safe facts/ins=
+ide jokes,
+   roast intensity. Generate defaults if blank.
+   Sources: https://petventuresbook.com/ ;
+   https://www.etsy.com/listing/4355965200/custom-pet-portrait-personalized
+   ; https://imagii.com/products/dog-zoomies-birthday-card
+   10.
+
+   *Memorial demand exists, but comedy is not established there =E2=80=94 M=
+EDIUM =E2=80=94
+   WATCH.* Multiple pet-personalization products explicitly support
+   deceased pets/memorials and old/low-quality photos. Evidence supports
+   memorial personalization, but this scan did *not* find strong
+   independent buyer evidence asking for humorous memorial roasts.
+   *Implication:* do not make memorial-with-humor a core listing yet. If
+   tested, make it opt-in and separate from birthday roast positioning.
+   Sources: https://photogiftstudio.com/ ; https://longdigitaldog.etsy.com
+   ; https://gretora.com/
+
+Recurring cluster baseline
+
+   - Exact likeness / correct source photo: 4+ independent surfaces =E2=80=
+=94 HIGH
+   - Multi-pet / combine separate photos: 6+ =E2=80=94 HIGH
+   - Preview / revisions / approval: 6+ =E2=80=94 HIGH
+   - Fast / same-day digital delivery: 4+ =E2=80=94 HIGH
+   - Physical + QR/video reveal: 6+ =E2=80=94 HIGH
+   - No-app recipient experience: 4+ =E2=80=94 HIGH
+   - Deeper recipient/message personalization: 4+ =E2=80=94 MEDIUM/HIGH
+   - Explicit funny/theatrical treatment: 3+ =E2=80=94 MEDIUM/HIGH
+   - Memorial personalization: 4+ =E2=80=94 HIGH for memorial generally; UN=
+KNOWN
+   for humorous memorial
+   - Editable customer-written joke specifically: insufficient direct
+   evidence =E2=80=94 WATCH
+   - Kid-safe vs adult-roast modes: insufficient direct buyer evidence this
+   run =E2=80=94 WATCH
+   - Sports-themed roast: insufficient direct buyer evidence this run =E2=
+=80=94
+   WATCH
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. *Likeness approval before fulfillment.*
+   2. *Two/three-pet support from separate photos.*
+   3. *Same-day digital gift mode.*
+   4. *Physical card/T-shirt + no-app QR/AR video reveal.*
+   5. *Recipient-specific roast inputs: name + inside jokes + intensity.*
+
+Strongest unmet need
+
+Not another pet portrait: *a pet that is recognizably their pet performing
+a recipient-specific funny message, attached to a physical keepsake.* The
+component needs are independently validated; direct demand for this exact
+combination remains UNKNOWN until listing tests generate buyer behavior.
+Easiest conversion-lift change
+
+Add a *photo-quality + likeness assurance step directly in the Etsy
+ordering instructions*: Upload 2=E2=80=933 clear photos =E2=86=92 choose th=
+e MAIN face
+reference =E2=86=92 we send your pet card preview =E2=86=92 one likeness co=
+rrection
+included. This directly attacks documented disappointment and ordering
+ambiguity.
+Best new Etsy listing from customer language
+
+*Last Minute Funny Pet Birthday Gift =E2=80=94 Your Dog Roasts You =E2=80=
+=94 Personalized
+Digital Video + Printable QR Card =E2=80=94 Ready Today.* This combines
+independently observed last-minute, funny pet, personalized card and
+scan-to-video jobs rather than competing head-on as another custom portrait=
+.
+Important negative signal
+
+Do *not* overbuild full AR as the core value proposition before proving the
+roast itself. Existing evidence strongly validates simple QR=E2=86=92browse=
+r video;
+it does not show buyers demanding spatial AR specifically. V1 should
+preserve the working AR capability but ensure the same QR instantly plays
+the roast on every phone. The comedy + likeness + recipient specificity
+should carry the purchase; AR is the reveal enhancement.
+
+--00000000000032ed9a065bba941d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Personalisation Gold
+<p>No prior <code>Roast.pet Personalisation Gold =E2=80=94</code> Sent repo=
+rt was found, so this is the baseline state.</p>
+
+Strong customer signals
+<ol>
+<li>
+<p><strong>Likeness is the trust bottleneck =E2=80=94 HIGH =E2=80=94 BUILD/=
+TEST.</strong> A Reddit Etsy buyer said they spent hundreds and were disapp=
+ointed because one portrait was =E2=80=9Cclearly just photoshop=E2=80=9D; a=
+nother used the wrong source photo despite explicit instructions. Existing =
+premium sellers now answer =E2=80=9CWhat if it doesn=E2=80=99t look like my=
+ pet?=E2=80=9D with redraw/revision guarantees. <strong>Implication:</stron=
+g> Roast.pet needs a likeness checkpoint before comedy/AR generation: face =
+crop + markings + eye/ear/color check, then customer approval. Prototype: s=
+how canonical pet card preview and one-tap <code>Looks right / fix likeness=
+</code> before generating video.<br>
+Sources: <a href=3D"https://www.reddit.com/r/Etsy/comments/mca19i">https://=
+www.reddit.com/r/Etsy/comments/mca19i</a> ; <a href=3D"https://www.wilsonan=
+dmilo.com/">https://www.wilsonandmilo.com/</a></p>
+</li>
+<li>
+<p><strong>Photo-selection mistakes create revision friction =E2=80=94 HIGH=
+ =E2=80=94 BUILD/TEST.</strong> Etsy review: =E2=80=9CI had to change photo=
+ and make edits twice.=E2=80=9D Another pet-art seller explicitly warns a d=
+ark blurry photo can produce =E2=80=9Ca cat that is not quite your cat.=E2=
+=80=9D <strong>Implication:</strong> don=E2=80=99t merely ask for a photo; =
+score it at upload and explain what is wrong. Prototype: instant photo gate=
+ for face size, eyes visible, blur, lighting, angle; ask for 2=E2=80=933 ph=
+otos and label one <code>main likeness photo</code>.<br>
+Sources: <a href=3D"https://www.etsy.com/listing/4355965200/custom-pet-port=
+rait-personalized">https://www.etsy.com/listing/4355965200/custom-pet-portr=
+ait-personalized</a> ; <a href=3D"https://pawkeepsake.com/product/hand-pain=
+ted-portrait-pet-urn/">https://pawkeepsake.com/product/hand-painted-portrai=
+t-pet-urn/</a></p>
+</li>
+<li>
+<p><strong>Multi-pet is a recurring explicit request =E2=80=94 HIGH =E2=80=
+=94 BUILD/TEST.</strong> Multiple independent sellers have dedicated FAQs/p=
+roducts answering =E2=80=9CCan you do two pets?=E2=80=9D / =E2=80=9CDo you =
+do multiple pets in one portrait?=E2=80=9D Petventures explicitly supports =
+two or three pets, and Furcasso markets combining pets that have never been=
+ photographed together. <strong>Implication:</strong> V1 ordering should no=
+t assume one pet. Add 1 / 2 / 3 pets, separate photo upload per pet, names/=
+personality notes per pet. Roast mechanic: pets can roast owner together or=
+ roast each other.<br>
+Sources: <a href=3D"https://pawkeepsake.com/product/hand-painted-portrait-p=
+et-urn/">https://pawkeepsake.com/product/hand-painted-portrait-pet-urn/</a>=
+ ; <a href=3D"https://www.charandwhiskers.com/products/two-pets-single-line=
+-custom-portrait">https://www.charandwhiskers.com/products/two-pets-single-=
+line-custom-portrait</a> ; <a href=3D"https://petventuresbook.com/">https:/=
+/petventuresbook.com/</a> ; <a href=3D"https://furcasso.app/multi-pet-portr=
+ait">https://furcasso.app/multi-pet-portrait</a></p>
+</li>
+<li>
+<p><strong>Last-minute personalized gifts are a real purchase mode =E2=80=
+=94 HIGH =E2=80=94 BUILD/TEST.</strong> An Etsy listing explicitly frames t=
+he job as =E2=80=9CForgot a birthday? Running out of time?=E2=80=9D and rev=
+iews praise being =E2=80=9Cready super fast.=E2=80=9D Other current pet pro=
+ducts advertise 15-minute generation and digital delivery specifically as a=
+ last-minute gift. <strong>Implication:</strong> create a separate Etsy int=
+ent/listing: <code>Last Minute Funny Pet Birthday Gift =E2=80=94 Custom Roa=
+st Video + Printable Card =E2=80=94 Digital Today</code>. Digital-first del=
+ivery should precede optional physical fulfillment.<br>
+Sources: <a href=3D"https://www.etsy.com/listing/4355965200/custom-pet-port=
+rait-personalized">https://www.etsy.com/listing/4355965200/custom-pet-portr=
+ait-personalized</a> ; <a href=3D"https://puppy-ai.com/gifts/gifts-for-dog-=
+lovers">https://puppy-ai.com/gifts/gifts-for-dog-lovers</a></p>
+</li>
+<li>
+<p><strong>Physical card + scan-to-video is already understandable consumer=
+ behavior =E2=80=94 HIGH =E2=80=94 BUILD/TEST.</strong> A Reddit buyer desc=
+ribed uploading a goofy birthday video, putting its QR inside a physical ca=
+rd, and their dad keeping the card on his desk. Current greeting products e=
+xplicitly sell physical cards that recipients scan to watch video, no app r=
+equired. <strong>Implication:</strong> Roast.pet=E2=80=99s card=E2=86=92QR/=
+AR roast is not too alien; make the scan mechanic visually obvious in Etsy =
+thumbnails. Prototype copy: <code>SCAN ME =E2=80=94 your dog has something =
+to say.</code><br>
+Sources: <a href=3D"https://www.reddit.com/r/GiftIdeas/comments/1l1ccbt">ht=
+tps://www.reddit.com/r/GiftIdeas/comments/1l1ccbt</a> ; <a href=3D"https://=
+greeting-grams.com/">https://greeting-grams.com/</a> ; <a href=3D"https://m=
+agicpaperlabs.com/products/space-dog-ar-video-greeting-card">https://magicp=
+aperlabs.com/products/space-dog-ar-video-greeting-card</a></p>
+</li>
+<li>
+<p><strong>No-app reveal is table stakes for interactive cards =E2=80=94 HI=
+GH =E2=80=94 BUILD/TEST.</strong> GreetingGrams, Magic Greetings, Gretora a=
+nd Cherish all remove recipient app-install friction. <strong>Implication:<=
+/strong> Roast.pet recipient flow must open directly from native camera/QR =
+into browser AR/video; never require account creation or app download.<br>
+Sources: <a href=3D"https://greeting-grams.com/">https://greeting-grams.com=
+/</a> ; <a href=3D"https://magicpaperlabs.com/products/space-dog-ar-video-g=
+reeting-card">https://magicpaperlabs.com/products/space-dog-ar-video-greeti=
+ng-card</a> ; <a href=3D"https://gretora.com/">https://gretora.com/</a> ; <=
+a href=3D"https://trycherish.app/">https://trycherish.app/</a></p>
+</li>
+<li>
+<p><strong>Preview/approval reduces personalization risk =E2=80=94 HIGH =E2=
+=80=94 BUILD/TEST.</strong> Multi-pet and portrait sellers repeatedly expos=
+e preview, approval and revision flows. Furcasso goes further: free preview=
+/no card and up to 10 regenerations. <strong>Implication:</strong> Etsy buy=
+ers with a zero-review Roast.pet shop need visible risk reversal. Prototype=
+: thumbnail says <code>SEE YOUR PET CARD BEFORE FINAL PRINT</code>; provide=
+ one free likeness correction, while joke edits can be constrained separate=
+ly.<br>
+Sources: <a href=3D"https://furcasso.app/multi-pet-portrait">https://furcas=
+so.app/multi-pet-portrait</a> ; <a href=3D"https://www.loveinpix.com/produc=
+ts/custom-3pet-portrait">https://www.loveinpix.com/products/custom-3pet-por=
+trait</a> ; <a href=3D"https://www.etsy.com/ca/shop/PetPortraitsByMarion">h=
+ttps://www.etsy.com/ca/shop/PetPortraitsByMarion</a></p>
+</li>
+<li>
+<p><strong>Funny/theatrical pet transformations are validated, but generic =
+AI art is commoditized =E2=80=94 MEDIUM/HIGH =E2=80=94 BUILD/TEST.</strong>=
+ A Step Brothers parody pet portrait has 10/10 positive reviews; one buyer =
+said =E2=80=9CLooks so real lol.=E2=80=9D Furcasso explicitly lists funny g=
+roup concepts such as mugshots and wanted posters. <strong>Implication:</st=
+rong> sell the <em>comedic situation</em> rather than <code>AI pet portrait=
+</code>. Roast podium/card should be a recognizable repeatable format, with=
+ the pet=E2=80=99s actual voice/performance as the differentiated layer.<br=
+>
+Sources: <a href=3D"https://portraitsbyus.com/products/step-brothers-parody=
+-pet-portrait">https://portraitsbyus.com/products/step-brothers-parody-pet-=
+portrait</a> ; <a href=3D"https://furcasso.app/multi-pet-portrait">https://=
+furcasso.app/multi-pet-portrait</a></p>
+</li>
+<li>
+<p><strong>Personalization depth beyond the pet=E2=80=99s name matters =E2=
+=80=94 MEDIUM =E2=80=94 BUILD/TEST.</strong> Current products support dedic=
+ation, dates, messages and recipient names; one dog card restricts personal=
+ization to the front unless customers enter a separate bespoke flow. <stron=
+g>Implication:</strong> Roast.pet should capture the <em>recipient</em> and=
+ roast material, not just pet identity. Minimal fields: recipient name, rel=
+ationship, 1=E2=80=933 safe facts/inside jokes, roast intensity. Generate d=
+efaults if blank.<br>
+Sources: <a href=3D"https://petventuresbook.com/">https://petventuresbook.c=
+om/</a> ; <a href=3D"https://www.etsy.com/listing/4355965200/custom-pet-por=
+trait-personalized">https://www.etsy.com/listing/4355965200/custom-pet-port=
+rait-personalized</a> ; <a href=3D"https://imagii.com/products/dog-zoomies-=
+birthday-card">https://imagii.com/products/dog-zoomies-birthday-card</a></p=
+>
+</li>
+<li>
+<p><strong>Memorial demand exists, but comedy is not established there =E2=
+=80=94 MEDIUM =E2=80=94 WATCH.</strong> Multiple pet-personalization produc=
+ts explicitly support deceased pets/memorials and old/low-quality photos. E=
+vidence supports memorial personalization, but this scan did <strong>not</s=
+trong> find strong independent buyer evidence asking for humorous memorial =
+roasts. <strong>Implication:</strong> do not make <code>memorial-with-humor=
+</code> a core listing yet. If tested, make it opt-in and separate from bir=
+thday roast positioning.<br>
+Sources: <a href=3D"https://photogiftstudio.com/">https://photogiftstudio.c=
+om/</a> ; <a href=3D"https://longdigitaldog.etsy.com">https://longdigitaldo=
+g.etsy.com</a> ; <a href=3D"https://gretora.com/">https://gretora.com/</a><=
+/p>
+</li>
+</ol>
+
+Recurring cluster baseline
+<ul>
+<li>Exact likeness / correct source photo: 4+ independent surfaces =E2=80=
+=94 HIGH</li>
+<li>Multi-pet / combine separate photos: 6+ =E2=80=94 HIGH</li>
+<li>Preview / revisions / approval: 6+ =E2=80=94 HIGH</li>
+<li>Fast / same-day digital delivery: 4+ =E2=80=94 HIGH</li>
+<li>Physical + QR/video reveal: 6+ =E2=80=94 HIGH</li>
+<li>No-app recipient experience: 4+ =E2=80=94 HIGH</li>
+<li>Deeper recipient/message personalization: 4+ =E2=80=94 MEDIUM/HIGH</li>
+<li>Explicit funny/theatrical treatment: 3+ =E2=80=94 MEDIUM/HIGH</li>
+<li>Memorial personalization: 4+ =E2=80=94 HIGH for memorial generally; UNK=
+NOWN for humorous memorial</li>
+<li>Editable customer-written joke specifically: insufficient direct eviden=
+ce =E2=80=94 WATCH</li>
+<li>Kid-safe vs adult-roast modes: insufficient direct buyer evidence this =
+run =E2=80=94 WATCH</li>
+<li>Sports-themed roast: insufficient direct buyer evidence this run =E2=80=
+=94 WATCH</li>
+</ul>
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+<ol>
+<li><strong>Likeness approval before fulfillment.</strong></li>
+<li><strong>Two/three-pet support from separate photos.</strong></li>
+<li><strong>Same-day digital gift mode.</strong></li>
+<li><strong>Physical card/T-shirt + no-app QR/AR video reveal.</strong></li=
+>
+<li><strong>Recipient-specific roast inputs: name + inside jokes + intensit=
+y.</strong></li>
+</ol>
+
+Strongest unmet need
+<p>Not another pet portrait: <strong>a pet that is recognizably <em>their</=
+em> pet performing a recipient-specific funny message, attached to a physic=
+al keepsake.</strong> The component needs are independently validated; dire=
+ct demand for this exact combination remains UNKNOWN until listing tests ge=
+nerate buyer behavior.</p>
+
+Easiest conversion-lift change
+<p>Add a <strong>photo-quality + likeness assurance step directly in the Et=
+sy ordering instructions</strong>: <code>Upload 2=E2=80=933 clear photos =
+=E2=86=92 choose the MAIN face reference =E2=86=92 we send your pet card pr=
+eview =E2=86=92 one likeness correction included.</code> This directly atta=
+cks documented disappointment and ordering ambiguity.</p>
+
+Best new Etsy listing from customer language
+<p><strong>Last Minute Funny Pet Birthday Gift =E2=80=94 Your Dog Roasts Yo=
+u =E2=80=94 Personalized Digital Video + Printable QR Card =E2=80=94 Ready =
+Today.</strong> This combines independently observed last-minute, funny pet=
+, personalized card and scan-to-video jobs rather than competing head-on as=
+ another custom portrait.</p>
+
+Important negative signal
+<p>Do <strong>not</strong> overbuild full AR as the core value proposition =
+before proving the roast itself. Existing evidence strongly validates simpl=
+e QR=E2=86=92browser video; it does not show buyers demanding spatial AR sp=
+ecifically. V1 should preserve the working AR capability but ensure the sam=
+e QR instantly plays the roast on every phone. The comedy + likeness + reci=
+pient specificity should carry the purchase; AR is the reveal enhancement.<=
+/p>
+
+--00000000000032ed9a065bba941d--

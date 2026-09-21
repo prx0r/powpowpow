@@ -1,0 +1,603 @@
+Received: from mail-yx2-x16.google.com (2607:f8b0:4864:41::16)
+        by cloudflare-email.net (cloudflare) id IJudVVw9Ks9H
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 18:07:26 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=BWY4Bf9wXXUufsur/QygeSw0AwUv/dlxrbACgrLqrJ9kJns0cahKwELzAVbKWDk/O9Bq6EPs+
+	6bGkutD5UkJ20u33HL7k8eFeRnbN2gCWxvLYkUMKDGce7S0ZR9AgP+jGt9DQc5oVwPNpraNcxKD
+	8LLCGTkWObBQr2uISzczTo0atwZAjcWNb7roYkmW7qgmODw+Voq6rCQdgdcH2piHNDV6HfCfNrN
+	2czMlRH/yNE8yrRaCJaC8eN6rjZTeX+SoEcoAA1M6Unbt+7Y281caBFGPjyDcEGVyyzIjtmh4Rg
+	cvSeLbbESdC9DWhaODHQXIqAcFdnCkd7ho8GB8HOLBVQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789668446; x=1790273246; bh=T+1os4pM
+	DBzUh9uCMU6b2XAY2vpnSxiFYHwPfbXmOXo=; b=Kw0nQTF2zjQ00MWv8wOU/GM+AGIlkeWUuLB
+	anSOrBC3jBQCcynPFdViobZCxUpUu2av5f9QZHshQFyWCtnRi5JB/+ERtl24j40DVm+tR5LBtxG
+	/HEz0NCXkLlREzoNVJdqDyPPp5jBCCGiAvOfyJQM+AiPqCGbZpW/FCbLJXNiwlSJ7LdSP+QaKui
+	BPgUxLFHeYA8I8OERuYtyePJj2meqPptMhXI2lUonavJw8GKQXjuLVxPh+CC826ey409U0RQiRc
+	ClG7F4xLvH0CPYKJLGGvI7jHbjPUsNttTHk0NfxVNg41B2maF1bBFruDvNvT8unadKqmqEVABuB
+	nRPcsEQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=PGtzg6ta;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x16.google.com) smtp.helo=mail-yx2-x16.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::16"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::16; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x16.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=PGtzg6ta;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x16.google.com) smtp.helo=mail-yx2-x16.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::16"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x16.google.com with SMTP id 956f58d0204a3-66e4aac92dbso1073800d50.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 11:07:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789668445; cv=none;
+        d=google.com; s=arc-20260327;
+        b=lQwETiXcXtpW7iRQaHO7s2avN9vJZx7UFmrcOszqqDbnmO2B1rh9hMRuv9I9+nZCYm
+         TwgylE7E+WgN0R/9LxfU0CHg41/ZcZ/HckhapAltWe2xAnbvVrFSQv8DA4X9CaHASyQ7
+         BoQWaPtAzhbrD5Ohc64pY2aNgYSDIKiDqmlxA5lzPRtRQn9Ysl2EE7EyNtfifIQUSUlQ
+         c1bpn9nVf1hZzdZgQYQxuFaUR9ZuTO3KOui2o+KZqUE76Qd9ZXOAHm+Cgtdlr/0vFili
+         0O4yuabftTfF5G0XuZSZziSVsgNNw5XLPSLwI4FBFccP/39BXMeb0JH6kQ4qIfVBSTi+
+         E6MQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=T+1os4pMDBzUh9uCMU6b2XAY2vpnSxiFYHwPfbXmOXo=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=q8u3Apd3OUB6vvZWHErnYlMDTZqIZE3Oq0g6X2DpuEIYNKplEyBaFf1pMLQqji8w/u
+         34IuOs27IXjZnYkMX36SRRT0m3JwFvj5AuSyuNUtzGwMI9G0PToM8ueEdCsukWYuEpo8
+         YAHWt2nVcgimvrL7h6r+u6NoGgOqvikZizg+Mj0xO9ssE8zMo6OIyboi54OwrxnxpKKE
+         18vcpEIo1OFcgSEFHUbUZnzCaYYMOnmbzKmK2PJVFhFW1C9FNyjX4SV+tun8ExLbzk9S
+         YHD05W0UopexUWg4yR2dnVQRkfS6jxZZXxhHyLp8KuhWaCRU6FtPvQCc2qXh1P1TPs+I
+         8HAg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789668445; x=1790273245; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=T+1os4pMDBzUh9uCMU6b2XAY2vpnSxiFYHwPfbXmOXo=;
+        b=PGtzg6taBcj2ljVjDU38LyxP7VjPD5CEfQe9KtQf2BnnVB48iQUq139ItXwAOIk9e6
+         WywnBoLxV0CfSJNJ74fIRuWarP8NrCy1bm8uO8ZO2IeQFTqVSQzxT0ydpdkVUUp/IW/C
+         lTfzTxPgb2F4tcsJlCMMzi758dnsNsO5E1gSG0Fk+m3Ot5vvIU1vTokCjj0Rj/O17c4i
+         ZYTA8BZUuDu/CkHuoTkHKMR5k0CBZ0QpQcFwJaoSFlC5AOgL04Eedh16h2J/eb6nwpX5
+         WWmtayLVjtZ9RRt/NaLMG59TyQ39LASJr8kxBOfv39K9A/k2p26cjo++JAIfCNeo549d
+         hT9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789668445; x=1790273245;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=T+1os4pMDBzUh9uCMU6b2XAY2vpnSxiFYHwPfbXmOXo=;
+        b=AxJvDJGON8+Rgs0Tdfz/d53xvJ6beaWEhQlk4TRzKQ2ZjD2fag2uyuw8q7Brra+zL6
+         rb4Z440tD+nK06qfyio2VbjctNIAHD5O4/hChLw2K0MQk6aZ5cJlM8lM1ON62BwHWKZU
+         Rh1qBR/eaZiNLvmdvJM3sTTy+2AcM2UFHPYzVST4CwCMata4Ohzm4X122Eys44dl8ztc
+         IVVlTXSpOj/f9PbNvJu17yCTJhQjV8PdCKptoJycWnbRck/sPrBhA8+W2YPM/6jt0xjm
+         Ida23Aep/AaCjhWr105/XoFCVnXBe9JQ8bZKTtDzmhYKWVa03tVxomVlt3CUVspw7Sfd
+         3WfQ==
+X-Gm-Message-State: AFuF++n20YINHFZ/cfRoX3851ncQXkkeTPsK+RffD9tqs5J3A4qHF/q4
+	jymozIE5pj4EnXLMTgCvohejhAX7Y2t6xItkMQvc3hnBoyk9i0tk0ZhGHwZmt7Ad4zl+kHz5oCe
+	F3j8xfaenM9Tuw53Pi1Z+ii7ZcarOcPVA4w==
+X-Gm-Gg: AYBFou20sw4EBvz5VUPLt2C3RUL5ObN+zFBF0Tgp3feQPxRyOVFHk8F/zHwRtXUyfrA
+	cpSaloiIIq3B6mp3r2KrGNO9yr9lGreXCYeW9ztfVb9Fsx5mdv2A/xPF1BGHfUDgIeSuHlOCowx
+	Igo4KJGUB7tQwSNbGaK5waPwYKeJMROkNYgdfCmnk9TiNKq8eWgHgzPpbrIBt4XT1nsOrnmpSEH
+	RUfMucQAvoTKeo7r/3KAwM02zXdQdNma9m9v87UiIt2hM3VlfPYANymHc+CQd4Kvv3MCS8Vm1vV
+	79cNleYOs7qlr34yKGbDU7gsq8ejrYBRjxEyAhNLXdsh7bfkQWw1kOv3trRhAP5rCNmj6A6w08v
+	+TkvsJIZXeFDS0Pxn9Vg+dh0IqElfV+HXJesv/ZT1mUq9rcKEQW5stt+51CN44G0mDKkD5yDb
+X-Received: by 2002:a05:690e:1595:10b0:66f:c1be:a646 with SMTP id
+ 956f58d0204a3-671632ad990mr1798635d50.56.1789668445186; Thu, 17 Sep 2026
+ 11:07:25 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 13:07:24 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 13:07:24 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 13:07:24 -0500
+X-Gm-Features: AcwNN1XNeaZxZuaPkO5XHEuGbXGTyUErCyygPf3HrZjB8t5WePZdxrG8iraog8Y
+Message-ID: <CAPdrGe=jTO-d468Po9zpPWTE9MpdhukgVuRtnCVCpMqpctEq8A@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_build_2=2F5_=E2=80=94_exact_upstream_repos=3A_clone=2Fadop?=
+	=?UTF-8?Q?t=2C_do_not_rebuild?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000f0faa2065bb1a72f"
+
+--000000000000f0faa2065bb1a72f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This part is the build-vs-integrate constitution. Clone these repos OUTSIDE
+pmail/ (e.g. ../upstream/) for inspection. Do not vendor entire repos into
+PMail unless a specific package/import requires it and the license permits
+it.
+
+   1. SimpleX =E2=80=94 canonical private messaging substrate
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Repo:
+https://github.com/simplex-chat/simplex-chat
+
+Use stable branch for build/reference:
+git clone https://github.com/simplex-chat/simplex-chat.git
+../upstream/simplex-chat cd ../upstream/simplex-chat git checkout stable
+
+Why:
+
+   - private messaging network with no global user identifiers
+   - CLI available
+   - local profiles
+   - one-time / temporary addresses
+   - strong fit for PMail ingress/egress
+
+Do NOT recreate encrypted messaging, double-ratchet, queue routing,
+contacts, file transfer, etc.
+
+PMail adapter owns only:
+
+   - process supervision / client integration
+   - message -> PMail event normalization
+   - capability binding
+   - privacy metadata
+   - QP claims around delivery/receipt when provable
+
+Target interface:
+interface PrivateMessenger { createAddress(): Promise<AddressHandle>;
+revokeAddress(id: string): Promise<void>; sendMessage(to: string, body:
+Uint8Array): Promise<AttemptEvidence>; subscribe(handler: (m:
+PrivateMessage) =3D> Promise<void>): Promise<Unsubscribe>; }
+
+   1. MoneroPay / monero-wallet-rpc =E2=80=94 XMR payment substrate
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+
+Repos:
+https://github.com/moneropay/moneropay
+https://github.com/moneropay/go-monero
+
+Clone:
+git clone https://github.com/moneropay/moneropay.git ../upstream/moneropay
+
+MoneroPay is GPL-3.0. Prefer sidecar/process integration through its API
+rather than copying code into a differently licensed PMail core.
+
+Use native monero-wallet-rpc semantics / MoneroPay for:
+
+   - unique subaddresses/invoices
+   - incoming payment observation
+   - confirmation tracking
+   - partial payment handling
+   - outgoing transfers only through bounded authority
+
+DO NOT implement wallet cryptography or transaction parsing from scratch.
+
+   1. Monid =E2=80=94 deterministic connector substrate
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Repo:
+https://github.com/monid-ai/monid
+git clone https://github.com/monid-ai/monid.git ../upstream/monid
+
+Current repo provides declarative connector definitions, schema validation,
+content-hashed executable functions, sealed endpoint units, credential
+injection at transport and fixture replay.
+
+Use Monid-style connector artifacts for external provider calls. PMail/QP
+owns semantic truth; Monid owns HOW an endpoint is called.
+
+Do not reproduce another giant provider SDK layer.
+
+   1. Infisical Agent Vault =E2=80=94 credential broker
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Repo:
+https://github.com/Infisical/agent-vault
+git clone https://github.com/Infisical/agent-vault.git
+../upstream/agent-vault
+
+Core is MIT (enterprise directory has separate terms).
+
+Use for:
+
+   - credentials never returned to the agent
+   - outbound credential injection
+   - per-agent/service egress policy
+   - short-lived vault-scoped sessions
+   - strict deny for unknown hosts
+
+PMail should not write its own secret vault.
+
+Important architecture:
+agent sandbox and Agent Vault should be separate trust zones/hosts/process
+boundaries. Agent must receive dummy placeholders/capabilities, not real
+provider keys.
+
+   1. Agent Receipts / Obsigna =E2=80=94 generic signed receipt envelope
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Repo:
+https://github.com/agent-receipts/obsigna
+git clone https://github.com/agent-receipts/obsigna.git ../upstream/obsigna
+
+Use its protocol / SDK / out-of-process signing daemon rather than
+reimplementing generic:
+
+   - canonical receipt serialization
+   - Ed25519 receipt signatures
+   - receipt chain linkage
+   - cross-language receipt verification
+   - MCP tool-call receipt wrapper
+
+QP extension remains PMail-specific and records:
+
+   - exact claim
+   - ContractRoot / ProofSpec identity
+   - evidence commitments
+   - actuality TRUE/FALSE/UNKNOWN
+   - privacy class
+   - identity surfaces
+   - semantic replay result
+
+Do not maintain a competing generic receipt format.
+
+   1. Grantex =E2=80=94 delegated agent authority
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Repo:
+https://github.com/mishrasanjeev/grantex
+git clone https://github.com/mishrasanjeev/grantex.git ../upstream/grantex
+
+Apache-2.0, scoped/time-limited/revocable delegated authorization.
+
+Use its concepts/packages where they genuinely reduce our custom authority
+code. Do not blindly adopt the currently published MCP auth service as a
+trust root without reviewing known package limitations. QP still binds
+authority to exact effect/payload/budget.
+
+   1. dstack =E2=80=94 confidential runtime / attestation
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Repo:
+https://github.com/Dstack-TEE/dstack
+Examples:
+https://github.com/Dstack-TEE/dstack-examples
+git clone https://github.com/Dstack-TEE/dstack.git ../upstream/dstack git
+clone https://github.com/Dstack-TEE/dstack-examples.git
+../upstream/dstack-examples
+
+Apache-2.0 for dstack-owned code. Use it later for:
+
+   - TEE-confidential execution
+   - attested workload identity
+   - per-app key derivation
+   - verifiable runtime image / compose hash
+
+Do NOT block MVP on TEE deployment. Design the runtime interface now so a
+normal local/dev runtime and dstack runtime implement the same interface.
+
+   1. Trigger.dev =E2=80=94 durable workflow mechanics, optional later
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Repo:
+https://github.com/triggerdotdev/trigger.dev
+
+Use only if we need durable waits/retries/reconciliation and do not want to
+implement a workflow engine. Do not make it part of ANON_CORE deployment
+automatically; self-hosting/privacy surface must be reviewed first.
+
+   1. Stalwart =E2=80=94 SMTP/JMAP bridge, later only
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Canonical repo/org should be verified before integration. Stalwart provides
+SMTP/IMAP/JMAP and is useful if we later need conventional email
+compatibility.
+
+Do not build an SMTP server.
+
+   1. social-mcp =E2=80=94 code/reference donor only
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Repo:
+https://github.com/IhsanKabir/social-mcp
+
+MIT; useful for official OAuth/API patterns. Not central to PMail MVP.
+RULE
+
+Open source owns:
+
+   - messaging crypto/protocol
+   - wallet RPC / payment processor
+   - generic connectors
+   - secret brokering
+   - generic signed receipts
+   - delegated auth
+   - TEE runtime
+   - durable workflow engine
+   - mail server
+
+PMail owns:
+
+   - privacy-class calculus
+   - identity-surface registry
+   - anonymous session/payment/capability lifecycle
+   - QP ProofSpecs for privacy and communications
+   - bridge selection under privacy constraints
+   - phone-provider capability verification
+   - end-to-end composition
+
+Part 3 maps exactly what to reuse from cmail and what NOT to copy.
+
+--000000000000f0faa2065bb1a72f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>This part is the build-vs-integrate constitution. Clone these repos OUTS=
+IDE <code>pmail/</code> (e.g. <code>../upstream/</code>) for inspection. Do=
+ not vendor entire repos into PMail unless a specific package/import requir=
+es it and the license permits it.</p>
+<ol>
+<li>SimpleX =E2=80=94 canonical private messaging substrate<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</l=
+i>
+</ol>
+<p>Repo:<br>
+<a href=3D"https://github.com/simplex-chat/simplex-chat">https://github.com=
+/simplex-chat/simplex-chat</a></p>
+<p>Use stable branch for build/reference:</p>
+
+<code>git clone <a href=3D"https://github.com/simplex-chat/simplex-chat.git=
+">https://github.com/simplex-chat/simplex-chat.git</a> ../upstream/simplex-=
+chat
+cd ../upstream/simplex-chat
+git checkout stable
+</code>
+<p>Why:</p>
+<ul>
+<li>private messaging network with no global user identifiers</li>
+<li>CLI available</li>
+<li>local profiles</li>
+<li>one-time / temporary addresses</li>
+<li>strong fit for PMail ingress/egress</li>
+</ul>
+<p>Do NOT recreate encrypted messaging, double-ratchet, queue routing, cont=
+acts, file transfer, etc.</p>
+<p>PMail adapter owns only:</p>
+<ul>
+<li>process supervision / client integration</li>
+<li>message -&gt; PMail event normalization</li>
+<li>capability binding</li>
+<li>privacy metadata</li>
+<li>QP claims around delivery/receipt when provable</li>
+</ul>
+<p>Target interface:</p>
+
+<code>interface PrivateMessenger {
+  createAddress(): Promise&lt;AddressHandle&gt;;
+  revokeAddress(id: string): Promise&lt;void&gt;;
+  sendMessage(to: string, body: Uint8Array): Promise&lt;AttemptEvidence&gt;=
+;
+  subscribe(handler: (m: PrivateMessage) =3D&gt; Promise&lt;void&gt;): Prom=
+ise&lt;Unsubscribe&gt;;
+}
+</code>
+<ol>
+<li>MoneroPay / monero-wallet-rpc =E2=80=94 XMR payment substrate<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Repos:<br>
+<a href=3D"https://github.com/moneropay/moneropay">https://github.com/moner=
+opay/moneropay</a><br>
+<a href=3D"https://github.com/moneropay/go-monero">https://github.com/moner=
+opay/go-monero</a></p>
+<p>Clone:</p>
+
+<code>git clone <a href=3D"https://github.com/moneropay/moneropay.git">http=
+s://github.com/moneropay/moneropay.git</a> ../upstream/moneropay
+</code>
+<p>MoneroPay is GPL-3.0. Prefer sidecar/process integration through its API=
+ rather than copying code into a differently licensed PMail core.</p>
+<p>Use native <code>monero-wallet-rpc</code> semantics / MoneroPay for:</p>
+<ul>
+<li>unique subaddresses/invoices</li>
+<li>incoming payment observation</li>
+<li>confirmation tracking</li>
+<li>partial payment handling</li>
+<li>outgoing transfers only through bounded authority</li>
+</ul>
+<p>DO NOT implement wallet cryptography or transaction parsing from scratch=
+.</p>
+<ol>
+<li>Monid =E2=80=94 deterministic connector substrate<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Repo:<br>
+<a href=3D"https://github.com/monid-ai/monid">https://github.com/monid-ai/m=
+onid</a></p>
+
+<code>git clone <a href=3D"https://github.com/monid-ai/monid.git">https://g=
+ithub.com/monid-ai/monid.git</a> ../upstream/monid
+</code>
+<p>Current repo provides declarative connector definitions, schema validati=
+on, content-hashed executable functions, sealed endpoint units, credential =
+injection at transport and fixture replay.</p>
+<p>Use Monid-style connector artifacts for external provider calls. PMail/Q=
+P owns semantic truth; Monid owns HOW an endpoint is called.</p>
+<p>Do not reproduce another giant provider SDK layer.</p>
+<ol>
+<li>Infisical Agent Vault =E2=80=94 credential broker<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Repo:<br>
+<a href=3D"https://github.com/Infisical/agent-vault">https://github.com/Inf=
+isical/agent-vault</a></p>
+
+<code>git clone <a href=3D"https://github.com/Infisical/agent-vault.git">ht=
+tps://github.com/Infisical/agent-vault.git</a> ../upstream/agent-vault
+</code>
+<p>Core is MIT (enterprise directory has separate terms).</p>
+<p>Use for:</p>
+<ul>
+<li>credentials never returned to the agent</li>
+<li>outbound credential injection</li>
+<li>per-agent/service egress policy</li>
+<li>short-lived vault-scoped sessions</li>
+<li>strict deny for unknown hosts</li>
+</ul>
+<p>PMail should not write its own secret vault.</p>
+<p>Important architecture:<br>
+agent sandbox and Agent Vault should be separate trust zones/hosts/process =
+boundaries. Agent must receive dummy placeholders/capabilities, not real pr=
+ovider keys.</p>
+<ol>
+<li>Agent Receipts / Obsigna =E2=80=94 generic signed receipt envelope<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Repo:<br>
+<a href=3D"https://github.com/agent-receipts/obsigna">https://github.com/ag=
+ent-receipts/obsigna</a></p>
+
+<code>git clone <a href=3D"https://github.com/agent-receipts/obsigna.git">h=
+ttps://github.com/agent-receipts/obsigna.git</a> ../upstream/obsigna
+</code>
+<p>Use its protocol / SDK / out-of-process signing daemon rather than reimp=
+lementing generic:</p>
+<ul>
+<li>canonical receipt serialization</li>
+<li>Ed25519 receipt signatures</li>
+<li>receipt chain linkage</li>
+<li>cross-language receipt verification</li>
+<li>MCP tool-call receipt wrapper</li>
+</ul>
+<p>QP extension remains PMail-specific and records:</p>
+<ul>
+<li>exact claim</li>
+<li>ContractRoot / ProofSpec identity</li>
+<li>evidence commitments</li>
+<li>actuality TRUE/FALSE/UNKNOWN</li>
+<li>privacy class</li>
+<li>identity surfaces</li>
+<li>semantic replay result</li>
+</ul>
+<p>Do not maintain a competing generic receipt format.</p>
+<ol>
+<li>Grantex =E2=80=94 delegated agent authority<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Repo:<br>
+<a href=3D"https://github.com/mishrasanjeev/grantex">https://github.com/mis=
+hrasanjeev/grantex</a></p>
+
+<code>git clone <a href=3D"https://github.com/mishrasanjeev/grantex.git">ht=
+tps://github.com/mishrasanjeev/grantex.git</a> ../upstream/grantex
+</code>
+<p>Apache-2.0, scoped/time-limited/revocable delegated authorization.</p>
+<p>Use its concepts/packages where they genuinely reduce our custom authori=
+ty code. Do not blindly adopt the currently published MCP auth service as a=
+ trust root without reviewing known package limitations. QP still binds aut=
+hority to exact effect/payload/budget.</p>
+<ol>
+<li>dstack =E2=80=94 confidential runtime / attestation<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Repo:<br>
+<a href=3D"https://github.com/Dstack-TEE/dstack">https://github.com/Dstack-=
+TEE/dstack</a><br>
+Examples:<br>
+<a href=3D"https://github.com/Dstack-TEE/dstack-examples">https://github.co=
+m/Dstack-TEE/dstack-examples</a></p>
+
+<code>git clone <a href=3D"https://github.com/Dstack-TEE/dstack.git">https:=
+//github.com/Dstack-TEE/dstack.git</a> ../upstream/dstack
+git clone <a href=3D"https://github.com/Dstack-TEE/dstack-examples.git">htt=
+ps://github.com/Dstack-TEE/dstack-examples.git</a> ../upstream/dstack-examp=
+les
+</code>
+<p>Apache-2.0 for dstack-owned code. Use it later for:</p>
+<ul>
+<li>TEE-confidential execution</li>
+<li>attested workload identity</li>
+<li>per-app key derivation</li>
+<li>verifiable runtime image / compose hash</li>
+</ul>
+<p>Do NOT block MVP on TEE deployment. Design the runtime interface now so =
+a normal local/dev runtime and dstack runtime implement the same interface.=
+</p>
+<ol>
+<li>Trigger.dev =E2=80=94 durable workflow mechanics, optional later<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Repo:<br>
+<a href=3D"https://github.com/triggerdotdev/trigger.dev">https://github.com=
+/triggerdotdev/trigger.dev</a></p>
+<p>Use only if we need durable waits/retries/reconciliation and do not want=
+ to implement a workflow engine. Do not make it part of ANON_CORE deploymen=
+t automatically; self-hosting/privacy surface must be reviewed first.</p>
+<ol>
+<li>Stalwart =E2=80=94 SMTP/JMAP bridge, later only<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Canonical repo/org should be verified before integration. Stalwart provi=
+des SMTP/IMAP/JMAP and is useful if we later need conventional email compat=
+ibility.</p>
+<p>Do not build an SMTP server.</p>
+<ol>
+<li>social-mcp =E2=80=94 code/reference donor only<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Repo:<br>
+<a href=3D"https://github.com/IhsanKabir/social-mcp">https://github.com/Ihs=
+anKabir/social-mcp</a></p>
+<p>MIT; useful for official OAuth/API patterns. Not central to PMail MVP.</=
+p>
+
+RULE
+<p>Open source owns:</p>
+<ul>
+<li>messaging crypto/protocol</li>
+<li>wallet RPC / payment processor</li>
+<li>generic connectors</li>
+<li>secret brokering</li>
+<li>generic signed receipts</li>
+<li>delegated auth</li>
+<li>TEE runtime</li>
+<li>durable workflow engine</li>
+<li>mail server</li>
+</ul>
+<p>PMail owns:</p>
+<ul>
+<li>privacy-class calculus</li>
+<li>identity-surface registry</li>
+<li>anonymous session/payment/capability lifecycle</li>
+<li>QP ProofSpecs for privacy and communications</li>
+<li>bridge selection under privacy constraints</li>
+<li>phone-provider capability verification</li>
+<li>end-to-end composition</li>
+</ul>
+<p>Part 3 maps exactly what to reuse from cmail and what NOT to copy.</p>
+
+--000000000000f0faa2065bb1a72f--

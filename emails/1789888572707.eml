@@ -1,0 +1,293 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id x4SEtpvOENVU
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:16:12 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=QhP4idq6xJIzoHSa2zeIV57Wcr8manxao/uZPP2/JetbzjuDN6oSghcqMby71zkOK3Zp8qPXt
+	oL35uEeC0fM6QdpzTHI+Pctc2q9FKMjFjf8RG8wiRGURPBxcUn8v/lFo2t305mZtad3mH6y92ui
+	51qqwGWGwFgN2HQPJxO4mwaVADuT0PSTw00a8oUsOCUkaQ3hSe0KOwwmNuZoZjUjedq8nh+RcJz
+	91UcajgC6qSWRfyGpxT5319DsNMK97OMjHsKBS3gGhcc+7feqaSqCq7iFFyINU3AhMZpgOBdxoC
+	lvleF+qqrj86f80Hk4EPbM7kow/obopjm4JGyGqFK2ZQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888572; x=1790493372; bh=POoVUQcM
+	OH0yaXixFlkUufgYcCssRMZJA3wIaU4IhIw=; b=QGFhsZFNaGsYTs765WBSPcAaxmkDxUFcYlc
+	SN8kccnQtFwmY0TcNK6/TgB5+kAdNf2hOeU1ejDBrx00+vBCYor5JEkqZl/UHD6jT3VlQ0EqjYv
+	Ly4WqnROFGCA8/PQWnDdJVW2i5a3ZzVeXcZiqDDVp44PivX858Kb1rC3SD6ZU0vAYOSR+xEcoI5
+	6Ps1zhDd6FeZ04CFMA8duxl/bezXAbdpMARcKF9dWbzQ0esrrxMB5AxwpM3ETQyu+yruCNAusAG
+	s/ZqqtnJCrZtak3qA4fprH+5WHGgmCklxrCC35HfWOnQaWxqqK2OU+1kZkGkN+0OhYVKNyBHSOj
+	j2fOhLQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=BBeSau68;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=BBeSau68;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-8961cca9193so24458377b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:16:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888572; cv=none;
+        d=google.com; s=arc-20260327;
+        b=s3NoG5+bto6pNe8HPgHsFRZs/Qsz5XE6ljBG/U5ZuqWWyQ94V2stw4RYXJrvPD0Qbs
+         MJnolrVCVM4HIO/H6t39oH+BHlxArD4MsuvVWtd0bHCwzMdcx8rm4sJ9dknGFPe/Mw2c
+         +Kr2AGxGgcMfNoUIkWhIHpf3t630zM0CzIldrgfmeHJTW0hTS36ej+NOdg26vc3pDIJv
+         kg4rAD0fuYrx3ZU6IxhtOWZBBfG5z7+LWndDusXrigyJHTIfJnpEGuG0bHg1Int7LwXp
+         D5LdZSSwriy2+VZrdc1taqlIUur1u2PP59KmEI/cbXsqxJEFy+XcxtikHdpDRTw8r/s1
+         Eldw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=POoVUQcMOH0yaXixFlkUufgYcCssRMZJA3wIaU4IhIw=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=HAFWNTkFw2LEnqAEIc71Bx1o4NjRlU43Vp4S9ny6iUAWZChQdkkYSzJT1WpM4uqo8/
+         cJcwStz4AxLpTHARgkSjXbYTX04maxCFeHP9CWcQJM94QVhMlqF3jkmf5WQt+Si3tFTx
+         ph3LkT/ugUf5KRHFEgu+YNuIQcSzgj/asQxG0gseSARGlbIuxlI68DGAYAuyIEWtz0mf
+         hxBJNhVZSd05hE6raedkXzVI3PMrx4jOauJAVURLLUhTBdinayh4ou1xvqg5xVfsMbgU
+         S9XpNQ5SmpgiYYYMUKxqfGnshncblo2iNTAObj6o/ujIPtb+jmjWSa/dAqAtrSt/153y
+         1iIg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888572; x=1790493372; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=POoVUQcMOH0yaXixFlkUufgYcCssRMZJA3wIaU4IhIw=;
+        b=BBeSau68m4OsF7D7eQnUKAX72mnhDVZMfehK8S+eYpeUe4EqawhF3pASWUlPtl+W4Q
+         Q4HP0UbPuo3KaoqG2XvQOhZjidwKcu+ToxX8F+Rj4gsBjM9yxgEXUoJlPB8241AEKYs/
+         HaYEG6vY7DuvDQbJK+pmVVsubg1N34rHqG9wBJmCaF/i4ZQBimqhfk5JBVmXhMXypCgF
+         VU8dFOuRt5f0q70CmEgf4J5DYg/wCbvoAARkOhScxHkntq59NkRddEr7T5reJAqHnxc/
+         UTpAqPAfZwEaXMtd1Arxq/LOjV/cFoTtmHH/rrdoz3FZkpSI3bghSodwX1nVf9nlWtc2
+         IHAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888572; x=1790493372;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=POoVUQcMOH0yaXixFlkUufgYcCssRMZJA3wIaU4IhIw=;
+        b=CDGjGtETS3AMaq12xTbi0b09Nn33aaOdbt8sGDHHT1+nbgmnakPwWeHRJ+hMCRQr++
+         lY/SkwGyrdVCnit4+zpqyorlEo9E8EXgXetxAStdPkVeHlsf2zU6DIIkh5q7GIWVi6fW
+         4TAqx9yLMFclDc38pyCE/XtWkQBshZPUDRyQZJ52Iw3hLnj427Jw7KwDJWeIKw9BvZR6
+         Iv2FMyo2reVMzcuTFito4v+RlwkYj7fCqI3UoRus/dwKBRg6St2V9/Bb3vmBhbspALD7
+         lUZ+WrJ35tEGcd7WWiwfI4f6ZYymySrd4KPen5jLVpT1q9m2FGE+um6GELOY4+uwZGM/
+         8drQ==
+X-Gm-Message-State: AFuF++m9K9wVXGkFJscT050ciEJ0LweWjx+Ioc6BQIl9yUo3JUMVX4xK
+	NI38xXoFV3S/KcT+jFEC4/KQFxyuY+piIKY0jPso9t2oFA8YfPO9D4+/tWX6rY1pjnzXC7Chj6F
+	2G2L2qgOFVbExWmwYjxjvVj72IU8BcW61bw==
+X-Gm-Gg: AYBFou2GjWRJ/1gb3rw/SmPgDOue6osCBCYeHbGXGVEcfHuFrCXGEXiruXAoBA+hVTJ
+	eKCnKYkOwg1VX9xjKnQ4//eGX3brhtwn2KxXmQEgC2WuLFPEputAN9xQCNVePG+wLLnQoFJwbZY
+	iRYxC4GePOt/xV+oaC2FxEoMOEsJGjWu67gF7Ji5B4szFnpTEe/MjXy9o5eK3K+QhnwcMjJMScB
+	fBGaT3EvqiyJacmjkSn3yXpJI+Jq8qNMoyC25tcdvcqYLl/Zl3GDLUr3ncxpyJKzqlPxjKCQ10Q
+	k4Xjl+mOwDMYwKqFs/BaVns4nNRa9YAYQcuNiCqmjPEfc83vKLP2lhrqUVtcQrGgEgzvX2rlMu4
+	KFKVHwZ0PqFmFalfjRiPy6GqwN6wVJ3SCejbj7+ZrByiuLfo8JRvw5QJCLFQhCQUK8AdRLFgm
+X-Received: by 2002:a05:690c:dd6:b0:89b:689d:3a77 with SMTP id
+ 00721157ae682-89b689d3c3emr9311907b3.46.1789888571795; Sun, 20 Sep 2026
+ 00:16:11 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:11 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:11 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:16:11 -0500
+X-Gm-Features: AcwNN1UDNCrQCJVCbA-8haBJxIWEkTZrACihe4LiGKDatm7wV9OYc32g6k9iUE8
+Message-ID: <CAPdrGek2uUE2hXzTs-yZb-5NVxBN9AUQHZ2LfpYaURxYh87a5A@mail.gmail.com>
+Subject: =?UTF-8?Q?RESEND_=E2=80=94_Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D0?=
+	=?UTF-8?Q?9=2D20_13=3A48_Asia=2FPhnom=5FPenh_=E2=80=94_1_strong_signal?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Resending because delivery was reported missing. Original report follows.
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+STATE
+
+Prior sent state was searched first through the 2026-09-20 12:48
+report. I rejected semantic duplicates around likeness, multi-pet
+composition, last-minute delivery, QR durability, persistent drafts,
+photo validation, pet personality, AI transparency and print-proof
+fidelity unless evidence added a materially different mechanism.
+
+NEW STRONG SIGNAL =E2=80=94 DIRECT-TO-RECIPIENT NEEDS A HUMAN SIGNATURE /
+HANDWRITING LAYER
+
+Source URLs:
+
+- https://justuseapp.com/en/app/441509555/funky-pigeon-cards-gifts/reviews
+
+- https://www.hallmark.com/cards/greeting-cards/custom-number-cake-mileston=
+e-birthday-card-2PGM1251.html
+
+- https://www.signedcards.com/cards/4718
+
+- https://perkieprints.com/products/greeting-cards
+
+Platforms: Funky Pigeon app review aggregation; Hallmark verified card
+reviews; SignedCards customer testimonials; personalized-pet-card
+retailer.
+
+Customer language / evidence:
+
+- Funky Pigeon iPhone buyer: after switching devices they =E2=80=9Clost the
+ability to add handwritten signatures=E2=80=9D that they had used for years=
+.
+
+- Hallmark verified buyer (2025): liked being able to add their =E2=80=9Cow=
+n
+handwriting inside=E2=80=9D because it gave the card =E2=80=9Ca personal to=
+uch.=E2=80=9D
+Another buyer chose delivery to themselves specifically so they could
+personally sign the card.
+
+- SignedCards repeat buyers independently praise the ability to put a
+real handwritten note/signature into remotely mailed cards; one says
+recipients did not realize the note was not physically written into
+that individual card.
+
+- Perkie Prints=E2=80=99 custom pet cards deliberately arrive blank inside =
+so
+buyers can add a handwritten note.
+
+Date: Funky Pigeon review surfaced in current 2026 review corpus;
+Hallmark examples 2025=E2=80=932026 page; other corroborating testimonials
+current-accessible, individual dates not consistently exposed.
+
+What customer wanted/problem experienced:
+
+The convenience of ordering and sending a personalized card remotely
+without losing the intimate cue that the sender actually signed/wrote
+it. Typed personalization can still feel machine-produced. Some
+customers route the physical card back to themselves just to restore
+this cue.
+
+Current workaround/product:
+
+- Send personalized card to self, hand-sign it, then repost it.
+
+- Use a handwriting-upload service.
+
+- Buy a pet card blank inside and write manually.
+
+Roast.pet implication:
+
+Add an OPTIONAL =E2=80=9Csign it like me=E2=80=9D step for physical cards:
+photograph/draw a signature or short handwritten sign-off once,
+background-remove it, and print it inside the card. This should be a
+bounded 5=E2=80=9310 second input, not a handwriting editor. Also allow =E2=
+=80=9Csend
+to me blank=E2=80=9D for customers who prefer true physical handwriting.
+
+Potentially stronger Roast.pet-native variant: optional PET SIGN-OFF
+beneath the human signature =E2=80=94 e.g. a generated paw mark + pet name =
+=E2=80=94
+but customer evidence supports the human handwriting layer directly;
+demand for generated pet paw signatures is UNKNOWN and should not be
+asserted.
+
+Occasion/audience:
+
+Direct-to-recipient birthdays, Christmas/holiday cards, long-distance
+gifting, last-minute cards, family recipients.
+
+Independent elsewhere?
+
+YES. The same mechanism appears independently in Funky Pigeon
+feedback, Hallmark verified reviews, a handwriting-card service with
+repeat purchasers, and a custom-pet-card product deliberately
+preserving blank interior space.
+
+Confidence: HIGH for human handwriting/signature as a valued
+direct-mail personalization cue; LOW/UNKNOWN for a pet-paw-signature
+gimmick.
+
+Prototype/test:
+
+At delivery choice show:
+
+- SEND DIRECT =E2=80=94 typed message
+
+- SEND DIRECT =E2=80=94 add my signature (upload/draw once)
+
+- SEND TO ME =E2=80=94 leave inside writable
+
+A/B test option 2 against typed-only direct send. Track selection rate
+and checkout completion; do not build a full freeform editor.
+
+Decision: BUILD/TEST
+
+RECURRING-SIGNAL COUNT
+
+New cluster: human handwriting/signature preservation =3D 4 independent
+evidence families in this run (1 app-review complaint + Hallmark
+verified buyer evidence + handwriting-service repeat-buyer evidence +
+custom-pet-card product behavior). Treat this as one mechanism, not
+four separate signals.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE =E2=80=94 current state
+
+- Exact recognizable pet likeness with proof/approval before
+irreversible production.
+
+- Pet-specific personality/context so the joke sounds like THEIR pet,
+not generic AI copy.
+
+- Fast/last-minute digital fulfillment, with physical card allowed to
+follow rather than block the reveal.
+
+- Multi-pet support with composition rules that preserve recognizable face =
+size.
+
+- Frictionless direct-to-recipient gifting that preserves personal
+cues =E2=80=94 now including optional sender handwriting/signature.
+
+STRONGEST UNMET NEED
+
+A gift that combines high-specificity pet identity + pet-specific
+comedy + immediate digital reveal + a physical keepsake, without
+forcing the buyer through a design tool.
+
+EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW
+
+Keep the structured, generated flow and add a tiny delivery/signature
+choice near the end. =E2=80=9CSend direct + add my signature=E2=80=9D remov=
+es a reason
+customers otherwise send the card to themselves and repost it.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE
+
+=E2=80=9CPersonalized Talking Pet Birthday Card =E2=80=94 Your Dog Roasts T=
+hem + QR
+Video + Your Handwritten Signature Inside.=E2=80=9D The handwriting claim
+should only be used after the feature actually exists.
+
+IMPORTANT NEGATIVE SIGNAL
+
+Do NOT respond by building a Canva-style handwriting/card editor. The
+customer evidence is for preserving a small authentic personal cue
+while retaining convenience. Previous card-platform evidence already
+shows that complex editors, stickers, lost state and awkward
+personalization controls create friction. The correct primitive is
+upload/draw signature =E2=86=92 clean background =E2=86=92 place safely in =
+a fixed
+interior zone.
+
+SEARCH NOTE
+
+Broad searches covered Etsy/custom talking-pet products, Reddit gift
+discussions, personalized-pet retailers, Moonpig/Funky Pigeon-style
+review surfaces and greeting-card reviews. Most results reinforced
+already-known clusters and were rejected as semantic duplicates. No
+sufficiently strong NEW customer evidence this run justified claims
+for adult-roast mode, kid-safe mode, sports roast, colleague roast or
+memorial-with-humor; those remain UNKNOWN/WATCH until direct buyer
+language appears.

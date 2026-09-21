@@ -1,0 +1,769 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id woIQzr5WVaoZ
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 05:29:02 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=FVCfhwWEigj/Ce7r/lm04rPeVr89ZD2vpxq8c7mk4A4bhuo/Dq6NxmdsYIAMHpucjItc8N+Gt
+	QnSrpd+JA3N9aFGRJbRyck8Bxw0LS54CDf8lR3CiLPFkZbeSfzbuGB0KC6BGqJIC/Hqw3SbrYPl
+	krn/SQikM5yPJaL7Ks9TrNbhby37YoxjzdRMWj7nkazWysV2FhPCijgfbJQJQCGPILyCrImmGCJ
+	Z8AmI6P8Sm9uOHYU1BX87rUaNwfxHHHSjLc5476Vdq5GnaEbKzEnmeLkKzm24ZwBt8vsuRPM8YW
+	z2+DF72/NQyTm1W0p6oBXYgnh81nxRSXzhhkujLauNbA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789968542; x=1790573342; bh=qLTyBIuJ
+	T2LuSfyChgzlKtrQAIvPDW61JfGKlcVrEU0=; b=NbiisCj8tYPobBdJGqm/T155oy/Xos7a6a0
+	ADW2t08L6Cw2e1GwxX00OO6zXDced01IPGrbqZVtU6awzNjIoPghk/HNc8ZHBAjJS2WEzeNycdY
+	LKgv9pfKAan3WIPgWSfVdoc28w2X6RAOTvdoND4KuJGGMQTHFYLKZOwDmEX/CIqg/HyoNIccrhE
+	1ATknCexA5pyg0unk65B0kIQ/Z89k1D3nuF6BamWYSrx15s/PmJ0n88jdMFS1Vb0zNQTRNAM/ZF
+	JzYXsSiCBnlUqQUUoMsVJPKdlaerLdaPJ2LNBipiJjS2gy4K4u3G5lmeWBXPoKb2AcD908H540n
+	Jj3Htaw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Fnb8K/gK;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Fnb8K/gK;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d440939e3so15648287b3.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 22:29:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789968542; cv=none;
+        d=google.com; s=arc-20260327;
+        b=a59CsdBPSfNNN94YvX6QpJJ31ek72bkFiE/obxp525jw2o2SgI6E1vQrO9yrtplZ8o
+         VgOoUrQnbnfh3jbvHiPfB8XNdKJZmCH+CQTmhlXobwAVee14Dr14bCIx3aPbPtEBqnnV
+         c3X5wMZjYttA2e8DKl+mbtNxY+Dvg4+phiJxvogx9eyzyO5VmqXNcWqYMoAO6HPXXPc1
+         A6ggw103lv+wtwymQlhzhygv4ou2+zH+kz0lnxTdqfs49864JcAlCTUwnmwCpKGuiwRE
+         FtW9EphiBPptqHys00beXk3iNRlaRIw9ewtg9BHnbdNQhENmEVt86T7XcwnFhgWPt5MN
+         2cFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=qLTyBIuJT2LuSfyChgzlKtrQAIvPDW61JfGKlcVrEU0=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=scQZyUTsUfl5FtTKjdsQSXuv5oBbJBKasrbfZCMSwj6zUSzpwd6EJLPwWOmhYNIE60
+         1WIffFD1+wrBX3REPZFxjSxgEmvRZ5QhfnllqfuSGn+tZSfjmpOEsuRwEuPqHOVY4AsN
+         1Thil1oDYR7JsEH6HTmAXr81Biokd7XWEZeFL/DC0xKdoyU/b0qzrBkjylHUCR7eRa6g
+         CtRqvPGx+Eas5mVpA4SpLv5m86HYVlMahCg2x179oCnDxXWHlFslHUWCgvLmHhkCrv8v
+         ZskjF0A/ulAo7gENhEKgBVinhh0lso9+vBc3MN6FdMTD5Mls9InBF+yR//0/L8ukw+FD
+         eJyQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789968542; x=1790573342; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=qLTyBIuJT2LuSfyChgzlKtrQAIvPDW61JfGKlcVrEU0=;
+        b=Fnb8K/gK/MpW1tuPx93XHZQQpk1EUn8ei1JDhqXwvtU8eGJwR+SNSZeSLOEMb53oQu
+         /iznQEYGpj6fhnl+B59xUu+Jd1g3hutC4Za22AkvdD8yASslLvkhZvwjxbmtSZsoNhoS
+         NUVuhLhcfYhBle9Jsb0xwLf4At2AsbkelZ5t1M4z/2XXy0e5dJJkCA+XtLtpsdRGG+Uu
+         V5btX2vZaNwC9KLNffboNRvd/vYeBxJtgair83XdxcpqzJ7KQ/c0WHieEe009/o87yV0
+         sttK8On9TpeD/RE3W3UxrqhcI5jrc8P7ThvepgJKS1qJgVogIVpc4HaCgw0m7TVhAkG4
+         r3lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789968542; x=1790573342;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=qLTyBIuJT2LuSfyChgzlKtrQAIvPDW61JfGKlcVrEU0=;
+        b=OgXvYjrJj/oqr9DF8HsMgqu/T7cpX1XN+wqjdj1Dx3shFdz5zmMCzFFEOzVAMy+xgi
+         ffPuEO1ipXZytvX51hZ4fGPsMUIyxs8syUspfk/6M3IJTPDjeEkt0Pyc5HWgdovIxxXM
+         3Shk6AA6CPcIl9dtJLRdxyRJoeP/dlwout0XlxKRNQKhSkPrl3YE3x4n+yTaRJ1V6nf/
+         JFHtK+8SQBxkCdvI7Xerhb/hI5GIx2tsto4pgfVhMa/G3ocy2wT3xlAq1HU2/76adFp5
+         aSSK9Vl2qjjcCKsJpiVtcm1NVXwCbaF3wZRgHVbFueJWAC3LnBzkzL9IZFFKhleja01D
+         mI4Q==
+X-Gm-Message-State: AFuF++m73HVc/GyNf+4gBzH0EvF6++qOJwPWhG1okEz0ByZmVzOiupbl
+	ydsD99hv8jG5Ofmps1a9d0l5oO5KClfJSjXJqfArTvmvs6Ck1aA09Zv88ptvCz8TBi+TLyabJuH
+	35+3Bnn/N8dkkgpEsBX1QsuA3HlkU7+vzow==
+X-Gm-Gg: AYBFou25IGt29Gerec3Bz2eTcC8R5KXhVVGqw0WhMD9LNNrxMati58+CpXOjIzurMgM
+	ddwfChNcdYop1YmD3pDUSWl1lY3+ySw5NhVszb/yAZkuIxth/wpgIOFpasn4F5aDXEb0uSKEnh2
+	Jq/okO1Ri9VsBD9mwPHR49CZC26I6AG0Z/sF2JFknF7YExAou7n9x7owK3KBgnI+ZG0UBh6sAEQ
+	Zd/5bvtFPDAjqouAYsfXW+e6ulvUruQ1YemnauxqEHLW0XbuTKknME71qO+3rXSF4xXB715SMpl
+	LZV4bsA2hYr0oylXda0R2nXWKx5q1/UuFz1Ct3iWdJFIa183oaOvKhvRixIcLXc8yUcdTFSvd1v
+	ZRcQlWbXCrA/Z8P2nMsY96/6grG22d5CekBaTisLTFWL5gfwe7qrih83iP98vBDFMpvT6r24=
+X-Received: by 2002:a05:690c:6e11:b0:854:d9d0:467b with SMTP id
+ 00721157ae682-89731b9b0abmr34972677b3.22.1789968541998; Sun, 20 Sep 2026
+ 22:29:01 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 00:29:01 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 00:29:01 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 00:29:01 -0500
+X-Gm-Features: AcwNN1UxwDKYUJGVBzyz6xUIUSwREDUge_UP-cVbZOfz-xzQ2t-MeOap5mhrL7o
+Message-ID: <CAPdrGe=MsFnK59rj7-qbeRi79MequqXO3hB1RSm6xamgACH0mw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Buyer_Actions_=E2=80=94_2026=2D09=2D21_12=3A27_ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000001ae04b065bf787d8"
+
+--0000000000001ae04b065bf787d8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS BUYER / ACTION PROBE =E2=80=94 2026-09-21 12:27 ICT Executive d=
+elta
+
+The strongest new buyer wedge is no longer generic =E2=80=9Ccapability acti=
+vation.=E2=80=9D
+It is *clean-tech transaction execution*, beginning with EV grant/install
+workflows and then expanding into solar/heat-pump/battery workflows.
+
+Why this moved up: there is now direct observed software spend around the
+exact operational workflow. UK installer software ranges from ProWorks at
+=C2=A325/month for a solo EV installer, GoInstall at =C2=A330/user/month to
+=C2=A375/month, Solar Quote Pro at =C2=A3249/month, Radiant Sell at =C2=A32=
+49/month, and
+Payaca from =C2=A3299/month for new installers to =C2=A31,199/month standar=
+d Growth
+and =C2=A31,999=E2=80=93=C2=A33,199/month for larger operations. This CONFI=
+RMS a real
+software budget category; it does NOT prove willingness to pay POW.
+
+OZEV creates an unusually executable workflow. From 1 Apr 2026 the
+Workplace Charging Scheme pays up to 75% of purchase/installation cost,
+capped at =C2=A3500/socket and 40 sockets. Home/renter/landlord schemes als=
+o
+increased to =C2=A3500/socket. Only authorised installers can claim, eligib=
+le
+charger models are required, and claims require model/serial/location photo
+evidence. The new residential platform has no installer claim-status
+portal: rejection/further-evidence/approval state arrives by email, and
+OZEV initially estimates up to 10 working days to assess applications and
+claims. This creates an immediate authorised agent workflow and a
+compounding outcome graph.
+
+The best POW primitive is therefore:
+
+Site/Customer =E2=86=92 Eligibility =E2=86=92 Product =E2=86=92 InstallerCa=
+pability =E2=86=92 Quote =E2=86=92
+Evidence =E2=86=92 Claim =E2=86=92 Decision =E2=86=92 Installation =E2=86=
+=92 Performance/Service
+
+with proprietary state:
+
+P(ClaimApproval | scheme, site, evidence, model, installer, time)
+TimeToApproval
+EvidenceDefectRate
+QuoteToInstallConversion
+InstallerCapacity(place,t)
+
+This is stronger than a static grant finder because POW can eventually
+execute the transaction and receive the outcome.
+Ranked action surfaces
+
+   1.
+
+   *EV grant =E2=86=92 installer =E2=86=92 claim outcome =E2=80=94 5.00 =E2=
+=80=94 PRESELL/PLANT*
+   Buyer/user: OZEV-authorised installer, installer representative,
+   landlord/workplace, customer.
+   Pain: eligibility, model choice, evidence capture, grant claim tracking,
+   rejected/further-evidence claims, fragmented email state.
+   Current alternative: GOV.UK guidance + OZEV portals/forms + email +
+   generic CRM/job software.
+   Input graph: site/property + applicant eligibility + charger model +
+   serial + installer authorisation + CPS + scheme + voucher/application +
+   photos + claim state + dates.
+   Proprietary state: ClaimReadiness, EvidenceCompleteness,
+   ApprovalProbability, TimeToApproval, ReworkRisk, InstallerOutcomeRate.
+   Immediate transaction: prepare/check claim pack; route customer to
+   authorised installer; monitor consenting installer Gmail for state chang=
+es;
+   generate evidence checklist.
+   Receipt: claim submitted/rejected/further-evidence/approved + payment +
+   installation completion.
+   Distribution: Muse workflow, CMail/Gmail permission, installer CRM/API,
+   lead-gen, installer representative partnerships.
+   Constraints: customer must submit their own application where required;
+   POW must not impersonate applicant; only authorised installer can claim;
+   personal data requires explicit first-party permission.
+   Status: CONFIRMED workflow; monetization INFERRED.
+   2.
+
+   *Property =E2=86=92 solar/heat-pump/battery quote-to-install =E2=80=94 4=
+.98 =E2=80=94
+   PRESELL/PLANT*
+   Buyer: renewable installer and property owner.
+   Pain: qualify site, design/quote, compliance, DNO/MCS/BUS, close job.
+   Observed spend: Radiant Sell =C2=A3249/mo; Solar Quote Pro =C2=A3249/mo;=
+ Payaca
+   =C2=A3299=E2=80=93=C2=A33,199/mo; Voltflo =E2=82=AC425=E2=80=93=E2=82=AC=
+800/mo; GoInstall =C2=A330=E2=80=93=C2=A375/mo. These prices
+   CONFIRM operational software budgets.
+   Input graph: UPRN/address + EPC + roof/site + tariff/load + equipment +
+   installer capability + MCS + DNO + grant + quote + installation.
+   Proprietary state: SiteActionability, ExpectedProjectValue,
+   ConversionProbability, TimeToInstall, realised
+   generation/consumption/payback.
+   Immediate route: site qualification/quote augmentation or opportunity
+   routing to installers rather than building another CRM.
+   Outcome: quote sent/accepted, DNO decision, install, commissioning,
+   realised performance.
+   Distribution: Muse property workflow + API/MCP into existing CRMs.
+   Constraint: avoid duplicating mature CRM/proposal tooling; POW must win
+   on cross-source economic state/outcomes.
+   Status: CONFIRMED buyer spend; POW WTP UNKNOWN.
+   3.
+
+   *Capability =E2=86=92 qualified work =E2=86=92 first paid job =E2=80=94 =
+4.96 =E2=80=94 PRESELL*
+   Buyer: sole trader/SME, training provider, trade body.
+   Pain: which adjacent certification/equipment actually unlocks paid work
+   locally?
+   Current alternative: training catalogues, job boards, intuition.
+   Graph: company/person capability + certification + geography + live work
+   + authorisation + equipment + training + cost/time + job outcome.
+   Transformation: MarginalCapabilityValue, TimeToFirstRevenue,
+   ActivationFriction.
+   Immediate route: paid-work unlock report and referral to
+   training/equipment/work.
+   Receipt: training booked, authorisation gained, quote submitted, paid
+   job.
+   Distribution: Muse career/work connector, CMail, trade communities.
+   Status: INFERRED monetization; outcome loop strong.
+   4.
+
+   *Exact part =E2=86=92 repair-or-replace =E2=86=92 repair receipt =E2=80=
+=94 4.91 =E2=80=94 PLANT/PILOT*
+   Buyer: consumer, repairer, reseller.
+   Pain: identify exact compatible part, decide whether repair is economic,
+   source it, find repair capability.
+   Current alternative: model-number search, forums, parts retailers,
+   repair call-out. Published UK call-out/diagnostic fees commonly sit arou=
+nd
+   =C2=A345=E2=80=93=C2=A3150; this is transaction evidence, not POW WTP.
+   Graph: model/serial-family =E2=86=94 MPN =E2=86=94 substitute =E2=86=94 =
+fault =E2=86=94 guide =E2=86=94 recall =E2=86=94
+   stock/price =E2=86=94 repairer =E2=86=94 resale value.
+   Transformation: ExpectedRepairValue and
+   P(success|model,fault,part,repairer).
+   Immediate route: part affiliate/referral + repair booking + broken-item
+   arbitrage alert.
+   Receipt: part purchased, repair attempted, success/failure, time/cost,
+   resale.
+   Status: strong garden, identity work harder.
+   5.
+
+   *Legislation/grant =E2=86=92 required physical work =E2=80=94 4.79 =E2=
+=80=94 PLANT*
+   Buyer: property owner, landlord, installer, compliance firm.
+   Pain: rule changed; what physical work must happen, by when, who can
+   execute it, and what support exists?
+   Graph: rule/effective date + affected asset/property/company + required
+   capability + approved product + installer + cost/grant + completion
+   evidence.
+   Transformation: ObligationToAction and EligibleExecutorSupply.
+   Immediate route: identify affected entity and route to executable work.
+   Receipt: quote, booking, completion/certificate.
+   Status: INFERRED monetization; cross-POW leverage high.
+   6.
+
+   *Grid/site viability =E2=86=92 connection action =E2=80=94 4.60 =E2=80=
+=94 PILOT*
+   Buyer: developer, installer, property/infrastructure owner.
+   Pain: whether a project/site is viable and what connection action to
+   take.
+   Graph: site/UPRN + DNO + headroom + queue + Gate + planning + technology
+   + connection economics.
+   Transformation: CommitmentAdjustedViability and expected connection
+   delay.
+   Receipt: application, offer, date/capacity change, build/no-build.
+   Status: high value, slower sales/outcome cycle.
+   7.
+
+   *Broken-item arbitrage =E2=80=94 4.43 =E2=80=94 DERIVATIVE*
+   Keep only as an outlet of the repair graph. Without accumulated repair
+   success, parts and resale outcomes it is merely marketplace search.
+   8.
+
+   *GPU mine/rent/inference/sell =E2=80=94 3.84 =E2=80=94 WATCH*
+   Actionable and dynamic but weak UK-specific buyer wedge and highly
+   competitive public economics. Promote only if POW gains unique first-par=
+ty
+   hardware state or transaction receipts.
+
+Exact buyer evidence
+
+CONFIRMED: OZEV WCS covers up to 75% of purchase/installation, max
+=C2=A3500/socket, 40 sockets; only authorised installers claim.
+Home/renter/landlord grants are up to =C2=A3500/socket. State-funded educat=
+ion
+can receive up to =C2=A32,000/socket. New residential platform sends claim =
+state
+by email and has no installer claim-status portal. Claims require photos
+including model/serial and site/parking context.
+
+CONFIRMED observed software prices: ProWorks EV installer job management
+=C2=A325/mo solo + =C2=A315=E2=80=93=C2=A320/additional user; GoInstall =C2=
+=A330/user/mo Starter, =C2=A355
+Standard, =C2=A375 Professional; Solar Quote Pro =C2=A3249/mo; Radiant Sell=
+ =C2=A3249/mo;
+Payaca Accelerator =C2=A3299/mo, Growth =C2=A31,199/mo, Scale =C2=A31,999/m=
+o, Scale Max
+=C2=A33,199/mo. Payaca explicitly supports MCS compliance, ENA Connect G98/=
+G99
+and clean-tech workflows.
+
+These prove existing spend, not POW WTP.
+Garden dependency graph
+
+IdentityGraph
+=E2=86=92 Property/SiteGraph
+=E2=86=92 Product/CompatibilityGraph
+=E2=86=92 Installer/CapabilityGraph
+=E2=86=92 Rule/GrantGraph
+=E2=86=92 LiveOpportunityGraph
+=E2=86=92 ActionGraph
+=E2=86=92 ReceiptGraph
+=E2=86=92 OutcomeGraph
+=E2=86=92 Recommendation/Execution model
+
+The moat is the final four transitions. Static identity data is
+infrastructure.
+PRESELL NOW Week-one deliverable
+
+*POW EV Grant Ops Pilot* for 5=E2=80=9310 OZEV-authorised installers: take =
+up to 20
+real or recently completed jobs and produce a structured
+eligibility/evidence/claim-state board. For each job: scheme,
+applicant/site eligibility, charger eligibility, evidence completeness,
+missing action, claim state, expected next step, timestamps and eventual
+outcome. Do not submit anything without explicit authorization.
+10 reachable buyer archetypes/public channels
+
+   1. Solo OZEV-authorised EV installers from the official postcode finder.
+   2. Multi-engineer OZEV installer firms.
+   3. OZEV authorised installer representatives.
+   4. Electrical contractors adding EV charging.
+   5. Landlord-focused EV installers.
+   6. Workplace/fleet charging installers.
+   7. State-funded education charging specialists.
+   8. Solar/battery installers cross-selling EV chargers.
+   9. Clean-tech CRM users/implementation partners.
+   10. Trade communities for electricians/renewable installers and public
+   LinkedIn/company contact channels.
+
+Low-friction pilot
+
+No system replacement. CSV/email export or 20 manually entered jobs. POW
+returns a claim/evidence action queue and records outcomes. Optional Gmail
+permission later to ingest claim-state emails.
+Exact validation question
+
+*=E2=80=9CDid POW prevent a claim/evidence error, reduce admin time, or cau=
+se a
+grant-backed installation to progress faster than your existing
+workflow=E2=80=94and will you give us the final claim outcome?=E2=80=9D*
+Evidence sufficient to charge
+
+Do not use stated enthusiasm. Charge only after observed behaviour: =E2=89=
+=A55
+installers participate; =E2=89=A550 job states processed; =E2=89=A590% acti=
+on
+recommendations judged correct; =E2=89=A53 concrete errors/missing-evidence=
+ events
+caught OR =E2=89=A55 hours documented admin saved; =E2=89=A580% of pilots r=
+eturn outcome
+receipts; and =E2=89=A52 buyers independently ask to continue or accept a p=
+aid
+continuation. Price remains UNKNOWN until tested.
+Before history / 6 / 12 / 36 months
+
+Day 1: deterministic eligibility/evidence checks, installer/product
+routing, workflow state machine.
+6 months: empirical rejection/further-evidence rates, processing-time
+distributions, installer/site/model cohorts.
+12 months: ClaimApprovalProbability, TimeToInstall, quote=E2=86=92install
+conversion, geographic installer capacity.
+36 months: causal intervention model estimating which
+installer/product/evidence/action minimizes total cost/time and maximizes
+successful installation/performance by site/person/place/time.
+Outcome loop
+
+Recommendation =E2=86=92 installer/customer action =E2=86=92 claim/evidence=
+ submission =E2=86=92
+OZEV email/portal state =E2=86=92 installation =E2=86=92 payment/commission=
+ing =E2=86=92
+service/performance =E2=86=92 model update.
+
+Every edge stores observed_at, effective_at, provenance, permission basis
+and CONFIRMED/INFERRED/UNKNOWN.
+Kill reasons
+
+KILL generic clean-tech CRM: mature vendors already sell it from tens to
+thousands per month.
+KILL generic grant finder: static/backfillable and weak outcome loop.
+KILL static installer directory: government already provides one.
+KILL generic solar proposal generator: crowded and existing products are
+strong.
+KILL broken-item marketplace scanner without repair outcomes.
+WATCH GPU routing until unique physical-state receipts exist.
+Next-hour queue
+
+   1. Sample 30 OZEV authorised installers across 3 regions and classify
+   current stack/contactability.
+   2. Convert OZEV grant rules into a deterministic state machine with
+   prohibited/required agent actions.
+   3. Define the minimum consenting-email parser for APPROVED /
+   FURTHER_EVIDENCE / DECLINED / PAID state.
+   4. Build a 20-job synthetic/retrospective schema and test evidence
+   completeness rules.
+   5. Search for published claim rejection/further-evidence reasons; if
+   absent, that absence strengthens the first-party outcome garden.
+   6. Test whether installer software APIs/webhooks permit POW to sit below
+   existing CRMs rather than compete with them.
+
+Machine-readable appendix { "probe":"POW_BUYER_ACTION",
+"run":"2026-09-21T12:27:54+07:00", "material_delta":true,
+"delta":"EV_GRANT_OPS_PROMOTED_TO_PRIMARY_WEDGE", "ranked":[
+["EV_GRANT_INSTALLER_CLAIM_OUTCOME",5.00,"PRESELL_PLANT"],
+["PROPERTY_CLEANTECH_QUOTE_INSTALL",4.98,"PRESELL_PLANT"],
+["CAPABILITY_TO_FIRST_PAID_JOB",4.96,"PRESELL"],
+["PART_REPAIR_OUTCOME",4.91,"PLANT_PILOT"],
+["RULE_TO_PHYSICAL_WORK",4.79,"PLANT"],
+["GRID_SITE_VIABILITY",4.60,"PILOT"],
+["BROKEN_ITEM_ARBITRAGE",4.43,"DERIVATIVE"], ["GPU_ROUTING",3.84,"WATCH"]
+],
+"observed_software_spend_gbp_month":{"min":25,"solar_quote":249,"payaca_gro=
+wth":1199,"payaca_scale":1999,"payaca_scale_max":3199},
+"presell":"POW_EV_GRANT_OPS_PILOT", "collector_deployed":false,
+"monetization_status":"INFERRED_NOT_CONFIRMED" }
+
+Sources: GOV.UK OZEV changes from 1 Apr 2026; WCS installer guidance; OZEV
+installer authorisation guidance; GOV.UK EV chargepoint installer finder;
+ProWorks pricing; GoInstall pricing; Solar Quote Pro pricing; Radiant
+pricing; Payaca UK pricing.
+
+--0000000000001ae04b065bf787d8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS BUYER / ACTION PROBE =E2=80=94 2026-09-21 12:27 ICT
+
+Executive delta
+<p>The strongest new buyer wedge is no longer generic =E2=80=9Ccapability a=
+ctivation.=E2=80=9D It is <strong>clean-tech transaction execution</strong>=
+, beginning with EV grant/install workflows and then expanding into solar/h=
+eat-pump/battery workflows.</p>
+<p>Why this moved up: there is now direct observed software spend around th=
+e exact operational workflow. UK installer software ranges from ProWorks at=
+ =C2=A325/month for a solo EV installer, GoInstall at =C2=A330/user/month t=
+o =C2=A375/month, Solar Quote Pro at =C2=A3249/month, Radiant Sell at =C2=
+=A3249/month, and Payaca from =C2=A3299/month for new installers to =C2=A31=
+,199/month standard Growth and =C2=A31,999=E2=80=93=C2=A33,199/month for la=
+rger operations. This CONFIRMS a real software budget category; it does NOT=
+ prove willingness to pay POW.</p>
+<p>OZEV creates an unusually executable workflow. From 1 Apr 2026 the Workp=
+lace Charging Scheme pays up to 75% of purchase/installation cost, capped a=
+t =C2=A3500/socket and 40 sockets. Home/renter/landlord schemes also increa=
+sed to =C2=A3500/socket. Only authorised installers can claim, eligible cha=
+rger models are required, and claims require model/serial/location photo ev=
+idence. The new residential platform has no installer claim-status portal: =
+rejection/further-evidence/approval state arrives by email, and OZEV initia=
+lly estimates up to 10 working days to assess applications and claims. This=
+ creates an immediate authorised agent workflow and a compounding outcome g=
+raph.</p>
+<p>The best POW primitive is therefore:</p>
+<p>Site/Customer =E2=86=92 Eligibility =E2=86=92 Product =E2=86=92 Installe=
+rCapability =E2=86=92 Quote =E2=86=92 Evidence =E2=86=92 Claim =E2=86=92 De=
+cision =E2=86=92 Installation =E2=86=92 Performance/Service</p>
+<p>with proprietary state:</p>
+<p>P(ClaimApproval | scheme, site, evidence, model, installer, time)<br>
+TimeToApproval<br>
+EvidenceDefectRate<br>
+QuoteToInstallConversion<br>
+InstallerCapacity(place,t)</p>
+<p>This is stronger than a static grant finder because POW can eventually e=
+xecute the transaction and receive the outcome.</p>
+
+Ranked action surfaces
+<ol>
+<li>
+<p><strong>EV grant =E2=86=92 installer =E2=86=92 claim outcome =E2=80=94 5=
+.00 =E2=80=94 PRESELL/PLANT</strong><br>
+Buyer/user: OZEV-authorised installer, installer representative, landlord/w=
+orkplace, customer.<br>
+Pain: eligibility, model choice, evidence capture, grant claim tracking, re=
+jected/further-evidence claims, fragmented email state.<br>
+Current alternative: <a href=3D"http://GOV.UK">GOV.UK</a> guidance + OZEV p=
+ortals/forms + email + generic CRM/job software.<br>
+Input graph: site/property + applicant eligibility + charger model + serial=
+ + installer authorisation + CPS + scheme + voucher/application + photos + =
+claim state + dates.<br>
+Proprietary state: ClaimReadiness, EvidenceCompleteness, ApprovalProbabilit=
+y, TimeToApproval, ReworkRisk, InstallerOutcomeRate.<br>
+Immediate transaction: prepare/check claim pack; route customer to authoris=
+ed installer; monitor consenting installer Gmail for state changes; generat=
+e evidence checklist.<br>
+Receipt: claim submitted/rejected/further-evidence/approved + payment + ins=
+tallation completion.<br>
+Distribution: Muse workflow, CMail/Gmail permission, installer CRM/API, lea=
+d-gen, installer representative partnerships.<br>
+Constraints: customer must submit their own application where required; POW=
+ must not impersonate applicant; only authorised installer can claim; perso=
+nal data requires explicit first-party permission.<br>
+Status: CONFIRMED workflow; monetization INFERRED.</p>
+</li>
+<li>
+<p><strong>Property =E2=86=92 solar/heat-pump/battery quote-to-install =E2=
+=80=94 4.98 =E2=80=94 PRESELL/PLANT</strong><br>
+Buyer: renewable installer and property owner.<br>
+Pain: qualify site, design/quote, compliance, DNO/MCS/BUS, close job.<br>
+Observed spend: Radiant Sell =C2=A3249/mo; Solar Quote Pro =C2=A3249/mo; Pa=
+yaca =C2=A3299=E2=80=93=C2=A33,199/mo; Voltflo =E2=82=AC425=E2=80=93=E2=82=
+=AC800/mo; GoInstall =C2=A330=E2=80=93=C2=A375/mo. These prices CONFIRM ope=
+rational software budgets.<br>
+Input graph: UPRN/address + EPC + roof/site + tariff/load + equipment + ins=
+taller capability + MCS + DNO + grant + quote + installation.<br>
+Proprietary state: SiteActionability, ExpectedProjectValue, ConversionProba=
+bility, TimeToInstall, realised generation/consumption/payback.<br>
+Immediate route: site qualification/quote augmentation or opportunity routi=
+ng to installers rather than building another CRM.<br>
+Outcome: quote sent/accepted, DNO decision, install, commissioning, realise=
+d performance.<br>
+Distribution: Muse property workflow + API/MCP into existing CRMs.<br>
+Constraint: avoid duplicating mature CRM/proposal tooling; POW must win on =
+cross-source economic state/outcomes.<br>
+Status: CONFIRMED buyer spend; POW WTP UNKNOWN.</p>
+</li>
+<li>
+<p><strong>Capability =E2=86=92 qualified work =E2=86=92 first paid job =E2=
+=80=94 4.96 =E2=80=94 PRESELL</strong><br>
+Buyer: sole trader/SME, training provider, trade body.<br>
+Pain: which adjacent certification/equipment actually unlocks paid work loc=
+ally?<br>
+Current alternative: training catalogues, job boards, intuition.<br>
+Graph: company/person capability + certification + geography + live work + =
+authorisation + equipment + training + cost/time + job outcome.<br>
+Transformation: MarginalCapabilityValue, TimeToFirstRevenue, ActivationFric=
+tion.<br>
+Immediate route: paid-work unlock report and referral to training/equipment=
+/work.<br>
+Receipt: training booked, authorisation gained, quote submitted, paid job.<=
+br>
+Distribution: Muse career/work connector, CMail, trade communities.<br>
+Status: INFERRED monetization; outcome loop strong.</p>
+</li>
+<li>
+<p><strong>Exact part =E2=86=92 repair-or-replace =E2=86=92 repair receipt =
+=E2=80=94 4.91 =E2=80=94 PLANT/PILOT</strong><br>
+Buyer: consumer, repairer, reseller.<br>
+Pain: identify exact compatible part, decide whether repair is economic, so=
+urce it, find repair capability.<br>
+Current alternative: model-number search, forums, parts retailers, repair c=
+all-out. Published UK call-out/diagnostic fees commonly sit around =C2=A345=
+=E2=80=93=C2=A3150; this is transaction evidence, not POW WTP.<br>
+Graph: model/serial-family =E2=86=94 MPN =E2=86=94 substitute =E2=86=94 fau=
+lt =E2=86=94 guide =E2=86=94 recall =E2=86=94 stock/price =E2=86=94 repaire=
+r =E2=86=94 resale value.<br>
+Transformation: ExpectedRepairValue and P(success|model,fault,part,repairer=
+).<br>
+Immediate route: part affiliate/referral + repair booking + broken-item arb=
+itrage alert.<br>
+Receipt: part purchased, repair attempted, success/failure, time/cost, resa=
+le.<br>
+Status: strong garden, identity work harder.</p>
+</li>
+<li>
+<p><strong>Legislation/grant =E2=86=92 required physical work =E2=80=94 4.7=
+9 =E2=80=94 PLANT</strong><br>
+Buyer: property owner, landlord, installer, compliance firm.<br>
+Pain: rule changed; what physical work must happen, by when, who can execut=
+e it, and what support exists?<br>
+Graph: rule/effective date + affected asset/property/company + required cap=
+ability + approved product + installer + cost/grant + completion evidence.<=
+br>
+Transformation: ObligationToAction and EligibleExecutorSupply.<br>
+Immediate route: identify affected entity and route to executable work.<br>
+Receipt: quote, booking, completion/certificate.<br>
+Status: INFERRED monetization; cross-POW leverage high.</p>
+</li>
+<li>
+<p><strong>Grid/site viability =E2=86=92 connection action =E2=80=94 4.60 =
+=E2=80=94 PILOT</strong><br>
+Buyer: developer, installer, property/infrastructure owner.<br>
+Pain: whether a project/site is viable and what connection action to take.<=
+br>
+Graph: site/UPRN + DNO + headroom + queue + Gate + planning + technology + =
+connection economics.<br>
+Transformation: CommitmentAdjustedViability and expected connection delay.<=
+br>
+Receipt: application, offer, date/capacity change, build/no-build.<br>
+Status: high value, slower sales/outcome cycle.</p>
+</li>
+<li>
+<p><strong>Broken-item arbitrage =E2=80=94 4.43 =E2=80=94 DERIVATIVE</stron=
+g><br>
+Keep only as an outlet of the repair graph. Without accumulated repair succ=
+ess, parts and resale outcomes it is merely marketplace search.</p>
+</li>
+<li>
+<p><strong>GPU mine/rent/inference/sell =E2=80=94 3.84 =E2=80=94 WATCH</str=
+ong><br>
+Actionable and dynamic but weak UK-specific buyer wedge and highly competit=
+ive public economics. Promote only if POW gains unique first-party hardware=
+ state or transaction receipts.</p>
+</li>
+</ol>
+
+Exact buyer evidence
+<p>CONFIRMED: OZEV WCS covers up to 75% of purchase/installation, max =C2=
+=A3500/socket, 40 sockets; only authorised installers claim. Home/renter/la=
+ndlord grants are up to =C2=A3500/socket. State-funded education can receiv=
+e up to =C2=A32,000/socket. New residential platform sends claim state by e=
+mail and has no installer claim-status portal. Claims require photos includ=
+ing model/serial and site/parking context.</p>
+<p>CONFIRMED observed software prices: ProWorks EV installer job management=
+ =C2=A325/mo solo + =C2=A315=E2=80=93=C2=A320/additional user; GoInstall =
+=C2=A330/user/mo Starter, =C2=A355 Standard, =C2=A375 Professional; Solar Q=
+uote Pro =C2=A3249/mo; Radiant Sell =C2=A3249/mo; Payaca Accelerator =C2=A3=
+299/mo, Growth =C2=A31,199/mo, Scale =C2=A31,999/mo, Scale Max =C2=A33,199/=
+mo. Payaca explicitly supports MCS compliance, ENA Connect G98/G99 and clea=
+n-tech workflows.</p>
+<p>These prove existing spend, not POW WTP.</p>
+
+Garden dependency graph
+<p>IdentityGraph<br>
+=E2=86=92 Property/SiteGraph<br>
+=E2=86=92 Product/CompatibilityGraph<br>
+=E2=86=92 Installer/CapabilityGraph<br>
+=E2=86=92 Rule/GrantGraph<br>
+=E2=86=92 LiveOpportunityGraph<br>
+=E2=86=92 ActionGraph<br>
+=E2=86=92 ReceiptGraph<br>
+=E2=86=92 OutcomeGraph<br>
+=E2=86=92 Recommendation/Execution model</p>
+<p>The moat is the final four transitions. Static identity data is infrastr=
+ucture.</p>
+
+PRESELL NOW
+
+Week-one deliverable
+<p><strong>POW EV Grant Ops Pilot</strong> for 5=E2=80=9310 OZEV-authorised=
+ installers: take up to 20 real or recently completed jobs and produce a st=
+ructured eligibility/evidence/claim-state board. For each job: scheme, appl=
+icant/site eligibility, charger eligibility, evidence completeness, missing=
+ action, claim state, expected next step, timestamps and eventual outcome. =
+Do not submit anything without explicit authorization.</p>
+
+10 reachable buyer archetypes/public channels
+<ol>
+<li>Solo OZEV-authorised EV installers from the official postcode finder.</=
+li>
+<li>Multi-engineer OZEV installer firms.</li>
+<li>OZEV authorised installer representatives.</li>
+<li>Electrical contractors adding EV charging.</li>
+<li>Landlord-focused EV installers.</li>
+<li>Workplace/fleet charging installers.</li>
+<li>State-funded education charging specialists.</li>
+<li>Solar/battery installers cross-selling EV chargers.</li>
+<li>Clean-tech CRM users/implementation partners.</li>
+<li>Trade communities for electricians/renewable installers and public Link=
+edIn/company contact channels.</li>
+</ol>
+
+Low-friction pilot
+<p>No system replacement. CSV/email export or 20 manually entered jobs. POW=
+ returns a claim/evidence action queue and records outcomes. Optional Gmail=
+ permission later to ingest claim-state emails.</p>
+
+Exact validation question
+<p><strong>=E2=80=9CDid POW prevent a claim/evidence error, reduce admin ti=
+me, or cause a grant-backed installation to progress faster than your exist=
+ing workflow=E2=80=94and will you give us the final claim outcome?=E2=80=9D=
+</strong></p>
+
+Evidence sufficient to charge
+<p>Do not use stated enthusiasm. Charge only after observed behaviour: =E2=
+=89=A55 installers participate; =E2=89=A550 job states processed; =E2=89=A5=
+90% action recommendations judged correct; =E2=89=A53 concrete errors/missi=
+ng-evidence events caught OR =E2=89=A55 hours documented admin saved; =E2=
+=89=A580% of pilots return outcome receipts; and =E2=89=A52 buyers independ=
+ently ask to continue or accept a paid continuation. Price remains UNKNOWN =
+until tested.</p>
+
+Before history / 6 / 12 / 36 months
+<p>Day 1: deterministic eligibility/evidence checks, installer/product rout=
+ing, workflow state machine.<br>
+6 months: empirical rejection/further-evidence rates, processing-time distr=
+ibutions, installer/site/model cohorts.<br>
+12 months: ClaimApprovalProbability, TimeToInstall, quote=E2=86=92install c=
+onversion, geographic installer capacity.<br>
+36 months: causal intervention model estimating which installer/product/evi=
+dence/action minimizes total cost/time and maximizes successful installatio=
+n/performance by site/person/place/time.</p>
+
+Outcome loop
+<p>Recommendation =E2=86=92 installer/customer action =E2=86=92 claim/evide=
+nce submission =E2=86=92 OZEV email/portal state =E2=86=92 installation =E2=
+=86=92 payment/commissioning =E2=86=92 service/performance =E2=86=92 model =
+update.</p>
+<p>Every edge stores observed_at, effective_at, provenance, permission basi=
+s and CONFIRMED/INFERRED/UNKNOWN.</p>
+
+Kill reasons
+<p>KILL generic clean-tech CRM: mature vendors already sell it from tens to=
+ thousands per month.<br>
+KILL generic grant finder: static/backfillable and weak outcome loop.<br>
+KILL static installer directory: government already provides one.<br>
+KILL generic solar proposal generator: crowded and existing products are st=
+rong.<br>
+KILL broken-item marketplace scanner without repair outcomes.<br>
+WATCH GPU routing until unique physical-state receipts exist.</p>
+
+Next-hour queue
+<ol>
+<li>Sample 30 OZEV authorised installers across 3 regions and classify curr=
+ent stack/contactability.</li>
+<li>Convert OZEV grant rules into a deterministic state machine with prohib=
+ited/required agent actions.</li>
+<li>Define the minimum consenting-email parser for APPROVED / FURTHER_EVIDE=
+NCE / DECLINED / PAID state.</li>
+<li>Build a 20-job synthetic/retrospective schema and test evidence complet=
+eness rules.</li>
+<li>Search for published claim rejection/further-evidence reasons; if absen=
+t, that absence strengthens the first-party outcome garden.</li>
+<li>Test whether installer software APIs/webhooks permit POW to sit below e=
+xisting CRMs rather than compete with them.</li>
+</ol>
+
+Machine-readable appendix
+
+<code>{
+  &quot;probe&quot;:&quot;POW_BUYER_ACTION&quot;,
+  &quot;run&quot;:&quot;2026-09-21T12:27:54+07:00&quot;,
+  &quot;material_delta&quot;:true,
+  &quot;delta&quot;:&quot;EV_GRANT_OPS_PROMOTED_TO_PRIMARY_WEDGE&quot;,
+  &quot;ranked&quot;:[
+    [&quot;EV_GRANT_INSTALLER_CLAIM_OUTCOME&quot;,5.00,&quot;PRESELL_PLANT&=
+quot;],
+    [&quot;PROPERTY_CLEANTECH_QUOTE_INSTALL&quot;,4.98,&quot;PRESELL_PLANT&=
+quot;],
+    [&quot;CAPABILITY_TO_FIRST_PAID_JOB&quot;,4.96,&quot;PRESELL&quot;],
+    [&quot;PART_REPAIR_OUTCOME&quot;,4.91,&quot;PLANT_PILOT&quot;],
+    [&quot;RULE_TO_PHYSICAL_WORK&quot;,4.79,&quot;PLANT&quot;],
+    [&quot;GRID_SITE_VIABILITY&quot;,4.60,&quot;PILOT&quot;],
+    [&quot;BROKEN_ITEM_ARBITRAGE&quot;,4.43,&quot;DERIVATIVE&quot;],
+    [&quot;GPU_ROUTING&quot;,3.84,&quot;WATCH&quot;]
+  ],
+  &quot;observed_software_spend_gbp_month&quot;:{&quot;min&quot;:25,&quot;s=
+olar_quote&quot;:249,&quot;payaca_growth&quot;:1199,&quot;payaca_scale&quot=
+;:1999,&quot;payaca_scale_max&quot;:3199},
+  &quot;presell&quot;:&quot;POW_EV_GRANT_OPS_PILOT&quot;,
+  &quot;collector_deployed&quot;:false,
+  &quot;monetization_status&quot;:&quot;INFERRED_NOT_CONFIRMED&quot;
+}
+</code>
+<p>Sources: <a href=3D"http://GOV.UK">GOV.UK</a> OZEV changes from 1 Apr 20=
+26; WCS installer guidance; OZEV installer authorisation guidance; <a href=
+=3D"http://GOV.UK">GOV.UK</a> EV chargepoint installer finder; ProWorks pri=
+cing; GoInstall pricing; Solar Quote Pro pricing; Radiant pricing; Payaca U=
+K pricing.</p>
+
+--0000000000001ae04b065bf787d8--

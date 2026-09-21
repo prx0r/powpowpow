@@ -10,7 +10,8 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 import numpy as np
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
 class OFICalculator:
     """Calculate Order Flow Imbalance from L2 depth updates."""

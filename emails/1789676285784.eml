@@ -1,0 +1,695 @@
+Received: from mail-yx2-x16.google.com (2607:f8b0:4864:41::16)
+        by cloudflare-email.net (cloudflare) id 6XMWZvg1WT41
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 20:18:05 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=VOQ/VQtYhSWn7Iatsa3eTnNg0sXk8X7eIeKX7w4DcCljqYGTOtS410jILCtB5NrTADZQe8et3
+	K4zIKQkeo78xM4OL7s5e9XprkDeFdFR6/0VWIrk+oeOVhCTihlAApHj2FRI3xNZS3PSfUI4wayn
+	WP81GTYGpO6xeFNaJjTI1ILzjaYAOiQRqtbDfvrcueSYhfyq6JHOx1XdUJyNffZ1XFId5+m0aJR
+	wNCgwwhqA6uTd9CHd4rdxZgcRGtD4mv9sMv3LTPFXVW2bXpDVAqkzUrCfkC7wBK3sWpB1tTBeNB
+	mOmsWogK03Hi5EOH394ScE4p8lgfzws1GJPiFZphVXhw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789676285; x=1790281085; bh=NjDYiFBl
+	J+Q8cmYCkvrMQ/eIUgouVdT6mjg+jOgLBv4=; b=Ga28BhweJDe6e/i62bigOvcHispcT7oYlnB
+	LwEybcy0NM6aXob7oNqaWxc7kPx4C0mjyiQ3G20hFQsOvOkjzr6MagfJ3c2iLLrhdojZw/BI3nn
+	6ZwOJw+HbupGm1ftFuTlhZgWjfEhUUpO7g/vHbSQKGHarFlzlJeu9hGacnMndTrmNHdnFM9EJx8
+	d63St4aGbMK7Fcj34HvTPyRCWmULNPO7eB9eSRXYGyGdiyD5DFFF2+9pFC84AWEKGuRpqteiGEh
+	2v5w/JPmzsdTE3A06Qkyky9kgj2KaGx+dMNei2eEv4x3un4S+sJDZTGVPQPFZaBMeJVfg/s8hLo
+	LXJWvgA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=UCTOb8PX;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x16.google.com) smtp.helo=mail-yx2-x16.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::16"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::16; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x16.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=UCTOb8PX;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x16.google.com) smtp.helo=mail-yx2-x16.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::16"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x16.google.com with SMTP id 956f58d0204a3-66e4aac92dbso84667d50.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 13:18:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789676285; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Vj//qF9Hr6VgN3XrMKWUM/T6OxTDPMTFPvT4mCW6kyMjyXTuOchnlFlP09r3cYU4Mv
+         3X9ZDhnhPV7+KlxVmcke2gP59O5RiceJ9uImjp0v4jU82cLjP8Xkqd3UUEo88T/oHTOF
+         C25nErvbFjHg/vLuRkGvIrlMk201d+Wa50r6nTAPPLzArcxNTbzbRZmaQj6FS7MdgGZL
+         8mJqEXEHAyfPg1p9b96tUoZcxUDA0cAYuwtoi8EH0NAeCcSwMwzCm8FC3BQWCloBlPos
+         TOGVOc7tWijxFDsxz99H5ySJlaU7bumqUnT8rhXxFu+0J3YUbwOcVpboG53NjT6XHai3
+         s53g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=NjDYiFBlJ+Q8cmYCkvrMQ/eIUgouVdT6mjg+jOgLBv4=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=J3JqkqvjWhZuy+/HZUYYAzERlb8NeXdzqrDQp5JVDCzE7fEGxr69VuLWfwz+kO0jKs
+         ceFhZwlGmrGq83CyhJjSOvEHd6vbcMRULWCO1rl0C7ErE82KioPq3lEtjvwHzBC6KISM
+         e/3m8xnFUpEgZDPkaQnH1/ENfl7KZNytyZUDYx0bmW5PQkP7gOb7ScMXhCvyFg9mFxMN
+         HMwrUroawoMlmgxeM1KmE8DZEncMy8FIhJQMxgwGH1Tw1q0NNbm7nfI6eOP8DEQS1R/t
+         cIslhFW1vsvODcP1JQR/RA2dk3VYBX2GMEBw5EVYmieGR7wjIyPy9H0PHsz5bpwncFvk
+         FCvA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789676285; x=1790281085; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=NjDYiFBlJ+Q8cmYCkvrMQ/eIUgouVdT6mjg+jOgLBv4=;
+        b=UCTOb8PXABTkFrCNX/MmeZlegNAc6lMhhhvAT3g9dMCg5zNYNhXKqDLYWEN2iuJEVT
+         Jf9ngcPvbtkG17M9/hKn6H10kYH3IyLDVgtSL8ek7iuCuggm1GPpMa55PAa6H11SQObH
+         g6kOwbTCQjXVxlgvUjBmapzL1grBrD88wsp8A5d09LbyN7lhlOJdf4qedDS0JkfAaIdf
+         W+i/UF9vatTexijAyTq24ZOjyJ7dah0slBkF/tjhASIqrf5ulPhRC6Ywp82uciw4WscM
+         wZUEN6FmAOth76IGceIf0/Ao0DSXj+qFI1ZA0SWzEv9QTJkXmoSI6sa4SaFXKtiv9uZh
+         yiMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789676285; x=1790281085;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=NjDYiFBlJ+Q8cmYCkvrMQ/eIUgouVdT6mjg+jOgLBv4=;
+        b=oGqNH9CKk8dZHsaF11epJVS12SxKamIfjpZVMmYA106qEXf882NgO5rCa8Xo+Zfd0G
+         VKLoFQF6UkLLlvow5YK9Cn9bnj1ydEonQI0X/qTLd3d946opEurMmLeOYVBmnIeady2u
+         nN8OvFNoNXadFa/PyolkEL53hKtHUwsz3VzgHAIwe7fRNyGWBUX7ZShIpppNxdBqpu9h
+         GZ31F19Zfb6IMrviSkwIU11Px7ogGrxpxD4vDIkNaAph8ABpylfw1lfTqf9LfBwjGLhZ
+         5vBJ2112Rfsb5LFXoIb2McqoMcwPxUYsSnPbFHpIl4cJ64uAMpKZS5ERu+UB0SaltPK+
+         dVag==
+X-Gm-Message-State: AFuF++kIY01IgTn9wESzOqZIZRPQHKZN8ITwdQqPRgYNtVrJAHrcVEsX
+	d4eE3wl8AGheHelcoEWgcKaulaSxmxIYwE2oE7BEzZ2tRNmLUwHT1Gf3ojDXNots8c7yVTlmF5W
+	CGCCoEKGfoXy//9JGCbL1gPF9TrDZCAXwTQ==
+X-Gm-Gg: AYBFou220Agon7ULezsDKHgreqhCiwJAtlg5m6blnMpWHZo7p4nipW/p963em2sSbMy
+	L3G0bqSPref4TqKf4OD8qASJTixtk6zdrRIHiGupnJBLheqkhIAYFpr5xf6kJzxwKJaaEUIioz8
+	JRxV479+hk6vdc/oYiWaEE/PGu8t0c35qc5gohoHIyHyy5kNAE55rnxLOGEeW+tCyjXH1DgENgT
+	MF+BsVZoPiIv3fZAFrj7J3Y62lJN89voJ2P9kkZzhwTlTQvgyorheUVgRcCwJZJZMGLcEeVvnH3
+	kS8qEElwPUJBANsuGEbLcIFu6+ltjybONwSV5Ea5y5xogcduwu7OiM1+9Y8cTeL5nzOo4rpQ102
+	T+lIi4jelsXzH1WSWwAbskPi6+dlJZ9WclQEfsBUx6BvMOHl4umzYSsUP7ohzyN5+KIEtrOLYsg
+	gmASNTqVQ=
+X-Received: by 2002:a05:690e:dcc:b0:671:1c5e:9977 with SMTP id
+ 956f58d0204a3-6717fe2a75fmr88046d50.97.1789676284567; Thu, 17 Sep 2026
+ 13:18:04 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 15:18:03 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 15:18:03 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 15:18:03 -0500
+X-Gm-Features: AcwNN1XgDT1Emo2RpYYewvY192HzKjpRcWxlGn7ipLYpzVh92jDXbgLgcnNQn30
+Message-ID: <CAPdrGemG_bu02krAf7VW-59R12jvkiKjps2Fwi9uDt1aVQNVKQ@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_peer_review_5=2F5_=E2=80=94_exact_commit_order_=2B_relea?=
+	=?UTF-8?Q?se_gates?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000034655d065bb37b28"
+
+--00000000000034655d065bb37b28
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Execute in this order. Do not start additional features until each gate is
+green. Current reviewed HEAD: 4146b360b607f4c6c99ad8def61313f38282cf31.
+
+COMMIT 0 =E2=80=94 MAKE STATUS HONEST / FAIL CLOSED
+Goal: no placeholder can accidentally claim production truth.
+
+   - Rewrite README first line/status to current reality.
+   - Mark placeholder implementations explicitly DEV_ONLY / UNIMPLEMENTED.
+   - Tor placeholder must not return reachable=3Dtrue.
+   - LocalAttestor must not satisfy production attestation policy.
+   - Provider/network errors return UNKNOWN-shaped result.
+   - Remove unimplemented MCP tools from advertised list OR implement them;
+   tools/list must equal dispatchable surface.
+   - Add test that every advertised tool dispatches to a registered handler=
+.
+   - Add test that every state-changing production tool maps to effect
+   policy.
+
+Gate: grep/static test finds no placeholder.onion, unconditional success,
+fake sha256:...name... hash labels, or development attestor on production
+route.
+
+COMMIT 1 =E2=80=94 CI / BRANCH QUALITY
+Add .github/workflows/ci.yml:
+
+   - npm ci
+   - npm run typecheck
+   - npm test
+   - dependency/license check if lightweight
+   - receipt conformance job once integrated
+
+Normalize module packaging (type/tsconfig/runtime) and pinned Node version.
+Add npm run test:security and npm run test:live (live disabled unless
+explicitly configured).
+
+Protect canonical branch manually after workflow exists; require CI before
+merge. Signed commits are desirable but not the core runtime trust
+mechanism.
+
+Gate: HEAD has actual GitHub status checks, not only local =E2=80=9C98 test=
+s
+passing=E2=80=9D claim.
+
+COMMIT 2 =E2=80=94 REAL OBSIGNA + RFC8785
+
+   - clone/pin agent-receipts/obsigna
+   - replace custom generic envelope/signature path
+   - implement PMail QP extension only
+   - trusted signer resolver external to receipt
+   - run upstream conformance/MUST-reject vectors
+
+Gate:
+
+   - upstream verifier accepts valid fixture
+   - signer substitution attack fails
+   - signature mutation fails
+   - same semantic object canonicalizes identically cross-language where
+   test vectors exist
+
+COMMIT 3 =E2=80=94 QP REGISTRY / REPLAY V2
+Create frozen registries:
+
+   - ProofSpecRegistry
+   - ProgramManifest
+   - JudgeRegistry
+   - GateRegistry
+
+Replace placeholder hashes with actual content hashes generated at build
+time.
+No caller-supplied arbitrary judge/gate functions on production replay path=
+.
+
+Gate: fresh-process replay from persisted receipt/spec/evidence/program
+artifacts returns PASS; mutate any relevant byte/hash/root =3D> FAIL CLOSED=
+.
+
+COMMIT 4 =E2=80=94 PRIVATE EVIDENCE TREE + DISCLOSURE MANIFEST
+
+   - RFC8785 canonical private evidence
+   - domain-separated Merkle tree
+   - inclusion proofs
+   - DisclosureManifestV1
+   - public vs private receipt projections
+
+Gate: public receipt scan contains no phone number, SimpleX address, XMR
+address/tx key, raw message, provider token, email, IP, IMSI/ICCID or
+credential.
+
+COMMIT 5 =E2=80=94 APPEND-ONLY TRANSPARENCY LOG
+Implement CT-style append-only log now so first real runs begin
+accumulating useful history.
+
+Minimum:
+
+   - append digest
+   - signed tree head
+   - inclusion proof
+   - consistency proof
+   - offline verifier
+   - persisted tree state
+
+Log signed run/receipt commitment only; not private evidence.
+
+Gate:
+
+   - inclusion verification PASS
+   - old->new consistency PASS
+   - deleted/reordered/rewritten leaf impossible without root change
+   - verifier can detect inconsistent history fixtures
+
+COMMIT 6 =E2=80=94 DURABLE STORE + AUTHORITY + EFFECT JOURNAL
+Choose one simple production store first (SQLite/Postgres is fine; avoid
+premature distributed architecture).
+Persist:
+
+   - sessions
+   - operators/task keys
+   - invoices
+   - capabilities/token hashes
+   - credit ledger
+   - authority refs/use state
+   - effect journal
+   - claims/evidence metadata
+   - receipt/log metadata
+
+Integrate AuthorityProvider/Grantex concepts.
+Exact proposal hash required.
+Atomic max-use/budget reservation.
+
+Gate: restart + concurrent-request tests prove no
+replay/double-use/double-spend.
+
+COMMIT 7 =E2=80=94 REAL XMR VERTICAL
+Build MoneroPay/monero-wallet-rpc integration.
+Do not expose generic unrestricted wallet send tool.
+
+E2E:
+anonymous session -> fresh subaddress invoice -> observed payment ->
+confirmations -> QP TRUE -> capability minted -> receipt -> transparency
+inclusion.
+
+Gate:
+
+   - callback alone cannot settle TRUE
+   - partial payment no capability
+   - duplicate callback/restart no double mint
+   - wrong invoice/subaddress no funding
+   - amount policy enforced
+
+THIS is first pmail-v0.1-real milestone.
+
+COMMIT 8 =E2=80=94 REAL SIMPLEX VERTICAL
+Wire actual adapter into MCP/context.
+Implement listener/process/service supervision.
+Run two-profile nonce roundtrip fixture.
+
+E2E:
+funded capability -> create SimpleX address -> external profile sends nonce
+-> PMail receives -> PMail sends response nonce -> independent profile
+confirms -> QP receipt/log.
+
+Gate: mock is not sufficient. At least one integration test runs against
+pinned upstream binary/service.
+
+COMMIT 9 =E2=80=94 REAL TOR VERTICAL
+Generate/load actual Tor v3 hidden-service identity, expose API, and test
+through SOCKS.
+No source-IP app logging.
+
+Gate: actual .onion, actual network roundtrip, process restart preserves
+expected identity when configured, and failure =3D> UNKNOWN.
+
+COMMIT 10 =E2=80=94 PHONE PROVIDER ACCEPTANCE HARNESS
+Fix selectBridge() first: enforce
+status/privacy/payment/country/capabilities/price.
+Then run live harness with strict tiny spend cap.
+
+Provider statuses:
+
+   - CLAIMED: docs only
+   - EXPERIMENTAL: adapter exists
+   - OBSERVED: some live behavior
+   - VALIDATED: complete required capability suite passed recently
+   - STALE: validation expired
+   - CONTRADICTED/DEPRECATED
+
+Do not set VALIDATED manually.
+
+Start with:
+A. SilentLink limited capability validation
+B. PikaSim experimental full voice/SMS/data attempt
+C. MoneroSMS adapter if API is suitable
+
+Gate: actual challenge receipts for each claimed direction. Same-provider
+status API can prove resource state but NOT substitute for end-to-end
+SMS/voice challenge.
+
+COMMIT 11 =E2=80=94 ACTUAL AGENT VAULT
+Use upstream Agent Vault/proxy, not invented endpoint facade.
+Separate credential broker from agent sandbox.
+Strict service/host/path/scheme/redirect policy.
+
+Gate:
+
+   - planner/agent never receives raw provider credential
+   - unrelated host/path denied
+   - redirect escape denied
+   - receipt/log contains no secret/token
+
+COMMIT 12 =E2=80=94 DSTACK / CONFIDENTIAL RUN SIGNER
+Pin real dstack SDK/example version.
+Bind ephemeral run public key + workload/policy/verifier roots into
+attestation report_data.
+Independent verifier validates TDX quote/measurements.
+
+Gate: wrong workload, wrong policy, wrong run key, stale nonce/quote all
+fail.
+
+COMMIT 13 =E2=80=94 DERIVED REPUTATION / MOAT
+Only now build metrics over transparency-log history.
+
+Create versioned deterministic reducer:
+reputation snapshot =3D f(valid FULL-verified receipts up to tree_size N)
+
+Track:
+
+   - successful verified runs
+   - TRUE/FALSE/UNKNOWN rates
+   - privacy class distribution
+   - privacy violations
+   - provider reliability/freshness
+   - spend reconciliation
+   - phone/SimpleX delivery reliability
+
+Snapshot includes source tree root/size + algorithm hash so anyone can
+reproduce it.
+Do not make DB score=3D... canonical truth.
+
+Use per-task/epoch keys so public history does not trivially become a
+permanent behavioral identifier. Later add selective/ZK proof of reputation
+thresholds.
+
+REQUIRED TEST CATEGORIES
+
+   1. UNIT =E2=80=94 deterministic functions only
+   2. CONFORMANCE =E2=80=94 Obsigna/JCS/protocol vectors
+   3. ADVERSARIAL =E2=80=94 mutation/substitution/replay/privacy downgrade
+   4. INTEGRATION =E2=80=94 actual upstream sidecars/binaries
+   5. LIVE =E2=80=94 external phone/XMR/Tor probes with explicit spending f=
+lag
+   6. REPLAY =E2=80=94 fresh-process verification from persisted artifacts
+
+A unit test against MockSimplex or LocalAttestor can never be cited as
+proof the real integration works.
+
+RELEASE LABEL RULES
+Never write =E2=80=9CPhase X complete=E2=80=9D merely because interfaces/mo=
+cks exist.
+Use:
+
+   - SPECIFIED
+   - SCAFFOLDED
+   - INTEGRATED
+   - LIVE_VALIDATED
+   - PRODUCTION_GATED
+
+CURRENT HEAD is mostly SCAFFOLDED, with useful logic/tests. It is not
+LIVE_VALIDATED.
+
+PMail v0.1 DEFINITION OF DONE
+
+   - no conventional signup required
+   - actual XMR invoice/subaddress funding
+   - exact settlement -> durable capability
+   - actual SimpleX two-way messaging
+   - actual Tor onion endpoint
+   - privacy policy prevents forbidden bridge fallback
+   - at least one optional phone bridge empirically characterized
+   - exact authority before consequential external action
+   - real Obsigna-compatible signed receipt
+   - QP semantic replay PASS independently
+   - transparency-log inclusion + consistency proof
+   - public receipt contains commitments only, no sensitive raw evidence
+   - offline verifier works
+   - process restart/replay cannot duplicate payment/capability/effect
+   - CI required on master
+
+FIRST DEMO AFTER THESE GATES
+visit onion / connect privately -> no signup -> create anonymous session ->
+get XMR invoice -> pay -> verified wallet observation -> capability minted
+-> create SimpleX address -> exchange challenge message -> optional
+validated phone bridge -> receive portable receipt -> verify receipt + QP
+semantics + log inclusion offline
+
+That demo is the foundation for the larger Privately stack: pmail
+identity/comms -> xmrbot commerce -> private runtime/LLM -> verified
+history/reputation.
+
+--00000000000034655d065bb37b28
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Execute in this order. Do not start additional features until each gate =
+is green. Current reviewed HEAD: <code>4146b360b607f4c6c99ad8def61313f38282=
+cf31</code>.</p>
+<p>COMMIT 0 =E2=80=94 MAKE STATUS HONEST / FAIL CLOSED<br>
+Goal: no placeholder can accidentally claim production truth.</p>
+<ul>
+<li>Rewrite README first line/status to current reality.</li>
+<li>Mark placeholder implementations explicitly <code>DEV_ONLY</code> / <co=
+de>UNIMPLEMENTED</code>.</li>
+<li>Tor placeholder must not return reachable=3Dtrue.</li>
+<li>LocalAttestor must not satisfy production attestation policy.</li>
+<li>Provider/network errors return UNKNOWN-shaped result.</li>
+<li>Remove unimplemented MCP tools from advertised list OR implement them; =
+tools/list must equal dispatchable surface.</li>
+<li>Add test that every advertised tool dispatches to a registered handler.=
+</li>
+<li>Add test that every state-changing production tool maps to effect polic=
+y.</li>
+</ul>
+<p>Gate: grep/static test finds no <code>placeholder.onion</code>, uncondit=
+ional success, fake <code>sha256:...name...</code> hash labels, or developm=
+ent attestor on production route.</p>
+<p>COMMIT 1 =E2=80=94 CI / BRANCH QUALITY<br>
+Add <code>.github/workflows/ci.yml</code>:</p>
+<ul>
+<li>npm ci</li>
+<li>npm run typecheck</li>
+<li>npm test</li>
+<li>dependency/license check if lightweight</li>
+<li>receipt conformance job once integrated</li>
+</ul>
+<p>Normalize module packaging (<code>type</code>/tsconfig/runtime) and pinn=
+ed Node version.<br>
+Add <code>npm run test:security</code> and <code>npm run test:live</code> (=
+live disabled unless explicitly configured).</p>
+<p>Protect canonical branch manually after workflow exists; require CI befo=
+re merge. Signed commits are desirable but not the core runtime trust mecha=
+nism.</p>
+<p>Gate: HEAD has actual GitHub status checks, not only local =E2=80=9C98 t=
+ests passing=E2=80=9D claim.</p>
+<p>COMMIT 2 =E2=80=94 REAL OBSIGNA + RFC8785</p>
+<ul>
+<li>clone/pin <code>agent-receipts/obsigna</code></li>
+<li>replace custom generic envelope/signature path</li>
+<li>implement PMail QP extension only</li>
+<li>trusted signer resolver external to receipt</li>
+<li>run upstream conformance/MUST-reject vectors</li>
+</ul>
+<p>Gate:</p>
+<ul>
+<li>upstream verifier accepts valid fixture</li>
+<li>signer substitution attack fails</li>
+<li>signature mutation fails</li>
+<li>same semantic object canonicalizes identically cross-language where tes=
+t vectors exist</li>
+</ul>
+<p>COMMIT 3 =E2=80=94 QP REGISTRY / REPLAY V2<br>
+Create frozen registries:</p>
+<ul>
+<li>ProofSpecRegistry</li>
+<li>ProgramManifest</li>
+<li>JudgeRegistry</li>
+<li>GateRegistry</li>
+</ul>
+<p>Replace placeholder hashes with actual content hashes generated at build=
+ time.<br>
+No caller-supplied arbitrary judge/gate functions on production replay path=
+.</p>
+<p>Gate: fresh-process replay from persisted receipt/spec/evidence/program =
+artifacts returns PASS; mutate any relevant byte/hash/root =3D&gt; FAIL CLO=
+SED.</p>
+<p>COMMIT 4 =E2=80=94 PRIVATE EVIDENCE TREE + DISCLOSURE MANIFEST</p>
+<ul>
+<li>RFC8785 canonical private evidence</li>
+<li>domain-separated Merkle tree</li>
+<li>inclusion proofs</li>
+<li>DisclosureManifestV1</li>
+<li>public vs private receipt projections</li>
+</ul>
+<p>Gate: public receipt scan contains no phone number, SimpleX address, XMR=
+ address/tx key, raw message, provider token, email, IP, IMSI/ICCID or cred=
+ential.</p>
+<p>COMMIT 5 =E2=80=94 APPEND-ONLY TRANSPARENCY LOG<br>
+Implement CT-style append-only log now so first real runs begin accumulatin=
+g useful history.</p>
+<p>Minimum:</p>
+<ul>
+<li>append digest</li>
+<li>signed tree head</li>
+<li>inclusion proof</li>
+<li>consistency proof</li>
+<li>offline verifier</li>
+<li>persisted tree state</li>
+</ul>
+<p>Log signed run/receipt commitment only; not private evidence.</p>
+<p>Gate:</p>
+<ul>
+<li>inclusion verification PASS</li>
+<li>old-&gt;new consistency PASS</li>
+<li>deleted/reordered/rewritten leaf impossible without root change</li>
+<li>verifier can detect inconsistent history fixtures</li>
+</ul>
+<p>COMMIT 6 =E2=80=94 DURABLE STORE + AUTHORITY + EFFECT JOURNAL<br>
+Choose one simple production store first (SQLite/Postgres is fine; avoid pr=
+emature distributed architecture).<br>
+Persist:</p>
+<ul>
+<li>sessions</li>
+<li>operators/task keys</li>
+<li>invoices</li>
+<li>capabilities/token hashes</li>
+<li>credit ledger</li>
+<li>authority refs/use state</li>
+<li>effect journal</li>
+<li>claims/evidence metadata</li>
+<li>receipt/log metadata</li>
+</ul>
+<p>Integrate AuthorityProvider/Grantex concepts.<br>
+Exact proposal hash required.<br>
+Atomic max-use/budget reservation.</p>
+<p>Gate: restart + concurrent-request tests prove no replay/double-use/doub=
+le-spend.</p>
+<p>COMMIT 7 =E2=80=94 REAL XMR VERTICAL<br>
+Build MoneroPay/monero-wallet-rpc integration.<br>
+Do not expose generic unrestricted wallet send tool.</p>
+<p>E2E:<br>
+<code>anonymous session -&gt; fresh subaddress invoice -&gt; observed payme=
+nt -&gt; confirmations -&gt; QP TRUE -&gt; capability minted -&gt; receipt =
+-&gt; transparency inclusion</code>.</p>
+<p>Gate:</p>
+<ul>
+<li>callback alone cannot settle TRUE</li>
+<li>partial payment no capability</li>
+<li>duplicate callback/restart no double mint</li>
+<li>wrong invoice/subaddress no funding</li>
+<li>amount policy enforced</li>
+</ul>
+<p>THIS is first <code>pmail-v0.1-real</code> milestone.</p>
+<p>COMMIT 8 =E2=80=94 REAL SIMPLEX VERTICAL<br>
+Wire actual adapter into MCP/context.<br>
+Implement listener/process/service supervision.<br>
+Run two-profile nonce roundtrip fixture.</p>
+<p>E2E:<br>
+<code>funded capability -&gt; create SimpleX address -&gt; external profile=
+ sends nonce -&gt; PMail receives -&gt; PMail sends response nonce -&gt; in=
+dependent profile confirms -&gt; QP receipt/log</code>.</p>
+<p>Gate: mock is not sufficient. At least one integration test runs against=
+ pinned upstream binary/service.</p>
+<p>COMMIT 9 =E2=80=94 REAL TOR VERTICAL<br>
+Generate/load actual Tor v3 hidden-service identity, expose API, and test t=
+hrough SOCKS.<br>
+No source-IP app logging.</p>
+<p>Gate: actual <code>.onion</code>, actual network roundtrip, process rest=
+art preserves expected identity when configured, and failure =3D&gt; UNKNOW=
+N.</p>
+<p>COMMIT 10 =E2=80=94 PHONE PROVIDER ACCEPTANCE HARNESS<br>
+Fix <code>selectBridge()</code> first: enforce status/privacy/payment/count=
+ry/capabilities/price.<br>
+Then run live harness with strict tiny spend cap.</p>
+<p>Provider statuses:</p>
+<ul>
+<li>CLAIMED: docs only</li>
+<li>EXPERIMENTAL: adapter exists</li>
+<li>OBSERVED: some live behavior</li>
+<li>VALIDATED: complete required capability suite passed recently</li>
+<li>STALE: validation expired</li>
+<li>CONTRADICTED/DEPRECATED</li>
+</ul>
+<p>Do not set VALIDATED manually.</p>
+<p>Start with:<br>
+A. SilentLink limited capability validation<br>
+B. PikaSim experimental full voice/SMS/data attempt<br>
+C. MoneroSMS adapter if API is suitable</p>
+<p>Gate: actual challenge receipts for each claimed direction. Same-provide=
+r status API can prove resource state but NOT substitute for end-to-end SMS=
+/voice challenge.</p>
+<p>COMMIT 11 =E2=80=94 ACTUAL AGENT VAULT<br>
+Use upstream Agent Vault/proxy, not invented endpoint facade.<br>
+Separate credential broker from agent sandbox.<br>
+Strict service/host/path/scheme/redirect policy.</p>
+<p>Gate:</p>
+<ul>
+<li>planner/agent never receives raw provider credential</li>
+<li>unrelated host/path denied</li>
+<li>redirect escape denied</li>
+<li>receipt/log contains no secret/token</li>
+</ul>
+<p>COMMIT 12 =E2=80=94 DSTACK / CONFIDENTIAL RUN SIGNER<br>
+Pin real dstack SDK/example version.<br>
+Bind ephemeral run public key + workload/policy/verifier roots into attesta=
+tion report_data.<br>
+Independent verifier validates TDX quote/measurements.</p>
+<p>Gate: wrong workload, wrong policy, wrong run key, stale nonce/quote all=
+ fail.</p>
+<p>COMMIT 13 =E2=80=94 DERIVED REPUTATION / MOAT<br>
+Only now build metrics over transparency-log history.</p>
+<p>Create versioned deterministic reducer:</p>
+
+<code>reputation snapshot =3D f(valid FULL-verified receipts up to tree_siz=
+e N)
+</code>
+<p>Track:</p>
+<ul>
+<li>successful verified runs</li>
+<li>TRUE/FALSE/UNKNOWN rates</li>
+<li>privacy class distribution</li>
+<li>privacy violations</li>
+<li>provider reliability/freshness</li>
+<li>spend reconciliation</li>
+<li>phone/SimpleX delivery reliability</li>
+</ul>
+<p>Snapshot includes source tree root/size + algorithm hash so anyone can r=
+eproduce it.<br>
+Do not make DB <code>score=3D...</code> canonical truth.</p>
+<p>Use per-task/epoch keys so public history does not trivially become a pe=
+rmanent behavioral identifier. Later add selective/ZK proof of reputation t=
+hresholds.</p>
+<p>REQUIRED TEST CATEGORIES</p>
+<ol>
+<li>UNIT =E2=80=94 deterministic functions only</li>
+<li>CONFORMANCE =E2=80=94 Obsigna/JCS/protocol vectors</li>
+<li>ADVERSARIAL =E2=80=94 mutation/substitution/replay/privacy downgrade</l=
+i>
+<li>INTEGRATION =E2=80=94 actual upstream sidecars/binaries</li>
+<li>LIVE =E2=80=94 external phone/XMR/Tor probes with explicit spending fla=
+g</li>
+<li>REPLAY =E2=80=94 fresh-process verification from persisted artifacts</l=
+i>
+</ol>
+<p>A unit test against MockSimplex or LocalAttestor can never be cited as p=
+roof the real integration works.</p>
+<p>RELEASE LABEL RULES<br>
+Never write =E2=80=9CPhase X complete=E2=80=9D merely because interfaces/mo=
+cks exist.<br>
+Use:</p>
+<ul>
+<li>SPECIFIED</li>
+<li>SCAFFOLDED</li>
+<li>INTEGRATED</li>
+<li>LIVE_VALIDATED</li>
+<li>PRODUCTION_GATED</li>
+</ul>
+<p>CURRENT HEAD is mostly SCAFFOLDED, with useful logic/tests. It is not LI=
+VE_VALIDATED.</p>
+<p>PMail v0.1 DEFINITION OF DONE</p>
+<ul>
+<li>no conventional signup required</li>
+<li>actual XMR invoice/subaddress funding</li>
+<li>exact settlement -&gt; durable capability</li>
+<li>actual SimpleX two-way messaging</li>
+<li>actual Tor onion endpoint</li>
+<li>privacy policy prevents forbidden bridge fallback</li>
+<li>at least one optional phone bridge empirically characterized</li>
+<li>exact authority before consequential external action</li>
+<li>real Obsigna-compatible signed receipt</li>
+<li>QP semantic replay PASS independently</li>
+<li>transparency-log inclusion + consistency proof</li>
+<li>public receipt contains commitments only, no sensitive raw evidence</li=
+>
+<li>offline verifier works</li>
+<li>process restart/replay cannot duplicate payment/capability/effect</li>
+<li>CI required on master</li>
+</ul>
+<p>FIRST DEMO AFTER THESE GATES</p>
+
+<code>visit onion / connect privately
+-&gt; no signup
+-&gt; create anonymous session
+-&gt; get XMR invoice
+-&gt; pay
+-&gt; verified wallet observation
+-&gt; capability minted
+-&gt; create SimpleX address
+-&gt; exchange challenge message
+-&gt; optional validated phone bridge
+-&gt; receive portable receipt
+-&gt; verify receipt + QP semantics + log inclusion offline
+</code>
+<p>That demo is the foundation for the larger Privately stack: pmail identi=
+ty/comms -&gt; xmrbot commerce -&gt; private runtime/LLM -&gt; verified his=
+tory/reputation.</p>
+
+--00000000000034655d065bb37b28--

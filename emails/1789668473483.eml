@@ -1,0 +1,541 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id Vi9mfKo7Xoej
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 18:07:53 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=h1DMIuqyiMDOHke3D+jEDrea+yZ7/j0cNcvHX5VqTxUxCLb3NG9tCqKRBB2of/I24zDyyMuq9
+	jxoiXLNe2ji+ODdhFRJ5iy2FVHqn41N9IufzfRdtqghhXdN2PBZNsyG7+lahbW+zrJDue+cKjVJ
+	98aQ2rsdoXcbG8lVMSE8oFHGY9IdJqqZ4UAPzOeWI7w4+GlQ3/IvyowYwyGLdqHmecZ1J+2VRnU
+	d9RgZ1mj824Hwi0UhvWp90b+chkNVYaSq3zuxyjzxYRhU2B5Bd00fbF+XHuLanqF8n23767w+Ht
+	1RUBodisgPGex5eSZRIVp4SJNHCi7E4SX5tz88Llo4Yg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789668473; x=1790273273; bh=4H1+pbT3
+	O5RNFpLqdfmcUxzRXpE9TrIETcgEeh7WnHY=; b=D+l7t6oG3kP3npzphD3edmTQKwLt5rAv41+
+	lGr55bm/0vCVf0Lbl6R5Exqb1aiOdObRKlO9hbIb586Rx3GypqVGgvz/dvyP5C06Tu6BXHyOHTm
+	b/UH36fxrN4A/0Jeit2LpHo9F+vHIq3xlsinz9BJL6sB7HaKiRB9XwC1PILVy2OFKfs6o//QhO8
+	0moayJIAvx27lKlZa4DdIn3xVhkYCDEpTOZPomhKPitYW/AXFGmlvi5JPeq+rPyh/3g+HXO47o2
+	ANPjww2wGB6ZagxU5sFOj81Jc+gBISO5uMI0+6rcgiJjWCp3lftciPYky7UERLTS/y2S/7/suo6
+	bTKolKA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CWhNw3qP;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CWhNw3qP;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-895fd505832so5790167b3.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 11:07:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789668473; cv=none;
+        d=google.com; s=arc-20260327;
+        b=As3vvgmeO8SL+diYx8MJ/qFRzyn1i0endE9O+/uzF7iSkoLlsFmuctJ8108htZcMVy
+         w/7HeYos0UJlzpHwGIRqDgtar8PBlt+zsMOkcXCm0+hYa9GvZydhTxYvXDaN3gL+gU9l
+         M3VKusgN/lenAFaV570MsFsVR6ID3aR6o4Tjvim1gwfq0zClyocU5J8sB6Bq7Xh3ci7b
+         eYq2H8fy0NusqCr4QQxNiDJJDJ2gSXGu9Ro5t0n9j6CRNr4JtnG+xnVDrsieBt5jYcF6
+         ZwzWHjTbsI3rfQrrVUEzgkqmuIY6KpYBRnw6AzeKByrgcJggwk9jmr+SejfQ7oLKoBJi
+         tgwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=4H1+pbT3O5RNFpLqdfmcUxzRXpE9TrIETcgEeh7WnHY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=HQ1kXf/iSUxZ1Z2sv1THB4Ejgu45KGosAH29FjcGe09n2KxMv9MSg9s/G9HKtEA5k9
+         ss4U7eh8S4x3kF8lF6cSvgKJ/KJpbTuyMuu6of6dtAyNSSSCO6z7j5HllPmPtzGYvWga
+         cQv36pdS+Xr5FtfxaxP9T2LNCtPxroT8VKjYgH4HfsL1HhqISuDsjyUzY4KQSbcHgAjf
+         y/j/33HEiqYZ1tBiXp2pqD4T0Sn/2KWlbrugKs0qbf3GidS5HcFoZybGyqfjq/9/xxR2
+         oUsuqRj4LQYocnk+7ct7AZIY77y2k5MhjWK3efXsljFcBBkO2qP29Fr7Ub3KK+1n5x44
+         dlsA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789668473; x=1790273273; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=4H1+pbT3O5RNFpLqdfmcUxzRXpE9TrIETcgEeh7WnHY=;
+        b=CWhNw3qPtSmtn6xK9pZAViKPNkW+J//Q4VgSH9y2GnWPZxQsXVvJkTPXTpfCsMwD9P
+         mxBeKP7ZfR7UB+WS33cFKK23ooBfw56nYWn5W0nsNVMje2of7J9FLYOcLxSUtTTasAKz
+         GaO9pZ4DkefL1uv7HaBzgprrUbaAiTrlJ/8sJLk4gBWGfQqBpdqafIr5nT5I6JLesH+l
+         sTYCWAlNO2Vwroi7odH5K5nQ9aEvN0KAph6YtWCNlLe/rlGndMQQDVLfMsNemSx3Yvpd
+         VnctnQApfa8gBsc54j3Vmz7R+p4bNhIIkREGwINgVg+V1te5kckVtbsgAWJWBt79OlKi
+         ebWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789668473; x=1790273273;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=4H1+pbT3O5RNFpLqdfmcUxzRXpE9TrIETcgEeh7WnHY=;
+        b=cipuQfZNoKd4sZ1GvTdzePLXKlaMvJP2bfcumtWpBebVy13732QDD1v2Z9Xp5GZRru
+         aITjWsTBU+eJJb1AYp0cauMtwpgU9rL9Jp44wd0p84PeVMMfkPB/IrREH0zKReJTCm/d
+         UdYc3/MRFy2yGfhuVSJMwtA3Qrt20gILRo1AwRdNc8DIGOdZLmIz3sKFGb+WXwcRBA6F
+         gtHmSpCR77N1os6BmWKE82DBnHhwtBkKFieGfzak4hHwn4WXaXtqinC32tsacTgEKNFx
+         bCw3drFGanqI4Ay/h3KcAujHGx3EYlq7OWyUopkaFvtlwufZJeSwEGJn5Wo9q/ZRmr7k
+         egAA==
+X-Gm-Message-State: AFuF++mYI2mpvkV8TUpee1qxRaHUmcn4fWDXGmnKy5F0yN9VYWEYjJpQ
+	UQX4SJAQIaEifWrGiPLnxNdVuPjFNUU+4ZvjDXZUaEjf4gvwCFpGASeCBunW39CVzS8k2atkqak
+	XXb6CLEgFPt7Ddv5a+tkHxXL4kUzOLTdSmw==
+X-Gm-Gg: AYBFou2WadfeZNH5SxBIWe6LJlmQLfHgYqYelvUPc1GBxM3/9TwchzcOZVcBrQXGhEJ
+	1M610oCHvxu2vHLutSfyobHs199E6JeNfju+OyFevy0WUZhXZDArqKkZLoF8GJ8LyG9fS8ARVjs
+	ZisrpP+4kKD4tn+ihcFSbTz+Yx5xnzCEm/T/I4sdXOSuXCafXiOzytoiEsKs3xHluZCu71n4xTE
+	w1irU0ZgPFawi2fffBo0LAZ4E7gydipT9WvvPwrjwi35ZI5XIXFDDybjIQP0tZZFOSqYYAd99oq
+	dSSQnqBlfsgoZIUowpWiTX/tdWXwSnYCG28aVKIHSOXd/kQS+fw+/94UVTwG4fugCG/gMGZAlPs
+	cqeiFPbfeSPqcHxBEs2zg0hUNBa+K/Zjds8fPqDFFcW4si//YgcUbq7tFsu76bBmLbhSr19Ts
+X-Received: by 2002:a05:690e:13ce:b0:671:7112:dae2 with SMTP id
+ 956f58d0204a3-6717112db09mr1220853d50.6.1789668472418; Thu, 17 Sep 2026
+ 11:07:52 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 13:07:49 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 13:07:49 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 13:07:49 -0500
+X-Gm-Features: AcwNN1VbskYW1VUQjEvoPKnOz8VldxVTas8-TBBg2DwS_sTibc5ijwox-uL6M3c
+Message-ID: <CAPdrGe=cnhkyG8hnUU1LLZh2kZnbkVQLGTMSD7g3MfrYoRjPcw@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_build_3=2F5_=E2=80=94_reuse_from_cmail_vs_discard?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000009075b5065bb1a9e3"
+
+--0000000000009075b5065bb1a9e3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Source reference:
+
+   - https://github.com/prx0r/cmail
+   - branch: master
+   - inspect exact SHA dcb4b3b8ae61c7495d88b88ab49350d74afd52cf
+
+Do not fork cmail wholesale. PMail should be a clean repo with selected
+conceptual/code reuse.
+REUSE / PORT THESE IDEAS FIRST
+
+   1. integrations/receipts/qp-extension.ts
+
+This is the newest convergence direction: QP-specific semantics inside an
+Agent Receipts-compatible envelope.
+
+Port the TYPE SHAPE / extension model, but adapt it for PMail privacy
+fields:
+interface PmailQPReceiptExtension { claim_id: string; contract_root:
+string; actuality: "TRUE" | "FALSE" | "UNKNOWN"; evidence_root: string;
+replay: "PASS" | "FAIL"; privacy: { class: PrivacyClass;
+identity_surface_root: string; pii_collected_by_pmail: boolean;
+payment_rail?: "XMR" | string; network_path?: string[];
+external_identity_dependencies: string[]; }; }
+
+Do not copy a second receipt signer. Obsigna/Agent Receipts should sign the
+outer receipt.
+
+   1. QP core semantic concepts
+
+Inspect:
+
+   - qp/kernel.ts
+   - qp/judges.ts
+   - qp/edges.ts
+   - qp/identity.ts
+   - qp/effects.ts
+   - proofspecs/*.json
+
+Port only the unique semantics:
+
+   - Actuality =3D TRUE | FALSE | UNKNOWN
+   - exact falsifiable Claim identity
+   - immutable ProofSpec / ContractRoot
+   - evidence provenance
+   - deterministic judges/gates
+   - typed dependency edges
+   - effect vs independent readback separation
+   - semantic replay
+
+Do NOT blindly copy current runtime implementation as trusted production
+code. The prior reviews found incomplete/bypassable pieces. PMail gets a
+cleaner implementation around commodity components.
+
+   1. Email round-trip proof pattern
+
+Inspect:
+qp/probes/email-roundtrip.ts
+
+Reuse the IDEA:
+
+   - cryptorandom nonce
+   - independent sender
+   - exact destination
+   - exact observed nonce
+   - raw evidence hash
+   - timeout =3D> UNKNOWN, not FALSE
+
+Generalize it into channel capability proofs:
+sms_receives(number) sms_sends(number) voice_receives(number)
+voice_sends(number) simplex_receives(address) simplex_sends(address)
+email_receives(address)
+
+Never collapse these into phone_owned=3Dtrue. A number can support inbound
+SMS but no outbound SMS/voice.
+
+   1. Provider/phone capability modelling
+
+Inspect:
+
+   - src/phoneIdentity.ts
+   - docs/phone-blueprint/*
+   - targets/phone.json
+
+Reuse:
+
+   - provider comparison mindset
+   - capability matrix
+   - cost/renewal/lifecycle fields
+   - empirical test receipts
+
+Replace old assumption that Telnyx is canonical. PMail=E2=80=99s phone prov=
+ider is
+selected by policy/capability/privacy class.
+
+   1. Existing adversarial-test philosophy
+
+Inspect:
+qp/adversarial.test.ts
+
+Build better PMail red/green tests around actual anonymous invariants.
+DO NOT PORT THESE AS CANONICAL TRUTH
+
+   1.
+
+   src/capacity.ts
+   Old boolean/CapacityProof model is legacy. Do not create another
+   pass:boolean truth store.
+   2.
+
+   mcp/interface.ts legacy receipt types
+   Do not recreate acom/0.1 or duplicate receipt protocols.
+   3.
+
+   mcp/domain.ts simulation paths
+   Do not port any simulation that can promote itself to canonical truth.
+   4.
+
+   Direct Cloudflare/Telnyx/Google mutators
+   PMail is not supposed to inherit cmail=E2=80=99s conventional identity
+   assumptions. Any external bridge goes through policy + authority + adapt=
+er
+   + independent verification.
+   5.
+
+   Cloudflare as an anonymous-core requirement
+   Cloudflare/domain/email can be optional compatibility bridges. Onion
+   service must be sufficient for ANON_CORE.
+   6.
+
+   Old custom grant crypto where Grantex/standard libraries can replace it
+   Do not proliferate bespoke canonicalization/signing code.
+
+PMail QP CLAIMS
+
+Start with these exact claim families:
+
+Core privacy:
+pmail_identity_not_collected(session_id) xmr_payment_received(invoice_id,
+amount_atomic) capability_minted(capability_hash, invoice_id)
+onion_service_reachable(service_id)
+simplex_address_active(address_commitment)
+
+Messaging:
+simplex_message_observed(message_commitment, endpoint)
+sms_inbound_observed(number_commitment, nonce)
+sms_outbound_observed(number_commitment, destination_commitment, nonce)
+voice_inbound_capable(number_commitment)
+voice_outbound_capable(number_commitment)
+email_inbound_observed(address_commitment, nonce)
+
+Privacy/dependency:
+provider_identity_surface(provider_id, policy_hash)
+operation_privacy_class(operation_id, class)
+no_forbidden_identity_bridge(operation_id, policy_hash)
+runtime_attested(workload_hash) // later TEE mode
+
+Important semantic rule:
+
+   - provider says success =3D attempt evidence
+   - independent readback/observation =3D candidate actuality
+   - missing/readback failure =3D UNKNOWN
+   - a marketing claim like =E2=80=9Cno KYC=E2=80=9D is NOT proof that a gi=
+ven order path
+   collected no identity; record actual required fields and our own
+   transaction path evidence.
+
+STATE MODEL
+
+Avoid account-centric tables.
+
+Primary state should be:
+
+   - operator key/capability
+   - anonymous session
+   - invoice/subaddress
+   - credit/capability grant
+   - provider bridge instance
+   - evidence blobs
+   - QP claims/receipts
+
+Never make email/phone/name a required foreign key.
+
+Suggested core interfaces:
+interface PaymentRail { createInvoice(amountAtomic: bigint):
+Promise<Invoice>; observeInvoice(id: string): Promise<PaymentObservation>;
+} interface BridgeProvider<TCapability> { identitySurface():
+Promise<IdentitySurface>; quote(req: BridgeRequest): Promise<BridgeQuote>;
+provision(req: BridgeRequest, authority: AuthorityRef):
+Promise<AttemptEvidence>; readback(resource: ResourceRef):
+Promise<ObservationEvidence>; capabilities(resource: ResourceRef):
+Promise<TCapability>; } interface PrivacyResolver { evaluate(dependencies:
+IdentitySurface[], policy: PrivacyPolicy): PrivacyDecision; }
+
+Part 4 is the phone/XMR implementation plan and provider acceptance matrix.
+
+--0000000000009075b5065bb1a9e3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Source reference:</p>
+<ul>
+<li><a href=3D"https://github.com/prx0r/cmail">https://github.com/prx0r/cma=
+il</a></li>
+<li>branch: <code>master</code></li>
+<li>inspect exact SHA <code>dcb4b3b8ae61c7495d88b88ab49350d74afd52cf</code>=
+</li>
+</ul>
+<p>Do not fork cmail wholesale. PMail should be a clean repo with selected =
+conceptual/code reuse.</p>
+
+REUSE / PORT THESE IDEAS FIRST
+<ol>
+<li><code>integrations/receipts/qp-extension.ts</code></li>
+</ol>
+
+
+<p>This is the newest convergence direction: QP-specific semantics inside a=
+n Agent Receipts-compatible envelope.</p>
+<p>Port the TYPE SHAPE / extension model, but adapt it for PMail privacy fi=
+elds:</p>
+
+<code>interface PmailQPReceiptExtension {
+  claim_id: string;
+  contract_root: string;
+  actuality: &quot;TRUE&quot; | &quot;FALSE&quot; | &quot;UNKNOWN&quot;;
+  evidence_root: string;
+  replay: &quot;PASS&quot; | &quot;FAIL&quot;;
+
+  privacy: {
+    class: PrivacyClass;
+    identity_surface_root: string;
+    pii_collected_by_pmail: boolean;
+    payment_rail?: &quot;XMR&quot; | string;
+    network_path?: string[];
+    external_identity_dependencies: string[];
+  };
+}
+</code>
+<p>Do not copy a second receipt signer. Obsigna/Agent Receipts should sign =
+the outer receipt.</p>
+<ol>
+<li>QP core semantic concepts</li>
+</ol>
+
+
+<p>Inspect:</p>
+<ul>
+<li><code>qp/kernel.ts</code></li>
+<li><code>qp/judges.ts</code></li>
+<li><code>qp/edges.ts</code></li>
+<li><code>qp/identity.ts</code></li>
+<li><code>qp/effects.ts</code></li>
+<li><code>proofspecs/*.json</code></li>
+</ul>
+<p>Port only the unique semantics:</p>
+<ul>
+<li><code>Actuality =3D TRUE | FALSE | UNKNOWN</code></li>
+<li>exact falsifiable Claim identity</li>
+<li>immutable ProofSpec / ContractRoot</li>
+<li>evidence provenance</li>
+<li>deterministic judges/gates</li>
+<li>typed dependency edges</li>
+<li>effect vs independent readback separation</li>
+<li>semantic replay</li>
+</ul>
+<p>Do NOT blindly copy current runtime implementation as trusted production=
+ code. The prior reviews found incomplete/bypassable pieces. PMail gets a c=
+leaner implementation around commodity components.</p>
+<ol>
+<li>Email round-trip proof pattern</li>
+</ol>
+
+
+<p>Inspect:<br>
+<code>qp/probes/email-roundtrip.ts</code></p>
+<p>Reuse the IDEA:</p>
+<ul>
+<li>cryptorandom nonce</li>
+<li>independent sender</li>
+<li>exact destination</li>
+<li>exact observed nonce</li>
+<li>raw evidence hash</li>
+<li>timeout =3D&gt; UNKNOWN, not FALSE</li>
+</ul>
+<p>Generalize it into channel capability proofs:</p>
+
+<code>sms_receives(number)
+sms_sends(number)
+voice_receives(number)
+voice_sends(number)
+simplex_receives(address)
+simplex_sends(address)
+email_receives(address)
+</code>
+<p>Never collapse these into <code>phone_owned=3Dtrue</code>. A number can =
+support inbound SMS but no outbound SMS/voice.</p>
+<ol>
+<li>Provider/phone capability modelling</li>
+</ol>
+
+
+<p>Inspect:</p>
+<ul>
+<li><code>src/phoneIdentity.ts</code></li>
+<li><code>docs/phone-blueprint/*</code></li>
+<li><code>targets/phone.json</code></li>
+</ul>
+<p>Reuse:</p>
+<ul>
+<li>provider comparison mindset</li>
+<li>capability matrix</li>
+<li>cost/renewal/lifecycle fields</li>
+<li>empirical test receipts</li>
+</ul>
+<p>Replace old assumption that Telnyx is canonical. PMail=E2=80=99s phone p=
+rovider is selected by policy/capability/privacy class.</p>
+<ol>
+<li>Existing adversarial-test philosophy</li>
+</ol>
+
+
+<p>Inspect:<br>
+<code>qp/adversarial.test.ts</code></p>
+<p>Build better PMail red/green tests around actual anonymous invariants.</=
+p>
+
+DO NOT PORT THESE AS CANONICAL TRUTH
+<ol>
+<li>
+<p><code>src/capacity.ts</code><br>
+Old boolean/CapacityProof model is legacy. Do not create another pass:boole=
+an truth store.</p>
+</li>
+<li>
+<p><code>mcp/interface.ts</code> legacy receipt types<br>
+Do not recreate <code>acom/0.1</code> or duplicate receipt protocols.</p>
+</li>
+<li>
+<p><code>mcp/domain.ts</code> simulation paths<br>
+Do not port any simulation that can promote itself to canonical truth.</p>
+</li>
+<li>
+<p>Direct Cloudflare/Telnyx/Google mutators<br>
+PMail is not supposed to inherit cmail=E2=80=99s conventional identity assu=
+mptions. Any external bridge goes through policy + authority + adapter + in=
+dependent verification.</p>
+</li>
+<li>
+<p>Cloudflare as an anonymous-core requirement<br>
+Cloudflare/domain/email can be optional compatibility bridges. Onion servic=
+e must be sufficient for ANON_CORE.</p>
+</li>
+<li>
+<p>Old custom grant crypto where Grantex/standard libraries can replace it<=
+br>
+Do not proliferate bespoke canonicalization/signing code.</p>
+</li>
+</ol>
+
+PMail QP CLAIMS
+<p>Start with these exact claim families:</p>
+<p>Core privacy:</p>
+
+<code>pmail_identity_not_collected(session_id)
+xmr_payment_received(invoice_id, amount_atomic)
+capability_minted(capability_hash, invoice_id)
+onion_service_reachable(service_id)
+simplex_address_active(address_commitment)
+</code>
+<p>Messaging:</p>
+
+<code>simplex_message_observed(message_commitment, endpoint)
+sms_inbound_observed(number_commitment, nonce)
+sms_outbound_observed(number_commitment, destination_commitment, nonce)
+voice_inbound_capable(number_commitment)
+voice_outbound_capable(number_commitment)
+email_inbound_observed(address_commitment, nonce)
+</code>
+<p>Privacy/dependency:</p>
+
+<code>provider_identity_surface(provider_id, policy_hash)
+operation_privacy_class(operation_id, class)
+no_forbidden_identity_bridge(operation_id, policy_hash)
+runtime_attested(workload_hash)   // later TEE mode
+</code>
+<p>Important semantic rule:</p>
+<ul>
+<li><code>provider says success</code> =3D attempt evidence</li>
+<li>independent readback/observation =3D candidate actuality</li>
+<li>missing/readback failure =3D UNKNOWN</li>
+<li>a marketing claim like =E2=80=9Cno KYC=E2=80=9D is NOT proof that a giv=
+en order path collected no identity; record actual required fields and our =
+own transaction path evidence.</li>
+</ul>
+
+STATE MODEL
+<p>Avoid account-centric tables.</p>
+<p>Primary state should be:</p>
+<ul>
+<li>operator key/capability</li>
+<li>anonymous session</li>
+<li>invoice/subaddress</li>
+<li>credit/capability grant</li>
+<li>provider bridge instance</li>
+<li>evidence blobs</li>
+<li>QP claims/receipts</li>
+</ul>
+<p>Never make email/phone/name a required foreign key.</p>
+<p>Suggested core interfaces:</p>
+
+<code>interface PaymentRail {
+  createInvoice(amountAtomic: bigint): Promise&lt;Invoice&gt;;
+  observeInvoice(id: string): Promise&lt;PaymentObservation&gt;;
+}
+
+interface BridgeProvider&lt;TCapability&gt; {
+  identitySurface(): Promise&lt;IdentitySurface&gt;;
+  quote(req: BridgeRequest): Promise&lt;BridgeQuote&gt;;
+  provision(req: BridgeRequest, authority: AuthorityRef): Promise&lt;Attemp=
+tEvidence&gt;;
+  readback(resource: ResourceRef): Promise&lt;ObservationEvidence&gt;;
+  capabilities(resource: ResourceRef): Promise&lt;TCapability&gt;;
+}
+
+interface PrivacyResolver {
+  evaluate(dependencies: IdentitySurface[], policy: PrivacyPolicy): Privacy=
+Decision;
+}
+</code>
+<p>Part 4 is the phone/XMR implementation plan and provider acceptance matr=
+ix.</p>
+
+--0000000000009075b5065bb1a9e3--

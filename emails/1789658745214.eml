@@ -1,0 +1,858 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id GjIYn9NfqAT9
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 15:25:44 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=MZlMsyj76BHyAwylC2Y10er9rUuCvEqRcCnj7ogP0T0eVd4/pxhYF2kkaGgDCXKVXk7YUSCdo
+	blNH26qJRrZbRs6PrKEJ8wlIu/WiFCPxs+O6ur2eoBRzuOTsc7Hr2yg9bRgI3t3bePiE7UQO5wY
+	XdW9nU3TjLgO17+IaisGyMLmq46+/2oC+GJbccwDaos5j4ELDREUhFJiyjfFUkhWDKrm2HHyHgg
+	NNPG5J//T9cQaFVA/Lr1RkpQfovyvG3IIXZlw09M5DagUv/PK3UVZLJlI34gNsCsZKoRbZE9006
+	bCytDmhmnp9gy9H/jXi/0oJX5ATl3F7QN76UjUSxYsCw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789658744; x=1790263544; bh=FhcMHiDB
+	Bvptvl518VmMtX+0Eqpbo7aRcinT1TTr7uY=; b=N+z9+W473RNv0tWjyToizKY6NmDquO3+8W+
+	tOTOP/Qd2yOOLAZ9qJfAoAdXDTlri6HfLl7ukpIV9+CPGKBaISebp42IAXzTqUdchmfIW79fM70
+	dZXHqHFd64PCd89DNeWzVLKWgnDAOQUu8CTbf6QuUKonkYvGBY63YVZgZL00a6DL4OZCttbyMn+
+	jbRcNLLfDKKs4iVMQ1SD5uTh6NzvGBzZBM5HCVM3MSbBBzOOnDOSIHWVAGtq0w/QAFN+i1rkiKJ
+	3dMD/Fnsf2df6tygNFHmiiuH3u0eKXdmV5ej/VxFzJi52+P1O/+06u0Q/cUNb9uIUjdRIZYheRp
+	2ZljP2A==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qB5rYWzS;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qB5rYWzS;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43ac6072so8639167b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 08:25:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789658744; cv=none;
+        d=google.com; s=arc-20260327;
+        b=GRhbcm9lO7inE16kNtTmnyDlKIUqiCzsT4vhnnyJJ6ZV2wbSF0qfs6maR5hhezC5yK
+         RhQsDDwbMQoWU865ifGT/b7p7kN5FzlORMTEbGAD8S6WPqsrh8MECj+nJaIBiyLz0YUS
+         ilzPwy5xaTKiyOSdVlYehbFp/dvcnCRElOifANiWc/9fxZsKWftaNKNk+VmyPID4rRLT
+         4Sc/7PxLJKUETvLj6siYXU1nLni3SzMymvUHXGesPJ9U6SXC9D4v010preKkECxtb1u9
+         pCjr13oIJb4JwfeFxBSUpaBrZeywLw3w/zpURPQ5nOWgFgDhH1LpxL2ROy6MZS5IgPXI
+         eNQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=FhcMHiDBBvptvl518VmMtX+0Eqpbo7aRcinT1TTr7uY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Fit4lCtFKMwuwl1v9HbuE3DD+loVUxO9Eio9EYyQqs81u82+JfKDSidHgRirjDSr9E
+         o8+yaHbRKYNhclFQ7laKmg/t5XqceslN7Wi1HEgIRS/mMP4SC9ZHpEGlqqyVVsFacU0K
+         HDTUSpUp8yPX2xXVt1lyfpDcD68rVT4NRRmIW2K1a6aKs4CfkNXgI3sYWoKKAEG9vphp
+         mKljwI+uYA/rueO8ByRxUP++lmZCf0Zj7jBu7/VM73dT1WEawtrFpoBDS8cIr9H9Q+ox
+         1yOgkMMoxyCNGm0INXzAY5Xe6rcvnbvdrE4V9rgQn7Pf/7F0yt/aiH+plyKE7hodrLwI
+         8y1A==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789658744; x=1790263544; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=FhcMHiDBBvptvl518VmMtX+0Eqpbo7aRcinT1TTr7uY=;
+        b=qB5rYWzS8fcORMy4AoOhmROgp0eNNNvB8trkD4ozqx7cAbCkX0nxiInLddLHHQ5F3v
+         80HVj0c1fvYDIm38G7SsqTMFGkHdfPSyhtoJDm+yyjOHwHI2oTP8X2G8Q/Q/1HeEiZoh
+         PLccqmuCZyVBzEhZ57GTsXu3OD2zps3jZuoq9oJ2iyl2/bKC4+pwAjQBGd+Yg3sgX4zz
+         sLmzYMDCHo/ktEznF9vM69TU2B4chx8pTubOc7YW8VIovNKCHpFTCZrahpfrx2DDL01A
+         xyTkP8XDphF+rgcNWCEMP18Vljt14Q+DidBsWZBXWigDFxLakEpsue1B2GC1sp13idKd
+         P0Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789658744; x=1790263544;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=FhcMHiDBBvptvl518VmMtX+0Eqpbo7aRcinT1TTr7uY=;
+        b=Milv4BXySdR4huOCjMf6+XMe/JLZkgBPs5iv5TzYzIKV3d+0a1Eady4fU00MDDVwQC
+         VxV7pbkFuBf5x6r8salvohg9bFws6epCf1Uic7JV3zAHcxPfMav2xwuSj4cGq1oVbyCi
+         MBdIZiu8L+mR1XrgoqaqV+3T/yjAyrp1js/34RNTD+wusJx4OIED1kkKHESzlAAq957s
+         0Y9EIMaf+GAGXtTXukBO8pI/dgrtSS5ZQgf277TXWg+hf14VgB1itBIPvsw9JaZ/LPep
+         OOsj/6xTbtXgao2Ah8KS2LwIKRox1WQfi+72/RUKvmB7/+O6Jkpp5A9Q3qTZlg/76j3L
+         BH4g==
+X-Gm-Message-State: AFuF++kEwWyrdfL1Jhq+GTxK1gwASjWLtkIDZ9MvFJT/ZFQuAEByRJBa
+	0UI7MmUE6izdFybWTTL6ePDQPLefCgg42a027mqynFBs9xKdIn5BlqqiOHELZnSTZ//tI/yyXr1
+	8F/+92Hy+KYo2By7fFDTqZ6ZamZrBIeIHiQ==
+X-Gm-Gg: AYBFou2Qz7r6fGWwP34tvEkxOBkZv0ISgN9iO+TFm9rnWTr312h/v3chAdy6tkqaIJa
+	ZdIPht7R3qKZXSdLhVrPUzc1ZOiLOXTqGm4N7FHD8PxET4ANNwYGGd3baeBtHfVOV/oLTQWUwfx
+	OEgxzmW4gs7JCYMxx5ucFiJ5diFDNHzWP9kwQeSLccbo9vlEEkrFj4WCw0Da59Q3jZkR7GXTsB8
+	i17yzJQ1Gy2WFyDncev+IwM0THOm5TtRnV7/9YrPpmN6nBYYB89ciZ/c+fvmAFUK6u+Kwzt/kcX
+	PA+DfEpjRwGuI5r17VgFVnzKbGE6KYkPIHTCTgQOjblF6gI3uC+l1NPI+WG2zEkvmYRnYvoMLD3
+	EdXHFgZ3Ss+g3xr29mbnze4ZvCnyUlW5yRTtnA5h+A4+zZWTn7Oy61KTCmrAZfRfBsIGCkcGP
+X-Received: by 2002:a05:690c:e142:10b0:873:5c7b:c10a with SMTP id
+ 00721157ae682-892269d8547mr17337947b3.66.1789658744106; Thu, 17 Sep 2026
+ 08:25:44 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 10:25:42 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 10:25:42 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 10:25:42 -0500
+X-Gm-Features: AcwNN1V48784DulGvlycJTElVaxEjb6GSWNsB4e1ELtRGBcSeDqN6EFIrIadkZQ
+Message-ID: <CAPdrGemE=Hh-azWcfDcLL3HURyaeRV4LcYbXrN=DZFK=nKHXaQ@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail_QP_peer_review_=40_004035a_=E2=80=94_1=2F3=3A_verdict_=2B_P0?=
+	=?UTF-8?Q?_runtime=2Fsecurity_blockers?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000b633ac065baf6500"
+
+--000000000000b633ac065baf6500
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+cmail QP peer review =E2=80=94 Part 1/3
+
+Review target:
+
+   - repo: prx0r/cmail
+   - branch: master
+   - commit: 004035a9d95470496a5d9826354c28d949014907
+   - tree: 7e282caf3ae85f063193230070b34970e7fb9eb2
+   - previous reviewed baseline: dec850ec405bbd90ad3a2ad6680fcfaa0273a13d
+   - delta: 12 commits ahead
+
+I also reviewed monid-ai/monid at 7e3148f5adfde3ebc77745b42ec92fa7e554c924
+to assess whether Monid should become the connector substrate beneath QP.
+That integration recommendation is in Part 3.
+Executive verdict
+
+There is substantial progress in repository shape: a qp/ kernel now exists,
+authority/identity modules exist, 13 ProofSpec JSON files exist, an
+adversarial-test file exists, a D1 schema exists, an email round-trip probe
+exists, and a social executor/YouTube observer prototype exists.
+
+However, *QP is still not the constitutional runtime boundary.* The repo
+currently contains a QP prototype beside the old execution system. The live
+Worker still allows consequential actions to bypass QP, caller identity is
+still self-asserted, the new capacity MCP surfaces manufacture proof-shaped
+evidence, and several new QP modules are not even included in TypeScript
+compilation.
+
+Do not build more platform adapters until the P0 items below are fixed.
+Otherwise every downstream proof will inherit a false root of trust.
+
+Canonical invariant remains:
+COGNITION !=3D TRUTH !=3D AUTHORITY
+
+and consequential flow must be:
+AUTHENTICATE =E2=86=92 build exact proposal =E2=86=92 validate prerequisite=
+s =E2=86=92 validate
+exact signed grant =E2=86=92 atomically RESERVE grant/budget/idempotency =
+=E2=86=92 ACT once
+=E2=86=92 independent READBACK =E2=86=92 judge TRUE/FALSE/UNKNOWN =E2=86=92=
+ replay =E2=86=92 signed
+append-only settlement receipt
+
+Current master does not enforce that sequence.
+P0-1 =E2=80=94 /mcp authentication/ADMIN spoof remains unfixed
+
+src/mcp.ts still does:
+const { tool, args =3D {}, actor =3D "owner" } =3D body; const perms =3D aw=
+ait
+getPerms(env, actor);
+
+and:
+async function getPerms(env: Env, actor: string): Promise<string[]> { if
+(actor =3D=3D=3D "owner") return ["ADMIN"]; ... }
+
+CORS remains Access-Control-Allow-Origin: "*".
+
+Therefore the caller still chooses its own principal. Sending actor:"owner"
+yields ADMIN. This is the same critical boundary failure from the first
+review.
+
+Consequential routes still execute directly:
+
+   - email.send =E2=86=92 SENDER.send(...)
+   - name.cf_purchase =E2=86=92 cfRegisterDomain(...)
+   - name.wire_email =E2=86=92 cfWireEmail(...)
+   - name.phone_purchase =E2=86=92 telnyxPurchaseNumber(...)
+
+They are guarded by caller-controlled confirmed:true / text confirmation,
+not authenticated signed QP authority.
+Required fix
+
+   1. Authenticate request before dispatch.
+   2. Derive principal server-side from credential/session/token. Remove
+   body actor as identity source.
+   3. No default owner.
+   4. Separate public/read-only routes from private routes.
+   5. Every money/send/DNS/account-write effect must go through one QP
+   effect gateway.
+   6. confirmed:true can be UI intent only. It must never equal authority.
+   7. Rotate live consequential credentials if this endpoint has ever been
+   publicly reachable with them enabled.
+
+This must be fixed first.
+P0-2 =E2=80=94 QP is still bypassed by the actual effect path
+
+The new kernel exists under qp/, but src/mcp.ts does not route domain
+purchase, email send, DNS mutation, or phone purchase through it.
+
+The Worker path is still effectively:
+request =E2=86=92 mcp switch =E2=86=92 confirmed flag =E2=86=92 provider AP=
+I
+
+not:
+request =E2=86=92 authenticated proposal =E2=86=92 QP prerequisite check =
+=E2=86=92 grant
+validation/reservation =E2=86=92 provider effect =E2=86=92 independent read=
+back =E2=86=92 QP
+settlement/replay
+
+The architectural requirement is not =E2=80=9CQP tools exist.=E2=80=9D It i=
+s *there is no
+other way to cause a consequential effect*.
+Required fix
+
+Create one effect gateway, e.g.:
+qp.effects.execute({ principal, proposal, required_claims, grant, adapter,
+readback, proofspec, })
+
+and make direct provider mutators private/internal. MCP may create
+proposals and submit grants; it must not directly invoke provider mutators.
+P0-3 =E2=80=94 capacity.list fabricates evidence
+
+The newly added capacity.list route in src/mcp.ts is actively dangerous to
+QP semantics.
+
+It constructs:
+const evidence =3D { mx_records: DB domain exists ? ["route1.mx.cloudflare.=
+net"]
+: [], spf_record: "v=3Dspf1 include:_spf.mx.cloudflare.net", zone_id:
+"check-required", zone_status: "active", routing_rules: 5, catch_all: true,
+worker_live: true, mailbox_indexed: ... };
+
+Most of those fields are invented constants, not observations.
+
+This means the system can manufacture:
+
+   - zone active
+   - SPF configured
+   - five routing rules
+   - catch-all enabled
+   - worker live
+
+without querying any authoritative source.
+
+This violates the entire QP premise.
+Required fix
+
+Delete/quarantine this implementation immediately.
+
+capacity.list should be a *projection of settled receipts*, not a verifier
+and certainly not an evidence generator.
+
+Correct behavior:
+capacity.list =E2=86=92 query canonical qp_claims + latest settled receipts=
+ =E2=86=92
+return TRUE/FALSE/UNKNOWN + receipt hashes
+
+If no proof exists, return UNKNOWN. Never synthesize missing observations.
+P0-4 =E2=80=94 capacity.verify is not QP verification
+
+Current route:
+const { verify } =3D await import("./verifiers"); const result =3D
+verify(args.type || "receive_email", args.evidence || "{}");
+
+The caller supplies arbitrary evidence text, which is run through heuristic
+src/verifiers.ts functions. There is no:
+
+   - ProofSpec load
+   - ContractRoot
+   - exact Claim
+   - evidence provenance validation
+   - program hash verification
+   - prerequisite proof check
+   - receipt generation
+   - replay
+   - settlement
+
+This should not be presented as a QP verification endpoint.
+
+Replace it with something like:
+qp.probe / qp.resolve
+
+where evidence is collected by registered collectors or explicitly imported
+as UNTRUSTED evidence and then evaluated under a frozen ProofSpec.
+P0-5 =E2=80=94 social executor acts before validating authority
+
+qp/social/executor.ts says the desired architecture correctly in comments,
+but socialExecute() currently does:
+const execResult =3D await executor.execute(...)
+
+before any grant validation or reservation.
+
+Its authority argument is merely:
+{ grant_id: string; grant_proof: string; }
+
+and the Postiz adapter ignores the proof.
+
+So the new social path currently has the exact ordering QP is supposed to
+prevent:
+ACT first =E2=86=92 maybe read back later Required fix
+
+socialExecute() must not be allowed to call an executor until:
+
+   1. authenticated principal resolved
+   2. exact canonical effect payload hashed
+   3. required settled facts checked
+   4. signed grant verified against issuer trust registry
+   5. subject/action/payload/constraints checked
+   6. nonce/budget/idempotency reserved durably
+
+Then and only then may it execute.
+
+After execution, readback is mandatory before success settlement.
+P0-6 =E2=80=94 grant constraints are not actually signed
+
+This is the most important cryptographic bug in the new code.
+
+qp/authority.ts signs:
+const canonical =3D JSON.stringify(grantBody, Object.keys(grantBody).sort()=
+);
+
+Passing an array replacer to JSON.stringify filters object keys
+recursively. The allowlist contains the TOP-LEVEL keys but not nested
+constraint keys such as:
+max_amount currency provider resource scopes
+
+Therefore constraints serializes effectively as {} for the signature input.
+
+An attacker could alter the nested constraints without invalidating the
+signature.
+
+This invalidates the core authority guarantee.
+Required fix
+
+Use one canonical serializer for all QP objects (prefer a tested RFC
+8785/JCS implementation or an explicitly frozen equivalent).
+
+Then:
+signature =3D Ed25519.sign(canonicalBytes(fullGrantBody))
+
+Add adversarial tests that modify every nested constraint independently and
+require signature failure.
+
+Also fix the rest of authority.ts:
+
+   - validate subject against authenticated executor principal
+   - bind issuer ID to trusted public key registry
+   - enforce max_amount/provider/resource/scopes
+   - use canonical payload hash, not raw JSON.stringify
+   - validate issued_at/expires_at as timestamps
+   - check consumed/reserved nonce during validation
+   - replace in-memory Set with atomic durable reservation
+   - define actual max_uses semantics; current nonce model is effectively
+   one-use regardless of value
+   - do not use ttlSeconds || 3600 / maxUses || 1 because explicit zero is
+   silently replaced
+
+P0-7 =E2=80=94 old capacity.ts proof path is still broken and incompatible
+
+src/capacity.ts still contains the exact original bug:
+const cap =3D capacities.get(capId); if (!null) return null;
+
+!null =3D=3D=3D true, so generateProof() always returns null.
+
+Worse, src/verifiers.ts now returns:
+{ actuality, reason, evidence_hash }
+
+but capacity.ts still reads:
+result.pass
+
+and stores the old boolean CapacityProof model.
+
+This file is now both logically broken and type-incompatible with the newer
+Actuality semantics.
+Required fix
+
+Do not patch it back into life. Retire the old CapacityProof system
+entirely.
+
+Capacity should be a VIEW over canonical QP claims/receipts, not a second
+proof engine.
+P0-8 =E2=80=94 QP code is not included in TypeScript compilation
+
+Current tsconfig.json:
+"include": ["src"]
+
+Therefore these new constitutional files are excluded from npm run typechec=
+k
+:
+qp/** mcp/** proofspecs/**
+
+This is already hiding real mistakes: qp/probes/email-roundtrip.ts
+constructs Evidence objects that do not satisfy the declared Evidence
+interface.
+Required fix
+
+Either move runtime QP code under src/qp/, or change TS project structure
+so ALL executable QP/MCP code is compiled in CI.
+
+Suggested:
+"include": ["src/**/*.ts", "qp/**/*.ts", "mcp/**/*.ts"]
+
+plus JSON ProofSpec validation in CI.
+
+CI must run, in order:
+typecheck unit tests QP adversarial tests ProofSpec schema/registry
+validation replay corpus build
+
+No merge if any fail.
+P0-9 =E2=80=94 QP migration is not on Wrangler=E2=80=99s migration path
+
+wrangler.toml says:
+migrations_dir =3D "migrations"
+
+but new QP schema is at:
+qp/migrations/0001_qp_core.sql
+
+Therefore standard Wrangler migration execution will not apply it.
+
+The schema is a useful start, but as currently placed it is not the
+deployed constitutional store.
+Required fix
+
+Move/merge QP migration into the configured migration directory, then add
+an actual QP store layer that is used by the runtime.
+
+Do not call receipts append-only until runtime writes to that store and
+updates/deletes are structurally prevented or tightly controlled.
+Immediate stop condition
+
+Before touching Instagram/TikTok/X/Postiz/Monid integration, get these
+invariants green:
+[ ] caller cannot self-assert owner [ ] no effect path bypasses QP [ ] no
+QP endpoint fabricates evidence [ ] grant constraints are cryptographically
+covered [ ] reserve happens before act [ ] QP code compiles in CI [ ] QP
+tables actually deploy [ ] old CapacityProof path is retired
+
+Part 2 covers the proof kernel itself: replay, evidence integrity, judges,
+ProofSpecs, email proof, YouTube ownership proof, tests, and the parallel
+incompatible mcp/ proof model.
+
+--000000000000b633ac065baf6500
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+cmail QP peer review =E2=80=94 Part 1/3
+<p>Review target:</p>
+<ul>
+<li>repo: <code>prx0r/cmail</code></li>
+<li>branch: <code>master</code></li>
+<li>commit: <code>004035a9d95470496a5d9826354c28d949014907</code></li>
+<li>tree: <code>7e282caf3ae85f063193230070b34970e7fb9eb2</code></li>
+<li>previous reviewed baseline: <code>dec850ec405bbd90ad3a2ad6680fcfaa0273a=
+13d</code></li>
+<li>delta: 12 commits ahead</li>
+</ul>
+<p>I also reviewed <code>monid-ai/monid</code> at <code>7e3148f5adfde3ebc77=
+745b42ec92fa7e554c924</code> to assess whether Monid should become the conn=
+ector substrate beneath QP. That integration recommendation is in Part 3.</=
+p>
+
+Executive verdict
+<p>There is substantial progress in repository shape: a <code>qp/</code> ke=
+rnel now exists, authority/identity modules exist, 13 ProofSpec JSON files =
+exist, an adversarial-test file exists, a D1 schema exists, an email round-=
+trip probe exists, and a social executor/YouTube observer prototype exists.=
+</p>
+<p>However, <strong>QP is still not the constitutional runtime boundary.</s=
+trong> The repo currently contains a QP prototype beside the old execution =
+system. The live Worker still allows consequential actions to bypass QP, ca=
+ller identity is still self-asserted, the new capacity MCP surfaces manufac=
+ture proof-shaped evidence, and several new QP modules are not even include=
+d in TypeScript compilation.</p>
+<p>Do not build more platform adapters until the P0 items below are fixed. =
+Otherwise every downstream proof will inherit a false root of trust.</p>
+<p>Canonical invariant remains:</p>
+
+<code>COGNITION !=3D TRUTH !=3D AUTHORITY
+</code>
+<p>and consequential flow must be:</p>
+
+<code>AUTHENTICATE
+=E2=86=92 build exact proposal
+=E2=86=92 validate prerequisites
+=E2=86=92 validate exact signed grant
+=E2=86=92 atomically RESERVE grant/budget/idempotency
+=E2=86=92 ACT once
+=E2=86=92 independent READBACK
+=E2=86=92 judge TRUE/FALSE/UNKNOWN
+=E2=86=92 replay
+=E2=86=92 signed append-only settlement receipt
+</code>
+<p>Current master does not enforce that sequence.</p>
+
+
+
+P0-1 =E2=80=94 <code>/mcp</code> authentication/ADMIN spoof remains unfixed
+<p><code>src/mcp.ts</code> still does:</p>
+
+<code>const { tool, args =3D {}, actor =3D &quot;owner&quot; } =3D body;
+const perms =3D await getPerms(env, actor);
+</code>
+<p>and:</p>
+
+<code>async function getPerms(env: Env, actor: string): Promise&lt;string[]=
+&gt; {
+  if (actor =3D=3D=3D &quot;owner&quot;) return [&quot;ADMIN&quot;];
+  ...
+}
+</code>
+<p>CORS remains <code>Access-Control-Allow-Origin: &quot;*&quot;</code>.</p=
+>
+<p>Therefore the caller still chooses its own principal. Sending <code>acto=
+r:&quot;owner&quot;</code> yields ADMIN. This is the same critical boundary=
+ failure from the first review.</p>
+<p>Consequential routes still execute directly:</p>
+<ul>
+<li><code>email.send</code> =E2=86=92 <code>SENDER.send(...)</code></li>
+<li><code>name.cf_purchase</code> =E2=86=92 <code>cfRegisterDomain(...)</co=
+de></li>
+<li><code>name.wire_email</code> =E2=86=92 <code>cfWireEmail(...)</code></l=
+i>
+<li><code>name.phone_purchase</code> =E2=86=92 <code>telnyxPurchaseNumber(.=
+..)</code></li>
+</ul>
+<p>They are guarded by caller-controlled <code>confirmed:true</code> / text=
+ confirmation, not authenticated signed QP authority.</p>
+
+Required fix
+<ol>
+<li>Authenticate request before dispatch.</li>
+<li>Derive principal server-side from credential/session/token. Remove body=
+ <code>actor</code> as identity source.</li>
+<li>No default owner.</li>
+<li>Separate public/read-only routes from private routes.</li>
+<li>Every money/send/DNS/account-write effect must go through one QP effect=
+ gateway.</li>
+<li><code>confirmed:true</code> can be UI intent only. It must never equal =
+authority.</li>
+<li>Rotate live consequential credentials if this endpoint has ever been pu=
+blicly reachable with them enabled.</li>
+</ol>
+<p>This must be fixed first.</p>
+
+
+
+P0-2 =E2=80=94 QP is still bypassed by the actual effect path
+<p>The new kernel exists under <code>qp/</code>, but <code>src/mcp.ts</code=
+> does not route domain purchase, email send, DNS mutation, or phone purcha=
+se through it.</p>
+<p>The Worker path is still effectively:</p>
+
+<code>request
+=E2=86=92 mcp switch
+=E2=86=92 confirmed flag
+=E2=86=92 provider API
+</code>
+<p>not:</p>
+
+<code>request
+=E2=86=92 authenticated proposal
+=E2=86=92 QP prerequisite check
+=E2=86=92 grant validation/reservation
+=E2=86=92 provider effect
+=E2=86=92 independent readback
+=E2=86=92 QP settlement/replay
+</code>
+<p>The architectural requirement is not =E2=80=9CQP tools exist.=E2=80=9D I=
+t is <strong>there is no other way to cause a consequential effect</strong>=
+.</p>
+
+Required fix
+<p>Create one effect gateway, e.g.:</p>
+
+<code>qp.effects.execute({
+  principal,
+  proposal,
+  required_claims,
+  grant,
+  adapter,
+  readback,
+  proofspec,
+})
+</code>
+<p>and make direct provider mutators private/internal. MCP may create propo=
+sals and submit grants; it must not directly invoke provider mutators.</p>
+
+
+
+P0-3 =E2=80=94 <code>capacity.list</code> fabricates evidence
+<p>The newly added <code>capacity.list</code> route in <code>src/mcp.ts</co=
+de> is actively dangerous to QP semantics.</p>
+<p>It constructs:</p>
+
+<code>const evidence =3D {
+  mx_records: DB domain exists ? [&quot;<a href=3D"http://route1.mx.cloudfl=
+are.net">route1.mx.cloudflare.net</a>&quot;] : [],
+  spf_record: &quot;v=3Dspf1 include:_<a href=3D"http://spf.mx.cloudflare.n=
+et">spf.mx.cloudflare.net</a>&quot;,
+  zone_id: &quot;check-required&quot;,
+  zone_status: &quot;active&quot;,
+  routing_rules: 5,
+  catch_all: true,
+  worker_live: true,
+  mailbox_indexed: ...
+};
+</code>
+<p>Most of those fields are invented constants, not observations.</p>
+<p>This means the system can manufacture:</p>
+<ul>
+<li>zone active</li>
+<li>SPF configured</li>
+<li>five routing rules</li>
+<li>catch-all enabled</li>
+<li>worker live</li>
+</ul>
+<p>without querying any authoritative source.</p>
+<p>This violates the entire QP premise.</p>
+
+Required fix
+<p>Delete/quarantine this implementation immediately.</p>
+<p><code>capacity.list</code> should be a <strong>projection of settled rec=
+eipts</strong>, not a verifier and certainly not an evidence generator.</p>
+<p>Correct behavior:</p>
+
+<code>capacity.list
+=E2=86=92 query canonical qp_claims + latest settled receipts
+=E2=86=92 return TRUE/FALSE/UNKNOWN + receipt hashes
+</code>
+<p>If no proof exists, return UNKNOWN. Never synthesize missing observation=
+s.</p>
+
+
+
+P0-4 =E2=80=94 <code>capacity.verify</code> is not QP verification
+<p>Current route:</p>
+
+<code>const { verify } =3D await import(&quot;./verifiers&quot;);
+const result =3D verify(args.type || &quot;receive_email&quot;, args.eviden=
+ce || &quot;{}&quot;);
+</code>
+<p>The caller supplies arbitrary evidence text, which is run through heuris=
+tic <code>src/verifiers.ts</code> functions. There is no:</p>
+<ul>
+<li>ProofSpec load</li>
+<li>ContractRoot</li>
+<li>exact Claim</li>
+<li>evidence provenance validation</li>
+<li>program hash verification</li>
+<li>prerequisite proof check</li>
+<li>receipt generation</li>
+<li>replay</li>
+<li>settlement</li>
+</ul>
+<p>This should not be presented as a QP verification endpoint.</p>
+<p>Replace it with something like:</p>
+
+<code>qp.probe / qp.resolve
+</code>
+<p>where evidence is collected by registered collectors or explicitly impor=
+ted as UNTRUSTED evidence and then evaluated under a frozen ProofSpec.</p>
+
+
+
+P0-5 =E2=80=94 social executor acts before validating authority
+<p><code>qp/social/executor.ts</code> says the desired architecture correct=
+ly in comments, but <code>socialExecute()</code> currently does:</p>
+
+<code>const execResult =3D await executor.execute(...)
+</code>
+<p>before any grant validation or reservation.</p>
+<p>Its <code>authority</code> argument is merely:</p>
+
+<code>{
+  grant_id: string;
+  grant_proof: string;
+}
+</code>
+<p>and the Postiz adapter ignores the proof.</p>
+<p>So the new social path currently has the exact ordering QP is supposed t=
+o prevent:</p>
+
+<code>ACT first
+=E2=86=92 maybe read back later
+</code>
+
+Required fix
+<p><code>socialExecute()</code> must not be allowed to call an executor unt=
+il:</p>
+<ol>
+<li>authenticated principal resolved</li>
+<li>exact canonical effect payload hashed</li>
+<li>required settled facts checked</li>
+<li>signed grant verified against issuer trust registry</li>
+<li>subject/action/payload/constraints checked</li>
+<li>nonce/budget/idempotency reserved durably</li>
+</ol>
+<p>Then and only then may it execute.</p>
+<p>After execution, readback is mandatory before success settlement.</p>
+
+
+
+P0-6 =E2=80=94 grant constraints are not actually signed
+<p>This is the most important cryptographic bug in the new code.</p>
+<p><code>qp/authority.ts</code> signs:</p>
+
+<code>const canonical =3D JSON.stringify(grantBody, Object.keys(grantBody).=
+sort());
+</code>
+<p>Passing an array replacer to <code>JSON.stringify</code> filters object =
+keys recursively. The allowlist contains the TOP-LEVEL keys but not nested =
+constraint keys such as:</p>
+
+<code>max_amount
+currency
+provider
+resource
+scopes
+</code>
+<p>Therefore <code>constraints</code> serializes effectively as <code>{}</c=
+ode> for the signature input.</p>
+<p>An attacker could alter the nested constraints without invalidating the =
+signature.</p>
+<p>This invalidates the core authority guarantee.</p>
+
+Required fix
+<p>Use one canonical serializer for all QP objects (prefer a tested RFC 878=
+5/JCS implementation or an explicitly frozen equivalent).</p>
+<p>Then:</p>
+
+<code>signature =3D Ed25519.sign(canonicalBytes(fullGrantBody))
+</code>
+<p>Add adversarial tests that modify every nested constraint independently =
+and require signature failure.</p>
+<p>Also fix the rest of <code>authority.ts</code>:</p>
+<ul>
+<li>validate <code>subject</code> against authenticated executor principal<=
+/li>
+<li>bind issuer ID to trusted public key registry</li>
+<li>enforce max_amount/provider/resource/scopes</li>
+<li>use canonical payload hash, not raw <code>JSON.stringify</code></li>
+<li>validate issued_at/expires_at as timestamps</li>
+<li>check consumed/reserved nonce during validation</li>
+<li>replace in-memory <code>Set</code> with atomic durable reservation</li>
+<li>define actual <code>max_uses</code> semantics; current nonce model is e=
+ffectively one-use regardless of value</li>
+<li>do not use <code>ttlSeconds || 3600</code> / <code>maxUses || 1</code> =
+because explicit zero is silently replaced</li>
+</ul>
+
+
+
+P0-7 =E2=80=94 old <code>capacity.ts</code> proof path is still broken and =
+incompatible
+<p><code>src/capacity.ts</code> still contains the exact original bug:</p>
+
+<code>const cap =3D capacities.get(capId);
+if (!null) return null;
+</code>
+<p><code>!null =3D=3D=3D true</code>, so <code>generateProof()</code> alway=
+s returns null.</p>
+<p>Worse, <code>src/verifiers.ts</code> now returns:</p>
+
+<code>{ actuality, reason, evidence_hash }
+</code>
+<p>but <code>capacity.ts</code> still reads:</p>
+
+<code>result.pass
+</code>
+<p>and stores the old boolean <code>CapacityProof</code> model.</p>
+<p>This file is now both logically broken and type-incompatible with the ne=
+wer Actuality semantics.</p>
+
+Required fix
+<p>Do not patch it back into life. Retire the old CapacityProof system enti=
+rely.</p>
+<p><code>Capacity</code> should be a VIEW over canonical QP claims/receipts=
+, not a second proof engine.</p>
+
+
+
+P0-8 =E2=80=94 QP code is not included in TypeScript compilation
+<p>Current <code>tsconfig.json</code>:</p>
+
+<code>&quot;include&quot;: [&quot;src&quot;]
+</code>
+<p>Therefore these new constitutional files are excluded from <code>npm run=
+ typecheck</code>:</p>
+
+<code>qp/**
+mcp/**
+proofspecs/**
+</code>
+<p>This is already hiding real mistakes: <code>qp/probes/email-roundtrip.ts=
+</code> constructs <code>Evidence</code> objects that do not satisfy the de=
+clared <code>Evidence</code> interface.</p>
+
+Required fix
+<p>Either move runtime QP code under <code>src/qp/</code>, or change TS pro=
+ject structure so ALL executable QP/MCP code is compiled in CI.</p>
+<p>Suggested:</p>
+
+<code>&quot;include&quot;: [&quot;src/**/*.ts&quot;, &quot;qp/**/*.ts&quot;=
+, &quot;mcp/**/*.ts&quot;]
+</code>
+<p>plus JSON ProofSpec validation in CI.</p>
+<p>CI must run, in order:</p>
+
+<code>typecheck
+unit tests
+QP adversarial tests
+ProofSpec schema/registry validation
+replay corpus
+build
+</code>
+<p>No merge if any fail.</p>
+
+
+
+P0-9 =E2=80=94 QP migration is not on Wrangler=E2=80=99s migration path
+<p><code>wrangler.toml</code> says:</p>
+
+<code>migrations_dir =3D &quot;migrations&quot;
+</code>
+<p>but new QP schema is at:</p>
+
+<code>qp/migrations/0001_qp_core.sql
+</code>
+<p>Therefore standard Wrangler migration execution will not apply it.</p>
+<p>The schema is a useful start, but as currently placed it is not the depl=
+oyed constitutional store.</p>
+
+Required fix
+<p>Move/merge QP migration into the configured migration directory, then ad=
+d an actual QP store layer that is used by the runtime.</p>
+<p>Do not call receipts append-only until runtime writes to that store and =
+updates/deletes are structurally prevented or tightly controlled.</p>
+
+
+
+Immediate stop condition
+<p>Before touching Instagram/TikTok/X/Postiz/Monid integration, get these i=
+nvariants green:</p>
+
+<code>[ ] caller cannot self-assert owner
+[ ] no effect path bypasses QP
+[ ] no QP endpoint fabricates evidence
+[ ] grant constraints are cryptographically covered
+[ ] reserve happens before act
+[ ] QP code compiles in CI
+[ ] QP tables actually deploy
+[ ] old CapacityProof path is retired
+</code>
+<p>Part 2 covers the proof kernel itself: replay, evidence integrity, judge=
+s, ProofSpecs, email proof, YouTube ownership proof, tests, and the paralle=
+l incompatible <code>mcp/</code> proof model.</p>
+
+--000000000000b633ac065baf6500--

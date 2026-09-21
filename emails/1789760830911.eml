@@ -1,0 +1,395 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id utUn6kFFmTlB
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 19:47:10 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=CaUCG21qNz9gBq30R+mrBcSs5rZI0rUMXK7qEbi4FxO6+3QXALQ+keUqdeN8puVU6QLduddwZ
+	pmmVRakL8TIvULDRqNv2E7yFWkGX+zagE/qoAwMYQfJLmKiBTk+dk0JcBWTRaRkrTHZ9PIDWyck
+	yVPo8W/KFU/Vk2v8yPvLRF7+U/6qepEHJpT2VHIAsAe/i2UBHTnKB9827+4Mlytnuko0z+NxZrt
+	/NApORGlrMz27Bgvczgl7HHGMAq1bwvEAJCAxtHt/nwaUp2R5pglVCBIusTIdUifniNq4+z3Cct
+	AoDM//6OD1aY0C12+kMsPkNOC6MrP53h/rAQcds5nq6A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789760830; x=1790365630; bh=AH6TDtf3
+	M7S9UCvPUiwEh/mT6vdWuj6uZp0sqDNQa6E=; b=g8GGQvT4V8CVWjYPOUtnAXgb24e+cpQHwQM
+	uPNHMPgwXWRwLtQ2VhcfvRqAIDLHsW8S1Xo5AxVdX7Pjq3Pqy0DY0oiskqp/+tSM6rPPAi+lq5p
+	rTLOds3FxRbgs+ZisHutmNJPa4gCCMDaxKfo9+2QgclBwnqynBE1fRgU1iKItMful+WA9a+bVCZ
+	nq+kMblKSvM2G+DOgw0wtPFfNW/IDAiWgfSlryylFUtUwwrqE55OxIQOnjJ8v+ORug1HHMkfQy5
+	E4qkryIN8nRvK9uLbk5iMq4AFxdfi0rwhLGVUle2HVZCm7OdD0ne3Vik4o0TTz2f5bS5lzdCIZL
+	HR9yRbg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=eG/xGfu5;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=eG/xGfu5;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-89666eea29cso8736937b3.2
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 12:47:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789760830; cv=none;
+        d=google.com; s=arc-20260327;
+        b=dkKiaxHpg8yANGggH0G5l5CRTrSew7nAfROgRV7xTn3M2QFP+0uc2rGFKis0+yrDkF
+         3568mhE3lkE4EOtyt1/ix44gl2W8z6gVg4PoBSr4bMUU1lssJIj366l14Lls622N6X5e
+         Zd3D2DnHUZERjogHq50jtdr8VaBsITiCA+3ulE+mO84O9wpeKW1s8/BiSt1wu7EdarME
+         EKuOy2aeeY7IZqanb3i8TPeFELko6c1vrFnVeOnlma9Qt3SpPGjHux5T8BPw0yUcNLC/
+         VDutGD8Ljhezs8ws3afLWx2Xn9f6nd/qzrf4h/N6i68z92dm+LfPuc+Bc+l69naohdhx
+         PABg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=AH6TDtf3M7S9UCvPUiwEh/mT6vdWuj6uZp0sqDNQa6E=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=H3SGS0JpON+rzNu0dsfWgFakw4uGwl3Hgt8uPvOIJOrUXyo9k+5DhqRIeRvtysVK8H
+         xdlxAsVX+AgieF7y82z17823wzT+6IdD6+Q/lg/O9wW7Bg4DS3TY8DFvRk5Txzd7ELxm
+         /A3tgQhqtD9a3JmD4Idi6CvQPH0N9uXSPLVgewwrrsvM/UdVzR49oR6P+OJHihwTJB6l
+         EstsEh4C9NThVP8vhgBbWk+ISObbFoT/CXNvNkEDk25RNjPK/Ah4I3REYJieo6Gg+pX5
+         jA4c008ArKo76Rtt/f3QOpOmvlKS5eUbK08oHAu3141h00TGCPMg5vnlsj5Ak5SA8Y5n
+         u9lw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789760830; x=1790365630; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=AH6TDtf3M7S9UCvPUiwEh/mT6vdWuj6uZp0sqDNQa6E=;
+        b=eG/xGfu5tT2nN4Sg9+8iXiRTzpzJjZ9fSwup7mhMZdQLCGW09C+v6LAeiOqF51cxYy
+         5EViNGLCDtGPrflnmSB4jTCMco0AjWFykLdIWHW4++BFtbe5e/gY0M7Hp6nKqahTX+0T
+         pJ6Z2gcfOthie2yu1/xwlVjH9UM1sEQQmaHY3OiqfplUJJGMWwpFiJr393Ez65uwhXUN
+         VA2k6KLEVxsG5c9tWikb8mkNyxoIxer9EHHyz+fRIIC9lX9bn55L7mmgPBOWmswEXp5n
+         tPhZYV8So+q26BEw/5Kx5IJmGz31E/+/Vsge/nuAq2xTP/Bxfwm1VJ108iRXEMrkrLg/
+         N7cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789760830; x=1790365630;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=AH6TDtf3M7S9UCvPUiwEh/mT6vdWuj6uZp0sqDNQa6E=;
+        b=uTaZtNmZFOHbaN3wqa/dlpxkGYNTyjIgJtox/ABRNWGPENlNrjydBnZ10sZUc5NFJP
+         WvEQzsLFPZYEFME5GWyqN9lGb0FxmltvAcSEqHo/JsE53zpgo75WaoXZsrotQI0CXz8X
+         cQp6WCu6q25VQ6Qj3BIkztJm817e2McsR18G9VYN5mME1yI3SnBd9cJ3QzHpuuHZrdHX
+         Lpic6SDl7JBrZtT8/LIy7j/u3b+tb2mvhkYM67lpmsH6HWJsFeQ+DjQdfh1GKulLn84y
+         EgZKwoyhqUZukM8Q10VNH44qkwuz/Xd2yCDHScoovNI9udM4dvaIOIqKlk/Bo1LSptKb
+         q9AA==
+X-Gm-Message-State: AFuF++nBD3rVclq608oZC0meI50aYVzhlvgPIsz95Yz2DO+8mYINdGSn
+	04iDjrN/FolPyEpGPFtcBtiNfiLudFADWruw2bEagKykAk47Q5LLQ6xw2+GPxKa9WXJAcOAeoJr
+	D8rKVOu3Mts5BZslx9RLmPSqeswLR4Uw7mg==
+X-Gm-Gg: AYBFou0h0l/JCgz8LeBbFsxCcFurU3fdX+mWoee4JjIu64IjrM0tZnkNHQs3tRBMDHA
+	N9ZV/YOfL9qvzCg6sl/Z9p1U1NmHvrJ9bB5qQ3EPuDUD+7+55XKZayChxHNwlKDPQPsta7hFlxA
+	tSa4+zSCwc1v8FRzNJJjvOUdWJ3nqIPi2mCGFKkyJLYwGQcj6QY9lijnEcfqe/Ff9uNbR9Dm+23
+	h7LoVkTR8kHdspUzQhFRYZyUhHT5p5g+Jqny/TJpVoISnk3BExdcdehi5XP7ppnwwIElWTUudUw
+	zLvmTvpRgSQDyUafJGq34qnS2bgwGXRovVaww/JHDxhnzLpnQJULzU862z0XbF4Y7sUqCFc/S0Y
+	j3GENZ9yWPNccKXwA7XwnGwxzsWMsOf79BVka1B18ieigw7mmT/IvfZx4u/o3GO7C2HPu5Q==
+X-Received: by 2002:a53:e319:0:b0:672:99e1:11fe with SMTP id
+ 956f58d0204a3-67299e117dfmr131797d50.155.1789760829934; Fri, 18 Sep 2026
+ 12:47:09 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 14:47:09 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 14:47:09 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 14:47:09 -0500
+X-Gm-Features: AcwNN1U52MOjyrbqwWZiKpx2zVGqAdNlG5LdY9flin6IbkmRIrEZnhWyNQqF1yA
+Message-ID: <CAPdrGemSgmh7SMMANk4Om5LG3O08saf5Tm=Ru7_dWUF3CLPZ6Q@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D19_02=3A46_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_3_strong_signals?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000805147065bc72aa1"
+
+--000000000000805147065bc72aa1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+Prior Sent state recovered through the 01:50 report. Semantic repeats
+rejected unless new independent evidence materially strengthens a cluster.
+
+3 MATERIAL SIGNALS
+
+   1.
+
+   REFERENCE PHOTO ANGLE IS A SPECIFIC, FIXABLE LIKENESS FAILURE =E2=80=94 =
+HIGH =E2=80=94
+   BUILD/TEST
+   Source: https://create.petcanvas.art/blog/pet-portrait-ordering-guide
+   Platform: personalized-pet specialist / customer-complaint synthesis
+   Date: 2026
+   Evidence: Pet Canvas says that after processing 2,000+ pet photos, its
+   most common cause of =E2=80=9Cit doesn=E2=80=99t look like my pet=E2=80=
+=9D complaints is an
+   overhead phone shot; eye-level photos preserve the animal=E2=80=99s actu=
+al
+   proportions.
+   Wanted/problem: buyers expect individual likeness but ordinary
+   phone-photo behavior silently sabotages it.
+   Current workaround: written photo guides.
+   Roast.pet implication: do not merely say =E2=80=9Cupload a clear photo.=
+=E2=80=9D Detect
+   overhead angle before checkout and show a live correction: GET AT EYE
+   LEVEL. Capture one eye-level face shot per pet.
+   Occasion/audience: all personalized pet gifts.
+   Independent elsewhere: YES; prior state already established
+   additional-photo/marking/identity failures, but this supplies a concrete
+   high-frequency mechanism.
+   Prototype: simple upload classifier with PASS / RETAKE: eye level, face
+   sharp, ears visible, natural light.
+   2.
+
+   MEMORIAL BUYERS VALUE NARRATIVE ABOUT THE PET, NOT ONLY PHOTO FIDELITY =
+=E2=80=94
+   MEDIUM/HIGH =E2=80=94 BUILD/TEST
+   Source:
+   https://shop.app/products/4825924829219/custom-pet-portrait-two-pets-fra=
+med
+   Platform: Shop / personalized pet portrait reviews
+   Date: March 20, 2026 review
+   Evidence: a memorial buyer praised a seller who redid proofs and used
+   =E2=80=9Cphotos plus narrative=E2=80=9D to recreate the deceased cat as =
+the owner
+   remembered him.
+   Wanted/problem: the technically correct photo may not capture the
+   remembered pet; owners possess identity information outside the image.
+   Current workaround: human artist conversation and revision.
+   Roast.pet implication: the existing proposed =E2=80=9CWhat makes this
+   unmistakably them?=E2=80=9D field should be first-class input. For memor=
+ial
+   products, ask for one characteristic expression/behavior/memory rather t=
+han
+   automatically making the output sentimental.
+   Occasion/audience: memorial / bereaved pet owner.
+   Independent elsewhere: YES; strengthens prior personality/quirk and
+   post-gift correction evidence.
+   Prototype: add optional PET LORE field: =E2=80=9CWhat did they always do=
+ / what
+   expression was SO them?=E2=80=9D Feed this to visual selection and scrip=
+t
+   generation separately.
+   3.
+
+   SIMPLE REPRESENTATION CAN OUTPERFORM ELABORATE TRANSFORMATION IF
+   IDENTITY IS PRESERVED =E2=80=94 MEDIUM =E2=80=94 TEST
+   Source:
+   https://www.charandwhiskers.com/products/two-pets-single-line-custom-por=
+trait
+   Platform: personalized-pet shop reviews
+   Date: current review corpus
+   Evidence: customers repeatedly praise extremely simple line portraits
+   because they accurately capture two individual dogs and even each dog=E2=
+=80=99s
+   personality. One buyer says the drawing was simple but captured the anim=
+als
+   well; another says each dog=E2=80=99s personality was captured.
+   Wanted/problem: buyers are purchasing recognition and personal meaning,
+   not maximum generative spectacle.
+   Current workaround: minimalist line portraits.
+   Roast.pet implication: create a conservative =E2=80=9Cidentity-safe=E2=
+=80=9D canonical
+   pet card/avatar before costumes, podium scenes or aggressive animation. =
+If
+   a transformation degrades identity, fall back to the canonical
+   representation.
+   Occasion/audience: birthdays, partner gifts, general pet gifts;
+   especially multi-pet.
+   Independent elsewhere: YES; materially reinforces previous evidence that
+   animation can destroy likeness.
+   Prototype: A/B test ROAST podium render against a cleaner lightly
+   stylized identity-safe render, measuring =E2=80=9Cinstantly recognizable=
+ as my
+   pet?=E2=80=9D before comedy preference.
+
+UPDATED RECURRING CLUSTERS
+Highest-confidence recurring needs remain: exact individual likeness; photo
+guidance/recovery; proof + revision/version integrity; fast/date-safe
+digital delivery; multi-pet identity separation; pet-as-speaker;
+buyer-controlled wording; personality/quirk capture; animation that
+preserves identity; transparent order status. New detail this run:
+eye-level capture is a concrete upstream likeness control, and narrative
+can carry identity information unavailable in a photograph.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Exact recognizable pet identity through still + animation.
+   2. Guided photo intake with automatic retake instructions.
+   3. Fast proof/correction without restarting the order.
+   4. Recipient-specific pet-authored comedy with buyer-controlled must-say
+   facts/lines.
+   5. Multi-pet handling where each pet retains distinct
+   appearance/personality.
+
+STRONGEST UNMET NEED
+Reliable personalized comedy where the recipient immediately recognizes
+THEIR animal after stylization and animation. Talking-pet technology itself
+is increasingly commoditized; fidelity + pet personality +
+recipient-specific writing remains the harder combination.
+
+EASIEST CONVERSION-LIFT CHANGE
+Put an upload quality gate before payment: =E2=80=9CWill this photo make a =
+good
+roast?=E2=80=9D =E2=86=92 immediate PASS or one specific retake instruction=
+. The strongest
+concrete rule from this run is EYE LEVEL, NOT LOOKING DOWN AT YOUR PET.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE
+=E2=80=9CYour Dog Roasts You =E2=80=94 Made From Their Photo + Their Actual=
+ Personality =E2=80=94
+Personalized Birthday Video & Printable Card.=E2=80=9D Ordering asks: pet p=
+hoto,
+=E2=80=9Cwhat makes them unmistakably them?=E2=80=9D, recipient, three roas=
+t facts,
+optional must-say line.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not over-invest in visually elaborate transformations, costumes or
+exaggerated lip-sync before identity preservation is solved. Independent
+buyers are delighted by very simple artwork when it captures their actual
+animal, while prior evidence shows animation/generative spectacle can make
+a pet feel generic or visibly AI-generated.
+
+WATCH / UNKNOWN
+No sufficiently strong new independent customer evidence this run to
+promote AR as demanded rather than merely novel; kid-safe/adult modes;
+sports roast; colleague roast; memorial-with-humor specifically. Keep these
+as tests, not assumed demand.
+
+--000000000000805147065bc72aa1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>Prior Sent state recovered through the 01:50 report. Semantic repeats re=
+jected unless new independent evidence materially strengthens a cluster.</p=
+>
+<p>3 MATERIAL SIGNALS</p>
+<ol>
+<li>
+<p>REFERENCE PHOTO ANGLE IS A SPECIFIC, FIXABLE LIKENESS FAILURE =E2=80=94 =
+HIGH =E2=80=94 BUILD/TEST<br>
+Source: <a href=3D"https://create.petcanvas.art/blog/pet-portrait-ordering-=
+guide">https://create.petcanvas.art/blog/pet-portrait-ordering-guide</a><br=
+>
+Platform: personalized-pet specialist / customer-complaint synthesis<br>
+Date: 2026<br>
+Evidence: Pet Canvas says that after processing 2,000+ pet photos, its most=
+ common cause of =E2=80=9Cit doesn=E2=80=99t look like my pet=E2=80=9D comp=
+laints is an overhead phone shot; eye-level photos preserve the animal=E2=
+=80=99s actual proportions.<br>
+Wanted/problem: buyers expect individual likeness but ordinary phone-photo =
+behavior silently sabotages it.<br>
+Current workaround: written photo guides.<br>
+Roast.pet implication: do not merely say =E2=80=9Cupload a clear photo.=E2=
+=80=9D Detect overhead angle before checkout and show a live correction: GE=
+T AT EYE LEVEL. Capture one eye-level face shot per pet.<br>
+Occasion/audience: all personalized pet gifts.<br>
+Independent elsewhere: YES; prior state already established additional-phot=
+o/marking/identity failures, but this supplies a concrete high-frequency me=
+chanism.<br>
+Prototype: simple upload classifier with PASS / RETAKE: eye level, face sha=
+rp, ears visible, natural light.</p>
+</li>
+<li>
+<p>MEMORIAL BUYERS VALUE NARRATIVE ABOUT THE PET, NOT ONLY PHOTO FIDELITY =
+=E2=80=94 MEDIUM/HIGH =E2=80=94 BUILD/TEST<br>
+Source: <a href=3D"https://shop.app/products/4825924829219/custom-pet-portr=
+ait-two-pets-framed">https://shop.app/products/4825924829219/custom-pet-por=
+trait-two-pets-framed</a><br>
+Platform: Shop / personalized pet portrait reviews<br>
+Date: March 20, 2026 review<br>
+Evidence: a memorial buyer praised a seller who redid proofs and used =E2=
+=80=9Cphotos plus narrative=E2=80=9D to recreate the deceased cat as the ow=
+ner remembered him.<br>
+Wanted/problem: the technically correct photo may not capture the remembere=
+d pet; owners possess identity information outside the image.<br>
+Current workaround: human artist conversation and revision.<br>
+Roast.pet implication: the existing proposed =E2=80=9CWhat makes this unmis=
+takably them?=E2=80=9D field should be first-class input. For memorial prod=
+ucts, ask for one characteristic expression/behavior/memory rather than aut=
+omatically making the output sentimental.<br>
+Occasion/audience: memorial / bereaved pet owner.<br>
+Independent elsewhere: YES; strengthens prior personality/quirk and post-gi=
+ft correction evidence.<br>
+Prototype: add optional PET LORE field: =E2=80=9CWhat did they always do / =
+what expression was SO them?=E2=80=9D Feed this to visual selection and scr=
+ipt generation separately.</p>
+</li>
+<li>
+<p>SIMPLE REPRESENTATION CAN OUTPERFORM ELABORATE TRANSFORMATION IF IDENTIT=
+Y IS PRESERVED =E2=80=94 MEDIUM =E2=80=94 TEST<br>
+Source: <a href=3D"https://www.charandwhiskers.com/products/two-pets-single=
+-line-custom-portrait">https://www.charandwhiskers.com/products/two-pets-si=
+ngle-line-custom-portrait</a><br>
+Platform: personalized-pet shop reviews<br>
+Date: current review corpus<br>
+Evidence: customers repeatedly praise extremely simple line portraits becau=
+se they accurately capture two individual dogs and even each dog=E2=80=99s =
+personality. One buyer says the drawing was simple but captured the animals=
+ well; another says each dog=E2=80=99s personality was captured.<br>
+Wanted/problem: buyers are purchasing recognition and personal meaning, not=
+ maximum generative spectacle.<br>
+Current workaround: minimalist line portraits.<br>
+Roast.pet implication: create a conservative =E2=80=9Cidentity-safe=E2=80=
+=9D canonical pet card/avatar before costumes, podium scenes or aggressive =
+animation. If a transformation degrades identity, fall back to the canonica=
+l representation.<br>
+Occasion/audience: birthdays, partner gifts, general pet gifts; especially =
+multi-pet.<br>
+Independent elsewhere: YES; materially reinforces previous evidence that an=
+imation can destroy likeness.<br>
+Prototype: A/B test ROAST podium render against a cleaner lightly stylized =
+identity-safe render, measuring =E2=80=9Cinstantly recognizable as my pet?=
+=E2=80=9D before comedy preference.</p>
+</li>
+</ol>
+<p>UPDATED RECURRING CLUSTERS<br>
+Highest-confidence recurring needs remain: exact individual likeness; photo=
+ guidance/recovery; proof + revision/version integrity; fast/date-safe digi=
+tal delivery; multi-pet identity separation; pet-as-speaker; buyer-controll=
+ed wording; personality/quirk capture; animation that preserves identity; t=
+ransparent order status. New detail this run: eye-level capture is a concre=
+te upstream likeness control, and narrative can carry identity information =
+unavailable in a photograph.</p>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE</p>
+<ol>
+<li>Exact recognizable pet identity through still + animation.</li>
+<li>Guided photo intake with automatic retake instructions.</li>
+<li>Fast proof/correction without restarting the order.</li>
+<li>Recipient-specific pet-authored comedy with buyer-controlled must-say f=
+acts/lines.</li>
+<li>Multi-pet handling where each pet retains distinct appearance/personali=
+ty.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+Reliable personalized comedy where the recipient immediately recognizes THE=
+IR animal after stylization and animation. Talking-pet technology itself is=
+ increasingly commoditized; fidelity + pet personality + recipient-specific=
+ writing remains the harder combination.</p>
+<p>EASIEST CONVERSION-LIFT CHANGE<br>
+Put an upload quality gate before payment: =E2=80=9CWill this photo make a =
+good roast?=E2=80=9D =E2=86=92 immediate PASS or one specific retake instru=
+ction. The strongest concrete rule from this run is EYE LEVEL, NOT LOOKING =
+DOWN AT YOUR PET.</p>
+<p>BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Dog Roasts You =E2=80=94 Made From Their Photo + Their Actual=
+ Personality =E2=80=94 Personalized Birthday Video &amp; Printable Card.=E2=
+=80=9D Ordering asks: pet photo, =E2=80=9Cwhat makes them unmistakably them=
+?=E2=80=9D, recipient, three roast facts, optional must-say line.</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not over-invest in visually elaborate transformations, costumes or exagg=
+erated lip-sync before identity preservation is solved. Independent buyers =
+are delighted by very simple artwork when it captures their actual animal, =
+while prior evidence shows animation/generative spectacle can make a pet fe=
+el generic or visibly AI-generated.</p>
+<p>WATCH / UNKNOWN<br>
+No sufficiently strong new independent customer evidence this run to promot=
+e AR as demanded rather than merely novel; kid-safe/adult modes; sports roa=
+st; colleague roast; memorial-with-humor specifically. Keep these as tests,=
+ not assumed demand.</p>
+
+--000000000000805147065bc72aa1--

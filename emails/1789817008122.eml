@@ -1,0 +1,379 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id bQ7iRcSpuJU5
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 11:23:27 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=AtV7QDq9UM3d1zq1xyWcJXfQ9XDnM2nAuvjuqn4odT2mmoOs8MYdwtG0IrDZuY3ZNp5rhD0Yi
+	l1bX4glGeDs/MHRgiZy71g8nhwkeAtycVAOm4LOgqReoaurPHuPNyLHr00DYag0+9NLsEW9HLLe
+	rwek5pjvMR7y+vIAZ2P2Z0dkRX4YiKmx7+UGQdCkSYI+s9km4U1d/79y84eFPdmsiyJJnFiyHOW
+	bc7nORLGFqjgtZAcJ4Q3SkkN5lO9TPVlwe4hiCKDRLzA87s6Yizs1YIcorOrNRx7Ag+XudQfLYv
+	QWQmKc+XvNqh7lL3MARG4ClWadq9fWd4pTuSDH6XpXig==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789817007; x=1790421807; bh=qGji/UIN
+	+sidRgb3lJQFNdvKmDXZD7vd2Sj3+peGelE=; b=VUzk0b+tleuz0or7yPTlVH3XQ9TZKmaUgjw
+	BRW5kG9uVHxzqEmhUBfTwAlRfHavbLWG7JY1iQJLjDmkTNCAJC/end8VLst7hkPkb9AWE72G6Ac
+	9Uht363vr3zRXWAPWqg8eeQ2iw835MUqSqY/lz8h+bKNR89JemScbY8GvD0iyDnnJpCQqs9lUF1
+	iF/4ZsRHd9eJOPmKiqYAEXF7d2ihIupBdGM8ui3SZLKbuo1YWEA4pyPVV8qJDr/1daTg/Mws5rv
+	X1cIWUSjM7XngJvBFIMEPGX9CRxDH8cLw09XU6mi3OhazA2LEpMUi7zuXyhGlHyBEZ+6cGzl19x
+	IBT6Fgg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=S0Os4ZT/;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=S0Os4ZT/;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43f9b11bso12173807b3.0
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 04:23:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789817007; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HKTXn2VJgEBuWgx9Wab6ZZFCypT5n9a6pjiHu1ki5ykt07WuR1xdRjb2M7gbBKhYJI
+         2zlWvCGENn8W4oUbEP3KxNyCRrQdfBdjk2k5exUqCwu/yvi68I6BQDmX4j6pyswPbBA/
+         RGd+1A4oLRhwcfmHT2G3d2GLNZXDMw+4WIMqW+epw7FrVCEir8wasEAi2l3mFJDESPBg
+         vdvhX0Fc4enuVkvNqLIZFbxW3PRHJuIOYdBxkrBax8K4+GePuYPQ3knXXD9Ibj1mwRff
+         Qpj2sHQQIFDJMuLajlgadjDP1QPdcWytoPLY6LXVJK+bYXVX+j+MtymY9uQ+/Yfa50xf
+         mDPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=qGji/UIN+sidRgb3lJQFNdvKmDXZD7vd2Sj3+peGelE=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=dId7CCo3cqNzPZlCiN9fyQwSh+mbpUJ+uRflzXCurMayV1pbJvF2TJMaNvv4RTKFHz
+         ZYoi++MnTOglc0KBnLw3rJQD7xEJPBLjnBMds6z16XRKyMtj3W7XixrxqmvRp/QoLxa6
+         +xeMOJYw0ZshB3TSq1CXOp5U/KkkHOMHcEIxijvxUCwGVtIEyqITvjt0zjvW4ufK/wNt
+         KXb5rPjZ1sC7coLi7ZCgojLF9+zhfyco5yrotP1pgkMtUX99ehgsf3ps90NnNxzTKQED
+         r/XLOYSoc9zj9D99oVxDYeTd3n4Upj4OvXGWpPVMw/eqENP3/LGqS8aZNu/cK32tfESP
+         od7w==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789817007; x=1790421807; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=qGji/UIN+sidRgb3lJQFNdvKmDXZD7vd2Sj3+peGelE=;
+        b=S0Os4ZT/RXiDp3bKseU7jtPEo4dU7q8p+ptgToeBCmRJmVD+FO9A2VG1Uum+nF4o2X
+         WemmohOGIhQscoeDrTgLag6N5f28n4f8VVbTDzdh3pfmpEhXM69wbIjv1UKMbirfIymC
+         L+8DA9hHGeIDtL3X8mgWTwKLhJq5/VQPBvi4oKVHq1fkjLsRtdbQeeGwM0B5YlsLrXgj
+         vP3AlTN4+TjiJeP2oA9fBornIL0d8ooIHsanGiuZCdDIrfTxANGqR4K+og7tJAX4ckY0
+         ngTSYMiQSMwZgHZ2HM+YiP9Kph1MQmC2OX1jUmMA9Lwc4VaEhh8lAqbHNMa32aqA0uCn
+         kT2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789817007; x=1790421807;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=qGji/UIN+sidRgb3lJQFNdvKmDXZD7vd2Sj3+peGelE=;
+        b=EwJdN7IW/vjwxSxEqXSNlCJta+K2kz7zi7kD+OWXkIDh/2Lm0Y/ac58ViazRI9Gg+j
+         VG1po4uWHsbkXcu5ndFxgj7fTAQAt751T/PTg1FJL9Je7qXX4SqnrlYBG3/t4nMjq90T
+         H1K0vdQbqIiKpqVypr3WFTPkKRFNFX3YWcZcoc+xtKWhMQgQoVmspWwVluSW3KLCeKeE
+         zQjavcZPu8A7CKYn1bic3nYP6DM24+Ajlkp+cfMdoQo2hsYikGnx2lmn9xE4gWRV+RRz
+         vE/UhxZPEu7d1rLvKUEGdQoeJXGhlGHH5DQGYSgs3mvZhdPFuoaSVlS0PYp+jRteg3YB
+         njpw==
+X-Gm-Message-State: AFuF++l+5q0Dtvr9zpVynR18PRIs3q9DAzNrL2cEs9frnGex60PUQsq/
+	Ky/PD5DwPFZLc2/5i2DeVCiOPZ4twgv4QMUvotMHoAkDZV+p4nnOhmqqp26jfmUmlhzb12qB5qZ
+	V2PYTLh5+oGjLNwd6mRm7pqAgTiWOTV3tbg==
+X-Gm-Gg: AYBFou3yVs040JaeS9CwJYEgt/rX7uATiUfw4jCSW4CXIzmbszpVuxvdJK6jEf41mgF
+	BMOgBP3flpxVPeNQ4Snk+CdCdS08xNUI8xhHO1CnvO3KUxv40RjCMoTJN/5AhEVsJZBlE96uLM1
+	ooRHB+slp/puVd//X9o5pmet0NCpf4zZQaOt6LtgdSDBMGLT9nakfmDeTykorzhrij/3MXQHVB4
+	ol8R1i3dOBojZA0OiLh2N1euYIeZx07lwWgS79BE4s5BcjgdXSznQ6tvJ5uSuCZYpvpu/ClM8hw
+	I80Rr2LbWcSAAXEYD6W+ZE8GLBDn0lFXSqbnJ09rWfuIP07yQo5PWCRQNIVSdEUheEqX9Eiem0f
+	OgCkSJZwOuBxyLwePkip+cMCSZR6Uf88rPQ9pwz1K1IafTHxUQwyjP2++1u8WFbEvizZbrbXbrw
+	==
+X-Received: by 2002:a05:690c:a70c:b0:89a:63da:faa1 with SMTP id
+ 00721157ae682-89a63db0531mr4286617b3.92.1789817007191; Sat, 19 Sep 2026
+ 04:23:27 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 06:23:26 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 06:23:26 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 06:23:26 -0500
+X-Gm-Features: AcwNN1WuksHdG935OImCE8BTuKBK4CycM-1tQCGb-qrP1epEAEtOX0UWpq6f1R4
+Message-ID: <CAPdrGekTizJ5mjCH379+ih5CshAmAYP=mRAYRX=f_COKoPfMtg@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D19_18=3A2?=
+	=?UTF-8?Q?2_Asia=2FPhnom=5FPenh_=E2=80=94_5_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000ed3b1c065bd43e6f"
+
+--000000000000ed3b1c065bd43e6f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 5 useful projects
+
+This run screened 25+ plausible projects across GitHub, Hugging Face,
+WebAR, browser video/caption tooling, pet CV and Etsy/POD automation, then
+removed projects already surfaced in prior runs. Five are worth retaining.
+
+   1.
+
+   tscaps =E2=80=94 https://github.com/francozanardi/tscaps
+   Creator: Franco Zanardi. Current project; 18 stars / 4 forks in surfaced
+   metadata. License: engine MIT, templates MIT, studio AGPL-3.0. Solves:
+   browser-local caption composition and final video export without a serve=
+r.
+   Install: npm install @tscaps/engine. Dependencies: modern browser
+   WebCodecs/Web Audio/Canvas; Node only for development. Evidence: working
+   local editor; captions are ordinary HTML/CSS rasterized per frame; accep=
+ts
+   existing subtitle data or hand-built Documents, so Roast.pet can skip
+   Whisper entirely and feed known TTS timings. Work replaced: caption
+   renderer, CSS styling system, video compositing/export. Integration:
+   LOW-MEDIUM. Maintenance risk: MEDIUM because API is pre-1.0; pin a versi=
+on.
+   Experiment: feed Kokoro word timestamps directly into a Document, render
+   the canonical 15-second roast locally, compare output/time/LOC with
+   ASS+FFmpeg. Verdict: REUSE NOW / BENCHMARK.
+   2.
+
+   rlogank/etsy-api-toolkit =E2=80=94 https://github.com/rlogank/etsy-api-t=
+oolkit
+   Creator: rlogank. Surfaced last week; tiny zero-star toolkit. License
+   file present; verify exact terms before copying. Solves: the boring Etsy=
+ v3
+   plumbing=E2=80=94PKCE OAuth, refresh, snapshots, JSON plans, multipart i=
+mage/file
+   uploads, draft listing creation. Install: plain Python scripts; standard
+   library only. Evidence: publish_to_etsy.py consumes manifest.json; dry-r=
+un
+   apply path; explicit token/customer-data hygiene. Work replaced: most
+   bespoke Etsy API wrapper and listing-upload orchestration. Integration:
+   LOW. Maintenance risk: MEDIUM because Etsy APIs can change and repo is
+   tiny. Experiment: create a sandbox/test draft from one Roast.pet order
+   manifest with listing images and files; confirm upload order and
+   refresh-token behavior. Verdict: REUSE/COPY MECHANISM after license chec=
+k.
+   3.
+
+   chriz-3656/echoframe-mindar =E2=80=94
+   https://github.com/chriz-3656/echoframe-mindar
+   Creator: Albasith / chriz-3656. 4 commits, 1 star. License: MIT. Solves:
+   almost comically exact Roast.pet physical-card AR primitive: recognize a
+   printed image target and play a video directly on top of it in a mobile
+   browser. Install: static HTML/JS + MindAR + targets.mind + MP4; serve ov=
+er
+   HTTPS. Dependencies/hardware: phone browser/camera only. Evidence: compl=
+ete
+   repo is essentially index.html, targets.mind and memory.mp4. Work replac=
+ed:
+   initial card=E2=86=92camera=E2=86=92video-overlay AR prototype. Integrat=
+ion: LOW.
+   Maintenance risk: LOW-MEDIUM, because MindAR is the real dependency.
+   Experiment: replace target with the canonical Roast.pet card and memory.=
+mp4
+   with one roast; test iPhone/Android acquisition time, jitter and
+   loss/reacquisition. Verdict: REUSE NOW for AR checkpoint.
+   4.
+
+   Everidea-Interactive/hmns-webAR =E2=80=94
+   https://github.com/Everidea-Interactive/hmns-webAR
+   Creator: Everidea Interactive. Surfaced last week. License: MIT. Solves:
+   a more production-ish MindAR shell with mobile responsive UI, image targ=
+et
+   tracking, screenshot and recording, status feedback and GLTF animation
+   support. Install: static web project; HTTPS required. Dependencies:
+   MindAR.js + Three.js. Evidence: screenshot/recording functions and mobil=
+e
+   browser compatibility are documented; target and model paths are cleanly
+   separated. Work replaced: AR sharing/recording controls and mobile UX
+   boilerplate. Integration: LOW. Maintenance risk: MEDIUM. Experiment: swa=
+p
+   its GLTF scene for our video/2D pet layer and see whether its
+   recording/share path can capture the Roast.pet AR reaction for social
+   sharing. Verdict: COPY SHELL / WATCH.
+   5.
+
+   tejaswigowda/ffmpeg-webCLI =E2=80=94
+   https://github.com/tejaswigowda/ffmpeg-webCLI
+   Creator: Tejaswi Gowda / Arizona State University. 1.4k stars, 131
+   forks, 138 commits; surfaced today. License: GPL-3.0; ffmpeg.wasm
+   underlying LGPL-2.1. Solves: local browser post-processing=E2=80=94forma=
+t
+   conversion, compression, trim, crop, overlay, audio mix, GIF, metadata
+   stripping, captions and local Whisper=E2=80=94with zero server upload. I=
+nstall:
+   static PWA plus COOP/COEP headers for SharedArrayBuffer. Evidence: live
+   app, benchmarks/demos, and an August 2026 Web-CLI architecture paper; ru=
+ns
+   processing in browser/Web Workers. Work replaced: a large set of boring
+   final-media utilities and privacy-sensitive customer-video handling.
+   Integration: MEDIUM because GPL boundary matters and ffmpeg.wasm is heav=
+ier
+   than WebCodecs. Maintenance risk: LOW-MEDIUM. Experiment: use only its
+   mechanisms as a post-export worker: take a Roast.pet MP4, compress to
+   social target, strip metadata, make GIF preview and hard-burn captions;
+   benchmark on phone and weak laptop. Verdict: COPY MECHANISMS / WATCH; do=
+n=E2=80=99t
+   embed blindly due GPL.
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+   1. Browser caption rendering/export: benchmark the MIT tscaps engine
+   first.
+   2. Etsy OAuth/listing/upload plumbing: adapt the tiny etsy-api-toolkit
+   rather than wrapping Etsy from scratch.
+   3. Card=E2=86=92AR-video proof of concept: EchoFrame is already the exac=
+t
+   four-file MindAR demo.
+   4. AR screenshot/record/share UI: borrow the hmns-webAR shell.
+   5. Generic media post-processing: use established FFmpeg/WebCodecs
+   mechanisms rather than writing compressors/croppers/caption burners.
+
+Most surprising hobby project: EchoFrame. A one-star, four-commit repo
+already expresses the core Roast.pet physical product promise=E2=80=94point=
+ a phone
+at a printed card and have its associated video appear on the card=E2=80=94=
+in
+almost the smallest possible codebase.
+
+Fastest integration win: EchoFrame. Replace targets.mind and memory.mp4 and
+deploy one static HTTPS page. This should validate the entire card=E2=86=92=
+AR
+experience before any custom AR engineering.
+
+Repo/author worth following: Franco Zanardi / tscaps. Its MIT engine treats
+captions as HTML/CSS and renders entirely in-browser through WebCodecs,
+which fits Roast.pet=E2=80=99s deterministic HTML-first media architecture
+unusually well.
+
+Architectural delta this run: the AR and commerce edges can both be
+extremely thin. The likely V1 path is approved pet package + deterministic
+HTML/video renderer + tscaps/ASS captions + static MindAR target page +
+manifest-driven Etsy publisher. Roast.pet-specific engineering should stay
+concentrated in pet identity, comedy/performance and QA=E2=80=94not caption
+editors, AR shells, Etsy OAuth or generic media utilities.
+
+--000000000000ed3b1c065bd43e6f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Roast.pet Weird Builder Projects =E2=80=94 5 useful projects</p>
+<p>This run screened 25+ plausible projects across GitHub, Hugging Face, We=
+bAR, browser video/caption tooling, pet CV and Etsy/POD automation, then re=
+moved projects already surfaced in prior runs. Five are worth retaining.</p=
+>
+<ol>
+<li>
+<p>tscaps =E2=80=94 <a href=3D"https://github.com/francozanardi/tscaps">htt=
+ps://github.com/francozanardi/tscaps</a><br>
+Creator: Franco Zanardi. Current project; 18 stars / 4 forks in surfaced me=
+tadata. License: engine MIT, templates MIT, studio AGPL-3.0. Solves: browse=
+r-local caption composition and final video export without a server. Instal=
+l: npm install @tscaps/engine. Dependencies: modern browser WebCodecs/Web A=
+udio/Canvas; Node only for development. Evidence: working local editor; cap=
+tions are ordinary HTML/CSS rasterized per frame; accepts existing subtitle=
+ data or hand-built Documents, so Roast.pet can skip Whisper entirely and f=
+eed known TTS timings. Work replaced: caption renderer, CSS styling system,=
+ video compositing/export. Integration: LOW-MEDIUM. Maintenance risk: MEDIU=
+M because API is pre-1.0; pin a version. Experiment: feed Kokoro word times=
+tamps directly into a Document, render the canonical 15-second roast locall=
+y, compare output/time/LOC with ASS+FFmpeg. Verdict: REUSE NOW / BENCHMARK.=
+</p>
+</li>
+<li>
+<p>rlogank/etsy-api-toolkit =E2=80=94 <a href=3D"https://github.com/rlogank=
+/etsy-api-toolkit">https://github.com/rlogank/etsy-api-toolkit</a><br>
+Creator: rlogank. Surfaced last week; tiny zero-star toolkit. License file =
+present; verify exact terms before copying. Solves: the boring Etsy v3 plum=
+bing=E2=80=94PKCE OAuth, refresh, snapshots, JSON plans, multipart image/fi=
+le uploads, draft listing creation. Install: plain Python scripts; standard=
+ library only. Evidence: publish_to_etsy.py consumes manifest.json; dry-run=
+ apply path; explicit token/customer-data hygiene. Work replaced: most besp=
+oke Etsy API wrapper and listing-upload orchestration. Integration: LOW. Ma=
+intenance risk: MEDIUM because Etsy APIs can change and repo is tiny. Exper=
+iment: create a sandbox/test draft from one Roast.pet order manifest with l=
+isting images and files; confirm upload order and refresh-token behavior. V=
+erdict: REUSE/COPY MECHANISM after license check.</p>
+</li>
+<li>
+<p>chriz-3656/echoframe-mindar =E2=80=94 <a href=3D"https://github.com/chri=
+z-3656/echoframe-mindar">https://github.com/chriz-3656/echoframe-mindar</a>=
+<br>
+Creator: Albasith / chriz-3656. 4 commits, 1 star. License: MIT. Solves: al=
+most comically exact Roast.pet physical-card AR primitive: recognize a prin=
+ted image target and play a video directly on top of it in a mobile browser=
+. Install: static HTML/JS + MindAR + targets.mind + MP4; serve over HTTPS. =
+Dependencies/hardware: phone browser/camera only. Evidence: complete repo i=
+s essentially index.html, targets.mind and memory.mp4. Work replaced: initi=
+al card=E2=86=92camera=E2=86=92video-overlay AR prototype. Integration: LOW=
+. Maintenance risk: LOW-MEDIUM, because MindAR is the real dependency. Expe=
+riment: replace target with the canonical Roast.pet card and memory.mp4 wit=
+h one roast; test iPhone/Android acquisition time, jitter and loss/reacquis=
+ition. Verdict: REUSE NOW for AR checkpoint.</p>
+</li>
+<li>
+<p>Everidea-Interactive/hmns-webAR =E2=80=94 <a href=3D"https://github.com/=
+Everidea-Interactive/hmns-webAR">https://github.com/Everidea-Interactive/hm=
+ns-webAR</a><br>
+Creator: Everidea Interactive. Surfaced last week. License: MIT. Solves: a =
+more production-ish MindAR shell with mobile responsive UI, image target tr=
+acking, screenshot and recording, status feedback and GLTF animation suppor=
+t. Install: static web project; HTTPS required. Dependencies: MindAR.js + T=
+hree.js. Evidence: screenshot/recording functions and mobile browser compat=
+ibility are documented; target and model paths are cleanly separated. Work =
+replaced: AR sharing/recording controls and mobile UX boilerplate. Integrat=
+ion: LOW. Maintenance risk: MEDIUM. Experiment: swap its GLTF scene for our=
+ video/2D pet layer and see whether its recording/share path can capture th=
+e Roast.pet AR reaction for social sharing. Verdict: COPY SHELL / WATCH.</p=
+>
+</li>
+<li>
+<p>tejaswigowda/ffmpeg-webCLI =E2=80=94 <a href=3D"https://github.com/tejas=
+wigowda/ffmpeg-webCLI">https://github.com/tejaswigowda/ffmpeg-webCLI</a><br=
+>
+Creator: Tejaswi Gowda / Arizona State University. 1.4k stars, 131 forks, 1=
+38 commits; surfaced today. License: GPL-3.0; ffmpeg.wasm underlying LGPL-2=
+.1. Solves: local browser post-processing=E2=80=94format conversion, compre=
+ssion, trim, crop, overlay, audio mix, GIF, metadata stripping, captions an=
+d local Whisper=E2=80=94with zero server upload. Install: static PWA plus C=
+OOP/COEP headers for SharedArrayBuffer. Evidence: live app, benchmarks/demo=
+s, and an August 2026 Web-CLI architecture paper; runs processing in browse=
+r/Web Workers. Work replaced: a large set of boring final-media utilities a=
+nd privacy-sensitive customer-video handling. Integration: MEDIUM because G=
+PL boundary matters and ffmpeg.wasm is heavier than WebCodecs. Maintenance =
+risk: LOW-MEDIUM. Experiment: use only its mechanisms as a post-export work=
+er: take a Roast.pet MP4, compress to social target, strip metadata, make G=
+IF preview and hard-burn captions; benchmark on phone and weak laptop. Verd=
+ict: COPY MECHANISMS / WATCH; don=E2=80=99t embed blindly due GPL.</p>
+</li>
+</ol>
+<p>TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES</p>
+<ol>
+<li>Browser caption rendering/export: benchmark the MIT tscaps engine first=
+.</li>
+<li>Etsy OAuth/listing/upload plumbing: adapt the tiny etsy-api-toolkit rat=
+her than wrapping Etsy from scratch.</li>
+<li>Card=E2=86=92AR-video proof of concept: EchoFrame is already the exact =
+four-file MindAR demo.</li>
+<li>AR screenshot/record/share UI: borrow the hmns-webAR shell.</li>
+<li>Generic media post-processing: use established FFmpeg/WebCodecs mechani=
+sms rather than writing compressors/croppers/caption burners.</li>
+</ol>
+<p>Most surprising hobby project: EchoFrame. A one-star, four-commit repo a=
+lready expresses the core Roast.pet physical product promise=E2=80=94point =
+a phone at a printed card and have its associated video appear on the card=
+=E2=80=94in almost the smallest possible codebase.</p>
+<p>Fastest integration win: EchoFrame. Replace targets.mind and memory.mp4 =
+and deploy one static HTTPS page. This should validate the entire card=E2=
+=86=92AR experience before any custom AR engineering.</p>
+<p>Repo/author worth following: Franco Zanardi / tscaps. Its MIT engine tre=
+ats captions as HTML/CSS and renders entirely in-browser through WebCodecs,=
+ which fits Roast.pet=E2=80=99s deterministic HTML-first media architecture=
+ unusually well.</p>
+<p>Architectural delta this run: the AR and commerce edges can both be extr=
+emely thin. The likely V1 path is approved pet package + deterministic HTML=
+/video renderer + tscaps/ASS captions + static MindAR target page + manifes=
+t-driven Etsy publisher. Roast.pet-specific engineering should stay concent=
+rated in pet identity, comedy/performance and QA=E2=80=94not caption editor=
+s, AR shells, Etsy OAuth or generic media utilities.</p>
+
+--000000000000ed3b1c065bd43e6f--

@@ -1,0 +1,550 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id orJCjpTwS4AC
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 06:14:19 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=R4KaV+psLu3TmhF/e4lU7vy+xe9kuWWmq4wxrwTXCYHZzfVcahGtks14b/lq0fDrYnJ6oWtZu
+	KJBUCkM7TrqURL4znW58Ai2aQUOcYIRIkyVNYo8FD1vppy2iAeXRIsoBz6/dxw/Zal3APNlpXdE
+	+xrjXjHfgNePiwEar9gk8XAusuivGK5VR/xHo5gwxwew/pkNTCwqP0f0oiXx/wyV+2xEwBLR4Sc
+	mPIgTGDNZZYpxzpBdqOrsBgUvM/vp3mlEhDgZYQOu3ee8EnrFIOX6w5QYNv4WSdkEBZl5DyFmWt
+	vIa7Wz9BWYGERc6HQegZd5FdG8UUoyrZIkEtqTePnGUA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789971259; x=1790576059; bh=K7RWa8Ys
+	kTJum8cWUoUu7tPQLDFz7Omojo2sc7TBleA=; b=hHzVLSQfJay2EnUAEReEnHuAfe+TZr1rDJh
+	uVbtA3eHN+XkQ8P+DTa90de7xQ1nGCwHD5WJMCxamxGWktIrWN2Bt4sWWFN4w99Pus9rrb5lkW9
+	1LpjLTb4vaQrmHYCMGHdXeqUxQkqkJfMH9vTpTIT1m+UBKS85KbdtJcs346kOnfttmGB9S3Ha/K
+	2Eqg1xqKiC1xMNOnWskkwqgw1krjh/xO3RUqXWmLAYShZyG7IaDgq8WhyBVv1zhOX3sVg7s7g7b
+	f7H4GgfgBWMNZ6147y6irrR9dZoueUUvMJ+3Hy2YoH3Ij4GtlLfMP8KuYTCcE/xkq5L86TNAprK
+	TAMr6oA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=X4p2N0A7;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=X4p2N0A7;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-895eaf30817so25799357b3.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 23:14:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789971259; cv=none;
+        d=google.com; s=arc-20260327;
+        b=IpXaAg2svXR38LSIqmkmKmHNnQEdSHnJ3Jg/AtqpkmVv8bWjSkL0yAX79OCrPH1SMh
+         akXAMLwUR8d+TTmODSe0YkC6XsohHO7ZeuZW0J3Ox/VDyrO3GC5KeibGnbaiRtcm7gnY
+         PqpxUI+EiU7Ah4FDhhWUrkNS+z3A2A8hKUg+wfEtDvXiwb4VSISwTbrcHEeikifAVCiS
+         QIZpaxoqNw+0x+ZrjpxirwVqzTlrcEEAEjAWGss+OOt7W07Vz7o5+b0aPvjR9Jw1O943
+         ZPiSwn1QD8jx4ZNMTvDwnE5Sfsm+mgUSSZEpP5iLygYEYMLXdVwfvOzprRS3RJUIKSt5
+         xwuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=K7RWa8YskTJum8cWUoUu7tPQLDFz7Omojo2sc7TBleA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=fVtFwfcSH2aQuUrnj9gsXDd4BJHz0mrhSTAakNrCEA9JGasnwBkQUEActkcwKuOwCp
+         m/22Wk1SppQDHtqjrIlcl40SridwuDjFKiNI3T+AKuXJpsw3A9bVG1uCaQGksDV21dYB
+         TpcJiXimapFKiJ830WTMlWvn2vEdVW3o0sxBiK923ql7L/iyyHq/9dpWHb+MjS1a+Pc6
+         7ii8usapUZzCNlanl6OKNlWLuZ4xkTjqlrDxSd0fLZMR1/VPYwp68ar+Ul7398/W6dr3
+         Ff1pW5vdYguclCWdmbqi2ZACrCK4+u41DK6IllyNosU9yIYaBYI4YOcdoDF/PWRvv4bo
+         o4eA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789971259; x=1790576059; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=K7RWa8YskTJum8cWUoUu7tPQLDFz7Omojo2sc7TBleA=;
+        b=X4p2N0A7KicWjD60i74gcc/E802YUQTNLGMUo5SoXO/vYXS4bnRtFpYc78MASVzDV5
+         65hHcvCt+GL3h/u9oLeXymzI1jwMb5/i9F2VlgY0ThFdJojo9LwSSxjXq+uCD9iuq5E9
+         3YdHvnxVkWpNFugPltlfMZTqmAHoydVhxrl2gIFCb6eGVQfEKHESKpwC6VLsdGQq3A2X
+         TNYvTH6cQBM+fDrizkNgV65/zTE0D2Y5MMAAPlkGRIRVl82KiQxPS72HdsBf9oPhbOI0
+         iH1nagAS5QfICAplRItbMOCBFRTfmKEO36NveCO4s0v+Sql6MxrFk4fk2JOBg4Xotso4
+         qxqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789971259; x=1790576059;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=K7RWa8YskTJum8cWUoUu7tPQLDFz7Omojo2sc7TBleA=;
+        b=XH9Cw5v5CY67JWOpY1GIJYMCHuiLPlibbr+8uOVbWn6aPFZzmADUBmOUXltAsxgyL/
+         hBQdQ+96TlwQkkYNg6D3o4x5LzE0SPTlEndbqWyYtBOcbFeQj+BvkPi+DOm9wbWOr8bt
+         hAsUEPZwzy2FIuYu6uRy/3DsWTRnbwA54Dly4GKbL+Hlt86DjAiy9ZL5L/kv0Of2A1FP
+         3RWs4EOAJtJJxhFEoZEPgJ46t4+oNeJTYFYdQLQ4Vc5kx4nwi/raTJCRXSEtLxqdycOS
+         K0s8b08f7Oldv3CiTfuH66CDN8IOv0MDApAWGtLiegWA14jFegHh7zmuGPNb4b0GIalo
+         FRog==
+X-Gm-Message-State: AFuF++kJm+5pRQK0feDpRbBJ8kVVhM/BRP/01EL2WMC87O5DKjQz1LCx
+	AKXhT1RhCvOhFb/Xa4HRdypf6rEQ36iS1fJDjWxAxc3thLYYz11hSz+oH2+UDhxww0V3O88pajU
+	qWOKhIDva0+CkayRNesKN2oxQl3uGCnTF9g==
+X-Gm-Gg: AYBFou1qdtT8J/efcRDw7lu//RQv95jQi3FQ1a/4IGDQxnqcgb02NXXUTBCFhlbygsV
+	WuAHI3bO3PtkO4snw72Nk+kmdUr002uCUAb7dWuKf4LC2XUNFkmEZbszB/o8xCv/V6lzRe6UpkY
+	/FjAANpoSs7gnjtmtz0Oze7eusj/+h8iY/0MqwiV38UIdDPZfIhh/XhceQUtwaB52nzKOBbtR4K
+	cbPPQHnKUNp+c7opsdk3glRFsEWPP3+Ilc/jv4YQHGEMdCzVw9C7XBblJtphg/R758IHYv/zI/u
+	w3o7//oVaxXwhObhQztKJ75kfArcttAiDNLoyHyL+5XDaREj8IydICViekAngH1XSlFah3vO+lL
+	Pw03OwdOTNjgCSpn7rFWTn/0FC7GFbjJ5BFXfBukFMmbcmU0w0u2VfIvxA0EQ03WkneBCEA==
+X-Received: by 2002:a05:690c:e682:10b0:873:5bd1:98b3 with SMTP id
+ 00721157ae682-89736b37b29mr18889397b3.37.1789971258775; Sun, 20 Sep 2026
+ 23:14:18 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 01:14:17 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 01:14:17 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 01:14:17 -0500
+X-Gm-Features: AcwNN1XfWURetkOZE1F8hSSIIkjIZflcqD2rSkWnt11t7ct2lU85-B7o9kbGdz4
+Message-ID: <CAPdrGe=rnQ+FhyO_0iOPpO7qmbpieuYWj8aNahNrWiV1Dr7tPQ@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Frontier_Feeds_=E2=80=94_2026=2D09=2D21_13=3A13_IC?=
+	=?UTF-8?Q?T?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000099d33065bf82952"
+
+--000000000000099d33065bf82952
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS FRONTIER FEED PROBE =E2=80=94 21 Sep 2026 13:13 ICT Executive d=
+elta
+
+The main delta is a ledger correction plus a sharper t=3D0 target.
+
+CONFIRMED: DEFRA=E2=80=99s Report Receipt of Waste API is not an upcoming p=
+rivate
+beta. Public beta began 28 April 2026 and is live now. GOV.UK=E2=80=99s pag=
+e was
+updated 18 September 2026 and explicitly says permitted waste receivers can
+already upload via the Receipt API or spreadsheet. Mandatory reporting
+begins 1 October 2026 in England/Wales and January 2027 in
+Scotland/Northern Ireland.
+
+This means POW should demote =E2=80=9CReceipt API launch=E2=80=9D from WATC=
+H to
+JOIN/PARTNER. The raw API is authenticated and designed for organisations
+submitting their own records, not an open national read feed. DEFRA=E2=80=
+=99s
+backend also maintains complete change history, so mirroring a consenting
+operator=E2=80=99s own receipt records is not itself an irreversibility moa=
+t.
+
+The genuine frontier is the next movement layer: DEFRA=E2=80=99s official A=
+PI
+specification explicitly supports separate collection and receipt
+submissions linked into one waste movement and allows them to arrive in
+either order. The current external API/repository exposes receipt
+operations; collection-side production availability and access remain the
+t=3D0 watch. If collection events become executable prospectively, POW can
+begin the Collection=E2=86=92Receipt=E2=86=92Correction=E2=86=92Outcome tap=
+e on day one.
+
+A second fresh lead is Barnet=E2=80=99s Electric Vehicle Charging Transacti=
+ons
+dataset, updated 20 September 2026, containing location, transaction time,
+Wh and connect time. However the catalogue exposes historical 2021 files
+and no licence is stated, so this is REJECTED as frontier novelty until a
+genuinely current rolling transaction resource and rights are confirmed.
+Ranked frontier
+
+   1. DEFRA collection-side Digital Waste Tracking state =E2=80=94 5.00 =E2=
+=80=94 P0 WATCH
+   / PREBUILD. New movement-side state; collection/receipt linkage has high
+   join/action value; production exposure unresolved.
+   2. Statutory EVSE operational/tariff transitions =E2=80=94 4.94 =E2=80=
+=94 PLANT.
+   Prospective status/outage history remains difficult to reconstruct cheap=
+ly.
+   3. NGED 5-minute primary-substation physical tape =E2=80=94 4.91 =E2=80=
+=94 PLANT,
+   pending retention test.
+   4. CMP470 project-level commitment/security state =E2=80=94 4.84 =E2=80=
+=94 WATCH. Only
+   qualifies if implementation exposes project-level changing security/fee
+   state.
+   5. Planning application lifecycle log =E2=80=94 4.65 =E2=80=94 WATCH. Tr=
+igger remains
+   first authoritative provider/non-zero lifecycle records; immediately tes=
+t
+   retrospective backfill.
+   6. Elexon SDR production/history semantics =E2=80=94 4.60 =E2=80=94 WATC=
+H.
+   7. Barnet EV charging transactions =E2=80=94 3.10 =E2=80=94 PILOT/RIGHTS=
+ CHECK, not
+   frontier yet.
+
+Exact launch/change evidence
+
+CONFIRMED =E2=80=94 DEFRA public beta: available since 28 April 2026. Updat=
+ed GOV.UK
+policy page 18 September 2026. Mandatory receipt reporting starts 1 October
+2026 England/Wales. The software-provider guidance updated 14 September
+says production integrations must connect to the Receipt API and pass 14
+production approval scenarios.
+
+CONFIRMED =E2=80=94 DEFRA API architecture: official specification states s=
+eparate
+submission of collection and receipt data while maintaining a connection
+between them; submissions can arrive in either order. Official external API
+uses OAuth2/JWT credentials and supports create/update receipt operations
+plus reference data. The backend stores complete movement-change history
+and invalid submissions.
+
+CONFIRMED =E2=80=94 collection test artefact exists in DEFRA=E2=80=99s offi=
+cial Bruno
+collection and uses OAuth2 client credentials. UNKNOWN =E2=80=94 whether co=
+llection
+submission is enabled for production users today, its exact production
+schema/access cohort, and whether national collection state is readable by
+anyone other than authorised parties.
+
+CONFIRMED =E2=80=94 Barnet EV transaction catalogue updated 20 September 20=
+26;
+fields include location, time, total Wh and connect time. UNKNOWN =E2=80=94=
+ whether
+the 20 September update added genuinely current transactions or merely
+republished historic resources. Licence is not supplied in the national
+catalogue.
+PLANT NOW =E2=80=94 DWT movement identity kernel
+
+Prebuild the movement event model now:
+
+waste_tracking_id + submitting_organisation + carrier/collector +
+receiving_site + collection_event + receipt_event + material/EWC + quantity
++ observed_at + effective_at + schema_version + event_type + raw_hash +
+provenance.
+
+Collector path: only through legitimate organisation credentials /
+participating waste businesses. Never attempt national enumeration through
+private/authenticated interfaces.
+
+Cadence: event/webhook if later supplied; otherwise permissioned
+incremental pulls/submission receipts. Store append-only raw
+request/response envelopes plus normalized events.
+
+First transformations: CollectionReceiptMatchRate; TransitTime;
+QuantityVariance; CorrectionLatency; UnmatchedMovementAge;
+ReceiverAcceptancePattern; MaterialFlowPath.
+
+Buyer/agent action: flag unclosed movements, mismatched quantity/material,
+missing receipts, late submissions, compliance risk and route/operator
+anomalies.
+
+Reconstruction test: DEFRA retains complete backend history, so
+operator-local raw state is reconstructable where access persists. POW=E2=
+=80=99s
+moat must therefore be cross-operator identity resolution, derived outcomes
+and longitudinal joins=E2=80=94not API mirroring. Collection-side t=3D0 mat=
+ters only
+if historical collection events are not later exposed/backfilled to POW=E2=
+=80=99s
+permitted access path.
+t=3D0 WATCHLIST
+
+P0 =E2=80=94 DEFRA collection-side production API: trigger =3D first offici=
+al
+production documentation/schema/access enabling collection events. Capture
+schema commit, auth model and first permitted events immediately.
+
+P0 =E2=80=94 Planning application log: trigger =3D first authoritative prov=
+ider or
+record count >0. Test whether earlier lifecycle events are retrospectively
+populated before assigning moat status.
+
+P0 =E2=80=94 CMP470: trigger =3D final rule plus first project-level
+fee/security/commitment state. Kill if only aggregate policy is published.
+
+P0 =E2=80=94 NGED Live Primary: resolve whether D/D+2/D+7 files remain obta=
+inable.
+If daily files disappear, PLANT HARD.
+
+P1 =E2=80=94 Scotland/Northern Ireland mandatory waste receipts: 1 January =
+2027.
+Useful geographic natural experiment, but not a new schema by itself.
+Rejected API novelty
+
+Receipt API launch =E2=80=94 KILL as frontier: already public beta since 28=
+ April;
+authenticated submission interface; DEFRA retains history.
+
+Barnet EV transactions =E2=80=94 KILL/PILOT until current rolling data and =
+licence
+are proven. Historic files are backfillable.
+
+Low Carbon London EV profiles =E2=80=94 KILL: catalogue refreshed September=
+ 2026
+but underlying data is 2013=E2=80=932014.
+
+Monthly DfT EV charger indicators =E2=80=94 KILL as garden: aggregate, back=
+fillable
+statistics.
+
+Generic DEFRA API repositories =E2=80=94 JOIN infrastructure, not state nov=
+elty.
+
+Planning API wrapper =E2=80=94 KILL; first authoritative lifecycle supply i=
+s the
+event that matters.
+Source-yield ledger
+
+GOV.UK DWT policy: HIGH =E2=80=94 corrected launch status and mandatory dat=
+es.
+DEFRA official GitHub/API specification: VERY HIGH =E2=80=94 exposed
+collection=E2=86=94receipt design and auth architecture.
+DEFRA external/backend repositories: HIGH =E2=80=94 confirmed receipt opera=
+tions
+and complete internal history, materially changing reconstruction test.
+National Data Library EV transaction search: MEDIUM =E2=80=94 one candidate=
+ but
+likely republished historic data; licence unresolved.
+DfT faster EV indicators: LOW for frontier =E2=80=94 useful baseline only.
+Planning Data ontology: MEDIUM =E2=80=94 lifecycle vocabulary exists; autho=
+ritative
+feed still unresolved.
+Next-hour information-gain queue
+
+   1. Inspect DEFRA official collection request artefacts/OpenAPI and
+   repository history to determine whether collection submission is executa=
+ble
+   in production now or merely staged/test code.
+   2. Find exact first commit/release date for collection endpoints and
+   compare fields against receipt-only production schema.
+   3. Poll Planning Data provider/record counts for
+   planning-application-log.
+   4. Resolve NGED daily-resource retention empirically.
+   5. Inspect Barnet=E2=80=99s 20 Sep resource links to determine newest
+   transaction date and licence; kill if only metadata refresh.
+   6. Search official company/API changelogs only after these high-value
+   uncertainties resolve.
+
+Machine-readable appendix
+
+{=E2=80=9Crun=E2=80=9D:=E2=80=9C2026-09-21T13:13:22+07:00=E2=80=9D,=E2=80=
+=9Cmaterial_delta=E2=80=9D:true,=E2=80=9Ccorrections=E2=80=9D:[{=E2=80=9Cse=
+ed=E2=80=9D:=E2=80=9CDWT_RECEIPT_API_LAUNCH=E2=80=9D,=E2=80=9Cold=E2=80=9D:=
+=E2=80=9CP0_WATCH=E2=80=9D,=E2=80=9Cnew=E2=80=9D:=E2=80=9CJOIN_PARTNER=E2=
+=80=9D,=E2=80=9Creason=E2=80=9D:=E2=80=9Cpublic
+beta live since 2026-04-28; authenticated submission API; backend retains
+complete
+history=E2=80=9D}],=E2=80=9Cfrontier=E2=80=9D:[{=E2=80=9Cseed=E2=80=9D:=E2=
+=80=9CDWT_COLLECTION_EVENTS=E2=80=9D,=E2=80=9Cscore=E2=80=9D:5.00,=E2=80=9C=
+status=E2=80=9D:=E2=80=9CP0_WATCH_PREBUILD=E2=80=9D,=E2=80=9Cconfidence=E2=
+=80=9D:=E2=80=9CINFERRED=E2=80=9D,=E2=80=9Ctrigger=E2=80=9D:=E2=80=9Cfirst
+executable permitted production collection
+endpoint=E2=80=9D},{=E2=80=9Cseed=E2=80=9D:=E2=80=9CEVSE_TRANSITIONS=E2=80=
+=9D,=E2=80=9Cscore=E2=80=9D:4.94,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CPLANT=E2=
+=80=9D,=E2=80=9Cconfidence=E2=80=9D:=E2=80=9CCONFIRMED=E2=80=9D},{=E2=80=9C=
+seed=E2=80=9D:=E2=80=9CNGED_PRIMARY_5MIN=E2=80=9D,=E2=80=9Cscore=E2=80=9D:4=
+.91,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CPLANT_PENDING_RETENTION=E2=80=9D,=E2=
+=80=9Cconfidence=E2=80=9D:=E2=80=9CINFERRED=E2=80=9D},{=E2=80=9Cseed=E2=80=
+=9D:=E2=80=9CCMP470_PROJECT_SECURITY=E2=80=9D,=E2=80=9Cscore=E2=80=9D:4.84,=
+=E2=80=9Cstatus=E2=80=9D:=E2=80=9CWATCH=E2=80=9D,=E2=80=9Cconfidence=E2=80=
+=9D:=E2=80=9CINFERRED=E2=80=9D},{=E2=80=9Cseed=E2=80=9D:=E2=80=9CPLANNING_A=
+PPLICATION_LOG=E2=80=9D,=E2=80=9Cscore=E2=80=9D:4.65,=E2=80=9Cstatus=E2=80=
+=9D:=E2=80=9CWATCH=E2=80=9D,=E2=80=9Cconfidence=E2=80=9D:=E2=80=9CCONFIRMED=
+_ZERO_PREVIOUSLY=E2=80=9D}],=E2=80=9Ccollector_deployed=E2=80=9D:false}
+
+Sources: GOV.UK Digital Waste Tracking Service (updated 18 Sep 2026); GOV.U=
+K
+software-provider guidance (updated 14 Sep 2026); DEFRA
+waste-tracking-service and waste-movement-external-api/backend official
+GitHub repositories; National Data Library Barnet EV Charging Transactions
+(updated 20 Sep 2026).
+
+--000000000000099d33065bf82952
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS FRONTIER FEED PROBE =E2=80=94 21 Sep 2026 13:13 ICT
+
+Executive delta
+<p>The main delta is a ledger correction plus a sharper t=3D0 target.</p>
+<p>CONFIRMED: DEFRA=E2=80=99s Report Receipt of Waste API is not an upcomin=
+g private beta. Public beta began 28 April 2026 and is live now. <a href=3D=
+"http://GOV.UK">GOV.UK</a>=E2=80=99s page was updated 18 September 2026 and=
+ explicitly says permitted waste receivers can already upload via the Recei=
+pt API or spreadsheet. Mandatory reporting begins 1 October 2026 in England=
+/Wales and January 2027 in Scotland/Northern Ireland.</p>
+<p>This means POW should demote =E2=80=9CReceipt API launch=E2=80=9D from W=
+ATCH to JOIN/PARTNER. The raw API is authenticated and designed for organis=
+ations submitting their own records, not an open national read feed. DEFRA=
+=E2=80=99s backend also maintains complete change history, so mirroring a c=
+onsenting operator=E2=80=99s own receipt records is not itself an irreversi=
+bility moat.</p>
+<p>The genuine frontier is the next movement layer: DEFRA=E2=80=99s officia=
+l API specification explicitly supports separate collection and receipt sub=
+missions linked into one waste movement and allows them to arrive in either=
+ order. The current external API/repository exposes receipt operations; col=
+lection-side production availability and access remain the t=3D0 watch. If =
+collection events become executable prospectively, POW can begin the Collec=
+tion=E2=86=92Receipt=E2=86=92Correction=E2=86=92Outcome tape on day one.</p=
+>
+<p>A second fresh lead is Barnet=E2=80=99s Electric Vehicle Charging Transa=
+ctions dataset, updated 20 September 2026, containing location, transaction=
+ time, Wh and connect time. However the catalogue exposes historical 2021 f=
+iles and no licence is stated, so this is REJECTED as frontier novelty unti=
+l a genuinely current rolling transaction resource and rights are confirmed=
+.</p>
+
+Ranked frontier
+<ol>
+<li>DEFRA collection-side Digital Waste Tracking state =E2=80=94 5.00 =E2=
+=80=94 P0 WATCH / PREBUILD. New movement-side state; collection/receipt lin=
+kage has high join/action value; production exposure unresolved.</li>
+<li>Statutory EVSE operational/tariff transitions =E2=80=94 4.94 =E2=80=94 =
+PLANT. Prospective status/outage history remains difficult to reconstruct c=
+heaply.</li>
+<li>NGED 5-minute primary-substation physical tape =E2=80=94 4.91 =E2=80=94=
+ PLANT, pending retention test.</li>
+<li>CMP470 project-level commitment/security state =E2=80=94 4.84 =E2=80=94=
+ WATCH. Only qualifies if implementation exposes project-level changing sec=
+urity/fee state.</li>
+<li>Planning application lifecycle log =E2=80=94 4.65 =E2=80=94 WATCH. Trig=
+ger remains first authoritative provider/non-zero lifecycle records; immedi=
+ately test retrospective backfill.</li>
+<li>Elexon SDR production/history semantics =E2=80=94 4.60 =E2=80=94 WATCH.=
+</li>
+<li>Barnet EV charging transactions =E2=80=94 3.10 =E2=80=94 PILOT/RIGHTS C=
+HECK, not frontier yet.</li>
+</ol>
+
+Exact launch/change evidence
+<p>CONFIRMED =E2=80=94 DEFRA public beta: available since 28 April 2026. Up=
+dated <a href=3D"http://GOV.UK">GOV.UK</a> policy page 18 September 2026. M=
+andatory receipt reporting starts 1 October 2026 England/Wales. The softwar=
+e-provider guidance updated 14 September says production integrations must =
+connect to the Receipt API and pass 14 production approval scenarios.</p>
+<p>CONFIRMED =E2=80=94 DEFRA API architecture: official specification state=
+s separate submission of collection and receipt data while maintaining a co=
+nnection between them; submissions can arrive in either order. Official ext=
+ernal API uses OAuth2/JWT credentials and supports create/update receipt op=
+erations plus reference data. The backend stores complete movement-change h=
+istory and invalid submissions.</p>
+<p>CONFIRMED =E2=80=94 collection test artefact exists in DEFRA=E2=80=99s o=
+fficial Bruno collection and uses OAuth2 client credentials. UNKNOWN =E2=80=
+=94 whether collection submission is enabled for production users today, it=
+s exact production schema/access cohort, and whether national collection st=
+ate is readable by anyone other than authorised parties.</p>
+<p>CONFIRMED =E2=80=94 Barnet EV transaction catalogue updated 20 September=
+ 2026; fields include location, time, total Wh and connect time. UNKNOWN =
+=E2=80=94 whether the 20 September update added genuinely current transacti=
+ons or merely republished historic resources. Licence is not supplied in th=
+e national catalogue.</p>
+
+PLANT NOW =E2=80=94 DWT movement identity kernel
+<p>Prebuild the movement event model now:</p>
+<p>waste_tracking_id + submitting_organisation + carrier/collector + receiv=
+ing_site + collection_event + receipt_event + material/EWC + quantity + obs=
+erved_at + effective_at + schema_version + event_type + raw_hash + provenan=
+ce.</p>
+<p>Collector path: only through legitimate organisation credentials / parti=
+cipating waste businesses. Never attempt national enumeration through priva=
+te/authenticated interfaces.</p>
+<p>Cadence: event/webhook if later supplied; otherwise permissioned increme=
+ntal pulls/submission receipts. Store append-only raw request/response enve=
+lopes plus normalized events.</p>
+<p>First transformations: CollectionReceiptMatchRate; TransitTime; Quantity=
+Variance; CorrectionLatency; UnmatchedMovementAge; ReceiverAcceptancePatter=
+n; MaterialFlowPath.</p>
+<p>Buyer/agent action: flag unclosed movements, mismatched quantity/materia=
+l, missing receipts, late submissions, compliance risk and route/operator a=
+nomalies.</p>
+<p>Reconstruction test: DEFRA retains complete backend history, so operator=
+-local raw state is reconstructable where access persists. POW=E2=80=99s mo=
+at must therefore be cross-operator identity resolution, derived outcomes a=
+nd longitudinal joins=E2=80=94not API mirroring. Collection-side t=3D0 matt=
+ers only if historical collection events are not later exposed/backfilled t=
+o POW=E2=80=99s permitted access path.</p>
+
+t=3D0 WATCHLIST
+<p>P0 =E2=80=94 DEFRA collection-side production API: trigger =3D first off=
+icial production documentation/schema/access enabling collection events. Ca=
+pture schema commit, auth model and first permitted events immediately.</p>
+<p>P0 =E2=80=94 Planning application log: trigger =3D first authoritative p=
+rovider or record count &gt;0. Test whether earlier lifecycle events are re=
+trospectively populated before assigning moat status.</p>
+<p>P0 =E2=80=94 CMP470: trigger =3D final rule plus first project-level fee=
+/security/commitment state. Kill if only aggregate policy is published.</p>
+<p>P0 =E2=80=94 NGED Live Primary: resolve whether D/D+2/D+7 files remain o=
+btainable. If daily files disappear, PLANT HARD.</p>
+<p>P1 =E2=80=94 Scotland/Northern Ireland mandatory waste receipts: 1 Janua=
+ry 2027. Useful geographic natural experiment, but not a new schema by itse=
+lf.</p>
+
+Rejected API novelty
+<p>Receipt API launch =E2=80=94 KILL as frontier: already public beta since=
+ 28 April; authenticated submission interface; DEFRA retains history.</p>
+<p>Barnet EV transactions =E2=80=94 KILL/PILOT until current rolling data a=
+nd licence are proven. Historic files are backfillable.</p>
+<p>Low Carbon London EV profiles =E2=80=94 KILL: catalogue refreshed Septem=
+ber 2026 but underlying data is 2013=E2=80=932014.</p>
+<p>Monthly DfT EV charger indicators =E2=80=94 KILL as garden: aggregate, b=
+ackfillable statistics.</p>
+<p>Generic DEFRA API repositories =E2=80=94 JOIN infrastructure, not state =
+novelty.</p>
+<p>Planning API wrapper =E2=80=94 KILL; first authoritative lifecycle suppl=
+y is the event that matters.</p>
+
+Source-yield ledger
+<p><a href=3D"http://GOV.UK">GOV.UK</a> DWT policy: HIGH =E2=80=94 correcte=
+d launch status and mandatory dates.<br>
+DEFRA official GitHub/API specification: VERY HIGH =E2=80=94 exposed collec=
+tion=E2=86=94receipt design and auth architecture.<br>
+DEFRA external/backend repositories: HIGH =E2=80=94 confirmed receipt opera=
+tions and complete internal history, materially changing reconstruction tes=
+t.<br>
+National Data Library EV transaction search: MEDIUM =E2=80=94 one candidate=
+ but likely republished historic data; licence unresolved.<br>
+DfT faster EV indicators: LOW for frontier =E2=80=94 useful baseline only.<=
+br>
+Planning Data ontology: MEDIUM =E2=80=94 lifecycle vocabulary exists; autho=
+ritative feed still unresolved.</p>
+
+Next-hour information-gain queue
+<ol>
+<li>Inspect DEFRA official collection request artefacts/OpenAPI and reposit=
+ory history to determine whether collection submission is executable in pro=
+duction now or merely staged/test code.</li>
+<li>Find exact first commit/release date for collection endpoints and compa=
+re fields against receipt-only production schema.</li>
+<li>Poll Planning Data provider/record counts for planning-application-log.=
+</li>
+<li>Resolve NGED daily-resource retention empirically.</li>
+<li>Inspect Barnet=E2=80=99s 20 Sep resource links to determine newest tran=
+saction date and licence; kill if only metadata refresh.</li>
+<li>Search official company/API changelogs only after these high-value unce=
+rtainties resolve.</li>
+</ol>
+
+Machine-readable appendix
+<p>{=E2=80=9Crun=E2=80=9D:=E2=80=9C2026-09-21T13:13:22+07:00=E2=80=9D,=E2=
+=80=9Cmaterial_delta=E2=80=9D:true,=E2=80=9Ccorrections=E2=80=9D:[{=E2=80=
+=9Cseed=E2=80=9D:=E2=80=9CDWT_RECEIPT_API_LAUNCH=E2=80=9D,=E2=80=9Cold=E2=
+=80=9D:=E2=80=9CP0_WATCH=E2=80=9D,=E2=80=9Cnew=E2=80=9D:=E2=80=9CJOIN_PARTN=
+ER=E2=80=9D,=E2=80=9Creason=E2=80=9D:=E2=80=9Cpublic beta live since 2026-0=
+4-28; authenticated submission API; backend retains complete history=E2=80=
+=9D}],=E2=80=9Cfrontier=E2=80=9D:[{=E2=80=9Cseed=E2=80=9D:=E2=80=9CDWT_COLL=
+ECTION_EVENTS=E2=80=9D,=E2=80=9Cscore=E2=80=9D:5.00,=E2=80=9Cstatus=E2=80=
+=9D:=E2=80=9CP0_WATCH_PREBUILD=E2=80=9D,=E2=80=9Cconfidence=E2=80=9D:=E2=80=
+=9CINFERRED=E2=80=9D,=E2=80=9Ctrigger=E2=80=9D:=E2=80=9Cfirst executable pe=
+rmitted production collection endpoint=E2=80=9D},{=E2=80=9Cseed=E2=80=9D:=
+=E2=80=9CEVSE_TRANSITIONS=E2=80=9D,=E2=80=9Cscore=E2=80=9D:4.94,=E2=80=9Cst=
+atus=E2=80=9D:=E2=80=9CPLANT=E2=80=9D,=E2=80=9Cconfidence=E2=80=9D:=E2=80=
+=9CCONFIRMED=E2=80=9D},{=E2=80=9Cseed=E2=80=9D:=E2=80=9CNGED_PRIMARY_5MIN=
+=E2=80=9D,=E2=80=9Cscore=E2=80=9D:4.91,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CPL=
+ANT_PENDING_RETENTION=E2=80=9D,=E2=80=9Cconfidence=E2=80=9D:=E2=80=9CINFERR=
+ED=E2=80=9D},{=E2=80=9Cseed=E2=80=9D:=E2=80=9CCMP470_PROJECT_SECURITY=E2=80=
+=9D,=E2=80=9Cscore=E2=80=9D:4.84,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CWATCH=E2=
+=80=9D,=E2=80=9Cconfidence=E2=80=9D:=E2=80=9CINFERRED=E2=80=9D},{=E2=80=9Cs=
+eed=E2=80=9D:=E2=80=9CPLANNING_APPLICATION_LOG=E2=80=9D,=E2=80=9Cscore=E2=
+=80=9D:4.65,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CWATCH=E2=80=9D,=E2=80=9Cconfi=
+dence=E2=80=9D:=E2=80=9CCONFIRMED_ZERO_PREVIOUSLY=E2=80=9D}],=E2=80=9Ccolle=
+ctor_deployed=E2=80=9D:false}</p>
+<p>Sources: <a href=3D"http://GOV.UK">GOV.UK</a> Digital Waste Tracking Ser=
+vice (updated 18 Sep 2026); <a href=3D"http://GOV.UK">GOV.UK</a> software-p=
+rovider guidance (updated 14 Sep 2026); DEFRA waste-tracking-service and wa=
+ste-movement-external-api/backend official GitHub repositories; National Da=
+ta Library Barnet EV Charging Transactions (updated 20 Sep 2026).</p>
+
+--000000000000099d33065bf82952--

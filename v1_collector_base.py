@@ -5,7 +5,7 @@ Every chain collector must implement this.
 
 from abc import ABC, abstractmethod
 from typing import Dict, Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 import os
 import hashlib
@@ -34,18 +34,19 @@ class V1Collector(ABC):
         pass
     
     def store_raw(self, source_id: str, source_type: str, endpoint: str, payload: Any):
-        """Store raw event."""
-        timestamp = datetime.now().isoformat()
+        """Store raw event (UTC-only, canonical hash)."""
+        timestamp = datetime.now(timezone.utc).isoformat()
         
         event = {
             'observed_at': timestamp,
+            'event_time': None,  # unknown at this layer; never fake it
             'chain_id': self.chain_id,
             'source_id': source_id,
             'source_type': source_type,
             'source_version': '1.0',
             'endpoint': endpoint,
             'raw_payload': payload,
-            'payload_hash': hashlib.sha256(json.dumps(payload, default=str).encode()).hexdigest(),
+            'payload_hash': hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(',', ':'), default=str).encode()).hexdigest(),
             'ingest_version': '1.0',
         }
         
@@ -59,8 +60,8 @@ class V1Collector(ABC):
         return filepath
     
     def store_normalized(self, table: str, data: Dict):
-        """Store normalized data."""
-        timestamp = datetime.now()
+        """Store normalized data (UTC hour partitions)."""
+        timestamp = datetime.now(timezone.utc)
         
         record = {
             'timestamp': timestamp.isoformat(),
@@ -80,11 +81,11 @@ class V1Collector(ABC):
     def collect_all(self) -> Dict:
         """Run all collectors and return results."""
         print(f"\n{'='*60}")
-        print(f"{self.chain_id} Collection — {datetime.now()}")
+        print(f"{self.chain_id} Collection — {datetime.now(timezone.utc).isoformat()}")
         print(f"{'='*60}")
         
         results = {
-            'timestamp': datetime.now().isoformat(),
+            'timestamp': datetime.now(timezone.utc).isoformat(),
             'chain': self.chain_id,
         }
         

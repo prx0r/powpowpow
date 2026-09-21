@@ -1,0 +1,433 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id mC6oeES5l3g4
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 01:46:17 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ItdT0zDJvcHaPdJ5nDGIcJD+SSbJYNxdIYfPSia7mPMjjjZ2IqUISYRNu/l5MyFF4whE9HVVE
+	3LuiqECNYxNio1UyEH/37gE4zyJjRvxS2BTTLW2qb734R/4K2KZWm684AnzKEBwd0qjc381Kfd3
+	E2p/mY4wCp9aCOiAUKWzz3cQ3AldLlNlkxV4ILxsE4YXNyhIdW3g58R8+baIqE1+IUy3V7xyEs+
+	opL4zPYZR/gjTO1ZpLv5B8NglxkjXOK5rttTvP6VsTJR41AoBIT5dfe4N7H9EUblTzfgCus0u7B
+	+IyYj/yoKHhZI+yzr83cXyQFrjw+oYOnR7DmqAeNCWaw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789868777; x=1790473577; bh=a6rb7WkX
+	l5IbmVAdtwAG8PzVtqcerPdfLQbnRviDwNA=; b=Q9DWTeHkFRn/CA+M4DyQVvA1wAlzH1lis86
+	EsQShrDt08KGVIu7RjgQwl6foEpqg1VRYnFIWDyQjwZG19QZeVy7z6QaUHyiTqlBDDs1t6+TO3q
+	tlyTrauG40HSKGlDRmhqenLmLFwv13cl56ot0iH92Gv8IoL7Tp+lmTXrZeUlpQqkv+Vp1JYYqh5
+	gYm587Woqe6EPf2yTTwtoI9idqkx0kki395R7bEVVLPOZKbii3AUxEx/eVAMLWRc3dH00vviwMy
+	0gW4Xzg1Ia7bQF3C1j8nvbgVSBnwU65F7m7Om+1bjbRIJxr9dDFOLSjLBdHkDIKrKUeVXMT+BXq
+	ADVlWug==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qbxaDZ0s;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qbxaDZ0s;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-8961cca9193so23360367b3.3
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 18:46:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789868777; cv=none;
+        d=google.com; s=arc-20260327;
+        b=CSbEmNpKWSeIyoqtxr89IMKAYKD1rDYAp4oaYstS2Z4VZs3qJA5sM7WA1fJ+TrQnGH
+         hsChOQNugLRecYbeWnxGTys3t7ilD0GMsm8tz7tltRm4zwmacbsvv1RRih8Toh9nt+Un
+         6opV2W4R+p3gAW6aX6pb0NDvxrK/RgceqbdLW0LscOyHe8fQo26cgPOjSRTOGEDDUT/W
+         vORms74a9AzQd0ZeQBIBfjcs/xVsuTq19F4cHUXKcXmazkE1BdV8Y2h01c/oD2TASIMe
+         n4bLoR3vpI5Jbntmnagqj7tyCvDUPRLj+kLvOH14t5xyShZsBCuasKLdBAdEeNlhrHVV
+         lIwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=a6rb7WkXl5IbmVAdtwAG8PzVtqcerPdfLQbnRviDwNA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=jl8l9O9NrJtsrJcf0YOIjnPXylpgkL6/1FMNjvFCthgKShFOgXcieroFhT+XWo/P1i
+         28hCvHAZsPoE7f+xEupiWkRM/Xoedlio5qna7FEj/5+l9f01ae/4UQA7NOZ0gDR1LheQ
+         hJ7Ehcxgxexf05n3aA2so2x+1cPhiwoQlk7MuknREuo7a/ygS5umADFbL+Oi8AtSUFJQ
+         QFkrAjPoDS57mz8uci6VIuv3Be4wezHbwNs/J2g8QtKJOcx7jz0TUSIgE1X37RBYfdVU
+         CFuUK0a9tpdR+W1mv7ul9CdYqpCfkm+d57u4L7VdG4fgLn7MHHvfIWl1EjRLPqKWuzV7
+         ZEQw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789868777; x=1790473577; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=a6rb7WkXl5IbmVAdtwAG8PzVtqcerPdfLQbnRviDwNA=;
+        b=qbxaDZ0smUvBNpEt1TOtrX9gR0RJ/BAdQsfSQawXq5YbkX5gC0Gbs0Jf6MEitgOz7N
+         a8JBsgt0bkGerU1bd3ZiWYsXL9gIYwBsH3sOnxdUbLFvkv0JaNFP58cdxey1Ys1AdWXv
+         rCTha6w9/Ic2AYIBQwGGTflpLFrY+B+F1d5DhAdihzEiy1oCY7UWFtgqp1b7unhApqz6
+         nHxK6QsPwneBwOvCIC+tPx2GMSP3TQ7wv+yC9ZSEynSNR9zwD0WpbyzN+ppvMYDwPRRi
+         /5C5ML//o8x0yahyy4NjsoJx6NQ74yuCkrHD8j+Q7NWZ8Q8CbsZXU4zk/3PcG6RpiTbF
+         v76g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789868777; x=1790473577;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=a6rb7WkXl5IbmVAdtwAG8PzVtqcerPdfLQbnRviDwNA=;
+        b=N6uNFv61ybnbWS8VTKwiybsVaAnhb+aP4tWc16kNDZbfTpDKn1NVdumywWutuX1VsO
+         woMcEt6F61wklcOug+V269jTFQJ3F/Ak4Vxto9yChja0tEBb3uJpVp0exznPzE03qSQN
+         48rnpn2CrRsndBw7MFNnVdcGelukNQ8yqD6KCLhIa1GNCYLwg5hmYLKQZiq7QiI+4Gb4
+         JtuRJaYzqFDk4zvlPIFkcg7dkuM4oUxDZtmTykMuu+mHny7iGvh1AfyrbsQ1EGslfipG
+         jQNbvE1OXUo9pTyKixwAFEAmzPLYWDLkctuT78AaRB4jFvQf0cE2udhB9qG5q/PfBVyV
+         a7aw==
+X-Gm-Message-State: AFuF++kyO00Y/gCTUxfRvwvrvPSw0VRg93ZAdSyWmoYLmbdqvtnbakDY
+	IY8ANVfqXmkN0sg2mScEVNGiTM018zrgRfftce5S6b8jVCSyfMZQbl5liuH/nmkQNwm9FLEJjIU
+	cHH2++GMxks3K29gE1Cshhzo9Vl3R8NH0UQ==
+X-Gm-Gg: AYBFou3rur9BqC7suhN3ncRFMUOYs4Fd02x/44v0QgWre0VHd9wq0CPT9qdocDlXij7
+	Zs5Pvnnh1fbFFbvECZ58bKLGRi5Q5knYQ3o4lwViJ3Zo9m+XEdbWXMEkoy4+m1kUMArRuDC/Q7C
+	o/twzt4GhJxAmffz1CTBd76O4bKGCvr83uTCTC92qfVCtWBDxDr9sG90NY9SQW19p1p57WHxTAh
+	OJpGyolctDN963vjLu8IVgR8q6kpJ8bc85wN+MjBcsuRcn+SIfpp+TCfLNJUEBn1wrQ7Wsag8dB
+	uAxFrNNwoKncvMmo73t0/2qmxsBbgTvGLfXk1gcAfE4OmErO71E5/jfHpA37ZrFFnN88Lm1Dmmw
+	sKO5UsIWgVn53pt+MAfdGuuzZbYefyAvFVtNBvl3O03XW2wB843/LB2KhsDd6CO9YWcnM
+X-Received: by 2002:a05:690e:d04:b0:671:4b1a:acee with SMTP id
+ 956f58d0204a3-6717fd491bemr1891589d50.47.1789868777068; Sat, 19 Sep 2026
+ 18:46:17 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 20:46:16 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 20:46:16 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 20:46:16 -0500
+X-Gm-Features: AcwNN1VehnGfdaBN8j9kO-0YtLZikxF222ZAlxvij-PexYGKpuztvZSdY6uCR4s
+Message-ID: <CAPdrGe=r7__SNKmXAuaQszW37ue=v3CZxtKK8=PmC29SP-Jz0w@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D20_08=3A45_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_1_strong_signal?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000a6dce6065be04cb1"
+
+--000000000000a6dce6065be04cb1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+STATE
+Prior sent state recovered through the 2026-09-20 07:48 report. Semantic
+duplicates were rejected unless new independent customer evidence
+materially strengthened a cluster. Broad searches this run covered
+Etsy/custom-pet listings and reviews, personalized pet portrait providers,
+talking-pet app reviews, pet birthday invitations, and public
+review/complaint surfaces.
+
+STRONG NEW SIGNAL =E2=80=94 THE PET=E2=80=99S PERSONALITY/STORY SHOULD BE A=
+N INPUT, NOT
+JUST ITS PHOTO
+
+Source 1: Sketch Your Pet
+URL:
+https://www.sketchyourpet.com/product/custom-pencil-and-ink-pet-portrait
+Platform: personalized pet portrait / verified customer review
+Date: Dec 31, 2024
+Customer language: verified buyer says the finished product =E2=80=9Ccomple=
+tely
+captured Chewie=E2=80=99s personality.=E2=80=9D
+Wanted/problem: the value was not merely visual resemblance; success meant
+recognizing the individual animal=E2=80=99s character.
+Current workaround/product: commissioned hand-drawn portrait; ordering form
+explicitly asks buyers to =E2=80=9CDescribe your pet=E2=80=99s character an=
+d personality.=E2=80=9D
+Roast.pet implication: after photo/name, collect a tiny structured
+personality payload: 2=E2=80=933 traits + one weird habit/favorite thing +
+relationship to recipient. Use it to select/write the roast rather than
+generating generic dog/cat jokes.
+Occasion/audience: Christmas/family gift; general pet-owner gifting.
+Independent evidence: YES. Dolphin Studio asks for =E2=80=9Ca little inform=
+ation
+about your pet=E2=80=9D and its buyer praises =E2=80=9Cso much personality =
+and joy=E2=80=9D; Dog
+Lovin Designs asks for personality, favorite things, adventures, funny
+habits and special memories to generate a custom memorial verse.
+Confidence: HIGH.
+Prototype/test: Add one optional but prominent screen: =E2=80=9CWHAT ARE TH=
+EY
+ACTUALLY LIKE?=E2=80=9D with quick chips (clingy, greedy, dramatic, chaotic=
+,
+judgmental, spoiled, lazy, obsessed with Dad/Mum) plus =E2=80=9CTheir weird=
+est
+habit=E2=80=A6=E2=80=9D free text. A/B test against photo+name-only orders;=
+ blind-rate
+resulting jokes for =E2=80=9Csounds like MY pet.=E2=80=9D
+Decision: BUILD/TEST.
+
+Source 2: The Dolphin Studio
+URL: https://thedolphinstudio.com/products/violets-pet-portraits
+Platform: custom pet portrait / customer review
+Date: current listing; review date unavailable
+Customer language: =E2=80=9CThere=E2=80=99s so much personality and joy in =
+Violet=E2=80=99s work.=E2=80=9D
+Wanted/problem: buyers respond to artwork that expresses character, not
+simply species/likeness.
+Current workaround: hand-drawn commissioned portrait plus customer
+story/context.
+Roast.pet implication: personality becomes an explicit personalization
+dimension and reusable pet-profile field.
+Occasion/audience: pet owners / gifts.
+Independent evidence: YES.
+Confidence: MEDIUM-HIGH.
+Prototype/test: same structured personality intake; save traits to pet
+identity for later products.
+Decision: BUILD/TEST.
+
+Source 3: Dog Lovin Designs
+URL: https://www.doglovindesigns.com/product/personalized-pet-memorial
+Platform: personalized pet memorial product
+Date: current listing
+Customer mechanism (seller has productized demand): buyers can provide
+their pet=E2=80=99s personality, favorite things, adventures, funny habits =
+and
+special memories, which are turned into a unique verse.
+Wanted/problem: generic memorial wording is insufficient for customers who
+want the output to feel specific to the animal=E2=80=99s lived character.
+Current workaround: seller-written custom verse.
+Roast.pet implication: the same data can power a =E2=80=9Csounds like them=
+=E2=80=9D comedy
+engine and, later, a gentle memorial-with-humor mode=E2=80=94but this run d=
+oes NOT
+establish direct customer demand for humorous memorials.
+Occasion/audience: pet loss / memorial.
+Independent evidence: YES for personality/story personalization; UNKNOWN
+for memorial comedy.
+Confidence: MEDIUM as customer-demand evidence, HIGH as corroborating
+product mechanism.
+Prototype/test: do not launch memorial comedy yet; first measure whether
+personality inputs improve ordinary roast satisfaction.
+Decision: BUILD/TEST personality; WATCH memorial-with-humor.
+
+CLUSTER UPDATE
+Personality-specific output / pet backstory: materially strengthened this
+run. At least 3 independent commercial/customer surfaces now expose the
+same mechanism: recognizable pet output depends on
+expression/character/story, not photo likeness alone.
+Exact likeness: already established; no new distinct delta accepted.
+Multi-pet: already established; duplicate evidence rejected.
+Fast turnaround / instant delivery: already established; duplicate evidence
+rejected.
+Proof/revisions: already established; duplicate evidence rejected.
+Photo-quality guidance: already established; duplicate evidence rejected.
+Talking-mouth geometry / motion QA: already established; duplicate evidence
+rejected.
+Voice choice: already established; duplicate evidence rejected.
+Birthday invitation reuse: already established; duplicate evidence rejected=
+.
+Editable invitation details: supporting market evidence found, but not
+accepted as a new Roast.pet signal because it largely duplicates the prior
+birthday-invitation finding.
+Memorial-with-humor: UNKNOWN; no strong direct buyer-language evidence
+found this run.
+Kid-safe/adult modes, sports roast, colleague roast, QR/video request: no
+sufficiently strong NEW customer-language delta this run.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE =E2=80=94 CURRENT PRIORITY
+
+   1. Preserve exact individual likeness and let the buyer approve it
+   before animation/print.
+   2. Make the comedy sound like THIS pet: personality, habits,
+   relationship and recipient context should drive jokes.
+   3. Make source-photo selection effortless with automatic ROAST READY
+   validation and best-photo selection.
+   4. Support multiple pets cleanly from separate source photos, with
+   layouts that preserve recognizable face size.
+   5. Make gifting fast and low-friction: rapid digital proof/reveal,
+   including the established deferred-photo/gift-now path.
+
+STRONGEST UNMET NEED
+A genuinely pet-specific comedy engine. Existing custom-pet products are
+good at photo/name personalization and increasingly collect
+personality/story data, while Roast.pet can transform those facts into
+dialogue. The defensible experience is not =E2=80=9Cupload dog =E2=86=92 AI=
+ dog talks=E2=80=9D; it
+is =E2=80=9Cmy dog would actually say that.=E2=80=9D
+
+EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW
+Add a 15-second personality step after photo validation: choose 2=E2=80=933=
+ trait
+chips + optional =E2=80=9Cweirdest habit / thing they always do=E2=80=9D + =
+=E2=80=9Cwho are they
+roasting?=E2=80=9D Keep it skippable. This creates better output without ad=
+ding
+image-generation complexity.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM ACTUAL CUSTOMER LANGUAGE
+=E2=80=9CYour Dog Roasts Dad Like THEY Actually Know Him =E2=80=94 Personal=
+ized Talking Pet
+Birthday Video + QR Card.=E2=80=9D Listing creative should demonstrate
+transformation from PET PHOTO + =E2=80=9Cgreedy / dramatic / steals Dad=E2=
+=80=99s seat=E2=80=9D =E2=86=92 a
+recipient-specific line, emphasizing personality rather than merely an
+animated photo.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not over-focus the personalization UI on visual controls. Customer
+evidence repeatedly treats =E2=80=9Ccaptured their personality=E2=80=9D as =
+a success
+criterion. A technically perfect likeness with generic pet jokes risks
+feeling less personalized than a simpler image paired with one eerily
+accurate habit/relationship joke. Also, no direct evidence this run
+justifies building a broad open-ended Canva-style editor.
+
+RUN VERDICT
+1 strong new cluster-level signal accepted: explicit pet personality/story
+intake =E2=86=92 personality-specific roast generation. BUILD/TEST.
+
+--000000000000a6dce6065be04cb1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>STATE<br>
+Prior sent state recovered through the 2026-09-20 07:48 report. Semantic du=
+plicates were rejected unless new independent customer evidence materially =
+strengthened a cluster. Broad searches this run covered Etsy/custom-pet lis=
+tings and reviews, personalized pet portrait providers, talking-pet app rev=
+iews, pet birthday invitations, and public review/complaint surfaces.</p>
+<p>STRONG NEW SIGNAL =E2=80=94 THE PET=E2=80=99S PERSONALITY/STORY SHOULD B=
+E AN INPUT, NOT JUST ITS PHOTO</p>
+<p>Source 1: Sketch Your Pet<br>
+URL: <a href=3D"https://www.sketchyourpet.com/product/custom-pencil-and-ink=
+-pet-portrait">https://www.sketchyourpet.com/product/custom-pencil-and-ink-=
+pet-portrait</a><br>
+Platform: personalized pet portrait / verified customer review<br>
+Date: Dec 31, 2024<br>
+Customer language: verified buyer says the finished product =E2=80=9Ccomple=
+tely captured Chewie=E2=80=99s personality.=E2=80=9D<br>
+Wanted/problem: the value was not merely visual resemblance; success meant =
+recognizing the individual animal=E2=80=99s character.<br>
+Current workaround/product: commissioned hand-drawn portrait; ordering form=
+ explicitly asks buyers to =E2=80=9CDescribe your pet=E2=80=99s character a=
+nd personality.=E2=80=9D<br>
+Roast.pet implication: after photo/name, collect a tiny structured personal=
+ity payload: 2=E2=80=933 traits + one weird habit/favorite thing + relation=
+ship to recipient. Use it to select/write the roast rather than generating =
+generic dog/cat jokes.<br>
+Occasion/audience: Christmas/family gift; general pet-owner gifting.<br>
+Independent evidence: YES. Dolphin Studio asks for =E2=80=9Ca little inform=
+ation about your pet=E2=80=9D and its buyer praises =E2=80=9Cso much person=
+ality and joy=E2=80=9D; Dog Lovin Designs asks for personality, favorite th=
+ings, adventures, funny habits and special memories to generate a custom me=
+morial verse.<br>
+Confidence: HIGH.<br>
+Prototype/test: Add one optional but prominent screen: =E2=80=9CWHAT ARE TH=
+EY ACTUALLY LIKE?=E2=80=9D with quick chips (clingy, greedy, dramatic, chao=
+tic, judgmental, spoiled, lazy, obsessed with Dad/Mum) plus =E2=80=9CTheir =
+weirdest habit=E2=80=A6=E2=80=9D free text. A/B test against photo+name-onl=
+y orders; blind-rate resulting jokes for =E2=80=9Csounds like MY pet.=E2=80=
+=9D<br>
+Decision: BUILD/TEST.</p>
+<p>Source 2: The Dolphin Studio<br>
+URL: <a href=3D"https://thedolphinstudio.com/products/violets-pet-portraits=
+">https://thedolphinstudio.com/products/violets-pet-portraits</a><br>
+Platform: custom pet portrait / customer review<br>
+Date: current listing; review date unavailable<br>
+Customer language: =E2=80=9CThere=E2=80=99s so much personality and joy in =
+Violet=E2=80=99s work.=E2=80=9D<br>
+Wanted/problem: buyers respond to artwork that expresses character, not sim=
+ply species/likeness.<br>
+Current workaround: hand-drawn commissioned portrait plus customer story/co=
+ntext.<br>
+Roast.pet implication: personality becomes an explicit personalization dime=
+nsion and reusable pet-profile field.<br>
+Occasion/audience: pet owners / gifts.<br>
+Independent evidence: YES.<br>
+Confidence: MEDIUM-HIGH.<br>
+Prototype/test: same structured personality intake; save traits to pet iden=
+tity for later products.<br>
+Decision: BUILD/TEST.</p>
+<p>Source 3: Dog Lovin Designs<br>
+URL: <a href=3D"https://www.doglovindesigns.com/product/personalized-pet-me=
+morial">https://www.doglovindesigns.com/product/personalized-pet-memorial</=
+a><br>
+Platform: personalized pet memorial product<br>
+Date: current listing<br>
+Customer mechanism (seller has productized demand): buyers can provide thei=
+r pet=E2=80=99s personality, favorite things, adventures, funny habits and =
+special memories, which are turned into a unique verse.<br>
+Wanted/problem: generic memorial wording is insufficient for customers who =
+want the output to feel specific to the animal=E2=80=99s lived character.<b=
+r>
+Current workaround: seller-written custom verse.<br>
+Roast.pet implication: the same data can power a =E2=80=9Csounds like them=
+=E2=80=9D comedy engine and, later, a gentle memorial-with-humor mode=E2=80=
+=94but this run does NOT establish direct customer demand for humorous memo=
+rials.<br>
+Occasion/audience: pet loss / memorial.<br>
+Independent evidence: YES for personality/story personalization; UNKNOWN fo=
+r memorial comedy.<br>
+Confidence: MEDIUM as customer-demand evidence, HIGH as corroborating produ=
+ct mechanism.<br>
+Prototype/test: do not launch memorial comedy yet; first measure whether pe=
+rsonality inputs improve ordinary roast satisfaction.<br>
+Decision: BUILD/TEST personality; WATCH memorial-with-humor.</p>
+<p>CLUSTER UPDATE<br>
+Personality-specific output / pet backstory: materially strengthened this r=
+un. At least 3 independent commercial/customer surfaces now expose the same=
+ mechanism: recognizable pet output depends on expression/character/story, =
+not photo likeness alone.<br>
+Exact likeness: already established; no new distinct delta accepted.<br>
+Multi-pet: already established; duplicate evidence rejected.<br>
+Fast turnaround / instant delivery: already established; duplicate evidence=
+ rejected.<br>
+Proof/revisions: already established; duplicate evidence rejected.<br>
+Photo-quality guidance: already established; duplicate evidence rejected.<b=
+r>
+Talking-mouth geometry / motion QA: already established; duplicate evidence=
+ rejected.<br>
+Voice choice: already established; duplicate evidence rejected.<br>
+Birthday invitation reuse: already established; duplicate evidence rejected=
+.<br>
+Editable invitation details: supporting market evidence found, but not acce=
+pted as a new Roast.pet signal because it largely duplicates the prior birt=
+hday-invitation finding.<br>
+Memorial-with-humor: UNKNOWN; no strong direct buyer-language evidence foun=
+d this run.<br>
+Kid-safe/adult modes, sports roast, colleague roast, QR/video request: no s=
+ufficiently strong NEW customer-language delta this run.</p>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE =E2=80=94 CURRENT PRIORITY</p>
+<ol>
+<li>Preserve exact individual likeness and let the buyer approve it before =
+animation/print.</li>
+<li>Make the comedy sound like THIS pet: personality, habits, relationship =
+and recipient context should drive jokes.</li>
+<li>Make source-photo selection effortless with automatic ROAST READY valid=
+ation and best-photo selection.</li>
+<li>Support multiple pets cleanly from separate source photos, with layouts=
+ that preserve recognizable face size.</li>
+<li>Make gifting fast and low-friction: rapid digital proof/reveal, includi=
+ng the established deferred-photo/gift-now path.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+A genuinely pet-specific comedy engine. Existing custom-pet products are go=
+od at photo/name personalization and increasingly collect personality/story=
+ data, while Roast.pet can transform those facts into dialogue. The defensi=
+ble experience is not =E2=80=9Cupload dog =E2=86=92 AI dog talks=E2=80=9D; =
+it is =E2=80=9Cmy dog would actually say that.=E2=80=9D</p>
+<p>EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW<br>
+Add a 15-second personality step after photo validation: choose 2=E2=80=933=
+ trait chips + optional =E2=80=9Cweirdest habit / thing they always do=E2=
+=80=9D + =E2=80=9Cwho are they roasting?=E2=80=9D Keep it skippable. This c=
+reates better output without adding image-generation complexity.</p>
+<p>BEST NEW ETSY LISTING/PRODUCT IDEA FROM ACTUAL CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Dog Roasts Dad Like THEY Actually Know Him =E2=80=94 Personal=
+ized Talking Pet Birthday Video + QR Card.=E2=80=9D Listing creative should=
+ demonstrate transformation from PET PHOTO + =E2=80=9Cgreedy / dramatic / s=
+teals Dad=E2=80=99s seat=E2=80=9D =E2=86=92 a recipient-specific line, emph=
+asizing personality rather than merely an animated photo.</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not over-focus the personalization UI on visual controls. Customer evide=
+nce repeatedly treats =E2=80=9Ccaptured their personality=E2=80=9D as a suc=
+cess criterion. A technically perfect likeness with generic pet jokes risks=
+ feeling less personalized than a simpler image paired with one eerily accu=
+rate habit/relationship joke. Also, no direct evidence this run justifies b=
+uilding a broad open-ended Canva-style editor.</p>
+<p>RUN VERDICT<br>
+1 strong new cluster-level signal accepted: explicit pet personality/story =
+intake =E2=86=92 personality-specific roast generation. BUILD/TEST.</p>
+
+--000000000000a6dce6065be04cb1--

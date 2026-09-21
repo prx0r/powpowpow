@@ -1,0 +1,379 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id mpEP0N2c4Dp5
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:18:52 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=cCLmsb6I/9wCLyWzGRo4nRGysVsVX8zjO/U+NScHjwsI0zMLO0evKcxl+G9gtf+DL+p6j7Yt6
+	6DBIc/31mKOHLCe2N7CTLPkmyYzdqA+4TctwiHy487Ix8fBr7WWueB+r8NkGKrInzk2y2Hzp0Hf
+	0nWkd96+NjostHbTmUankELhcpit11pNCMmirU3MvwJHagxuvTeu037Sw+LXwgFSIlS0/DiVngh
+	RmbMXKxgRF7OIjAbxsgq2figmy5zkMHKanZIQd2jn+230NVD9q1UixGOOJ8RYfoNOU6jJ289VC4
+	En0V8PlcwqvhDWnCJEGACA9SrPaiwrQfB8U/Y1P53tWg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888732; x=1790493532; bh=3gPW0fyX
+	GwBU8vpKpYiRP+eZ19MUQr94X0kSsD7xKV8=; b=KQgiaWE8ydH7tZlk/LAcrYOI6FEx00CunmT
+	rESKO6BBD8V9EP0Xbh4Xz2nZpT+gZnKuUfpRsrZD5AqGisdKvcZJ7odZmk4UNB/1To6jcRD+E0W
+	BsWYMHnpGY86avA2N3txpzIJHwmfqmFf/aYNCXm/ESioOZd+zzS2o1zrCY47f4LrO7jnUUeneSq
+	2Y2/LEcO2+9ebk/6QhRt2m9y2XohgooxnDCKO+A1UuT/Ntr7aH4TjmtrWhuSmVOKMRqkD08XInv
+	7ENA+z1gv1ziul1cgGRwvhsKJWHjk99Ctg3IGbnQTBMKlrE5sEq+qJ29bh6TcL1Iy4WqoClaIIc
+	MCcncOA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=j8cJ475j;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=j8cJ475j;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4aac92dbso1746418d50.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:18:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888732; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Dlfg/pDIQp6CDKS4jYbp950w4dTow8StmKFTuPwojBmXFXuMoO0H56nVJi+uN0zZjp
+         ZfViSUgOEEIv9AD4aRK41qFHk2L7cyv6zySZE3v29YC+csu+octVRSneEEjrW9ibi5hO
+         Zi7hIonMolQ33VW7lcsR9aBDFeYJowLz5J73pw0LRphlRQxohUA3pH9WDmzccs6d7nNy
+         ibKYDzNRR5stOrPAna64Ur540/S3/pAS78XU79PPFFDO4loOUHvCLZYgF71dOdB6BX+z
+         ZX28wMdvVQd43tEy/LCvlCC0TqGKScBzjim+vNnyVkCKPZh2QWcIL2hBotWPdfjMDHz7
+         7R4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=3gPW0fyXGwBU8vpKpYiRP+eZ19MUQr94X0kSsD7xKV8=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=o5tg4ZyMlNLQJcA0G3K2K/ry14dMCZBAxYRluQATakADQCjbIA9Vcovk5Ba2XFXRkK
+         Vx8YUUS7QwLyfxm2+0YoDz5bYOau7SWouZ/bqDZQTbfhqSQlhwdINV6Q1taat6+PD3S5
+         PedNNC5lnrBiIZ2WxCWiZDeXeR5BJ0s+GR+hI1lZPGRv25thgv7vv5w+zZyJRGUWGyfL
+         JMgFSwn8Jl92VHHo30jH9QMdsDSLmZOJZwDfNEnga96uLO1o8FbbuIm+MiPh/T2yZzFy
+         /8IHdlsm9W3cf4w2YYkGwUy86Vg9arPgKsdLtog0ZzWOj6m9y/F7cwwdHnwPxTB4x5O+
+         r01g==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888732; x=1790493532; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=3gPW0fyXGwBU8vpKpYiRP+eZ19MUQr94X0kSsD7xKV8=;
+        b=j8cJ475j3ULba2QXIEbX7sUk4F+YhrRI8tA/Cy5za1ywd9i+IqdKSQlqJETijSyYkd
+         dRSkWHDplMkuhW7TmjXEzmKpcD3h06XTBOSlHTQ240WoyGoWZyr18FJbx/ZIJwwO6CMa
+         VhZVdadxHFIp7KWInzs5/6lW0BmY8EV5kp0jVor5mbzeqAwm1wFZSkird6fGQ/I9I4Mo
+         2gyLRa+TnnCc8CaIr1HsXk2T1vPzZVRkGl9+SQTX+qxTrLnfv86QPpJa5fj04lGW6gUI
+         l6ssE4SsOrOCwUJMnOY8aQu03V2yk/rRTTATZKOuqHpeCoHz8jyKuazL5fr7jNGk05lL
+         fNEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888732; x=1790493532;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=3gPW0fyXGwBU8vpKpYiRP+eZ19MUQr94X0kSsD7xKV8=;
+        b=mtFW1sotJOFgIdPLEVIASA6k33zvOYk4OV1rD1e6QPR+nTulz7T+Fj4/WGG3J2nx7E
+         oB5p7GCj0eROIzAORJLRjYevJH563UJNOvnAxTEqgoY/0GOhTqfebOI05hst9pCnfYYf
+         bNolpIvIkrgGK/zZPkej8zzN7i4maG6h/EBWwhsO9Sxdf1WnLyhlMLwWPRYQV+GdDlvs
+         UDkBOs5nC7RJAgfICp4GBNuOwOOco78QyEQZhZpJlAAyDCNhlWHC2tA5mY8mFbsNFMOA
+         PiYPgQkFJLzVYjjiyTWTWJAEBHWiLEA9aWguOz/Vqh5fYxYvkuaRRio1QGeXonySfTOS
+         e/vw==
+X-Gm-Message-State: AFuF++lbSAAUYGuaboDD/aV2Dtw7rpV/wZKdGMKhn3PzG8Yc1aTH1B/8
+	gM9EAXWAXLGENOPg9DI2huklua5pNXoM4Jfw16WsE7cIvcnjfsjhPnkequG/ILN5osVXj6rjBxb
+	8DR/bvpal53fR+a8Z3cAuRBbqmdRM3W1M1A==
+X-Gm-Gg: AYBFou3259lnGrv7g1eB06UjEaz6hzvD1EcyLtzcxt2ct4W9m9eCsB5/f4+7Wkn84gS
+	LaGjYG2PjFG58S7d6xv3sXo7729uUNz/EAv521Fdal/fgITBd2edCtjRh4vCDZdGRs5bZI50r35
+	MNAohKuvbt0P17+4MOHLMTjBEowRDDX20rbKohKmODRcJzeh/mwMlFyG4bqNcrMVa6QunERJTIg
+	m99EEPHa3ib6x6tz4ZJStPbpzTX5Veerl0zVJXxgINR6rjTEdyWhKBOYTApWbbmmFuMHd6py3Ib
+	Ef057NfMZ13GMzNFxLg6AfJTUA9hbDL7M7cb9QQ6SeN5BOMfgGJcKdTTxgLAZb4xWNXbRIh0C8w
+	BRvMxbJ3hdj2hzqUpfD0lkP6+Oe4YQs2zEM56ttHl/TbqD/VpUfeEKwTXmq3VHPdfn2eTqncd
+X-Received: by 2002:a05:690e:4183:b0:671:2832:efdb with SMTP id
+ 956f58d0204a3-6717fc91cd6mr2156203d50.25.1789888732434; Sun, 20 Sep 2026
+ 00:18:52 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:18:50 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:18:50 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:18:50 -0500
+X-Gm-Features: AcwNN1W90i-iK4yMomFJZho3DRDm4DrPT9pwymCTXTdJf3AAf4OxBEhdQQPv0wc
+Message-ID: <CAPdrGekycxeR-RJ6AXovSzGPPELgG3i5Tw-Ja3BLxhRvzx7PBg@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Attack_Chains_=E2=80=94_2026=2D09=2D17_20=3A36_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_1_new=2F1_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Attack Chains =E2=80=94 defensive synthesis
+
+1 NEW ATTACK CHAINS
+
+AC-2026-REPO-PRETRUST-CREDENTIAL =E2=80=94 RECENT / PATCHED-VARIANTS
+
+Aliases: pre-trust repo config exfiltration; repository-as-executable-confi=
+g.
+
+Canonical fingerprint: attacker-controlled repository -> developer
+launches coding agent in repository -> repository configuration is
+processed before/at trust boundary -> code execution or API endpoint
+redirection -> ambient agent credential exposed -> potential use of
+agent/API authority.
+
+Stages:
+
+ENTRY/SOURCE [CONFIRMED, Tier 1]: malicious/untrusted repository
+containing agent project configuration.
+
+INITIAL EXECUTION [CONFIRMED, Tier 1]: CVE-2025-59536 allowed Claude
+Code <1.0.111 to execute project-controlled code before the startup
+trust dialog. CVE-2026-21852 independently exposed project-load
+ordering that could redirect ANTHROPIC_BASE_URL before trust and
+disclose API credentials; patched in 2.0.65.
+
+PERSISTENCE [UNKNOWN]: neither advisory establishes persistence as necessar=
+y.
+
+SECRET/SESSION/MEMORY ACCESS [CONFIRMED for CVE-2026-21852; UNKNOWN
+for CVE-2025-59536]: Anthropic API-key exposure is documented for the
+former.
+
+PRIVILEGE/AUTHORITY ESCALATION [INFERRED]: possession of an exposed
+API credential conveys whatever authority that credential already
+carries; no broader privilege escalation is established.
+
+TOOL/CLOUD/CI/SIGNER ACCESS [UNKNOWN].
+
+ACTION/SIGNING/EXFIL [CONFIRMED only to credential exfiltration
+capability; downstream use UNKNOWN].
+
+OBSERVED CONSEQUENCE [CONFIRMED]: trust boundary can occur after
+security-sensitive project configuration has already been consumed.
+
+CASHOUT/BRIDGE [UNKNOWN / not applicable].
+
+Trust boundary crossed: repository content -> local agent
+initialization -> ambient developer credential.
+
+Authority transition: untrusted project configuration influences a
+process holding developer/API authority before explicit project trust.
+
+Affected stack: Claude Code historical vulnerable versions; mechanism
+class potentially relevant to any coding agent that consumes
+repository configuration before trust, but cross-product
+generalization is INFERRED only.
+
+Strongest evidence: GitHub-reviewed Anthropic advisory
+GHSA-4fgq-fpq9-mr3g / CVE-2025-59536; OWASP AISVS appendix
+independently records CVE-2026-21852 and patch version.
+
+Counterevidence/boundary: both named vulnerabilities are patched; this
+record is mechanism evidence, not evidence current Claude Code
+versions remain vulnerable.
+
+Detection points: coding-agent startup telemetry before trust;
+project-config reads; unexpected base-URL changes; outbound API
+traffic immediately after opening an untrusted repository.
+
+Containment points: enforce trust before project-controlled
+configuration is interpreted; separate ambient credentials from
+pre-trust initialization; sandbox pre-trust startup; pin/upgrade
+patched agent versions.
+
+QP/authority-policy implication: authority should be unavailable until
+provenance/trust evaluation completes; project content must not be
+able to mutate the authority route used to authenticate the agent.
+
+Safe lab reproduction: disposable repository, local mock API endpoint,
+fake token, isolated VM/container, historical vulnerable version only;
+verify whether the mock token reaches the mock endpoint before trust.
+No real credentials or third-party systems.
+
+Falsifier: a clean current version demonstrably performs no
+project-controlled execution/config mutation and emits no
+credential-bearing request before trust.
+
+Unresolved: prevalence of equivalent ordering flaws in
+Cursor/Codex/Gemini CLI; whether pre-trust repository configuration
+can reach MCP/session credentials in current products.
+
+2 MATERIAL CHAIN UPDATES
+
+AC-2026-AGENT-CONFIG-PERSISTENCE / Keyv-ChainDrop cluster =E2=80=94 materia=
+lly
+strengthened.
+
+Previously: poisoned npm package -> credential harvest -> agent/editor
+config implant -> later privileged execution.
+
+Update: multiple independent reports now describe the August
+Keyv/Cacheable campaign writing Claude Code and VS Code startup hooks
+into repositories, using harvested repository/npm/cloud credentials
+and propagating into further packages. This upgrades the edge INITIAL
+EXECUTION -> REPOSITORY PERSISTENCE from research-pattern evidence to
+RECENT incident evidence. The downstream edge from stolen publishing
+authority -> poisoned packages is also CONFIRMED for the campaign
+family. Claims about compromise of any particular downstream consumer
+remain UNKNOWN unless separately evidenced.
+
+3 TOP RECURRING SECOND-ORDER MECHANISMS
+
+A. Trusted package/release authority -> downstream execution.
+
+B. Developer/CI credential harvest -> surviving or newly acquired
+publishing/repository authority -> second-order propagation.
+
+C. Repository-controlled agent/editor configuration -> execution that
+survives removal of the original poisoned dependency.
+
+D. Agent configuration -> MCP/OAuth route mutation -> delegated SaaS
+token exposure.
+
+E. NEW CLUSTER: trust-order inversion =E2=80=94 repository configuration is
+consumed before the user trust decision, so the nominal trust prompt
+is downstream of the sensitive operation.
+
+4 STAGE/EDGE GRAPHS
+
+PRETRUST: malicious repo [C] -> agent startup [C] -> project config
+consumed before trust [C] -> code execution/API redirection [C] -> API
+credential exposure [C for CVE-2026-21852] -> downstream authority use
+[U].
+
+CHAINDROP: poisoned npm [C] -> install execution [C] -> credential
+harvest [C] -> repo write authority [C] -> .claude/.vscode persistence
+[C] -> later workspace/agent execution [C] -> renewed credential
+harvest [C] -> package/repo propagation [C] -> specific downstream
+privileged action [U].
+
+5 UNKNOWN LINKS WORTH RESOLVING
+
+- Whether any current coding agent still processes network-affecting
+repository config before trust.
+
+- Whether ChainDrop-compromised repositories caused confirmed later
+cloud/CI/signing actions beyond credential harvesting and package
+propagation.
+
+- Whether MCP OAuth tokens can be reached through repository-only
+pre-trust paths without a prior malicious-package execution step.
+
+- Whether scanner-discovered current agent harnesses expose analogous
+trust-order inversions.
+
+6 DEFENSIVE CHOKEPOINTS + DETECTION PRIMITIVES
+
+Treat repository-supplied agent configuration as executable content.
+Gate all project config behind trust. Remove cloud/package/release
+credentials from pre-trust agent environments. File-integrity monitor
+agent/editor config and global MCP route configuration. Correlate
+package lifecycle execution with subsequent writes to .claude/,
+.vscode/, MCP config and CI workflow paths. Detect new
+publishing/repository actions immediately following developer
+credential-access events. Rotate/revoke human, bot, app, deploy-key,
+registry and cloud authority together after supply-chain incidents.
+
+7 SAFE LAB REPRODUCTION QUEUE
+
+P1: historical pre-trust ordering test with fake Anthropic token +
+local mock endpoint.
+
+P2: dummy npm package writes inert marker hook into disposable repo;
+confirm whether current agent/editor displays/gates execution.
+
+P3: fake MCP OAuth service + dummy bearer token; measure whether
+route/config changes are visible and attributable.
+
+P4: disposable Git repository with fake package-publish token; model
+credential rotation while deliberately leaving one dummy bot
+credential to test residual-authority detection.
+
+8 CROSS-CASE CLUSTERS
+
+CL-TRUST-ORDER-INVERSION: CVE-2025-59536 + CVE-2026-21852. First seen
+2025; latest public synthesis 2026-09; status RECENT/PATCHED-VARIANTS.
+
+CL-AGENT-CONFIG-PERSISTENCE: Keyv/ChainDrop + earlier
+SAP/Mini-Shai-Hulud reporting. Status ACTIVE/RECENT mechanism.
+
+CL-DELEGATED-AUTHORITY-HIJACK: MCP OAuth route hijack research + agent
+global configuration mutation. Status LAB_ONLY/RECENT research; real
+downstream malicious SaaS actions UNKNOWN.
+
+CL-RELEASE-AUTHORITY-CASCADE: Trivy/Red Hat/npm cases from prior
+state. Status RECENT.
+
+9 MACHINE-READABLE JSONL DELTA
+
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-REPO-PRETRUST-CREDENTIA=
+L=E2=80=9D,=E2=80=9Caliases=E2=80=9D:[=E2=80=9Cpre-trust
+repo config exfiltration=E2=80=9D,=E2=80=9Crepository-as-executable-config=
+=E2=80=9D],=E2=80=9Cfingerprint=E2=80=9D:=E2=80=9Cuntrusted_repo>agent_star=
+tup>pretrust_project_config>execution_or_endpoint_redirect>ambient_api_cred=
+ential=E2=80=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT_PATCHED_VARIANTS=
+=E2=80=9D,=E2=80=9Cstages=E2=80=9D:[{=E2=80=9Cname=E2=80=9D:=E2=80=9CENTRY_=
+SOURCE=E2=80=9D,=E2=80=9Cstate=E2=80=9D:=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=
+=9Ctier=E2=80=9D:1},{=E2=80=9Cname=E2=80=9D:=E2=80=9CINITIAL_EXECUTION=E2=
+=80=9D,=E2=80=9Cstate=E2=80=9D:=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9Ctier=E2=
+=80=9D:1},{=E2=80=9Cname=E2=80=9D:=E2=80=9CPERSISTENCE=E2=80=9D,=E2=80=9Cst=
+ate=E2=80=9D:=E2=80=9CUNKNOWN=E2=80=9D},{=E2=80=9Cname=E2=80=9D:=E2=80=9CSE=
+CRET_ACCESS=E2=80=9D,=E2=80=9Cstate=E2=80=9D:=E2=80=9CCONFIRMED=E2=80=9D,=
+=E2=80=9Ctier=E2=80=9D:1},{=E2=80=9Cname=E2=80=9D:=E2=80=9CAUTHORITY_ESCALA=
+TION=E2=80=9D,=E2=80=9Cstate=E2=80=9D:=E2=80=9CINFERRED=E2=80=9D},{=E2=80=
+=9Cname=E2=80=9D:=E2=80=9CTOOL_CLOUD_CI_SIGNER=E2=80=9D,=E2=80=9Cstate=E2=
+=80=9D:=E2=80=9CUNKNOWN=E2=80=9D},{=E2=80=9Cname=E2=80=9D:=E2=80=9CACTION_E=
+XFIL=E2=80=9D,=E2=80=9Cstate=E2=80=9D:=E2=80=9CCONFIRMED=E2=80=9D,=E2=80=9C=
+scope=E2=80=9D:=E2=80=9Ccredential
+exfil capability=E2=80=9D},{=E2=80=9Cname=E2=80=9D:=E2=80=9CDOWNSTREAM_CONS=
+EQUENCE=E2=80=9D,=E2=80=9Cstate=E2=80=9D:=E2=80=9CUNKNOWN=E2=80=9D}],=E2=80=
+=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Crepository->agent
+initialization=E2=80=9D,=E2=80=9Cproject config->ambient
+credential=E2=80=9D],=E2=80=9Cauthority_transitions=E2=80=9D:[=E2=80=9Cuntr=
+usted project config
+influences authenticated agent route=E2=80=9D],=E2=80=9Cpersistence=E2=80=
+=9D:=E2=80=9CUNKNOWN/not
+required=E2=80=9D,=E2=80=9Cpropagation=E2=80=9D:=E2=80=9CUNKNOWN=E2=80=9D,=
+=E2=80=9Cpublic_incident_ids=E2=80=9D:[=E2=80=9CCVE-2025-59536=E2=80=9D,=E2=
+=80=9CCVE-2026-21852=E2=80=9D],=E2=80=9Cconfirmed=E2=80=9D:4,=E2=80=9Cinfer=
+red=E2=80=9D:1,=E2=80=9Cunknown=E2=80=9D:4,=E2=80=9Cfalsifier=E2=80=9D:=E2=
+=80=9Ccurrent
+clean version shows no project-controlled sensitive operation before
+trust=E2=80=9D,=E2=80=9Cnext_evidence_request=E2=80=9D:=E2=80=9Ccross-agent=
+ pre-trust configuration
+ordering tests with fake credentials=E2=80=9D}
+
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-AGENT-CONFIG-PERSISTENC=
+E=E2=80=9D,=E2=80=9Cdelta=E2=80=9D:=E2=80=9CMATERIAL_UPDATE=E2=80=9D,=E2=80=
+=9Cstatus=E2=80=9D:=E2=80=9CACTIVE_RECENT=E2=80=9D,=E2=80=9Cconfirmed_edges=
+_added=E2=80=9D:[=E2=80=9Ccredential_harvest>repository_config_write=E2=80=
+=9D,=E2=80=9Crepository_config_write>later_agent_editor_execution=E2=80=9D,=
+=E2=80=9Cstolen_publish_authority>poisoned_package_propagation=E2=80=9D],=
+=E2=80=9Cunknown_edges=E2=80=9D:[=E2=80=9Cspecific_downstream_cloud_or_sign=
+er_action=E2=80=9D]}
+
+10 NEXT-HOUR RESEARCH QUEUE =E2=80=94 information gain
+
+- Primary advisories/current-version tests for repository config
+ordering across Codex, Cursor and Gemini CLI.
+
+- Primary Microsoft/SafeDep/Socket evidence for exact ChainDrop
+authority transitions and which propagation edges were observed versus
+inferred.
+
+- Current MCP implementations: determine whether delegated OAuth
+tokens are isolated by audience/process or reachable through
+local/global agent config.
+
+- Search newest Scanner objects specifically for harness/config/skill
+findings that can join CL-TRUST-ORDER-INVERSION.
+
+- Look for public incidents where agent/editor persistence survived
+credential rotation and produced a separately observed second
+compromise.
+
+Sources: GitHub Advisory Database GHSA-4fgq-fpq9-mr3g /
+CVE-2025-59536; OWASP AISVS secure-coding appendix; The Hacker News
+and Register reporting on Keyv/ChainDrop, with claims constrained to
+independently supported stages. No private identities, secrets or
+non-public wallets investigated.

@@ -1,3 +1,4 @@
+import os
 """
 PowPowPow V1 Schema Standard
 All 8 chains use this exact schema.

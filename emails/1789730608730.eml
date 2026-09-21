@@ -1,0 +1,414 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id HPkDexSwfA1h
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 11:23:28 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=e5ZeqTOYtBunYy/gNmbgrf5oDReoozhinQyzv3bPUZx6SwPmRE1yUg8Hf/3KcK0wWdaCkG7Xi
+	JAVU1rqWZGVCSeDDX1iViJRCrUXRgX+Xt3mdHNNotfLR4scIMoe/kpvIZGdVJPZLrH5AyUJrzCy
+	fBxzZuXoSVjWMmH2bPIy/Y6DrHcPF278KMOd+R4CNofBc4Kdj5Uh6UFsNI39u3V6Vana44HEMqM
+	TyvCHE2+2cIolm10WgDeWmV1XVK8z6Rnvs+CUQWLdyiCUSjGVieM0fdibAULCEHgslYrxxefbFY
+	3opOisXBA3CsXI6QtglmMWOMRObLbKT1jvSMUTmSjSZA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789730608; x=1790335408; bh=vA7iezAW
+	sxaCtQ52eJ4ohgr6HN0yqVRc6soqukwubSA=; b=dKkcevi7lPKdfdduZXzm7GopjFZZavwqu4j
+	WZdIdwyHpxEn6wkHkeibiDd97S9CsV+febainG8Y2/JllcAMfPBVoPEDBbcsi2D/TtiT6BgD+RR
+	jliidFbbFTe6T2W0cVGfOihaVD2PJVIiq6NCdwWGAGpPt+DCwI2VdMYBdAw6Mk5ppWEZM4d4c74
+	7wZ79jGK0MqP8yBToeFVDCbrOmsDUP/eRnf5RgUZVTt7kSpYqCOm9eNIvfklBEHYJW/BUxsP0Qe
+	h63PTbeOwWClqhkXSI3CF+9VKJdXqHF5XpL41LaBa7lNJvLRpoWs9PrsYVA/6CGP77teLmzETb+
+	yPCfYFw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=N8XJfNoX;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=N8XJfNoX;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 956f58d0204a3-671563fb8beso544927d50.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 04:23:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789730608; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ry3Mn500beCjmv8flrmj8nl7Hjrpa37TAxklbI8U5kooH/e8x1QyudlX/WmpfBO94p
+         jjs6r0wuG2TBAoBaMHZOHTNorKJmIG4eldA4hkd23NWjdHbDNIYZdrBzE1zJhDZ/5plF
+         KrjmQ5fyduqzv1JOof9Iw/ou9B/JQG6FDMmWe/K/IEL4q79S6XxVgwoSHlDqv2VM3AV4
+         QFKNBcRpnn0EvO3N+7A2wGaN2XR1nHKmNSYUEw0e7r4CijbbZzvX5WQsSzkHd8ZBBapm
+         SL8Wvy1Zz+KAT0DCdk8NIGnH2OHzi/PocxQcJoVcVtl3j22hRMW7B/pUwyjtYLQJ+4na
+         5FCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=vA7iezAWsxaCtQ52eJ4ohgr6HN0yqVRc6soqukwubSA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=fP22qc6WN8+2SX2Zdfm8kN9yNaLJubssc64bRlcpAyutobfowcWHfEa3iJ/vQ4RIZf
+         KSX9kmY/M4zHgdEHHTcbNZ834zqwhOXGTQprA7d/gdhWddKM5ukagdifofK4Sr8vhjgn
+         Og8nRUVAOPb4SscH4eSEyqg1asnTR3ntA1iXV7ovx9Q3gdeZtcPKbZIAQbxGGk6dDmk+
+         2P0UMXFIurc+iutmEHT7yiJDaPPr+mO4F5F9D4hTxBbs60x1qJA3Tb/NB5gh1+tiCMef
+         VXk27RATietfm9oLNHLodQBWfwc0vw+4xITrLA2oKAI7EtkuBHQroB+ckYr1g5snGc0s
+         yU+w==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789730608; x=1790335408; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=vA7iezAWsxaCtQ52eJ4ohgr6HN0yqVRc6soqukwubSA=;
+        b=N8XJfNoXkWOFMUzPnhT5dXdEgnjWQUDZWWq81TKwh4WJvR1zxvghGZn3ySsEcylxEn
+         Ji/Mg9nX5CGAsgcKpPM7M8lvE3g5W152twwTgAV9jVyTQb8r89OixqAbE6mDzbTJIMP2
+         acVHli3b+8RAr0V1024EsJ+oShEQkMDiYUqXDVHcmIB8MAEWpG3bAO3Bnk/I2wlvSINb
+         ps6c2Uhsq3ryZk1xud+AEpKuLMyUF248Z1Zeq8P/aAOd05ylElZ4jl1qGS3sTa6MWyYQ
+         5MR3Y+FK3fkNeJFAwejxl4o23C9EZw4asHbFeQHH1B85jBIm4RaMu4PV3s4X8X4xjTDW
+         ZynQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789730608; x=1790335408;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=vA7iezAWsxaCtQ52eJ4ohgr6HN0yqVRc6soqukwubSA=;
+        b=FaPyMfu7wQHbQtuOpqSZH1IvJk8Ow4j4q/VbP4Kb6ZRIRN/+fDGDdHcV8BMSNRjGdJ
+         sPPND9iwB8H9LNYpx0LRzUR0JE0BZUNWVTcqIPm9CM05GZsXVJf6Frb2/fduv/ZnKCOE
+         m4OzhBBPF4UO0lmXXssZE4VsvsEMIMjndHXLoJjHbi+ly3BdMkYzOqi1Mp233B81y0Aj
+         xkUo9ijyZxXJNkhNgAwgcUgIgETNNEmTLUdRjhRU/1EsPqestbtGePMvwSfb2JyEDVvn
+         E0dkUgufQPXAyx9BJZKhqjELeG0Mr0AwxVsVNMsa2BLXNATbc62BJt7zcydd6rgGMjfU
+         UBrA==
+X-Gm-Message-State: AFuF++leIq9QfzTnfZSYDL06fS0wH4Iw6SLyYW6qaOh3y6zocsUkTZOP
+	PG7PiO8WxAm2sVRezf9j9KR8KTxzakPvUUhNj5Rk7DXr9r148r4q9f0KDUAJlHil67N2ncI22Hb
+	SpSGyJSApWoMue2kN2fKT5bnH2oVAAp76ZA==
+X-Gm-Gg: AYBFou2A0qT6zK/nTJaiXYum6aeByJ7a+vqw40CSezLnU+EHJqvx0F0nx7BlPAww3bF
+	EtyDuMKC16iHkzUzl2p1j0EzxHCDZOy9iOxhU8pybZmMep7/9SGjbnCBF+nvBPnT8CE4REg7rzs
+	QrG2ShLnVKJ5c8ltG7MNhD8Nc/nwEC5wCFhuz62ZjcBL1b+jIBbrhTo/1UmlAr1u5eJrq0TZM71
+	0NpS3mUcOcaLMHg5p3bqMoSSUDdWI7KhEB1s9fPlXbX2HLymJJXxaHG7GT7l/EAXtqkmbKgG3x4
+	Dj9sK6ttA8rveTbAKLmIHfM2gCGhDiNu2VfTeyELkzO53n8dnI9g9ih5JaLJpYj+N9x4DfguDIS
+	HOop1LjrtpLgIkA2ClceTZWtn34mVAvVyVxE5ViM98QCyxAtVm9RLCJ42M9FiBLv0EfZ11OX00g
+	9u+7dtIQ==
+X-Received: by 2002:a05:690e:813:10b0:671:2228:1137 with SMTP id
+ 956f58d0204a3-6717fcd026amr439622d50.44.1789730607796; Fri, 18 Sep 2026
+ 04:23:27 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 06:23:27 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 06:23:27 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 06:23:27 -0500
+X-Gm-Features: AcwNN1V87IdGv7QzjRAWE1RF5uk-jUXYaUT8AJ1AuAMPIgKCHSKc3EvoHWGVWGk
+Message-ID: <CAPdrGekkz-gWUshY_U6U7L7Hg7+vEGy7SQxn7wrO2C3wyxA_kw@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D18_18=3A2?=
+	=?UTF-8?Q?2_Asia=2FPhnom=5FPenh_=E2=80=94_5_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000001f15e9065bc021a8"
+
+--0000000000001f15e9065bc021a8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 5 useful projects
+
+Material delta: the standout is *HistOracle-production/blabberer*, which
+appears to collapse the exact V1 problem we were still planning to assemble
+ourselves: portrait =E2=86=92 nine generated viseme sprites =E2=86=92 trans=
+parent
+post-processing =E2=86=92 browser lip-sync engine. This is substantially cl=
+oser to
+Roast.pet than generic LivePortrait or Rhubarb wrappers.
+1) Blabberer =E2=80=94 REUSE NOW / FORK
+
+URL: https://github.com/HistOracle-production/blabberer
+Creator: HistOracle / Editlingo Solutions LLC
+Activity: public 2026 project; indexed in the latest scan
+License: MIT
+Solves: automatically creates 9 Preston-Blair mouth shapes from a single
+portrait, detects the face with MediaPipe, generates mouth variants through
+Gemini/OpenRouter, outputs transparent feathered WebP sprites, and includes
+a zero-framework TypeScript real-time lip-sync engine.
+Route: Python sprite-generation pipeline + demo/npm install && npm run dev;
+standalone TS engine can be copied directly.
+Dependencies/hardware: MediaPipe, image-generation API for sprite creation;
+browser Web Audio for playback. No dedicated GPU required for the lip-sync
+runtime.
+Evidence: repository documents the production pipeline extracted from
+HistOracle, an interactive demo, nine-shape output, face auto-detection,
+dual-layer crossfade renderer, and 60fps audio/text-informed mouth-state
+engine.
+Work replaced: face crop detection + mouth asset generation +
+postprocessing + mouth-state engine + crossfade renderer =E2=80=94 potentia=
+lly most
+of Roast.pet V1 facial animation.
+Difficulty: LOW-MEDIUM. Maintenance risk: LOW-MEDIUM.
+Experiment: run one canonical dog podium image and one cat through the
+pipeline. The human MediaPipe crop may fail on pets; if so, bypass
+detection with our existing pet crop and test only the nine-sprite
+generator/postprocessor/runtime. Compare against meme-lipsync and Catsync
+on identity retention and comedy.
+2) ScratchLipSyncTool =E2=80=94 COPY MECHANISM
+
+URL: https://github.com/griffpatch/ScratchLipSyncTool
+Creator: griffpatch
+Activity: indexed within the last month
+License: MIT
+Solves: browser speech audio =E2=86=92 phonemes =E2=86=92 visemes =E2=86=92=
+ talking sprite, using
+PocketSphinx.js.
+Route: runnable GitHub Pages browser app; JS source is small enough to
+inspect directly.
+Dependencies/hardware: browser only; PocketSphinx.js; no GPU.
+Evidence: live browser tool and Scratch-ready talking-sprite export.
+Work replaced: possible server-side Rhubarb dependency for simple English
+roast speech.
+Difficulty: LOW. Maintenance risk: MEDIUM because PocketSphinx is older.
+Experiment: feed the same 10 Kokoro roast lines to ScratchLipSyncTool and
+Rhubarb. Compare viseme timing. If acceptable, this gives a fully
+browser-side phoneme path.
+3) BorderCut =E2=80=94 REUSE NOW for easy photos
+
+URL: https://github.com/kong75/bordercut
+Creator: kong75
+Activity: indexed last week
+License: inspect package/repo license before production integration
+Solves: background removal for separable backgrounds in ~8 kB gzipped with
+zero model/runtime dependencies.
+Route: @bordercut/core in browser/Worker/Node; also Dart/Flutter.
+Dependencies/hardware: none; offline; no GPU/model download.
+Evidence: 7.9 kB gzipped TypeScript core, 8.7 kB browser adapter, explicit
+browser/Node support and Remove/Keep guidance for difficult images.
+Work replaced: running a 50=E2=80=93500 MB matting model on the large fract=
+ion of
+customer photos with clean backgrounds.
+Difficulty: LOW. Maintenance risk: LOW.
+Experiment: route our 30-photo customer torture set through BorderCut
+first, then fall back to Alphaveil only on low-confidence/visually bad
+results. Measure what percentage avoids model loading entirely.
+4) PICORN Background Remover =E2=80=94 WATCH / BENCHMARK
+
+URL: https://github.com/cueqzapper/PICORN-Background-Remover
+Creator: cueqzapper
+Activity: indexed within the last month
+License: browser code MIT; model weights have separate terms and require
+commercial licensing for commercial/hosted use.
+Solves: tiny browser neural matte + deterministic edge refinement + manual
+restore/remove brush.
+Route: Vite app / ONNX Runtime Web; WebGPU with WASM fallback.
+Dependencies/hardware: 1.35 MB ONNX model, browser only.
+Evidence: model has ~313k parameters; soft alpha output; guided edge
+refinement; manual trimap refinement; tests and live demo.
+Work replaced: heavyweight cutout model plus much of the correction UI.
+Difficulty: LOW technically. Maintenance/licensing risk: MEDIUM-HIGH
+because commercial model rights are separate.
+Experiment: benchmark fur edges versus Alphaveil/Cutout Studio on 10 hard
+pets. Do not integrate until model commercial terms are acceptable.
+5) Light Converter =E2=80=94 COPY MECHANISM
+
+URL: https://github.com/lightScout/light-converter
+Creator: lightScout
+Activity: indexed 2026-09-15
+License: MIT
+Solves: batch browser cutout with a particularly useful automatic second
+pass for uncertain masks.
+Route: Astro/Svelte/onnxruntime-web; WebGPU BiRefNet and WASM IS-Net
+fallback.
+Dependencies/hardware: browser WebGPU preferred; WASM fallback.
+Evidence: automatically triggers a CLAHE contrast-boosted second pass when
+the first mask is uncertain; guided-filter refinement, hole/speck cleanup,
+restore/erase brushes, IndexedDB batch persistence.
+Work replaced: quality-gating/retry logic around customer cutouts, not just
+the segmentation model itself.
+Difficulty: LOW-MEDIUM. Maintenance risk: LOW-MEDIUM.
+Experiment: copy only the uncertainty =E2=86=92 contrast-enhanced retry str=
+ategy
+into the preprocessing benchmark. Specifically test white/light pets
+against white walls and black pets in dark interiors.
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+   1. Nine-mouth sprite generation: test Blabberer first.
+   2. Lip-sync state engine/crossfade renderer: Blabberer=E2=80=99s standal=
+one
+   TypeScript engine.
+   3. Phoneme recognition: Rhubarb already works; ScratchLipSyncTool is a
+   browser-only fallback worth benchmarking.
+   4. Easy-photo background removal: BorderCut before loading ML.
+   5. Hard-photo retry/refinement logic: copy Light Converter=E2=80=99s
+   uncertainty-triggered second pass rather than inventing our own.
+
+Most surprising hobby project
+
+*Blabberer.* It is almost exactly the missing bridge between =E2=80=9Ccanon=
+ical pet
+image=E2=80=9D and =E2=80=9Cnine reusable mouth states.=E2=80=9D The key ex=
+periment is whether its
+image-generation prompts/postprocessing generalize to pets when we supply
+the crop ourselves.
+Fastest integration win
+
+*Blabberer=E2=80=99s TypeScript LipSyncEngine.* It is standalone, framework=
+-free,
+uses audio energy plus text-informed mouth preferences, hysteresis, minimum
+hold times and crossfades. We can test it against our existing pet sprite
+assets without adopting the rest of the project.
+Repo/author worth following
+
+*HistOracle-production / Editlingo.* Their production need=E2=80=94turn sta=
+tic
+historical portraits into cheap interactive talking characters=E2=80=94is
+structurally very close to Roast.pet=E2=80=99s need, so adjacent work is un=
+usually
+likely to transfer.
+
+--0000000000001f15e9065bc021a8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 5 useful projects
+<p>Material delta: the standout is <strong>HistOracle-production/blabberer<=
+/strong>, which appears to collapse the exact V1 problem we were still plan=
+ning to assemble ourselves: portrait =E2=86=92 nine generated viseme sprite=
+s =E2=86=92 transparent post-processing =E2=86=92 browser lip-sync engine. =
+This is substantially closer to Roast.pet than generic LivePortrait or Rhub=
+arb wrappers.</p>
+
+1) Blabberer =E2=80=94 REUSE NOW / FORK
+<p>URL: <a href=3D"https://github.com/HistOracle-production/blabberer">http=
+s://github.com/HistOracle-production/blabberer</a><br>
+Creator: HistOracle / Editlingo Solutions LLC<br>
+Activity: public 2026 project; indexed in the latest scan<br>
+License: MIT<br>
+Solves: automatically creates 9 Preston-Blair mouth shapes from a single po=
+rtrait, detects the face with MediaPipe, generates mouth variants through G=
+emini/OpenRouter, outputs transparent feathered WebP sprites, and includes =
+a zero-framework TypeScript real-time lip-sync engine.<br>
+Route: Python sprite-generation pipeline + <code>demo/npm install &amp;&amp=
+; npm run dev</code>; standalone TS engine can be copied directly.<br>
+Dependencies/hardware: MediaPipe, image-generation API for sprite creation;=
+ browser Web Audio for playback. No dedicated GPU required for the lip-sync=
+ runtime.<br>
+Evidence: repository documents the production pipeline extracted from HistO=
+racle, an interactive demo, nine-shape output, face auto-detection, dual-la=
+yer crossfade renderer, and 60fps audio/text-informed mouth-state engine.<b=
+r>
+Work replaced: face crop detection + mouth asset generation + postprocessin=
+g + mouth-state engine + crossfade renderer =E2=80=94 potentially most of R=
+oast.pet V1 facial animation.<br>
+Difficulty: LOW-MEDIUM. Maintenance risk: LOW-MEDIUM.<br>
+Experiment: run one canonical dog podium image and one cat through the pipe=
+line. The human MediaPipe crop may fail on pets; if so, bypass detection wi=
+th our existing pet crop and test only the nine-sprite generator/postproces=
+sor/runtime. Compare against meme-lipsync and Catsync on identity retention=
+ and comedy.</p>
+
+2) ScratchLipSyncTool =E2=80=94 COPY MECHANISM
+<p>URL: <a href=3D"https://github.com/griffpatch/ScratchLipSyncTool">https:=
+//github.com/griffpatch/ScratchLipSyncTool</a><br>
+Creator: griffpatch<br>
+Activity: indexed within the last month<br>
+License: MIT<br>
+Solves: browser speech audio =E2=86=92 phonemes =E2=86=92 visemes =E2=86=92=
+ talking sprite, using PocketSphinx.js.<br>
+Route: runnable GitHub Pages browser app; JS source is small enough to insp=
+ect directly.<br>
+Dependencies/hardware: browser only; PocketSphinx.js; no GPU.<br>
+Evidence: live browser tool and Scratch-ready talking-sprite export.<br>
+Work replaced: possible server-side Rhubarb dependency for simple English r=
+oast speech.<br>
+Difficulty: LOW. Maintenance risk: MEDIUM because PocketSphinx is older.<br=
+>
+Experiment: feed the same 10 Kokoro roast lines to ScratchLipSyncTool and R=
+hubarb. Compare viseme timing. If acceptable, this gives a fully browser-si=
+de phoneme path.</p>
+
+3) BorderCut =E2=80=94 REUSE NOW for easy photos
+<p>URL: <a href=3D"https://github.com/kong75/bordercut">https://github.com/=
+kong75/bordercut</a><br>
+Creator: kong75<br>
+Activity: indexed last week<br>
+License: inspect package/repo license before production integration<br>
+Solves: background removal for separable backgrounds in ~8 kB gzipped with =
+zero model/runtime dependencies.<br>
+Route: <code>@bordercut/core</code> in browser/Worker/Node; also Dart/Flutt=
+er.<br>
+Dependencies/hardware: none; offline; no GPU/model download.<br>
+Evidence: 7.9 kB gzipped TypeScript core, 8.7 kB browser adapter, explicit =
+browser/Node support and Remove/Keep guidance for difficult images.<br>
+Work replaced: running a 50=E2=80=93500 MB matting model on the large fract=
+ion of customer photos with clean backgrounds.<br>
+Difficulty: LOW. Maintenance risk: LOW.<br>
+Experiment: route our 30-photo customer torture set through BorderCut first=
+, then fall back to Alphaveil only on low-confidence/visually bad results. =
+Measure what percentage avoids model loading entirely.</p>
+
+4) PICORN Background Remover =E2=80=94 WATCH / BENCHMARK
+<p>URL: <a href=3D"https://github.com/cueqzapper/PICORN-Background-Remover"=
+>https://github.com/cueqzapper/PICORN-Background-Remover</a><br>
+Creator: cueqzapper<br>
+Activity: indexed within the last month<br>
+License: browser code MIT; model weights have separate terms and require co=
+mmercial licensing for commercial/hosted use.<br>
+Solves: tiny browser neural matte + deterministic edge refinement + manual =
+restore/remove brush.<br>
+Route: Vite app / ONNX Runtime Web; WebGPU with WASM fallback.<br>
+Dependencies/hardware: 1.35 MB ONNX model, browser only.<br>
+Evidence: model has ~313k parameters; soft alpha output; guided edge refine=
+ment; manual trimap refinement; tests and live demo.<br>
+Work replaced: heavyweight cutout model plus much of the correction UI.<br>
+Difficulty: LOW technically. Maintenance/licensing risk: MEDIUM-HIGH becaus=
+e commercial model rights are separate.<br>
+Experiment: benchmark fur edges versus Alphaveil/Cutout Studio on 10 hard p=
+ets. Do not integrate until model commercial terms are acceptable.</p>
+
+5) Light Converter =E2=80=94 COPY MECHANISM
+<p>URL: <a href=3D"https://github.com/lightScout/light-converter">https://g=
+ithub.com/lightScout/light-converter</a><br>
+Creator: lightScout<br>
+Activity: indexed 2026-09-15<br>
+License: MIT<br>
+Solves: batch browser cutout with a particularly useful automatic second pa=
+ss for uncertain masks.<br>
+Route: Astro/Svelte/onnxruntime-web; WebGPU BiRefNet and WASM IS-Net fallba=
+ck.<br>
+Dependencies/hardware: browser WebGPU preferred; WASM fallback.<br>
+Evidence: automatically triggers a CLAHE contrast-boosted second pass when =
+the first mask is uncertain; guided-filter refinement, hole/speck cleanup, =
+restore/erase brushes, IndexedDB batch persistence.<br>
+Work replaced: quality-gating/retry logic around customer cutouts, not just=
+ the segmentation model itself.<br>
+Difficulty: LOW-MEDIUM. Maintenance risk: LOW-MEDIUM.<br>
+Experiment: copy only the uncertainty =E2=86=92 contrast-enhanced retry str=
+ategy into the preprocessing benchmark. Specifically test white/light pets =
+against white walls and black pets in dark interiors.</p>
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+<ol>
+<li>Nine-mouth sprite generation: test Blabberer first.</li>
+<li>Lip-sync state engine/crossfade renderer: Blabberer=E2=80=99s standalon=
+e TypeScript engine.</li>
+<li>Phoneme recognition: Rhubarb already works; ScratchLipSyncTool is a bro=
+wser-only fallback worth benchmarking.</li>
+<li>Easy-photo background removal: BorderCut before loading ML.</li>
+<li>Hard-photo retry/refinement logic: copy Light Converter=E2=80=99s uncer=
+tainty-triggered second pass rather than inventing our own.</li>
+</ol>
+
+Most surprising hobby project
+<p><strong>Blabberer.</strong> It is almost exactly the missing bridge betw=
+een =E2=80=9Ccanonical pet image=E2=80=9D and =E2=80=9Cnine reusable mouth =
+states.=E2=80=9D The key experiment is whether its image-generation prompts=
+/postprocessing generalize to pets when we supply the crop ourselves.</p>
+
+Fastest integration win
+<p><strong>Blabberer=E2=80=99s TypeScript LipSyncEngine.</strong> It is sta=
+ndalone, framework-free, uses audio energy plus text-informed mouth prefere=
+nces, hysteresis, minimum hold times and crossfades. We can test it against=
+ our existing pet sprite assets without adopting the rest of the project.</=
+p>
+
+Repo/author worth following
+<p><strong>HistOracle-production / Editlingo.</strong> Their production nee=
+d=E2=80=94turn static historical portraits into cheap interactive talking c=
+haracters=E2=80=94is structurally very close to Roast.pet=E2=80=99s need, s=
+o adjacent work is unusually likely to transfer.</p>
+
+--0000000000001f15e9065bc021a8--

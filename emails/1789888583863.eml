@@ -1,0 +1,338 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id lDP8UXoOx0GG
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:16:23 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=FfcrStnYBVEp9YnAGfJnK1ZEZlcXKZkFy933KqFcAivQETtT+xUSo/nPwwzB+Ij0hq2GxBiE2
+	DnGHcyuWLh5TjeU7x47Kn33ucw5L/dGwcaseyrgWJa2xmaReXDXSoFq4qQtcHt8pWoXtnrqJJn1
+	5398FhtHbRnzv7HyVwe7oGxnD84H9JM/8+guaMYKmy7JNNsafXZffjVPEco8qoa88WIf5/w9JhE
+	eHcLrOH9FPzYs0CU4qI3lVz8dAy/AStS25cJIY8kCO+XKZCaUkfJ6UGrcdpQeYaum6SXtEzlaqx
+	Uo5+x2cB2tJTLj+gkEwyuH7uBMeJqefemdHf8RBSaprA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888583; x=1790493383; bh=pVrw5k82
+	600NDqO9UekOWyjPzI6TOIeZTghSkGDxxRE=; b=OuR0b8BFRtvTg3x9tGL5E7TVj9DiNN5p8UH
+	/eawyOJ5f8emsUB4fvEXxWibcvoosRuSTXlJyRB27BVw6Ae3pAIyhCvKtSOMQM9yc7n6sQhRGjf
+	ySptxWWREVdwhuIHSu/l8mIMLyFiDVsV3hQtpiKdPQ2ZN5/cm5EoALokX9JnAui7Pxy6BHfvhKX
+	m1/eE+hFm5XAR+mwYackvYGwX9Fx90i/M5hxCQSIRsZUYbOoM6x1dL6pA+5+rakkk/zJvx0E5at
+	7oBnXKwuHwVpWcdYgc8NKKXDSwz8woVFSX9nhByaIvVV3dGwLfwENlkMMuT5RM90D3TYlNdtQA0
+	MYmEusQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=e427b1AR;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=e427b1AR;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 956f58d0204a3-66e4aac9321so1762226d50.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:16:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888583; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ejjHz6SDmMgKTt+qlG5ivxWU4KdLVV6UMgugoYFHv3AfGLNwW3F5T5Y3CG9UWKsuze
+         V8BAYSeqwCcYWLGpre0EI2xDrGwovyhM6HCbqNKnb07vJl3A3UmhLqjyMFOymNSH7Fny
+         qvBz5SgwJt4uk8MPqmrQMbyTfeAGYBcz6cLlR6gTBE79vQtIlSmpmVf+R47I6Oucw/t1
+         DnqTLcM+/Z4So7Q3ftNiZBoEfn8vN3UGLyv2Kkux/zMiXWpgFb/2Rz6jyNhgZcqRrIO4
+         DqM1ZaFY6LQrqxg7ASxHSpAZ4ag2vc0yxz+JpIincdcIDbI4+YuJQBY1QyhtLLH5JFt/
+         CQng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=pVrw5k82600NDqO9UekOWyjPzI6TOIeZTghSkGDxxRE=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=E0+p9Fb6eq/vfPDMAqYfMxWjYsS3WBkrDnXMHtGCbf9GWcpWTdkAaM/gpKenqpSRVg
+         gRC9bByJlJfAqAGf/Wthni/h7LDWvWwPzN8oO79auT01Qnsxxa2wizZ9yIs1+BfLM5Cj
+         DqjABdAU7au2fAyRrRSddxbS0Me7J8mpbKNZ13+16zXUFfkXqsbUuwspBVuAHbGCjlyY
+         JXNwOMPLcnYGbhH9lYqt0eiDIP15kaSait5etaEnsW8H3EgJClerT2W0eaMh4RqjBcXz
+         OBi/Z0fh6+AYHqEGBf6rCzySupXhHtzmeHX7HeIgfu5fIV2J8sNBI2hwNNs5QXIlfF9r
+         eAhw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888583; x=1790493383; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=pVrw5k82600NDqO9UekOWyjPzI6TOIeZTghSkGDxxRE=;
+        b=e427b1ARACLeprxmQbiYedNS8eVkZpK/JEBl0aE5YyWAFr+9kBupKRnwg6R5PHbqnd
+         oO0c0YxRBaSCOhCTY86aHS4I2p9776/xogRbBgKcMNzsb7DspNkAX2iv3rD0e838Em39
+         275cq49qP3EKfnsiUHAyxA6TW3ChRiPFXgJYffm/xq9g9zghEinRnjtqaAwYrUirTN30
+         ZDlcvGyS5UtFlh5bUwT5f44VNLt8hIFZrpjWtlUVJ2kjl5cYel1Dhbd5cwLOuZZD5crt
+         Iex86Lu1rvZvbJM8PMr9cWq/WeGiLUhENGIEqL7+YXayy2vRttJdFV9NbL4f1m2LhpUI
+         WV2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888583; x=1790493383;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=pVrw5k82600NDqO9UekOWyjPzI6TOIeZTghSkGDxxRE=;
+        b=Z0Jjkmp2h7cA76Rtf1NTjvfFi6R7Rc7jLcuGZrl1vO9hzAJlm93ReDjrxeaN2Dkr+Y
+         pA3RJGdv9IsNfdAaaIbcY3dyYl9ND42ndr3WqGhkBty+IKNp36jv6M2HzcqpIhr7ibyT
+         5hJrTBnqr2U6WNCxAOW1F3fKG7mJ/3s3h2A0pw6yOZY8zOc5/2VRhr/OR8Vhp9xLYmPY
+         /qHkHBj6Hk5XB/JeiaS+CgXa5ZDNZVvIew4uYYhi4/EPH9aQHKdqp2QI8f7m+O2HIEqY
+         dAUaO+WCjBtwpf36oZdg6+IcqcxiEEJPa8YrSh6GojJjrae2IyadFV36O1e15zpyYl36
+         pI8w==
+X-Gm-Message-State: AFuF++lUjSF6NLu4/nnYeWGnjspavMATupqw2nsMeKQJQOT2N1/QpiKC
+	diMFGCW5f2izVGnuxYak2PZKmxDi10xf1Gxlid+B8k4OjjhsEU0HOS2IK0yS4IFnjvRMAzmMSDu
+	9/bUM5JLvw1cH1N8Y++VRoKViIhAVka0b2A==
+X-Gm-Gg: AYBFou1tp/38csOkOYiiBBNkXgE5feubTkk2C0ONpYeBgnby0coZHvOKmugP1BXClXX
+	aqrBXLvNML+WEwHMJgIMX8Q2muE9jxq6t6h0LcxkBj+OC2sWl/f1waXlwGIPzA/ZQBgt7tKdokg
+	aFyXhe1p4obsWlK51sDm9mOeIVDmac+Q1N1wWV6wpzkPNxPI5Wz0bLhjbGRD/mlrpvGMPnWB0n9
+	yQ6VRjPv1bgubWzV/McWCu/Td/ky5KNi5A4JVZs0DDS/vJamJJ0730VCLHp546UIRG3m8PUXS6M
+	CFDzgSPQvo8zj5wa/+muk/uJEXZ55a+KY3qNQkmSScHtRsLwnlf+tWCyyqDe/nAKSCNOEdVoAI5
+	NkEPFTN+XI3wEJa1mDyXPBwZ4Y8Si/dGphjMdZjBXoD8v7Rfhp5WHY04W8USQvm25opDBro/G
+X-Received: by 2002:a05:690e:140a:b0:66c:c640:a7a9 with SMTP id
+ 956f58d0204a3-6717fc64872mr2499115d50.1.1789888583021; Sun, 20 Sep 2026
+ 00:16:23 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:22 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:22 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:16:22 -0500
+X-Gm-Features: AcwNN1UMFueEFg9BsazamJHSs_phiv3j753t4vYnRctGqo8TxnkUX3rXqodkvJA
+Message-ID: <CAPdrGemyb5SFm-xdvxNQKagXa235Gy17ixD+c=AQBF8jyofzkA@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D20_07=3A2?=
+	=?UTF-8?Q?5_Asia=2FPhnom=5FPenh_=E2=80=94_3_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 3 useful new finds
+
+This run screened 25+ candidates across pet face geometry, animal
+animation, Live2D/2.5D rigging, WebAR, POD automation, mockup
+generation, browser matting and caption/video tooling, then removed
+projects already surfaced in earlier runs. Three are strong enough to
+retain.
+
+1. Plaaasma/printify-mcp =E2=80=94 REUSE/COPY PRODUCTION GUARDS
+
+URL: https://github.com/Plaaasma/printify-mcp
+
+Creator: Plaaasma; fork of TSavo/printify-mcp
+
+Activity: current surfaced repository; 1 commit, 1 star, 0 forks
+
+License: ISC
+
+This is much more useful than another generic Printify wrapper because
+the author extended the upstream MCP after actually hitting production
+failure modes. It adds cost-based pricing, duplicate-title guards,
+order history, print placement, product-category correction,
+mockup-derived carousels/video ads, and a create-and-publish pipeline.
+
+The key Roast.pet value is the documented failure knowledge:
+
+- publishing an already-published Printify product can create a second
+orphaned channel listing; this fork refuses unless republish is
+explicit;
+
+- external.id is not reliably a Shopify product ID immediately after publis=
+h;
+
+- upstream list_products had page/limit arguments reversed and could
+silently return an empty page;
+
+- bad API keys could surface fake-success behavior upstream;
+
+- update_product could report success while Printify ignored camelCase
+variant keys;
+
+- publishing requires all seven flags rather than a partial payload.
+
+Install/API route: Node 18+, npm install/build; runs as an MCP server.
+Only PRINTIFY_API_KEY is required for core Printify operations; ffmpeg
+is needed for video ads.
+
+Dependencies/hardware: Node; ffmpeg for ad video; no GPU needed for
+the production/commerce path.
+
+Evidence: the README explicitly documents production-discovered bugs
+and the corresponding fixes/guards.
+
+Work replaced: potentially most of our defensive Printify adapter,
+pricing logic, duplicate-publish protection and simple product
+creative generation.
+
+Integration difficulty: LOW.
+
+Maintenance risk: MEDIUM because Printify behavior/API can change.
+
+Exact experiment: point it at a disposable/unpublished Printify test
+product, run create =E2=86=92 pricing =E2=86=92 mockups =E2=86=92 publish g=
+uard twice, and
+verify the second publish is blocked and all variant prices actually
+changed.
+
+Verdict: REUSE NOW / COPY PRODUCTION GUARDS.
+
+2. CAFM =E2=80=94 3D cat-like face prior from only 29 stars
+
+URL: https://github.com/sunyifan2017/CAFM-A-3D-Morphable-Model-for-Animals
+
+Creator: sunyifan2017 / research implementation of CAFM
+
+Activity: 12 commits; older research project associated with WACVW 2020
+
+License: license/provenance must be verified before commercial use; do
+not ship until checked.
+
+CAFM is a 3D Morphable Model specifically for cat-like animal faces.
+It was constructed from 50 3D samples spanning domestic cats and
+larger felids. The repo contains a mean face, PCA shape basis,
+eigenvalues, mesh topology and image-matching code. The associated
+data includes 15 facial landmarks, projection parameters, rotations,
+scale and translation; the mesh has roughly 1,256 vertices.
+
+Why this is interesting for Roast.pet: nearly everything we have found
+so far treats the pet as 2D landmarks or a generated raster. CAFM
+offers a cheap geometric prior for estimating head pose and plausible
+3D facial shape from a cat photo. We do NOT need photorealistic 3D
+rendering. A fitted coarse mesh could give us deterministic yaw/pitch,
+mouth-plane orientation, eye plane, muzzle depth and
+perspective-correct placement for 2D mouth/eye overlays.
+
+Install/API route: Python/NumPy; run matching_algorithm.py after
+obtaining its face3d dependency. Shape is generated as meanFace + PCA
+basis =C3=97 coefficients.
+
+Dependencies/hardware: CPU/NumPy for the morphable model fitting path;
+no modern GPU requirement inherent in the representation.
+
+Evidence: published WACVW paper, released mean face/PCA/mesh and
+matching implementation.
+
+Work replaced: potentially custom cat head-pose heuristics and some
+perspective-correction code.
+
+Integration difficulty: MEDIUM-HIGH because it is old research code
+and only cat-like animals.
+
+Maintenance risk: HIGH as a dependency, LOW as a mathematical mechanism.
+
+Exact experiment: take 25 front/three-quarter cat customer photos, fit
+CAFM, and test whether projected mouth/eye planes improve overlay
+placement compared with simple 2D landmark similarity transforms. Do
+not spend time modernizing it unless that benchmark wins.
+
+Verdict: COPY MECHANISM / BENCHMARK; verify commercial licensing first.
+
+3. bssm-oss/image2live2d =E2=80=94 WATCH / COPY RUNTIME-VALIDATION + AUTO-R=
+IG CONTRACT
+
+URL: https://github.com/bssm-oss/image2live2d
+
+Creator: bssm-oss
+
+Activity: surfaced today; 13 commits
+
+License: not sufficiently established from surfaced repository
+metadata for commercial copying; verify before source reuse.
+
+This is a very new R&D repo trying to turn a single image into a
+Live2D runtime model. Importantly, it is unusually honest about what
+works: it can generate a real runtime-loadable static .moc3 bundle
+from a PNG and a heuristic multi-part auto-rig with ArtMeshes, warp
+deformers, expression parameters, idle motion, physics, hit areas and
+LipSync/EyeBlink groups, but it explicitly does NOT claim
+commercial-quality automatic semantic segmentation or rigging.
+
+The valuable Roast.pet mechanism is its capability classification and
+smoke testing. Outputs are classified as demo_fixture,
+contract_bundle_shape_validated, real_cubism_export_attempted,
+real_cubism_export_validated or real_runtime_loaded. It actively
+prevents a fake fixture or malformed .moc3 from being treated as a
+successful generated rig.
+
+That is exactly how Roast.pet should treat generated media
+capabilities: every artifact should carry a machine-verifiable
+capability/provenance status rather than a vague =E2=80=98success=E2=80=99.
+
+A second useful experiment is whether its heuristic auto-rig can
+operate on our already-clean canonical transparent pet, where the
+problem is easier than arbitrary anime character decomposition. If a
+pet can get cheap idle deformation, blink/lip groups and physics from
+a deterministic rig, we might avoid generated video for many AR
+reactions.
+
+Install/API route: Python CLI plus Live2D Cubism Core for runtime
+smoke verification; includes web preview, adapter contracts, tests and
+smoke scripts.
+
+Dependencies/hardware: CPU-oriented orchestration/runtime
+verification; no generative GPU required for the static/heuristic rig
+proof itself.
+
+Evidence: it writes real .moc3 bundles and checks that Cubism Core can
+load them; the repo explicitly distinguishes runtime-loadable proof
+from commercial-quality rigging.
+
+Work replaced: potentially rig bundle plumbing, runtime validation and
+some idle/lip/blink scaffolding.
+
+Integration difficulty: MEDIUM.
+
+Maintenance risk: HIGH because it is extremely new and heuristic.
+
+Exact experiment: feed three approved transparent pets=E2=80=94front-facing
+dog, long-haired dog, cat=E2=80=94into its heuristic auto-rig path. Ignore
+artistic quality initially. Test only: runtime load, blink group,
+lip-sync group, subtle idle motion, and whether identity remains exact
+because the source texture is preserved.
+
+Verdict: WATCH / COPY VALIDATION CONTRACT / BENCHMARK AUTO-RIG.
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+- Defensive Printify publish logic before testing Plaaasma=E2=80=99s
+production-hardened fork.
+
+- Cost/margin pricing and duplicate-publish protection for POD products.
+
+- Cat head-pose/perspective geometry from scratch before benchmarking
+a real 3D cat morphable model.
+
+- A Live2D bundle validator: image2live2d already demonstrates runtime
+smoke tests and explicit capability classes.
+
+- Generated-video idle motion for every pet before testing whether a
+deterministic texture-preserving micro-rig is good enough.
+
+Most surprising hobby project
+
+CAFM. A 29-star repository contains an actual parametric 3D cat-like
+face model, PCA basis, mesh and image-fitting machinery. It is old,
+but it attacks a pet-specific geometry problem that generic avatar
+stacks largely ignore.
+
+Fastest integration win
+
+Plaaasma/printify-mcp. The value is not another API wrapper; it is the
+accumulated production failure guards. We can test its
+duplicate-publish protection and variant-price correctness on one
+disposable product immediately.
+
+One repo/author worth following
+
+Plaaasma/printify-mcp. A one-star fork documenting concrete upstream
+failure cases is exactly the kind of weird, low-popularity production
+knowledge this scanner is supposed to find.
+
+Architecture update
+
+The new useful split is becoming: canonical pet texture/geometry is
+durable; animation and commerce adapters are replaceable. For cats,
+test whether coarse 3D geometry can improve deterministic overlay/pose
+placement. For animation, require machine-verifiable
+runtime/capability status. For POD, reuse production-hardened guards
+rather than discovering Printify=E2=80=99s edge cases with live customer
+orders.

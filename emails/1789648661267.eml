@@ -1,0 +1,407 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 6WVQwWMjeI9s
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 12:37:40 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=hVCWYDcJtWdILJ5d58x6O9ZqEeyfQoel3agFPT6TEGiSNfk0/PDBSR5JKD73dAMps9aBdjSMJ
+	EZ7WhQQ0nPbH8W0blmEOrNDmXPS14JpLBFCEWJfBJnWj9ze8vbB+vNw3pQaH/iOJgHBpX4Ry7hj
+	6agWvyOMqBSzUYEtsrWJL5AJX3mFmqbGj7pstE1UZw1uxgJZOa8qzcuY0IKBxXG1216zKbJI82C
+	2Gqf/GLd6KETHRFWar40W7s/6HD5htSdGK9HkSqfC5IXQWn2pDZzgtYp8IimvBOVAjoBl+VfVEO
+	+8vL4ZhVodcedqRUeKZ6coiRcuFSUQTRNoNctRM9EK+g==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789648661; x=1790253461; bh=XtlRR5Sy
+	x88hbdT2l08bokWSK+A4pAI+HSXEUn05fNE=; b=CGnOlZKLroMcwPiNkspU6Qhkl+UzlNF0Yqm
+	yYL7ODd9AaxLz/1kMyl3XhHepf0geX9kdV9/JFN+seXA0ETDdSzZbm1d4S0Ys1SxTdGPr5bNAa9
+	J45Q2v02juFw6aPs0WshhHiLmQFg+465vtJqwvLOhrbgxUSdQ4F8ZfybKNQNl99KzxC/lf0TaTL
+	ytZEEi737IBiegJj8SZ1SvxE+YIOVUn8A6e2reyBrw+vc069+8GmLuXitGr7rPa/F8d3QHmRE3m
+	4g+GlgbJ+3olomtA8wkWqu50w3YsANvgI2tZFnV5zaTDp6aXFjIKz6tlv6E6r8Hy0uDHI4jHKWL
+	ZH4UiMA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Ac/bfIdT;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Ac/bfIdT;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43ac8d1dso4818177b3.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 05:37:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789648660; cv=none;
+        d=google.com; s=arc-20260327;
+        b=fBadqfcwXQSDAIt93bTxeZNgbs+EUHhuNsJn9CMC5OrOF0Pdusr3BipApuLWlmLo8s
+         WANuTCeTf0znwn7ro+6PaSTWNpr73X7NtF2AmW+jo4am2EMmBwLBrGz9nzSYbvn+uvBH
+         S7YvY8URXGahTwWY02CE6uO+Rv7w6yP8rFa/P0STbTu0gxwwPBNSkfZ6yVdz6/rABlYF
+         /O3MDO53fNpiSuqCwkIm6I33HtboSm4g0jvlmGvdY0zgTn9wGZq2w9Vl5IQ+1H0zSj0V
+         bNyFIuvPeNxZ2a7nXQcTwRfaqcn2XFdoj3ivNC1DEYnoVFEVktY1ApaMYQBhsoTpS0QG
+         tOqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=XtlRR5Syx88hbdT2l08bokWSK+A4pAI+HSXEUn05fNE=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=bvfP58ETaRBfKOOi8fOs9/YXc8zv+8sgE4NxinGgOasTD6BtbhrnPSMV42vCSGN63z
+         7aqn+/AXcqezUR7lhEcbelwjxbtP3NJ9jgVQfwH97EwV9ISTYtWguvOKuAQO3/U6oCfB
+         xVCC0E1N1Tpl49SZbINTAY8emdYmo3bvUHJg5REaWj3PNfg7yXyBbrEkB87xkV7Ivm0r
+         gpa8oSwn1Cnlakd6lbzbDWYv96/nTgQijeD6AB2VDihapO6BHzC6z1zW3bhqwinxf7hm
+         kbEMuYKho/63kDRLoujwSnSvGvOjgv47BbVkle/orSiGypqzueLmECN11pre/8xHwGdY
+         qNLA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789648660; x=1790253460; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=XtlRR5Syx88hbdT2l08bokWSK+A4pAI+HSXEUn05fNE=;
+        b=Ac/bfIdTY4ANqe9hU+pYeC+XTuK5CqW4rcsWDb7n95rd1aRDiDqVWIEug6s0rhufGs
+         XTjS6R4K+mCNnnf7b+igx6bHJex4yzht6GoQYd54SJ+E0eO+RYgwdO3o0T1CHLIy3iU6
+         MRuKcOLhHE2BSiyJd7QQmfwybVrf22RPRtRjIntkImOi4teD83vG3i51pAprj3j8bMKS
+         P8u4iEG4lsSLJ8gD78JWfEjxlgPOwy9peLH3SYebwe0j9QBUyaqO5nW3UgnN55HVwaLX
+         UCTTzsT7NXFF6gWgS1JyN9Zf/t+s0etCR0edXz4LTfHHp0ax1vxrDcrXete0m5lFP04p
+         7Ymw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789648660; x=1790253460;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=XtlRR5Syx88hbdT2l08bokWSK+A4pAI+HSXEUn05fNE=;
+        b=YRHqiulk0xKfxVpIpb8/gC/nySntrzm2RUN2Om26ypAmU3ZMz81ZEPyPn+ZO1bUj2N
+         fF2TN9iCPczYf3nkjgV9XX7ADNlwX5n57wr1/z5VvloPi+mEqxPQiK7ThnPh6N4w5jPv
+         ZxRCwOXXfcK+WdRUAc0Gyj5zG+pYtiaIJQKtwZBTgyTDZEBrnKHYi0BJT6D8R6syJND5
+         2iNGoTNsbZgq8KYfhX9FiKTXwQhXZnMT/5ihwq33XsrjCBTh0C7eR5mcoNbjFYemAHC+
+         1pQn0By2lA4Gk7Vrf+8yo5sE0kqHz6omxp0lMDUq+537LVxwLaKt4sLLcWigLKY6cWF3
+         gxog==
+X-Gm-Message-State: AFuF++njN94qEGbQtVyecQ7mFYeVTg2pcUD625Sw2xXpCMfSdCjWY+Ef
+	x2sPPPuRlmfUez56qWoB1YxbIIzRmQUF6bCMdeaxqjeoMfwlZj3sPoAHhA/YT1hXBS0p3yhIV7U
+	i2D3CMnxB4sWv3qjg2C9W55gxSdrcm39vHg==
+X-Gm-Gg: AYBFou2jGUTUDfCLNJXfJwLp6o6AnvChS4LD2z6Nlg5uIXwGurMeBlkMOoUj/t8uEaJ
+	fzQAyG7SyE6bvxKjxKapjvKuzFWkw7QaQwz/dnwPI1NknDms0iqEVZS5fgkcFvwV8AglsA3z+Ya
+	d/2ygcCFTxV6eYeq1T5NUAQFn2Wq/sUwzw6DQW2LyuefWHYdtyrNDi5LrOiLAk0n2lgdlyn5329
+	cr5nyV3XEPGtPqQdeQX0hov2VSjclczvO/e9qikN9AvES2Ed1KShpqC8EJwWyVUV63uCHchKpfx
+	g65TAB3OJrorQVndQCU/gmWfVt1PYiFyP+4K7xsIi0z1YGtg/4irHbYiwYt/86DLiaQUTrAkSaa
+	ffPV37xdBs88PA7sa5vQvYVqPgnJrEJXNil9IfIytYRCnoKFWmJmeiP2Q3AOa0zJbCl1t0OF5Pt
+	EdZvaX
+X-Received: by 2002:a05:690c:10d:b0:87f:c20c:67a5 with SMTP id
+ 00721157ae682-8922249addfmr20397517b3.29.1789648660388; Thu, 17 Sep 2026
+ 05:37:40 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 07:37:39 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 07:37:39 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 07:37:39 -0500
+X-Gm-Features: AcwNN1X9umLHDb5aYq5hXAk1n3yofIroZwRpz0WjPyURWzZYp5MN-co2ZzxnHVk
+Message-ID: <CAPdrGemTMteGvcgRpmMR+AusMxTr2R+pbiRO2MNfCU3uceSwvA@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Attack_Chains_=E2=80=94_2026=2D09=2D17_19=3A36_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_2_new=2F1_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000ace0de065bad0cd6"
+
+--000000000000ace0de065bad0cd6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Attack Chains =E2=80=94 defensive synthesis
+
+1 NEW ATTACK CHAINS
+
+AC-2026-MCP-OAUTH-ROUTE-HIJACK =E2=80=94 RECENT/LAB_ONLY. Fingerprint: mali=
+cious
+local dependency -> lifecycle execution -> agent global config mutation ->
+persistent session-start hook -> MCP route substitution -> bearer-token
+interception -> delegated SaaS authority. CONFIRMED through token
+interception in public Mitiga research; subsequent malicious SaaS actions
+remain UNKNOWN. Trust boundaries: npm package -> developer OS -> agent
+config -> MCP transport -> OAuth authority. Persistence: session-start
+reassertion. Detection: file-integrity changes to agent config, unexpected
+localhost MCP endpoints, new lifecycle hooks, outbound token-bearing proxy
+paths. Containment: rotate every MCP-connected OAuth grant, reset agent
+config/hooks, isolate package execution, minimize scopes. Safe lab:
+disposable user profile, dummy OAuth server/token, fake MCP endpoint;
+verify config mutation/token interception only.
+
+AC-2026-AGENT-CONFIG-WORM-PERSISTENCE =E2=80=94 RECENT. Fingerprint: poison=
+ed
+package -> install-time execution -> credential harvesting -> agent/editor
+config implantation -> repo push authority -> infected config committed to
+accessible repos -> later workspace/session open -> payload re-execution ->
+CI/package-publishing authority -> downstream propagation. Public reporting
+on the Keyv-linked npm worm independently documents poisoned packages plus
+Claude Code/VS Code hooks and credential harvesting; earlier Mini
+Shai-Hulud reporting describes the same agent/editor-config
+persistence/propagation mechanism. Exact victim-by-victim downstream
+execution remains UNKNOWN. Detection: new .claude/settings.json or
+.vscode/tasks.json, SessionStart/runOn-folderOpen changes, package
+lifecycle scripts, anomalous repo-wide config commits. Containment: treat
+agent/editor config as executable policy, require review/allowlisting,
+revoke repo/npm/cloud authority after infection.
+
+2 MATERIAL CHAIN UPDATES
+
+AC-2026-RESIDUAL-AUTHORITY-CASCADE: strengthened by public reporting on Red
+Hat npm compromise and prior Checkmarx/Trivy sequence. New edge:
+compromised CI/OIDC or surviving credentials -> official package
+publication -> downstream CI credential targeting. Red Hat stated no
+identified customer/partner or production-system impact, so those
+downstream consequence edges remain UNKNOWN rather than inferred.
+
+3 TOP RECURRING SECOND-ORDER MECHANISMS
+
+A. Developer/package execution -> durable agent/editor configuration ->
+later privileged execution.
+B. Local compromise -> MCP/OAuth routing -> delegated SaaS authority.
+C. CI/release authority -> trusted registry artifact -> downstream
+developer/CI credential access.
+D. Credential theft -> surviving bot/app/OIDC/publisher authority ->
+post-remediation recurrence.
+E. Repository-controlled content/config -> agent execution context ->
+cross-tool authority.
+
+4 STAGE/EDGE GRAPHS
+
+MCP OAuth chain: package [CONFIRMED] -> lifecycle execution [CONFIRMED] ->
+~/.claude.json mutation [CONFIRMED] -> SessionStart persistence [CONFIRMED]
+-> MCP proxy [CONFIRMED] -> OAuth bearer interception [CONFIRMED] -> SaaS
+action [UNKNOWN].
+
+Agent-config worm: poisoned package [CONFIRMED] -> install execution
+[CONFIRMED] -> credential harvest [CONFIRMED] -> Claude/VS Code hook
+implantation [CONFIRMED] -> repo/package authority [CONFIRMED at campaign
+level] -> propagation [CONFIRMED at campaign level] -> specific downstream
+privileged action [UNKNOWN].
+
+5 UNKNOWN LINKS WORTH RESOLVING
+
+Whether any public incident documents intercepted MCP OAuth tokens being
+used for a confirmed external write/action; whether Keyv-linked
+agent-config hooks produced independently verified post-cleanup
+re-execution; which identity class enabled the Red Hat CI/OIDC publication
+path; whether agent-memory poisoning has crossed from lab demonstrations to
+independently documented production incidents.
+
+6 DEFENSIVE CHOKEPOINTS + DETECTION PRIMITIVES
+
+Monitor agent/editor configuration as executable persistence surface; alert
+on MCP endpoint changes and localhost proxy substitution; inventory OAuth
+grants by agent and tool; isolate package lifecycle execution from
+cloud/release credentials; require provenance-bound publishing identities;
+revoke human+bot+app+deploy-key+registry+OIDC authority as a single
+remediation graph; monitor repository config propagation separately from
+source-code diffs.
+
+7 SAFE LAB REPRODUCTION QUEUE
+
+(1) Dummy MCP OAuth interception using fake bearer token and local test
+server. (2) Disposable repo with benign SessionStart marker to measure
+persistence after package removal. (3) Fake CI environment demonstrating
+that package lifecycle code cannot access dummy cloud/release tokens under
+proposed isolation. No real credentials, wallets, production repos or
+third-party systems.
+
+8 CROSS-CASE CLUSTERS
+
+CL-MUTABLE-AGENT-CONFIG: MCP OAuth hijack + Mini Shai-Hulud + Keyv-linked
+hooks. Mechanism: local write authority becomes durable agent
+execution/instruction authority.
+CL-RELEASE-AUTHORITY-CASCADE: Trivy/Checkmarx + Red Hat + npm worm cases.
+Mechanism: developer/CI credential compromise becomes trusted publishing
+authority and then downstream execution.
+
+9 JSONL DELTA
+
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-MCP-OAUTH-ROUTE-HIJACK=
+=E2=80=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CLAB_ONLY=E2=80=9D,=E2=80=9Cfing=
+erprint=E2=80=9D:=E2=80=9Cdependency->lifecycle->agent_config->session_pers=
+istence->mcp_route->oauth_token=E2=80=9D,=E2=80=9Cconfirmed=E2=80=9D:6,=E2=
+=80=9Cinferred=E2=80=9D:0,=E2=80=9Cunknown=E2=80=9D:1,=E2=80=9Caffected_sta=
+cks=E2=80=9D:[=E2=80=9Cnpm=E2=80=9D,=E2=80=9CClaude
+Code=E2=80=9D,=E2=80=9CMCP=E2=80=9D,=E2=80=9COAuth=E2=80=9D,=E2=80=9CSaaS=
+=E2=80=9D],=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cpackage/OS=E2=80=9D=
+,=E2=80=9COS/agent-config=E2=80=9D,=E2=80=9Cagent/MCP=E2=80=9D,=E2=80=9CMCP=
+/OAuth=E2=80=9D],=E2=80=9Cfalsifier=E2=80=9D:=E2=80=9Cpublic
+reproduction fails to intercept a dummy bearer token after documented
+config mutation=E2=80=9D}
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-AGENT-CONFIG-WORM-PERSI=
+STENCE=E2=80=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT=E2=80=9D,=E2=80=9C=
+fingerprint=E2=80=9D:=E2=80=9Cpackage->credential_harvest->agent_editor_hoo=
+ks->repo_authority->workspace_reexecution->propagation=E2=80=9D,=E2=80=9Cco=
+nfirmed=E2=80=9D:6,=E2=80=9Cinferred=E2=80=9D:0,=E2=80=9Cunknown=E2=80=9D:1=
+,=E2=80=9Caffected_stacks=E2=80=9D:[=E2=80=9Cnpm=E2=80=9D,=E2=80=9CGitHub=
+=E2=80=9D,=E2=80=9CClaude
+Code=E2=80=9D,=E2=80=9CVS
+Code=E2=80=9D,=E2=80=9CCI=E2=80=9D],=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=
+=80=9Cregistry/host=E2=80=9D,=E2=80=9Chost/agent-config=E2=80=9D,=E2=80=9Ch=
+ost/repository=E2=80=9D,=E2=80=9Crepository/downstream-host=E2=80=9D]}
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-RESIDUAL-AUTHORITY-CASC=
+ADE=E2=80=9D,=E2=80=9Cdelta=E2=80=9D:=E2=80=9Cstrengthened=E2=80=9D,=E2=80=
+=9Cnew_support=E2=80=9D:=E2=80=9CRed
+Hat official npm-channel compromise reporting; customer/production impact
+explicitly not established=E2=80=9D}
+
+10 NEXT-HOUR RESEARCH QUEUE
+
+   1. Find primary Mitiga write-up and determine whether any OAuth-token
+   use beyond interception was observed.
+   2. Resolve Keyv/Mini-Shai-Hulud overlap from primary
+   Socket/SafeDep/StepSecurity evidence and separate confirmed incidents fr=
+om
+   derivative naming.
+   3. Find primary Red Hat/Socket/Aikido evidence for exact CI/OIDC
+   authority transition.
+   4. Search recent papers/incidents for production agent-memory poisoning
+   -> later tool-call chains.
+   5. Search browser-session -> delegated-agent-authority incidents with
+   confirmed external action.
+
+Public evidence used this run includes Mitiga-derived reporting on Claude
+Code MCP OAuth routing, SafeDep/Socket/Aikido reporting summarized in
+current Keyv coverage, and public Red Hat npm compromise reporting. No
+private identities, secrets, wallets or third-party compromise instructions
+were investigated.
+
+--000000000000ace0de065bad0cd6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Privately Attack Chains =E2=80=94 defensive synthesis</p>
+<p>1 NEW ATTACK CHAINS</p>
+<p>AC-2026-MCP-OAUTH-ROUTE-HIJACK =E2=80=94 RECENT/LAB_ONLY. Fingerprint: m=
+alicious local dependency -&gt; lifecycle execution -&gt; agent global conf=
+ig mutation -&gt; persistent session-start hook -&gt; MCP route substitutio=
+n -&gt; bearer-token interception -&gt; delegated SaaS authority. CONFIRMED=
+ through token interception in public Mitiga research; subsequent malicious=
+ SaaS actions remain UNKNOWN. Trust boundaries: npm package -&gt; developer=
+ OS -&gt; agent config -&gt; MCP transport -&gt; OAuth authority. Persisten=
+ce: session-start reassertion. Detection: file-integrity changes to agent c=
+onfig, unexpected localhost MCP endpoints, new lifecycle hooks, outbound to=
+ken-bearing proxy paths. Containment: rotate every MCP-connected OAuth gran=
+t, reset agent config/hooks, isolate package execution, minimize scopes. Sa=
+fe lab: disposable user profile, dummy OAuth server/token, fake MCP endpoin=
+t; verify config mutation/token interception only.</p>
+<p>AC-2026-AGENT-CONFIG-WORM-PERSISTENCE =E2=80=94 RECENT. Fingerprint: poi=
+soned package -&gt; install-time execution -&gt; credential harvesting -&gt=
+; agent/editor config implantation -&gt; repo push authority -&gt; infected=
+ config committed to accessible repos -&gt; later workspace/session open -&=
+gt; payload re-execution -&gt; CI/package-publishing authority -&gt; downst=
+ream propagation. Public reporting on the Keyv-linked npm worm independentl=
+y documents poisoned packages plus Claude Code/VS Code hooks and credential=
+ harvesting; earlier Mini Shai-Hulud reporting describes the same agent/edi=
+tor-config persistence/propagation mechanism. Exact victim-by-victim downst=
+ream execution remains UNKNOWN. Detection: new .claude/settings.json or .vs=
+code/tasks.json, SessionStart/runOn-folderOpen changes, package lifecycle s=
+cripts, anomalous repo-wide config commits. Containment: treat agent/editor=
+ config as executable policy, require review/allowlisting, revoke repo/npm/=
+cloud authority after infection.</p>
+<p>2 MATERIAL CHAIN UPDATES</p>
+<p>AC-2026-RESIDUAL-AUTHORITY-CASCADE: strengthened by public reporting on =
+Red Hat npm compromise and prior Checkmarx/Trivy sequence. New edge: compro=
+mised CI/OIDC or surviving credentials -&gt; official package publication -=
+&gt; downstream CI credential targeting. Red Hat stated no identified custo=
+mer/partner or production-system impact, so those downstream consequence ed=
+ges remain UNKNOWN rather than inferred.</p>
+<p>3 TOP RECURRING SECOND-ORDER MECHANISMS</p>
+<p>A. Developer/package execution -&gt; durable agent/editor configuration =
+-&gt; later privileged execution.<br>
+B. Local compromise -&gt; MCP/OAuth routing -&gt; delegated SaaS authority.=
+<br>
+C. CI/release authority -&gt; trusted registry artifact -&gt; downstream de=
+veloper/CI credential access.<br>
+D. Credential theft -&gt; surviving bot/app/OIDC/publisher authority -&gt; =
+post-remediation recurrence.<br>
+E. Repository-controlled content/config -&gt; agent execution context -&gt;=
+ cross-tool authority.</p>
+<p>4 STAGE/EDGE GRAPHS</p>
+<p>MCP OAuth chain: package [CONFIRMED] -&gt; lifecycle execution [CONFIRME=
+D] -&gt; ~/.claude.json mutation [CONFIRMED] -&gt; SessionStart persistence=
+ [CONFIRMED] -&gt; MCP proxy [CONFIRMED] -&gt; OAuth bearer interception [C=
+ONFIRMED] -&gt; SaaS action [UNKNOWN].</p>
+<p>Agent-config worm: poisoned package [CONFIRMED] -&gt; install execution =
+[CONFIRMED] -&gt; credential harvest [CONFIRMED] -&gt; Claude/VS Code hook =
+implantation [CONFIRMED] -&gt; repo/package authority [CONFIRMED at campaig=
+n level] -&gt; propagation [CONFIRMED at campaign level] -&gt; specific dow=
+nstream privileged action [UNKNOWN].</p>
+<p>5 UNKNOWN LINKS WORTH RESOLVING</p>
+<p>Whether any public incident documents intercepted MCP OAuth tokens being=
+ used for a confirmed external write/action; whether Keyv-linked agent-conf=
+ig hooks produced independently verified post-cleanup re-execution; which i=
+dentity class enabled the Red Hat CI/OIDC publication path; whether agent-m=
+emory poisoning has crossed from lab demonstrations to independently docume=
+nted production incidents.</p>
+<p>6 DEFENSIVE CHOKEPOINTS + DETECTION PRIMITIVES</p>
+<p>Monitor agent/editor configuration as executable persistence surface; al=
+ert on MCP endpoint changes and localhost proxy substitution; inventory OAu=
+th grants by agent and tool; isolate package lifecycle execution from cloud=
+/release credentials; require provenance-bound publishing identities; revok=
+e human+bot+app+deploy-key+registry+OIDC authority as a single remediation =
+graph; monitor repository config propagation separately from source-code di=
+ffs.</p>
+<p>7 SAFE LAB REPRODUCTION QUEUE</p>
+<p>(1) Dummy MCP OAuth interception using fake bearer token and local test =
+server. (2) Disposable repo with benign SessionStart marker to measure pers=
+istence after package removal. (3) Fake CI environment demonstrating that p=
+ackage lifecycle code cannot access dummy cloud/release tokens under propos=
+ed isolation. No real credentials, wallets, production repos or third-party=
+ systems.</p>
+<p>8 CROSS-CASE CLUSTERS</p>
+<p>CL-MUTABLE-AGENT-CONFIG: MCP OAuth hijack + Mini Shai-Hulud + Keyv-linke=
+d hooks. Mechanism: local write authority becomes durable agent execution/i=
+nstruction authority.<br>
+CL-RELEASE-AUTHORITY-CASCADE: Trivy/Checkmarx + Red Hat + npm worm cases. M=
+echanism: developer/CI credential compromise becomes trusted publishing aut=
+hority and then downstream execution.</p>
+<p>9 JSONL DELTA</p>
+<p>{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-MCP-OAUTH-ROUTE-HIJA=
+CK=E2=80=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CLAB_ONLY=E2=80=9D,=E2=80=9Cfi=
+ngerprint=E2=80=9D:=E2=80=9Cdependency-&gt;lifecycle-&gt;agent_config-&gt;s=
+ession_persistence-&gt;mcp_route-&gt;oauth_token=E2=80=9D,=E2=80=9Cconfirme=
+d=E2=80=9D:6,=E2=80=9Cinferred=E2=80=9D:0,=E2=80=9Cunknown=E2=80=9D:1,=E2=
+=80=9Caffected_stacks=E2=80=9D:[=E2=80=9Cnpm=E2=80=9D,=E2=80=9CClaude Code=
+=E2=80=9D,=E2=80=9CMCP=E2=80=9D,=E2=80=9COAuth=E2=80=9D,=E2=80=9CSaaS=E2=80=
+=9D],=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cpackage/OS=E2=80=9D,=E2=
+=80=9COS/agent-config=E2=80=9D,=E2=80=9Cagent/MCP=E2=80=9D,=E2=80=9CMCP/OAu=
+th=E2=80=9D],=E2=80=9Cfalsifier=E2=80=9D:=E2=80=9Cpublic reproduction fails=
+ to intercept a dummy bearer token after documented config mutation=E2=80=
+=9D}<br>
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-AGENT-CONFIG-WORM-PERSI=
+STENCE=E2=80=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT=E2=80=9D,=E2=80=9C=
+fingerprint=E2=80=9D:=E2=80=9Cpackage-&gt;credential_harvest-&gt;agent_edit=
+or_hooks-&gt;repo_authority-&gt;workspace_reexecution-&gt;propagation=E2=80=
+=9D,=E2=80=9Cconfirmed=E2=80=9D:6,=E2=80=9Cinferred=E2=80=9D:0,=E2=80=9Cunk=
+nown=E2=80=9D:1,=E2=80=9Caffected_stacks=E2=80=9D:[=E2=80=9Cnpm=E2=80=9D,=
+=E2=80=9CGitHub=E2=80=9D,=E2=80=9CClaude Code=E2=80=9D,=E2=80=9CVS Code=E2=
+=80=9D,=E2=80=9CCI=E2=80=9D],=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cr=
+egistry/host=E2=80=9D,=E2=80=9Chost/agent-config=E2=80=9D,=E2=80=9Chost/rep=
+ository=E2=80=9D,=E2=80=9Crepository/downstream-host=E2=80=9D]}<br>
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-RESIDUAL-AUTHORITY-CASC=
+ADE=E2=80=9D,=E2=80=9Cdelta=E2=80=9D:=E2=80=9Cstrengthened=E2=80=9D,=E2=80=
+=9Cnew_support=E2=80=9D:=E2=80=9CRed Hat official npm-channel compromise re=
+porting; customer/production impact explicitly not established=E2=80=9D}</p=
+>
+<p>10 NEXT-HOUR RESEARCH QUEUE</p>
+<ol>
+<li>Find primary Mitiga write-up and determine whether any OAuth-token use =
+beyond interception was observed.</li>
+<li>Resolve Keyv/Mini-Shai-Hulud overlap from primary Socket/SafeDep/StepSe=
+curity evidence and separate confirmed incidents from derivative naming.</l=
+i>
+<li>Find primary Red Hat/Socket/Aikido evidence for exact CI/OIDC authority=
+ transition.</li>
+<li>Search recent papers/incidents for production agent-memory poisoning -&=
+gt; later tool-call chains.</li>
+<li>Search browser-session -&gt; delegated-agent-authority incidents with c=
+onfirmed external action.</li>
+</ol>
+<p>Public evidence used this run includes Mitiga-derived reporting on Claud=
+e Code MCP OAuth routing, SafeDep/Socket/Aikido reporting summarized in cur=
+rent Keyv coverage, and public Red Hat npm compromise reporting. No private=
+ identities, secrets, wallets or third-party compromise instructions were i=
+nvestigated.</p>
+
+--000000000000ace0de065bad0cd6--

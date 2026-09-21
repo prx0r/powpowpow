@@ -1,0 +1,893 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id aVxmQxY8xMkp
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 17:23:36 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=MeEweBWxVFiNNQzR9VFX6u+xe5rTp6xups6oQyxZij6exkjxI+drFFwDi2kOFCHR+4CJX/tC1
+	vmjA1ChzdtYBmpBnQ58bctVnkQ5pSqXL9yREP3KIcqE0KB4dhXlTN/BzzWpB4200mhye3fz2x+d
+	+V7NDQF1tdpuJ1dZQv1Xq87x4JKcWmOsZrZQZ+Ci0SD7RR2KR5Su6yFgcqTWXgzQyTpGYNoooUm
+	E0/GzWpVJtREAfrR9azq/3EnHs2OTkxFb+8kcyPsGGUuHB4Gx5odyd7fNUvxSIeiQaR6FTDaGba
+	/XGE7y3yPfiXV8/Wn54bDkMlGYDQVGrbeMrXmwKTjlHA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789665818; x=1790270618; bh=jjxBj5Sz
+	lOx4rrAQ+4i1rnBIREmmOPZLG3jH8KxWCr4=; b=WZks9QPNlUkyqdyWq4WBmhs30dLqfWY75DZ
+	LhU5CJIUmUnTUKs3iRSybMOTyTip2/0b9CUKwv1wuG/vSRpjVTfdMChWI7dgsJCcYegbrRVhKtv
+	CSPDRFHX5RTjPLrFWX9ryp1ikfe8cWzrmLRNmjdUSNgfr/pJ2ej3apwV5NXnAO/m4l6g6a8Xzp2
+	iAbpxWUwQl2Uz1JyQIHQvT6h7HeVeJEprSm0qFV2PXs5tv+2yxEF6FnfsCNxEhn3mJVO7VtK55Q
+	j9TQsrQ+0GrguJMbiTqGLeIJ7VBeasIXUzS3f1syuOURBJRlIZ4A5+SgHdziglCM1CE40DJa1ZG
+	0rSk18g==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ZEFoQrVN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ZEFoQrVN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-85d43ac8d1dso7853307b3.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 10:23:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789665816; cv=none;
+        d=google.com; s=arc-20260327;
+        b=YGDEL48Wa/cfHX0EmSOo2c0FoZs+15AVBXrK+tYe/qm6ibnABEtqJEeE/nbDZzX1Ds
+         mCnmgx8KvXpO2sZRTbSeyxEPTTP3pzcqvicNJliv6GXxjY7n0PnL1U9Sz+TgiqEA4va4
+         eOtu9JmTV/BpYTd2lJXCtqryGJx3O+ynFR4h6loRn0bsaQ4ZwmY7Azc5gGHQCto8nSOV
+         te76sHo7Ley2kg9k466x7maT5pFft+NRaAfsofRYFSojNpdSEUJ1z415RXEoQKxvH+WU
+         qfnHjEkySt/tPDQgmi6YCmAuh37OfrTzYITaneUhNQn/Tcgnwy3NngSTUCCl43H80kO5
+         R4Wg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=jjxBj5SzlOx4rrAQ+4i1rnBIREmmOPZLG3jH8KxWCr4=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=QGaR04O8bufwIMQF1ZI76zOTdK3CcR9bdPalOzJBbnsH0cUE8kJmWkHt+OvyNJlxwn
+         wNib95euiv1zyhL7iGAbTuJuUmQK8B9TR1R/Dzh2dAyTXkUxKkqjL08M+Tjl/JGI2Zuf
+         vLGcT+SpHTvAdAVlFAfsm56xqb3JdctFvHKYBF2K3wCbJxKZvVMxLx/DBhjsjBhWDhPy
+         wDA8benqM9KXEhrCSDI1hBiBK9yDH6vPgF41zQUJot2PijcVS/gab4RaM2d/oSY9NfGi
+         nUpejdc0tzi57Ud7kyaJzJA7f7P7lxTjhtO6SzbgN3hBKq1lsvc0gzWtRJVtHa6XASP9
+         JMcg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789665816; x=1790270616; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=jjxBj5SzlOx4rrAQ+4i1rnBIREmmOPZLG3jH8KxWCr4=;
+        b=ZEFoQrVN4jLbtu6SmnJ2N60YIKMHUMCJglCXzS+WUTmd25WqIvBJ1bJml5lMQWKDfv
+         o6zDdaUXwgIAd5eLAubsEZhrEWkmjwdyA2W3RKQ+jaRGaQaUrWyvireKxCQ+vPLiUr01
+         RPQIMVDuY6cEsabO9/9KMVR76nMYT796eLSdTD5NFZGY9fTGmBKNHFZm3+ztqU3LVWxj
+         +Bu59JfBIfCNXTyk5o7fo/e5IpR0PHE0cY0y+lzCZLkNAcbWUUqgV/qImuLDCi4F91yJ
+         W9Qvr6dTgq68/uTaq5zhz1FpDqHr+OWLm96RAWTB3NYhCjgqaZWGiKVHtJ7fwghzXLX5
+         jNZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789665816; x=1790270616;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=jjxBj5SzlOx4rrAQ+4i1rnBIREmmOPZLG3jH8KxWCr4=;
+        b=xvNZqY0bBZeL7Y8JgFj5ikGzrsmyKbl/hN4/lcX4j8Zacxpwa6cyl0pxt14GlSvfcU
+         aKUhzXDqI0QIBn3tQgrwHMizultKWLvNYHiAatgUii9hTw0fm6aVZREMMYdtuE4blXet
+         m1MohdiETjlONAlJKoYZRmm1Q+MRUfduYZRkDhaI8B78syrBPxY2jxQ3O8DfFgyCyE6o
+         NsjWW8Zee2lR6eQoGSFIzLl910D9a0NxWNM05JdRwt2ynusbukcH7k08LAAjYovqUaVF
+         MzdugKAiPm8lujiYORt4fgF8NahlU+0fjfZD+N/iCTJqOfExdWV4qrTiJUW5QY6Lwqpq
+         7sGQ==
+X-Gm-Message-State: AFuF++nocrGTbE5tMwbC6SeFKn7SmUbvUdSJuGthtOdK17/5cLjLXLkS
+	k+JolNZfa9+Q54w3BC7aLSW9PCW9IoxZxqRA86qgbNidohOC/2abkTzvKQtWsa/3MUY3Toj6HQL
+	Js+4O7vKaakoi/haqgx/qTpNBADYrs3mgdQ==
+X-Gm-Gg: AYBFou219qsOtoTUIGxfGw5dreZmV/bYXTo68ktOWRnw/+6S71jrwSYdV9cTy/3DJwm
+	1InSYMfX0bjSkn9AvdXUEgEJt4SnBMjwYjbFIvdtwXx3S47aS1Z/s/ybzjLlKMRkOXknmsnKhfB
+	QfeMgR5WHCluijdESoeX4FiJsmflMEo/5UCaUuyj5QxO8IkI2EBrS3S1tVrXAyBoZhPSIIX0FPQ
+	agDs5YnA15idiT5j9lbAx6xuzosGjN6RRMwdmEZmIGS45e728c9CJbWsWbNsFT1X/XwOZSH/PYG
+	E/npwIvA0Sy3MEn2ToOLnPdCgvtuy7ER3JADyw7mCbNCTLNeI9v8sCijF8+zZi8zsdNaiTQiXAz
+	hLC6XIgKlPMPmfFdtJGiiLb3sJKCx4QG2jqkvWkzWl3RVbn3www6IIFR2rD12K6yYWX4Qrmpmnw
+	==
+X-Received: by 2002:a05:690c:60c6:b0:873:5c0f:279 with SMTP id
+ 00721157ae682-89224b96d0cmr23807567b3.35.1789665816129; Thu, 17 Sep 2026
+ 10:23:36 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:23:35 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:23:35 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 12:23:35 -0500
+X-Gm-Features: AcwNN1UVaq9X0HwSP0B5LY3l4pJivJdehZZXOA-kP_pS3diVMQj4uwJq78Zv_W4
+Message-ID: <CAPdrGek8yMbzrqTn-zZavDjXtDJj8Mo2Yv3-w=-VRxYgTLePfw@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail=2FQP_convergence_plan_3=2F3_=E2=80=94_refactor_sequence_?=
+	=?UTF-8?Q?=2B_definition_of_valuable?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000003cb3f5065bb10bd4"
+
+--0000000000003cb3f5065bb10bd4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Continuation 3/3.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+M. EXACT REFACTOR SEQUENCE
+
+Do this in order. Do not parallelize architectural changes until each
+boundary has a passing adversarial test.
+
+PHASE 0 =E2=80=94 STOP CLAIMING COMMODITY LAYERS AS PRODUCT
+
+Update docs/product language:
+
+   - remove claims that QP=E2=80=99s uniqueness is Ed25519 receipts, hash c=
+hains,
+   vaults, OAuth, schedulers or generic agent authorization
+   - explicitly position those as replaceable dependencies
+   - state that QP=E2=80=99s unique layer is external-state claim semantics=
+ +
+   independent verification + deterministic settlement
+
+Product invariant:
+
+Agent says it acted
+!=3D executor says success
+!=3D signed audit record exists
+!=3D external claim is TRUE
+
+QP exists for the last step.
+
+PHASE 1 =E2=80=94 MAKE THE CURRENT QP PATH ACTUALLY CONSTITUTIONAL
+
+Before integrations, close the current STOP-SHIP findings from the latest
+peer review:
+
+   1. No effect handler may issue its own human/owner grant.
+   2. email.send, wire_email, phone_purchase and every other mutator must
+   route through the effect gateway.
+   3. required_claims must actually be loaded and checked as settled TRUE
+   under the required ContractRoot.
+   4. readback.exists must never directly mint TRUE.
+   5. gateway must execute the frozen ProofSpec judges/gates.
+   6. receipts must have non-empty ContractRoot, exact claim_id, real
+   previous-state/previous-receipt roots, signer and signature.
+   7. domain ownership readback must prove ownership in the expected
+   Cloudflare account; registrable:false is not ownership.
+   8. email infrastructure claims and email_receives round-trip claim
+   remain separate.
+   9. move QP migration into the migration path wrangler actually runs.
+   10. include QP code/tests in typecheck/CI.
+   11. remove/kill legacy acom/0.1 and pass:boolean proof paths.
+   12. fix src/capacity.ts unconditional-null bug or delete that legacy
+   path entirely.
+
+Do not start Monid integration until one real domain or harmless test
+effect passes the full invariant.
+
+PHASE 2 =E2=80=94 ADOPT AGENT RECEIPTS ENVELOPE
+
+Goal: remove custom receipt cryptographic plumbing from the critical path.
+
+Tasks:
+
+   1. Add @obsigna/sdk-ts or integrate the out-of-process daemon.
+   2. Create QP extension schema/context.
+   3. Map current TransitionReceipt fields to Agent Receipt + QP extension.
+   4. Make QP signer external to the untrusted executor process where
+   practical.
+   5. Run Agent Receipts cross-language/conformance verification against
+   emitted receipts.
+   6. Preserve QP replay as a semantic replay step distinct from receipt
+   signature verification.
+
+Acceptance:
+
+   - Obsigna verifier accepts canonical QP action receipt.
+   - Mutating any signed QP extension field breaks receipt verification.
+   - Valid signed receipt with false QP evidence still fails QP semantic
+   replay.
+
+That third test is crucial: signed !=3D true.
+
+PHASE 3 =E2=80=94 ADOPT AGENT VAULT
+
+Goal: agent/QP planner never possesses upstream credentials.
+
+Tasks:
+
+   1. Deploy Agent Vault separately in local dev.
+   2. Add strict service rules for one provider first (YouTube or
+   Cloudflare test credential).
+   3. Replace direct env-secret reads in the connector path with
+   short-lived vault-scoped session/proxy use.
+   4. Store credential_ref/version in evidence, not secret.
+   5. Add deny tests for non-approved host/path.
+   6. Ensure logs redact credentials.
+
+Acceptance:
+
+   - connector succeeds without raw provider token in its process env/confi=
+g
+   - agent cannot ask vault to disclose raw credential
+   - connector cannot use credential on unrelated host/path
+   - QP receipt contains no token material
+
+PHASE 4 =E2=80=94 MONID CONNECTOR SPIKE
+
+Do not port the whole social product first.
+
+Implement exactly TWO connectors:
+
+A. harmless/read-only observer
+youtube.videos.list OR Cloudflare domain/account read
+
+B. one effect with clean readback
+ideally a low-risk reversible test resource, or use a mocked provider
+fixture until safe
+
+Wrap Monid behind ConnectorRuntime so QP is not coupled to its internal
+APIs.
+
+Store exact Monid bundle hash in QP evidence/receipt.
+
+Acceptance:
+
+   - changing connector source changes bundle hash
+   - replay fixture reproduces normalized output offline
+   - QP rejects evidence whose claimed bundle hash does not match frozen
+   ProofSpec
+   - effect connector=E2=80=99s own success cannot satisfy the observer cla=
+im
+
+PHASE 5 =E2=80=94 SOCIAL VERTICAL: YOUTUBE FIRST
+
+Why YouTube first:
+
+   - official APIs are comparatively structured
+   - social-mcp already contains publishing/analytics code to inspect
+   - Postiz already contains mature provider behavior
+   - QP can independently read video/channel state
+   - content has stable platform IDs and rich readback fields
+
+Target claims:
+
+youtube.account_owned(channel_id)
+youtube.oauth_authorized(principal, scopes)
+youtube.can_post(channel_id)
+youtube.video_exists(video_id)
+youtube.video_bound_to_channel(video_id, channel_id)
+youtube.video_metadata(video_id, metadata_hash)
+youtube.video_visibility(video_id, expected_visibility)
+youtube.video_processing_complete(video_id)
+
+Composite:
+youtube.video_published_exact(=E2=80=A6)
+
+Execution backend preference:
+
+   1. direct Monid official connector if ready
+   2. Postiz sidecar
+
+Readback preference:
+
+   1. separate official YouTube Data API Monid connector
+
+Never use Postiz=E2=80=99s response as final evidence for exact publication=
+ truth.
+
+PHASE 6 =E2=80=94 GENERATE PROOFSPEC SKELETONS FROM CONNECTOR PAIRS
+
+Build the useful automation:
+
+Input:
+effect endpoint schema
+observer endpoint schema
+
+Output candidate:
+EffectSpec
+Claim schema
+ProofSpec skeleton
+identity-binding fields
+candidate equality/projection rules
+freshness suggestion
+independence requirement
+authority requirement
+adversarial fixture checklist
+
+Human must review/freeze semantics before ContractRoot creation.
+
+This is a genuinely valuable QP developer primitive because it converts
+commodity APIs into verified capabilities.
+
+PHASE 7 =E2=80=94 AUTHORITY PROVIDER ABSTRACTION
+
+Create:
+
+authority/
+provider.ts
+grantex.ts
+local-test.ts
+
+Do not replace QP=E2=80=99s current grant implementation until tests demons=
+trate
+equivalent/better binding.
+
+Required tests for Grantex-backed path:
+
+   - wrong principal denied
+   - wrong agent denied
+   - wrong action denied
+   - payload mutation denied
+   - expired/revoked authority denied
+   - child delegation broader than parent denied
+   - price over approved bound denied
+   - replay/idempotency violation denied
+
+If Grantex cannot express exact payload/amount constraints directly, put a
+QP constraint object hash into the grant=E2=80=99s signed/custom claims and=
+ verify
+it at effect time.
+
+PHASE 8 =E2=80=94 DURABLE RECONCILIATION
+
+Only now integrate Trigger.dev.
+
+Wrap it as operational infrastructure:
+
+interface ReconciliationScheduler {
+schedule(claimId, attempt, nextAt): Promise
+cancel(claimId): Promise
+}
+
+QP owns terminal truth. Trigger owns retry timing.
+
+Use for:
+
+   - YouTube processing completion polling
+   - ambiguous API outcomes
+   - delayed publication
+   - eventual consistency
+   - human approval waits
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+N. REPO ORGANIZATION AFTER CONVERGENCE
+
+Suggested:
+
+src/
+qp/
+claims/
+proofspecs/
+settlement/
+replay/
+composition/
+registry/
+
+integrations/
+monid/
+agent-receipts/
+agent-vault/
+authority/
+postiz/
+trigger/
+
+verticals/
+youtube/
+claims.ts
+proofspecs.ts
+mappings.ts
+tests/
+cloudflare/
+email/
+
+Do not put third-party semantics inside qp/kernel.ts.
+
+Kernel should know interfaces, hashes and deterministic semantics=E2=80=94n=
+ot how
+YouTube, Postiz or Vault work.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+O. WHAT WE ACTUALLY OWN / SELL
+
+After this convergence the proprietary/high-value surface is intentionally
+SMALL:
+
+   1.
+
+   ProofSpec registry
+   A growing catalog of exact definitions for proving external states.
+   2.
+
+   Effect/readback mapping
+   Knowledge of which independent observation establishes which claim after
+   which effect.
+   3.
+
+   Claim composition
+   How lower-level proven states compose into business outcomes.
+
+Example:
+
+video_published_exact
+=3D account_owned
+AND oauth_authorized
+AND video_exists
+AND channel_binding
+AND artifact/metadata binding
+AND visibility
+AND processing_complete
+
+   1.
+
+   Independence semantics
+   Which evidence channels are sufficiently independent for a claim.
+   2.
+
+   Verified spend
+   Binding authorization + provider charge evidence + achieved external
+   result.
+   3.
+
+   ProofSpec compiler/tooling
+   Turning commodity connector definitions into candidate verifiable
+   capabilities.
+   4.
+
+   Reconciliation semantics
+   Correct handling when an effect may have occurred but readback is
+   temporarily UNKNOWN.
+
+Everything else is replaceable commodity plumbing.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+P. MVP THAT PROVES THE PRODUCT
+
+Do NOT build Instagram/TikTok/X simultaneously.
+
+The first product demo should be:
+
+=E2=80=9CPublish this exact video to this exact YouTube channel under this =
+exact
+policy and return a portable proof.=E2=80=9D
+
+Input:
+
+   - artifact hash
+   - channel ID
+   - metadata hash/title
+   - visibility
+   - max spend
+   - authority
+
+System:
+
+   - authority verified
+   - credential brokered without exposure
+   - executor performs upload
+   - official observer independently reads state
+   - QP evaluates frozen ProofSpec
+   - Obsigna signs portable receipt
+   - reconciliation handles processing delays
+
+Output:
+
+   - TRUE/FALSE/UNKNOWN
+   - platform ID/permalink
+   - exact fields proven
+   - cost observed
+   - QP ContractRoot
+   - evidence root
+   - portable Agent Receipt
+   - semantic replay PASS
+
+If this single path is cryptographically and semantically correct, the
+platform expansion is mostly adapter/ProofSpec work.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Q. DEFINITION OF DONE FOR THE CONVERGENCE
+
+Do not mark this work complete until all are true:
+
+[ ] QP no longer invents its own generic receipt crypto where Obsigna
+covers it
+[ ] emitted QP receipt passes Agent Receipts conformance verification
+[ ] QP semantic replay remains separately required
+[ ] raw provider secrets never enter the agent/planner process
+[ ] Agent Vault strict egress policy is tested
+[ ] one Monid connector bundle is pinned/content-addressed in a real proof
+[ ] changing connector implementation invalidates old frozen identity
+[ ] Postiz is isolated behind HTTP as an untrusted executor
+[ ] one official independent readback exists for the same effect
+[ ] executor success alone cannot make claim TRUE
+[ ] one YouTube exact-publication composite ProofSpec works end-to-end
+[ ] every consequential path requires externally issued authority
+[ ] no handler self-mints owner/human authority
+[ ] no confirmed:true boolean is treated as authority
+[ ] legacy pass:boolean / acom proof system removed from production path
+[ ] durable retry status cannot settle world truth
+[ ] all imported dependencies are pinned and their licenses recorded
+[ ] each third-party integration can be replaced behind an interface
+without changing ProofSpec semantics
+
+FINAL DESIGN PRINCIPLE
+
+Use open source for HOW to call, authenticate, queue, sign and transport.
+
+QP owns WHAT must be true before we are willing to say an autonomous action
+succeeded.
+
+That is the product boundary. Optimize ruthlessly around it.
+
+--0000000000003cb3f5065bb10bd4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Continuation 3/3.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+M. EXACT REFACTOR SEQUENCE
+<p>Do this in order. Do not parallelize architectural changes until each bo=
+undary has a passing adversarial test.</p>
+<p>PHASE 0 =E2=80=94 STOP CLAIMING COMMODITY LAYERS AS PRODUCT</p>
+<p>Update docs/product language:</p>
+<ul>
+<li>remove claims that QP=E2=80=99s uniqueness is Ed25519 receipts, hash ch=
+ains, vaults, OAuth, schedulers or generic agent authorization</li>
+<li>explicitly position those as replaceable dependencies</li>
+<li>state that QP=E2=80=99s unique layer is external-state claim semantics =
++ independent verification + deterministic settlement</li>
+</ul>
+<p>Product invariant:</p>
+<p>Agent says it acted<br>
+!=3D executor says success<br>
+!=3D signed audit record exists<br>
+!=3D external claim is TRUE</p>
+<p>QP exists for the last step.</p>
+<p>PHASE 1 =E2=80=94 MAKE THE CURRENT QP PATH ACTUALLY CONSTITUTIONAL</p>
+<p>Before integrations, close the current STOP-SHIP findings from the lates=
+t peer review:</p>
+<ol>
+<li>No effect handler may issue its own human/owner grant.</li>
+<li>email.send, wire_email, phone_purchase and every other mutator must rou=
+te through the effect gateway.</li>
+<li>required_claims must actually be loaded and checked as settled TRUE und=
+er the required ContractRoot.</li>
+<li>readback.exists must never directly mint TRUE.</li>
+<li>gateway must execute the frozen ProofSpec judges/gates.</li>
+<li>receipts must have non-empty ContractRoot, exact claim_id, real previou=
+s-state/previous-receipt roots, signer and signature.</li>
+<li>domain ownership readback must prove ownership in the expected Cloudfla=
+re account; registrable:false is not ownership.</li>
+<li>email infrastructure claims and email_receives round-trip claim remain =
+separate.</li>
+<li>move QP migration into the migration path wrangler actually runs.</li>
+<li>include QP code/tests in typecheck/CI.</li>
+<li>remove/kill legacy acom/0.1 and pass:boolean proof paths.</li>
+<li>fix src/capacity.ts unconditional-null bug or delete that legacy path e=
+ntirely.</li>
+</ol>
+<p>Do not start Monid integration until one real domain or harmless test ef=
+fect passes the full invariant.</p>
+<p>PHASE 2 =E2=80=94 ADOPT AGENT RECEIPTS ENVELOPE</p>
+<p>Goal: remove custom receipt cryptographic plumbing from the critical pat=
+h.</p>
+<p>Tasks:</p>
+<ol>
+<li>Add @obsigna/sdk-ts or integrate the out-of-process daemon.</li>
+<li>Create QP extension schema/context.</li>
+<li>Map current TransitionReceipt fields to Agent Receipt + QP extension.</=
+li>
+<li>Make QP signer external to the untrusted executor process where practic=
+al.</li>
+<li>Run Agent Receipts cross-language/conformance verification against emit=
+ted receipts.</li>
+<li>Preserve QP replay as a semantic replay step distinct from receipt sign=
+ature verification.</li>
+</ol>
+<p>Acceptance:</p>
+<ul>
+<li>Obsigna verifier accepts canonical QP action receipt.</li>
+<li>Mutating any signed QP extension field breaks receipt verification.</li=
+>
+<li>Valid signed receipt with false QP evidence still fails QP semantic rep=
+lay.</li>
+</ul>
+<p>That third test is crucial: signed !=3D true.</p>
+<p>PHASE 3 =E2=80=94 ADOPT AGENT VAULT</p>
+<p>Goal: agent/QP planner never possesses upstream credentials.</p>
+<p>Tasks:</p>
+<ol>
+<li>Deploy Agent Vault separately in local dev.</li>
+<li>Add strict service rules for one provider first (YouTube or Cloudflare =
+test credential).</li>
+<li>Replace direct env-secret reads in the connector path with short-lived =
+vault-scoped session/proxy use.</li>
+<li>Store credential_ref/version in evidence, not secret.</li>
+<li>Add deny tests for non-approved host/path.</li>
+<li>Ensure logs redact credentials.</li>
+</ol>
+<p>Acceptance:</p>
+<ul>
+<li>connector succeeds without raw provider token in its process env/config=
+</li>
+<li>agent cannot ask vault to disclose raw credential</li>
+<li>connector cannot use credential on unrelated host/path</li>
+<li>QP receipt contains no token material</li>
+</ul>
+<p>PHASE 4 =E2=80=94 MONID CONNECTOR SPIKE</p>
+<p>Do not port the whole social product first.</p>
+<p>Implement exactly TWO connectors:</p>
+<p>A. harmless/read-only observer<br>
+youtube.videos.list OR Cloudflare domain/account read</p>
+<p>B. one effect with clean readback<br>
+ideally a low-risk reversible test resource, or use a mocked provider fixtu=
+re until safe</p>
+<p>Wrap Monid behind ConnectorRuntime so QP is not coupled to its internal =
+APIs.</p>
+<p>Store exact Monid bundle hash in QP evidence/receipt.</p>
+<p>Acceptance:</p>
+<ul>
+<li>changing connector source changes bundle hash</li>
+<li>replay fixture reproduces normalized output offline</li>
+<li>QP rejects evidence whose claimed bundle hash does not match frozen Pro=
+ofSpec</li>
+<li>effect connector=E2=80=99s own success cannot satisfy the observer clai=
+m</li>
+</ul>
+<p>PHASE 5 =E2=80=94 SOCIAL VERTICAL: YOUTUBE FIRST</p>
+<p>Why YouTube first:</p>
+<ul>
+<li>official APIs are comparatively structured</li>
+<li>social-mcp already contains publishing/analytics code to inspect</li>
+<li>Postiz already contains mature provider behavior</li>
+<li>QP can independently read video/channel state</li>
+<li>content has stable platform IDs and rich readback fields</li>
+</ul>
+<p>Target claims:</p>
+<p>youtube.account_owned(channel_id)<br>
+youtube.oauth_authorized(principal, scopes)<br>
+youtube.can_post(channel_id)<br>
+youtube.video_exists(video_id)<br>
+youtube.video_bound_to_channel(video_id, channel_id)<br>
+youtube.video_metadata(video_id, metadata_hash)<br>
+youtube.video_visibility(video_id, expected_visibility)<br>
+youtube.video_processing_complete(video_id)</p>
+<p>Composite:<br>
+youtube.video_published_exact(=E2=80=A6)</p>
+<p>Execution backend preference:</p>
+<ol>
+<li>direct Monid official connector if ready</li>
+<li>Postiz sidecar</li>
+</ol>
+<p>Readback preference:</p>
+<ol>
+<li>separate official YouTube Data API Monid connector</li>
+</ol>
+<p>Never use Postiz=E2=80=99s response as final evidence for exact publicat=
+ion truth.</p>
+<p>PHASE 6 =E2=80=94 GENERATE PROOFSPEC SKELETONS FROM CONNECTOR PAIRS</p>
+<p>Build the useful automation:</p>
+<p>Input:<br>
+effect endpoint schema<br>
+observer endpoint schema</p>
+<p>Output candidate:<br>
+EffectSpec<br>
+Claim schema<br>
+ProofSpec skeleton<br>
+identity-binding fields<br>
+candidate equality/projection rules<br>
+freshness suggestion<br>
+independence requirement<br>
+authority requirement<br>
+adversarial fixture checklist</p>
+<p>Human must review/freeze semantics before ContractRoot creation.</p>
+<p>This is a genuinely valuable QP developer primitive because it converts =
+commodity APIs into verified capabilities.</p>
+<p>PHASE 7 =E2=80=94 AUTHORITY PROVIDER ABSTRACTION</p>
+<p>Create:</p>
+<p>authority/<br>
+provider.ts<br>
+grantex.ts<br>
+local-test.ts</p>
+<p>Do not replace QP=E2=80=99s current grant implementation until tests dem=
+onstrate equivalent/better binding.</p>
+<p>Required tests for Grantex-backed path:</p>
+<ul>
+<li>wrong principal denied</li>
+<li>wrong agent denied</li>
+<li>wrong action denied</li>
+<li>payload mutation denied</li>
+<li>expired/revoked authority denied</li>
+<li>child delegation broader than parent denied</li>
+<li>price over approved bound denied</li>
+<li>replay/idempotency violation denied</li>
+</ul>
+<p>If Grantex cannot express exact payload/amount constraints directly, put=
+ a QP constraint object hash into the grant=E2=80=99s signed/custom claims =
+and verify it at effect time.</p>
+<p>PHASE 8 =E2=80=94 DURABLE RECONCILIATION</p>
+<p>Only now integrate Trigger.dev.</p>
+<p>Wrap it as operational infrastructure:</p>
+<p>interface ReconciliationScheduler {<br>
+schedule(claimId, attempt, nextAt): Promise<br>
+cancel(claimId): Promise<br>
+}</p>
+<p>QP owns terminal truth. Trigger owns retry timing.</p>
+<p>Use for:</p>
+<ul>
+<li>YouTube processing completion polling</li>
+<li>ambiguous API outcomes</li>
+<li>delayed publication</li>
+<li>eventual consistency</li>
+<li>human approval waits</li>
+</ul>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+N. REPO ORGANIZATION AFTER CONVERGENCE
+<p>Suggested:</p>
+<p>src/<br>
+qp/<br>
+claims/<br>
+proofspecs/<br>
+settlement/<br>
+replay/<br>
+composition/<br>
+registry/</p>
+<p>integrations/<br>
+monid/<br>
+agent-receipts/<br>
+agent-vault/<br>
+authority/<br>
+postiz/<br>
+trigger/</p>
+<p>verticals/<br>
+youtube/<br>
+claims.ts<br>
+proofspecs.ts<br>
+mappings.ts<br>
+tests/<br>
+cloudflare/<br>
+email/</p>
+<p>Do not put third-party semantics inside qp/kernel.ts.</p>
+<p>Kernel should know interfaces, hashes and deterministic semantics=E2=80=
+=94not how YouTube, Postiz or Vault work.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+O. WHAT WE ACTUALLY OWN / SELL
+<p>After this convergence the proprietary/high-value surface is intentional=
+ly SMALL:</p>
+<ol>
+<li>
+<p>ProofSpec registry<br>
+A growing catalog of exact definitions for proving external states.</p>
+</li>
+<li>
+<p>Effect/readback mapping<br>
+Knowledge of which independent observation establishes which claim after wh=
+ich effect.</p>
+</li>
+<li>
+<p>Claim composition<br>
+How lower-level proven states compose into business outcomes.</p>
+</li>
+</ol>
+<p>Example:</p>
+<p>video_published_exact<br>
+=3D account_owned<br>
+AND oauth_authorized<br>
+AND video_exists<br>
+AND channel_binding<br>
+AND artifact/metadata binding<br>
+AND visibility<br>
+AND processing_complete</p>
+<ol>
+<li>
+<p>Independence semantics<br>
+Which evidence channels are sufficiently independent for a claim.</p>
+</li>
+<li>
+<p>Verified spend<br>
+Binding authorization + provider charge evidence + achieved external result=
+.</p>
+</li>
+<li>
+<p>ProofSpec compiler/tooling<br>
+Turning commodity connector definitions into candidate verifiable capabilit=
+ies.</p>
+</li>
+<li>
+<p>Reconciliation semantics<br>
+Correct handling when an effect may have occurred but readback is temporari=
+ly UNKNOWN.</p>
+</li>
+</ol>
+<p>Everything else is replaceable commodity plumbing.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+P. MVP THAT PROVES THE PRODUCT
+<p>Do NOT build Instagram/TikTok/X simultaneously.</p>
+<p>The first product demo should be:</p>
+<p>=E2=80=9CPublish this exact video to this exact YouTube channel under th=
+is exact policy and return a portable proof.=E2=80=9D</p>
+<p>Input:</p>
+<ul>
+<li>artifact hash</li>
+<li>channel ID</li>
+<li>metadata hash/title</li>
+<li>visibility</li>
+<li>max spend</li>
+<li>authority</li>
+</ul>
+<p>System:</p>
+<ul>
+<li>authority verified</li>
+<li>credential brokered without exposure</li>
+<li>executor performs upload</li>
+<li>official observer independently reads state</li>
+<li>QP evaluates frozen ProofSpec</li>
+<li>Obsigna signs portable receipt</li>
+<li>reconciliation handles processing delays</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>TRUE/FALSE/UNKNOWN</li>
+<li>platform ID/permalink</li>
+<li>exact fields proven</li>
+<li>cost observed</li>
+<li>QP ContractRoot</li>
+<li>evidence root</li>
+<li>portable Agent Receipt</li>
+<li>semantic replay PASS</li>
+</ul>
+<p>If this single path is cryptographically and semantically correct, the p=
+latform expansion is mostly adapter/ProofSpec work.</p>
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+Q. DEFINITION OF DONE FOR THE CONVERGENCE
+<p>Do not mark this work complete until all are true:</p>
+<p>[ ] QP no longer invents its own generic receipt crypto where Obsigna co=
+vers it<br>
+[ ] emitted QP receipt passes Agent Receipts conformance verification<br>
+[ ] QP semantic replay remains separately required<br>
+[ ] raw provider secrets never enter the agent/planner process<br>
+[ ] Agent Vault strict egress policy is tested<br>
+[ ] one Monid connector bundle is pinned/content-addressed in a real proof<=
+br>
+[ ] changing connector implementation invalidates old frozen identity<br>
+[ ] Postiz is isolated behind HTTP as an untrusted executor<br>
+[ ] one official independent readback exists for the same effect<br>
+[ ] executor success alone cannot make claim TRUE<br>
+[ ] one YouTube exact-publication composite ProofSpec works end-to-end<br>
+[ ] every consequential path requires externally issued authority<br>
+[ ] no handler self-mints owner/human authority<br>
+[ ] no <code>confirmed:true</code> boolean is treated as authority<br>
+[ ] legacy pass:boolean / acom proof system removed from production path<br=
+>
+[ ] durable retry status cannot settle world truth<br>
+[ ] all imported dependencies are pinned and their licenses recorded<br>
+[ ] each third-party integration can be replaced behind an interface withou=
+t changing ProofSpec semantics</p>
+<p>FINAL DESIGN PRINCIPLE</p>
+<p>Use open source for HOW to call, authenticate, queue, sign and transport=
+.</p>
+<p>QP owns WHAT must be true before we are willing to say an autonomous act=
+ion succeeded.</p>
+<p>That is the product boundary. Optimize ruthlessly around it.</p>
+
+--0000000000003cb3f5065bb10bd4--

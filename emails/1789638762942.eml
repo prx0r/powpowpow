@@ -1,0 +1,842 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 7K5zW1hIaC3y
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 09:52:42 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=O154DoEo3V6g8lCuJwOJ/L+OxICTJie7P0wMdx6ykmImNAXYr0ypHQ/NK7OHBI7KGY7RDxKHd
+	i9nuai4yfJWvAdRUbDH6sQB1URooQWQW1lWnUx/OvTWMICLvOMm5q5IcKHZ02cP+hmD/PNzB3rI
+	0wN2oCWjyl2eT0ocdtXHq4leSAVsiutwMRYg3c0L5YeQ5WHkI7KyI5hjxAggoseFepv1qLapIun
+	ttwB8nKfrtQck80nVe7u10QcKG31XuSfARCsXe2EkB/hHPWk9Vr4LPb0w86eG9Yi7LE4242162v
+	hf7kfbcVh4iqzqBC9aAiJBsa6ugHzM/ESlNQOn+X3cKA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789638762; x=1790243562; bh=LTubfkYh
+	dsMO0w+XrhK87evV1e6mSZzbjjI0TXMp1/Q=; b=cgA1FjiW9boE3Yj4hWKR1caVHtyGYBzTd0h
+	GQdcpndYDILbTmboQ3BzuEJXfQpdpqo2nzleoDv45tWgYRoZM3ysHXAJAiHTrRpJy+2gRZ5g7/F
+	uapsKeNkfu4Uj9whJyWYz9FzbqLefRalwNUI4U2S9JCANGzUVl/j/9/jJeuG7to3gLflH81sawm
+	dWWux1mijMUKwSqIr65e/UXOi1rxIWDUo7xzYUrciqHKk4WITLdaoqLMQjBz0NPyjcN+ktYOHXc
+	GGO2Z8cATCHbM5Jmc/CPnQyx5ioOT5D/BBCCqGhsR0nUdxg4EhgR0ACleHo4nrBf2JOoJMjuRWE
+	3NCnPeA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=oSqpGCn0;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=oSqpGCn0;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab201ecso529699d50.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 02:52:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789638762; cv=none;
+        d=google.com; s=arc-20260327;
+        b=f2VoQvpsR1S7repVM85+zCLP3rUM8c95DE+Cx4100BFQ9am6uIYaxP7nbw2lelsleX
+         zSp4zZqn6BuW2NzQyiPtecuCxBG0or3LjGsm3Pi2BnqS/RclV0SzRfL2DDr/ldyKSSht
+         /Kv4gsxdsTSJb9a6cPwuz3vLd/ySfnbtX/ba4KUKwylIsNH1TpuzghuEgA7Mvct++yNj
+         OMyARg0/pBZO1csqg1RXFV0Og4h91wYqlPSxDdQYO4AyW9vPyV2H58cMMvLSnHXM/xXL
+         9SjLmtYvikLK7RSadHCYL7EgLcwb6nqH86M/wVfuX8lSZZMdKwpVI1aNltyfBEg1CEr5
+         RNpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=LTubfkYhdsMO0w+XrhK87evV1e6mSZzbjjI0TXMp1/Q=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=BSMz0tSxYLkz2Ij5iuwAiFqkOfQAy02sPuPKJdMGQs1+LOQJKPLrGROYjeBEBtBnEm
+         1Hxh/YTXTbkOKoZKGb0UcqxbToGtXBoQL+TgjM5YuhO+AiKYMAfnofbpTez5Gl3HxOsf
+         +MKBHxxceUew0tc7KlEjlJogKgmWpuuhd/AP15E5oDkYNnm0gdGowibl5Q5cOpZbLELs
+         7kdLSlhrWWzpSObDI6ao/Z8Yby/wy5vgiWIXAGOLaQFNZO+54yJSvwO43GUTC8vio8L+
+         9JLRsNGzT+gnQbLZPE9nKBVIr/exzGTSi+iWoAfcqAhE2e3wv4JqWrPehks3ZK00v/sh
+         HLPA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789638762; x=1790243562; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=LTubfkYhdsMO0w+XrhK87evV1e6mSZzbjjI0TXMp1/Q=;
+        b=oSqpGCn0W36fI02YKAVkEqYNp4uLiZ0R8HkCi1WHs113vRDcSvOzbaiyTbomXKRFuH
+         xshkVK8X18JBEX6nOk3JYgcksFC4ztODacio6ATLkBINhp4Zo/IdNWANX/3YJ8pIWGO5
+         vDgna5tWeL4jJ44pSX8eulQyDDXTnTVmA3lXnx7+xYiRUj6+SwKeUo5W+85KYQCDJOYg
+         5u762Kxzy1OQikL4eypG9I+IZIqEW6zWCYq73/FZzJ4kk2lBzDG80YcLxP3P00SDrG4C
+         /kbYljkP+86qzTHQ8iz7TAWfJVFARBbeAR3dY5UZ55RaByaYW0XQdZd8A36qXUQxSi/X
+         g4Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789638762; x=1790243562;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=LTubfkYhdsMO0w+XrhK87evV1e6mSZzbjjI0TXMp1/Q=;
+        b=V+DXb2hg0DDU4uD7XRL7lveJUR+S7yQVZCB+fsPQD1RTVPEhsaliSC5kZDiozX1acI
+         g2JmERpkj9WgLDfxiK6bRXhdnILpiOgpBSGeletTHL+a59vxQ/OyXMXobtMkyb8XkeaO
+         0QcDXQo4U9vThMpH9w6WNGf3XoEYAnMCEAnNf1LObmP+CRuH32T9IoBTcj91qAjaOI9p
+         Z4+Ia43C8fu8QsUk2yX/XXy0aL1NGU7nRrYx+h1Al60riy53aGJS8RnVfXERryChTTm9
+         i5t3ojvsZc4Gd4UIXhIStK9HD08H4eu4JlAVyZX8K7lHmDHsNN7GZsXS9YyLxksEyM4j
+         RGag==
+X-Gm-Message-State: AFuF++mRG2Aq44ga3Gx8NW51xVOZld+idiKZ9uY6la5D5bDUQL3SCKv7
+	Lwc0anSOgFtKkkjkXa2b33+yxVUwZCqnGtVLDCDlL7E21lNQivGDRGjM8QsXK/AGUO1VYNj3pGq
+	jqhvHnRObVoWY1AT6wMbnBwnk9NwvfhLr0A==
+X-Gm-Gg: AYBFou1SrUO00bva5+qK+BCAkdlFn+S2hWIjEzEDZ6QtL5N3egiduiLsLAFWIpoBAIY
+	dhdLBDADKUVybiUDdt6tEqtc3yXSS94LYTeV53SX5pakBcNoAz7u2zmI5+RPvoA5WIbn4fdQ1dk
+	tkq9yfXbW6BbJ60cnRlZz9yi5ascbWx9N/0fMtyb/Y8OBIn9UgAoR9Wyi55fLN7o6sykQErzda5
+	X5VPkmMGVuiV3ugCfI1Qcl1HfYkeyjbi/bJYT4PnbsrH8DGCm5Xpdy6wpmwsWzJ8wneS+306SgC
+	Fuu0OJf1hQv4EZzQdsghZthJAdmE1SKUBFKxN1/c+7R3mEZSo5dQgMNxCJhggj6lT1BswHblD0D
+	W9+4YgZFHmxN1NpHCmVfG6Wp56Uu7oke2nZh5ivMkjEwbli2BZfMdqtaKpNu9VvBE5LGzoqO5
+X-Received: by 2002:a05:690e:439a:b0:671:1aab:435a with SMTP id
+ 956f58d0204a3-67163303d2dmr1599924d50.88.1789638761832; Thu, 17 Sep 2026
+ 02:52:41 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 04:52:41 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 04:52:41 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 04:52:41 -0500
+X-Gm-Features: AcwNN1VtX4y7Ia2Zi3sSfbQXcB25lrBPnbUJtd7bt8IMK5efGkVphS_ANcu2gg4
+Message-ID: <CAPdrGenZ7CyaZeczh6PEy8EBTNxVmyp2YOEirN96oahXDji2qw@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D17_16=3A51_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_4_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000ace819065baabe55"
+
+--000000000000ace819065baabe55
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Scanner =E2=80=94 Edge Report 1. RUN STATE / COVERAGE AUDIT
+
+Recovered the prior Privately Scanner chain from Gmail Sent. The
+immediately previous report was 5 new/0 changed to this mailbox; earlier
+legacy scanner runs were also recovered. This pass semantic-deduped known
+Monid, Dream-RSI, MCParasite/ProjectMemory, Google Home MCP, OpenAI
+misalignment reporting, Deadbugz, PhantomRaven, Tencent AI-Infra-Guard,
+Open AI UGC/OpenShorts and other previously registered mechanisms.
+
+Search widened from today/24h into 3d/7d/30d where fresh hourly results
+were low-yield. Four objects survived the novelty filter. No old-security
+backfill was performed.
+
+*Delta:* 4 NEW / 0 MATERIAL CHANGED.
+2. EXECUTIVE EDGE MAP
+
+   - *TrueForge* is a serious new open-source agent-harness candidate:
+   created 2026-07-23, pushed today, 5,722 stars / 441 forks live. It packa=
+ges
+   model calls, MCP, skills, sandboxing, approvals, context/session state,
+   subagents and UI/API into a vendor-neutral runtime. This is much closer =
+to
+   the emerging agent operating layer than another thin framework.
+   - *OpenMontage* is the strongest autonomous-media object found so far:
+   an open-source agentic video-production system with 12 pipelines, 100+
+   tools and 700+ skill/production-knowledge files. Live GitHub: 59,690 sta=
+rs
+   / 7,513 forks. It can run under Claude Code, Codex or OpenCode and suppo=
+rts
+   local/open paths as well as paid generation.
+   - *Uber ADR* is the most important defender object found this pass
+   because it is not merely a scanner: it captures agent intent/tool traces=
+,
+   discovers agent/MCP surfaces, benchmarks attacks and performs two-tier
+   runtime detection. It is production-proven at Uber and its benchmark cov=
+ers
+   300+ tasks and 134 MCP servers.
+   - *Tripwire* is the opposite end of the signal spectrum: only 10 stars /
+   2 forks, but created Aug 1 and specifically targets sandboxed pre-instal=
+l
+   scanning of AI skills + MCP servers with a fail-closed guard. Low adopti=
+on,
+   useful mechanism; WATCH rather than endorse.
+   - Recent search produced lots of recycled MCP-security commentary and
+   older supply-chain campaigns. These were rejected rather than padded int=
+o
+   the report.
+
+3. AGENT FRAMEWORK / OSS FRONTIER NEW =E2=80=94 TRUEFORGE
+
+Repo: https://github.com/truefoundry/trueforge
+Live primary GitHub observation: created 2026-07-23; pushed 2026-09-17
+09:50Z; 5,722 stars; 441 forks; TypeScript; MIT.
+
+*What is new:* TrueForge treats the harness itself as the product layer:
+agent loop + models + MCP + git-backed skills + on-demand sandbox +
+approvals + subagents + deferred tool loading + compaction + session
+persistence + chat UI + HTTP/TS SDK. Local mode uses SQLite; hosted mode
+adds Postgres/Redis.
+
+*Why technically interesting:* The frontier appears to be moving from pick
+an agent framework toward pick a harness/runtime that can host
+interchangeable models, tools, skills and sandboxes. TrueForge is
+explicitly vendor-neutral and exposes the same runtime through UI/API/SDK.
+
+*Adoption evidence:* 5.7k stars in ~8 weeks, pushed today, external
+technical coverage this week, company-backed.
+
+*Trajectory inference:* 6m: plausible serious alternative to managed-agent
+harnesses. 18m: harness layer likely commoditizes; differentiation shifts
+to governance, context engineering and tool ecosystems. 36m: if standards
+converge, framework names matter less than runtime
+policy/observability/interoperability.
+
+*Security implication:* TrueForge concentrates authority over MCP servers,
+skills, secrets, sandboxes, session state and approvals. That makes the
+harness a natural Privately enforcement point.
+
+*Decision:* SANDBOX NOW.
+
+*Experiment:* run one identical agent task in TrueForge and the current
+Privately/QP harness. Measure tool-call count, token cost, approval
+boundaries, secret exposure, session-state inspectability and ease of
+inserting an authority-transition processor.
+4. PAPER -> FUTURE AGENT FRONTIER
+
+No genuinely new paper beat the existing Dream-RSI/self-improvement objects
+this hour. Search did surface memory-poisoning work, but the strongest
+candidate was older than the intended frontier window and did not justify
+padding.
+5. COMMERCIAL SHOCKS -> OSS/PRIVATE
+
+No new commercial capability shock survived semantic dedupe this hour.
+Google Home MCP and OpenAI=E2=80=99s new disclosure/principal-related impli=
+cations
+remain watchlist items rather than being rewritten.
+6. ATTACKER FRONTIER
+
+No new attacker mechanism cleared the bar this pass. Search continued to
+surface Shai-Hulud/Mini-Shai-Hulud, Miasma, prompt-in-CI, MCParasite and
+existing MCP poisoning/rug-pull patterns. Those are already represented
+conceptually or outside the current novelty window.
+
+This is a useful exhaustion signal: the next attacker search should bias
+toward newly-created GitHub PoCs, new security-research repos and fresh
+package/skill incidents rather than web articles containing MCP security.
+7. DEFENDER FRONTIER NEW =E2=80=94 UBER ADR
+
+Repo: https://github.com/uber/ADR
+Paper: https://arxiv.org/abs/2605.17380
+
+*Mechanism delta:* ADR moves beyond static prompt/MCP scanning into an
+EDR-like model for agents. Its open components cover discovery,
+telemetry/observability, a realistic benchmark and two-tier detection. The
+sensor captures intent, tool use and execution traces across coding agents
+including Claude Code, Cursor, Codex, Copilot CLI, DeepSeek Harness and
+opencode.
+
+*Production evidence:* Uber reports deployment across >7,200 hosts and
+>10,000 agent sessions/day in the accompanying research. ADR-Bench contains
+300+ tasks, 134 MCP servers and 17 attack techniques. The paper reports
+materially better detection than several existing baselines.
+
+*What previous generation it improves on:* static signatures / prompt-only
+filters / endpoint telemetry that sees the shell/file event but not the
+agent causal chain.
+
+*Dynamic/adaptive:* materially more dynamic than static scanners because it
+consumes contextual execution traces and uses two-stage detection; still
+not proof against fully adaptive adversaries.
+
+*Tool outputs hostile:* benchmark explicitly includes
+prompt-injection/agent attack scenarios; worth testing exact tool-output
+coverage ourselves.
+
+*Persistence/memory:* not its strongest differentiated layer. Pair with
+memory-specific controls rather than assume ADR solves persistent state
+poisoning.
+
+*Decision:* ADOPT AS BENCHMARK + SANDBOX SENSOR.
+
+*Privately edge:* ADR-Bench should become one of the external corpora
+QP/probes are measured against. More importantly, its telemetry schema may
+be a better starting point than inventing our own agent EDR event format.
+NEW =E2=80=94 TRIPWIRE
+
+Repo: https://github.com/neomatrix369/tripwire
+Live primary observation: created 2026-08-01; pushed 2026-09-14; 10 stars /
+2 forks; Python; MIT.
+
+*Mechanism:* sandboxed multi-scanner pre-install assessment for AI
+skills/MCP servers plus fail-closed guard/posture output.
+
+*Why it survived despite 10 stars:* it directly targets the new agents
+install executable/instruction-bearing capabilities supply-chain boundary.
+This is exactly the type of tiny repo the scanner is supposed to notice
+before popularity.
+
+*Weakness:* adoption evidence is nearly absent and it may collapse into a
+wrapper around existing scanners. Do not overrate it.
+
+*Decision:* WATCH / QUICK CODE REVIEW, not adoption.
+
+*Falsifier:* if its scanners are mostly delegated calls with no unique
+sandbox/behavioural analysis, remove from registry priority.
+8. CURRENT THREAT REALITY
+
+No new campaign displaced the existing current-threat set this hour. The
+dominant practical classes remain agent/developer supply-chain compromise,
+credential theft, mutable/poisoned tools, untrusted content crossing into
+privileged agent actions, and autonomous/adaptive attack loops. No
+duplicate incident writeups promoted.
+9. ATTACK LOGBOOK DELTAS
+
+No new canonical attack-chain fingerprint this run.
+10. AUTONOMOUS VIDEO / MEDIA FRONTIER NEW =E2=80=94 OPENMONTAGE
+
+Repo: https://github.com/calesthio/OpenMontage
+Site: https://openmontage.video/
+Live primary GitHub observation: created 2026-03-29; 59,690 stars / 7,513
+forks; Python; AGPL-3.0. Search-index claims of a Sep 16 update conflict
+with GitHub API pushed_at=3D2026-09-06; primary API wins and the search-ind=
+ex
+date is marked STALE/AMBIGUOUS.
+
+*What is new:* OpenMontage is not merely another text-to-video wrapper. It
+exposes an agentic production system: research, script, scene planning,
+asset generation/retrieval, TTS, music, subtitles, editing/composition,
+review and checkpointing. It advertises 12 pipelines, 100+ tools and 700+
+agent skill/production-knowledge files.
+
+*Critical Privately fit:* it can run as an MCP toolset under Claude
+Code/Codex/OpenCode, supports local rendering, allows BYO providers, has
+free/open footage paths, and exposes budget governance before generation.
+Its site describes local footage staying on-device and an open project
+format.
+
+*Why this outranks OpenShorts/Open AI UGC:* broader end-to-end production
+coverage, stronger adoption signal, explicit agent-native orchestration and
+a local/open path. OpenShorts remains useful for Shorts specialization;
+OpenMontage is the stronger candidate for the main report -> video pipeline=
+.
+
+*Decision:* ADOPT/SANDBOX NOW.
+
+*Experiment:* give OpenMontage one existing Privately Scanner finding as
+structured input and require a 60-90s technical explainer. Record human
+interventions, generation spend, wall time, factual errors, visual-quality
+failures and whether the complete project remains reproducible from source
+files.
+
+*Falsifier:* >20 minutes human repair or repeated factual drift makes it
+unsuitable for autonomous publication despite impressive breadth.
+11. PRIVATELY LAB =E2=80=94 TOP EXPERIMENTS
+
+   1. *LAB-HARNESS-TRUEFORGE-01* =E2=80=94 same agent task in TrueForge vs =
+current
+   stack; inspect authority, secrets, state and cost.
+   2. *LAB-ADR-01* =E2=80=94 run ADR Sensor/Detection on a benign synthetic
+   tool-injection corpus; map ADR telemetry to QP proof fields.
+   3. *LAB-OPENMONTAGE-01* =E2=80=94 scanner JSON -> 60-90s video, zero man=
+ual
+   editing target.
+   4. *LAB-TRIPWIRE-01* =E2=80=94 feed benign skill/MCP fixtures with known=
+ risky
+   patterns; determine whether Tripwire contributes unique behavioural sign=
+al
+   or only aggregates scanners.
+
+12. BUILD / PROBE OPPORTUNITIES
+
+The emerging Privately architecture is increasingly clear: do not build
+another generic agent framework or static MCP scanner. Insert verifiable
+policy/proof processors at the *harness/runtime boundary*, ingest rich
+*ADR-style
+execution telemetry*, and separately gate *persistent state* and *external
+effects*.
+13. CONTENT ENGINE
+
+Best immediate original content: Can an open-source agent make its own
+security video? Feed one attack-logbook record into OpenMontage, publish
+the complete cost/time/intervention log, and release the structured input +
+project artifacts. This tests the media frontier while producing
+differentiated content rather than AI-news commentary.
+14. WEIRD ALPHA
+
+Tripwire is the weird-alpha pick: tiny adoption but unusually aligned with
+the agent-skill/MCP install boundary. TrueForge is no longer weird-small;
+it is already breakout-scale.
+15. TOP 3 THINGS TO TRY NOW
+
+   1. OpenMontage.
+   2. TrueForge.
+   3. Uber ADR benchmark/sensor.
+
+16. TOP 3 ATTACK/DEFENCE THINGS TO UNDERSTAND NOW
+
+   1. ADR=E2=80=99s intent + execution-trace telemetry model.
+   2. Temporal trust drift in tools/skills after approval.
+   3. Persistent-state vs external-effect firewalls as separate control
+   planes.
+
+17. TOP 3 WATCHLIST
+
+   1. TrueForge =E2=80=94 measure primary star/fork snapshot again in 3-6h =
+for real
+   velocity.
+   2. Tripwire =E2=80=94 watch commits/adoption; inspect implementation qua=
+lity.
+   3. OpenMontage =E2=80=94 watch beta/Studio release and actual autonomous=
+-output
+   reproducibility.
+
+18. NON-OBVIOUS EDGE CONSEQUENCE
+
+*The valuable security choke point may be shifting from the model/provider
+to the harness.* As models become interchangeable and open harnesses
+aggregate MCP, skills, secrets, sandboxes, memory, approvals and subagents,
+the harness becomes the place where authority is actually assembled.
+Privately should therefore design controls that can plug into multiple
+harnesses rather than becoming another harness itself.
+19. ARCHITECTURE / ROADMAP CHANGE
+
+Minor but meaningful: treat harness_adapter and telemetry_adapter as
+explicit Privately interfaces. First targets: TrueForge for execution
+integration and ADR for security telemetry/benchmark compatibility.
+20. MASTER FRONTIER INDEX =E2=80=94 DELTA VIEW
+
+   - NEW: truefoundry/trueforge =E2=80=94 agent harness =E2=80=94 2026-09-1=
+7 =E2=80=94 SANDBOX =E2=80=94
+   5,722 stars/441 forks live =E2=80=94 vendor-neutral agent operating laye=
+r.
+   - NEW: uber/ADR =E2=80=94 defender/runtime detection =E2=80=94 2026-09-1=
+7 =E2=80=94
+   SANDBOX/ADOPT BENCHMARK =E2=80=94 production agent EDR + benchmark.
+   - NEW: neomatrix369/tripwire =E2=80=94 defender/supply-chain =E2=80=94 2=
+026-09-17 =E2=80=94
+   WATCH =E2=80=94 sandboxed skill/MCP pre-install scanning.
+   - NEW: calesthio/OpenMontage =E2=80=94 autonomous media =E2=80=94 2026-0=
+9-17 =E2=80=94
+   ADOPT/SANDBOX =E2=80=94 agent-native end-to-end video production.
+   Previously registered objects remain semantically deduped and are not
+   re-expanded here.
+
+21. ATTACK LOGBOOK INDEX
+
+No canonical delta this run. Existing current classes retained:
+context-worm propagation; temporal/mutable tool trust; supply-chain
+credential theft; malicious tool-output influence; browser/session
+authority abuse; persistent-state poisoning; autonomous/adaptive attacker
+loops.
+22. WATCHLIST / NEXT RECHECK
+
+   - TrueForge: 3-6h.
+   - OpenMontage: 6-12h / beta-release signal.
+   - ADR: 3-7d unless major release/integration appears.
+   - Tripwire: 6-12h.
+   - Active attack feeds: next hourly pass.
+
+23. SOURCE-YIELD LEDGER
+
+High yield this run: targeted GitHub/current technical search, direct
+GitHub API verification, agent-harness discovery, agentic-media discovery.
+Medium: agent-security papers/repos.
+Low: generic MCP security web search and broad new AI agent framework
+search =E2=80=94 dominated by duplicates/SEO. Next run should bias toward G=
+itHub
+creation/update queries, org releases, direct paper-code links, and fresh
+technical builder feeds.
+24. MACHINE-READABLE RUN_STATE JSON { "run_time_local":
+"2026-09-17T16:51:27+07:00", "registry_delta": [
+{"id":"trueforge","state":"NEW","decision":"SANDBOX","stars":5722,"forks":4=
+41,"metric_source":"LIVE_PRIMARY_GITHUB","metric_observed_at":"2026-09-17T1=
+6:51:00+07:00"},
+{"id":"uber-adr","state":"NEW","decision":"SANDBOX_ADOPT_BENCHMARK"},
+{"id":"tripwire","state":"NEW","decision":"WATCH","stars":10,"forks":2,"met=
+ric_source":"LIVE_PRIMARY_GITHUB","metric_observed_at":"2026-09-17T16:51:00=
++07:00"},
+{"id":"openmontage","state":"NEW","decision":"ADOPT_SANDBOX","stars":59690,=
+"forks":7513,"metric_source":"LIVE_PRIMARY_GITHUB","metric_observed_at":"20=
+26-09-17T16:51:00+07:00"}
+], "attack_logbook_delta": [], "stale_snapshot_conflicts": [
+{"id":"openmontage","field":"latest_update","preferred":"GitHub API
+pushed_at 2026-09-06T05:02:34Z","rejected":"search-index updated
+2026-09-16","reason":"primary structured source wins"} ],
+"semantic_duplicates_rejected": ["MCParasite secondary
+coverage","Shai-Hulud/Mini-Shai-Hulud recaps","Miasma recap","generic MCP
+security explainers","Google Home MCP duplicate","OpenAI disclosure
+duplicate"], "experiment_queue_delta":
+["LAB-HARNESS-TRUEFORGE-01","LAB-ADR-01","LAB-OPENMONTAGE-01","LAB-TRIPWIRE=
+-01"],
+"next_recheck_queue":
+{"trueforge":"3-6h","tripwire":"6-12h","openmontage":"6-12h","adr":"3-7d","=
+current_attack_feeds":"1h"},
+"windows_searched": ["today","24h","3d","7d","30d"], "source_family_yield":
+{"direct_github":"high","agent_harness":"high","media_oss":"high","security=
+_repo_paper":"medium","generic_mcp_web":"low"}
+}
+
+*Run verdict:* useful edge pass. The two highest-value discoveries are
+OpenMontage for Privately=E2=80=99s autonomous content stack and TrueForge =
+as
+evidence that the agent-harness layer is becoming the real
+integration/security boundary.
+
+--000000000000ace819065baabe55
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Scanner =E2=80=94 Edge Report
+
+1. RUN STATE / COVERAGE AUDIT
+<p>Recovered the prior Privately Scanner chain from Gmail Sent. The immedia=
+tely previous report was <code>5 new/0 changed</code> to this mailbox; earl=
+ier legacy scanner runs were also recovered. This pass semantic-deduped kno=
+wn Monid, Dream-RSI, MCParasite/ProjectMemory, Google Home MCP, OpenAI misa=
+lignment reporting, Deadbugz, PhantomRaven, Tencent AI-Infra-Guard, Open AI=
+ UGC/OpenShorts and other previously registered mechanisms.</p>
+<p>Search widened from today/24h into 3d/7d/30d where fresh hourly results =
+were low-yield. Four objects survived the novelty filter. No old-security b=
+ackfill was performed.</p>
+<p><strong>Delta:</strong> 4 NEW / 0 MATERIAL CHANGED.</p>
+
+2. EXECUTIVE EDGE MAP
+<ul>
+<li><strong>TrueForge</strong> is a serious new open-source agent-harness c=
+andidate: created 2026-07-23, pushed today, 5,722 stars / 441 forks live. I=
+t packages model calls, MCP, skills, sandboxing, approvals, context/session=
+ state, subagents and UI/API into a vendor-neutral runtime. This is much cl=
+oser to the emerging <code>agent operating layer</code> than another thin f=
+ramework.</li>
+<li><strong>OpenMontage</strong> is the strongest autonomous-media object f=
+ound so far: an open-source agentic video-production system with 12 pipelin=
+es, 100+ tools and 700+ skill/production-knowledge files. Live GitHub: 59,6=
+90 stars / 7,513 forks. It can run under Claude Code, Codex or OpenCode and=
+ supports local/open paths as well as paid generation.</li>
+<li><strong>Uber ADR</strong> is the most important defender object found t=
+his pass because it is not merely a scanner: it captures agent intent/tool =
+traces, discovers agent/MCP surfaces, benchmarks attacks and performs two-t=
+ier runtime detection. It is production-proven at Uber and its benchmark co=
+vers 300+ tasks and 134 MCP servers.</li>
+<li><strong>Tripwire</strong> is the opposite end of the signal spectrum: o=
+nly 10 stars / 2 forks, but created Aug 1 and specifically targets sandboxe=
+d pre-install scanning of AI skills + MCP servers with a fail-closed guard.=
+ Low adoption, useful mechanism; WATCH rather than endorse.</li>
+<li>Recent search produced lots of recycled MCP-security commentary and old=
+er supply-chain campaigns. These were rejected rather than padded into the =
+report.</li>
+</ul>
+
+3. AGENT FRAMEWORK / OSS FRONTIER
+
+NEW =E2=80=94 TRUEFORGE
+<p>Repo: <a href=3D"https://github.com/truefoundry/trueforge">https://githu=
+b.com/truefoundry/trueforge</a><br>
+Live primary GitHub observation: created 2026-07-23; pushed 2026-09-17 09:5=
+0Z; 5,722 stars; 441 forks; TypeScript; MIT.</p>
+<p><strong>What is new:</strong> TrueForge treats the harness itself as the=
+ product layer: agent loop + models + MCP + git-backed skills + on-demand s=
+andbox + approvals + subagents + deferred tool loading + compaction + sessi=
+on persistence + chat UI + HTTP/TS SDK. Local mode uses SQLite; hosted mode=
+ adds Postgres/Redis.</p>
+<p><strong>Why technically interesting:</strong> The frontier appears to be=
+ moving from <code>pick an agent framework</code> toward <code>pick a harne=
+ss/runtime that can host interchangeable models, tools, skills and sandboxe=
+s</code>. TrueForge is explicitly vendor-neutral and exposes the same runti=
+me through UI/API/SDK.</p>
+<p><strong>Adoption evidence:</strong> 5.7k stars in ~8 weeks, pushed today=
+, external technical coverage this week, company-backed.</p>
+<p><strong>Trajectory inference:</strong> 6m: plausible serious alternative=
+ to managed-agent harnesses. 18m: harness layer likely commoditizes; differ=
+entiation shifts to governance, context engineering and tool ecosystems. 36=
+m: if standards converge, framework names matter less than runtime policy/o=
+bservability/interoperability.</p>
+<p><strong>Security implication:</strong> TrueForge concentrates authority =
+over MCP servers, skills, secrets, sandboxes, session state and approvals. =
+That makes the harness a natural Privately enforcement point.</p>
+<p><strong>Decision:</strong> SANDBOX NOW.</p>
+<p><strong>Experiment:</strong> run one identical agent task in TrueForge a=
+nd the current Privately/QP harness. Measure tool-call count, token cost, a=
+pproval boundaries, secret exposure, session-state inspectability and ease =
+of inserting an authority-transition processor.</p>
+
+4. PAPER -&gt; FUTURE AGENT FRONTIER
+<p>No genuinely new paper beat the existing Dream-RSI/self-improvement obje=
+cts this hour. Search did surface memory-poisoning work, but the strongest =
+candidate was older than the intended frontier window and did not justify p=
+adding.</p>
+
+5. COMMERCIAL SHOCKS -&gt; OSS/PRIVATE
+<p>No new commercial capability shock survived semantic dedupe this hour. G=
+oogle Home MCP and OpenAI=E2=80=99s new disclosure/principal-related implic=
+ations remain watchlist items rather than being rewritten.</p>
+
+6. ATTACKER FRONTIER
+<p>No new attacker mechanism cleared the bar this pass. Search continued to=
+ surface Shai-Hulud/Mini-Shai-Hulud, Miasma, prompt-in-CI, MCParasite and e=
+xisting MCP poisoning/rug-pull patterns. Those are already represented conc=
+eptually or outside the current novelty window.</p>
+<p>This is a useful exhaustion signal: the next attacker search should bias=
+ toward newly-created GitHub PoCs, new security-research repos and fresh pa=
+ckage/skill incidents rather than web articles containing <code>MCP securit=
+y</code>.</p>
+
+7. DEFENDER FRONTIER
+
+NEW =E2=80=94 UBER ADR
+<p>Repo: <a href=3D"https://github.com/uber/ADR">https://github.com/uber/AD=
+R</a><br>
+Paper: <a href=3D"https://arxiv.org/abs/2605.17380">https://arxiv.org/abs/2=
+605.17380</a></p>
+<p><strong>Mechanism delta:</strong> ADR moves beyond static prompt/MCP sca=
+nning into an EDR-like model for agents. Its open components cover discover=
+y, telemetry/observability, a realistic benchmark and two-tier detection. T=
+he sensor captures intent, tool use and execution traces across coding agen=
+ts including Claude Code, Cursor, Codex, Copilot CLI, DeepSeek Harness and =
+opencode.</p>
+<p><strong>Production evidence:</strong> Uber reports deployment across &gt=
+;7,200 hosts and &gt;10,000 agent sessions/day in the accompanying research=
+. ADR-Bench contains 300+ tasks, 134 MCP servers and 17 attack techniques. =
+The paper reports materially better detection than several existing baselin=
+es.</p>
+<p><strong>What previous generation it improves on:</strong> static signatu=
+res / prompt-only filters / endpoint telemetry that sees the shell/file eve=
+nt but not the agent causal chain.</p>
+<p><strong>Dynamic/adaptive:</strong> materially more dynamic than static s=
+canners because it consumes contextual execution traces and uses two-stage =
+detection; still not proof against fully adaptive adversaries.</p>
+<p><strong>Tool outputs hostile:</strong> benchmark explicitly includes pro=
+mpt-injection/agent attack scenarios; worth testing exact tool-output cover=
+age ourselves.</p>
+<p><strong>Persistence/memory:</strong> not its strongest differentiated la=
+yer. Pair with memory-specific controls rather than assume ADR solves persi=
+stent state poisoning.</p>
+<p><strong>Decision:</strong> ADOPT AS BENCHMARK + SANDBOX SENSOR.</p>
+<p><strong>Privately edge:</strong> ADR-Bench should become one of the exte=
+rnal corpora QP/probes are measured against. More importantly, its telemetr=
+y schema may be a better starting point than inventing our own agent EDR ev=
+ent format.</p>
+
+NEW =E2=80=94 TRIPWIRE
+<p>Repo: <a href=3D"https://github.com/neomatrix369/tripwire">https://githu=
+b.com/neomatrix369/tripwire</a><br>
+Live primary observation: created 2026-08-01; pushed 2026-09-14; 10 stars /=
+ 2 forks; Python; MIT.</p>
+<p><strong>Mechanism:</strong> sandboxed multi-scanner pre-install assessme=
+nt for AI skills/MCP servers plus fail-closed guard/posture output.</p>
+<p><strong>Why it survived despite 10 stars:</strong> it directly targets t=
+he new <code>agents install executable/instruction-bearing capabilities</co=
+de> supply-chain boundary. This is exactly the type of tiny repo the scanne=
+r is supposed to notice before popularity.</p>
+<p><strong>Weakness:</strong> adoption evidence is nearly absent and it may=
+ collapse into a wrapper around existing scanners. Do not overrate it.</p>
+<p><strong>Decision:</strong> WATCH / QUICK CODE REVIEW, not adoption.</p>
+<p><strong>Falsifier:</strong> if its scanners are mostly delegated calls w=
+ith no unique sandbox/behavioural analysis, remove from registry priority.<=
+/p>
+
+8. CURRENT THREAT REALITY
+<p>No new campaign displaced the existing current-threat set this hour. The=
+ dominant practical classes remain agent/developer supply-chain compromise,=
+ credential theft, mutable/poisoned tools, untrusted content crossing into =
+privileged agent actions, and autonomous/adaptive attack loops. No duplicat=
+e incident writeups promoted.</p>
+
+9. ATTACK LOGBOOK DELTAS
+<p>No new canonical attack-chain fingerprint this run.</p>
+
+10. AUTONOMOUS VIDEO / MEDIA FRONTIER
+
+NEW =E2=80=94 OPENMONTAGE
+<p>Repo: <a href=3D"https://github.com/calesthio/OpenMontage">https://githu=
+b.com/calesthio/OpenMontage</a><br>
+Site: <a href=3D"https://openmontage.video/">https://openmontage.video/</a>=
+<br>
+Live primary GitHub observation: created 2026-03-29; 59,690 stars / 7,513 f=
+orks; Python; AGPL-3.0. Search-index claims of a Sep 16 update conflict wit=
+h GitHub API <code>pushed_at=3D2026-09-06</code>; primary API wins and the =
+search-index date is marked STALE/AMBIGUOUS.</p>
+<p><strong>What is new:</strong> OpenMontage is not merely another text-to-=
+video wrapper. It exposes an agentic production system: research, script, s=
+cene planning, asset generation/retrieval, TTS, music, subtitles, editing/c=
+omposition, review and checkpointing. It advertises 12 pipelines, 100+ tool=
+s and 700+ agent skill/production-knowledge files.</p>
+<p><strong>Critical Privately fit:</strong> it can run as an MCP toolset un=
+der Claude Code/Codex/OpenCode, supports local rendering, allows BYO provid=
+ers, has free/open footage paths, and exposes budget governance before gene=
+ration. Its site describes local footage staying on-device and an open proj=
+ect format.</p>
+<p><strong>Why this outranks OpenShorts/Open AI UGC:</strong> broader end-t=
+o-end production coverage, stronger adoption signal, explicit agent-native =
+orchestration and a local/open path. OpenShorts remains useful for Shorts s=
+pecialization; OpenMontage is the stronger candidate for the main report -&=
+gt; video pipeline.</p>
+<p><strong>Decision:</strong> ADOPT/SANDBOX NOW.</p>
+<p><strong>Experiment:</strong> give OpenMontage one existing Privately Sca=
+nner finding as structured input and require a 60-90s technical explainer. =
+Record human interventions, generation spend, wall time, factual errors, vi=
+sual-quality failures and whether the complete project remains reproducible=
+ from source files.</p>
+<p><strong>Falsifier:</strong> &gt;20 minutes human repair or repeated fact=
+ual drift makes it unsuitable for autonomous publication despite impressive=
+ breadth.</p>
+
+11. PRIVATELY LAB =E2=80=94 TOP EXPERIMENTS
+<ol>
+<li><strong>LAB-HARNESS-TRUEFORGE-01</strong> =E2=80=94 same agent task in =
+TrueForge vs current stack; inspect authority, secrets, state and cost.</li=
+>
+<li><strong>LAB-ADR-01</strong> =E2=80=94 run ADR Sensor/Detection on a ben=
+ign synthetic tool-injection corpus; map ADR telemetry to QP proof fields.<=
+/li>
+<li><strong>LAB-OPENMONTAGE-01</strong> =E2=80=94 scanner JSON -&gt; 60-90s=
+ video, zero manual editing target.</li>
+<li><strong>LAB-TRIPWIRE-01</strong> =E2=80=94 feed benign skill/MCP fixtur=
+es with known risky patterns; determine whether Tripwire contributes unique=
+ behavioural signal or only aggregates scanners.</li>
+</ol>
+
+12. BUILD / PROBE OPPORTUNITIES
+<p>The emerging Privately architecture is increasingly clear: do not build =
+another generic agent framework or static MCP scanner. Insert verifiable po=
+licy/proof processors at the <strong>harness/runtime boundary</strong>, ing=
+est rich <strong>ADR-style execution telemetry</strong>, and separately gat=
+e <strong>persistent state</strong> and <strong>external effects</strong>.<=
+/p>
+
+13. CONTENT ENGINE
+<p>Best immediate original content: <code>Can an open-source agent make its=
+ own security video?</code> Feed one attack-logbook record into OpenMontage=
+, publish the complete cost/time/intervention log, and release the structur=
+ed input + project artifacts. This tests the media frontier while producing=
+ differentiated content rather than AI-news commentary.</p>
+
+14. WEIRD ALPHA
+<p>Tripwire is the weird-alpha pick: tiny adoption but unusually aligned wi=
+th the agent-skill/MCP install boundary. TrueForge is no longer weird-small=
+; it is already breakout-scale.</p>
+
+15. TOP 3 THINGS TO TRY NOW
+<ol>
+<li>OpenMontage.</li>
+<li>TrueForge.</li>
+<li>Uber ADR benchmark/sensor.</li>
+</ol>
+
+16. TOP 3 ATTACK/DEFENCE THINGS TO UNDERSTAND NOW
+<ol>
+<li>ADR=E2=80=99s intent + execution-trace telemetry model.</li>
+<li>Temporal trust drift in tools/skills after approval.</li>
+<li>Persistent-state vs external-effect firewalls as separate control plane=
+s.</li>
+</ol>
+
+17. TOP 3 WATCHLIST
+<ol>
+<li>TrueForge =E2=80=94 measure primary star/fork snapshot again in 3-6h fo=
+r real velocity.</li>
+<li>Tripwire =E2=80=94 watch commits/adoption; inspect implementation quali=
+ty.</li>
+<li>OpenMontage =E2=80=94 watch beta/Studio release and actual autonomous-o=
+utput reproducibility.</li>
+</ol>
+
+18. NON-OBVIOUS EDGE CONSEQUENCE
+<p><strong>The valuable security choke point may be shifting from the model=
+/provider to the harness.</strong> As models become interchangeable and ope=
+n harnesses aggregate MCP, skills, secrets, sandboxes, memory, approvals an=
+d subagents, the harness becomes the place where authority is actually asse=
+mbled. Privately should therefore design controls that can plug into multip=
+le harnesses rather than becoming another harness itself.</p>
+
+19. ARCHITECTURE / ROADMAP CHANGE
+<p>Minor but meaningful: treat <code>harness_adapter</code> and <code>telem=
+etry_adapter</code> as explicit Privately interfaces. First targets: TrueFo=
+rge for execution integration and ADR for security telemetry/benchmark comp=
+atibility.</p>
+
+20. MASTER FRONTIER INDEX =E2=80=94 DELTA VIEW
+<ul>
+<li>NEW: truefoundry/trueforge =E2=80=94 agent harness =E2=80=94 2026-09-17=
+ =E2=80=94 SANDBOX =E2=80=94 5,722 stars/441 forks live =E2=80=94 vendor-ne=
+utral agent operating layer.</li>
+<li>NEW: uber/ADR =E2=80=94 defender/runtime detection =E2=80=94 2026-09-17=
+ =E2=80=94 SANDBOX/ADOPT BENCHMARK =E2=80=94 production agent EDR + benchma=
+rk.</li>
+<li>NEW: neomatrix369/tripwire =E2=80=94 defender/supply-chain =E2=80=94 20=
+26-09-17 =E2=80=94 WATCH =E2=80=94 sandboxed skill/MCP pre-install scanning=
+.</li>
+<li>NEW: calesthio/OpenMontage =E2=80=94 autonomous media =E2=80=94 2026-09=
+-17 =E2=80=94 ADOPT/SANDBOX =E2=80=94 agent-native end-to-end video product=
+ion.<br>
+Previously registered objects remain semantically deduped and are not re-ex=
+panded here.</li>
+</ul>
+
+21. ATTACK LOGBOOK INDEX
+<p>No canonical delta this run. Existing current classes retained: context-=
+worm propagation; temporal/mutable tool trust; supply-chain credential thef=
+t; malicious tool-output influence; browser/session authority abuse; persis=
+tent-state poisoning; autonomous/adaptive attacker loops.</p>
+
+22. WATCHLIST / NEXT RECHECK
+<ul>
+<li>TrueForge: 3-6h.</li>
+<li>OpenMontage: 6-12h / beta-release signal.</li>
+<li>ADR: 3-7d unless major release/integration appears.</li>
+<li>Tripwire: 6-12h.</li>
+<li>Active attack feeds: next hourly pass.</li>
+</ul>
+
+23. SOURCE-YIELD LEDGER
+<p>High yield this run: targeted GitHub/current technical search, direct Gi=
+tHub API verification, agent-harness discovery, agentic-media discovery.<br=
+>
+Medium: agent-security papers/repos.<br>
+Low: generic <code>MCP security</code> web search and broad <code>new AI ag=
+ent framework</code> search =E2=80=94 dominated by duplicates/SEO. Next run=
+ should bias toward GitHub creation/update queries, org releases, direct pa=
+per-code links, and fresh technical builder feeds.</p>
+
+24. MACHINE-READABLE RUN_STATE JSON
+
+<code>{
+  &quot;run_time_local&quot;: &quot;2026-09-17T16:51:27+07:00&quot;,
+  &quot;registry_delta&quot;: [
+    {&quot;id&quot;:&quot;trueforge&quot;,&quot;state&quot;:&quot;NEW&quot;=
+,&quot;decision&quot;:&quot;SANDBOX&quot;,&quot;stars&quot;:5722,&quot;fork=
+s&quot;:441,&quot;metric_source&quot;:&quot;LIVE_PRIMARY_GITHUB&quot;,&quot=
+;metric_observed_at&quot;:&quot;2026-09-17T16:51:00+07:00&quot;},
+    {&quot;id&quot;:&quot;uber-adr&quot;,&quot;state&quot;:&quot;NEW&quot;,=
+&quot;decision&quot;:&quot;SANDBOX_ADOPT_BENCHMARK&quot;},
+    {&quot;id&quot;:&quot;tripwire&quot;,&quot;state&quot;:&quot;NEW&quot;,=
+&quot;decision&quot;:&quot;WATCH&quot;,&quot;stars&quot;:10,&quot;forks&quo=
+t;:2,&quot;metric_source&quot;:&quot;LIVE_PRIMARY_GITHUB&quot;,&quot;metric=
+_observed_at&quot;:&quot;2026-09-17T16:51:00+07:00&quot;},
+    {&quot;id&quot;:&quot;openmontage&quot;,&quot;state&quot;:&quot;NEW&quo=
+t;,&quot;decision&quot;:&quot;ADOPT_SANDBOX&quot;,&quot;stars&quot;:59690,&=
+quot;forks&quot;:7513,&quot;metric_source&quot;:&quot;LIVE_PRIMARY_GITHUB&q=
+uot;,&quot;metric_observed_at&quot;:&quot;2026-09-17T16:51:00+07:00&quot;}
+  ],
+  &quot;attack_logbook_delta&quot;: [],
+  &quot;stale_snapshot_conflicts&quot;: [
+    {&quot;id&quot;:&quot;openmontage&quot;,&quot;field&quot;:&quot;latest_=
+update&quot;,&quot;preferred&quot;:&quot;GitHub API pushed_at 2026-09-06T05=
+:02:34Z&quot;,&quot;rejected&quot;:&quot;search-index updated 2026-09-16&qu=
+ot;,&quot;reason&quot;:&quot;primary structured source wins&quot;}
+  ],
+  &quot;semantic_duplicates_rejected&quot;: [&quot;MCParasite secondary cov=
+erage&quot;,&quot;Shai-Hulud/Mini-Shai-Hulud recaps&quot;,&quot;Miasma reca=
+p&quot;,&quot;generic MCP security explainers&quot;,&quot;Google Home MCP d=
+uplicate&quot;,&quot;OpenAI disclosure duplicate&quot;],
+  &quot;experiment_queue_delta&quot;: [&quot;LAB-HARNESS-TRUEFORGE-01&quot;=
+,&quot;LAB-ADR-01&quot;,&quot;LAB-OPENMONTAGE-01&quot;,&quot;LAB-TRIPWIRE-0=
+1&quot;],
+  &quot;next_recheck_queue&quot;: {&quot;trueforge&quot;:&quot;3-6h&quot;,&=
+quot;tripwire&quot;:&quot;6-12h&quot;,&quot;openmontage&quot;:&quot;6-12h&q=
+uot;,&quot;adr&quot;:&quot;3-7d&quot;,&quot;current_attack_feeds&quot;:&quo=
+t;1h&quot;},
+  &quot;windows_searched&quot;: [&quot;today&quot;,&quot;24h&quot;,&quot;3d=
+&quot;,&quot;7d&quot;,&quot;30d&quot;],
+  &quot;source_family_yield&quot;: {&quot;direct_github&quot;:&quot;high&qu=
+ot;,&quot;agent_harness&quot;:&quot;high&quot;,&quot;media_oss&quot;:&quot;=
+high&quot;,&quot;security_repo_paper&quot;:&quot;medium&quot;,&quot;generic=
+_mcp_web&quot;:&quot;low&quot;}
+}
+</code>
+<p><strong>Run verdict:</strong> useful edge pass. The two highest-value di=
+scoveries are OpenMontage for Privately=E2=80=99s autonomous content stack =
+and TrueForge as evidence that the agent-harness layer is becoming the real=
+ integration/security boundary.</p>
+
+--000000000000ace819065baabe55--

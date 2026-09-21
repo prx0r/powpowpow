@@ -1,3 +1,4 @@
+import os
 """
 PowPowPow — Coin Registry
 All tracked coins with GitHub repos, chain configs, and data sources.

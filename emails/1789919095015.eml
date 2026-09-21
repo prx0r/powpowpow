@@ -1,0 +1,1046 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 9gmHV5GFmouq
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 15:44:54 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=D7fUtArOR5HLfjeUAevacT92Ktm1jITuV0o+3co++fhZuY7PiJWlVDLbxrELs+88SQGTfGCEb
+	LjWcAsCQHAF9Ncne58ftt66CqoRML4LNB32XZDpTWhS0PkTOKZsnvfwjgTlPH7cp333BiVwOiZV
+	/nRIOAkUZwH1vkxd5NAbU4Nu7NdDIWhnioQ9Gwn4Xi83CtCQn7+Glbi7ed7W65WwMFuWfTx3m7C
+	DbCiV0eXJzyVm/bn85Im2jz6LhX6xc7949tM5zayjPpB7GpfySALtjdBwNoCHLjeDyVifl7m0lU
+	vklJ7MEn1eBRtKebnRDax0gfjStxSHB5ntvCBFc+WFFA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:References:In-Reply-To:from:reply-to:cc:resent-date
+	:resent-from:resent-to:resent-cc:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789919094; x=1790523894; bh=XMDnr29F
+	OIqD6pdlp5xRegoepMDEwmr16dVhBAFDzgg=; b=LgwC6JY3ZaBxvhTixBvIjsJZF3/phesmYOH
+	N9hyD92/C3pxVr0akP//tpYPfBvZwXhXFTHxAqY9rZ5XdGescq5WNGELT34uoC7w93G1f3OkbuA
+	vTMJvA6hyhhvQZBbOABKMCjojZg/BZchIkNqroV9lMBUtUTFshPk66+VVL9QKUzbKmyLS16PvXG
+	eeNaGWG+UGCwufn7QRPMZZ9UmnyJBud7UQNFx0jhjuK2aAo13/FIPCU/0pz0cNUJBsEnuwHwUdL
+	y1VXhQZmsfpnVfcOThuO46hQpvSL2f1x2yLEOse7LPinfmC3KSEd+dkJvlYo6IW9JX8+w5rRqeP
+	89zCyLg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VgWFmpog;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VgWFmpog;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-6713d20d375so1897247d50.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 08:44:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789919094; cv=none;
+        d=google.com; s=arc-20260327;
+        b=lXdpJawuF2xstXF2lkqBL1tnEp515mkvyAhQrNhU0h3pSvGmz3DhdQ+l7ksn/X4G0z
+         CzDnd4qiKSUAu1RDwQZ08kmOv/1PBZZjTln3f602ucHdlb1B8W9Meft+2b+HaLkJCjU5
+         rBGYpR/apQuQO8ZgE04FVbxvZ6BZ/sQD7bTUJPFV9QUHna75o5lmnBwze65m2us0nYaW
+         yKNyHBqHKPYguak7PizaqxIqoSFfIqbEtLL95xbZusbCBNsU4mJC6W9D+BWLfWkloKs+
+         NIHxR/g1vvwt9Sl371miGnKZRMfVkbw13ngcV+j8YmBwce1FuaQc9onB/XkfKfQHPOtO
+         5HEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:references:in-reply-to
+         :dkim-signature;
+        bh=XMDnr29FOIqD6pdlp5xRegoepMDEwmr16dVhBAFDzgg=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=HLPjXskzxiNJzLxKaN/5X0DnlgLdDu9ZMxXxmc4PeSAXKiqo2x0+DMDEWYe6SITm2G
+         l1WRqsGjreZfw+oN5yhipiECpsKNfTQ8vAPpCeVZiDTYvqN2VuhHSlMoHBgoIk9Qr7F7
+         VRqU6SfvXit4Csj7Sb2UQ/SY1bdu6RhH4GisUAzCrH+oPu2uxRucCByatsaJ2/0XMmRv
+         jXGf575/NAquqyYEi3ltxLi0FMJwMh/kJfAIRAraztNIGjHLaN6ITpI/q/Kqirx3uxB0
+         xjVcaNDFQYI6d2iR0+4jVUu9I/vtGS6NzDUa2Qe8W3Iud2n2hwLQKncS7lRABVVTmmpj
+         AaSg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789919094; x=1790523894; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=XMDnr29FOIqD6pdlp5xRegoepMDEwmr16dVhBAFDzgg=;
+        b=VgWFmpog3aI59QVBtaRE8r7nYwWSjo4GhRJdlzqNpFOP8l17MOdfzFlVRxvX6b+QXC
+         nrdUfR1YQq1UidPvsKvspbH3F+ZOg3upxGGMU+12BTTN8m2tpaaWl2XLf1IHKeYz712T
+         xKr+jiHfcB4yet0noFB9Qr9Rr0DU5MrdbKAc8s1qZErxHrfhhq3FO0fcEZXNJCrjAvTl
+         O36+cIMvjWldJMQQGnPUl8gQI7hnIjJe0jK+d4txZbdxlV/t7lV6ymKAyWZh9wb9BSO1
+         WTjkNkqwLaGV984fBw7tcbmeED43/Xzj1aq6sQ8UWT1GmHllovYX6/oQIxLFzunyDz9/
+         N7dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789919094; x=1790523894;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=XMDnr29FOIqD6pdlp5xRegoepMDEwmr16dVhBAFDzgg=;
+        b=u9wt0lF8xTilxXCadlMTA41ZV4bRYdMzGMvDvhJv9+q9HT+DzS4bnhiXirXcuTu5+8
+         odHMPB1lTIdvhNtroJlV5zGjYkn45rgXPw3O3M7Z2MSDwT0mr+jTRG62RJVO+ZT5srty
+         OVkX1ieCNZh9G1YvxcC/taI7GMTF+SzkzLV09LsdDl2/K5PAoOJ9qpsqb4PKrCB3rQjv
+         TGE+Na14XDfIQMnIMyV8mQV+hcaHdYRS61imcqPtSXgVqXgMu5brWqpaRfRs3/arjIdh
+         6t0PC4dXVmZrQwUI1RVOcutObv/1B/0ADF+826VlhIG/IDNJapuknFNOoQeAXC37RvXa
+         eiew==
+X-Gm-Message-State: AFuF++nW1x4RDNiAUg8uXLDpa+t0DFTFZ7oOqUZv4+ixl5MTDuOu2kLG
+	LSeyeXresg/5DK+RKS1e7IWUzNjt/T3ArBA8Mc2Pnmcv2puFrgWoe5lEUbn/EK93aCSi3AtkYQC
+	+B/7jS5t+VWYEkP0FfRasSXpVker6fXIl+w==
+X-Gm-Gg: AYBFou3t7B5LfN5NH/7CJC0K3REPS5dGIaPsQyogCYl12wOWddvZ2QKk/zl61UHUgoU
+	XdrIbDszsir5CgnJ4h4Cf16nKSaFCw91P4QKO/zz+KwRHvG6XFGW/Wep8vFeRDC6X00Uta393Oc
+	e5TPB8tWZ3d5iMGWxB8gm95tAAyJhSTxpRUiHJ5YAU98CHbQsbT+T4DbEnjC+RvMwOO2MY5DD0k
+	6PhEPkBHe4+GHrmulYMM1YQfGEo04d2rI/Xcy9Tdj7vYrmzYiVgy8xB5rJgeeVv5SRuIcBVqdk/
+	E5i2JCVljqvWHnsFagl03Lm0fByE2+/7PObx7MYJl9ysnTVqZE7M5iYZ4F2lMifhub51Bkx/Ruj
+	r/jwj/JT/gGglOQcHfHLsmuBaCVGEdVXQ4SnZgsu2o7uXpMwnDFWU/H7neD3rJWZCisL7SpAniQ
+	==
+X-Received: by 2002:a53:ac88:0:b0:671:4d5c:693b with SMTP id
+ 956f58d0204a3-6717fc91c7amr2581223d50.25.1789919094338; Sun, 20 Sep 2026
+ 08:44:54 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 10:44:53 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 10:44:53 -0500
+In-Reply-To: <CAPdrGe=_h9Axin4pcaB5YaEs4vuBW0DQkyJm+bm+E6qtGPW5og@mail.gmail.com>
+References: <CAPdrGe=_h9Axin4pcaB5YaEs4vuBW0DQkyJm+bm+E6qtGPW5og@mail.gmail.com>
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 10:44:53 -0500
+X-Gm-Features: AcwNN1Xk2Lrkt3pWcqKgHZQNXdoJevLg5bCxXAi6zXSWWrx2Ecyw3RlUfmWkLJc
+Message-ID: <CAPdrGenzCNucJTM9VV-3CdwZAJyHgpNzzVY9dMCGsWZmo9G7Dw@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_POW=2ESYSTEMS_=E2=80=94_Working_Guide=3A_Flaws=2C_Guardrail?=
+	=?UTF-8?Q?s_=26_Execution_Priorities?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000cb7828065bec0381"
+
+--000000000000cb7828065bec0381
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Syncing the remaining POW working material from this conversation to
+Intelligent Others so the project inbox has the complete current guidance.
+
+
+---------- Forwarded message ---------
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 10:31:18 -0500
+Subject: POW.SYSTEMS =E2=80=94 Working Guide: Flaws, Guardrails & Execution
+Priorities
+To: tradesprior@gmail.com
+
+POW.SYSTEMS =E2=80=94 Working Guide: Failure Modes, Guardrails & Execution
+Priorities Core assessment
+
+The POW thesis is strong. The main risks are architectural and executional
+rather than conceptual.
+
+The biggest danger is not that POW is too ambitious. It is that we mistake
+the map for the territory and spend months building the map without causing
+anything in the physical world.
+
+Use this guide as a standing filter for development.
+1. Scope explosion before proving a closed loop
+
+POW can logically contain:
+
+   - grid
+   - EV
+   - repair
+   - components
+   - skills
+   - houses
+   - mining
+   - robotics
+   - procurement
+
+But that does not mean all of them deserve equal engineering attention now.
+
+Corrective rule:
+
+*Collect broadly where history is irreversible. Productize narrowly.*
+
+Keep many cheap collectors running, but force most product work through one
+or two closed loops first.
+
+Best early examples:
+Repair loop
+
+broken asset
+=E2=86=92 diagnosis
+=E2=86=92 part
+=E2=86=92 repair economics
+=E2=86=92 action
+=E2=86=92 realised outcome
+EV/home loop
+
+EV + house
+=E2=86=92 charger/grid/tariff
+=E2=86=92 installer
+=E2=86=92 completed installation
+=E2=86=92 realised cost/outcome
+
+These loops prove that the garden actually improves decisions.
+2. Historical does not automatically mean valuable
+
+A year of EVSE state changes is only valuable if POW computes something
+useful from it.
+
+Every collector should have:
+
+   - why_preserve
+   - target_transformations[]
+   - target_decisions[]
+   - target_users[]
+
+Example:
+
+EV availability history
+=E2=86=92 uptime by operator
+=E2=86=92 outage survival
+=E2=86=92 charger-quality ranking
+=E2=86=92 site saturation
+=E2=86=92 location scarcity
+=E2=86=92 site-selection / routing decisions
+
+If a feed has no useful transformation or action route, do not collect it
+simply because it changes.
+3. Do not over-normalize too early
+
+Trying to force every source into one giant ontology can slow development
+and destroy source-specific information.
+
+Keep three layers:
+RAW
+
+Exact source data, immutable.
+UNIVERSAL CORE
+
+Only genuinely shared fields:
+
+   - entity_id
+   - entity_type
+   - source
+   - observed_at
+   - effective_at
+   - place
+   - event_type
+   - provenance
+   - confidence
+
+DOMAIN TABLES
+
+Keep domain-specific structure intact.
+
+Examples:
+
+   - Qubic epoch fields stay compute-specific
+   - EVSE status fields stay EV-specific
+   - apprenticeship fields stay skills-specific
+
+Only unify what is genuinely common.
+4. Identity resolution is likely harder than collection
+
+POW will eventually need to resolve:
+
+   - person
+   - installer business
+   - Companies House entity
+   - certification record
+   - UPRN
+   - grid node
+   - vehicle model
+   - exact device model
+   - manufacturer part number
+   - marketplace listing
+
+A wrong join is worse than no join because it produces confident-looking
+bad advice.
+
+Every identity edge must carry:
+
+CONFIRMED
+INFERRED
+UNKNOWN
+
+plus:
+
+   - match method
+   - evidence
+   - confidence
+   - valid_from
+   - valid_to
+   - source
+
+Never silently merge entities.
+5. Licensing can poison the lake
+
+Publicly viewable does not automatically mean:
+
+   - retain forever
+   - transform commercially
+   - redistribute
+   - expose via MCP/API
+
+This matters especially for:
+
+   - marketplaces
+   - repair content
+   - distributor APIs
+   - company integrations
+
+Every source manifest should track:
+
+   - raw retention allowed?
+   - retention period?
+   - commercial use?
+   - redistribution?
+   - derived output allowed?
+   - attribution?
+   - API caching limits?
+
+Partition the raw lake according to rights policy.
+
+Do not let one badly licensed source contaminate a derived product.
+6. R2 can become a dumping ground
+
+Raw-first is correct only if the storage system remains disciplined.
+
+Required:
+
+   - source manifests
+   - hashes
+   - schema version
+   - collector version
+   - collection-run ledger
+   - health checks
+   - gap detection
+   - compaction
+   - Parquet tables
+   - periodic restoration tests
+
+Bad outcome to avoid:
+
+In 2027 we discover six months of data were silently malformed after an
+upstream schema change.
+
+Collector reliability is part of the moat.
+7. Outcome data must arrive earlier
+
+Almost everything POW starts with is observational.
+
+That is useful, but the deepest moat is:
+
+POW prediction
+=E2=86=92 action
+=E2=86=92 intervention
+=E2=86=92 actual result
+
+Ten genuine repairs with:
+
+   - predicted fault
+   - predicted part
+   - predicted time
+   - predicted cost
+   - actual part
+   - actual time
+   - actual cost
+   - realised resale
+
+may be more strategically informative than another ten static datasets.
+
+Do not leave OutcomeGraph until the distant future.
+
+Get to first receipts early.
+8. Muse can eventually call many live APIs itself
+
+Therefore this is NOT the durable moat:
+
+=E2=80=9CPOW has an MCP for government data.=E2=80=9D
+
+The durable moat is:
+
+historical state
+
+   - identity continuity
+   - proprietary transformations
+   - verified outcomes
+   - accumulated error/correction history
+
+If a feature can be reproduced by Muse making three fresh API calls, treat
+it as distribution/interface, not moat.
+9. Avoid premature sub-brand proliferation
+
+These names make sense:
+
+   - mining.pow.systems
+   - repair.pow.systems
+   - grid.pow.systems
+   - ev.pow.systems
+   - parts.pow.systems
+   - skills.pow.systems
+   - home.pow.systems
+
+But do not create:
+
+   - seven separate repos
+   - seven MCP servers
+   - seven social accounts
+   - seven design systems
+   - seven independent infrastructures
+
+For now they should mostly be namespaces/views over one POW platform.
+
+Split operationally only when independent users, workflows or revenue
+justify it.
+
+*Split products, not data.*
+10. Content must stay downstream of POW
+
+The content plan works only if content remains a projection of the garden.
+
+Rule:
+
+No POW video unless it originates from:
+
+   - a stored transformation/evidence pack
+   - a meaningful state change
+   - a foundational explainer tied to POW
+
+Otherwise content research starts consuming attention again.
+
+Canonical flow:
+
+collector
+=E2=86=92 transformation
+=E2=86=92 evidence pack
+=E2=86=92 content candidate
+=E2=86=92 existing /content system
+=E2=86=92 publish
+=E2=86=92 audience response
+=E2=86=92 product/topic prioritisation
+
+Content is a distribution and feedback layer, not another research
+organisation.
+11. Avoid UK overfitting in the kernel
+
+UK is an excellent starting jurisdiction.
+
+But the core POW schema should remain jurisdiction-neutral.
+
+Prefer:
+
+   - jurisdiction_id
+   - regulator_id
+   - property_id
+   - grid_node_id
+   - certification_scheme_id
+
+rather than hard-coding assumptions such as UPRN into universal core
+objects.
+
+UKGraph should implement the UK adapters.
+
+POW should still work later in:
+
+   - India
+   - EU
+   - US
+   - other jurisdictions
+
+12. The five probes should be measured by plants, not reports
+
+Hourly probes can generate endless clever research without improving the
+garden.
+
+Their performance metrics should be:
+
+   - new source verified
+   - collector running
+   - first raw object stored
+   - 24h uninterrupted
+   - first event emitted
+   - first transformation computed
+   - first join validated
+   - first decision improved
+   - first outcome received
+
+A week with three production-quality collectors is better than 500 pages of
+reconnaissance.
+13. Recommended development posture BROAD COLLECTION
+
+Only where:
+
+   - cheap
+   - legal/permissioned
+   - irreversible
+   - likely useful later
+
+NARROW TRANSFORMATION
+
+Only where:
+
+   - decision value is clear
+   - evidence is measurable
+   - the transformation is actually proprietary/useful
+
+VERY NARROW EXECUTION
+
+One closed loop at a time.
+OUTCOMES
+
+As early as possible.
+14. First three domain clusters
+
+If sequencing now:
+1. Repair / Parts
+
+Why:
+
+   - direct =C2=A3 outcomes
+   - clear transaction loop
+   - useful to ordinary people
+   - strong future robotics path
+   - immediate first-party outcome collection
+
+Core loop:
+
+asset
+=E2=86=92 fault
+=E2=86=92 part
+=E2=86=92 compatibility
+=E2=86=92 stock
+=E2=86=92 procedure
+=E2=86=92 user skill
+=E2=86=92 repair economics
+=E2=86=92 action
+=E2=86=92 outcome
+2. Compute / Mining
+
+Why:
+
+   - PowPowPow already exists
+   - historical state collection is already underway
+   - clean opportunity-cost modelling
+   - easy to compare mine / rent / inference / sell / idle
+
+3. Grid / EV
+
+Why:
+
+   - unusually strong temporal data
+   - geographic physical constraints
+   - EV live status is genuinely ephemeral
+   - joins naturally into houses, solar, batteries, installers and energy
+
+Skills, property, legislation and apprenticeships should initially enrich
+these clusters rather than becoming four more products.
+15. Repo-level priority test
+
+Put this at the top of the POW repo:
+
+*Does this work help POW remember something unrecoverable, compute
+something meaningfully better, or cause a real-world action whose outcome
+we can learn from?*
+
+If the answer is no to all three, it is probably not priority work.
+
+Use three labels on every issue/PR:
+MEMORY
+
+Preserves state that will otherwise disappear.
+INTELLIGENCE
+
+Creates a transformation/join that improves a real decision.
+ACTION
+
+Causes an intervention and lets us observe the outcome.
+
+A task should ideally satisfy at least one, and the best tasks satisfy two
+or three.
+16. Working doctrine
+
+*Capture first. Normalize second. Productize last.*
+
+*Collect broadly where history is irreversible. Productize narrowly.*
+
+*Split products, not data.*
+
+*Do not confuse public data access with moat.*
+
+*Do not confuse historical data with valuable history.*
+
+*Do not silently resolve uncertain identity.*
+
+*Do not build sub-brands before their workflows earn independence.*
+
+*Do not let content become a separate research project.*
+
+*Do not let probes optimize for report volume.*
+
+*Get to outcomes early.*
+
+The strategic goal is not merely to build a map of the physical economy.
+
+It is to build a system that:
+
+*remembers what reality looked like, understands what could be done, acts
+when useful, and learns from what happened next.*
+
+--000000000000cb7828065bec0381
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Syncing the remaining POW working material from this conversation to Int=
+elligent Others so the project inbox has the complete current guidance.</p>
+<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">--=
+-------- Forwarded message ---------<br>From: Prior Trades &lt;<a href=3D"m=
+ailto:tradesprior@gmail.com">tradesprior@gmail.com</a>&gt;<br>Date: Sun, 20=
+ Sep 2026 10:31:18 -0500<br>Subject: POW.SYSTEMS =E2=80=94 Working Guide: F=
+laws, Guardrails &amp; Execution Priorities<br>To: <a href=3D"mailto:trades=
+prior@gmail.com">tradesprior@gmail.com</a></div><br>POW.SYSTEMS =E2=80=94 W=
+orking Guide: Failure Modes, Guardrails &amp; Execution Priorities
+
+Core assessment
+<p>The POW thesis is strong. The main risks are architectural and execution=
+al rather than conceptual.</p>
+<p>The biggest danger is not that POW is too ambitious. It is that we mista=
+ke the map for the territory and spend months building the map without caus=
+ing anything in the physical world.</p>
+<p>Use this guide as a standing filter for development.</p>
+
+
+
+1. Scope explosion before proving a closed loop
+<p>POW can logically contain:</p>
+<ul>
+<li>grid</li>
+<li>EV</li>
+<li>repair</li>
+<li>components</li>
+<li>skills</li>
+<li>houses</li>
+<li>mining</li>
+<li>robotics</li>
+<li>procurement</li>
+</ul>
+<p>But that does not mean all of them deserve equal engineering attention n=
+ow.</p>
+<p>Corrective rule:</p>
+<p><strong>Collect broadly where history is irreversible. Productize narrow=
+ly.</strong></p>
+<p>Keep many cheap collectors running, but force most product work through =
+one or two closed loops first.</p>
+<p>Best early examples:</p>
+
+Repair loop
+<p>broken asset<br>
+=E2=86=92 diagnosis<br>
+=E2=86=92 part<br>
+=E2=86=92 repair economics<br>
+=E2=86=92 action<br>
+=E2=86=92 realised outcome</p>
+
+EV/home loop
+<p>EV + house<br>
+=E2=86=92 charger/grid/tariff<br>
+=E2=86=92 installer<br>
+=E2=86=92 completed installation<br>
+=E2=86=92 realised cost/outcome</p>
+<p>These loops prove that the garden actually improves decisions.</p>
+
+
+
+2. Historical does not automatically mean valuable
+<p>A year of EVSE state changes is only valuable if POW computes something =
+useful from it.</p>
+<p>Every collector should have:</p>
+<ul>
+<li>why_preserve</li>
+<li>target_transformations[]</li>
+<li>target_decisions[]</li>
+<li>target_users[]</li>
+</ul>
+<p>Example:</p>
+<p>EV availability history<br>
+=E2=86=92 uptime by operator<br>
+=E2=86=92 outage survival<br>
+=E2=86=92 charger-quality ranking<br>
+=E2=86=92 site saturation<br>
+=E2=86=92 location scarcity<br>
+=E2=86=92 site-selection / routing decisions</p>
+<p>If a feed has no useful transformation or action route, do not collect i=
+t simply because it changes.</p>
+
+
+
+3. Do not over-normalize too early
+<p>Trying to force every source into one giant ontology can slow developmen=
+t and destroy source-specific information.</p>
+<p>Keep three layers:</p>
+
+RAW
+<p>Exact source data, immutable.</p>
+
+UNIVERSAL CORE
+<p>Only genuinely shared fields:</p>
+<ul>
+<li>entity_id</li>
+<li>entity_type</li>
+<li>source</li>
+<li>observed_at</li>
+<li>effective_at</li>
+<li>place</li>
+<li>event_type</li>
+<li>provenance</li>
+<li>confidence</li>
+</ul>
+
+DOMAIN TABLES
+<p>Keep domain-specific structure intact.</p>
+<p>Examples:</p>
+<ul>
+<li>Qubic epoch fields stay compute-specific</li>
+<li>EVSE status fields stay EV-specific</li>
+<li>apprenticeship fields stay skills-specific</li>
+</ul>
+<p>Only unify what is genuinely common.</p>
+
+
+
+4. Identity resolution is likely harder than collection
+<p>POW will eventually need to resolve:</p>
+<ul>
+<li>person</li>
+<li>installer business</li>
+<li>Companies House entity</li>
+<li>certification record</li>
+<li>UPRN</li>
+<li>grid node</li>
+<li>vehicle model</li>
+<li>exact device model</li>
+<li>manufacturer part number</li>
+<li>marketplace listing</li>
+</ul>
+<p>A wrong join is worse than no join because it produces confident-looking=
+ bad advice.</p>
+<p>Every identity edge must carry:</p>
+<p>CONFIRMED<br>
+INFERRED<br>
+UNKNOWN</p>
+<p>plus:</p>
+<ul>
+<li>match method</li>
+<li>evidence</li>
+<li>confidence</li>
+<li>valid_from</li>
+<li>valid_to</li>
+<li>source</li>
+</ul>
+<p>Never silently merge entities.</p>
+
+
+
+5. Licensing can poison the lake
+<p>Publicly viewable does not automatically mean:</p>
+<ul>
+<li>retain forever</li>
+<li>transform commercially</li>
+<li>redistribute</li>
+<li>expose via MCP/API</li>
+</ul>
+<p>This matters especially for:</p>
+<ul>
+<li>marketplaces</li>
+<li>repair content</li>
+<li>distributor APIs</li>
+<li>company integrations</li>
+</ul>
+<p>Every source manifest should track:</p>
+<ul>
+<li>raw retention allowed?</li>
+<li>retention period?</li>
+<li>commercial use?</li>
+<li>redistribution?</li>
+<li>derived output allowed?</li>
+<li>attribution?</li>
+<li>API caching limits?</li>
+</ul>
+<p>Partition the raw lake according to rights policy.</p>
+<p>Do not let one badly licensed source contaminate a derived product.</p>
+
+
+
+6. R2 can become a dumping ground
+<p>Raw-first is correct only if the storage system remains disciplined.</p>
+<p>Required:</p>
+<ul>
+<li>source manifests</li>
+<li>hashes</li>
+<li>schema version</li>
+<li>collector version</li>
+<li>collection-run ledger</li>
+<li>health checks</li>
+<li>gap detection</li>
+<li>compaction</li>
+<li>Parquet tables</li>
+<li>periodic restoration tests</li>
+</ul>
+<p>Bad outcome to avoid:</p>
+<p>In 2027 we discover six months of data were silently malformed after an =
+upstream schema change.</p>
+<p>Collector reliability is part of the moat.</p>
+
+
+
+7. Outcome data must arrive earlier
+<p>Almost everything POW starts with is observational.</p>
+<p>That is useful, but the deepest moat is:</p>
+<p>POW prediction<br>
+=E2=86=92 action<br>
+=E2=86=92 intervention<br>
+=E2=86=92 actual result</p>
+<p>Ten genuine repairs with:</p>
+<ul>
+<li>predicted fault</li>
+<li>predicted part</li>
+<li>predicted time</li>
+<li>predicted cost</li>
+<li>actual part</li>
+<li>actual time</li>
+<li>actual cost</li>
+<li>realised resale</li>
+</ul>
+<p>may be more strategically informative than another ten static datasets.<=
+/p>
+<p>Do not leave OutcomeGraph until the distant future.</p>
+<p>Get to first receipts early.</p>
+
+
+
+8. Muse can eventually call many live APIs itself
+<p>Therefore this is NOT the durable moat:</p>
+<p>=E2=80=9CPOW has an MCP for government data.=E2=80=9D</p>
+<p>The durable moat is:</p>
+<p>historical state</p>
+<ul>
+<li>identity continuity</li>
+<li>proprietary transformations</li>
+<li>verified outcomes</li>
+<li>accumulated error/correction history</li>
+</ul>
+<p>If a feature can be reproduced by Muse making three fresh API calls, tre=
+at it as distribution/interface, not moat.</p>
+
+
+
+9. Avoid premature sub-brand proliferation
+<p>These names make sense:</p>
+<ul>
+<li>mining.pow.systems</li>
+<li>repair.pow.systems</li>
+<li>grid.pow.systems</li>
+<li>ev.pow.systems</li>
+<li>parts.pow.systems</li>
+<li>skills.pow.systems</li>
+<li>home.pow.systems</li>
+</ul>
+<p>But do not create:</p>
+<ul>
+<li>seven separate repos</li>
+<li>seven MCP servers</li>
+<li>seven social accounts</li>
+<li>seven design systems</li>
+<li>seven independent infrastructures</li>
+</ul>
+<p>For now they should mostly be namespaces/views over one POW platform.</p=
+>
+<p>Split operationally only when independent users, workflows or revenue ju=
+stify it.</p>
+<p><strong>Split products, not data.</strong></p>
+
+
+
+10. Content must stay downstream of POW
+<p>The content plan works only if content remains a projection of the garde=
+n.</p>
+<p>Rule:</p>
+<p>No POW video unless it originates from:</p>
+<ul>
+<li>a stored transformation/evidence pack</li>
+<li>a meaningful state change</li>
+<li>a foundational explainer tied to POW</li>
+</ul>
+<p>Otherwise content research starts consuming attention again.</p>
+<p>Canonical flow:</p>
+<p>collector<br>
+=E2=86=92 transformation<br>
+=E2=86=92 evidence pack<br>
+=E2=86=92 content candidate<br>
+=E2=86=92 existing /content system<br>
+=E2=86=92 publish<br>
+=E2=86=92 audience response<br>
+=E2=86=92 product/topic prioritisation</p>
+<p>Content is a distribution and feedback layer, not another research organ=
+isation.</p>
+
+
+
+11. Avoid UK overfitting in the kernel
+<p>UK is an excellent starting jurisdiction.</p>
+<p>But the core POW schema should remain jurisdiction-neutral.</p>
+<p>Prefer:</p>
+<ul>
+<li>jurisdiction_id</li>
+<li>regulator_id</li>
+<li>property_id</li>
+<li>grid_node_id</li>
+<li>certification_scheme_id</li>
+</ul>
+<p>rather than hard-coding assumptions such as UPRN into universal core obj=
+ects.</p>
+<p>UKGraph should implement the UK adapters.</p>
+<p>POW should still work later in:</p>
+<ul>
+<li>India</li>
+<li>EU</li>
+<li>US</li>
+<li>other jurisdictions</li>
+</ul>
+
+
+
+12. The five probes should be measured by plants, not reports
+<p>Hourly probes can generate endless clever research without improving the=
+ garden.</p>
+<p>Their performance metrics should be:</p>
+<ul>
+<li>new source verified</li>
+<li>collector running</li>
+<li>first raw object stored</li>
+<li>24h uninterrupted</li>
+<li>first event emitted</li>
+<li>first transformation computed</li>
+<li>first join validated</li>
+<li>first decision improved</li>
+<li>first outcome received</li>
+</ul>
+<p>A week with three production-quality collectors is better than 500 pages=
+ of reconnaissance.</p>
+
+
+
+13. Recommended development posture
+
+BROAD COLLECTION
+<p>Only where:</p>
+<ul>
+<li>cheap</li>
+<li>legal/permissioned</li>
+<li>irreversible</li>
+<li>likely useful later</li>
+</ul>
+
+NARROW TRANSFORMATION
+<p>Only where:</p>
+<ul>
+<li>decision value is clear</li>
+<li>evidence is measurable</li>
+<li>the transformation is actually proprietary/useful</li>
+</ul>
+
+VERY NARROW EXECUTION
+<p>One closed loop at a time.</p>
+
+OUTCOMES
+<p>As early as possible.</p>
+
+
+
+14. First three domain clusters
+<p>If sequencing now:</p>
+
+1. Repair / Parts
+<p>Why:</p>
+<ul>
+<li>direct =C2=A3 outcomes</li>
+<li>clear transaction loop</li>
+<li>useful to ordinary people</li>
+<li>strong future robotics path</li>
+<li>immediate first-party outcome collection</li>
+</ul>
+<p>Core loop:</p>
+<p>asset<br>
+=E2=86=92 fault<br>
+=E2=86=92 part<br>
+=E2=86=92 compatibility<br>
+=E2=86=92 stock<br>
+=E2=86=92 procedure<br>
+=E2=86=92 user skill<br>
+=E2=86=92 repair economics<br>
+=E2=86=92 action<br>
+=E2=86=92 outcome</p>
+
+2. Compute / Mining
+<p>Why:</p>
+<ul>
+<li>PowPowPow already exists</li>
+<li>historical state collection is already underway</li>
+<li>clean opportunity-cost modelling</li>
+<li>easy to compare mine / rent / inference / sell / idle</li>
+</ul>
+
+3. Grid / EV
+<p>Why:</p>
+<ul>
+<li>unusually strong temporal data</li>
+<li>geographic physical constraints</li>
+<li>EV live status is genuinely ephemeral</li>
+<li>joins naturally into houses, solar, batteries, installers and energy</l=
+i>
+</ul>
+<p>Skills, property, legislation and apprenticeships should initially enric=
+h these clusters rather than becoming four more products.</p>
+
+
+
+15. Repo-level priority test
+<p>Put this at the top of the POW repo:</p>
+<blockquote>
+<p><strong>Does this work help POW remember something unrecoverable, comput=
+e something meaningfully better, or cause a real-world action whose outcome=
+ we can learn from?</strong></p>
+</blockquote>
+<p>If the answer is no to all three, it is probably not priority work.</p>
+<p>Use three labels on every issue/PR:</p>
+
+MEMORY
+<p>Preserves state that will otherwise disappear.</p>
+
+INTELLIGENCE
+<p>Creates a transformation/join that improves a real decision.</p>
+
+ACTION
+<p>Causes an intervention and lets us observe the outcome.</p>
+<p>A task should ideally satisfy at least one, and the best tasks satisfy t=
+wo or three.</p>
+
+
+
+16. Working doctrine
+<p><strong>Capture first. Normalize second. Productize last.</strong></p>
+<p><strong>Collect broadly where history is irreversible. Productize narrow=
+ly.</strong></p>
+<p><strong>Split products, not data.</strong></p>
+<p><strong>Do not confuse public data access with moat.</strong></p>
+<p><strong>Do not confuse historical data with valuable history.</strong></=
+p>
+<p><strong>Do not silently resolve uncertain identity.</strong></p>
+<p><strong>Do not build sub-brands before their workflows earn independence=
+.</strong></p>
+<p><strong>Do not let content become a separate research project.</strong><=
+/p>
+<p><strong>Do not let probes optimize for report volume.</strong></p>
+<p><strong>Get to outcomes early.</strong></p>
+<p>The strategic goal is not merely to build a map of the physical economy.=
+</p>
+<p>It is to build a system that:</p>
+<p><strong>remembers what reality looked like, understands what could be do=
+ne, acts when useful, and learns from what happened next.</strong></p></div=
+>
+
+--000000000000cb7828065bec0381--

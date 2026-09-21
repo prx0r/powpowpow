@@ -1,0 +1,766 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id H1Z28tXKnuBl
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 01:49:00 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=JgAquMTZkb02IqSrgrnehe6/SZvH+0nN073jY058mAPYrtEzjxBDUU8JAA9wKr5Xsrj28gHH7
+	6QjU3bWaCFjXwLpO18LM16VbUNV3vwh5L8vGSU82tAuqan8PjEywmfx9K4NOu4HGe+6SjaTr6zX
+	fphFu7p6QL5PZZCM2x51+Ua7FNu1//D9HLaPQw3dZWujOrBzQnTHoc76+A++g3MEpRBJhTR73Y7
+	K16HD3nX0xIrnJdjO/msQuXOKokAXrAOF3gTd86d4IjJVv3PBkjH0lJ6AWOg9hO/w+gyI33MIuo
+	YO7UWQj9ZSOj/aCUSkwaEJOuXtKwUbPUvs+qvjajUSxg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789696140; x=1790300940; bh=oJLQBrHD
+	oZ+0pyFkUw0p72b+pZ7kDPVHDxG1EXKjoDw=; b=RKvujbT+K2XY2A8OmiGrYkQAtGY3vgC9kHY
+	ZN6NrBr4LXIjVIz9Q1bub/ISYgdA4YvuYciseSUXcEFOyUtnMQx2wEmBVxJpY/pSObDZ9rCrfFa
+	pRiAif8sg9cEMmi035XTIIiY0Ykjja6x65xrjsOcZfJAff9xzyK3llc+su3r0dos/C4Ai8ltJxI
+	oYb84ZIbZEYP+qnTuYDpivdJQ5dAEluRS0Ujbg3jVqT8SUtECZ0n+Qyik8FgtZSrf3bV7dXBypv
+	FxOYImOo7lJd/Y7WzfvAQhESSIQ1fO+n03rrOeCvuA2qwcq38itCCVyGGHFTlLoMYV3Ew58ZbS5
+	ef94GfQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VZTNN5fD;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VZTNN5fD;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab201ebso237230d50.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 18:49:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789696140; cv=none;
+        d=google.com; s=arc-20260327;
+        b=p+ULw26TWGVMfXPVIiNNVGeMH/mNJ2ODdcz2XC0mJnwntas3U6OhL3xbU0JEDxbSn7
+         x0sMmgKjTIFd1I5rMCjhAT4oVbekKPVGvdXJ/EJS0/cYu030GGB7JbBoqs71plOL3Fg5
+         PNfc2Er9yOsRkiEdYJVmwf2ez2DR4tIDwnTp0fnPAwEPtvBOkjnlqU6FG6IZGx1MdgGR
+         oyPoNDa/5d+eLk7LMJp8tdZaT9rSALPgrI5XOlSTKQKz4qaI9OzuDRhycm3oifFpOEA5
+         tZ1vmY7ekwPH/9V12cOOKPcUVH2qboAKtMRCjnFDf5P6GEvBGUqH6chbTJHWB1PtlsXj
+         xMhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=oJLQBrHDoZ+0pyFkUw0p72b+pZ7kDPVHDxG1EXKjoDw=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=H7FRWkKP3c2kPZvlYzuJBM4zWiRNxVf4nJQjCHAn+qYBQNmKWVYHtQxj3HsQzDt37q
+         4lmBtjespp8yqA6uwu3mJSG9A1IknZ9+bs2TqSLa2+Zt3euuyLcfUB3ueS8EBPFdKYIm
+         qWBXG3NKOxfPSnmBPI8lPbANrK2UeIe88Xe1Vah4InqoZM65rCmCsYDupG8LJqY1Dfv3
+         JCjUz1ee7vLfrECwH+dFSlN+5HcGSw4YBApZzLLb0oYI77zIjv2hxSsPGCmaCHAr8Scq
+         W2c91l6qfTNo5UlXyuuZScjUwmilpwUKikAIU4vJMgIKng+9J05UjgjkK6Uqk6Am/TQs
+         cpng==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789696140; x=1790300940; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=oJLQBrHDoZ+0pyFkUw0p72b+pZ7kDPVHDxG1EXKjoDw=;
+        b=VZTNN5fDg6L3yEme+ExcsZcHByFUbWwEciIclhEmKecehSIW/ZH6R6DwFB0L/fj4Dy
+         n7hpon7AJ1D4jwFaQG3qroNurt0C9yHxKp+RckhZHogY0KW/NVsLuh3hWG4GzEL2O6vk
+         w+/CEVGHKz1CLhV9qBl+gTzlOvzqlcrgt+BR3ddGAk+QkhcRuoTiyWaYBzr+frK+T64l
+         NOOPA2qBRM45U00Ae75MGJHMcqKSl0eJ1CZTKVwLAnRjfplTjICWenvrHJebDdOJq6KH
+         dMjQN4KnApEAFv/O3VQpEuxloea1CWhBddR5sXgNrEB31ldOCHaPLooRXcFLqiGTZLym
+         mDhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789696140; x=1790300940;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=oJLQBrHDoZ+0pyFkUw0p72b+pZ7kDPVHDxG1EXKjoDw=;
+        b=XtlRY7axIlkCygACe7xnt5vw4ucsMbp1xatj1LvvePWpLkdKSQOKc4PzGW6f6siEug
+         9ZWgwh+2Pho+/EDKokgHqbt9Pr23I7XQDDP6IVW34/UQtATmjF3f/M6so/a1ryq6HKUo
+         GIVImTAsz835wTRldB9VGqlwljiIDG2RUngteJRbRuh2Cmpzfi4HHShH3sl3PbqaQuHU
+         qm936qd/gtwpkIbQT5nuDuiGcyNVl3EBnbhDS42kr8Q+pX1btcCF5IkHxq+To1mAT1s3
+         igJWWgYUXfZ1quy40I7ky6HhF/ICu0d2z6KSfq9qAs2aB33usCZ2hLWBrkaUEdyC7tEA
+         VfMg==
+X-Gm-Message-State: AFuF++lF8XY9FY7I6+Lz41wHg37QrrU1XCiETIGzdDpmfXVP1exGtdwS
+	xNWsdACAxsF7Wg7WVu//kMQj1rGrIxi/11OfaxNSCG+1JB4f42YCPTnRcNwQEbQoQVQLajNQ9sc
+	lER/m0a3U/ouu8o9hQwFGZFR6RYPFxYTS5Q==
+X-Gm-Gg: AYBFou22ld8UYSUmy5wghOSn/IsJoMS/uLg0Uds430Yky3GRuoOE01vWvxIKj97JAt4
+	5v2/GPFSvsbcd6MGBebkYLB9JYEz/IyhGd2qU4I5ldhEFTllNemYD5Iio4kVoUDUFGboFUqUDFZ
+	bQ7FtvvhObRdAsNRbN3F3yvyV3aCMI85SuPMcDebtQtYaoCpLXk6hgEGdBIuBBxncDM09lwH0NR
+	WU8tzwRaxOxllJYeZlYV5ifp1Oeie6h4vH7j17LN0/N3Pq69hbij/q9j1aB6irXj41QMveu0kSP
+	uqE8m9ounP9wXQ6IntGm9VZ4ftJIRvdfoa89Po/zs8dOSJCYITvWhUObePs5Uqu3LfvqarEQn+R
+	sNChYTXjAKzd0Ld8tceEoF30tTV94ERYi5NTI0z0pmfsnnW7F/9LxNP0bYQNU4jl58jZT+7E1nQ
+	==
+X-Received: by 2002:a05:690e:e88:b0:671:477c:8df6 with SMTP id
+ 956f58d0204a3-6717fdabb1fmr299396d50.60.1789696139828; Thu, 17 Sep 2026
+ 18:48:59 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 18:48:59 -0700
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 18:48:58 -0700
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 18:48:58 -0700
+X-Gm-Features: AcwNN1VRPxxQKx8IMsKN6kGHQ6GxJXRqOQL3mgh04Nbzzq7hmWCJnUW2rUFC6-0
+Message-ID: <CAPdrGemKWE1eg5DuS6-UMLfKA9RK=jR1d7Lw6cnoQoWd+P1Dxw@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D18_08=3A47_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_22_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000aba1c3065bb81a18"
+
+--000000000000aba1c3065bb81a18
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY SCANNER =E2=80=94 EDGE REPORT
+
+1 RUN STATE / COVERAGE
+Recovered the latest complete Sent report first: 2026-09-18 07:47 =E2=80=94=
+ 26
+new/0 changed. Its cumulative exclusion set included the prior high-value
+chain (Monid/ToolRouter/ToolRoute, x402Scout, agent-discovery-mcp, FlowMCP,
+mcpc, OpenTracy, ARC-3-InsulaT, VLAC-Cut, Select-then-Solve,
+WebMCP-Phalanx, VaultMCP, llm-video-maker, tube-assistant,
+video-agent-skills, ShareLock, PMPA, MemSentry, SMSR, etc.). This run
+searched GitHub-first across fresh and widened windows, then branched
+through x402 payment/discovery, MCP security/egress, memory poisoning,
+Remotion/video-agent and Seedance/model-router neighbourhoods. Mirrors and
+previously recovered objects were excluded. Result: 22 unseen canonical
+objects, 0 material watchlist deltas promoted to changed.
+
+2 NEW OBJECT DASHBOARD =E2=80=94 22 UNIQUE
+
+AGENT / CONTROL / TOOLING
+A1 Walras =E2=80=94 https://github.com/kunaldrall29/walras =E2=80=94 closes=
+t MONID. Stellar
+x402 facilitator + Bazaar; MCP exposes ranked search_resources and
+paid_call, auto-pays HTTP or MCP tools, returns on-chain receipts and
+enforces a default per-call cap. BUILD PROBE.
+A2 x402engine-mcp =E2=80=94 https://github.com/agentc22/x402engine-mcp =E2=
+=80=94 closest
+MONID. Live discovery over 108 pay-per-call APIs (72 LLMs plus
+media/web/code/crypto/audio/travel/IPFS), prices in tool descriptions,
+automatic USDC on Base/Solana. SANDBOX.
+A3 stellar-mcp =E2=80=94 https://github.com/Tasfia-17/stellar-mcp =E2=80=94=
+ closest MONID.
+Gives MCP agents a Stellar wallet for autonomous x402 payment; roadmap
+explicitly adds Bazaar discovery and spend-policy contracts. SANDBOX.
+A4 merkleworks/x402-mcp =E2=80=94 https://github.com/merkleworks/x402-mcp =
+=E2=80=94 closest
+MONID. Tiny Apache-2.0 discover=E2=86=92challenge=E2=86=92proof=E2=86=92pay=
+ MCP with explicit proof
+verification and /.well-known/x402 discovery. SANDBOX.
+A5 kie-cli-mcp =E2=80=94 https://github.com/felores/kie-cli-mcp =E2=80=94 c=
+losest
+MONID/media router. One shared tool registry exposes Veo, Seedance, Runway,
+Suno, ElevenLabs, Wan, Flux etc. through CLI + MCP; selective tool loading
+bounds context/capability surface. SANDBOX.
+
+JEV / DECISION / SELF-IMPROVEMENT / PAPER-TO-CODE
+No three genuinely unseen close JEV implementations surfaced after
+excluding ARC-3-InsulaT, Select-then-Solve, roomkg-meta-policies, Universe
+Routing, VLAC-Cut, aLoRA and prior RSI objects. Search budget was
+transferred to adjacent control/security. Closest useful new control
+objects are Walras=E2=80=99s deterministic structured error/spend controlle=
+r,
+x402engine=E2=80=99s bounded service catalog and mcpkernel=E2=80=99s determ=
+inistic
+execution envelopes; these are control-plane analogues, not claimed as JEV
+models.
+
+ATTACKER FRONTIER =E2=80=94 DEFENSIVE/AUTHORIZED ANALYSIS ONLY
+X1 MemMorph =E2=80=94 https://arxiv.org/abs/2605.26154 =E2=80=94 closest PR=
+OJECTMEMORY.
+Long-term-memory poisoning biases later tool selection without modifying
+tool metadata; paper reports up to 85.9% ASR with only three injected
+records. BUILD SAFE FIXTURE.
+X2 MemSecBench =E2=80=94 https://arxiv.org/abs/2607.27080 =E2=80=94 lifecyc=
+le benchmark for
+Write=E2=86=92Execute=E2=86=92Forget memory attacks across 24 harness/memor=
+y/model
+configurations; reported malicious-memory persistence 84.2% and full
+Write=E2=86=92Execute success 50.3%. ADOPT benchmark concepts.
+X3 fuzzd =E2=80=94 https://github.com/ksek87/fuzzd =E2=80=94 closest MCPARA=
+SITE. Stateful
+MCP fuzzer over descriptions, schemas and responses; explicitly models
+chained calls and cross-tool contamination and reports 90.7% detection on
+MCPTox with zero false positives. SANDBOX as authorized regression
+generator.
+X4 bawbel/scanner =E2=80=94 https://github.com/bawbel/scanner =E2=80=94 clo=
+sest
+MCPARASITE/discovery poisoning. Scans MCP 2026 server cards, descriptions,
+cross-app escalation and async-task poisoning before first call; useful for
+pre-registration attack fixtures. SANDBOX.
+
+DEFENDER FRONTIER
+D1 Pipelock =E2=80=94 https://github.com/luckyPipewrench/pipelock =E2=80=94=
+ closest
+PRIVATELY defence. Inline HTTP/WebSocket/MCP/A2A mediation, egress
+DLP/SSRF, tool-poison/rug-pull checks, risky call-chain detection,
+secretless containment patterns and mediator-signed action receipts. This
+is the strongest unseen neighbour this run. ADOPT NOW / BUILD PROBE.
+D2 mcpkernel =E2=80=94 https://github.com/piyushptiwari1/mcpkernel =E2=80=
+=94 policy kernel
+with taint tracking, multi-hop DLP-chain detection,
+Docker/Firecracker/WASM/Microsandbox execution and Sigstore-signed
+deterministic execution envelopes. BUILD PROBE.
+D3 mcpguard =E2=80=94 https://github.com/GT-Projects256/mcpguard =E2=80=94
+OWASP-MCP-oriented config scanner + runtime policy proxy + audit logs.
+Lower novelty, but a useful small nearest neighbour. WATCH.
+D4 MCPSHIELD formal framework =E2=80=94 https://arxiv.org/abs/2604.05969 =
+=E2=80=94
+labeled-transition-system model with trust-boundary annotations, capability
+access control, tool attestation, information-flow tracking and runtime
+policy. CONTENT NOW / formal reference.
+
+AUTONOMOUS VIDEO / MEDIA
+V1 Mira =E2=80=94 https://github.com/coco-research/Mira =E2=80=94 closest O=
+penMontage/OpenX
+Flow. AGPL engine bundles OpenMontage, MoneyPrinterTurbo,
+Open-Generative-AI, Free-ai-video-generator, Wan2.2, HyperFrames and
+StoryGen-Atelier; offline real-MP4 pipeline already works, publish/cloud
+phases planned. BUILD PROBE.
+V2 DirectorAI =E2=80=94 https://github.com/0xDev3AI/director-ai =E2=80=94 c=
+losest Open AI
+UGC. LangGraph multi-agent screenwriter/animator pipeline =E2=86=92 editabl=
+e
+MasterJSON =E2=86=92 Remotion 60fps render; checkpoint resume, node-level r=
+edo and
+natural-language refinement. SANDBOX.
+V3 OpenNolan =E2=80=94 https://github.com/het8802/OpenNolan =E2=80=94 full =
+short-form
+agent: research hook =E2=86=92 script/voice =E2=86=92 source/generate foota=
+ge =E2=86=92 beat cuts =E2=86=92
+word captions =E2=86=92 motion/SFX/color =E2=86=92 finished 9:16. SANDBOX.
+V4 VibeFrame =E2=80=94 https://github.com/vericontext/vibeframe =E2=80=94 M=
+IT CLI+MCP for
+Seedance/Runway/Veo/Kling on user keys with hard cost caps and
+project/character/keyframe state. 166 stars/31 forks at crawl. ADOPT NOW
+for cost-bounded model-router bakeoff.
+V5 avatar-skills =E2=80=94 https://github.com/puntorigen/avatar-skills =E2=
+=80=94 agent
+skills for presenter creation/voice clone/talking-head/B-roll/reel
+composition across Replicate, ElevenLabs, Gemini, Higgsfield/Seedance.
+SANDBOX.
+V6 clippy-ai-agent =E2=80=94 https://github.com/Yacineooak/clippy-ai-agent =
+=E2=80=94 MIT
+autonomous long-form=E2=86=92viral-short repurposer for Shorts/TikTok/Reels=
+; 29
+stars/6 forks at crawl. WATCH.
+V7 vibe-creating-skill =E2=80=94 https://github.com/Alisa0808/vibe-creating=
+-skill =E2=80=94
+portable prompt-production skill routing into
+Seedance/Kling/Veo/Hailuo/Wan/Vidu/Gemini Omni/Grok Imagine via Atlas
+Cloud. WATCH.
+V8 seedance-2.0-skills =E2=80=94 https://github.com/whoizerwin/seedance-2.0=
+-skills
+=E2=80=94 23 modular filmmaking subskills, lazy-loadable by agents;
+text/image/video/reference-to-video production grammar. WATCH.
+V9 remotion-agent =E2=80=94 https://github.com/vibemod/remotion-agent =E2=
+=80=94 tiny MIT
+Claude-Code/Remotion playground; only 1 star but useful as a minimal
+deterministic-video substrate. WATCH.
+
+WEIRD ALPHA
+W1 Pipelock signed mediator receipts: evidence is generated outside the
+agent that took the action. This is closer to a verifiable agent
+EDR/event-sourcing primitive than a normal firewall.
+W2 Walras self-cataloging paid tools: a paid MCP settlement can cause the
+tool to become catalogued and then rediscoverable by ID. That means
+economic activity can mutate the future discovery graph.
+W3 MemMorph: memory can steer which legitimate tool is selected without
+poisoning that tool at all; this couples memory security directly to
+capability-market ranking.
+
+3 TOP 5 DEEP DIVES
+#1 Pipelock. Strongest unseen Privately neighbour. It mediates both ingress
+and egress across HTTP/MCP/A2A/WebSocket, detects tool poisoning and risky
+chains, supports budgets/rate controls, integrity manifests and
+containment, and emits signed receipts from outside the agent runtime.
+Smallest safe experiment: put a toy MCP agent behind Pipelock, attempt
+benign + synthetic exfiltration-shaped flows, then verify receipts offline
+and compare against QP=E2=80=99s predicted reachable effects. Falsifier: me=
+aningful
+effects can bypass the mediated boundary or receipts fail to capture
+policy/version/actor strongly enough for independent verification.
+
+#2 Walras. This is a compact MONID-like discover=E2=86=92pay=E2=86=92receip=
+t loop.
+search_resources returns ranked machine-callable resources; paid_call can
+invoke HTTP or MCP resources, auto-settle and return transaction receipt;
+spend cap defaults to 1 USDC. Privately implication: the selection result
+and the settlement receipt should be bound into one capability lineage.
+Experiment on a no-value/local fixture: search 10 resources, snapshot
+ranking/schema/price, simulate or testnet pay one, then recompute reachable
+authority. Falsifier: discovery metadata is too weak/untrusted to support
+meaningful pre-purchase attestation.
+
+#3 Mira. Instead of another single pipeline, Mira is becoming an
+orchestration layer over multiple existing open video engines. That makes
+it a good testbed for the desired research=E2=86=92script=E2=86=92asset/mod=
+el
+selection=E2=86=92render stack while avoiding recreation. Experiment: one 3=
+0s
+Privately explainer with offline/local path first, recording every stage
+and cost. Falsifier: integration overhead exceeds simply composing
+llm-video-maker + evaluator skills.
+
+#4 MemMorph. This sharpens the attack model: poisoned memory can bias a
+later choice among legitimate tools. The malicious object is therefore not
+necessarily the selected capability or its metadata; the compromise can
+live in the agent=E2=80=99s learned contextual prior. Experiment: synthetic=
+ 3-tool
+selector with harmless fake memory records, measure ranking drift
+before/after memory admission defenses. Falsifier: effect disappears under
+realistic retrieval policies or provenance-aware memory admission.
+
+#5 mcpkernel. Particularly relevant pieces are cross-tool taint/DLP
+tracking and deterministic signed execution envelopes. This is close to
+QP=E2=80=99s desired =E2=80=98proof around effects=E2=80=99 layer. Experime=
+nt: represent a DB=E2=86=92HTTP
+chain as taint flow, compare static QP reachability prediction with runtime
+envelope/decision. Falsifier: envelopes merely log calls without enough
+semantic state to prove the claimed constraint.
+
+4 AGENT FRAMEWORK / MONID-LIKE FRONTIER
+Rank: Walras > x402engine-mcp > stellar-mcp > merkleworks/x402-mcp >
+kie-cli-mcp. Trend: discovery, payment, invocation and receipt are
+collapsing into one agent transport primitive. The new security problem is
+not only payment authorization; it is binding search result + provider +
+schema + price + effect surface + settlement into one stable identity.
+
+5 JEV / DECISION / SELF-IMPROVEMENT FRONTIER
+Exhaustion note: no three unseen close model-level objects beat the
+already-registered
+ARC-3/Select-then-Solve/VLAC-Cut/aLoRA/roomkg/Universe-Routing
+neighbourhood in this pass. Rather than relabel weak objects as JEV, budget
+moved to the adjacent deterministic-control lane. Carry forward the prior
+JEV watchlist; next traversal should branch through robotics action heads,
+small VLA policy heads and game-controller repos rather than generic
+semantic-router search.
+
+6 ATTACKER FRONTIER
+Rank: MemMorph > MemSecBench > fuzzd > Bawbel Scanner. New semantic
+fingerprints: memory=E2=86=92tool-ranking hijack; Write=E2=86=92Execute=E2=
+=86=92Forget lifecycle
+persistence; cross-tool stateful contamination; pre-call
+server-card/discovery poisoning. No operational malicious instructions
+included.
+
+7 DEFENDER FRONTIER
+Rank: Pipelock > mcpkernel > MCPSHIELD > mcpguard. Generation improvement
+is increasingly measurable mediation: taint across tool chains,
+deterministic/signed evidence, tool provenance/integrity and pre-discovery
+scanning rather than prompt-only classifiers.
+
+8 AUTONOMOUS VIDEO / MEDIA FRONTIER
+Rank: Mira > DirectorAI > OpenNolan > VibeFrame > avatar-skills >
+clippy-ai-agent > vibe-creating-skill > seedance-2.0-skills >
+remotion-agent. Best composite probe remains deterministic editable
+rendering + visual evaluator, but Mira is now the best unseen =E2=80=98reus=
+e many
+existing engines=E2=80=99 candidate and VibeFrame the best unseen cost-boun=
+ded
+frontier-model router.
+
+9 COMMERCIAL SHOCK DERIVATIVES
+Frontier video APIs are increasingly appearing as agent-native
+routers/skills rather than standalone web products: VibeFrame and
+kie-cli-mcp expose Seedance/Veo/Kling/Runway-class models behind explicit
+tool surfaces; avatar-skills composes hosted avatar/voice/video providers.
+x402 is similarly moving from payment demos into searchable catalogs and
+general MCP transport (Walras/x402engine/Stellar MCP).
+
+10 WEIRD ALPHA
+Pipelock external signed receipts; Walras settlement-driven catalog
+mutation; MemMorph memory-driven legitimate-tool selection.
+
+11 ATTACK LOGBOOK DELTAS
+ADD memory-to-tool-ranking hijack =3D {poison accepted memory =E2=86=92 lat=
+er
+retrieval changes contextual belief =E2=86=92 legitimate high-value tool se=
+lected}.
+ADD discovery-card poisoning surface =3D {server card/metadata enters catal=
+og
+=E2=86=92 agent ranking/registration influenced before invocation}.
+ADD economic graph mutation =3D {successful paid interaction =E2=86=92 reso=
+urce
+becomes catalogued/trusted/rediscoverable =E2=86=92 future selection probab=
+ility
+changes}.
+
+12 TOP PRIVATELY LAB EXPERIMENTS
+
+   1. Pipelock =C3=97 QP signed-effect bakeoff.
+   2. Walras capability-market shadow routing:
+   search=E2=86=92attest=E2=86=92testnet/no-value settle=E2=86=92receipt=E2=
+=86=92authority recomputation.
+   3. MemMorph toy memory=E2=86=92tool-selection drift benchmark.
+   4. Mira vs llm-video-maker composite on one 30s topic, measuring
+   time/cost/editability.
+   5. mcpkernel taint-chain envelope vs QP predicted capability graph.
+
+13 BUILD/PROBE OPPORTUNITIES
+Highest EVI: signed external action receipts; capability-selection
+provenance; memory-aware tool-ranking integrity; deterministic taint/effect
+envelopes; video-engine orchestration rather than another generator.
+
+14 CONTENT OPPORTUNITIES
+=E2=80=98Your agent firewall should produce evidence the agent cannot rewri=
+te=E2=80=99;
+=E2=80=98Memory poisoning can choose the wrong legitimate tool=E2=80=99; =
+=E2=80=98What happens when
+an AI marketplace learns from its own purchases?=E2=80=99; =E2=80=98I compa=
+red open-source
+AI video orchestration stacks=E2=80=99; =E2=80=98Why x402 search ranking be=
+comes a security
+boundary.=E2=80=99
+
+15 TOP 5 THINGS TO TRY NOW
+Pipelock; Walras local/testnet demo; MemMorph synthetic selector; Mira
+offline MP4 path; VibeFrame with a hard tiny cost cap.
+
+16 WATCHLIST
+Carry: Monid/ToolRouter/ToolRoute, x402Scout, agent-discovery-mcp, FlowMCP,
+mcpc, OpenTracy, ARC-3-InsulaT, WebMCP-Phalanx, ShareLock,
+PMPA/MemSentry/SMSR, cMCP, llm-video-maker, video-agent-skills,
+tube-assistant. Add: Pipelock, Walras, mcpkernel, MemMorph, Mira,
+VibeFrame, x402engine-mcp.
+
+17 SOURCE-YIELD / GRAPH-TRAVERSAL LEDGER
+Highest yield: x402 discovery=E2=86=92Stellar/Bazaar=E2=86=92paid MCP=E2=86=
+=92receipts. Second: MCP
+firewall=E2=86=92egress mediation=E2=86=92taint=E2=86=92signed evidence. Th=
+ird: video
+router=E2=86=92Seedance/Veo/Kling=E2=86=92agent skills=E2=86=92deterministi=
+c Remotion. Fourth:
+memory poisoning=E2=86=92tool selection=E2=86=92lifecycle benchmark. Low yi=
+eld this pass:
+generic JEV/semantic-router terms mostly returned registered objects or
+weak duplicates. Next run: branch from ARC-3/VLAC authors and robotics/VLA
+repos directly.
+
+18 MASTER FRONTIER INDEX DELTA
+Append 22: walras; x402engine-mcp; stellar-mcp; merkleworks-x402-mcp;
+kie-cli-mcp; MemMorph; MemSecBench; fuzzd; bawbel-scanner; pipelock;
+mcpkernel; mcpguard; MCPSHIELD-formal-framework; Mira; DirectorAI;
+OpenNolan; VibeFrame; avatar-skills; clippy-ai-agent; vibe-creating-skill;
+seedance-2.0-skills; remotion-agent.
+
+19 MACHINE-READABLE RUN_STATE JSON
+{=E2=80=9Crun_at=E2=80=9D:=E2=80=9C2026-09-18T08:47:50+07:00=E2=80=9D,=E2=
+=80=9Cnew_count=E2=80=9D:22,=E2=80=9Cchanged_count=E2=80=9D:0,=E2=80=9Cnew_=
+by_lane=E2=80=9D:{=E2=80=9Cagent_control=E2=80=9D:5,=E2=80=9Cjev_new=E2=80=
+=9D:0,=E2=80=9Cattacker=E2=80=9D:4,=E2=80=9Cdefender=E2=80=9D:4,=E2=80=9Cvi=
+deo_media=E2=80=9D:9,=E2=80=9Cweird_alpha_cross_lane=E2=80=9D:3},=E2=80=9Ct=
+op_new=E2=80=9D:[=E2=80=9Cpipelock=E2=80=9D,=E2=80=9Cwalras=E2=80=9D,=E2=80=
+=9CMira=E2=80=9D,=E2=80=9CMemMorph=E2=80=9D,=E2=80=9Cmcpkernel=E2=80=9D],=
+=E2=80=9Cattack_logbook_add=E2=80=9D:[=E2=80=9Cmemory_to_tool_ranking_hijac=
+k=E2=80=9D,=E2=80=9Cdiscovery_card_poisoning=E2=80=9D,=E2=80=9Ceconomic_gra=
+ph_mutation=E2=80=9D],=E2=80=9Cwatchlist_add=E2=80=9D:[=E2=80=9Cpipelock=E2=
+=80=9D,=E2=80=9Cwalras=E2=80=9D,=E2=80=9Cmcpkernel=E2=80=9D,=E2=80=9CMemMor=
+ph=E2=80=9D,=E2=80=9CMira=E2=80=9D,=E2=80=9CVibeFrame=E2=80=9D,=E2=80=9Cx40=
+2engine-mcp=E2=80=9D],=E2=80=9Cnext_high_yield=E2=80=9D:[=E2=80=9Crobotics_=
+action_heads_from_ARC3_VLAC_authors=E2=80=9D,=E2=80=9Cx402_discovery_receip=
+t_binding=E2=80=9D,=E2=80=9Cexternal_signed_agent_receipts=E2=80=9D,=E2=80=
+=9Cmemory_tool_selection_integrity=E2=80=9D,=E2=80=9Cvideo_engine_orchestra=
+tion=E2=80=9D]}
+
+--000000000000aba1c3065bb81a18
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>PRIVATELY SCANNER =E2=80=94 EDGE REPORT</p>
+<p>1 RUN STATE / COVERAGE<br>
+Recovered the latest complete Sent report first: 2026-09-18 07:47 =E2=80=94=
+ 26 new/0 changed. Its cumulative exclusion set included the prior high-val=
+ue chain (Monid/ToolRouter/ToolRoute, x402Scout, agent-discovery-mcp, FlowM=
+CP, mcpc, OpenTracy, ARC-3-InsulaT, VLAC-Cut, Select-then-Solve, WebMCP-Pha=
+lanx, VaultMCP, llm-video-maker, tube-assistant, video-agent-skills, ShareL=
+ock, PMPA, MemSentry, SMSR, etc.). This run searched GitHub-first across fr=
+esh and widened windows, then branched through x402 payment/discovery, MCP =
+security/egress, memory poisoning, Remotion/video-agent and Seedance/model-=
+router neighbourhoods. Mirrors and previously recovered objects were exclud=
+ed. Result: 22 unseen canonical objects, 0 material watchlist deltas promot=
+ed to changed.</p>
+<p>2 NEW OBJECT DASHBOARD =E2=80=94 22 UNIQUE</p>
+<p>AGENT / CONTROL / TOOLING<br>
+A1 Walras =E2=80=94 <a href=3D"https://github.com/kunaldrall29/walras">http=
+s://github.com/kunaldrall29/walras</a> =E2=80=94 closest MONID. Stellar x40=
+2 facilitator + Bazaar; MCP exposes ranked search_resources and paid_call, =
+auto-pays HTTP or MCP tools, returns on-chain receipts and enforces a defau=
+lt per-call cap. BUILD PROBE.<br>
+A2 x402engine-mcp =E2=80=94 <a href=3D"https://github.com/agentc22/x402engi=
+ne-mcp">https://github.com/agentc22/x402engine-mcp</a> =E2=80=94 closest MO=
+NID. Live discovery over 108 pay-per-call APIs (72 LLMs plus media/web/code=
+/crypto/audio/travel/IPFS), prices in tool descriptions, automatic USDC on =
+Base/Solana. SANDBOX.<br>
+A3 stellar-mcp =E2=80=94 <a href=3D"https://github.com/Tasfia-17/stellar-mc=
+p">https://github.com/Tasfia-17/stellar-mcp</a> =E2=80=94 closest MONID. Gi=
+ves MCP agents a Stellar wallet for autonomous x402 payment; roadmap explic=
+itly adds Bazaar discovery and spend-policy contracts. SANDBOX.<br>
+A4 merkleworks/x402-mcp =E2=80=94 <a href=3D"https://github.com/merkleworks=
+/x402-mcp">https://github.com/merkleworks/x402-mcp</a> =E2=80=94 closest MO=
+NID. Tiny Apache-2.0 discover=E2=86=92challenge=E2=86=92proof=E2=86=92pay M=
+CP with explicit proof verification and /.well-known/x402 discovery. SANDBO=
+X.<br>
+A5 kie-cli-mcp =E2=80=94 <a href=3D"https://github.com/felores/kie-cli-mcp"=
+>https://github.com/felores/kie-cli-mcp</a> =E2=80=94 closest MONID/media r=
+outer. One shared tool registry exposes Veo, Seedance, Runway, Suno, Eleven=
+Labs, Wan, Flux etc. through CLI + MCP; selective tool loading bounds conte=
+xt/capability surface. SANDBOX.</p>
+<p>JEV / DECISION / SELF-IMPROVEMENT / PAPER-TO-CODE<br>
+No three genuinely unseen close JEV implementations surfaced after excludin=
+g ARC-3-InsulaT, Select-then-Solve, roomkg-meta-policies, Universe Routing,=
+ VLAC-Cut, aLoRA and prior RSI objects. Search budget was transferred to ad=
+jacent control/security. Closest useful new control objects are Walras=E2=
+=80=99s deterministic structured error/spend controller, x402engine=E2=80=
+=99s bounded service catalog and mcpkernel=E2=80=99s deterministic executio=
+n envelopes; these are control-plane analogues, not claimed as JEV models.<=
+/p>
+<p>ATTACKER FRONTIER =E2=80=94 DEFENSIVE/AUTHORIZED ANALYSIS ONLY<br>
+X1 MemMorph =E2=80=94 <a href=3D"https://arxiv.org/abs/2605.26154">https://=
+arxiv.org/abs/2605.26154</a> =E2=80=94 closest PROJECTMEMORY. Long-term-mem=
+ory poisoning biases later tool selection without modifying tool metadata; =
+paper reports up to 85.9% ASR with only three injected records. BUILD SAFE =
+FIXTURE.<br>
+X2 MemSecBench =E2=80=94 <a href=3D"https://arxiv.org/abs/2607.27080">https=
+://arxiv.org/abs/2607.27080</a> =E2=80=94 lifecycle benchmark for Write=E2=
+=86=92Execute=E2=86=92Forget memory attacks across 24 harness/memory/model =
+configurations; reported malicious-memory persistence 84.2% and full Write=
+=E2=86=92Execute success 50.3%. ADOPT benchmark concepts.<br>
+X3 fuzzd =E2=80=94 <a href=3D"https://github.com/ksek87/fuzzd">https://gith=
+ub.com/ksek87/fuzzd</a> =E2=80=94 closest MCPARASITE. Stateful MCP fuzzer o=
+ver descriptions, schemas and responses; explicitly models chained calls an=
+d cross-tool contamination and reports 90.7% detection on MCPTox with zero =
+false positives. SANDBOX as authorized regression generator.<br>
+X4 bawbel/scanner =E2=80=94 <a href=3D"https://github.com/bawbel/scanner">h=
+ttps://github.com/bawbel/scanner</a> =E2=80=94 closest MCPARASITE/discovery=
+ poisoning. Scans MCP 2026 server cards, descriptions, cross-app escalation=
+ and async-task poisoning before first call; useful for pre-registration at=
+tack fixtures. SANDBOX.</p>
+<p>DEFENDER FRONTIER<br>
+D1 Pipelock =E2=80=94 <a href=3D"https://github.com/luckyPipewrench/pipeloc=
+k">https://github.com/luckyPipewrench/pipelock</a> =E2=80=94 closest PRIVAT=
+ELY defence. Inline HTTP/WebSocket/MCP/A2A mediation, egress DLP/SSRF, tool=
+-poison/rug-pull checks, risky call-chain detection, secretless containment=
+ patterns and mediator-signed action receipts. This is the strongest unseen=
+ neighbour this run. ADOPT NOW / BUILD PROBE.<br>
+D2 mcpkernel =E2=80=94 <a href=3D"https://github.com/piyushptiwari1/mcpkern=
+el">https://github.com/piyushptiwari1/mcpkernel</a> =E2=80=94 policy kernel=
+ with taint tracking, multi-hop DLP-chain detection, Docker/Firecracker/WAS=
+M/Microsandbox execution and Sigstore-signed deterministic execution envelo=
+pes. BUILD PROBE.<br>
+D3 mcpguard =E2=80=94 <a href=3D"https://github.com/GT-Projects256/mcpguard=
+">https://github.com/GT-Projects256/mcpguard</a> =E2=80=94 OWASP-MCP-orient=
+ed config scanner + runtime policy proxy + audit logs. Lower novelty, but a=
+ useful small nearest neighbour. WATCH.<br>
+D4 MCPSHIELD formal framework =E2=80=94 <a href=3D"https://arxiv.org/abs/26=
+04.05969">https://arxiv.org/abs/2604.05969</a> =E2=80=94 labeled-transition=
+-system model with trust-boundary annotations, capability access control, t=
+ool attestation, information-flow tracking and runtime policy. CONTENT NOW =
+/ formal reference.</p>
+<p>AUTONOMOUS VIDEO / MEDIA<br>
+V1 Mira =E2=80=94 <a href=3D"https://github.com/coco-research/Mira">https:/=
+/github.com/coco-research/Mira</a> =E2=80=94 closest OpenMontage/OpenX Flow=
+. AGPL engine bundles OpenMontage, MoneyPrinterTurbo, Open-Generative-AI, F=
+ree-ai-video-generator, Wan2.2, HyperFrames and StoryGen-Atelier; offline r=
+eal-MP4 pipeline already works, publish/cloud phases planned. BUILD PROBE.<=
+br>
+V2 DirectorAI =E2=80=94 <a href=3D"https://github.com/0xDev3AI/director-ai"=
+>https://github.com/0xDev3AI/director-ai</a> =E2=80=94 closest Open AI UGC.=
+ LangGraph multi-agent screenwriter/animator pipeline =E2=86=92 editable Ma=
+sterJSON =E2=86=92 Remotion 60fps render; checkpoint resume, node-level red=
+o and natural-language refinement. SANDBOX.<br>
+V3 OpenNolan =E2=80=94 <a href=3D"https://github.com/het8802/OpenNolan">htt=
+ps://github.com/het8802/OpenNolan</a> =E2=80=94 full short-form agent: rese=
+arch hook =E2=86=92 script/voice =E2=86=92 source/generate footage =E2=86=
+=92 beat cuts =E2=86=92 word captions =E2=86=92 motion/SFX/color =E2=86=92 =
+finished 9:16. SANDBOX.<br>
+V4 VibeFrame =E2=80=94 <a href=3D"https://github.com/vericontext/vibeframe"=
+>https://github.com/vericontext/vibeframe</a> =E2=80=94 MIT CLI+MCP for See=
+dance/Runway/Veo/Kling on user keys with hard cost caps and project/charact=
+er/keyframe state. 166 stars/31 forks at crawl. ADOPT NOW for cost-bounded =
+model-router bakeoff.<br>
+V5 avatar-skills =E2=80=94 <a href=3D"https://github.com/puntorigen/avatar-=
+skills">https://github.com/puntorigen/avatar-skills</a> =E2=80=94 agent ski=
+lls for presenter creation/voice clone/talking-head/B-roll/reel composition=
+ across Replicate, ElevenLabs, Gemini, Higgsfield/Seedance. SANDBOX.<br>
+V6 clippy-ai-agent =E2=80=94 <a href=3D"https://github.com/Yacineooak/clipp=
+y-ai-agent">https://github.com/Yacineooak/clippy-ai-agent</a> =E2=80=94 MIT=
+ autonomous long-form=E2=86=92viral-short repurposer for Shorts/TikTok/Reel=
+s; 29 stars/6 forks at crawl. WATCH.<br>
+V7 vibe-creating-skill =E2=80=94 <a href=3D"https://github.com/Alisa0808/vi=
+be-creating-skill">https://github.com/Alisa0808/vibe-creating-skill</a> =E2=
+=80=94 portable prompt-production skill routing into Seedance/Kling/Veo/Hai=
+luo/Wan/Vidu/Gemini Omni/Grok Imagine via Atlas Cloud. WATCH.<br>
+V8 seedance-2.0-skills =E2=80=94 <a href=3D"https://github.com/whoizerwin/s=
+eedance-2.0-skills">https://github.com/whoizerwin/seedance-2.0-skills</a> =
+=E2=80=94 23 modular filmmaking subskills, lazy-loadable by agents; text/im=
+age/video/reference-to-video production grammar. WATCH.<br>
+V9 remotion-agent =E2=80=94 <a href=3D"https://github.com/vibemod/remotion-=
+agent">https://github.com/vibemod/remotion-agent</a> =E2=80=94 tiny MIT Cla=
+ude-Code/Remotion playground; only 1 star but useful as a minimal determini=
+stic-video substrate. WATCH.</p>
+<p>WEIRD ALPHA<br>
+W1 Pipelock signed mediator receipts: evidence is generated outside the age=
+nt that took the action. This is closer to a verifiable agent EDR/event-sou=
+rcing primitive than a normal firewall.<br>
+W2 Walras self-cataloging paid tools: a paid MCP settlement can cause the t=
+ool to become catalogued and then rediscoverable by ID. That means economic=
+ activity can mutate the future discovery graph.<br>
+W3 MemMorph: memory can steer which legitimate tool is selected without poi=
+soning that tool at all; this couples memory security directly to capabilit=
+y-market ranking.</p>
+<p>3 TOP 5 DEEP DIVES<br>
+#1 Pipelock. Strongest unseen Privately neighbour. It mediates both ingress=
+ and egress across HTTP/MCP/A2A/WebSocket, detects tool poisoning and risky=
+ chains, supports budgets/rate controls, integrity manifests and containmen=
+t, and emits signed receipts from outside the agent runtime. Smallest safe =
+experiment: put a toy MCP agent behind Pipelock, attempt benign + synthetic=
+ exfiltration-shaped flows, then verify receipts offline and compare agains=
+t QP=E2=80=99s predicted reachable effects. Falsifier: meaningful effects c=
+an bypass the mediated boundary or receipts fail to capture policy/version/=
+actor strongly enough for independent verification.</p>
+<p>#2 Walras. This is a compact MONID-like discover=E2=86=92pay=E2=86=92rec=
+eipt loop. search_resources returns ranked machine-callable resources; paid=
+_call can invoke HTTP or MCP resources, auto-settle and return transaction =
+receipt; spend cap defaults to 1 USDC. Privately implication: the selection=
+ result and the settlement receipt should be bound into one capability line=
+age. Experiment on a no-value/local fixture: search 10 resources, snapshot =
+ranking/schema/price, simulate or testnet pay one, then recompute reachable=
+ authority. Falsifier: discovery metadata is too weak/untrusted to support =
+meaningful pre-purchase attestation.</p>
+<p>#3 Mira. Instead of another single pipeline, Mira is becoming an orchest=
+ration layer over multiple existing open video engines. That makes it a goo=
+d testbed for the desired research=E2=86=92script=E2=86=92asset/model selec=
+tion=E2=86=92render stack while avoiding recreation. Experiment: one 30s Pr=
+ivately explainer with offline/local path first, recording every stage and =
+cost. Falsifier: integration overhead exceeds simply composing llm-video-ma=
+ker + evaluator skills.</p>
+<p>#4 MemMorph. This sharpens the attack model: poisoned memory can bias a =
+later choice among legitimate tools. The malicious object is therefore not =
+necessarily the selected capability or its metadata; the compromise can liv=
+e in the agent=E2=80=99s learned contextual prior. Experiment: synthetic 3-=
+tool selector with harmless fake memory records, measure ranking drift befo=
+re/after memory admission defenses. Falsifier: effect disappears under real=
+istic retrieval policies or provenance-aware memory admission.</p>
+<p>#5 mcpkernel. Particularly relevant pieces are cross-tool taint/DLP trac=
+king and deterministic signed execution envelopes. This is close to QP=E2=
+=80=99s desired =E2=80=98proof around effects=E2=80=99 layer. Experiment: r=
+epresent a DB=E2=86=92HTTP chain as taint flow, compare static QP reachabil=
+ity prediction with runtime envelope/decision. Falsifier: envelopes merely =
+log calls without enough semantic state to prove the claimed constraint.</p=
+>
+<p>4 AGENT FRAMEWORK / MONID-LIKE FRONTIER<br>
+Rank: Walras &gt; x402engine-mcp &gt; stellar-mcp &gt; merkleworks/x402-mcp=
+ &gt; kie-cli-mcp. Trend: discovery, payment, invocation and receipt are co=
+llapsing into one agent transport primitive. The new security problem is no=
+t only payment authorization; it is binding search result + provider + sche=
+ma + price + effect surface + settlement into one stable identity.</p>
+<p>5 JEV / DECISION / SELF-IMPROVEMENT FRONTIER<br>
+Exhaustion note: no three unseen close model-level objects beat the already=
+-registered ARC-3/Select-then-Solve/VLAC-Cut/aLoRA/roomkg/Universe-Routing =
+neighbourhood in this pass. Rather than relabel weak objects as JEV, budget=
+ moved to the adjacent deterministic-control lane. Carry forward the prior =
+JEV watchlist; next traversal should branch through robotics action heads, =
+small VLA policy heads and game-controller repos rather than generic semant=
+ic-router search.</p>
+<p>6 ATTACKER FRONTIER<br>
+Rank: MemMorph &gt; MemSecBench &gt; fuzzd &gt; Bawbel Scanner. New semanti=
+c fingerprints: memory=E2=86=92tool-ranking hijack; Write=E2=86=92Execute=
+=E2=86=92Forget lifecycle persistence; cross-tool stateful contamination; p=
+re-call server-card/discovery poisoning. No operational malicious instructi=
+ons included.</p>
+<p>7 DEFENDER FRONTIER<br>
+Rank: Pipelock &gt; mcpkernel &gt; MCPSHIELD &gt; mcpguard. Generation impr=
+ovement is increasingly measurable mediation: taint across tool chains, det=
+erministic/signed evidence, tool provenance/integrity and pre-discovery sca=
+nning rather than prompt-only classifiers.</p>
+<p>8 AUTONOMOUS VIDEO / MEDIA FRONTIER<br>
+Rank: Mira &gt; DirectorAI &gt; OpenNolan &gt; VibeFrame &gt; avatar-skills=
+ &gt; clippy-ai-agent &gt; vibe-creating-skill &gt; seedance-2.0-skills &gt=
+; remotion-agent. Best composite probe remains deterministic editable rende=
+ring + visual evaluator, but Mira is now the best unseen =E2=80=98reuse man=
+y existing engines=E2=80=99 candidate and VibeFrame the best unseen cost-bo=
+unded frontier-model router.</p>
+<p>9 COMMERCIAL SHOCK DERIVATIVES<br>
+Frontier video APIs are increasingly appearing as agent-native routers/skil=
+ls rather than standalone web products: VibeFrame and kie-cli-mcp expose Se=
+edance/Veo/Kling/Runway-class models behind explicit tool surfaces; avatar-=
+skills composes hosted avatar/voice/video providers. x402 is similarly movi=
+ng from payment demos into searchable catalogs and general MCP transport (W=
+alras/x402engine/Stellar MCP).</p>
+<p>10 WEIRD ALPHA<br>
+Pipelock external signed receipts; Walras settlement-driven catalog mutatio=
+n; MemMorph memory-driven legitimate-tool selection.</p>
+<p>11 ATTACK LOGBOOK DELTAS<br>
+ADD memory-to-tool-ranking hijack =3D {poison accepted memory =E2=86=92 lat=
+er retrieval changes contextual belief =E2=86=92 legitimate high-value tool=
+ selected}.<br>
+ADD discovery-card poisoning surface =3D {server card/metadata enters catal=
+og =E2=86=92 agent ranking/registration influenced before invocation}.<br>
+ADD economic graph mutation =3D {successful paid interaction =E2=86=92 reso=
+urce becomes catalogued/trusted/rediscoverable =E2=86=92 future selection p=
+robability changes}.</p>
+<p>12 TOP PRIVATELY LAB EXPERIMENTS</p>
+<ol>
+<li>Pipelock =C3=97 QP signed-effect bakeoff.</li>
+<li>Walras capability-market shadow routing: search=E2=86=92attest=E2=86=92=
+testnet/no-value settle=E2=86=92receipt=E2=86=92authority recomputation.</l=
+i>
+<li>MemMorph toy memory=E2=86=92tool-selection drift benchmark.</li>
+<li>Mira vs llm-video-maker composite on one 30s topic, measuring time/cost=
+/editability.</li>
+<li>mcpkernel taint-chain envelope vs QP predicted capability graph.</li>
+</ol>
+<p>13 BUILD/PROBE OPPORTUNITIES<br>
+Highest EVI: signed external action receipts; capability-selection provenan=
+ce; memory-aware tool-ranking integrity; deterministic taint/effect envelop=
+es; video-engine orchestration rather than another generator.</p>
+<p>14 CONTENT OPPORTUNITIES<br>
+=E2=80=98Your agent firewall should produce evidence the agent cannot rewri=
+te=E2=80=99; =E2=80=98Memory poisoning can choose the wrong legitimate tool=
+=E2=80=99; =E2=80=98What happens when an AI marketplace learns from its own=
+ purchases?=E2=80=99; =E2=80=98I compared open-source AI video orchestratio=
+n stacks=E2=80=99; =E2=80=98Why x402 search ranking becomes a security boun=
+dary.=E2=80=99</p>
+<p>15 TOP 5 THINGS TO TRY NOW<br>
+Pipelock; Walras local/testnet demo; MemMorph synthetic selector; Mira offl=
+ine MP4 path; VibeFrame with a hard tiny cost cap.</p>
+<p>16 WATCHLIST<br>
+Carry: Monid/ToolRouter/ToolRoute, x402Scout, agent-discovery-mcp, FlowMCP,=
+ mcpc, OpenTracy, ARC-3-InsulaT, WebMCP-Phalanx, ShareLock, PMPA/MemSentry/=
+SMSR, cMCP, llm-video-maker, video-agent-skills, tube-assistant. Add: Pipel=
+ock, Walras, mcpkernel, MemMorph, Mira, VibeFrame, x402engine-mcp.</p>
+<p>17 SOURCE-YIELD / GRAPH-TRAVERSAL LEDGER<br>
+Highest yield: x402 discovery=E2=86=92Stellar/Bazaar=E2=86=92paid MCP=E2=86=
+=92receipts. Second: MCP firewall=E2=86=92egress mediation=E2=86=92taint=E2=
+=86=92signed evidence. Third: video router=E2=86=92Seedance/Veo/Kling=E2=86=
+=92agent skills=E2=86=92deterministic Remotion. Fourth: memory poisoning=E2=
+=86=92tool selection=E2=86=92lifecycle benchmark. Low yield this pass: gene=
+ric JEV/semantic-router terms mostly returned registered objects or weak du=
+plicates. Next run: branch from ARC-3/VLAC authors and robotics/VLA repos d=
+irectly.</p>
+<p>18 MASTER FRONTIER INDEX DELTA<br>
+Append 22: walras; x402engine-mcp; stellar-mcp; merkleworks-x402-mcp; kie-c=
+li-mcp; MemMorph; MemSecBench; fuzzd; bawbel-scanner; pipelock; mcpkernel; =
+mcpguard; MCPSHIELD-formal-framework; Mira; DirectorAI; OpenNolan; VibeFram=
+e; avatar-skills; clippy-ai-agent; vibe-creating-skill; seedance-2.0-skills=
+; remotion-agent.</p>
+<p>19 MACHINE-READABLE RUN_STATE JSON<br>
+{=E2=80=9Crun_at=E2=80=9D:=E2=80=9C2026-09-18T08:47:50+07:00=E2=80=9D,=E2=
+=80=9Cnew_count=E2=80=9D:22,=E2=80=9Cchanged_count=E2=80=9D:0,=E2=80=9Cnew_=
+by_lane=E2=80=9D:{=E2=80=9Cagent_control=E2=80=9D:5,=E2=80=9Cjev_new=E2=80=
+=9D:0,=E2=80=9Cattacker=E2=80=9D:4,=E2=80=9Cdefender=E2=80=9D:4,=E2=80=9Cvi=
+deo_media=E2=80=9D:9,=E2=80=9Cweird_alpha_cross_lane=E2=80=9D:3},=E2=80=9Ct=
+op_new=E2=80=9D:[=E2=80=9Cpipelock=E2=80=9D,=E2=80=9Cwalras=E2=80=9D,=E2=80=
+=9CMira=E2=80=9D,=E2=80=9CMemMorph=E2=80=9D,=E2=80=9Cmcpkernel=E2=80=9D],=
+=E2=80=9Cattack_logbook_add=E2=80=9D:[=E2=80=9Cmemory_to_tool_ranking_hijac=
+k=E2=80=9D,=E2=80=9Cdiscovery_card_poisoning=E2=80=9D,=E2=80=9Ceconomic_gra=
+ph_mutation=E2=80=9D],=E2=80=9Cwatchlist_add=E2=80=9D:[=E2=80=9Cpipelock=E2=
+=80=9D,=E2=80=9Cwalras=E2=80=9D,=E2=80=9Cmcpkernel=E2=80=9D,=E2=80=9CMemMor=
+ph=E2=80=9D,=E2=80=9CMira=E2=80=9D,=E2=80=9CVibeFrame=E2=80=9D,=E2=80=9Cx40=
+2engine-mcp=E2=80=9D],=E2=80=9Cnext_high_yield=E2=80=9D:[=E2=80=9Crobotics_=
+action_heads_from_ARC3_VLAC_authors=E2=80=9D,=E2=80=9Cx402_discovery_receip=
+t_binding=E2=80=9D,=E2=80=9Cexternal_signed_agent_receipts=E2=80=9D,=E2=80=
+=9Cmemory_tool_selection_integrity=E2=80=9D,=E2=80=9Cvideo_engine_orchestra=
+tion=E2=80=9D]}</p>
+
+--000000000000aba1c3065bb81a18--

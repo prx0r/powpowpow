@@ -1,0 +1,604 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id dvJXEFoTbPwa
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 08:08:47 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=TB1rOIIwvH8CwhUotWIQFuYFzDeyaZJnbw91pKXrXpb6PCM/IX/etEm2hFWdzMlqSbxrRb+P0
+	dH0EBWMrpt/tLBnZpfkt2nDRcKOgtGLhi1bcBe3PHFo2TIYxd9tDvuWpFiXjfEibhFThiJaIjcv
+	U8c36gG7VPmshzMl1vdzohpOWCgCddyCFlgnT6l8ZyF6Y5GHR+9zPs/xVZTJ4TYdeiigt9Trxqm
+	yzHvseGA+La+fu7E3o9BYbszkXXLFOqCY/ql29HiYaWIGjPbU668ix+ttj+F0PLe2QeCV9vbE/A
+	AluwnV6+ZDaehRpbX1JPLjMOo9laSf8dH3m6D9IbClWw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789891727; x=1790496527; bh=NaWVNgEw
+	R4y6+O9dPJdCF7LHiVmPDx6xIHLYMfKRGpA=; b=boXEfiLFJ5QOCHRUqECUvdOpb0OVtf04pZL
+	NQMC7uyAarwBc9Xa6kLWTz9i2QjG2DBneFnclOv8BcQ6T3ejPm+y2LwP/2sQmb826SqYAiQPaGL
+	OXjrD4BgkN7ltwFUjwL12fzqfBpFk54WrZIR2ELQC2V4yHsa/aQoknHrlre0EH41pjYmg6SuQUK
+	f98S0Q9Db7a+D73z8qv/0519nl53WKGaMXrBRE0qERny+K03tvHfpPV0l3nj9sKT8tXuineEcrn
+	YQeuIJ0r5V+C3OMqpFkjMxiyLr8tJ6mCBtD1wqWYUDBdTCWtIdLvY/ymL02l1jvhl1S68DMBtlr
+	fRY0PFw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SpypZhlz;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SpypZhlz;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d4ddd179eso15590537b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 01:08:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789891727; cv=none;
+        d=google.com; s=arc-20260327;
+        b=TA9IBZtmK4t6erQzbG3EAwuD3W3pOrde1kzJtuodGrJTHfi68/JxtY/yvVoTrD/XKR
+         jqGEvooGRT4tTtkTEmsYKuUZlaNUjT9oi7CGfDI1w8GEkfQZ5Itn/f5T/2lJC+TZbRJ1
+         Pd/CZjIiSwCRcwpV7M20kvoHzkzF+oaW+khFrVdMnSYbnlHJG2cDQKEO2meeaV5xRuIL
+         isGcsKpQkwnacmxeXEYQpkL+Q0jWDV8JyJCfA96O5H8hj0mZ16Ba2zEx2LXQHhDDTLow
+         8aHDT5OSzno1+Cxk75hpXVU5QzPN3RBgR1ufWfdIMKz/XX5pa6fwLDXhNgZa2QnXG8+k
+         NMKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=NaWVNgEwR4y6+O9dPJdCF7LHiVmPDx6xIHLYMfKRGpA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=NxxGQJN4ryLuVn5cYR5JCxX8Her+mdJkNrPsN071K6/609PkJEWg/YuGAessaOi/gf
+         8u/M2TENKN+EMiG2KN8V/NxIqW3NG7lTxG77qQhEGopWLLK92TEAsihkcxmG5ePDC4R2
+         1k327hhpE6mRp7gjR5uT34+MJyyy1qxsEh+TrQa0VrFPqe52MFcqfJSZ0sx2/EtayDAK
+         SWNwS5Om9/KycV8SmjBk69qWxf7/iysw1UDfpQozhDFMaPvQxRBcVlIc6+QkEpyspcWM
+         JPqB0hQJUkMuAYodk2xmlkAnDrsTVs+fRc9ThvUijdTJgY8xQ56YsCHlwOrU+F78XZQL
+         X3TQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789891727; x=1790496527; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=NaWVNgEwR4y6+O9dPJdCF7LHiVmPDx6xIHLYMfKRGpA=;
+        b=SpypZhlzS7AAZbMNt+SlCk3+dTZ5ZrQ/uGmfQj5qGbV4Blx9LvJ+wo4Iv//9LWgV/s
+         MWUBEPkWfEpCkz9PLGG/9oSy4Yo8Bg+STkd3kE4N7s8AUorFkI3BltNFo3pjN9JG1s6Q
+         D+EAl+On7aunMUUsZHC4pfIwl1BWKVuexiLylaZK00u5TLiM9kbzjN1IDlQwf107sj1X
+         fmRu3LlCY695pk/mWJS0/em1pmwE8yjtf4poxP77JncQjMaTq8c2JfxiiW7VFF4RlZd+
+         397sg44nCMwRYIwcjfZ9g5hDA0SNaQaxFAw94OFwHAiwDGDhfaeVFLKaQy0YTT7CUn4P
+         /pdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789891727; x=1790496527;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=NaWVNgEwR4y6+O9dPJdCF7LHiVmPDx6xIHLYMfKRGpA=;
+        b=2Fqu4Wh9sMJhDzXj+mHyYhPcQqOlhw0yS5F71UT4JWFDlwiSh2LZTWifPDDT7lhuSE
+         qjSdFMs92TyibChebzS8RE57kilfhsKksB6+Byrm9aq6OF4NyeOa+vbka0zJE96Hah4g
+         1Ct5cj36+nWUsB3ErTTYNUqCoeJnSnSM2PykVQk+bmqBO81GSdA4/kdO3YIOwBdZovoo
+         rGsiYhGgasYQ84+3px8kq5OJT4Vbi67QB7l0UDtKuHlcBlsU741ClfJHJkEYI2gPK+mp
+         3wKsvWl+BjMGaXPOSu1zzMK8KI2MVk+uEzx2DmyWN2XzVljpQzachqc6aL/2HQ8Zf1yd
+         IqLw==
+X-Gm-Message-State: AFuF++lrYMxWA8h9K2YNt2aCdqTKY3xYWbcpftcfdckOzOeOFR/tprx7
+	ow0ZEDysn7q/JtevPRZJQadvQFHhvvatux/CKrwKOBQP4dzXENnxRAol8ro0mMDD0NANzuKxHxJ
+	Pfzb2MplbOTJjz4UY80kep3Bm4d0O2aE9HQ==
+X-Gm-Gg: AYBFou0VDfPPvOdgAPnapewSwNrudH6mc7D3JwlJK7WJvjScNjPAo/kYTGINKXnPjSl
+	yPZHtz+ybKRuhooFmcpCvSSTn5dxKz1Q89riquVoM07BjZ2LrWyseKvJqnDms8GTnO4qjcCgOnE
+	cghCfeCppE4YbYTdWh9suZOl0pf7rD0Do2MVwrvba2oTrRJP6A7CqXE/xuPYrCBDxw40T+zfl4U
+	OR8C54hyRr2VVUjJ11dDGI2vVz1GsFHJItxpmSuB9UcKnggnLMY483Ctcw6x9v5vifGzoT43NOT
+	NypTC/pf66OSRJMJxcjLpTf+5uWk7XW4Vv9BJ/Xu+krimFKkSzoeEjfy+AxGM0LYJWslAMoBh/F
+	Aur9C1grPnNBrchDWyXAOfkwuNGoaxV8R2TfI2JfXPqPz3QJ4bqCGwPOgqvWzninXSHD8Ftj9Pw
+	==
+X-Received: by 2002:a05:690c:389:b0:870:b039:9805 with SMTP id
+ 00721157ae682-89735c841f0mr38075297b3.19.1789891726849; Sun, 20 Sep 2026
+ 01:08:46 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 03:08:46 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 03:08:46 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 03:08:46 -0500
+X-Gm-Features: AcwNN1VRDiivpTn72omVHT-bgTFG1JkPQdf4aeXpecoioifQG3j6o7w3WZz7WJA
+Message-ID: <CAPdrGe=wh1xtC3cX6BWYLbz5G_iE4_uODfZqsG8skP=Lm_LTRA@mail.gmail.com>
+Subject: =?UTF-8?B?R2FyZGVuIFByb2JlIOKAlCBOZXcgRmVlZHMg4oCUIDIwMjYtMDktMjAgMTU6MTA=?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000090bc6a065be5a47a"
+
+--00000000000090bc6a065be5a47a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+New Feed Forest Probe =E2=80=94 Baseline 2026-09-20 15:10 Executive delta
+
+This first baseline found one strong PLANT candidate, two PILOT/WATCH
+candidates, and several important exclusions. The strongest immediately
+collectible feed is the DfE Find an Apprenticeship Display Advert API v2:
+it became the required version by 1 April 2026 and newly represents
+apprenticeships available at multiple locations. This is unusually useful
+for UKGraph because adverts are ephemeral demand observations while the new
+location structure improves geographic resolution.
+
+The most strategically interesting near-future feed is DEFRA Digital Waste
+Tracking, but it is NOT yet a public read feed: the Receipt API is
+primarily authenticated submission infrastructure. Do not treat it as
+collectable national movement data yet. Monitor for public/aggregate read
+access and Phase 2 expansion.
+Ranked dashboard
+
+   1. DfE Apprenticeship Display Advert API v2 =E2=80=94 4.25/5 =E2=80=94 P=
+LANT
+   2. HMRC UK Trade Tariff Developer Portal/API =E2=80=94 3.80/5 =E2=80=94 =
+PILOT
+   3. DfE AIECS Public API (AI-preprocessed education corpus) =E2=80=94 3.5=
+5/5 =E2=80=94
+   PILOT/WATCH
+   4. DEFRA Digital Waste Tracking Receipt API =E2=80=94 3.45/5 theoretical=
+,
+   access-capped =E2=80=94 WATCH
+   5. Elexon Industry Standing Data / MHHS API changes =E2=80=94 3.35/5 =E2=
+=80=94 WATCH/JOIN
+   6. ORR Public Consumption API =E2=80=94 3.25/5 pending current endpoint
+   verification =E2=80=94 WATCH
+
+Scoring weights: 25% irreversibility, 15% earliness, 15% buyer evidence,
+15% transformation uniqueness, 10% joinability, 10% feasibility, 10%
+durability.
+1) DfE apprenticeship adverts v2 =E2=80=94 PLANT
+
+CONFIRMED: DfE=E2=80=99s developer hub says Display Advert API v2 lets clie=
+nts
+display apprenticeships available in more than one location and required
+migration by 1 April 2026. The API represents current adverts, so a
+collector can preserve the changing opportunity surface.
+
+Transformation: advert snapshots =E2=86=92 canonical
+employer/provider/standard/occupation/geography =E2=86=92 first_seen/last_s=
+een =E2=86=92
+vacancy duration =E2=86=92 salary =E2=86=92 multi-location expansion =E2=86=
+=92 repost detection =E2=86=92
+employer hiring velocity =E2=86=92 apprenticeship supply-response index.
+
+Joins: UKGraph ONS Textkernel jobs, Companies House, DfE apprenticeship
+starts/achievements, Nomis labour supply, SIC/SOC, local geography.
+
+Buyer hypothesis: workforce planners, training providers, recruiters, FE
+colleges, local authorities, investors/consultancies studying
+skilled-labour constraints. Buyer evidence is currently INFERRED rather
+than directly priced, so capped.
+
+Time moat: HIGH. Historic aggregate apprenticeship statistics exist, but
+exact advert-level state, reposts, location changes and duration are not
+obviously offered as a complete public point-in-time archive.
+
+First collector: poll current adverts at least daily; preserve raw response
+hash plus normalized advert state. Test whether IDs persist across
+edits/reposts.
+
+Falsifier: discovery of a complete, cheap, advert-level historical archive
+including revisions and expiry state.
+2) HMRC UK Trade Tariff Developer Portal =E2=80=94 PILOT
+
+CONFIRMED: HMRC launched the UK Trade Tariff Developer Portal on 27 May
+2026. It exposes structured official commodity codes, duty rates, VAT,
+quotas and trade measures, with API-key management and future APIs promised=
+.
+
+Transformation: snapshot tariff/measures =E2=86=92 commodity-country-measur=
+e
+temporal graph =E2=86=92 detect duty/quota/regulatory changes =E2=86=92 cal=
+culate effective
+border-cost shocks and map affected UK industries/companies.
+
+Joins: UKGraph SIC/company graph, DBT trade flows, Companies House,
+procurement, physical-bottleneck forests.
+
+Time moat: MEDIUM. Tariff law/history can often be reconstructed from
+legislation and official records, so raw mirroring is not enough. The moat
+would be normalized point-in-time effective-measure state plus
+company/industry exposure.
+
+Buyer: customs/logistics software, importers, procurement teams, trade
+analysts. HMRC itself identifies software developers building
+customs/logistics integrations as target users. Direct willingness-to-pay
+for our transformed history remains UNKNOWN.
+
+First collector: daily canonical snapshots of commodity =C3=97 origin =C3=
+=97 measure
+=C3=97 rate =C3=97 quota; emit change events only. Backfill test first.
+
+Kill condition: if HMRC provides complete effective-dated history cheaply,
+downgrade to JOIN-only source.
+3) DfE AIECS Public API =E2=80=94 PILOT/WATCH
+
+CONFIRMED: release 0 became available 17 February 2026. It is a public
+hosted API for education content pre-processed for AI, with datasets/files
+and ~500-token semantically searchable chunks; rate limit 100 requests/min
+per subscription key.
+
+Interesting object is not today=E2=80=99s corpus but corpus drift:
+chunk/document/version additions, removals and wording changes across
+official educational content.
+
+Transformation: canonical source document =E2=86=92 versioned chunks =E2=86=
+=92 semantic
+policy/guidance diff =E2=86=92 affected curriculum/teacher/provider entitie=
+s =E2=86=92
+machine-readable =E2=80=98what changed in official education knowledge=E2=
+=80=99 feed.
+
+Buyer evidence: WEAK/UNKNOWN. Potential agent builders, edtech and
+compliance products, but no direct spend evidence found this run. Therefore
+score capped.
+
+Falsifier: all source documents already have complete official version
+history, or AIECS itself exposes immutable versions.
+4) DEFRA Digital Waste Tracking =E2=80=94 WATCH, do not misclassify
+
+CONFIRMED: public beta began 28 April 2026; mandatory receipt reporting
+begins 1 October 2026 in England/Wales and January 2027 in Scotland/NI.
+Phase 2 for collectors begins private beta in autumn 2026. DEFRA says the
+industry includes ~12,000 waste-site operators, ~150,000 exemption holders
+and ~300,000 carriers/brokers/dealers. Receipt API v1.1 was issued 10 April
+2026 and uses seven REST endpoints. Every incoming movement eventually
+receives a tracking ID.
+
+Critical counterevidence: current Receipt API is authenticated submission
+infrastructure, not an open national read API. We cannot assume movement
+records are publicly collectable. This blocks a national raw-data forest
+today.
+
+Why monitor: if aggregate/open read access appears, or if we operate
+software for consenting sites, the dataset is extraordinarily early and
+structurally new. DEFRA=E2=80=99s own impact assessment says existing waste=
+ data is
+incomplete, inconsistent and fragmented; the new system is intended to
+centralize movement tracking.
+
+Commercial signal: WasteCheck already sells upstream compliance API tiers
+from free to =C2=A3249/mo plus enterprise, proving software budget around t=
+he
+new mandate=E2=80=94but not proving a market for resale of movement history=
+.
+Endpoint/schema table
+
+   - DfE Apprenticeship Display Advert API v2: current apprenticeship
+   adverts; new multi-location support; key/signup requirements per DfE
+   developer service.
+   - HMRC Trade Tariff API: commodity codes, duty, VAT, quotas, trade
+   measures; developer key.
+   - DfE AIECS: /datasets, /files, /chunks, collections, publishers/tags;
+   ~500-token chunks; 100 req/min/subscription key.
+   - DEFRA DWT: POST/PUT movement receipts plus GET reference-code lists;
+   OAuth/Bearer; authenticated operational system.
+   - Elexon ISD: MHHS standing/reference data; live v12 technical spec
+   effective 10 Apr 2026; useful as a join source, not yet demonstrated
+   irreversible feed.
+
+Reconstruction tests / exclusions
+
+REJECT raw EA water-quality API as a new-feed moat: the 2025/26 API changed
+access mechanics, but available commentary indicates it serves
+substantially the same historical archive; API novelty does not equal data
+novelty.
+
+REJECT raw NESO 2026 FES tables as time moat: current CKAN API makes them
+machine-readable, but annual scenario vintages are already explicitly
+published and preserved.
+
+REJECT Binance/KuCoin WebSocket architecture changes: new
+endpoints/transport structure do not create a novel underlying dataset;
+deep crypto market-history vendors already exist.
+
+REJECT generic Find a Tender collection as a new-feed opportunity: robust
+historical OCDS backfill exists from 2021 and multiple commercial
+collectors already operate. Still useful as UKGraph input.
+
+WATCH ORR Public Consumption API: ORR awarded a =C2=A355k contract for an
+external machine-readable API over its data lakehouse and stated in 2026
+that it intended to launch/expand it. Need current endpoint verification
+before promotion.
+
+WATCH DfT API programme: on 2 June 2026 DfT published a discovery making
+APIs the default delivery channel for transport data and an enabler of
+real-time services. This is a meta-signal: monitor the DfT estate for
+individual datasets transitioning from periodic files to APIs, especially
+where new real-time fields appear.
+Source-yield ledger
+
+High yield: GOV.UK launch/beta pages; DfE developer portal; DEFRA
+GitHub/developer docs; government API-roadmap publications.
+Medium yield: Elexon/BSC technical change notices; procurement notices for
+upcoming government APIs.
+Low yield: generic =E2=80=98new API 2026=E2=80=99 web search; crypto exchan=
+ge API
+changelogs (mostly transport changes, not new economic state).
+Next-hour information-gain queue
+
+   1. Test DfE apprenticeship API history semantics: IDs, edits, expiry,
+   repost behavior, pagination, licence and backfill.
+   2. Audit HMRC tariff API for effective-dated historical endpoints. This
+   determines whether daily snapshotting creates irreversibility.
+   3. Find current ORR Public Consumption API endpoint and launch date;
+   compare machine-readable fields against prior periodic tables.
+   4. Monitor DfT datasets newly moving from static download to API and
+   rank only those gaining real-time/new fields.
+   5. Inspect DEFRA DWT roadmap/changelog for any
+   read/aggregate/public-data endpoint and Phase 2 schema changes.
+   6. Diff AIECS corpus metadata over a day/week and establish whether
+   versions are immutable or overwritten.
+
+Machine-readable state { "run":"2026-09-20T15:10:00+07:00", "candidates":[
+{"id":"dfe-apprenticeship-adverts-v2","score":4.25,"decision":"PLANT","evid=
+ence":"CONFIRMED
+feed; buyer INFERRED","next":"audit history/edit/repost semantics"},
+{"id":"hmrc-trade-tariff-api","score":3.80,"decision":"PILOT","evidence":"C=
+ONFIRMED
+launch; irreversibility UNKNOWN","next":"test effective-dated backfill"},
+{"id":"dfe-aiecs","score":3.55,"decision":"PILOT_WATCH","evidence":"CONFIRM=
+ED
+API; buyer UNKNOWN","next":"diff corpus/version semantics"},
+{"id":"defra-dwt","score":3.45,"decision":"WATCH","evidence":"CONFIRMED
+operational API; public-read access absent/unconfirmed","next":"monitor
+roadmap/read access"},
+{"id":"elexon-isd-mhhs","score":3.35,"decision":"WATCH_JOIN","next":"identi=
+fy
+transient/new fields"},
+{"id":"orr-public-consumption-api","score":3.25,"decision":"WATCH","evidenc=
+e":"CONFIRMED
+procurement/intention; current endpoint UNKNOWN","next":"verify production
+endpoint"} ], "exclusions":[
+{"id":"ea-water-quality-new-api","reason":"access-layer change; historical
+data substantially backfillable"}, {"id":"neso-fes-2026","reason":"annual
+vintages already preserved"},
+{"id":"crypto-websocket-upgrades","reason":"transport change, not novel
+state"}, {"id":"find-a-tender-raw","reason":"strong historical backfill and
+incumbents"} ] }
+
+Primary sources checked: DfE Apprenticeship developer hub; HMRC UK Trade
+Tariff Developer Portal announcement (27 May 2026); DfE AIECS API release
+page; DEFRA Digital Waste Tracking policy updated 18 Sep 2026 and developer
+guide; DfT API development report (2 Jun 2026); Elexon ISD/MHHS technical
+notices; ORR procurement/business-plan material.
+
+--00000000000090bc6a065be5a47a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+New Feed Forest Probe =E2=80=94 Baseline 2026-09-20 15:10
+
+Executive delta
+<p>This first baseline found one strong PLANT candidate, two PILOT/WATCH ca=
+ndidates, and several important exclusions. The strongest immediately colle=
+ctible feed is the DfE Find an Apprenticeship Display Advert API v2: it bec=
+ame the required version by 1 April 2026 and newly represents apprenticeshi=
+ps available at multiple locations. This is unusually useful for UKGraph be=
+cause adverts are ephemeral demand observations while the new location stru=
+cture improves geographic resolution.</p>
+<p>The most strategically interesting near-future feed is DEFRA Digital Was=
+te Tracking, but it is NOT yet a public read feed: the Receipt API is prima=
+rily authenticated submission infrastructure. Do not treat it as collectabl=
+e national movement data yet. Monitor for public/aggregate read access and =
+Phase 2 expansion.</p>
+
+Ranked dashboard
+<ol>
+<li>DfE Apprenticeship Display Advert API v2 =E2=80=94 4.25/5 =E2=80=94 PLA=
+NT</li>
+<li>HMRC UK Trade Tariff Developer Portal/API =E2=80=94 3.80/5 =E2=80=94 PI=
+LOT</li>
+<li>DfE AIECS Public API (AI-preprocessed education corpus) =E2=80=94 3.55/=
+5 =E2=80=94 PILOT/WATCH</li>
+<li>DEFRA Digital Waste Tracking Receipt API =E2=80=94 3.45/5 theoretical, =
+access-capped =E2=80=94 WATCH</li>
+<li>Elexon Industry Standing Data / MHHS API changes =E2=80=94 3.35/5 =E2=
+=80=94 WATCH/JOIN</li>
+<li>ORR Public Consumption API =E2=80=94 3.25/5 pending current endpoint ve=
+rification =E2=80=94 WATCH</li>
+</ol>
+<p>Scoring weights: 25% irreversibility, 15% earliness, 15% buyer evidence,=
+ 15% transformation uniqueness, 10% joinability, 10% feasibility, 10% durab=
+ility.</p>
+
+1) DfE apprenticeship adverts v2 =E2=80=94 PLANT
+<p>CONFIRMED: DfE=E2=80=99s developer hub says Display Advert API v2 lets c=
+lients display apprenticeships available in more than one location and requ=
+ired migration by 1 April 2026. The API represents current adverts, so a co=
+llector can preserve the changing opportunity surface.</p>
+<p>Transformation: advert snapshots =E2=86=92 canonical employer/provider/s=
+tandard/occupation/geography =E2=86=92 first_seen/last_seen =E2=86=92 vacan=
+cy duration =E2=86=92 salary =E2=86=92 multi-location expansion =E2=86=92 r=
+epost detection =E2=86=92 employer hiring velocity =E2=86=92 apprenticeship=
+ supply-response index.</p>
+<p>Joins: UKGraph ONS Textkernel jobs, Companies House, DfE apprenticeship =
+starts/achievements, Nomis labour supply, SIC/SOC, local geography.</p>
+<p>Buyer hypothesis: workforce planners, training providers, recruiters, FE=
+ colleges, local authorities, investors/consultancies studying skilled-labo=
+ur constraints. Buyer evidence is currently INFERRED rather than directly p=
+riced, so capped.</p>
+<p>Time moat: HIGH. Historic aggregate apprenticeship statistics exist, but=
+ exact advert-level state, reposts, location changes and duration are not o=
+bviously offered as a complete public point-in-time archive.</p>
+<p>First collector: poll current adverts at least daily; preserve raw respo=
+nse hash plus normalized advert state. Test whether IDs persist across edit=
+s/reposts.</p>
+<p>Falsifier: discovery of a complete, cheap, advert-level historical archi=
+ve including revisions and expiry state.</p>
+
+2) HMRC UK Trade Tariff Developer Portal =E2=80=94 PILOT
+<p>CONFIRMED: HMRC launched the UK Trade Tariff Developer Portal on 27 May =
+2026. It exposes structured official commodity codes, duty rates, VAT, quot=
+as and trade measures, with API-key management and future APIs promised.</p=
+>
+<p>Transformation: snapshot tariff/measures =E2=86=92 commodity-country-mea=
+sure temporal graph =E2=86=92 detect duty/quota/regulatory changes =E2=86=
+=92 calculate effective border-cost shocks and map affected UK industries/c=
+ompanies.</p>
+<p>Joins: UKGraph SIC/company graph, DBT trade flows, Companies House, proc=
+urement, physical-bottleneck forests.</p>
+<p>Time moat: MEDIUM. Tariff law/history can often be reconstructed from le=
+gislation and official records, so raw mirroring is not enough. The moat wo=
+uld be normalized point-in-time effective-measure state plus company/indust=
+ry exposure.</p>
+<p>Buyer: customs/logistics software, importers, procurement teams, trade a=
+nalysts. HMRC itself identifies software developers building customs/logist=
+ics integrations as target users. Direct willingness-to-pay for our transfo=
+rmed history remains UNKNOWN.</p>
+<p>First collector: daily canonical snapshots of commodity =C3=97 origin =
+=C3=97 measure =C3=97 rate =C3=97 quota; emit change events only. Backfill =
+test first.</p>
+<p>Kill condition: if HMRC provides complete effective-dated history cheapl=
+y, downgrade to JOIN-only source.</p>
+
+3) DfE AIECS Public API =E2=80=94 PILOT/WATCH
+<p>CONFIRMED: release 0 became available 17 February 2026. It is a public h=
+osted API for education content pre-processed for AI, with datasets/files a=
+nd ~500-token semantically searchable chunks; rate limit 100 requests/min p=
+er subscription key.</p>
+<p>Interesting object is not today=E2=80=99s corpus but corpus drift: chunk=
+/document/version additions, removals and wording changes across official e=
+ducational content.</p>
+<p>Transformation: canonical source document =E2=86=92 versioned chunks =E2=
+=86=92 semantic policy/guidance diff =E2=86=92 affected curriculum/teacher/=
+provider entities =E2=86=92 machine-readable =E2=80=98what changed in offic=
+ial education knowledge=E2=80=99 feed.</p>
+<p>Buyer evidence: WEAK/UNKNOWN. Potential agent builders, edtech and compl=
+iance products, but no direct spend evidence found this run. Therefore scor=
+e capped.</p>
+<p>Falsifier: all source documents already have complete official version h=
+istory, or AIECS itself exposes immutable versions.</p>
+
+4) DEFRA Digital Waste Tracking =E2=80=94 WATCH, do not misclassify
+<p>CONFIRMED: public beta began 28 April 2026; mandatory receipt reporting =
+begins 1 October 2026 in England/Wales and January 2027 in Scotland/NI. Pha=
+se 2 for collectors begins private beta in autumn 2026. DEFRA says the indu=
+stry includes ~12,000 waste-site operators, ~150,000 exemption holders and =
+~300,000 carriers/brokers/dealers. Receipt API v1.1 was issued 10 April 202=
+6 and uses seven REST endpoints. Every incoming movement eventually receive=
+s a tracking ID.</p>
+<p>Critical counterevidence: current Receipt API is authenticated submissio=
+n infrastructure, not an open national read API. We cannot assume movement =
+records are publicly collectable. This blocks a national raw-data forest to=
+day.</p>
+<p>Why monitor: if aggregate/open read access appears, or if we operate sof=
+tware for consenting sites, the dataset is extraordinarily early and struct=
+urally new. DEFRA=E2=80=99s own impact assessment says existing waste data =
+is incomplete, inconsistent and fragmented; the new system is intended to c=
+entralize movement tracking.</p>
+<p>Commercial signal: WasteCheck already sells upstream compliance API tier=
+s from free to =C2=A3249/mo plus enterprise, proving software budget around=
+ the new mandate=E2=80=94but not proving a market for resale of movement hi=
+story.</p>
+
+Endpoint/schema table
+<ul>
+<li>DfE Apprenticeship Display Advert API v2: current apprenticeship advert=
+s; new multi-location support; key/signup requirements per DfE developer se=
+rvice.</li>
+<li>HMRC Trade Tariff API: commodity codes, duty, VAT, quotas, trade measur=
+es; developer key.</li>
+<li>DfE AIECS: /datasets, /files, /chunks, collections, publishers/tags; ~5=
+00-token chunks; 100 req/min/subscription key.</li>
+<li>DEFRA DWT: POST/PUT movement receipts plus GET reference-code lists; OA=
+uth/Bearer; authenticated operational system.</li>
+<li>Elexon ISD: MHHS standing/reference data; live v12 technical spec effec=
+tive 10 Apr 2026; useful as a join source, not yet demonstrated irreversibl=
+e feed.</li>
+</ul>
+
+Reconstruction tests / exclusions
+<p>REJECT raw EA water-quality API as a new-feed moat: the 2025/26 API chan=
+ged access mechanics, but available commentary indicates it serves substant=
+ially the same historical archive; API novelty does not equal data novelty.=
+</p>
+<p>REJECT raw NESO 2026 FES tables as time moat: current CKAN API makes the=
+m machine-readable, but annual scenario vintages are already explicitly pub=
+lished and preserved.</p>
+<p>REJECT Binance/KuCoin WebSocket architecture changes: new endpoints/tran=
+sport structure do not create a novel underlying dataset; deep crypto marke=
+t-history vendors already exist.</p>
+<p>REJECT generic Find a Tender collection as a new-feed opportunity: robus=
+t historical OCDS backfill exists from 2021 and multiple commercial collect=
+ors already operate. Still useful as UKGraph input.</p>
+<p>WATCH ORR Public Consumption API: ORR awarded a =C2=A355k contract for a=
+n external machine-readable API over its data lakehouse and stated in 2026 =
+that it intended to launch/expand it. Need current endpoint verification be=
+fore promotion.</p>
+<p>WATCH DfT API programme: on 2 June 2026 DfT published a discovery making=
+ APIs the default delivery channel for transport data and an enabler of rea=
+l-time services. This is a meta-signal: monitor the DfT estate for individu=
+al datasets transitioning from periodic files to APIs, especially where new=
+ real-time fields appear.</p>
+
+Source-yield ledger
+<p>High yield: <a href=3D"http://GOV.UK">GOV.UK</a> launch/beta pages; DfE =
+developer portal; DEFRA GitHub/developer docs; government API-roadmap publi=
+cations.<br>
+Medium yield: Elexon/BSC technical change notices; procurement notices for =
+upcoming government APIs.<br>
+Low yield: generic =E2=80=98new API 2026=E2=80=99 web search; crypto exchan=
+ge API changelogs (mostly transport changes, not new economic state).</p>
+
+Next-hour information-gain queue
+<ol>
+<li>Test DfE apprenticeship API history semantics: IDs, edits, expiry, repo=
+st behavior, pagination, licence and backfill.</li>
+<li>Audit HMRC tariff API for effective-dated historical endpoints. This de=
+termines whether daily snapshotting creates irreversibility.</li>
+<li>Find current ORR Public Consumption API endpoint and launch date; compa=
+re machine-readable fields against prior periodic tables.</li>
+<li>Monitor DfT datasets newly moving from static download to API and rank =
+only those gaining real-time/new fields.</li>
+<li>Inspect DEFRA DWT roadmap/changelog for any read/aggregate/public-data =
+endpoint and Phase 2 schema changes.</li>
+<li>Diff AIECS corpus metadata over a day/week and establish whether versio=
+ns are immutable or overwritten.</li>
+</ol>
+
+Machine-readable state
+
+<code>{
+  &quot;run&quot;:&quot;2026-09-20T15:10:00+07:00&quot;,
+  &quot;candidates&quot;:[
+    {&quot;id&quot;:&quot;dfe-apprenticeship-adverts-v2&quot;,&quot;score&q=
+uot;:4.25,&quot;decision&quot;:&quot;PLANT&quot;,&quot;evidence&quot;:&quot=
+;CONFIRMED feed; buyer INFERRED&quot;,&quot;next&quot;:&quot;audit history/=
+edit/repost semantics&quot;},
+    {&quot;id&quot;:&quot;hmrc-trade-tariff-api&quot;,&quot;score&quot;:3.8=
+0,&quot;decision&quot;:&quot;PILOT&quot;,&quot;evidence&quot;:&quot;CONFIRM=
+ED launch; irreversibility UNKNOWN&quot;,&quot;next&quot;:&quot;test effect=
+ive-dated backfill&quot;},
+    {&quot;id&quot;:&quot;dfe-aiecs&quot;,&quot;score&quot;:3.55,&quot;deci=
+sion&quot;:&quot;PILOT_WATCH&quot;,&quot;evidence&quot;:&quot;CONFIRMED API=
+; buyer UNKNOWN&quot;,&quot;next&quot;:&quot;diff corpus/version semantics&=
+quot;},
+    {&quot;id&quot;:&quot;defra-dwt&quot;,&quot;score&quot;:3.45,&quot;deci=
+sion&quot;:&quot;WATCH&quot;,&quot;evidence&quot;:&quot;CONFIRMED operation=
+al API; public-read access absent/unconfirmed&quot;,&quot;next&quot;:&quot;=
+monitor roadmap/read access&quot;},
+    {&quot;id&quot;:&quot;elexon-isd-mhhs&quot;,&quot;score&quot;:3.35,&quo=
+t;decision&quot;:&quot;WATCH_JOIN&quot;,&quot;next&quot;:&quot;identify tra=
+nsient/new fields&quot;},
+    {&quot;id&quot;:&quot;orr-public-consumption-api&quot;,&quot;score&quot=
+;:3.25,&quot;decision&quot;:&quot;WATCH&quot;,&quot;evidence&quot;:&quot;CO=
+NFIRMED procurement/intention; current endpoint UNKNOWN&quot;,&quot;next&qu=
+ot;:&quot;verify production endpoint&quot;}
+  ],
+  &quot;exclusions&quot;:[
+    {&quot;id&quot;:&quot;ea-water-quality-new-api&quot;,&quot;reason&quot;=
+:&quot;access-layer change; historical data substantially backfillable&quot=
+;},
+    {&quot;id&quot;:&quot;neso-fes-2026&quot;,&quot;reason&quot;:&quot;annu=
+al vintages already preserved&quot;},
+    {&quot;id&quot;:&quot;crypto-websocket-upgrades&quot;,&quot;reason&quot=
+;:&quot;transport change, not novel state&quot;},
+    {&quot;id&quot;:&quot;find-a-tender-raw&quot;,&quot;reason&quot;:&quot;=
+strong historical backfill and incumbents&quot;}
+  ]
+}
+</code>
+<p>Primary sources checked: DfE Apprenticeship developer hub; HMRC UK Trade=
+ Tariff Developer Portal announcement (27 May 2026); DfE AIECS API release =
+page; DEFRA Digital Waste Tracking policy updated 18 Sep 2026 and developer=
+ guide; DfT API development report (2 Jun 2026); Elexon ISD/MHHS technical =
+notices; ORR procurement/business-plan material.</p>
+
+--00000000000090bc6a065be5a47a--

@@ -1,0 +1,375 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id F5PJ91iIn2mt
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 10:36:20 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=TMU0GZDtGcwERmJPt/fQlq9QoNNtEbZB4l4rLKexziTlGG6ExZ8QqZpD0MAJXkIoZdFY4vPcg
+	VVvV6VWTAX7Wc6VYcuVY3BokXceQV56NMP4WBAIRoQjhwCkVed2rfM92dHDNNurmqP9oA4C8jru
+	Sre4Bb04Tu4X4Bm2mgppYQRVMYx6lv4wuNxi140N6QnE/oreYGxPsxLObAQ2UVF6DM8NbCavkXB
+	R3fs0c7w5bGjjJu3Ls1aEvSMJ9T6tYQ2tbQXNw1Dv7MG1I1l4Er0vUa4Lh501L+IUBc21uh2Vv8
+	SB9DwRjhFIcapFkelOODpDVhCZzPXo/S6Zr04W8OHgNw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789727781; x=1790332581; bh=GUY4qkPS
+	D/PfyBsfHmkd/NvUohD8Bg65jEcP25IVS8k=; b=HTOVUAJFQvChcc7Us4wszxaky9RllmLcRJP
+	bOSDp6k0KIC7fJgFunj3U8SiCCi0APrnzdAjBfCdiGEdRold6weiq2GPUrLuvtFon33pMZMBFy1
+	yfbbqzfUY8Q7XAWIqxL1deRWjyGapCO82N6T0p4UVDQu9h6pIpYm68VUQVhMqEtQVXFe7ab+mR3
+	7jK5yDKJgwIEnGXrA1a9S7IjX1mWfWi028MoBbqwWFefg48De/pPMfo6RBq3R7V/5W0ULFbiEn+
+	oRFDAutPSwN8VnDbxo2739JYBFnag9cr1ie5jQPBTsM4NBGBROclIUXkCFJ3KTJtIYkzGGvgeQ7
+	3G+DR2w==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=l9uT+qVq;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=l9uT+qVq;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4aac92dbso540098d50.2
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 03:36:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789727780; cv=none;
+        d=google.com; s=arc-20260327;
+        b=e3KXlq0fruORNeqdyy3HqMZKNdmoIZ2XZnwgkUmAKvqEsYdkkQlWMx5EtEMwIiJyWK
+         cRFOwxyGDSlzi9LZhHpiY7xN5RZ80NRzeutNH9lrO0ge9pGz4DVD28bnyOjscuWmNdte
+         vlYkxVI1naFEFWgjhKnUJU8HdK6LeSynPHth7Zk0c/J8Ps+yV1vt+n9LIiBaZ1f4GPvt
+         X0RTKC7Ab4CNJcLo6SVIzvfOomb0i6eaSj/7YE6koVmYell89mW76+6nhuwAeB3fxeQP
+         rVsttWZsxEOBmXuNZsH1uQYIQ7Bg2+u5141FnQ1DVDKu2yUy3bRC1YlmJ9sE56ZmzjSQ
+         KxdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=GUY4qkPSD/PfyBsfHmkd/NvUohD8Bg65jEcP25IVS8k=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=cZLdgP9nORGy0jJeSWhhLpci9jkPhFkASdXIAp8DQFqVcXgPecSoZ1yCqfM4wBWfwA
+         WTqvGCdWfvIpVIsDlnzC86Meq5BQUBlrZxFQq1/SZtYus2fkyq1/zba4+tIL3TjObV09
+         tAYGd1KkGZWD+5o6NVjRVJF9NL67Lj8f65R0lRX90szBrcO+L1WB/RRPZcTbZDj71R5n
+         rxrf20LbO/5tdkVGqqLSQYJuLWPVhPh15xtGvztkNQog5NZL2TboCERd+46oPfK9iHAS
+         2wh1YI1T/NKGpoaM/GIaHlsHGDAYUgylQ8BN+AQUwd+wN9r3eCCM8ta2i9dYznu4PlcW
+         pDpQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789727780; x=1790332580; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=GUY4qkPSD/PfyBsfHmkd/NvUohD8Bg65jEcP25IVS8k=;
+        b=l9uT+qVqBN1ki5MVc2oiKlbqHHeLBeDK1J5Notckd+82MqlSAOyRINP2LfcZLWMDWV
+         NCeQ6Kt1z+tI0QCMx/dHSsV5Ddh7GDr0WATDIK3LBOj8cPnZKfsNm6y6xnAdApjGfTCF
+         DbnXyz84vSJpJibXVT4/gjjdaRk1NVVR7IIN9n4D97rRNrJQ7spHqScPntjFKMyhqolm
+         TZ1Xi8y5YBJ2ekzANmzNeT0JBg2ZHB6QJGTyuc49YXC1WDEZFOst6eUI80+1I7hpBw47
+         0HVwnMIUFkrwEg5F8HHYzhjUWBVoGwVszM9WFBUmFFHNWBCrL6gG06u4oBV3J7mqye/7
+         FnUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789727780; x=1790332580;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=GUY4qkPSD/PfyBsfHmkd/NvUohD8Bg65jEcP25IVS8k=;
+        b=Od3g4M9PNAc0PEyJ/VU3iuMljuGtKRkLvZRoga3DAflfPmHaXdEag0BJJTsLOjTad1
+         o5RdrZ9hxPWA0iKGrbctxs9ZP7VPBLX9A2s0irsi6lNPXhdat0PQxIVNol8aZ3zFZP8V
+         aZ1/2fZE2YgEgTR8sx8uX88GIhv9ZV65LWwXjYDHeVKi0TcxE9tPEQd8wOoPjAyWwAU3
+         xeseH7x7EKInW0GFoBYvAWGXxa3lvve+eyGrxHEb+JrtjOiBl2eqGtSExjF1nmoWJopq
+         cLu30rQXWCOkST8qMl2Mt+pKHMAPS8YGC/3Rk0v0/fl4zARQnwug6DjI9ajaUtrQKFHP
+         WPoQ==
+X-Gm-Message-State: AFuF++kTtMK19hpGv72WPRkMAYTCO1NS9fdbFN4blQBdCWGY2xPu/K+M
+	MZnR1A1fl+gwEBMh2DztrYwbZonVFW6VkI3kubXj6UOVQ6Abx5QhIBpJsiKEGywBGZ1InFnqMit
+	StS5uWuKhhWh5ACRmrxZjmCGsMi6f0ss6WA==
+X-Gm-Gg: AYBFou1Nd9pN/II1fCDe6pGehthAZGtSwlT0OuM0c43Rn6oSqbemoNnWUEtcVXyFN4z
+	kudm2XY/hiA5N5c5AVLlKR5XUFxXqnYepT/v7NyP2d1nK6zzYjMAoDymIdb4PMhuPp/NzgI+Z4T
+	8sEMoJcw/5sz2bUfkGDL9i2OCDzsYKhl/SPKBlM03wOOVaTQWio86y0kbKmTbNV8vkoG6AwwXy1
+	qSYs/PJuASq+KkEXxB8oGSd42+JJWN/id904/ZKOD2Jino5qd7QDjwR6S6ZJO3qBRA2PXmJotIJ
+	E9tMYzAV6tc1u5aOXiBaY/dt/+b9HZxmXg+SX96qpo0ndQg9FYLAx6MK4jHNeQNsAr9M4wV6mc3
+	JVc3TRfo0KcyGqF9FPttr2lAYTNu6/Nutx8bHQrlPkmBxcxzE6uKoyAHn45t+5EPOgWvc4YoW1z
+	UtTBL27Gs0PA==
+X-Received: by 2002:a05:690e:440c:b0:670:f743:6ec2 with SMTP id
+ 956f58d0204a3-6717fd90259mr480220d50.60.1789727780359; Fri, 18 Sep 2026
+ 03:36:20 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 05:36:19 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 05:36:19 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 05:36:19 -0500
+X-Gm-Features: AcwNN1UKsTl7mtp0Rt4QRtEkDaTyH93PA3o6X10TDAnDFwu9v2b6vViFKr-HhQQ
+Message-ID: <CAPdrGemN+fDRNHsm2auNz2gdJN59Bnc1npyXc-Tsws_MDi_Esw@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D18_17=3A35_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+State check: compared against prior sent reports through 16:34.
+Semantic repeats were excluded. Fresh web evidence was checked across
+current TikTok trend reporting, Shorts/Reels format reporting, meme
+databases and current viral animal coverage. These are mechanisms, not
+recommendations to copy copyrighted footage/audio.
+
+1) PET THROUGH THE DECADES / RETRO FAMILY ALBUM
+Current evidence: Indian Express, Sep 12 2026, reports an active
+AI-photo trend transforming present-day subjects into authentic 1980s
+studio portraits, family snapshots, wedding photographs and
+movie-poster aesthetics:
+https://indianexpress.com/article/trending/trending-in-india/1980s-ai-photo=
+-trend-5-chatgpt-prompts-to-turn-photos-retro-gemini-instagram-10874759/
+Why viewers watch: instant identity recognition plus nostalgia plus
+transformation reveal.
+Core mechanic: preserve one recognizable subject while moving it
+through strongly coded historical visual worlds.
+Pet protagonist: customer's pet becomes the inexplicably ever-present
+family member in 1986, 1996, 2006, 2016 and today, with each era
+exposing the same vice.
+Best use: birthday card, framed print, social clip, AR gallery.
+15=E2=80=9335 sec template: 0=E2=80=932s =E2=80=9CWe found [PET]'s family a=
+lbum.=E2=80=9D 2=E2=80=936s 1980s
+studio portrait. 6=E2=80=9310s 1990s school-photo look. 10=E2=80=9315s 2000=
+s
+disposable-camera shot. 15=E2=80=9321s 2010s profile-photo parody. 21=E2=80=
+=9328s
+present-day photo. Final card: =E2=80=9C38 years. Still stealing food.=E2=
+=80=9D
+Hook: =E2=80=9CApparently [PET] has been a problem since 1986.=E2=80=9D
+Assets: pet reference image, 4=E2=80=935 era backgrounds/costumes,
+dates/captions, optional owner photos.
+Complexity: MEDIUM.
+Novelty: materially different from the previously reported ancestor
+gag because the repeatable mechanism is chronological identity
+persistence, not a single fake ancestor.
+Verdict: MAKE TEMPLATE NOW.
+
+2) PET CINEMATIC UNIVERSE / SAME CHARACTER, DIFFERENT GENRES
+Current evidence: Shopify's Aug 27 2026 TikTok trend guide emphasizes
+remixable transformations and recurring recognizable structures; the
+current retro-transformation wave supplies a practical visual
+implementation: https://www.shopify.com/blog/tiktok-trends
+Why viewers watch: rapid pattern recognition followed by anticipation
+of the next transformation.
+Core mechanic: one subject is repeatedly recast into radically
+different genre grammar while retaining identity.
+Pet protagonist: [PET] appears as western outlaw, prestige detective,
+rom-com lead, fantasy king and low-budget daytime-TV guest.
+Best use: premium birthday video, social clip bundle, Pog.pet AR unlocks.
+15=E2=80=9330 sec template: 0=E2=80=932s =E2=80=9CIf [PET] had an IMDb page=
+=E2=80=A6=E2=80=9D then five
+4-second title-card scenes, each preserving face/fur markings but
+changing genre, ending with =E2=80=9CCritics agree: difficult to work with.=
+=E2=80=9D
+Hook: =E2=80=9CThe many careers of [PET].=E2=80=9D
+Assets: reusable genre title cards, 5 scene shells, pet avatar,
+genre-safe original music.
+Complexity: MEDIUM.
+Novelty: new anthology mechanism; not documentary, keynote or ancestor.
+Verdict: MAKE TEMPLATE NOW.
+
+3) ABSURDLY HIGH-STAKES PET MELODRAMA
+Current evidence: New York Magazine documented the 2026 AI short-video
+genre that anthropomorphizes mundane food/objects and places them in
+wildly disproportionate dramatic plots:
+https://nymag.com/intelligencer/article/fruit-and-vegetable-ai-slop-videos-=
+objecttalk-chatgpt.html
+Why viewers watch: extreme emotional stakes applied to something
+intrinsically ridiculous.
+Core mechanic: treat a trivial objective as a life-or-death serialized
+melodrama.
+Pet protagonist: the real pet's mundane obsession becomes the quest =E2=80=
+=94
+reaching the forbidden chicken, recovering the tennis ball, surviving
+the closed bedroom door.
+Best use: social clip, birthday video, episodic follow-up.
+15=E2=80=9340 sec template: 0=E2=80=933s cold open =E2=80=9C[PET] had one m=
+ission.=E2=80=9D 3=E2=80=9310s
+establish forbidden object. 10=E2=80=9320s obstacle and tragic setback. 20=
+=E2=80=9330s
+heroic attempt. 30=E2=80=9338s reveal the owner simply moved the treat. 38=
+=E2=80=9340s
+=E2=80=9C[PET] will return.=E2=80=9D
+Hook: =E2=80=9CThey told him the kitchen was closed.=E2=80=9D
+Assets: pet avatar, melodrama reaction poses, 3 environment shells,
+original score/SFX.
+Complexity: MEDIUM/HIGH.
+Novelty: distinct from hero's-journey treatment because the product is
+deliberately serialized soap-opera escalation.
+Verdict: TEST.
+
+4) PET'S OLD INTERNET PROFILE / 2016 MEME TIME CAPSULE
+Current evidence: the Great Meme Reset of 2026 explicitly revived
+2015=E2=80=932018 meme aesthetics and formats:
+https://knowyourmeme.com/memes/the-great-meme-reset-of-2026
+Why viewers watch: shared internet nostalgia and deliberately dated
+visual grammar.
+Core mechanic: reconstruct how a subject would have presented itself
+under an obsolete internet aesthetic.
+Pet protagonist: generate [PET]'s embarrassing 2016 profile =E2=80=94
+impact-font post, fake motivational quote, overfiltered selfie,
+=E2=80=9Crelationship status: complicated with the vacuum.=E2=80=9D
+Best use: card, carousel, cheap social add-on.
+15=E2=80=9325 sec template: 0=E2=80=932s =E2=80=9CWe found [PET]'s account =
+from 2016.=E2=80=9D 2=E2=80=937s
+fake profile. 7=E2=80=9312s dated meme post. 12=E2=80=9317s terrible inspir=
+ational
+quote. 17=E2=80=9322s embarrassing selfie. 22=E2=80=9325s =E2=80=9CDelete a=
+ccount?=E2=80=9D / pet
+refuses.
+Hook: =E2=80=9C[PET]'s digital footprint is devastating.=E2=80=9D
+Assets: original retro social UI, meme typography, pet cutouts.
+Complexity: LOW.
+Novelty: no previous report used obsolete-internet archaeology as the
+joke engine.
+Verdict: TEST.
+
+5) THE PET NPC WITH ONE DIALOGUE TREE
+Current evidence: current creator guidance continues to favor
+repeatable, recognizable structures over isolated trend imitation;
+Shopify's Aug 27 2026 trend analysis specifically stresses
+remixability: https://www.shopify.com/blog/tiktok-trends
+Why viewers watch: viewers recognize the behavioral loop and
+anticipate the increasingly ridiculous repeated response.
+Core mechanic: map a real recurring behavior onto videogame NPC
+dialogue choices.
+Pet protagonist: owner chooses =E2=80=9CFeed,=E2=80=9D =E2=80=9CWalk,=E2=80=
+=9D =E2=80=9CCuddle,=E2=80=9D =E2=80=9CGo to bed=E2=80=9D;
+every branch eventually returns to the pet's actual obsession.
+Best use: gamer birthday gift, social clip, interactive Pog.pet scene.
+15=E2=80=9330 sec template: 0=E2=80=933s =E2=80=9C[PET] dialogue options.=
+=E2=80=9D 3=E2=80=938s cursor selects
+=E2=80=9CHello.=E2=80=9D Pet: personalized response. 8=E2=80=9315s =E2=80=
+=9CWhat do you want?=E2=80=9D three
+choices appear. 15=E2=80=9323s every choice collapses to =E2=80=9CCHICKEN.=
+=E2=80=9D 23=E2=80=9330s
+achievement unlock: =E2=80=9CNegotiator: Failed.=E2=80=9D
+Hook: =E2=80=9CTalking to [PET] is an open-world experience.=E2=80=9D
+Assets: original RPG UI, pet idle animation, four expressions,
+customer lore fields.
+Complexity: LOW/MEDIUM.
+Novelty: distinct from previously reported RPG boss
+fight/character-select because this templates behavioral conversation
+rather than stats/combat.
+Verdict: MAKE TEMPLATE NOW.
+
+6) PET EVIDENCE BOARD / CONSPIRACY EXPLAINER
+Current evidence: today's viral animal story about a blade-carrying
+crab reportedly exceeded 20M views, illustrating the durable mechanism
+of bizarre real-world evidence inviting viewers to reconstruct an
+implausible story:
+https://nypost.com/2026/09/17/us-news/blade-wielding-gangster-ass-crab-trie=
+s-attacking-florida-man-dog-shocking-video/
+Why viewers watch: visual clues invite active inference; each clue
+escalates the absurd explanation.
+Core mechanic: connect several mundane facts into an absurd but
+internally coherent conspiracy.
+Pet protagonist: photos of chewed shoe, open cupboard, missing chicken
+and suspicious sleeping pose become a red-string investigation into
+=E2=80=9C[PET]'s operation.=E2=80=9D
+Best use: poster, birthday card, social clip.
+15=E2=80=9335 sec template: 0=E2=80=933s =E2=80=9CThis goes deeper than we =
+thought.=E2=80=9D 3=E2=80=938s clue
+1. 8=E2=80=9314s connect clue 2. 14=E2=80=9321s zoom into pet photo. 21=E2=
+=80=9328s reveal
+motive from questionnaire. 28=E2=80=9335s pet labelled =E2=80=9CMASTERmind?=
+=E2=80=9D with one
+deliberately unresolved clue.
+Hook: =E2=80=9CAt first we thought the missing sausages were unrelated.=E2=
+=80=9D
+Assets: evidence-board shell, pet photos, customer incident fields,
+arrows/labels.
+Complexity: LOW.
+Novelty: better implementation than prior mystery/evidence formats
+because multiple real lore facts form a persistent visual graph
+suitable for print.
+Verdict: TEST.
+
+7) PET PATCH NOTES / SOFTWARE RELEASE
+Current evidence: remixable transformation formats remain favored in
+current TikTok trend guidance; this applies software-update grammar as
+an original reusable parody rather than copying a current copyrighted
+template: https://www.shopify.com/blog/tiktok-trends
+Why viewers watch: familiar technical language reframes personality
+defects as features and bugs.
+Core mechanic: describe behavioral changes as a software changelog.
+Pet protagonist: =E2=80=9C[PET] v7.0 =E2=80=94 barking latency reduced 3%;
+counter-surfing range +40%; recall bug remains unresolved.=E2=80=9D
+Best use: birthday (age maps naturally to version number), card,
+T-shirt, 15-sec clip.
+15=E2=80=9320 sec template: 0=E2=80=932s =E2=80=9C[PET] v8.0 AVAILABLE NOW.=
+=E2=80=9D 2=E2=80=936s New
+Features. 6=E2=80=9310s Performance Improvements. 10=E2=80=9314s Known Issu=
+es. 14=E2=80=9318s
+=E2=80=9CSecurity: still defeated by cheese.=E2=80=9D 18=E2=80=9320s =E2=80=
+=9CUpdate cannot be rolled
+back.=E2=80=9D
+Hook: =E2=80=9C[PET] just got an update. It made things worse.=E2=80=9D
+Assets: generic update UI, icons, pet portrait, structured
+trait=E2=86=92feature copy generator.
+Complexity: LOW.
+Novelty: adjacent to Launch Keynote but materially better as a
+birthday-specific evergreen template and far cheaper to render.
+Verdict: MAKE TEMPLATE NOW.
+
+8) PET CUSTOMER-SUPPORT TICKET
+Current evidence: 2026 short-form strategy reporting continues to
+favor relatable POV and recognizable everyday situations; Sprout's
+current Reels guidance identifies short-form under 60 seconds as the
+leading brand interaction format:
+https://sproutsocial.com/insights/instagram-reel-ideas/
+Why viewers watch: everyone understands bureaucratic support
+frustration; role reversal makes the pet's normal behavior absurd.
+Core mechanic: owner files a complaint about the pet and receives
+increasingly useless support responses from the pet itself.
+Pet protagonist: =E2=80=9C[PET] Support=E2=80=9D responds to =E2=80=9Cprodu=
+ct wakes me at
+4:51am=E2=80=9D with =E2=80=9Cworking as designed.=E2=80=9D
+Best use: birthday card, cheap social clip, printable insert.
+15=E2=80=9330 sec template: 0=E2=80=933s =E2=80=9CTicket #004: [PET] keeps =
+stealing socks.=E2=80=9D
+3=E2=80=938s automated response. 8=E2=80=9314s owner supplies evidence phot=
+o. 14=E2=80=9320s
+escalation to Senior Support Agent [PET]. 20=E2=80=9326s resolution: =E2=80=
+=9CTicket
+closed =E2=80=94 sock retained.=E2=80=9D 26=E2=80=9330s satisfaction survey=
+: 1/5 paws.
+Hook: =E2=80=9CI contacted customer support about my dog.=E2=80=9D
+Assets: original chat/ticket UI, 2=E2=80=933 pet expressions, real complain=
+t/lore field.
+Complexity: LOW.
+Novelty: new conversational bureaucracy structure, distinct from
+product review/performance review/interview.
+Verdict: TEST.
+
+TOP 3 TO TEMPLATE THIS HOUR
+1. PET PATCH NOTES =E2=80=94 extremely cheap, birthday-native, evergreen,
+every questionnaire trait maps directly to copy.
+2. PET THROUGH THE DECADES =E2=80=94 strongest current visual trend fit and
+naturally supports premium physical + video bundles.
+3. PET NPC DIALOGUE TREE =E2=80=94 highly recognizable, personalized, cheap
+and particularly compatible with Pog.pet interaction.
+
+EASIEST TO AUTOMATE END-TO-END
+PET PATCH NOTES. Inputs can be only pet name + age + 3 traits + 1 vice
++ photo; everything else is deterministic layout/copy generation.
+
+HIGHEST SHAREABILITY POTENTIAL
+PET THROUGH THE DECADES. It combines recognizable real identity,
+transformation reveals, nostalgia and multiple individually shareable
+stills rather than requiring one punchline.
+
+WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+PET CUSTOMER-SUPPORT TICKET. More interestingly, the physical card
+could literally look like the closed support case, while scanning it
+opens the animated conversation on Pog.pet.
+
+PRODUCT NOTE
+The recurring pattern across the strongest formats remains: customer
+lore should be structured data. The pet image creates recognition; the
+real vice/incident creates the joke. Roast.pet should therefore
+optimize onboarding for reusable facts, not merely better image
+generation.

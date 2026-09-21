@@ -1,0 +1,466 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id hc9mBN839Sgy
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:18:29 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=Phzd0JqMXdWxZvUo2C10CRY4N3hqzVCERqAi5flcy3u1p2485Pqxx7w9JmXPcOayKr8S02HhY
+	PYogSdV9Ze2S9r+yA0cv12zb8utO/0DaMvz9N/wO8VUVUxpP43sXNJC34BblMSr5iqCl0+udjtk
+	Mt4uyJKVl4aism/8yFiSIrGIS1z0IdnRPgvMqebysqEeQeeI3eO82KEmbxORpHR0/wNn2IdX11b
+	bOkvsgnub6AUVb3WSjVpeNzm5e+XojYGqqcEMjwAvT/xtfA1FieMV85VKJh6+zaDUam3xOAcwWC
+	g8cPUZbYvk9Dv3FKFUECoKjlLE1p8PgQfhJ+kCceCmVA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888709; x=1790493509; bh=mViU+zMv
+	b9AqVOyjR9wB3nluDKNIDimaDhyNrNXGV4U=; b=IDxos8qlIU0AkgPpvu+EqJ3h0oVxDLFnnuB
+	7XeH0+kusP9L1Zqu3mEyo1lb86KPrMLM44jVPysCur3J4ZHexbWzTqAjoprn/pUvzZRwbGKiXqK
+	BOaT6RvD2lz6qcG+9HeYzmiKSYfMSMVawjmPbEjTiUFhxTGA0yD2xJCMh0tD86VTmVFvMuYRxSM
+	GAoCtYv9GA8zuRNqsbhCDLzr1tS1z+jp0yeWIKuwNDu7KtBKEyUs4In/1VNUsqXTCI9zrXTQA40
+	3rII3duakNZK88WidX4yAtE9BVDP4lGALaWfufXoONAk2Q3Yc2Oe7spJX3GdK24LWsBiSwTxmbw
+	WQLAnrA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=s/brUB59;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=s/brUB59;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-671563fb8beso1802740d50.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:18:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888709; cv=none;
+        d=google.com; s=arc-20260327;
+        b=hm7Fq4fMQA2jk3e3kegSQQmVHPcmTSZFgpp4fjUIEIrCd2yL9lS89jPyShWsqeTSZn
+         IAzS+vvrlUDjRmRJ32R8ry077++8QbqYO5a4w/g22zR/zjhyrU5ocwkr86SZjkTGLAu/
+         m4we19xV6AXBPrOSZBVfLJkZ++rpT/kuJ9Jhsc06wGnqs7yFUKP3C1cSsxo/JKx4dqki
+         72sW9jTM1YklW2qPiKweEv4hTUEBCCShOwWgY52drjddMHgDoWsjC/RrQ3CDYDurB3qu
+         f3Kn2q6tA0kt9OXwBuTnbhGgwpdFUeQJXnG69WUSqEzZPMEhnm8/hGEIeEctQweQq3nH
+         rJ6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=mViU+zMvb9AqVOyjR9wB3nluDKNIDimaDhyNrNXGV4U=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=ZISUn6uHkxNhb/R0sgoWaIvDw8CuZ+kYhFg38+CK4ybez3L+3/3VB9jV9+aEX6XvHE
+         DQO1nRjElWZ4pA4Yv+fAGAsMTJF1UQQS/2lsdcx2uTwtNeQRVJ/mqLjyeOQEyoG51sCG
+         6p87508WXk6O0kMZmH3OLRH449mFFvg11OcAfz3Gpw43Lv8JuCeAxSnWsU31deZHC/XF
+         7kcNGDjbX9JeAdttb+3j0fxQMUbzz68IeyaQd59I2WTX8yHE4M89Kh/o4VxqfxtjzQHw
+         V9p6xDT/AkDoDn/O0sTxtFA8jbPZpARE5efb/5r7vUNJk8UnhtjOfNJ++oT6u+jSlK5r
+         U9Og==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888709; x=1790493509; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=mViU+zMvb9AqVOyjR9wB3nluDKNIDimaDhyNrNXGV4U=;
+        b=s/brUB59be9YUC0wgSNvhFvahUEGCLPIuU1BY1Tej3DZkhEtA+yBrQGtTOXjO6+PNh
+         nRtVoiNKt9JqRwRvq9cT+gJKAiaMzV4lmQ9vtGO6lll4vi3PA9uMHtzRrzjPXtw7SHNL
+         NsVFUYJ886ONtoDZHJqQ398oC9sUxFKfIbrob4gz0sqH1R0ChJP853oU/Pa4qkRbRc74
+         feRGpIRnNQenO0clX70Ba+ltHQNZ5EVsUvxPJxGDVwmuANzVsXFxmA0Jwnrl1qD5R/Wu
+         Itzf9G8obAyk+pCwquqN2LidtiVqAKs3PFJLSC8TbTzgRt1i8Yop7wjP2TZ8DGuKZmkI
+         4jbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888709; x=1790493509;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=mViU+zMvb9AqVOyjR9wB3nluDKNIDimaDhyNrNXGV4U=;
+        b=IuYQwljeViIQRxIpPOkZMRJcKurHiVIuo+tTpChd0MjnyxmxbhCDfIkD+hcmk9iLEU
+         tXCpw6+C5sX2ZAO+nh2qCOdGEpAVO5seQQtVB3F1MiSZ5nV3aLyN7EX929UknC3QO0Js
+         NZI3L8LVcZu21Q0STFcTaJ1yi0HJ+9z1UUUB8+wg3w+WfnrvtvxDEMo8GNs80Bpkq6nw
+         Guhv+6hw88BXAf4KBSTg9fLIE9Cz93zr3AqhdDipadsNVQhu4DYgz9XFYbXO80zu9Dwk
+         IhGfiV+fL36NMnS2DmttOfKfLlVTb/QkDxcRKsy3X24+hBLfnrYM8rb4THA5H6T/6VVO
+         cLrg==
+X-Gm-Message-State: AFuF++nPHpl93azLA1CKI6brQZ9kJvBcn4ZPJIKk8NCUGw0s+6u/5nN3
+	1zcHOM0jW6Ek2KmTG/op/IreEpmsIDTgOm6mRCGsHB7mnMGoCTiJhB6K3GbsgAvCGpcpCfIg/ey
+	7A+QKat1yMeJR2KmKPZ9308NAqfSdUE9PNw==
+X-Gm-Gg: AYBFou0BPD5dCSP3T/vvzVk+grisr+Cbn55KBha/ncSpiCBN+YaJ1KzJztl2SR/PmlO
+	+YPgGMwZ8uaubxtHuPG5jnaPQoc/otykx3n3gYspsCNePyY8BvwjIhEKGm09FmGk7Z2FFKrWtGG
+	qzRwnufNB3mEN7/70udKEbmGz7QI5uJqko16HLPICdGzhES1DL0spZRU38FjvUw1DMrKwmtRzx9
+	JS3byOLpyk5Rj13oaPuacpmy0p7b6REeBqpKDDm6KC2663ZnufVk3lrbq1Z+TJYD6drVY3Ti4i8
+	wx24VNidFuBp/eoneWfunX3pzNlIFa5VCXxJ6Lrj2mR0ppFA3mZINHWtk7u9C5w26Civ6dpnSbg
+	XrbCKWD+HhhxlnrPRSuejXm/UxEaAXgy1u49NQXNDT6gMPMh81CZOLW8DAuwO8jKub7YO60KV
+X-Received: by 2002:a05:690e:11ca:b0:672:a52c:db25 with SMTP id
+ 956f58d0204a3-672a52ce30bmr663135d50.109.1789888708547; Sun, 20 Sep 2026
+ 00:18:28 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:18:28 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:18:28 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:18:28 -0500
+X-Gm-Features: AcwNN1VN1FoZJgmenXRujWttEytZoDCOUSMlcb6LOFP0lJYtEmJFhyV45SGcE7k
+Message-ID: <CAPdrGemquhy8z_T+=Gpup-phzaiCqzQgfrMxC6bbbcF=pSVoNA@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D18_00=3A52_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_22_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY SCANNER =E2=80=94 EDGE REPORT
+
+1 RUN STATE / COVERAGE
+Recovered the cumulative scanner chain from Gmail Sent before
+discovery. Latest persisted run was 2026-09-17 23:49 =E2=80=94 28 new/0
+changed. Known objects from prior runs were treated as exclusions;
+this pass deliberately moved deeper into Monid/x402, RSI, MCP
+security, credential-boundary and autonomous-media neighbourhoods.
+Search windows expanded through 90d where needed. GitHub/repo-primary
+results were preferred.
+
+2 NEW OBJECT DASHBOARD =E2=80=94 22 UNSEEN NEAREST NEIGHBOURS
+
+AGENT / MONID / COMMERCE
+1. microsoft/mcp-gateway =E2=80=94 Kubernetes-scale MCP reverse proxy with
+session-aware routing plus dynamic tool gateway and preview
+agent/session layer. Closest seed: Monid. DECISION: SANDBOX.
+https://github.com/microsoft/mcp-gateway
+2. keshrath/agent-discover =E2=80=94 runtime MCP registry/marketplace that
+discovers, installs and activates new MCP servers without restarting
+the agent; dynamically merges newly activated tools into the live
+catalog. Closest seed: Monid. DECISION: BUILD PROBE.
+https://github.com/keshrath/agent-discover
+3. Tasfia-17/stellar-mcp =E2=80=94 gives agents a Stellar wallet for x402 U=
+SDC
+services; roadmap explicitly adds Bazaar dynamic discovery and
+programmable spend policy. Closest seed: Monid/x402. DECISION:
+WATCH/SANDBOX.
+https://github.com/Tasfia-17/stellar-mcp
+4. hifriendbot/agentwallet-mcp =E2=80=94 31 wallet/payment tools across EVM=
+ +
+Solana with x402, hosted/local custody modes, transaction caps and
+autopay ceiling. Closest seed: Monid + authority. DECISION: BUILD
+PROBE.
+https://github.com/hifriendbot/agentwallet-mcp
+5. the402ai/mcp-server =E2=80=94 agent service marketplace: browse, purchas=
+e
+x402 services, manage threads/subscriptions and list services as
+provider directly over MCP. Closest seed: Monid. DECISION: SANDBOX.
+https://github.com/the402ai/mcp-server
+6. Hovsteder/merx-mcp =E2=80=94 unusually complete agent commerce stack
+combining MCP/A2A/ACP, x402, natural-language standing-order policy,
+swaps and resource routing. Closest seed: Monid + agent commerce.
+DECISION: WATCH.
+https://github.com/Hovsteder/merx-mcp
+7. cryptomotifs/cipher-x402-mcp =E2=80=94 eight crypto/macro tools with
+per-call USDC x402 prices; forward-only relay leaves payment signing
+with caller wallet. Closest seed: Monid. DECISION: SANDBOX.
+https://github.com/cryptomotifs/cipher-x402-mcp
+
+JEV / RSI / DECISION
+8. Prism-Shadow/penguin-harness =E2=80=94 Apache-2 RSI multi-agent auto-dev
+harness, ~2.2k stars/236 forks at observation; roadmap includes
+company-level self-evolution and permission-governed shell. Closest
+seed: Dream-RSI. DECISION: ADOPT/SANDBOX.
+https://github.com/Prism-Shadow/penguin-harness
+9. ethan-haas/self-improving-agent-harness (AgentA) =E2=80=94 self-modifyin=
+g
+multi-agent engineering harness behind a seven-stage verification
+gauntlet: parse=E2=86=92unit=E2=86=92property=E2=86=92mutation=E2=86=92benc=
+hmark=E2=86=92sealed
+holdout=E2=86=92fresh-context critic. Closest seed: Dream-RSI. DECISION:
+SANDBOX.
+https://github.com/ethan-haas/self-improving-agent-harness
+10. sethkarten/continual-harness =E2=80=94 online/reset-free harness
+adaptation; Refiner can CRUD-edit prompts, subagents, skills and
+memory during an episode via a gated evolve_harness tool. Closest
+seed: Dream-RSI/JEV control. DECISION: BUILD PROBE.
+https://github.com/sethkarten/continual-harness
+11. hexo-ai/sia =E2=80=94 official Self Improving AI implementation that
+optimizes both harness and model weights against benchmark tasks.
+Closest seed: Dream-RSI. Older than preferred window but close unseen
+mechanism neighbour. DECISION: WATCH.
+https://github.com/hexo-ai/sia
+
+ATTACKER / RED-TEAM FRONTIER
+12. agentsploit/agentsploit =E2=80=94 offensive-security framework
+specifically for AI agents/MCP, with authorization-scoped engagement
+scaffolding and MCP scanning. Closest seed: MCParasite operational
+red-team surface. DECISION: SANDBOX.
+https://github.com/agentsploit/agentsploit
+13. ksek87/fuzzd =E2=80=94 stateful MCP fuzzer operating on descriptions,
+schemas and responses; models chained calls and cross-tool
+contamination, reports 90.7% on MCPTox. Closest seed: MCParasite/tool
+poisoning. DECISION: BUILD PROBE.
+https://github.com/ksek87/fuzzd
+14. Serena GHSA-37h2-6p4f-mp3q / CVE-2026-49471 =E2=80=94 concrete browser=
+=E2=86=92DNS
+rebinding=E2=86=92unauthenticated local agent dashboard=E2=86=92persistent =
+memory
+write=E2=86=92shell-enabled RCE chain. This is a current real-world bridge
+from browser origin assumptions into agent memory/action authority.
+Closest seed: ProjectMemory. DECISION: CONTENT NOW + benign
+reproduction design.
+https://github.com/advisories/GHSA-37h2-6p4f-mp3q
+15. Hermes iron-proxy/rootless egress issue #81281 =E2=80=94 current
+implementation failure showing how credential-injection/egress
+architectures can break at CONNECT/topology boundaries. Defensive
+relevance: enforcement mechanism correctness must itself be tested
+across network topologies. DECISION: BUILD PROBE.
+https://github.com/NousResearch/hermes-agent/issues/81281
+
+DEFENDER FRONTIER
+16. vaultmcp/vault =E2=80=94 MCP response firewall with deterministic decod=
+er,
+heuristics, embedding similarity and LLM judge before tool output
+reaches agent context. Closest seed: hostile tool-output containment.
+DECISION: BAKEOFF.
+https://github.com/vaultmcp/vault
+17. dedene/claw-wrap =E2=80=94 host-side credential proxy for sandboxed CLI
+agents: fake CLI inside sandbox delegates execution to external
+daemon, which injects credentials and can deny dangerous subcommands.
+Closest seed: Privately authority/credential isolation. DECISION:
+ADOPT MECHANISM.
+https://github.com/dedene/claw-wrap
+18. datacline/secure-mcp-gateway =E2=80=94 self-hosted MCP gateway with
+authentication, policy access control, tool filtering and audit.
+Closest seed: Privately gateway. DECISION: WATCH/COMPARE.
+https://github.com/datacline/secure-mcp-gateway
+19. AgentDefenders/mcp-scan =E2=80=94 local MCP config scanner for tool
+poisoning, prompt injection, shadowing and known threats; optional
+historical dashboard sync. Closest seed: malicious-skill/MCP
+admission. DECISION: BAKEOFF.
+https://github.com/AgentDefenders/mcp-scan
+
+AUTONOMOUS MEDIA
+20. AceDataCloud/WanMCP =E2=80=94 Wan 2.6/3.0 text/image/reference-video
+generation exposed directly as MCP, including audio and character
+transfer. Closest seed: Open-Higgsfield/media skills. DECISION:
+SANDBOX.
+https://github.com/AceDataCloud/WanMCP
+21. PixVerseAI/PixVerse-MCP =E2=80=94 official MCP surface for video
+generation, transitions, extensions, lip sync, sound effects and
+subject fusion. Closest seed: Open-Higgsfield. DECISION: SANDBOX.
+https://github.com/PixVerseAI/PixVerse-MCP
+22. rsmdt/multimodal-mcp =E2=80=94 unified provider surface spanning Sora,
+Grok video, Veo, images, TTS, SFX and transcription with provider
+auto-discovery/selection. Closest seed: OpenX Flow + media router.
+DECISION: BUILD MEDIA ROUTER BAKEOFF.
+https://github.com/rsmdt/multimodal-mcp
+
+MEDIA NEXT-RANK QUEUE (use next run if unseen after registry
+reconciliation): AceDataCloud/LumaMCP; Runware/MCP-Runware;
+soarpatriot/genai-video-mcp; mario-andreschak/mcp-veo2. These are
+intentionally not padded into the canonical count without another
+dedupe pass.
+
+3 TOP 5 DEEP DIVES
+
+A. agent-discover
+The important mechanism is not another MCP registry; it mutates the
+active tool universe during the same running agent session. Security
+implication: startup-time admission becomes insufficient. Privately
+needs capability-delta admission whenever the live tool graph changes.
+6m inference: dynamic loading spreads through coding agents. 18m:
+agents install capabilities mid-task routinely. 36m: capability
+catalogs become effectively unbounded. Smallest test: start with one
+tool, dynamically activate a second tool carrying a new external
+effect, verify QP notices the reachable-authority delta before first
+use. Falsifier: host-level tool catalogs remain immutable or every
+dynamic activation reliably triggers native policy admission.
+
+B. Continual Harness
+Reset-free modification of prompt/subagents/skills/memory turns
+self-improvement into an online control-plane event, not an offline
+training event. Security implication: the agent's effective policy can
+drift while the task is still executing. Privately should fingerprint
+not only tools but the current harness state. Experiment: allow
+harmless prompt/skill mutation mid-episode and test whether authority
+grants remain semantically valid after harness drift. Falsifier:
+adaptations never change reachable effects or decision policy enough
+to invalidate prior grants.
+
+C. claw-wrap
+This is the cleanest new credential-boundary mechanism this run. The
+agent receives CLI semantics but not the credential. The trusted host
+executes the sensitive command and can constrain command families.
+This suggests Privately should expose narrow capability handles
+instead of secrets wherever possible. Experiment: compare env-secret,
+network injection and host-command proxy against a benign
+prompt-injection exfiltration suite. Metric: secret exposure rate +
+legitimate-task completion.
+
+D. Serena CVE-2026-49471
+This chain is strategically important because it connects an ordinary
+browser trust-boundary failure to persistent agent memory and then
+autonomous shell authority. The lesson is not merely 'secure
+localhost': persistent memory is an executable future-input channel.
+Privately should model memory writes as delayed capability-bearing
+events. Safe experiment: toy local dashboard, synthetic memory store
+and harmless marker action only; test whether origin/auth +
+memory-admission layers independently stop the chain.
+
+E. multimodal-mcp
+This is close to the media architecture Privately needs: a single
+agent-facing media surface can choose across Sora/Grok/Veo plus
+image/audio providers. It lacks the full research=E2=86=92publish loop, but=
+ is
+a strong substrate. Experiment: one fixed 30-second Privately script,
+route equivalent shot prompts across three providers, score
+cost/latency/visual adherence, then feed winner into deterministic
+edit/caption stage.
+
+4 AGENT / MONID FRONTIER
+Best unseen ranked set: agent-discover > Microsoft MCP Gateway >
+agentwallet-mcp > stellar-mcp > the402 MCP > merx-mcp >
+cipher-x402-mcp.
+
+5 JEV / SELF-IMPROVEMENT
+Best unseen: Continual Harness > Penguin Harness > AgentA > SIA. The
+emerging distinction is useful: offline eval-and-promote RSI versus
+online/reset-free harness mutation. Privately should test both because
+online mutation creates a new authorization invalidation problem.
+
+6 ATTACKER FRONTIER
+Best unseen: Serena browser=E2=86=92memory=E2=86=92RCE chain; fuzzd
+cross-tool/stateful MCP fuzzing; agentsploit authorized agent/MCP
+engagement framework; Hermes egress/credential enforcement failure as
+a defender-bypass-by-implementation-error case.
+
+7 DEFENDER FRONTIER
+Best unseen: claw-wrap host command proxy; Vault MCP response
+firewall; secure-mcp-gateway; AgentDefenders mcp-scan.
+Prior-generation static scanning is useful for admission, but the
+higher-value direction remains runtime mediation plus secret
+isolation.
+
+8 AUTONOMOUS VIDEO / MEDIA
+Best unseen canonical set this pass: multimodal-mcp > PixVerse-MCP >
+WanMCP. Next-rank queue is LumaMCP, MCP-Runware, genai-video-mcp,
+mcp-veo2. The registry is now deep enough that future media runs
+should search editing/critic/publishing/analytics rather than another
+dozen generation-only MCP wrappers.
+
+9 COMMERCIAL SHOCK DERIVATIVES
+GitHub published on Sep 16 that its Copilot agent runtime was
+rewritten from TypeScript/Node into >800k lines of production Rust,
+largely agent-written across 128 PRs, with orders-of-magnitude runtime
+performance improvement claimed. Strategic derivative: harness/runtime
+performance is becoming a first-class optimization target; tiny
+bounded decision/control heads and native runtimes become more
+valuable as model latency falls.
+
+10 WEIRD ALPHA
+Penguin Harness is notable because it packages RSI as a transparent
+multi-agent development platform rather than a paper demo.
+Constitutional-memory-for-AI-agents also surfaced as a five-day-old
+governance design treating memory as a first-class
+policy/lifecycle/credential component; keep on watch pending
+implementation depth.
+https://github.com/MihaiCiprianChezan/Constitutional-memory-for-AI-agents
+
+11 ATTACK LOGBOOK DELTAS
+ATK-BROWSER-MEMORY-LOCALHOST: browser-controlled origin reaches
+unauthenticated local agent service, writes persistent memory, future
+agent action consumes poisoned state. Status RECENT; concrete Serena
+advisory.
+ATK-CROSS-TOOL-CONTAMINATION: malicious/hostile content propagates
+across chained MCP calls/session state rather than one isolated
+response. Status LAB/RED-TEAM; fuzzd operationalizes testing.
+ATK-ENFORCEMENT-TOPOLOGY-GAP: intended egress/secret control fails
+because network topology/synthetic CONNECT semantics differ from
+policy assumptions. Status IMPLEMENTATION-REALITY.
+
+12 PRIVATELY LAB =E2=80=94 TOP EXPERIMENTS
+LAB-09A Dynamic Capability Delta: agent-discover activates a new tool
+mid-session; QP must invalidate/recompute grants before use. Metric:
+100% detection before first newly reachable effect.
+LAB-09B Credential Boundary Bakeoff: env secret vs network injection
+vs claw-wrap host execution. Metric: zero secret visibility while
+preserving legitimate CLI task completion.
+LAB-09C Memory-as-Delayed-Action: harmless Serena-style synthetic
+chain into toy memory and marker action. Metric: stop at origin/auth
+or memory-admission boundary.
+LAB-09D RSI Grant Drift: Continual Harness modifies prompt/skills
+during episode; determine whether prior grants remain valid. Metric:
+authority recomputation whenever reachable-action graph changes.
+LAB-09E Media Router: same 30s script through
+multimodal-mcp/Wan/PixVerse; measure $/usable-second, latency,
+adherence and editability.
+
+13 BUILD / PROBE OPPORTUNITIES
+Highest-value new probe: CAPABILITY DELTA WATCHER. Snapshot tool
+schemas + providers + executable effects + harness policy at grant
+time. On dynamic tool activation, schema drift, skill mutation,
+memory-policy mutation or purchased capability, compute
+=CE=94reachable-authority and invalidate only grants whose assumptions
+changed.
+
+14 CONTENT OPPORTUNITIES
+1. 'Your agent installed a new tool after you approved it' =E2=80=94 live
+agent-discover + capability-delta demo.
+2. 'Never give an AI agent your API key' =E2=80=94 compare env secrets vs
+host-side credential proxy.
+3. 'A webpage poisoned an AI agent's memory' =E2=80=94 defensive Serena cha=
+in
+explainer using harmless reproduction.
+4. 'Can an AI rewrite itself without cheating?' =E2=80=94
+AgentA/Penguin/Continual Harness comparison.
+5. 'One MCP for Sora + Veo + Grok' =E2=80=94 media-router bakeoff.
+
+15 TOP 5 THINGS TO TRY NOW
+1 agent-discover dynamic tool activation.
+2 claw-wrap credential proxy.
+3 Continual Harness online adaptation.
+4 multimodal-mcp media routing.
+5 fuzzd against a deliberately benign toy MCP suite.
+
+16 WATCHLIST
+Penguin Harness velocity; agent-discover dynamic-loading integrations;
+AgentA verification development; Stellar MCP Bazaar/spend-policy
+implementation; GitHub Copilot Rust runtime follow-on SDK/runtime
+changes; Constitutional Memory implementation depth.
+
+17 SOURCE-YIELD / GRAPH LEDGER
+Highest yield this pass: GitHub MCP dynamic discovery/x402 adjacency;
+GitHub RSI/self-improvement adjacency; GitHub MCP security;
+media-provider MCP neighbourhood. Lower marginal yield: generic 'AI
+video agent' searches because prior runs have already consumed many
+full-pipeline repos. Next run should shift media search toward
+autonomous editing, video critics, analytics feedback, thumbnail
+optimization and publishing rather than generation wrappers.
+
+18 MASTER FRONTIER INDEX DELTA
+Added 22 canonical objects listed in dashboard. Explicitly excluded
+known prior objects encountered again: BotBox, mguard, Agent402,
+AgentMetal, Agentinel, mcp-video-gen and the previously surfaced
+self-improving-agent-harness variant. Secondary articles/mirrors
+collapsed into canonical repos/advisories.
+
+19 MACHINE-READABLE RUN_STATE JSON
+{
+"run":"2026-09-18T00:52:44+07:00",
+"new":22,
+"changed":0,
+"registry_delta":["microsoft/mcp-gateway","keshrath/agent-discover","Tasfia=
+-17/stellar-mcp","hifriendbot/agentwallet-mcp","the402ai/mcp-server","Hovst=
+eder/merx-mcp","cryptomotifs/cipher-x402-mcp","Prism-Shadow/penguin-harness=
+","ethan-haas/self-improving-agent-harness","sethkarten/continual-harness",=
+"hexo-ai/sia","agentsploit/agentsploit","ksek87/fuzzd","GHSA-37h2-6p4f-mp3q=
+","NousResearch/hermes-agent#81281","vaultmcp/vault","dedene/claw-wrap","da=
+tacline/secure-mcp-gateway","AgentDefenders/mcp-scan","AceDataCloud/WanMCP"=
+,"PixVerseAI/PixVerse-MCP","rsmdt/multimodal-mcp"],
+"semantic_duplicates_rejected":["reoring/botbox","mguard-ai/mguard","MikeyP=
+etrillo/Agent402","agentmetal/mcp","markusweldon/agentinel","kevinten-ai/mc=
+p-video-gen","harrystamatoukos/self-improving-agent-harness"],
+"next_media":["AceDataCloud/LumaMCP","Runware/MCP-Runware","soarpatriot/gen=
+ai-video-mcp","mario-andreschak/mcp-veo2"],
+"experiments":["dynamic-capability-delta","credential-boundary-bakeoff","me=
+mory-delayed-action","rsi-grant-drift","media-router-bakeoff"],
+"edge":"Authority must be invalidated/recomputed when the agent's
+capability graph or harness policy changes during execution;
+startup-time approval is no longer sufficient."
+}
+
+PRIMARY SOURCES OBSERVED 2026-09-18 local scanner time: canonical
+GitHub repositories/advisories above; GitHub Copilot engineering post
+dated 2026-09-16.

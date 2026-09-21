@@ -1,0 +1,364 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id LdgX1x0zHOaI
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 09:47:55 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=CfYsuX1AFKsow+rMITJY3Kbe0cSWaFceaGNT7jeQMAFuJ9QMDioVVprUasBT2WzQ6zQMtZ6NL
+	74VjQoMoi+rXfrd2BsN8pBwhntkJ6KicQ070yJ8cZde9YpYaJGmvz1FvJ94AYeACJQ2KAK1e1Uh
+	5iD7FhG1khRexeUtxHonYEqhk6HpXqc50EDIFC1KWUSl40My8rSMSzp7YamSlOATIFuTQq/Q2WT
+	lPmt8I74rljK/CRXVFIXU6jagVuxfgQGAHcX19EGaMP6YyG6xoLp6Ar3IE4cWxOTGy0Qp7KQKux
+	+OJV2WQ5GwHIgJfBG1DItxyrP6MQHzVQ1HaI+TpC0mNA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789724875; x=1790329675; bh=phlR6e6L
+	IP+Hicz84gd2XZ6oVhHXrsF0mVHpuGQEwvo=; b=Bw4qoxyyEyJ2TT2OueyAmtKORV+wxaJngpu
+	PO31VN/pPYvM1abVLWQ05rsqIWQr8U8yGw6SxnwCqmSUJka36EfKczdV+Kv0uN5nWbkme2c1wBL
+	gc3bFThjQ6OkT3ap+/G/xESWwZUBnd5GMu9Vs8OWCkBg1BMRGu967QY/XLucXpAniMVMA+TFRV9
+	ecRxs+Rt6GgHcaKkDE2x51vAAeuQ+rA38sGt2Q844C4Td3MHtkY0VzEUjj1s58qgQH0vlVvl9kH
+	UpdNtCJ5nTiz0zc/Uz6vGfqG220yLH8gc0AyQMdzwcBLwZVzTdYJG09QvaHzkaorKjhEkOoPhLi
+	JHU+nSg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XQg7RGTx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XQg7RGTx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66fb93aee5eso569196d50.1
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 02:47:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789724875; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ky+XsDA85yz3AsSX7ASi8BXNh03SMCJ3D/0ta4JJVKpTfNanxGuQpfdotQbPo8VQ36
+         8quWP76Y7/MCe0kaAn98m1LpR2aXizO7thLXhUvlvIEO3W7hHgWV/zZL4y333iH4WHkJ
+         w2V+8sW9YTr9ZTdK74sZFXNO6OASDNznxTCdT8cAsE5JdpTshGdYbJNrh3VBkBR0PSHm
+         usj7h9NGWZ4Jq11digO4INcsg3IyxRtk47s/NEp3IDQYBJEK6e48Es+sqnEvnq690tKc
+         p1mbLgWTRRrPlEthUaXrwKoZ3rZ58NWIq7Xw+WVpxekWT/lffd0Sx965kTUda5frTPK5
+         7Jxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=phlR6e6LIP+Hicz84gd2XZ6oVhHXrsF0mVHpuGQEwvo=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=ZhdvGd1CiE6/mnLxVl3eL3xR47wLtlziUjj+Wx+EEPfHy9sqMRVtMgU4pxb1gjGdZ0
+         uujQh/04N3GX3P8C40G2gDcp4/mD+Ogd4tS4YI3TnhW4to7JZzYLehFGG0TOk4JjaeLV
+         7gV/LhBG2TcISAiNqyxxCw1yIw/2ASvJ1TcmZOSYmKsvAzL0iuWUZUjaYhVuAt5rSYeb
+         Gh9OwiK7t74CRPB7B5Ve06S/OZHptnhKVWo+1JcWNASD7ZDLb4v0gcnrc9gTJOx6nNV/
+         2UgVzfJDLhhUi49Y7BSZf5p96h+/I1Venu0FDk55rg6LdCQPlvN9zOal4PfeK7CoNcIM
+         8ezg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789724875; x=1790329675; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=phlR6e6LIP+Hicz84gd2XZ6oVhHXrsF0mVHpuGQEwvo=;
+        b=XQg7RGTxl/OMifaJYsxQ6MBsuJG6FPhyoRvrgNlnZJSpOlorL5O6m7PQ4JFxXP8UbE
+         3CqPMN4oKPXZDpLo1+pTISbplqXdwT/k845UXa9ZY6Sy/r9KfTZL1WeTa4SySvyUnjN/
+         ca8O7lx5y4XCh0STf5KOLuDIcEBZ3EzDnd1mLUEAPVa/MZk/vgyA87HNY5tNvlDqO0+h
+         3yPJOI+W5ngbT11a2+bWSyXqdZDgsSJm4gjNnujwYF/FXE+ykCQMdsjIaiJ5eu5avnq7
+         R+kmCTl97N594SNPi2unH0o81cM8DI47Fnc7sNtaKucufTuTLTB1leQ68Tt5S8uZiIZ0
+         AFmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789724875; x=1790329675;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=phlR6e6LIP+Hicz84gd2XZ6oVhHXrsF0mVHpuGQEwvo=;
+        b=wbZ/3jv6gR0nLp/Cwl83z2zyl4+rGAHyjYjYXjRQS+VBSfuTkj0FBlAbRHYttrTXrr
+         YdEsWY0fCCqE95Yui5Ro4BDyUWbRBv45xj8TafQbSszKRo45x3dSZ+fdq2iQDR34EDxb
+         WyTUwl/ipi6W+NuuRQHTT8X1Ez2GUFt0v66/PBnVr+1DFdZIDOAa9DB1Lmu5cmUn+bnv
+         tqypADvgzx9i2rg9tkC6OJ2PbKKCXUmN/CcTSV8uUFz6feBDP7QULf5Hg15DW0Qf8jRk
+         L/HLQ8GHPWb+/iD0EBt6NuPSj1bv0VUmJTYNJd+xIL+As2WARl0HbAr5QXgTdrUxmGqV
+         pciQ==
+X-Gm-Message-State: AFuF++ngMHo7b7+NjPtATsYQ/QqIKLFKdIRKhOAjp4t5RP7qpO3NCstN
+	e/M94exkvCWYkLL2SZwIL8vDRp7C5GuhRWLywkurIZUQEi+YfThz1bjvoMLvt5WzEu1Abwz/K1Y
+	mFkhJKVm5+dJJ6N1Oq7RJM2W3oqrHGhyyGA==
+X-Gm-Gg: AYBFou0tCHm7RjlRCCSTGZPc8/RCrhwFN3NnML/T9vcDOUVu+My2tBfpdq4dOmqLc5z
+	nbex6LwFU7SccF3nv++1ts8ioVa1ESv/Am75saSt4NJ2dGDIcrAmw7N0KwYw17ixh1lK/O2OAif
+	Y7OT+noaosgSsWOLRWZpUyM98VQU86ONEJk3SwWp1H3zRCnrO7rnF8l9b+D2Aueh0kNUrLBuXGd
+	riS/GfXaY+w9bRMbXtavFxNmlxo6ZRMb5OKu52JnIr1CYuDu5fgP8v1MfYqZgdDyV8z0jFTkXJR
+	0Pwpg12pAhPWbX3QsGF8RXYq+XA30tfa1hMbFd+tquZ74e/6c3e0Zfd60b7AjniWimvHZCuMWUQ
+	0CrizZF4FZ+QgS8iGD6wHniam77MmCymD/K2u74UpK1B7iznK1tJ2182F+EeMMwO6WSpL9RU=
+X-Received: by 2002:a05:690e:80f:10b0:671:1061:f5a5 with SMTP id
+ 956f58d0204a3-6717fce5a69mr437595d50.44.1789724874601; Fri, 18 Sep 2026
+ 02:47:54 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 04:47:52 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 04:47:52 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 04:47:52 -0500
+X-Gm-Features: AcwNN1W0WwmuDPR9t73HqGpHEEQyXgMnWKYooQ9uQfUnpxnIOP_31qGa-k4zOLQ
+Message-ID: <CAPdrGemY2KSUw0mCSdsnLeSGXXigMdgDyYuJ8xrQHdKm7oExKQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D18_16=3A47_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_4_strong_signals?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000657a25065bbecb36"
+
+--000000000000657a25065bbecb36
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Personalisation Gold =E2=80=94 customer-signal delta
+
+Prior 11:45=E2=80=9314:48 Sent reports recovered; semantic repeats were rej=
+ected
+unless independent evidence materially strengthened a cluster.
+4 material signals
+
+   1.
+
+   *Give the buyer image control before generation =E2=80=94 HIGH =E2=80=94=
+ BUILD/TEST.*
+   Purr & Mutt buyer Jeanne C. (18 Aug 2026): =E2=80=9CMake it so I can cro=
+p the
+   picture.=E2=80=9D The same review corpus contains failures where one dog=
+ did not
+   resemble the submitted photo and another pet=E2=80=99s grey face was ren=
+dered
+   black. Customer wants control over which part of the upload defines the
+   pet. Current workaround: seller-controlled crop/composition. Roast.pet
+   implication: mobile crop + face/marking preview before checkout; show
+   exactly which pet region will be used. Prototype: compare normal upload =
+vs
+   upload=E2=86=92crop=E2=86=92=E2=80=98this is the face/markings to preser=
+ve=E2=80=99 confirmation. Source:
+   https://www.purrandmutt.com/products/the-brummie-gangster-custom-pet-por=
+trait
+   2.
+
+   *Bad-photo recovery guidance prevents abandonment =E2=80=94 HIGH =E2=80=
+=94 BUILD/TEST.*
+   Verified Purr & Mutt buyer Tammy T. (15 Sep 2026) says the first picture=
+s
+   were unusable, but =E2=80=9Cexcellent guidance=E2=80=9D helped remedy th=
+em and produced a
+   treasured result. This independently strengthens the existing
+   photo-guidance cluster. Roast.pet implication: do not merely reject a we=
+ak
+   upload; diagnose it (=E2=80=98face too small=E2=80=99, =E2=80=98markings=
+ hidden=E2=80=99, =E2=80=98need front
+   angle=E2=80=99) and immediately request the missing shot. Prototype: aut=
+omatic
+   photo QA with one concrete retake instruction and optional second refere=
+nce
+   image. Source:
+   https://www.purrandmutt.com/products/the-king-custom-vintage-pet-portrai=
+t
+   3.
+
+   *Comedy only wins when likeness survives =E2=80=94 HIGH =E2=80=94 BUILD/=
+TEST.*
+   FurTheWall buyer (4 Nov 2025) says they =E2=80=9Ccan=E2=80=99t stop laug=
+hing=E2=80=9D while
+   specifically praising that the seller =E2=80=9Cnailed my dog=E2=80=99s f=
+ace perfectly, down
+   to the expression.=E2=80=9D This is unusually direct independent evidenc=
+e for
+   Roast.pet=E2=80=99s core combination: exact identity + ridiculous situat=
+ion, rather
+   than generic AI comedy. Product implication: separately score/approve PE=
+T
+   LOOK and JOKE; never trade identity fidelity for a funnier scene.
+   Prototype: roast-card proof with two binary controls: =E2=80=98Looks lik=
+e them=E2=80=99 /
+   =E2=80=98Funny enough=E2=80=99. Source:
+   https://furthewall.com/products/classic-custom-pet-portrait
+   4.
+
+   *Demand can exceed fixed pet-count selectors =E2=80=94 MEDIUM/HIGH =E2=
+=80=94 BUILD/TEST.*
+   MadPrints verified buyer Rosely D. (8 Jul 2026) had more than four pets,
+   emailed the seller, and praised the result for looking like all of them.
+   This materially extends prior 2=E2=80=935-pet evidence: a hard ceiling c=
+an create
+   support friction. Roast.pet implication: offer 1 / 2 / 3=E2=80=934 pets =
+normally
+   plus =E2=80=98whole gang / 5+=E2=80=99 custom route rather than rejectin=
+g larger
+   households. Prototype: whole-gang roast listing or surcharge selector.
+   Source:
+   https://shopmadprints.com/products/custom-one-pet-portrait-digital-only
+
+Cluster state
+
+   - Exact likeness / identity fidelity: VERY STRONG, repeatedly
+   independent.
+   - Better photo guidance: strengthened again; now direct recent customer
+   evidence.
+   - Preview/revision assurance: VERY STRONG; preserve version-lock from
+   prior run.
+   - Multi-pet: strengthened beyond four pets.
+   - Funny output: evidence supports comedy *conditional on recognizable
+   likeness*.
+   - Instant/last-minute delivery: strong prior cluster; no material new
+   independent delta this run.
+   - Physical + QR/browser video: strong mechanism validation; no new
+   buyer-language delta this run.
+   - AR specifically: still weak direct customer-demand evidence.
+   - Editable jokes / adult-vs-kid roast / sports roast / colleague roast:
+   still insufficient direct evidence; WATCH.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Exact pet likeness, especially face/expression/markings.
+   2. Buyer crop + automatic photo-quality guidance before generation.
+   3. Preview/revision flow with the approved version locked to fulfillment=
+.
+   4. Multi-pet including a whole-gang path rather than a hard two-pet
+   ceiling.
+   5. Comedy that preserves the real pet=E2=80=99s recognizable
+   expression/personality.
+
+*Strongest unmet need:* confidence that the funny output will still
+unmistakably be *their* pet.
+
+*Easiest conversion-lift change:* after upload, show crop + =E2=80=98Is thi=
+s the
+face and markings we must preserve?=E2=80=99 and diagnose bad photos immedi=
+ately.
+
+*Best listing idea from customer language:* *Your Whole Gang Roasts You =E2=
+=80=94
+2, 3, 4 or 5+ Pets =E2=80=94 Personalized Funny Pet Card + Video*. This con=
+verts
+the documented >4-pet support workaround into a visible feature.
+
+*Negative signal:* do not optimize scene/comedy so aggressively that the
+pet becomes generic. Current negative reviews show that wrong coat/face
+identity can destroy satisfaction even when the underlying artwork is
+polished. AR also remains a weaker evidenced need than simple scan=E2=86=92=
+video.
+
+Sources reviewed included current/recent customer-review surfaces from Purr
+& Mutt, FurTheWall, MadPrints, West & Willow and adjacent
+personalized-pet/video-card products. Four signals above were retained
+because they add independent evidence or materially extend prior cluster
+bounds.
+
+--000000000000657a25065bbecb36
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Personalisation Gold =E2=80=94 customer-signal delta
+<p>Prior 11:45=E2=80=9314:48 Sent reports recovered; semantic repeats were =
+rejected unless independent evidence materially strengthened a cluster.</p>
+
+4 material signals
+<ol>
+<li>
+<p><strong>Give the buyer image control before generation =E2=80=94 HIGH =
+=E2=80=94 BUILD/TEST.</strong> Purr &amp; Mutt buyer Jeanne C. (18 Aug 2026=
+): =E2=80=9CMake it so I can crop the picture.=E2=80=9D The same review cor=
+pus contains failures where one dog did not resemble the submitted photo an=
+d another pet=E2=80=99s grey face was rendered black. Customer wants contro=
+l over which part of the upload defines the pet. Current workaround: seller=
+-controlled crop/composition. Roast.pet implication: mobile crop + face/mar=
+king preview before checkout; show exactly which pet region will be used. P=
+rototype: compare normal upload vs upload=E2=86=92crop=E2=86=92=E2=80=98thi=
+s is the face/markings to preserve=E2=80=99 confirmation. Source: <a href=
+=3D"https://www.purrandmutt.com/products/the-brummie-gangster-custom-pet-po=
+rtrait">https://www.purrandmutt.com/products/the-brummie-gangster-custom-pe=
+t-portrait</a></p>
+</li>
+<li>
+<p><strong>Bad-photo recovery guidance prevents abandonment =E2=80=94 HIGH =
+=E2=80=94 BUILD/TEST.</strong> Verified Purr &amp; Mutt buyer Tammy T. (15 =
+Sep 2026) says the first pictures were unusable, but =E2=80=9Cexcellent gui=
+dance=E2=80=9D helped remedy them and produced a treasured result. This ind=
+ependently strengthens the existing photo-guidance cluster. Roast.pet impli=
+cation: do not merely reject a weak upload; diagnose it (=E2=80=98face too =
+small=E2=80=99, =E2=80=98markings hidden=E2=80=99, =E2=80=98need front angl=
+e=E2=80=99) and immediately request the missing shot. Prototype: automatic =
+photo QA with one concrete retake instruction and optional second reference=
+ image. Source: <a href=3D"https://www.purrandmutt.com/products/the-king-cu=
+stom-vintage-pet-portrait">https://www.purrandmutt.com/products/the-king-cu=
+stom-vintage-pet-portrait</a></p>
+</li>
+<li>
+<p><strong>Comedy only wins when likeness survives =E2=80=94 HIGH =E2=80=94=
+ BUILD/TEST.</strong> FurTheWall buyer (4 Nov 2025) says they =E2=80=9Ccan=
+=E2=80=99t stop laughing=E2=80=9D while specifically praising that the sell=
+er =E2=80=9Cnailed my dog=E2=80=99s face perfectly, down to the expression.=
+=E2=80=9D This is unusually direct independent evidence for Roast.pet=E2=80=
+=99s core combination: exact identity + ridiculous situation, rather than g=
+eneric AI comedy. Product implication: separately score/approve PET LOOK an=
+d JOKE; never trade identity fidelity for a funnier scene. Prototype: roast=
+-card proof with two binary controls: =E2=80=98Looks like them=E2=80=99 / =
+=E2=80=98Funny enough=E2=80=99. Source: <a href=3D"https://furthewall.com/p=
+roducts/classic-custom-pet-portrait">https://furthewall.com/products/classi=
+c-custom-pet-portrait</a></p>
+</li>
+<li>
+<p><strong>Demand can exceed fixed pet-count selectors =E2=80=94 MEDIUM/HIG=
+H =E2=80=94 BUILD/TEST.</strong> MadPrints verified buyer Rosely D. (8 Jul =
+2026) had more than four pets, emailed the seller, and praised the result f=
+or looking like all of them. This materially extends prior 2=E2=80=935-pet =
+evidence: a hard ceiling can create support friction. Roast.pet implication=
+: offer 1 / 2 / 3=E2=80=934 pets normally plus =E2=80=98whole gang / 5+=E2=
+=80=99 custom route rather than rejecting larger households. Prototype: who=
+le-gang roast listing or surcharge selector. Source: <a href=3D"https://sho=
+pmadprints.com/products/custom-one-pet-portrait-digital-only">https://shopm=
+adprints.com/products/custom-one-pet-portrait-digital-only</a></p>
+</li>
+</ol>
+
+Cluster state
+<ul>
+<li>Exact likeness / identity fidelity: VERY STRONG, repeatedly independent=
+.</li>
+<li>Better photo guidance: strengthened again; now direct recent customer e=
+vidence.</li>
+<li>Preview/revision assurance: VERY STRONG; preserve version-lock from pri=
+or run.</li>
+<li>Multi-pet: strengthened beyond four pets.</li>
+<li>Funny output: evidence supports comedy <em>conditional on recognizable =
+likeness</em>.</li>
+<li>Instant/last-minute delivery: strong prior cluster; no material new ind=
+ependent delta this run.</li>
+<li>Physical + QR/browser video: strong mechanism validation; no new buyer-=
+language delta this run.</li>
+<li>AR specifically: still weak direct customer-demand evidence.</li>
+<li>Editable jokes / adult-vs-kid roast / sports roast / colleague roast: s=
+till insufficient direct evidence; WATCH.</li>
+</ul>
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+<ol>
+<li>Exact pet likeness, especially face/expression/markings.</li>
+<li>Buyer crop + automatic photo-quality guidance before generation.</li>
+<li>Preview/revision flow with the approved version locked to fulfillment.<=
+/li>
+<li>Multi-pet including a whole-gang path rather than a hard two-pet ceilin=
+g.</li>
+<li>Comedy that preserves the real pet=E2=80=99s recognizable expression/pe=
+rsonality.</li>
+</ol>
+<p><strong>Strongest unmet need:</strong> confidence that the funny output =
+will still unmistakably be <em>their</em> pet.</p>
+<p><strong>Easiest conversion-lift change:</strong> after upload, show crop=
+ + =E2=80=98Is this the face and markings we must preserve?=E2=80=99 and di=
+agnose bad photos immediately.</p>
+<p><strong>Best listing idea from customer language:</strong> <strong>Your =
+Whole Gang Roasts You =E2=80=94 2, 3, 4 or 5+ Pets =E2=80=94 Personalized F=
+unny Pet Card + Video</strong>. This converts the documented &gt;4-pet supp=
+ort workaround into a visible feature.</p>
+<p><strong>Negative signal:</strong> do not optimize scene/comedy so aggres=
+sively that the pet becomes generic. Current negative reviews show that wro=
+ng coat/face identity can destroy satisfaction even when the underlying art=
+work is polished. AR also remains a weaker evidenced need than simple scan=
+=E2=86=92video.</p>
+<p>Sources reviewed included current/recent customer-review surfaces from P=
+urr &amp; Mutt, FurTheWall, MadPrints, West &amp; Willow and adjacent perso=
+nalized-pet/video-card products. Four signals above were retained because t=
+hey add independent evidence or materially extend prior cluster bounds.</p>
+
+--000000000000657a25065bbecb36--

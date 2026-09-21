@@ -1,0 +1,371 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id DEIkioqarM7H
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 16:00:17 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=blo5VvU877oin33LXrNp57rTp4YRupS/hq2XEdf6mAR6yllA5qgJ4kYINe+y/D8qG1aQFyD/p
+	nyRHP6SgbGs7JgZsyqxt7QtUVTE0LefQyCAUSIWdZwjzx3k0cyimy9H9Qe6Yq2Jx/lV4FzdlFP2
+	SdM1TgnoQLdyHvlL3LPC3ZodkcHVuIh9a/E5CTwKPmkm6BjXC/oRrqyIHZLMgCcxnwozB0K2tpO
+	lNfpOzzs1mkAkM7tRjggKeWH0ppoGv3NyZTAajJqxifKRSoXOtHQ4V4h26uBTxtoVoQn4BvzfVW
+	50tqYhukbNrlPDSyx7lV9j59vf29/qKBMoEra0lrKRxw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789833617; x=1790438417; bh=s3NYmAYU
+	RLhDQUKBD9rX5SYl8062Uijc0Nc6PM2k3KY=; b=D0F4wdlT1UeaUPssyi4hgaCXmokDIDrFJ6I
+	3BmYaNNC4YYCPCXLop3sZ717LjUZnVUbJCI3oEWv/EjEKvAXbzgeDa9ZIP81zWqPTFp7zKEXN+9
+	INlDdcp4Jd1oMDpGapZFBskrjSXSgY2qlKNXm1rsjOwhH/+BAvaeqfNaXGOw1QXwduGfr1eM7zH
+	Q0fr99PVoqtC+/KohCFxTm0nRPuzCQKZPeI1kSqDecM77WKtbk48IzW8x3Ji/Fcr8zbF82jf3nn
+	76n3abCHPiqUzV0cYW0XK8HPz9mwbeiKc4RJ6EnneGpdrQh+maxTTjl3zDr9QI9WyT7BK3INlpZ
+	pGdtpqA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=PpJAvZW5;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=PpJAvZW5;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66fabb1a601so1464695d50.3
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 09:00:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789833617; cv=none;
+        d=google.com; s=arc-20260327;
+        b=otCeQrLJiospD4VLSssdE/4S5kPsYgIM59fp5QKKYaSY+2hkTv8mwL3sja+XdpHZio
+         tcDuHSLLcVAyvsrQGycQmn0VG74azdbW0p2HrI9SXniLryvyiDkM2svRwLcGtr1uVRSP
+         xtHp3jFNOo1PXKxNnpSyYJCSAqY/2oz6GZUeCsr5lNG9fl+I+HXODjZFsoXRNneJdtjG
+         1rAs6gt2ZLmR9DxTg7FuLCy5QqRxL7PArxZpAV6C2wGjDjJxcL3HXKFpR2Ro0w4fqAnF
+         dyh9Lr6gVdJ6sf9ATwHv+o3t4EdLoryiwiCzJCvia71TwdV93xO0K565/P4+VrFNMU3U
+         C0Pw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=s3NYmAYURLhDQUKBD9rX5SYl8062Uijc0Nc6PM2k3KY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=TX+fKFxKnn9lNPqEiKbunQxKFcQ43+ITveyYAxmh4zq2QHCUJrY1XhjP/lbTtjbnTu
+         9WntKUqEF993WNiXMXzYARDJ2g7FDNMVsaBefE+huYaZBY+zWLpmwypjul3QFqzF71Na
+         Zl39Q0aDCvAaaCW7RwjvLcNPBEc1WzWkCMx0pwbuOR9Uc3TzTPVsIQAegia6Rxy0QKEi
+         LL6iKwIJlzo+EICjRId1FmdNCaLq2a8YSRvjXfLQUxJozsfNBGnH5UlnesE+yV/f9tXu
+         tWg/+3IWglrId6TtPkWmAadrmv/MGvQxi3jbPOnzhFPj0JN1iDCL+JfdGMuILg/JtZP7
+         tKVQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789833617; x=1790438417; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=s3NYmAYURLhDQUKBD9rX5SYl8062Uijc0Nc6PM2k3KY=;
+        b=PpJAvZW5PUnmYRajLidmFayBFs0UGn5dOtfhlpTYVp6t4Mp4MPabpzkbJiNpvJLZXs
+         q8m9xjIfMLdS68wVSXHKNDwPEQDOwAQiLZ41Cxg2iIhrhdWH4OGn4Gk/J6MyVr6BQ2By
+         ChlMon0Py1ufH1mp8JlKPQOwsS2Vbeh0jIpKXnhzhNuFTkr/2rM2R9YdVSmAZ0RVeZf2
+         Ydr0yMOD8FpTQP4UhXvBCvcr47JeWQXrjY2WQH78qfChUyXLW6qgSxtaRKqxn8Bp4Y4e
+         in8CTi+K3ynGvuJAXLxWu49Zz5gUFNnX/wOFXwByOQxg92gWXgA9ttpfqfMttMF3OUVF
+         CSYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789833617; x=1790438417;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=s3NYmAYURLhDQUKBD9rX5SYl8062Uijc0Nc6PM2k3KY=;
+        b=P7OG/2k5o0zeT8QMcD0Qtekme1X8kH5/LIjuS4EfzpNpsCWJy7qF2qDHvtPnAM3Oox
+         HqKqEPRkaB/e4X6XlScqW5BTkC+HTdo4J3cXxbZhaOIN6K21J/HiLWXqmlLgh3b2K+ZS
+         7ELpzbdgx2wavElc75iXu46Cj5anXbrUcYpbC7MyZ1XWfaBhKyigEiTHSLBBvCopXVrX
+         MnTSfwGIDJGMXBBGVxi7NiyPDGBMlPGkwc1kDolGnr3laj2MogEN/EkejEns04ea09Z+
+         5g2N7BJdEM2c1KZfWpE5qql2Xlk5P29SFVjtK/IQElK9kxJk1mdQoRxFY8080x837WxS
+         PK8w==
+X-Gm-Message-State: AFuF++kxLSuTxyR3p//pbaDDInihJZdD00kpaxVFW+aJib1Kt4kcdG3a
+	6iANQgvj3LIQ2XSXSExdvFchQivezTGFSFn9MrsUFdjj4ACfftXfMeGX9LJ/9tRAvCKSwtHkpIv
+	eTLCFfHsc+NJUVc/3MBjbWgFz5p5jYjSZxw==
+X-Gm-Gg: AYBFou28twkTM3f6ojKISLPoiQaA33D2dkvr/xRzE5dsX8jLRz/eTHY316etLMtdO4D
+	TqGGALA786FfnrMlgAt6G76eksCEwOMBrlexoxbM58EzbJ2jatzjq1EAymfPqKVhuGvE4KEhsUv
+	cK4o94Z9AZdrNwF6+nIF2P5XLAh5SED0LklydDXAdhcHzb3cgW6fj4eG+cKU0XvGnavLIFlErph
+	hmS3QpGSyOzWpzTCp+SeyMl0esC7XMgtH340zrEd5kKdVdxmFbLa3CFQbM/UDM8eaAXgBgqxKOh
+	t26geEgiKkyIsAXJ/MPLo+jdnTh0Z3Q0udxoduvLsxWaIcMB7BUTpn6adWEpw9i8eM6sRcKQEr/
+	J9rkcv+ArNiIsRlt90+eFTUQM2ljST4tcRC347B+dgPeUrkKXDKQ2c+YUdX7tE/Ns3R30FpWGiQ
+	==
+X-Received: by 2002:a05:690e:4391:b0:66f:c6b0:e10b with SMTP id
+ 956f58d0204a3-6717fddaa27mr1123624d50.68.1789833616677; Sat, 19 Sep 2026
+ 09:00:16 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 11:00:16 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 11:00:16 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 11:00:16 -0500
+X-Gm-Features: AcwNN1Wl-oo6HNFSBw4d7izrXf97Q8fWpYXURRM878xa5b4h5imKk9FtJvgnYhg
+Message-ID: <CAPdrGemrSsmnAPsP-Zqsh=w4sJGqL_T_=had0EzuWDca_8O82g@mail.gmail.com>
+Subject: =?UTF-8?Q?Generated_Media_Frontier_=E2=80=94_2026=2D09=2D19_22=3A59_Asia=2FP?=
+	=?UTF-8?Q?hnom=5FPenh_=E2=80=94_1_strong_find?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000eddf80065bd81c84"
+
+--000000000000eddf80065bd81c84
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Generated Media Frontier =E2=80=94 1 strong find vLLM-Omni =C3=97 LongCat-V=
+ideo-Avatar
+1.5 =E2=80=94 TEST NOW
+
+Direct sources:
+
+   - vLLM-Omni recipe:
+   https://github.com/vllm-project/vllm-omni/blob/main/recipes/meituan-long=
+cat/LongCat-Video-Avatar-1.5.md
+   - Supported-model docs:
+   https://docs.vllm.ai/projects/vllm-omni/en/latest/models/supported_model=
+s/
+   - LongCat repo: https://github.com/meituan-longcat/LongCat-Video
+   - Model: https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.5
+   - Technical report: https://arxiv.org/abs/2605.26486
+
+What changed
+
+The LongCat 1.5 model itself is from May, so it is NOT being reported as a
+new model. The material delta is a newly surfaced vLLM-Omni native
+integration, documented in current vLLM-Omni supported-model docs
+published/updated within the last two days. This makes LongCat Avatar 1.5
+much easier to put behind the same serving/inference infrastructure as
+other generative models.
+
+The native pipeline covers audio-to-video and audio+image-to-video,
+single-speaker and multi-speaker generation, plus AVC continuation for
+longer speech. It exposes the distilled 8-step path, official INT8 DiT
+weights, 480p/720p, speaker bounding boxes, and automatic continuation over
+full audio.
+Why technically interesting
+
+This is exactly the kind of infrastructure convergence useful for an
+AI-influencer factory: avatar generation stops being a bespoke one-off
+script and becomes a standardized model backend. LongCat itself is
+unusually relevant because it combines speech-driven facial/body animation,
+long-video continuation, multi-person dialogue, open-domain subjects,
+Whisper-large audio conditioning, GRPO preference alignment, and DMD
+distillation.
+
+Inputs -> outputs:
+
+   - text + audio -> avatar video
+   - text + audio + reference image -> identity-conditioned avatar video
+   - multiple audio tracks + reference image + speaker boxes ->
+   multi-speaker avatar video
+   - previous conditioning frames + continued audio -> longer avatar video
+
+Availability / license / hardware
+
+Code, weights and technical report are public. vLLM-Omni is Apache-2.0;
+model/checkpoint licensing must be checked separately before commercial
+deployment.
+
+Current vLLM-Omni implementation is single-GPU and offline only. Its
+measured H100 93-frame AI2V example peaks around 41 GiB when components are
+built on CPU, or ~56.8 GiB when built on GPU. The latter cuts model-loading
+time from roughly 130s to ~33s. Cache acceleration, tensor/sequence
+parallelism, CPU offload and online serving are not yet wired into this
+pipeline. A full five-segment archival validation reportedly took ~24m28s
+on a Modal H100, so this is not yet our cheap renderer.
+
+Maturity: RUNNABLE.
+Exact experiment
+
+Use one canonical AGI-host portrait and one 30-second speech performance.
+Generate:
+
+   1. one 93-frame 720p segment;
+   2. full 30-second AVC continuation;
+   3. the same audio/identity through our current premium avatar winner.
+
+Score every segment with the identity embedding/identity_score layer we
+discussed, plus lip-sync confidence, frame-skip rate, face/body temporal
+stability, intervention count, VRAM, wall time and $/usable minute. Then
+deliberately use fast speech and one visible-hand/object interaction,
+because those are areas LongCat 1.5 explicitly targeted.
+Replacement/complement
+
+Do not replace the cheap VRM/NanoAvatar-style draft/live renderer. LongCat
+should compete for the PREMIUM_AVATAR_RENDERER slot and complement
+Hypit/HyperFrames/OpenShorts downstream.
+
+Verdict: TEST NOW.
+TOP 5 TO TEST RIGHT NOW
+
+   1. LongCat 1.5 through vLLM-Omni =E2=80=94 canonical 30s host benchmark.
+   2. Hypit =E2=80=94 20-variant Edit-IR benchmark.
+   3. NanoAvatar/edge renderer benchmark.
+   4. VDN-H3 long-context benchmark.
+   5. Identity-embedding QA across every renderer.
+
+BEST OPEN-SOURCE AI INFLUENCER STACK
+
+Character Asset Graph + canonical identity embedding -> persona/memory ->
+acting policy -> Performance IR -> cheap browser/edge draft -> critic ->
+vLLM-Omni premium renderer adapter (LongCat first candidate) -> Production
+Skill Graph -> Hypit/HyperFrames/OpenShorts editing backend -> publish ->
+audience reward.
+BIGGEST CAPABILITY JUMP
+
+Not a new foundation model this hour: standardized multimodal inference
+infrastructure is beginning to absorb serious avatar/video generators. That
+reduces the integration cost of swapping premium renderers.
+CHEAPEST PRACTICAL WIN
+
+Build the renderer adapter against a standardized backend rather than
+writing LongCat-specific orchestration. Keep cheap browser/edge avatars for
+iteration; invoke LongCat only after a performance clears the critic.
+3 REPOS/AUTHORS/LABS TO WATCH NEXT HOUR
+
+   - vllm-project/vllm-omni
+   - meituan-longcat/LongCat-Video
+   - calesthio/OpenMontage (active Sep 19, but no sufficiently specific
+   material delta verified this run)
+
+STACK DELTA
+
+Add PREMIUM_RENDERER_BACKEND =3D vLLM-Omni-compatible as a target
+abstraction, with LongCat-Video-Avatar-1.5 as the first avatar
+implementation to benchmark. Do not otherwise restructure the pipeline.
+
+Suppressed repeats/noise: bitHuman 2.11.3, Hypit, HyperFrames, OpenShorts,
+NanoAvatar, Prometheus, Avatar-Forever and VDN-H3 had no newly verified
+material release worth repeating. OpenMontage and vLLM-Omni main were
+active today, but activity alone did not clear the quality bar.
+
+--000000000000eddf80065bd81c84
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Generated Media Frontier =E2=80=94 1 strong find
+
+vLLM-Omni =C3=97 LongCat-Video-Avatar 1.5 =E2=80=94 TEST NOW
+<p>Direct sources:</p>
+<ul>
+<li>vLLM-Omni recipe: <a href=3D"https://github.com/vllm-project/vllm-omni/=
+blob/main/recipes/meituan-longcat/LongCat-Video-Avatar-1.5.md">https://gith=
+ub.com/vllm-project/vllm-omni/blob/main/recipes/meituan-longcat/LongCat-Vid=
+eo-Avatar-1.5.md</a></li>
+<li>Supported-model docs: <a href=3D"https://docs.vllm.ai/projects/vllm-omn=
+i/en/latest/models/supported_models/">https://docs.vllm.ai/projects/vllm-om=
+ni/en/latest/models/supported_models/</a></li>
+<li>LongCat repo: <a href=3D"https://github.com/meituan-longcat/LongCat-Vid=
+eo">https://github.com/meituan-longcat/LongCat-Video</a></li>
+<li>Model: <a href=3D"https://huggingface.co/meituan-longcat/LongCat-Video-=
+Avatar-1.5">https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.5=
+</a></li>
+<li>Technical report: <a href=3D"https://arxiv.org/abs/2605.26486">https://=
+arxiv.org/abs/2605.26486</a></li>
+</ul>
+
+What changed
+<p>The LongCat 1.5 model itself is from May, so it is NOT being reported as=
+ a new model. The material delta is a newly surfaced vLLM-Omni native integ=
+ration, documented in current vLLM-Omni supported-model docs published/upda=
+ted within the last two days. This makes LongCat Avatar 1.5 much easier to =
+put behind the same serving/inference infrastructure as other generative mo=
+dels.</p>
+<p>The native pipeline covers audio-to-video and audio+image-to-video, sing=
+le-speaker and multi-speaker generation, plus AVC continuation for longer s=
+peech. It exposes the distilled 8-step path, official INT8 DiT weights, 480=
+p/720p, speaker bounding boxes, and automatic continuation over full audio.=
+</p>
+
+Why technically interesting
+<p>This is exactly the kind of infrastructure convergence useful for an AI-=
+influencer factory: avatar generation stops being a bespoke one-off script =
+and becomes a standardized model backend. LongCat itself is unusually relev=
+ant because it combines speech-driven facial/body animation, long-video con=
+tinuation, multi-person dialogue, open-domain subjects, Whisper-large audio=
+ conditioning, GRPO preference alignment, and DMD distillation.</p>
+<p>Inputs -&gt; outputs:</p>
+<ul>
+<li>text + audio -&gt; avatar video</li>
+<li>text + audio + reference image -&gt; identity-conditioned avatar video<=
+/li>
+<li>multiple audio tracks + reference image + speaker boxes -&gt; multi-spe=
+aker avatar video</li>
+<li>previous conditioning frames + continued audio -&gt; longer avatar vide=
+o</li>
+</ul>
+
+Availability / license / hardware
+<p>Code, weights and technical report are public. vLLM-Omni is Apache-2.0; =
+model/checkpoint licensing must be checked separately before commercial dep=
+loyment.</p>
+<p>Current vLLM-Omni implementation is single-GPU and offline only. Its mea=
+sured H100 93-frame AI2V example peaks around 41 GiB when components are bu=
+ilt on CPU, or ~56.8 GiB when built on GPU. The latter cuts model-loading t=
+ime from roughly 130s to ~33s. Cache acceleration, tensor/sequence parallel=
+ism, CPU offload and online serving are not yet wired into this pipeline. A=
+ full five-segment archival validation reportedly took ~24m28s on a Modal H=
+100, so this is not yet our cheap renderer.</p>
+<p>Maturity: RUNNABLE.</p>
+
+Exact experiment
+<p>Use one canonical AGI-host portrait and one 30-second speech performance=
+. Generate:</p>
+<ol>
+<li>one 93-frame 720p segment;</li>
+<li>full 30-second AVC continuation;</li>
+<li>the same audio/identity through our current premium avatar winner.</li>
+</ol>
+<p>Score every segment with the identity embedding/identity_score layer we =
+discussed, plus lip-sync confidence, frame-skip rate, face/body temporal st=
+ability, intervention count, VRAM, wall time and $/usable minute. Then deli=
+berately use fast speech and one visible-hand/object interaction, because t=
+hose are areas LongCat 1.5 explicitly targeted.</p>
+
+Replacement/complement
+<p>Do not replace the cheap VRM/NanoAvatar-style draft/live renderer. LongC=
+at should compete for the PREMIUM_AVATAR_RENDERER slot and complement Hypit=
+/HyperFrames/OpenShorts downstream.</p>
+<p>Verdict: TEST NOW.</p>
+
+TOP 5 TO TEST RIGHT NOW
+<ol>
+<li>LongCat 1.5 through vLLM-Omni =E2=80=94 canonical 30s host benchmark.</=
+li>
+<li>Hypit =E2=80=94 20-variant Edit-IR benchmark.</li>
+<li>NanoAvatar/edge renderer benchmark.</li>
+<li>VDN-H3 long-context benchmark.</li>
+<li>Identity-embedding QA across every renderer.</li>
+</ol>
+
+BEST OPEN-SOURCE AI INFLUENCER STACK
+<p>Character Asset Graph + canonical identity embedding -&gt; persona/memor=
+y -&gt; acting policy -&gt; Performance IR -&gt; cheap browser/edge draft -=
+&gt; critic -&gt; vLLM-Omni premium renderer adapter (LongCat first candida=
+te) -&gt; Production Skill Graph -&gt; Hypit/HyperFrames/OpenShorts editing=
+ backend -&gt; publish -&gt; audience reward.</p>
+
+BIGGEST CAPABILITY JUMP
+<p>Not a new foundation model this hour: standardized multimodal inference =
+infrastructure is beginning to absorb serious avatar/video generators. That=
+ reduces the integration cost of swapping premium renderers.</p>
+
+CHEAPEST PRACTICAL WIN
+<p>Build the renderer adapter against a standardized backend rather than wr=
+iting LongCat-specific orchestration. Keep cheap browser/edge avatars for i=
+teration; invoke LongCat only after a performance clears the critic.</p>
+
+3 REPOS/AUTHORS/LABS TO WATCH NEXT HOUR
+<ul>
+<li>vllm-project/vllm-omni</li>
+<li>meituan-longcat/LongCat-Video</li>
+<li>calesthio/OpenMontage (active Sep 19, but no sufficiently specific mate=
+rial delta verified this run)</li>
+</ul>
+
+STACK DELTA
+<p>Add <code>PREMIUM_RENDERER_BACKEND =3D vLLM-Omni-compatible</code> as a =
+target abstraction, with LongCat-Video-Avatar-1.5 as the first avatar imple=
+mentation to benchmark. Do not otherwise restructure the pipeline.</p>
+<p>Suppressed repeats/noise: bitHuman 2.11.3, Hypit, HyperFrames, OpenShort=
+s, NanoAvatar, Prometheus, Avatar-Forever and VDN-H3 had no newly verified =
+material release worth repeating. OpenMontage and vLLM-Omni main were activ=
+e today, but activity alone did not clear the quality bar.</p>
+
+--000000000000eddf80065bd81c84--

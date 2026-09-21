@@ -1,6 +1,7 @@
 """
-Gate.io Exchange Collector
-L2 order book + trades for V1 coins.
+Gate.io Exchange Collector — SUPERSEDED for L2 by collectors/venue_l2.py
+(continuous, gap-safe, raw-archived). Kept for one-shot market discovery
+checks only. Do not build on its overwrite-style gate_data.json output.
 """
 
 import json
@@ -10,10 +11,11 @@ import time
 from datetime import datetime
 import sys
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BASE_DIR)
 from warehouse import store_raw_event
 
-DATA_DIR = '/home/box/powpowpow/chains'
+DATA_DIR = os.path.join(BASE_DIR, 'chains')
 os.makedirs(f'{DATA_DIR}/exchanges/gate', exist_ok=True)
 
 def fetch_json(url, params=None, timeout=10):

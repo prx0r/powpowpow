@@ -7,16 +7,17 @@ from flask import Flask, jsonify, request
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
 app = Flask(__name__)
 
-BASE_DIR = '/home/box/powpowpow'
 CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 
-# Load all data
+# Load all data — LAZY per request (never import-time cache; the old
+# import-time snapshot could serve stale data forever).
 def load_json(filename):
     path = os.path.join(CHAINS_DIR, filename)
     if os.path.exists(path):
@@ -24,29 +25,29 @@ def load_json(filename):
             return json.load(f)
     return {}
 
-CHAIN_DATA = {}
-for coin in ['PRL', 'QUBIC', 'QUAN', 'XMR', 'KAS', 'CLORE', 'AKT', 'NOS']:
-    data = load_json(f'{coin.lower()}/{coin.lower()}_data.json')
-    if data:
-        CHAIN_DATA[coin] = data
+def chain_data():
+    out = {}
+    for coin in ['PRL', 'QUBIC', 'QUAN', 'XMR', 'KAS', 'CLORE', 'AKT', 'NOS']:
+        data = load_json(f'{coin.lower()}/{coin.lower()}_data.json')
+        if data:
+            out[coin] = data
+    return out
 
-EXCHANGE_DATA = {
-    'gate': load_json('exchanges/gate/gate_data.json'),
-    'coinex': load_json('exchanges/coinex/coinex_data.json'),
-}
+def exchange_data():
+    return {
+        'gate': load_json('exchanges/gate/gate_data.json'),
+        'coinex': load_json('exchanges/coinex/coinex_data.json'),
+    }
 
-FACTORS = load_json('factors/cross_chain_factors.json')
-ECONOMICS = load_json('economics/miner_economics.json')
-
-# V1 Registry
-from v1_registry import get_v1_registry
-REGISTRY = get_v1_registry()
+# V1 Registry — single source of truth for the 8-system V1 universe
+from v1_registry import get_v1
+REGISTRY = get_v1()
 
 def success(data, meta=None):
     return jsonify({
         'status': 'ok',
         'data': data,
-        'meta': meta or {'timestamp': datetime.now().isoformat()}
+        'meta': meta or {'timestamp': datetime.now(timezone.utc).isoformat()}
     })
 
 def error(message, code=400):
@@ -60,7 +61,7 @@ def error(message, code=400):
 def list_chains():
     chains = []
     for symbol, info in REGISTRY.items():
-        data = CHAIN_DATA.get(symbol, {})
+        data = chain_data().get(symbol, {})
         price = data.get('price', {})
         price_usd = price.get('usd', 0) if isinstance(price, dict) else price
         
@@ -81,7 +82,7 @@ def get_chain(symbol):
         return error(f'Unknown chain: {symbol}', 404)
     
     info = REGISTRY[symbol]
-    data = CHAIN_DATA.get(symbol, {})
+    data = chain_data().get(symbol, {})
     
     return success({
         'symbol': symbol,
@@ -99,7 +100,7 @@ def list_cards():
     
     cards = {}
     for symbol in REGISTRY:
-        data = CHAIN_DATA.get(symbol, {})
+        data = chain_data().get(symbol, {})
         price = data.get('price', {})
         
         if price:
@@ -113,7 +114,7 @@ def get_card(symbol):
     symbol = symbol.upper()
     from v1_live_cards import generate_card
     
-    data = CHAIN_DATA.get(symbol, {})
+    data = chain_data().get(symbol, {})
     price = data.get('price', {})
     
     if not price:
@@ -144,17 +145,17 @@ def compute_benchmarks():
 
 @app.route('/v1/exchanges')
 def list_exchanges():
-    return success(list(EXCHANGE_DATA.keys()))
+    return success(list(exchange_data().keys()))
 
 @app.route('/v1/exchanges/<exchange>/markets')
 def exchange_markets(exchange):
-    data = EXCHANGE_DATA.get(exchange, {})
+    data = exchange_data().get(exchange, {})
     return success(data.get('markets', {}))
 
 @app.route('/v1/exchanges/<exchange>/<symbol>/orderbook')
 def exchange_orderbook(exchange, symbol):
     symbol = symbol.upper()
-    data = EXCHANGE_DATA.get(exchange, {})
+    data = exchange_data().get(exchange, {})
     orderbooks = data.get('order_books', {})
     
     if symbol in orderbooks:
@@ -164,7 +165,7 @@ def exchange_orderbook(exchange, symbol):
 @app.route('/v1/exchanges/<exchange>/<symbol>/trades')
 def exchange_trades(exchange, symbol):
     symbol = symbol.upper()
-    data = EXCHANGE_DATA.get(exchange, {})
+    data = exchange_data().get(exchange, {})
     trades = data.get('trades', {})
     
     if symbol in trades:
@@ -178,7 +179,7 @@ def exchange_trades(exchange, symbol):
 @app.route('/v1/metrics/pressure/<symbol>')
 def pressure_metrics(symbol):
     symbol = symbol.upper()
-    data = FACTORS.get(symbol, {})
+    data = load_json('factors/cross_chain_factors.json').get(symbol, {})
     
     if not data:
         return error(f'No pressure data for {symbol}', 404)
@@ -189,7 +190,7 @@ def pressure_metrics(symbol):
 def resource_premium():
     premiums = []
     for symbol in REGISTRY:
-        econ = ECONOMICS.get(symbol, {})
+        econ = load_json('economics/miner_economics.json').get(symbol, {})
         if econ:
             premiums.append({
                 'chain': symbol,
@@ -200,7 +201,7 @@ def resource_premium():
 
 @app.route('/v1/metrics/miner-economics')
 def miner_economics():
-    return success(ECONOMICS)
+    return success(load_json('economics/miner_economics.json'))
 
 # ============================================================
 # FACTORS
@@ -208,7 +209,7 @@ def miner_economics():
 
 @app.route('/v1/factors')
 def factors():
-    return success(FACTORS)
+    return success(load_json('factors/cross_chain_factors.json'))
 
 # ============================================================
 # HEALTH
@@ -220,7 +221,7 @@ def health():
         'status': 'healthy',
         'version': '1.0.0',
         'chains_tracked': len(REGISTRY),
-        'exchanges_connected': len(EXCHANGE_DATA),
+        'exchanges_connected': len(exchange_data()),
         'timestamp': datetime.now().isoformat(),
     })
 

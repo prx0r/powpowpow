@@ -8,10 +8,11 @@ import os
 from datetime import datetime, timezone
 import sys
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 from core import utcnow
 
-DATA_DIR = '/home/box/powpowpow/warehouse/quality'
+DATA_DIR = os.path.join(BASE_DIR, 'warehouse', 'quality')
 os.makedirs(DATA_DIR, exist_ok=True)
 
 def record_collector_run(

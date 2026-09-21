@@ -1,0 +1,2437 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id dewujfec9t9f
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 13:37:38 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=NL5qlJwUedOJjK+KzbE2CCc1z9It20Q4+5nhR1JnJAG9CWM2dUvYF4cwK3EhtdJN2fMHv3g1e
+	az1dIsg1VQZVOMqeRSpck/IScH3eaR9zrKNeWfhCkFf4kzvix0vvgsHqx9PjmR1V3Pkr0CUHbo8
+	yBFIucZFS1FuAYWu37NtC5r4VVyLq0JhjH8YZjXitfHjKWhTfn1SbK08OsN5i9STHe5Gbf7X1Np
+	Wct3uROTgHbeShd5a48E0DAcN9FUGrs3JTgkFuaVD48i7aAGLqoHWRE7NwhoozGKXckaaCdevbV
+	FiU7Temc6lEIYtqhu9fSYS3Rx/A/Zr7CiEibioZp3hkA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789652258; x=1790257058; bh=QoASuzzp
+	1C3H48fGqeJ06waM6pYVQ+T6BtXDxAVgAr0=; b=NYoBjrZdJPme7hgBzJZEei+eBgNJ7eseXTW
+	mmZc7Jk+1ytMGbDwNzdggDWxBZdN4rCzfuvrGtz9HYwaTZw32AQQeArp/bcanlfR5RyUjjhSSs9
+	8h6du4BquZKaR2JyHyVEL7eJ1kK73cyZ3mRtcByJPK1CRm/nhhb69mcQ2oUQn/ZTkjCacOBtFcw
+	A37H77VyI3jrXBKBMgyrRvd7tZWFQTj56fNz2Gp8anTTdZVhPZ1UDUYJEkHxltXOfpmj7MtXiNN
+	0+Jhr33lQ0fhgNTGaZLd5EltmfywojQRcChDXk9dBr3SPSJV0FuMYDKZlDM5ETdNikhnUPEK9Dt
+	7o5R8zw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=kNAy/TOx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=kNAy/TOx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-6713d20d375so783430d50.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 06:37:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789652258; cv=none;
+        d=google.com; s=arc-20260327;
+        b=rVorrSLpsdOFtKw/uT3uyWOOb8p79OI9+zQw34vIYNDMokpwmhm8kl/vpLLrbVy9Ux
+         iYlfIcrtj9aD0LbgzSoE+rNNvjmHtY2XBpSEe1XoVkZbQpqNvDNr7Tq4XvNmkbrB0P0C
+         UNe0fkIQCgxbsVHJBBm6xLmPrPlyiMmlpqafnDMT52sLZtEVOLCF9xzNtOj+Y533NOCK
+         RPk474o5EV0BLN0Yx5K5YgIhSJkkrxnDJNKUWP1q0Pkr92psozMjMR5GWrtmBzhmFSHR
+         0wTnhrdPZWGk+XUyzdofIN4pVgKiDtZug1z4CZt/KWrClhUgYe1mz3jjebk52reYgyHS
+         RMIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=QoASuzzp1C3H48fGqeJ06waM6pYVQ+T6BtXDxAVgAr0=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=h/c0ilSy73J6WjUxtVAsXyuFKlM4M+bac+q7rzWuqbxC67qZzs+ZPbo6aeEPFs9mul
+         E/wQehdVPxHjTKBA90OevJyUeF501WRljdSSy4en+aur53tjnbrMVBovVcCyLZMOJy3X
+         unHrHDOq8T4hFeQl0Av32BPJg62nY0Qrrb1P5mwhph9RYb3hjP6ZAKa+MqBchA4twvmF
+         2SDJj7CYaPadCGHfUQlVRxPbkLCdfYCllGkWYlyHhNagNcwG1oWF3OrSVikB1E7jOH4S
+         GiMLAdoFPpRXHmC+ZKy26PEprZfiYvRwPCZFY95dsYDaW0lnY/gRlcQSOxVsWVGwEBC9
+         CqRQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789652258; x=1790257058; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=QoASuzzp1C3H48fGqeJ06waM6pYVQ+T6BtXDxAVgAr0=;
+        b=kNAy/TOxNCQ43A6IpbpPgzaaLAiFYJFBH5URJ1pGI/gSfWkCil6xIIis+LO/Gyhryy
+         aPF1YBmXk4QAZiBqifR3TihQLk6d2SWmXdPxHlJjB6N38OUhSI6W+bayADuwU4h+hDXn
+         vyWRHk7WDohNZjx8cEOLY1t02hv/3BT7sHhKYC7uGHqFBx4AJY23TcHosxmaj/iZ06Lg
+         5QeX5pn82fjbfhfGxbl0l6uuOKDZbUgQzWgW2NRYnjEwDYExWjvAi7RNj3yDhjBQRy+A
+         j34QAFSYyWkDo19vZhC/0rE/20KRyB4fBaNlwS8D/QHCUxAppMFiyV6+Ec7N2xSDtWaT
+         GAeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789652258; x=1790257058;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=QoASuzzp1C3H48fGqeJ06waM6pYVQ+T6BtXDxAVgAr0=;
+        b=IcoIlfyNWT6+RuLjcP9z4tdyPC/2fBc3uSY1FdipYoICL/naQXdOHHLRiFXifUNPYF
+         qNHuDTV5kStYsbfWMRykTWkTH9r5e8dtlU72uU7ZkRkJpZhsTEQhoeARL4daDdgIYLHZ
+         WaWiQawb0AjWd6WYVTl3XOz3nx30fBJ8UpvFfye0UkMDpYz8h819RhwYHr2I/e8nBWXK
+         xSj70xtCHcv0Kzz7o5Sc51/dnoNnXQf2giTCKAws2c/i7AGd1758DFYc8vdqzXRaeOVh
+         nvXveWDPMCi1jq/c6dfvI2sRRoK5Pi+7mJzQOk6uwcw637zW+Gvx0+pcKLLAnUvmJk8B
+         h0wg==
+X-Gm-Message-State: AFuF++nTWAAF0y9Pp9Cc5HNHg00aymEJcasGRFp+mg3TROFmrgFn1VNx
+	nJz7J3cVZRuELWaUgBlSO1FVBkd+FV7Sqv53Zz9CLe6DK4gBebp+NebBHXJDbVZ3SChruas8aVl
+	12v7xqmrrB6cM4ZT84rdq8skNZ0mMh3RcGQ==
+X-Gm-Gg: AYBFou0aFYsKYYyBfT4fWh0rdOp0IoeCMJYUyL/1BYJoihtH+BXHcO21EQ8+k/F9PcH
+	k7k1sLqYH15pgqmaWMiPtqS0JxXxgIvaDgLIPvkBk8D2oOwHJZcxxKLRcMwaFInMavb3AaAXlEY
+	WR7CDpEtxHlk8HSqslBXvwJQQOfVYeHfKiaDgHBmrIfgWcTfXvV6gD8HclqkziG6t0EiYyw0DLE
+	YDvRqyDCiTbOVZWKvvm70HFVJplRBSByVSRriMrFWDAOoD5NXz9EjjypSXUlJKgolLsiijfHjOg
+	OB+QlVSToHhGRLeHfuqzEKwJ4zm/2vo+zXwG7Px5/2MdX4pXeA5v/SvN5hPxZJ30nfOiuRRpg0X
+	xo6E0eUvA/A/QDXGVb5vcnL0V5G8W4C9eCNTO9on6aTAj2k+W4mXwudW+zMnrEH6COGQNynuC
+X-Received: by 2002:a05:690e:144d:b0:671:44a1:ad35 with SMTP id
+ 956f58d0204a3-67163215b93mr2217976d50.39.1789652256867; Thu, 17 Sep 2026
+ 06:37:36 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 08:37:34 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 08:37:34 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 08:37:34 -0500
+X-Gm-Features: AcwNN1XyM8R87665I8ds5iiMbayUU-CwbP8k4w8kZYJcZVih3NK_gP29t3FQw6o
+Message-ID: <CAPdrGems5jBzQu6MLOdNKT371qLTZFJi3OPFU776_CUzP0W=MA@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail_QP_root=2Dof=2Dtrust_rebuild_=E2=80=94_canonical_proof_s?=
+	=?UTF-8?Q?pecs_=2B_implementation_instructions?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000000aca2e065bade34d"
+
+--0000000000000aca2e065bade34d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+cmail / setup.social =E2=80=94 QP root-of-trust rebuild
+
+Review target: prx0r/cmail on master, currently reviewed at commit
+dec850ec405bbd90ad3a2ad6680fcfaa0273a13d.
+
+This is not a feature request. Treat it as a constitutional rebuild of the
+proof/authority layer beneath cmail. Do not continue expanding outward from
+the current capacity graph until the QP seam is real, because the current
+runtime can perform effects without QP settlement and therefore every
+downstream =E2=80=9Cproof=E2=80=9D inherits a false root of trust.
+0. The system we are actually building
+
+cmail/setup.social should be a consumer of one real QP kernel.
+
+The planner/agent proposes actions. Probes observe reality. Deterministic
+judges evaluate evidence. QP alone commits canonical state transitions.
+Consequential effects require independent bounded authority. Post-effect
+reality must be independently read back before settlement.
+
+Canonical flow:
+planner / model =E2=86=93 proposal QP preflight =E2=86=93 exact claim + exa=
+ct ProofSpec +
+authority check reserve authority / budget =E2=86=93 effect adapter =E2=86=
+=93 provider
+response independent readback / challenge probe =E2=86=93 normalized immuta=
+ble
+evidence pinned deterministic judges =E2=86=93 TRUE / FALSE / UNKNOWN hard =
+gates =E2=86=93
+QP settle =E2=86=93 TransitionReceipt append-only canonical state =E2=86=93=
+ projections /
+tasks / UI
+
+The critical separation is:
+COGNITION !=3D TRUTH !=3D AUTHORITY
+
+An agent may propose anything. It may not promote its own output to
+canonical truth. A true fact never creates authority by itself. A signed
+grant never proves that the external world changed.
+1. Canonical QP proof object
+
+Use the proof object we previously formalised:
+=CE=A0_QP =3D (K, C, E, J, A, G, =CE=9B, R, =CE=A3)
+
+Where:
+
+   - K =3D frozen ProofRoot / ContractRoot. The normative semantics of the
+   proof.
+   - C =3D exact falsifiable claim identity.
+   - E =3D immutable evidence set with provenance.
+   - J =3D pinned deterministic judges/program bundles.
+   - A =3D Actuality, one of TRUE | FALSE | UNKNOWN.
+   - G =3D hard deterministic gates.
+   - =CE=9B =3D authority required for consequential transitions/effects.
+   - R =3D content-addressed TransitionReceipt.
+   - =CE=A3 =3D independent replay/settlement result.
+
+A proof is PROVEN only when:
+RootOK AND MetaVerifierOK AND ProvenanceOK AND Actuality =3D=3D TRUE AND ev=
+ery
+required Gate =3D=3D PASS AND AuthorityOK when transition is consequential =
+AND
+ReceiptIntegrityOK AND Replay =3D=3D PASS
+
+Formally:
+PROVEN iff RootOK =E2=88=A7 MetaVerifierOK =E2=88=A7 ProvenanceOK =E2=88=A7=
+ A=3DTRUE =E2=88=A7 GatesPASS =E2=88=A7
+AuthorityOK =E2=88=A7 ReceiptOK =E2=88=A7 ReplayPASS
+
+QP does NOT prove absolute metaphysical world truth. It proves that a
+committed state transition was justified relative to frozen claim
+semantics, admissible evidence, pinned verifier programs, authority, and
+deterministic replay.
+2. Actuality semantics are mandatory
+
+Every judge returns exactly:
+type Actuality =3D "TRUE" | "FALSE" | "UNKNOWN";
+
+Never use pass:boolean as the canonical truth result.
+
+Interpretation:
+
+   - TRUE =3D sufficient admissible evidence supports the exact claim.
+   - FALSE =3D sufficient admissible evidence contradicts the exact claim.
+   - UNKNOWN =3D evidence missing, stale, malformed, inaccessible,
+   unverifiable, probe failed, provider unavailable, unsupported, or otherw=
+ise
+   insufficient to decide.
+
+UNKNOWN must NEVER be coerced to false or true.
+
+For a required AND-DAG:
+if any required leaf =3D=3D FALSE =3D> FALSE else if any required leaf =3D=
+=3D UNKNOWN
+=3D> UNKNOWN else =3D> TRUE
+
+Important consequence:
+network timeout !=3D FALSE missing token !=3D FALSE unparseable provider
+response !=3D FALSE probe crash !=3D FALSE
+
+Those are UNKNOWN unless the frozen ProofSpec explicitly defines a negative
+observation as falsifying evidence.
+
+A failed attempt proves only that the attempt failed. It does not prove the
+target claim false unless the ProofSpec says that exact observation is a
+falsifier.
+3. ContractRoot / ProofSpec
+
+Create a real immutable ProofSpec object. Semantic changes mint a new
+root/version. Never edit semantics in place while retaining the same proof
+identity.
+
+Suggested shape:
+interface ProofSpec { protocol: "qp/1"; spec_id: string; version: number;
+claim_schema_hash: string; evidence_schema_hash: string; actuality_dag:
+ActualityNode[]; judges: Array<{ id: string; program_hash: string;
+runtime_hash: string; config_hash: string; dependencies_hash: string; }>;
+gates: Array<{ id: string; program_hash: string; required: boolean; }>;
+freshness: Record<string, number>; // evidence class -> max age seconds
+provenance_policy_hash: string; independence_policy_hash: string;
+transition_program_hash: string; authority_policy_hash?: string;
+proof_requirement: "TRUE" | "TRUE_AND_AUTHORITY"; }
+
+Canonical serialization must be deterministic. Hash canonical bytes, not
+normal JS object stringification.
+ContractRoot =3D SHA256(canonical(ProofSpec))
+
+Any change to claim semantics, evidence requirements, freshness, judge
+code, runtime, dependencies, authority policy, transition semantics or gate
+rules changes the ContractRoot.
+
+Reuse may change the current plan/route, but not the ContractRoot for the
+same proof semantics.
+4. Claims must be exact and immutable
+
+Do not use vague capacities like have_phone or have_handle as canonical
+claims.
+
+Use parameterized claims with stable identities.
+
+Examples:
+claim:domain_available:cloudflare:privately.win
+claim:domain_owned:cloudflare:<account_id_hash>:privately.win
+claim:dns_configured:privately.win
+claim:email_route_configured:agents@privately.win
+claim:email_receives:agents@privately.win
+claim:phone_owned:telnyx:<account_id_hash>:+44... claim:sms_receives:+44...
+claim:handle_available:youtube:privatelywin
+claim:account_owned:youtube:<channel_id>
+claim:handle_bound:youtube:<channel_id>:privatelywin
+claim:oauth_authorized:google:<principal_id_hash>:<scope_set_hash>
+claim:can_post:youtube:<channel_id>
+
+Canonical claim object:
+interface Claim { kind: "CLAIM"; id: string; predicate: string; subject:
+Record<string,string>; statement: string; contract_root: string; }
+
+The exact claim ID is part of proof identity. Evidence for another
+address/account/handle cannot satisfy it.
+5. Evidence must prove provenance, not just bytes
+
+The current sha256(evidence_string) model is insufficient. It proves only
+that bytes were hashed.
+
+Every evidence item needs structured provenance:
+interface Evidence { id: string; // content-addressed class: string; //
+registrar_readback, dns_answer, smtp_challenge, etc claim_id: string;
+observed_at: string; source: string; // provider / DNS authority / mailbox
+/ public endpoint locator: string; // sanitized canonical source locator
+collector_id: string; collector_program_hash: string;
+collector_runtime_hash: string; request_hash?: string; response_hash:
+string; normalized_payload_hash: string; nonce?: string;
+independence_group: string; signature?: string; signer?: string; }
+
+Evidence payload bytes go into content-addressed blob storage. Canonical
+proof state stores hashes/metadata, not mutable arbitrary strings.
+
+Required invariant:
+hash(bytes) is not provenance
+
+For important external effects, provider acknowledgement and independent
+readback should be different evidence classes / independence groups where
+feasible.
+
+Same-channel acknowledgement is usually not enough to establish an
+externally persistent fact.
+6. Judges must be content-addressed deterministic programs
+
+A gate name such as handle_owned_v1 means nothing unless it resolves to
+immutable program bytes.
+
+Create a registry:
+interface ProgramBundle { id: string; source_hash: string; runtime_hash:
+string; config_hash: string; dependency_hash: string; bundle_hash: string;
+}
+
+A proof pins bundle_hash, not only a friendly name.
+
+Judges must be pure over canonical evidence input. No network calls inside
+judges. Network observations happen in probes/collectors before judgment.
+judge(evidence: CanonicalEvidenceSet): ActualityResult
+
+A judge should return structured reasons and evidence IDs used.
+7. Authority is a different object from truth
+
+Delete the mental model that confirmed:true is authority.
+
+A consequential effect requires a bounded signed grant/ticket issued before
+the effect.
+
+Suggested object:
+interface Grant { protocol: "qp/1"; id: string; issuer: string; //
+human:<public-key-id> or trusted policy issuer subject: string; //
+agent/session principal action: string; // cf.domain.register,
+telnyx.number.purchase, email.send, etc payload_hash: string; // exact
+effect payload constraints: { max_amount?: number; currency?: string;
+provider?: string; resource?: string; scopes?: string[]; }; issued_at:
+string; expires_at: string; nonce: string; max_uses: 1; signature: string;
+}
+
+Use Ed25519 or equivalent modern deterministic signing.
+
+Grant validation requires:
+signature valid issuer trusted by policy subject matches executor exact
+action matches exact payload hash matches constraints satisfied not expired
+nonce not consumed remaining uses > 0
+
+After reserve/consumption, replay of the same grant must fail.
+
+Never infer authority from a true claim.
+
+Example:
+domain_available(privately.win) =3D=3D TRUE
+
+does NOT imply:
+agent may purchase privately.win
+
+The first is truth. The second requires =CE=9B.
+8. Consequential action lifecycle
+
+For money, sends, DNS writes, account writes, OAuth grants, credential
+changes, posting, etc., enforce:
+AUTHORIZE -> RESERVE -> ACT -> INDEPENDENT READBACK -> SETTLE
+
+Not:
+ACT -> trust provider response -> mark done
+
+Detailed sequence:
+
+   1. Build exact proposed effect payload.
+   2. Hash canonical payload.
+   3. Validate signed grant against exact payload hash.
+   4. Atomically reserve the grant/budget/idempotency key.
+   5. Execute provider adapter once.
+   6. Persist provider response as evidence, but do not settle target claim
+   yet.
+   7. Run independent readback/challenge probe.
+   8. Normalize evidence.
+   9. Run pinned judges and gates.
+   10. If Actuality=3DTRUE and all gates pass, settle TransitionReceipt.
+   11. Reconcile reservation/spend.
+   12. Mark grant consumed.
+   13. Project resulting canonical state into tasks/UI.
+
+If readback fails or is unavailable:
+NO successful target-state receipt Actuality =3D UNKNOWN
+
+The effect may have happened, so retain an effect-attempt receipt and
+schedule reconciliation, but do not lie about the target claim.
+9. TransitionReceipt
+
+Implement one canonical receipt object and use it everywhere.
+
+Suggested shape:
+interface TransitionReceipt { protocol: "qp/1"; transition_type: "RESOLVE"
+| "EFFECT" | "REVOKE"; contract_root: string; claim_id: string;
+state_before_root: string; proposal_root: string; evidence_root: string;
+judge_results_root: string; gate_results_root: string; actuality: "TRUE" |
+"FALSE" | "UNKNOWN"; authority_id?: string; authority_root?: string;
+transition_program_hash: string; state_after_root: string; run: {
+executor_id: string; program_hash: string; runtime_hash: string;
+started_at: string; finished_at: string; cost?: number; };
+prev_receipt_hash: string; settled_at: string; receipt_hash: string;
+qp_signer: string; qp_signature: string; }
+
+No mutable random PRF-... ID as the canonical identity. The canonical
+receipt identity is the content hash of canonical receipt bytes
+excluding/appropriately handling the signature field.
+
+Receipts are append-only. Never overwrite cap.proof.
+10. Replay / settlement verifier
+
+Implement a second verification path that can take only:
+
+   - ProofSpec / ContractRoot bundle
+   - claim
+   - evidence blobs + provenance
+   - judge/gate program bundles
+   - authority object if required
+   - previous state root
+   - TransitionReceipt
+
+and independently recompute:
+
+   - hashes
+   - freshness at historical settled_at
+   - evidence admissibility
+   - actuality
+   - gate outcomes
+   - authority validity/consumption semantics
+   - transition result
+   - resulting state root
+   - receipt hash/signature
+
+It must return PASS | FAIL, never silently repair the receipt.
+
+Canonical proof requires replay PASS.
+11. Exact cmail ProofSpecs
+
+Implement the following first. These are the root proofs from which
+setup.social can safely expand.
+P1 =E2=80=94 domain_available(provider, domain)
+
+Claim:
+The named registrar/provider currently reports exact domain D as
+registrable under the requested product/tier.
+
+Evidence:
+
+   - authenticated registrar availability read
+   - exact domain
+   - account/provider context
+   - price/currency/tier if returned
+   - observation timestamp
+
+TRUE:
+
+   - provider explicitly returns registrable/available for exact domain and
+   freshness window valid.
+
+FALSE:
+
+   - provider explicitly returns not registrable/taken for exact domain.
+
+UNKNOWN:
+
+   - timeout, auth error, malformed response, unsupported TLD, rate limit,
+   missing credentials, ambiguous provider response.
+
+Do not use DNS NXDOMAIN as TRUE. DNS can be supporting evidence only.
+
+No authority required because this is read-only.
+P2 =E2=80=94 domain_owned(provider, account, domain)
+
+Claim:
+Domain D is present as an owned/managed registration in expected registrar
+account A.
+
+Evidence:
+
+   - post-effect authenticated registrar list/read endpoint
+   - exact domain
+   - expected account context
+   - provider registration ID/state
+
+TRUE:
+
+   - independent authenticated readback returns D in expected account with
+   an acceptable registered/active state.
+
+FALSE:
+
+   - authoritative readback proves D belongs elsewhere / is not in expected
+   account where provider semantics make this decidable.
+
+UNKNOWN:
+
+   - provider API unavailable, eventual consistency period, auth failure,
+   ambiguous state.
+
+For purchase transition, authority REQUIRED:
+action =3D cf.domain.register payload_hash =3D H({domain, provider,
+max_price/currency/contact policy/...})
+
+Provider POST success alone is not enough to settle domain_owned.
+P3 =E2=80=94 dns_configured(domain, expected_config)
+
+Claim:
+Authoritative DNS for D matches frozen expected configuration C.
+
+Evidence:
+
+   - provider DNS config readback
+   - independent authoritative DNS queries
+   - expected record set hash
+
+TRUE only when required records match exact expected values.
+
+FALSE when authoritative responses contradict required values after
+propagation policy allows a decisive result.
+
+UNKNOWN during propagation window, timeout, SERVFAIL, provider outage, etc.
+
+Do not conflate this with domain ownership.
+P4 =E2=80=94 email_route_configured(address, worker)
+
+Claim:
+Exact address A is covered by an enabled routing rule whose action targets
+expected worker W.
+
+Evidence:
+
+   - authenticated Cloudflare routing rules readback
+   - exact rule / catch-all matcher
+   - enabled state
+   - exact worker action target
+
+TRUE only if matcher AND enabled AND action destination all match.
+
+Current verify-capacity.sh is insufficient because it can pass when routing
+rules exist without proving the intended worker target.
+P5 =E2=80=94 email_receives(address)
+
+This is the canonical inbound-email proof. EVP-1 should be rewritten to
+emit this QP proof.
+
+Claim:
+Exact address A can receive a fresh externally originated message through
+the configured production route and expose it to cmail.
+
+Evidence requirements:
+
+   1. prerequisite proofs dns_configured and email_route_configured TRUE
+   2. QP-generated cryptographically random nonce N
+   3. independent sender sends a message containing N to exact A
+   4. cmail receives/indexes it
+   5. probe queries exact mailbox A, not a global search
+   6. evidence includes provider/raw message ID, target mailbox, sender,
+   timestamps and raw-message hash
+
+TRUE:
+
+   - nonce N is observed in exact mailbox A within frozen timeout/freshness
+   bounds and message evidence correlates to the challenge.
+
+FALSE:
+
+   - only when the ProofSpec=E2=80=99s bounded challenge protocol produces =
+a
+   decisive delivery failure/bounce that proves the claim false.
+
+UNKNOWN:
+
+   - timeout without a decisive negative, sender failure, probe failure,
+   global system outage, ambiguous delivery.
+
+Critical: the current verify-email.sh roundtrip accepts <mailbox> but
+globally searches by token. Fix it. Receipt evidence must bind token to
+exact mailbox.
+
+Infrastructure 1-7 green is DEGRADED/CONFIGURED, not CERTIFIED for receive
+capability. Only round-trip settles email_receives=3DTRUE.
+P6 =E2=80=94 phone_owned(provider, account, number)
+
+Claim:
+Exact phone number N is provisioned in expected provider account A and is
+in an acceptable active state.
+
+Evidence:
+
+   - authenticated Telnyx read/list response after purchase
+   - exact number
+   - provider resource ID
+   - account identity
+   - status
+
+TRUE only from provider readback.
+
+A string beginning with + proves nothing.
+
+Purchase requires signed one-shot authority with exact number, provider,
+connection ID and maximum cost.
+P7 =E2=80=94 sms_receives(number)
+
+Claim:
+Exact number N receives fresh inbound SMS through the production
+webhook/store path.
+
+Evidence:
+
+   - QP nonce N2
+   - independent sender sends token to target number
+   - inbound provider event with provider message ID
+   - durable store readback keyed to exact destination number
+
+TRUE when challenge token is observed for exact target number within
+timeout.
+
+Do not use the current in-memory smsStore as canonical evidence. Move SMS
+observations to durable append-only storage first.
+P8 =E2=80=94 handle_available(platform, handle)
+
+Claim:
+At observation time T, platform P's supported availability probe indicates
+handle H is not currently assigned/reserved according to frozen probe
+semantics.
+
+This is NOT ownership.
+
+Evidence may be API/public probe/platform-specific, but ProofSpec must
+define admissible source and confidence/freshness semantics.
+
+TRUE =3D admissible fresh provider/platform-specific evidence says availabl=
+e.
+FALSE =3D admissible evidence says taken.
+UNKNOWN =3D wall/captcha/rate-limit/no signal/ambiguous HTTP body/probe err=
+or.
+
+Never let available satisfy account_owned or handle_bound.
+P9 =E2=80=94 account_owned(platform, account_id)
+
+Claim:
+The controlled credential principal can authenticate as exact platform
+account ID.
+
+Preferred evidence:
+
+   - authenticated me / account endpoint
+   - account ID from provider
+   - principal/credential binding hash
+
+For platforms without a suitable API, use an explicit challenge/readback
+protocol, not screenshot/text assertion.
+
+TRUE only when authenticated provider evidence binds the controlled
+credential to exact account ID.
+
+Account creation UI completion is not itself proof of ownership.
+P10 =E2=80=94 handle_bound(platform, account_id, handle)
+
+Claim:
+Owned account ID is currently publicly bound to exact handle H.
+
+Prerequisite:
+account_owned(platform, account_id) =3D=3D TRUE
+
+Evidence:
+
+   - authenticated account profile readback
+   - public profile/identity readback where useful
+
+TRUE only when exact account ID and handle reconcile.
+
+This replaces the current broken have_handle verifier.
+P11 =E2=80=94 oauth_authorized(provider, principal, scope_set)
+
+Claim:
+Controlled principal has an active authorization/token grant containing at
+least exact required scope set S.
+
+Evidence:
+
+   - provider token introspection or authenticated test call(s)
+   - token credential itself stays secret; evidence stores credential
+   reference/hash, never raw token
+   - exact normalized scope set
+   - expiry/revocation data if available
+
+TRUE only when provider evidence proves required scopes.
+
+OAuth consent UI success text alone is not canonical proof.
+P12 =E2=80=94 can_post(platform, account_id)
+
+Do not infer can_post merely from account ownership or OAuth existence.
+
+Claim:
+Current controlled authorization for account ID permits the frozen write
+operation class.
+
+Preferred proof:
+
+   - account_owned =3D=3D TRUE
+   - oauth_authorized(required_write_scopes) =3D=3D TRUE
+   - provider permission/readback endpoint where available
+   - optionally a harmless/private/canary effect with exact cleanup policy
+   when truly necessary
+
+If a write canary is used, it is consequential and needs authority.
+
+Do not automatically post publicly just to prove capability.
+P13 =E2=80=94 email_send_accepted / email_delivered
+
+Split these claims.
+
+email_send_accepted(message):
+
+   - provider/SENDER accepted exact message payload and returned canonical
+   provider ID.
+
+email_delivered(message):
+
+   - independent downstream receipt/bounce/controlled inbox readback proves
+   delivery according to the ProofSpec.
+
+Current message_id && delivery_status !=3D failed is not enough to prove
+delivery.
+
+Sending requires signed exact-payload authority.
+12. Replace the current GRANT graph with typed edges
+
+Do not call every dependency edge a grant.
+
+Use at least:
+type EdgeKind =3D | "REQUIRES" | "DERIVES" | "ENABLES" | "AUTHORIZES" |
+"EFFECTS" | "VERIFIES";
+
+Examples:
+domain_owned(D) ENABLES task configure_dns(D) email_receives(A) ENABLES
+task signup(platform,A) account_owned(P,ID) REQUIRES
+oauth_authorized(P,principal,S) for some writes signed Grant AUTHORIZES
+cf.domain.register(payload_hash) provider effect EFFECTS candidate world
+transition readback evidence VERIFIES target claim
+
+Facts make work eligible. Grants authorize effects. Never merge them.
+13. Runtime enforcement: QP must be the only path to consequence
+
+Create one effect gateway, e.g.:
+await qp.effects.execute({ proposal, required_claims, grant_id, adapter,
+readback_probe, target_proofspec, });
+
+Direct provider-effect functions should become internal/private adapters
+and must not be reachable from raw MCP dispatch.
+
+These current functions must not execute directly from caller input:
+
+   - cfRegisterDomain
+   - cfWireEmail
+   - telnyxPurchaseNumber
+   - email.send
+   - future social/account mutation
+   - OAuth write/credential changes
+   - posting APIs
+
+MCP should create a proposal or submit authority; QP decides whether an
+effect may execute.
+14. Fix the current authentication/authority hole before anything else
+
+Current /mcp accepts caller actor, defaults it to owner, and owner maps to
+ADMIN. That is not acceptable for a system holding purchase/send/DNS
+capabilities.
+
+Required changes:
+
+   1. Authenticate every non-public MCP request using a real
+   bearer/API-token/session credential.
+   2. Derive principal server-side from credential. Never trust
+   caller-supplied actor as identity.
+   3. Remove default owner authority.
+   4. Separate read-only public tools from authenticated private tools.
+   5. Money/send/DNS/account write routes require QP signed grants in
+   addition to authentication.
+   6. Rate-limit and audit rejected grant/identity attempts.
+   7. Rotate any secrets if there is any possibility the current
+   unauthenticated route was deployed with consequential credentials enable=
+d.
+
+Do this before feature work.
+15. Persistence schema
+
+Implement actual QP tables, not only spec docs.
+
+At minimum:
+qp_contracts( contract_root PRIMARY KEY, spec_id, canonical_json,
+created_at ) qp_claims( claim_id PRIMARY KEY, contract_root,
+canonical_json, created_at ) qp_evidence( evidence_id PRIMARY KEY,
+claim_id, class, observed_at, independence_group, metadata_json, blob_hash
+) qp_grants( grant_id PRIMARY KEY, issuer, subject, action, payload_hash,
+constraints_json, issued_at, expires_at, nonce, max_uses, uses, signature,
+status ) qp_receipts( receipt_hash PRIMARY KEY, claim_id, contract_root,
+state_before_root, state_after_root, actuality, evidence_root, gates_root,
+authority_id, prev_receipt_hash, settled_at, signer, signature,
+canonical_json ) qp_events( seq INTEGER PRIMARY KEY AUTOINCREMENT,
+event_hash UNIQUE, prev_event_hash, type, object_hash, canonical_json,
+created_at )
+
+Make the event chain append-only in application logic and verify it during
+replay.
+
+Large/raw evidence belongs in R2/content-addressed blob storage. D1 stores
+immutable metadata and hashes.
+16. Tasks and missions become projections, not truth sources
+
+Current task completion can set status=3D"done" directly. Stop allowing thi=
+s
+to unblock canonical dependencies.
+
+A task may track execution workflow, but downstream readiness must be
+computed from settled QP claims.
+
+Example:
+BAD: T-domain.status =3D=3D done -> wire email ready GOOD: claim
+domain_owned(D) settled TRUE under required ContractRoot -> wire email
+eligible
+
+task.complete may indicate the worker finished an attempt. It may not
+establish that the world-state objective was achieved.
+
+Mission completion must be a query over required settled claims, not over
+task booleans.
+17. Target JSON is plan/config, never proof law
+
+targets/*.json may describe:
+
+   - desired target
+   - dependencies
+   - preferred adapters
+   - docs
+   - cost hints
+   - escalation behavior
+
+It may NOT create trusted gate semantics by inventing strings such as
+channel_created_v1.
+
+Change target definitions to reference registered immutable ProofSpecs:
+{ "required_proofs": [ "proofspec:account_owned:youtube@sha256:...",
+"proofspec:handle_bound:youtube@sha256:..." ] }
+
+Unknown proof roots must fail closed.
+
+Validate target JSON with a real schema at load time.
+18. Current bugs / semantic errors to fix explicitly
+
+Do not lose these during refactor:
+
+   1. src/capacity.ts has if (!null) return null; so proof generation
+   always returns null.
+   2. verifyHandle() currently accepts available as proof of ownership.
+   Delete this semantics.
+   3. verifyPhone() treats any +... string as ownership. Delete this
+   semantics.
+   4. verifySendEmail() treats missing delivery status as success. Split
+   accepted vs delivered proofs.
+   5. verifyDomain() conflates email/DNS configuration with domain
+   ownership.
+   6. verify-capacity.sh labels 7/7 infrastructure checks CERTIFIED,
+   contradicting EVP-1 which requires round-trip.
+   7. Routing proof must validate exact matcher, enabled state AND exact
+   expected worker action.
+   8. verify-email.sh roundtrip must scope search/readback to exact target
+   mailbox.
+   9. SMS evidence must be durable; current worker-local in-memory map is
+   not proof-grade.
+   10. QP currently is not imported/enforced by mcp.ts.
+   11. Current QP D1 schema in docs is not actually migrated/deployed.
+   12. No canonical replay implementation exists.
+   13. No QP proof tests currently exercise capacity.ts/verifiers.ts.
+   14. GitHub default branch is main, while current system is on unrelated
+   master. QP build/release/proof roots must pin exact commit/tree, never
+   assume branch names.
+
+19. Source/build identity
+
+For every deployed QP program/probe/adapter, record:
+git_repository commit_sha tree_sha build_hash program_bundle_hash
+runtime/dependency lock hash deployment identifier
+
+Canonical QP semantics must point to exact immutable program bundles.
+
+Do not use master, main, latest, or mutable tags inside a proof root.
+20. Security boundary
+
+The minimal trusted base should remain small:
+TrustBase =3D canonical hashing + QP verifier/settler + signature
+verification + tiny probe/effect runtime + immutable program bundles
+
+LLMs, planners, Playwright flows, provider adapters, Apify, target JSON,
+task orchestration and UI are outside the constitutional trust base.
+
+Workers propose.
+Probes observe.
+Judges judge.
+QP commits.
+
+No self-promotion.
+21. Tests that must exist before calling this QP
+
+Create adversarial tests, not only happy paths.
+
+Required minimum suite:
+Truth semantics
+
+   - missing evidence =3D> UNKNOWN
+   - malformed evidence =3D> UNKNOWN unless explicitly falsifying
+   - one FALSE required leaf dominates AND-DAG
+   - one UNKNOWN required leaf blocks TRUE
+   - all TRUE required leaves =3D> TRUE
+   - stale evidence rejected/UNKNOWN
+
+Claim identity
+
+   - evidence for mailbox B cannot prove mailbox A
+   - evidence for handle H2 cannot prove H1
+   - evidence from account A2 cannot prove ownership in A1
+
+Provenance
+
+   - tampered payload hash fails
+   - wrong collector program hash fails
+   - inadmissible evidence class fails
+   - same-channel evidence rejected when independent readback required
+
+Program roots
+
+   - change one judge byte =3D> different ContractRoot or verification fail
+   - change runtime/config/dependency hash =3D> fail under old root
+
+Authority
+
+   - invalid signature =3D> denied
+   - expired grant =3D> denied
+   - wrong subject =3D> denied
+   - wrong action =3D> denied
+   - payload changed after signing =3D> denied
+   - price over cap =3D> denied
+   - reused one-shot nonce =3D> denied
+   - truth TRUE without grant =3D> effect denied
+   - valid grant without truth prerequisites =3D> effect denied when
+   prerequisites required
+
+Effect settlement
+
+   - provider POST success + readback failure =3D> target claim UNKNOWN / n=
+o
+   success receipt
+   - provider POST failure =3D> no target success receipt
+   - successful readback =3D> settled receipt
+   - duplicate request/idempotency does not double-spend
+   - reserve succeeds then effect crashes =3D> reconciliation state, not
+   silent reuse
+
+Replay
+
+   - canonical receipt replay =3D> PASS
+   - mutate any evidence byte =3D> FAIL
+   - mutate gate result =3D> FAIL
+   - mutate state_after =3D> FAIL
+   - mutate authority reference =3D> FAIL
+   - wrong historical freshness evaluation =3D> FAIL
+
+Non-circularity
+
+   - worker self-reported success:true cannot satisfy target claim without
+   admissible probe evidence
+   - target JSON cannot mint a new trusted gate merely by naming it
+   - task done cannot settle world-state claim
+
+22. Suggested module structure
+
+Keep this small and explicit:
+src/qp/ canonical.ts hash.ts types.ts contracts.ts claims.ts evidence.ts
+programs.ts actuality.ts gates.ts grants.ts reserve.ts transition.ts
+receipts.ts replay.ts store.ts host.ts src/probes/ cloudflare.ts dns.ts
+emailChallenge.ts telnyx.ts smsChallenge.ts socials/ src/effects/
+cloudflareDomain.ts cloudflareDns.ts telnyxNumber.ts emailSend.ts socials/
+proofspecs/ domain_available.v1.json domain_owned.v1.json
+dns_configured.v1.json email_route_configured.v1.json
+email_receives.v1.json phone_owned.v1.json sms_receives.v1.json
+handle_available.v1.json account_owned.v1.json handle_bound.v1.json
+oauth_authorized.v1.json can_post.v1.json email_send_accepted.v1.json
+email_delivered.v1.json
+
+QPHost orchestrates proposals/effects. QPVerifier or equivalent independent
+replay path owns deterministic verification and settlement signing.
+23. Migration path from current cmail
+
+Do this in order.
+Phase A =E2=80=94 freeze and secure
+
+   - Pin current master commit/tree as migration baseline.
+   - authenticate /mcp
+   - disable/bound unauthenticated consequential routes
+   - add regression tests around current live functions
+
+Phase B =E2=80=94 build QP kernel in isolation
+
+   - canonical serialization/hashing
+   - ContractRoot
+   - Claim/Evidence/Actuality
+   - ProgramBundle hashes
+   - grants/signatures
+   - TransitionReceipt
+   - replay
+   - append-only store
+
+Do not connect effects yet.
+Phase C =E2=80=94 prove one vertical end to end
+
+Use inbound email because EVP-1 already contains the right intuition.
+
+Implement:
+domain_owned -> dns_configured -> email_route_configured -> email_receives
+
+Make email_receives require real nonce round-trip.
+
+Show independent replay from stored bundle.
+Phase D =E2=80=94 make one real effect QP-only
+
+Use domain purchase or phone purchase.
+
+Require:
+signed grant -> reserve -> effect -> provider readback -> target proof ->
+receipt -> reconciliation
+
+Then remove/break direct bypass paths.
+Phase E =E2=80=94 migrate rest of effect surface
+
+   - DNS/email wiring
+   - phone
+   - outbound email
+   - social/account writes
+   - OAuth mutations
+   - posting
+
+Phase F =E2=80=94 rebuild setup.social orchestration as a projection over Q=
+P claims
+
+Targets become desired proof sets. Planner resolves UNKNOWN claims by
+selecting allowed probes/effects. Mission is complete only when required
+claim set is settled TRUE.
+24. What the finished architecture should feel like
+
+A request such as:
+"Set up privately.win everywhere"
+
+should compile into desired claims, not imperative scripts:
+domain_owned(privately.win) email_receives(agents@privately.win)
+phone_owned(...) account_owned(youtube,...)
+handle_bound(youtube,...,privatelywin) account_owned(x,...)
+handle_bound(x,...,privatelywin) ...
+
+QP/AgentCom examines which are TRUE/FALSE/UNKNOWN.
+
+For UNKNOWN claims it selects proof routes. Some routes are pure probes.
+Some require an effect. Effects require authority. After the effect,
+independent evidence settles the target claim.
+
+That produces the useful general primitive:
+DesiredState -> unresolved claims -> evidence/effect routes -> bounded
+authority where required -> world interaction -> readback -> QP settlement
+-> new canonical state
+
+That is the system everything else can safely span outward from.
+25. Definition of done
+
+Do not call this QP-complete until all are true:
+
+   - [ ] no consequential provider action is reachable without
+   authenticated principal + valid QP grant
+   - [ ] canonical claim truth is TRUE/FALSE/UNKNOWN, never boolean-only
+   - [ ] frozen ContractRoot pins exact
+   semantics/programs/freshness/authority rules
+   - [ ] evidence carries provenance and content identity
+   - [ ] external effects use independent post-effect readback where
+   possible
+   - [ ] no successful target claim settles when readback is UNKNOWN
+   - [ ] facts and authority use different object types and graph edges
+   - [ ] TransitionReceipts are content-addressed, signed and append-only
+   - [ ] deterministic independent replay passes on every canonical receipt
+   - [ ] task/mission status is projection only; cannot promote truth
+   - [ ] target JSON cannot invent trusted proof semantics
+   - [ ] inbound email round-trip proves exact mailbox
+   - [ ] phone ownership uses provider account readback
+   - [ ] social available and owned are completely separate claims
+   - [ ] OAuth scope ownership is explicitly proven
+   - [ ] direct bypass routes are removed or made inaccessible
+   - [ ] adversarial proof/authority/replay tests pass
+
+Once this seam is solid, then continue building outward. The point is not
+to create more QP-looking JSON. The point is to make QP the one unavoidable
+constitutional boundary between an agent saying something happened,
+evidence showing what happened, and the system being permitted to change
+the world.
+
+--0000000000000aca2e065bade34d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+cmail / setup.social =E2=80=94 QP root-of-trust rebuild
+<p>Review target: <code>prx0r/cmail</code> on <code>master</code>, currentl=
+y reviewed at commit <code>dec850ec405bbd90ad3a2ad6680fcfaa0273a13d</code>.=
+</p>
+<p>This is not a feature request. Treat it as a constitutional rebuild of t=
+he proof/authority layer beneath cmail. Do not continue expanding outward f=
+rom the current capacity graph until the QP seam is real, because the curre=
+nt runtime can perform effects without QP settlement and therefore every do=
+wnstream =E2=80=9Cproof=E2=80=9D inherits a false root of trust.</p>
+
+0. The system we are actually building
+<p>cmail/setup.social should be a consumer of one real QP kernel.</p>
+<p>The planner/agent proposes actions. Probes observe reality. Deterministi=
+c judges evaluate evidence. QP alone commits canonical state transitions. C=
+onsequential effects require independent bounded authority. Post-effect rea=
+lity must be independently read back before settlement.</p>
+<p>Canonical flow:</p>
+
+<code>planner / model
+    =E2=86=93 proposal
+QP preflight
+    =E2=86=93 exact claim + exact ProofSpec + authority check
+reserve authority / budget
+    =E2=86=93
+effect adapter
+    =E2=86=93 provider response
+independent readback / challenge probe
+    =E2=86=93 normalized immutable evidence
+pinned deterministic judges
+    =E2=86=93 TRUE / FALSE / UNKNOWN
+hard gates
+    =E2=86=93
+QP settle
+    =E2=86=93 TransitionReceipt
+append-only canonical state
+    =E2=86=93 projections / tasks / UI
+</code>
+<p>The critical separation is:</p>
+
+<code>COGNITION !=3D TRUTH !=3D AUTHORITY
+</code>
+<p>An agent may propose anything. It may not promote its own output to cano=
+nical truth. A true fact never creates authority by itself. A signed grant =
+never proves that the external world changed.</p>
+
+
+
+1. Canonical QP proof object
+<p>Use the proof object we previously formalised:</p>
+
+<code>=CE=A0_QP =3D (K, C, E, J, A, G, =CE=9B, R, =CE=A3)
+</code>
+<p>Where:</p>
+<ul>
+<li><code>K</code> =3D frozen ProofRoot / ContractRoot. The normative seman=
+tics of the proof.</li>
+<li><code>C</code> =3D exact falsifiable claim identity.</li>
+<li><code>E</code> =3D immutable evidence set with provenance.</li>
+<li><code>J</code> =3D pinned deterministic judges/program bundles.</li>
+<li><code>A</code> =3D Actuality, one of <code>TRUE | FALSE | UNKNOWN</code=
+>.</li>
+<li><code>G</code> =3D hard deterministic gates.</li>
+<li><code>=CE=9B</code> =3D authority required for consequential transition=
+s/effects.</li>
+<li><code>R</code> =3D content-addressed TransitionReceipt.</li>
+<li><code>=CE=A3</code> =3D independent replay/settlement result.</li>
+</ul>
+<p>A proof is <code>PROVEN</code> only when:</p>
+
+<code>RootOK
+AND MetaVerifierOK
+AND ProvenanceOK
+AND Actuality =3D=3D TRUE
+AND every required Gate =3D=3D PASS
+AND AuthorityOK when transition is consequential
+AND ReceiptIntegrityOK
+AND Replay =3D=3D PASS
+</code>
+<p>Formally:</p>
+
+<code>PROVEN iff
+RootOK =E2=88=A7 MetaVerifierOK =E2=88=A7 ProvenanceOK =E2=88=A7
+A=3DTRUE =E2=88=A7 GatesPASS =E2=88=A7 AuthorityOK =E2=88=A7
+ReceiptOK =E2=88=A7 ReplayPASS
+</code>
+<p>QP does NOT prove absolute metaphysical world truth. It proves that a co=
+mmitted state transition was justified relative to frozen claim semantics, =
+admissible evidence, pinned verifier programs, authority, and deterministic=
+ replay.</p>
+
+
+
+2. Actuality semantics are mandatory
+<p>Every judge returns exactly:</p>
+
+<code>type Actuality =3D &quot;TRUE&quot; | &quot;FALSE&quot; | &quot;UNKNO=
+WN&quot;;
+</code>
+<p>Never use <code>pass:boolean</code> as the canonical truth result.</p>
+<p>Interpretation:</p>
+<ul>
+<li><code>TRUE</code> =3D sufficient admissible evidence supports the exact=
+ claim.</li>
+<li><code>FALSE</code> =3D sufficient admissible evidence contradicts the e=
+xact claim.</li>
+<li><code>UNKNOWN</code> =3D evidence missing, stale, malformed, inaccessib=
+le, unverifiable, probe failed, provider unavailable, unsupported, or other=
+wise insufficient to decide.</li>
+</ul>
+<p><code>UNKNOWN</code> must NEVER be coerced to false or true.</p>
+<p>For a required AND-DAG:</p>
+
+<code>if any required leaf =3D=3D FALSE  =3D&gt; FALSE
+else if any required leaf =3D=3D UNKNOWN =3D&gt; UNKNOWN
+else =3D&gt; TRUE
+</code>
+<p>Important consequence:</p>
+
+<code>network timeout !=3D FALSE
+missing token !=3D FALSE
+unparseable provider response !=3D FALSE
+probe crash !=3D FALSE
+</code>
+<p>Those are <code>UNKNOWN</code> unless the frozen ProofSpec explicitly de=
+fines a negative observation as falsifying evidence.</p>
+<p>A failed attempt proves only that the attempt failed. It does not prove =
+the target claim false unless the ProofSpec says that exact observation is =
+a falsifier.</p>
+
+
+
+3. ContractRoot / ProofSpec
+<p>Create a real immutable <code>ProofSpec</code> object. Semantic changes =
+mint a new root/version. Never edit semantics in place while retaining the =
+same proof identity.</p>
+<p>Suggested shape:</p>
+
+<code>interface ProofSpec {
+  protocol: &quot;qp/1&quot;;
+  spec_id: string;
+  version: number;
+
+  claim_schema_hash: string;
+  evidence_schema_hash: string;
+
+  actuality_dag: ActualityNode[];
+
+  judges: Array&lt;{
+    id: string;
+    program_hash: string;
+    runtime_hash: string;
+    config_hash: string;
+    dependencies_hash: string;
+  }&gt;;
+
+  gates: Array&lt;{
+    id: string;
+    program_hash: string;
+    required: boolean;
+  }&gt;;
+
+  freshness: Record&lt;string, number&gt;; // evidence class -&gt; max age =
+seconds
+  provenance_policy_hash: string;
+  independence_policy_hash: string;
+
+  transition_program_hash: string;
+  authority_policy_hash?: string;
+
+  proof_requirement: &quot;TRUE&quot; | &quot;TRUE_AND_AUTHORITY&quot;;
+}
+</code>
+<p>Canonical serialization must be deterministic. Hash canonical bytes, not=
+ normal JS object stringification.</p>
+
+<code>ContractRoot =3D SHA256(canonical(ProofSpec))
+</code>
+<p>Any change to claim semantics, evidence requirements, freshness, judge c=
+ode, runtime, dependencies, authority policy, transition semantics or gate =
+rules changes the ContractRoot.</p>
+<p>Reuse may change the current plan/route, but not the ContractRoot for th=
+e same proof semantics.</p>
+
+
+
+4. Claims must be exact and immutable
+<p>Do not use vague capacities like <code>have_phone</code> or <code>have_h=
+andle</code> as canonical claims.</p>
+<p>Use parameterized claims with stable identities.</p>
+<p>Examples:</p>
+
+<code>claim:domain_available:cloudflare:privately.win
+claim:domain_owned:cloudflare:&lt;account_id_hash&gt;:privately.win
+claim:dns_configured:privately.win
+claim:email_route_configured:agents@privately.win
+claim:email_receives:agents@privately.win
+claim:phone_owned:telnyx:&lt;account_id_hash&gt;:+44...
+claim:sms_receives:+44...
+claim:handle_available:youtube:privatelywin
+claim:account_owned:youtube:&lt;channel_id&gt;
+claim:handle_bound:youtube:&lt;channel_id&gt;:privatelywin
+claim:oauth_authorized:google:&lt;principal_id_hash&gt;:&lt;scope_set_hash&=
+gt;
+claim:can_post:youtube:&lt;channel_id&gt;
+</code>
+<p>Canonical claim object:</p>
+
+<code>interface Claim {
+  kind: &quot;CLAIM&quot;;
+  id: string;
+  predicate: string;
+  subject: Record&lt;string,string&gt;;
+  statement: string;
+  contract_root: string;
+}
+</code>
+<p>The exact claim ID is part of proof identity. Evidence for another addre=
+ss/account/handle cannot satisfy it.</p>
+
+
+
+5. Evidence must prove provenance, not just bytes
+<p>The current <code>sha256(evidence_string)</code> model is insufficient. =
+It proves only that bytes were hashed.</p>
+<p>Every evidence item needs structured provenance:</p>
+
+<code>interface Evidence {
+  id: string;                  // content-addressed
+  class: string;               // registrar_readback, dns_answer, smtp_chal=
+lenge, etc
+  claim_id: string;
+
+  observed_at: string;
+  source: string;              // provider / DNS authority / mailbox / publ=
+ic endpoint
+  locator: string;             // sanitized canonical source locator
+
+  collector_id: string;
+  collector_program_hash: string;
+  collector_runtime_hash: string;
+
+  request_hash?: string;
+  response_hash: string;
+  normalized_payload_hash: string;
+
+  nonce?: string;
+  independence_group: string;
+
+  signature?: string;
+  signer?: string;
+}
+</code>
+<p>Evidence payload bytes go into content-addressed blob storage. Canonical=
+ proof state stores hashes/metadata, not mutable arbitrary strings.</p>
+<p>Required invariant:</p>
+
+<code>hash(bytes) is not provenance
+</code>
+<p>For important external effects, provider acknowledgement and independent=
+ readback should be different evidence classes / independence groups where =
+feasible.</p>
+<p>Same-channel acknowledgement is usually not enough to establish an exter=
+nally persistent fact.</p>
+
+
+
+6. Judges must be content-addressed deterministic programs
+<p>A gate name such as <code>handle_owned_v1</code> means nothing unless it=
+ resolves to immutable program bytes.</p>
+<p>Create a registry:</p>
+
+<code>interface ProgramBundle {
+  id: string;
+  source_hash: string;
+  runtime_hash: string;
+  config_hash: string;
+  dependency_hash: string;
+  bundle_hash: string;
+}
+</code>
+<p>A proof pins <code>bundle_hash</code>, not only a friendly name.</p>
+<p>Judges must be pure over canonical evidence input. No network calls insi=
+de judges. Network observations happen in probes/collectors before judgment=
+.</p>
+
+<code>judge(evidence: CanonicalEvidenceSet): ActualityResult
+</code>
+<p>A judge should return structured reasons and evidence IDs used.</p>
+
+
+
+7. Authority is a different object from truth
+<p>Delete the mental model that <code>confirmed:true</code> is authority.</=
+p>
+<p>A consequential effect requires a bounded signed grant/ticket issued bef=
+ore the effect.</p>
+<p>Suggested object:</p>
+
+<code>interface Grant {
+  protocol: &quot;qp/1&quot;;
+  id: string;
+
+  issuer: string;        // human:&lt;public-key-id&gt; or trusted policy i=
+ssuer
+  subject: string;       // agent/session principal
+
+  action: string;        // cf.domain.register, telnyx.number.purchase, ema=
+il.send, etc
+  payload_hash: string;  // exact effect payload
+
+  constraints: {
+    max_amount?: number;
+    currency?: string;
+    provider?: string;
+    resource?: string;
+    scopes?: string[];
+  };
+
+  issued_at: string;
+  expires_at: string;
+  nonce: string;
+  max_uses: 1;
+
+  signature: string;
+}
+</code>
+<p>Use Ed25519 or equivalent modern deterministic signing.</p>
+<p>Grant validation requires:</p>
+
+<code>signature valid
+issuer trusted by policy
+subject matches executor
+exact action matches
+exact payload hash matches
+constraints satisfied
+not expired
+nonce not consumed
+remaining uses &gt; 0
+</code>
+<p>After reserve/consumption, replay of the same grant must fail.</p>
+<p>Never infer authority from a true claim.</p>
+<p>Example:</p>
+
+<code>domain_available(privately.win) =3D=3D TRUE
+</code>
+<p>does NOT imply:</p>
+
+<code>agent may purchase privately.win
+</code>
+<p>The first is truth. The second requires =CE=9B.</p>
+
+
+
+8. Consequential action lifecycle
+<p>For money, sends, DNS writes, account writes, OAuth grants, credential c=
+hanges, posting, etc., enforce:</p>
+
+<code>AUTHORIZE -&gt; RESERVE -&gt; ACT -&gt; INDEPENDENT READBACK -&gt; SE=
+TTLE
+</code>
+<p>Not:</p>
+
+<code>ACT -&gt; trust provider response -&gt; mark done
+</code>
+<p>Detailed sequence:</p>
+<ol>
+<li>Build exact proposed effect payload.</li>
+<li>Hash canonical payload.</li>
+<li>Validate signed grant against exact payload hash.</li>
+<li>Atomically reserve the grant/budget/idempotency key.</li>
+<li>Execute provider adapter once.</li>
+<li>Persist provider response as evidence, but do not settle target claim y=
+et.</li>
+<li>Run independent readback/challenge probe.</li>
+<li>Normalize evidence.</li>
+<li>Run pinned judges and gates.</li>
+<li>If Actuality=3DTRUE and all gates pass, settle TransitionReceipt.</li>
+<li>Reconcile reservation/spend.</li>
+<li>Mark grant consumed.</li>
+<li>Project resulting canonical state into tasks/UI.</li>
+</ol>
+<p>If readback fails or is unavailable:</p>
+
+<code>NO successful target-state receipt
+Actuality =3D UNKNOWN
+</code>
+<p>The effect may have happened, so retain an effect-attempt receipt and sc=
+hedule reconciliation, but do not lie about the target claim.</p>
+
+
+
+9. TransitionReceipt
+<p>Implement one canonical receipt object and use it everywhere.</p>
+<p>Suggested shape:</p>
+
+<code>interface TransitionReceipt {
+  protocol: &quot;qp/1&quot;;
+  transition_type: &quot;RESOLVE&quot; | &quot;EFFECT&quot; | &quot;REVOKE&=
+quot;;
+
+  contract_root: string;
+  claim_id: string;
+
+  state_before_root: string;
+  proposal_root: string;
+
+  evidence_root: string;
+  judge_results_root: string;
+  gate_results_root: string;
+
+  actuality: &quot;TRUE&quot; | &quot;FALSE&quot; | &quot;UNKNOWN&quot;;
+
+  authority_id?: string;
+  authority_root?: string;
+
+  transition_program_hash: string;
+  state_after_root: string;
+
+  run: {
+    executor_id: string;
+    program_hash: string;
+    runtime_hash: string;
+    started_at: string;
+    finished_at: string;
+    cost?: number;
+  };
+
+  prev_receipt_hash: string;
+  settled_at: string;
+
+  receipt_hash: string;
+  qp_signer: string;
+  qp_signature: string;
+}
+</code>
+<p>No mutable random <code>PRF-...</code> ID as the canonical identity. The=
+ canonical receipt identity is the content hash of canonical receipt bytes =
+excluding/appropriately handling the signature field.</p>
+<p>Receipts are append-only. Never overwrite <code>cap.proof</code>.</p>
+
+
+
+10. Replay / settlement verifier
+<p>Implement a second verification path that can take only:</p>
+<ul>
+<li>ProofSpec / ContractRoot bundle</li>
+<li>claim</li>
+<li>evidence blobs + provenance</li>
+<li>judge/gate program bundles</li>
+<li>authority object if required</li>
+<li>previous state root</li>
+<li>TransitionReceipt</li>
+</ul>
+<p>and independently recompute:</p>
+<ul>
+<li>hashes</li>
+<li>freshness at historical <code>settled_at</code></li>
+<li>evidence admissibility</li>
+<li>actuality</li>
+<li>gate outcomes</li>
+<li>authority validity/consumption semantics</li>
+<li>transition result</li>
+<li>resulting state root</li>
+<li>receipt hash/signature</li>
+</ul>
+<p>It must return <code>PASS | FAIL</code>, never silently repair the recei=
+pt.</p>
+<p>Canonical proof requires replay <code>PASS</code>.</p>
+
+
+
+11. Exact cmail ProofSpecs
+<p>Implement the following first. These are the root proofs from which setu=
+p.social can safely expand.</p>
+
+P1 =E2=80=94 domain_available(provider, domain)
+<p>Claim:</p>
+
+<code>The named registrar/provider currently reports exact domain D as regi=
+strable under the requested product/tier.
+</code>
+<p>Evidence:</p>
+<ul>
+<li>authenticated registrar availability read</li>
+<li>exact domain</li>
+<li>account/provider context</li>
+<li>price/currency/tier if returned</li>
+<li>observation timestamp</li>
+</ul>
+<p>TRUE:</p>
+<ul>
+<li>provider explicitly returns registrable/available for exact domain and =
+freshness window valid.</li>
+</ul>
+<p>FALSE:</p>
+<ul>
+<li>provider explicitly returns not registrable/taken for exact domain.</li=
+>
+</ul>
+<p>UNKNOWN:</p>
+<ul>
+<li>timeout, auth error, malformed response, unsupported TLD, rate limit, m=
+issing credentials, ambiguous provider response.</li>
+</ul>
+<p>Do not use DNS NXDOMAIN as TRUE. DNS can be supporting evidence only.</p=
+>
+<p>No authority required because this is read-only.</p>
+
+
+
+P2 =E2=80=94 domain_owned(provider, account, domain)
+<p>Claim:</p>
+
+<code>Domain D is present as an owned/managed registration in expected regi=
+strar account A.
+</code>
+<p>Evidence:</p>
+<ul>
+<li>post-effect authenticated registrar list/read endpoint</li>
+<li>exact domain</li>
+<li>expected account context</li>
+<li>provider registration ID/state</li>
+</ul>
+<p>TRUE:</p>
+<ul>
+<li>independent authenticated readback returns D in expected account with a=
+n acceptable registered/active state.</li>
+</ul>
+<p>FALSE:</p>
+<ul>
+<li>authoritative readback proves D belongs elsewhere / is not in expected =
+account where provider semantics make this decidable.</li>
+</ul>
+<p>UNKNOWN:</p>
+<ul>
+<li>provider API unavailable, eventual consistency period, auth failure, am=
+biguous state.</li>
+</ul>
+<p>For purchase transition, authority REQUIRED:</p>
+
+<code>action =3D cf.domain.register
+payload_hash =3D H({domain, provider, max_price/currency/contact policy/...=
+})
+</code>
+<p>Provider POST success alone is not enough to settle <code>domain_owned</=
+code>.</p>
+
+
+
+P3 =E2=80=94 dns_configured(domain, expected_config)
+<p>Claim:</p>
+
+<code>Authoritative DNS for D matches frozen expected configuration C.
+</code>
+<p>Evidence:</p>
+<ul>
+<li>provider DNS config readback</li>
+<li>independent authoritative DNS queries</li>
+<li>expected record set hash</li>
+</ul>
+<p>TRUE only when required records match exact expected values.</p>
+<p>FALSE when authoritative responses contradict required values after prop=
+agation policy allows a decisive result.</p>
+<p>UNKNOWN during propagation window, timeout, SERVFAIL, provider outage, e=
+tc.</p>
+<p>Do not conflate this with domain ownership.</p>
+
+
+
+P4 =E2=80=94 email_route_configured(address, worker)
+<p>Claim:</p>
+
+<code>Exact address A is covered by an enabled routing rule whose action ta=
+rgets expected worker W.
+</code>
+<p>Evidence:</p>
+<ul>
+<li>authenticated Cloudflare routing rules readback</li>
+<li>exact rule / catch-all matcher</li>
+<li>enabled state</li>
+<li>exact worker action target</li>
+</ul>
+<p>TRUE only if matcher AND enabled AND action destination all match.</p>
+<p>Current <code>verify-capacity.sh</code> is insufficient because it can p=
+ass when routing rules exist without proving the intended worker target.</p=
+>
+
+
+
+P5 =E2=80=94 email_receives(address)
+<p>This is the canonical inbound-email proof. EVP-1 should be rewritten to =
+emit this QP proof.</p>
+<p>Claim:</p>
+
+<code>Exact address A can receive a fresh externally originated message thr=
+ough the configured production route and expose it to cmail.
+</code>
+<p>Evidence requirements:</p>
+<ol>
+<li>prerequisite proofs <code>dns_configured</code> and <code>email_route_c=
+onfigured</code> TRUE</li>
+<li>QP-generated cryptographically random nonce N</li>
+<li>independent sender sends a message containing N to exact A</li>
+<li>cmail receives/indexes it</li>
+<li>probe queries exact mailbox A, not a global search</li>
+<li>evidence includes provider/raw message ID, target mailbox, sender, time=
+stamps and raw-message hash</li>
+</ol>
+<p>TRUE:</p>
+<ul>
+<li>nonce N is observed in exact mailbox A within frozen timeout/freshness =
+bounds and message evidence correlates to the challenge.</li>
+</ul>
+<p>FALSE:</p>
+<ul>
+<li>only when the ProofSpec=E2=80=99s bounded challenge protocol produces a=
+ decisive delivery failure/bounce that proves the claim false.</li>
+</ul>
+<p>UNKNOWN:</p>
+<ul>
+<li>timeout without a decisive negative, sender failure, probe failure, glo=
+bal system outage, ambiguous delivery.</li>
+</ul>
+<p>Critical: the current <code>verify-email.sh roundtrip</code> accepts <co=
+de>&lt;mailbox&gt;</code> but globally searches by token. Fix it. Receipt e=
+vidence must bind token to exact mailbox.</p>
+<p>Infrastructure 1-7 green is <code>DEGRADED/CONFIGURED</code>, not <code>=
+CERTIFIED</code> for receive capability. Only round-trip settles <code>emai=
+l_receives=3DTRUE</code>.</p>
+
+
+
+P6 =E2=80=94 phone_owned(provider, account, number)
+<p>Claim:</p>
+
+<code>Exact phone number N is provisioned in expected provider account A an=
+d is in an acceptable active state.
+</code>
+<p>Evidence:</p>
+<ul>
+<li>authenticated Telnyx read/list response after purchase</li>
+<li>exact number</li>
+<li>provider resource ID</li>
+<li>account identity</li>
+<li>status</li>
+</ul>
+<p>TRUE only from provider readback.</p>
+<p>A string beginning with <code>+</code> proves nothing.</p>
+<p>Purchase requires signed one-shot authority with exact number, provider,=
+ connection ID and maximum cost.</p>
+
+
+
+P7 =E2=80=94 sms_receives(number)
+<p>Claim:</p>
+
+<code>Exact number N receives fresh inbound SMS through the production webh=
+ook/store path.
+</code>
+<p>Evidence:</p>
+<ul>
+<li>QP nonce N2</li>
+<li>independent sender sends token to target number</li>
+<li>inbound provider event with provider message ID</li>
+<li>durable store readback keyed to exact destination number</li>
+</ul>
+<p>TRUE when challenge token is observed for exact target number within tim=
+eout.</p>
+<p>Do not use the current in-memory <code>smsStore</code> as canonical evid=
+ence. Move SMS observations to durable append-only storage first.</p>
+
+
+
+P8 =E2=80=94 handle_available(platform, handle)
+<p>Claim:</p>
+
+<code>At observation time T, platform P&#39;s supported availability probe =
+indicates handle H is not currently assigned/reserved according to frozen p=
+robe semantics.
+</code>
+<p>This is NOT ownership.</p>
+<p>Evidence may be API/public probe/platform-specific, but ProofSpec must d=
+efine admissible source and confidence/freshness semantics.</p>
+<p>TRUE =3D admissible fresh provider/platform-specific evidence says avail=
+able.<br>
+FALSE =3D admissible evidence says taken.<br>
+UNKNOWN =3D wall/captcha/rate-limit/no signal/ambiguous HTTP body/probe err=
+or.</p>
+<p>Never let <code>available</code> satisfy <code>account_owned</code> or <=
+code>handle_bound</code>.</p>
+
+
+
+P9 =E2=80=94 account_owned(platform, account_id)
+<p>Claim:</p>
+
+<code>The controlled credential principal can authenticate as exact platfor=
+m account ID.
+</code>
+<p>Preferred evidence:</p>
+<ul>
+<li>authenticated <code>me</code> / account endpoint</li>
+<li>account ID from provider</li>
+<li>principal/credential binding hash</li>
+</ul>
+<p>For platforms without a suitable API, use an explicit challenge/readback=
+ protocol, not screenshot/text assertion.</p>
+<p>TRUE only when authenticated provider evidence binds the controlled cred=
+ential to exact account ID.</p>
+<p>Account creation UI completion is not itself proof of ownership.</p>
+
+
+
+P10 =E2=80=94 handle_bound(platform, account_id, handle)
+<p>Claim:</p>
+
+<code>Owned account ID is currently publicly bound to exact handle H.
+</code>
+<p>Prerequisite:</p>
+
+<code>account_owned(platform, account_id) =3D=3D TRUE
+</code>
+<p>Evidence:</p>
+<ul>
+<li>authenticated account profile readback</li>
+<li>public profile/identity readback where useful</li>
+</ul>
+<p>TRUE only when exact account ID and handle reconcile.</p>
+<p>This replaces the current broken <code>have_handle</code> verifier.</p>
+
+
+
+P11 =E2=80=94 oauth_authorized(provider, principal, scope_set)
+<p>Claim:</p>
+
+<code>Controlled principal has an active authorization/token grant containi=
+ng at least exact required scope set S.
+</code>
+<p>Evidence:</p>
+<ul>
+<li>provider token introspection or authenticated test call(s)</li>
+<li>token credential itself stays secret; evidence stores credential refere=
+nce/hash, never raw token</li>
+<li>exact normalized scope set</li>
+<li>expiry/revocation data if available</li>
+</ul>
+<p>TRUE only when provider evidence proves required scopes.</p>
+<p>OAuth consent UI success text alone is not canonical proof.</p>
+
+
+
+P12 =E2=80=94 can_post(platform, account_id)
+<p>Do not infer <code>can_post</code> merely from account ownership or OAut=
+h existence.</p>
+<p>Claim:</p>
+
+<code>Current controlled authorization for account ID permits the frozen wr=
+ite operation class.
+</code>
+<p>Preferred proof:</p>
+<ul>
+<li><code>account_owned =3D=3D TRUE</code></li>
+<li><code>oauth_authorized(required_write_scopes) =3D=3D TRUE</code></li>
+<li>provider permission/readback endpoint where available</li>
+<li>optionally a harmless/private/canary effect with exact cleanup policy w=
+hen truly necessary</li>
+</ul>
+<p>If a write canary is used, it is consequential and needs authority.</p>
+<p>Do not automatically post publicly just to prove capability.</p>
+
+
+
+P13 =E2=80=94 email_send_accepted / email_delivered
+<p>Split these claims.</p>
+<p><code>email_send_accepted(message)</code>:</p>
+<ul>
+<li>provider/SENDER accepted exact message payload and returned canonical p=
+rovider ID.</li>
+</ul>
+<p><code>email_delivered(message)</code>:</p>
+<ul>
+<li>independent downstream receipt/bounce/controlled inbox readback proves =
+delivery according to the ProofSpec.</li>
+</ul>
+<p>Current <code>message_id &amp;&amp; delivery_status !=3D failed</code> i=
+s not enough to prove delivery.</p>
+<p>Sending requires signed exact-payload authority.</p>
+
+
+
+12. Replace the current GRANT graph with typed edges
+<p>Do not call every dependency edge a grant.</p>
+<p>Use at least:</p>
+
+<code>type EdgeKind =3D
+  | &quot;REQUIRES&quot;
+  | &quot;DERIVES&quot;
+  | &quot;ENABLES&quot;
+  | &quot;AUTHORIZES&quot;
+  | &quot;EFFECTS&quot;
+  | &quot;VERIFIES&quot;;
+</code>
+<p>Examples:</p>
+
+<code>domain_owned(D) ENABLES task configure_dns(D)
+email_receives(A) ENABLES task signup(platform,A)
+account_owned(P,ID) REQUIRES oauth_authorized(P,principal,S) for some write=
+s
+signed Grant AUTHORIZES cf.domain.register(payload_hash)
+provider effect EFFECTS candidate world transition
+readback evidence VERIFIES target claim
+</code>
+<p>Facts make work eligible. Grants authorize effects. Never merge them.</p=
+>
+
+
+
+13. Runtime enforcement: QP must be the only path to consequence
+<p>Create one effect gateway, e.g.:</p>
+
+<code>await qp.effects.execute({
+  proposal,
+  required_claims,
+  grant_id,
+  adapter,
+  readback_probe,
+  target_proofspec,
+});
+</code>
+<p>Direct provider-effect functions should become internal/private adapters=
+ and must not be reachable from raw MCP dispatch.</p>
+<p>These current functions must not execute directly from caller input:</p>
+<ul>
+<li><code>cfRegisterDomain</code></li>
+<li><code>cfWireEmail</code></li>
+<li><code>telnyxPurchaseNumber</code></li>
+<li><code>email.send</code></li>
+<li>future social/account mutation</li>
+<li>OAuth write/credential changes</li>
+<li>posting APIs</li>
+</ul>
+<p>MCP should create a proposal or submit authority; QP decides whether an =
+effect may execute.</p>
+
+
+
+14. Fix the current authentication/authority hole before anything else
+<p>Current <code>/mcp</code> accepts caller <code>actor</code>, defaults it=
+ to <code>owner</code>, and <code>owner</code> maps to ADMIN. That is not a=
+cceptable for a system holding purchase/send/DNS capabilities.</p>
+<p>Required changes:</p>
+<ol>
+<li>Authenticate every non-public MCP request using a real bearer/API-token=
+/session credential.</li>
+<li>Derive principal server-side from credential. Never trust caller-suppli=
+ed <code>actor</code> as identity.</li>
+<li>Remove default <code>owner</code> authority.</li>
+<li>Separate read-only public tools from authenticated private tools.</li>
+<li>Money/send/DNS/account write routes require QP signed grants in additio=
+n to authentication.</li>
+<li>Rate-limit and audit rejected grant/identity attempts.</li>
+<li>Rotate any secrets if there is any possibility the current unauthentica=
+ted route was deployed with consequential credentials enabled.</li>
+</ol>
+<p>Do this before feature work.</p>
+
+
+
+15. Persistence schema
+<p>Implement actual QP tables, not only spec docs.</p>
+<p>At minimum:</p>
+
+<code>qp_contracts(
+  contract_root PRIMARY KEY,
+  spec_id,
+  canonical_json,
+  created_at
+)
+
+qp_claims(
+  claim_id PRIMARY KEY,
+  contract_root,
+  canonical_json,
+  created_at
+)
+
+qp_evidence(
+  evidence_id PRIMARY KEY,
+  claim_id,
+  class,
+  observed_at,
+  independence_group,
+  metadata_json,
+  blob_hash
+)
+
+qp_grants(
+  grant_id PRIMARY KEY,
+  issuer,
+  subject,
+  action,
+  payload_hash,
+  constraints_json,
+  issued_at,
+  expires_at,
+  nonce,
+  max_uses,
+  uses,
+  signature,
+  status
+)
+
+qp_receipts(
+  receipt_hash PRIMARY KEY,
+  claim_id,
+  contract_root,
+  state_before_root,
+  state_after_root,
+  actuality,
+  evidence_root,
+  gates_root,
+  authority_id,
+  prev_receipt_hash,
+  settled_at,
+  signer,
+  signature,
+  canonical_json
+)
+
+qp_events(
+  seq INTEGER PRIMARY KEY AUTOINCREMENT,
+  event_hash UNIQUE,
+  prev_event_hash,
+  type,
+  object_hash,
+  canonical_json,
+  created_at
+)
+</code>
+<p>Make the event chain append-only in application logic and verify it duri=
+ng replay.</p>
+<p>Large/raw evidence belongs in R2/content-addressed blob storage. D1 stor=
+es immutable metadata and hashes.</p>
+
+
+
+16. Tasks and missions become projections, not truth sources
+<p>Current task completion can set <code>status=3D&quot;done&quot;</code> d=
+irectly. Stop allowing this to unblock canonical dependencies.</p>
+<p>A task may track execution workflow, but downstream readiness must be co=
+mputed from settled QP claims.</p>
+<p>Example:</p>
+
+<code>BAD:
+T-domain.status =3D=3D done -&gt; wire email ready
+
+GOOD:
+claim domain_owned(D) settled TRUE under required ContractRoot -&gt; wire e=
+mail eligible
+</code>
+<p><code>task.complete</code> may indicate the worker finished an attempt. =
+It may not establish that the world-state objective was achieved.</p>
+<p>Mission completion must be a query over required settled claims, not ove=
+r task booleans.</p>
+
+
+
+17. Target JSON is plan/config, never proof law
+<p><code>targets/*.json</code> may describe:</p>
+<ul>
+<li>desired target</li>
+<li>dependencies</li>
+<li>preferred adapters</li>
+<li>docs</li>
+<li>cost hints</li>
+<li>escalation behavior</li>
+</ul>
+<p>It may NOT create trusted gate semantics by inventing strings such as <c=
+ode>channel_created_v1</code>.</p>
+<p>Change target definitions to reference registered immutable ProofSpecs:<=
+/p>
+
+<code>{
+  &quot;required_proofs&quot;: [
+    &quot;proofspec:account_owned:youtube@sha256:...&quot;,
+    &quot;proofspec:handle_bound:youtube@sha256:...&quot;
+  ]
+}
+</code>
+<p>Unknown proof roots must fail closed.</p>
+<p>Validate target JSON with a real schema at load time.</p>
+
+
+
+18. Current bugs / semantic errors to fix explicitly
+<p>Do not lose these during refactor:</p>
+<ol>
+<li><code>src/capacity.ts</code> has <code>if (!null) return null;</code> s=
+o proof generation always returns null.</li>
+<li><code>verifyHandle()</code> currently accepts <code>available</code> as=
+ proof of ownership. Delete this semantics.</li>
+<li><code>verifyPhone()</code> treats any <code>+...</code> string as owner=
+ship. Delete this semantics.</li>
+<li><code>verifySendEmail()</code> treats missing delivery status as succes=
+s. Split accepted vs delivered proofs.</li>
+<li><code>verifyDomain()</code> conflates email/DNS configuration with doma=
+in ownership.</li>
+<li><code>verify-capacity.sh</code> labels 7/7 infrastructure checks <code>=
+CERTIFIED</code>, contradicting EVP-1 which requires round-trip.</li>
+<li>Routing proof must validate exact matcher, enabled state AND exact expe=
+cted worker action.</li>
+<li><code>verify-email.sh roundtrip</code> must scope search/readback to ex=
+act target mailbox.</li>
+<li>SMS evidence must be durable; current worker-local in-memory map is not=
+ proof-grade.</li>
+<li>QP currently is not imported/enforced by <code>mcp.ts</code>.</li>
+<li>Current QP D1 schema in docs is not actually migrated/deployed.</li>
+<li>No canonical replay implementation exists.</li>
+<li>No QP proof tests currently exercise <code>capacity.ts</code>/<code>ver=
+ifiers.ts</code>.</li>
+<li>GitHub default branch is <code>main</code>, while current system is on =
+unrelated <code>master</code>. QP build/release/proof roots must pin exact =
+commit/tree, never assume branch names.</li>
+</ol>
+
+
+
+19. Source/build identity
+<p>For every deployed QP program/probe/adapter, record:</p>
+
+<code>git_repository
+commit_sha
+tree_sha
+build_hash
+program_bundle_hash
+runtime/dependency lock hash
+deployment identifier
+</code>
+<p>Canonical QP semantics must point to exact immutable program bundles.</p=
+>
+<p>Do not use <code>master</code>, <code>main</code>, <code>latest</code>, =
+or mutable tags inside a proof root.</p>
+
+
+
+20. Security boundary
+<p>The minimal trusted base should remain small:</p>
+
+<code>TrustBase =3D canonical hashing
+          + QP verifier/settler
+          + signature verification
+          + tiny probe/effect runtime
+          + immutable program bundles
+</code>
+<p>LLMs, planners, Playwright flows, provider adapters, Apify, target JSON,=
+ task orchestration and UI are outside the constitutional trust base.</p>
+<p>Workers propose.<br>
+Probes observe.<br>
+Judges judge.<br>
+QP commits.</p>
+<p>No self-promotion.</p>
+
+
+
+21. Tests that must exist before calling this QP
+<p>Create adversarial tests, not only happy paths.</p>
+<p>Required minimum suite:</p>
+
+Truth semantics
+<ul>
+<li>missing evidence =3D&gt; UNKNOWN</li>
+<li>malformed evidence =3D&gt; UNKNOWN unless explicitly falsifying</li>
+<li>one FALSE required leaf dominates AND-DAG</li>
+<li>one UNKNOWN required leaf blocks TRUE</li>
+<li>all TRUE required leaves =3D&gt; TRUE</li>
+<li>stale evidence rejected/UNKNOWN</li>
+</ul>
+
+Claim identity
+<ul>
+<li>evidence for mailbox B cannot prove mailbox A</li>
+<li>evidence for handle H2 cannot prove H1</li>
+<li>evidence from account A2 cannot prove ownership in A1</li>
+</ul>
+
+Provenance
+<ul>
+<li>tampered payload hash fails</li>
+<li>wrong collector program hash fails</li>
+<li>inadmissible evidence class fails</li>
+<li>same-channel evidence rejected when independent readback required</li>
+</ul>
+
+Program roots
+<ul>
+<li>change one judge byte =3D&gt; different ContractRoot or verification fa=
+il</li>
+<li>change runtime/config/dependency hash =3D&gt; fail under old root</li>
+</ul>
+
+Authority
+<ul>
+<li>invalid signature =3D&gt; denied</li>
+<li>expired grant =3D&gt; denied</li>
+<li>wrong subject =3D&gt; denied</li>
+<li>wrong action =3D&gt; denied</li>
+<li>payload changed after signing =3D&gt; denied</li>
+<li>price over cap =3D&gt; denied</li>
+<li>reused one-shot nonce =3D&gt; denied</li>
+<li>truth TRUE without grant =3D&gt; effect denied</li>
+<li>valid grant without truth prerequisites =3D&gt; effect denied when prer=
+equisites required</li>
+</ul>
+
+Effect settlement
+<ul>
+<li>provider POST success + readback failure =3D&gt; target claim UNKNOWN /=
+ no success receipt</li>
+<li>provider POST failure =3D&gt; no target success receipt</li>
+<li>successful readback =3D&gt; settled receipt</li>
+<li>duplicate request/idempotency does not double-spend</li>
+<li>reserve succeeds then effect crashes =3D&gt; reconciliation state, not =
+silent reuse</li>
+</ul>
+
+Replay
+<ul>
+<li>canonical receipt replay =3D&gt; PASS</li>
+<li>mutate any evidence byte =3D&gt; FAIL</li>
+<li>mutate gate result =3D&gt; FAIL</li>
+<li>mutate state_after =3D&gt; FAIL</li>
+<li>mutate authority reference =3D&gt; FAIL</li>
+<li>wrong historical freshness evaluation =3D&gt; FAIL</li>
+</ul>
+
+Non-circularity
+<ul>
+<li>worker self-reported <code>success:true</code> cannot satisfy target cl=
+aim without admissible probe evidence</li>
+<li>target JSON cannot mint a new trusted gate merely by naming it</li>
+<li>task <code>done</code> cannot settle world-state claim</li>
+</ul>
+
+
+
+22. Suggested module structure
+<p>Keep this small and explicit:</p>
+
+<code>src/qp/
+  canonical.ts
+  hash.ts
+  types.ts
+  contracts.ts
+  claims.ts
+  evidence.ts
+  programs.ts
+  actuality.ts
+  gates.ts
+  grants.ts
+  reserve.ts
+  transition.ts
+  receipts.ts
+  replay.ts
+  store.ts
+  host.ts
+
+src/probes/
+  cloudflare.ts
+  dns.ts
+  emailChallenge.ts
+  telnyx.ts
+  smsChallenge.ts
+  socials/
+
+src/effects/
+  cloudflareDomain.ts
+  cloudflareDns.ts
+  telnyxNumber.ts
+  emailSend.ts
+  socials/
+
+proofspecs/
+  domain_available.v1.json
+  domain_owned.v1.json
+  dns_configured.v1.json
+  email_route_configured.v1.json
+  email_receives.v1.json
+  phone_owned.v1.json
+  sms_receives.v1.json
+  handle_available.v1.json
+  account_owned.v1.json
+  handle_bound.v1.json
+  oauth_authorized.v1.json
+  can_post.v1.json
+  email_send_accepted.v1.json
+  email_delivered.v1.json
+</code>
+<p><code>QPHost</code> orchestrates proposals/effects. <code>QPVerifier</co=
+de> or equivalent independent replay path owns deterministic verification a=
+nd settlement signing.</p>
+
+
+
+23. Migration path from current cmail
+<p>Do this in order.</p>
+
+Phase A =E2=80=94 freeze and secure
+<ul>
+<li>Pin current <code>master</code> commit/tree as migration baseline.</li>
+<li>authenticate <code>/mcp</code></li>
+<li>disable/bound unauthenticated consequential routes</li>
+<li>add regression tests around current live functions</li>
+</ul>
+
+Phase B =E2=80=94 build QP kernel in isolation
+<ul>
+<li>canonical serialization/hashing</li>
+<li>ContractRoot</li>
+<li>Claim/Evidence/Actuality</li>
+<li>ProgramBundle hashes</li>
+<li>grants/signatures</li>
+<li>TransitionReceipt</li>
+<li>replay</li>
+<li>append-only store</li>
+</ul>
+<p>Do not connect effects yet.</p>
+
+Phase C =E2=80=94 prove one vertical end to end
+<p>Use inbound email because EVP-1 already contains the right intuition.</p=
+>
+<p>Implement:</p>
+
+<code>domain_owned
+ -&gt; dns_configured
+ -&gt; email_route_configured
+ -&gt; email_receives
+</code>
+<p>Make <code>email_receives</code> require real nonce round-trip.</p>
+<p>Show independent replay from stored bundle.</p>
+
+Phase D =E2=80=94 make one real effect QP-only
+<p>Use domain purchase or phone purchase.</p>
+<p>Require:</p>
+
+<code>signed grant
+ -&gt; reserve
+ -&gt; effect
+ -&gt; provider readback
+ -&gt; target proof
+ -&gt; receipt
+ -&gt; reconciliation
+</code>
+<p>Then remove/break direct bypass paths.</p>
+
+Phase E =E2=80=94 migrate rest of effect surface
+<ul>
+<li>DNS/email wiring</li>
+<li>phone</li>
+<li>outbound email</li>
+<li>social/account writes</li>
+<li>OAuth mutations</li>
+<li>posting</li>
+</ul>
+
+Phase F =E2=80=94 rebuild setup.social orchestration as a projection over Q=
+P claims
+<p>Targets become desired proof sets. Planner resolves UNKNOWN claims by se=
+lecting allowed probes/effects. Mission is complete only when required clai=
+m set is settled TRUE.</p>
+
+
+
+24. What the finished architecture should feel like
+<p>A request such as:</p>
+
+<code>&quot;Set up privately.win everywhere&quot;
+</code>
+<p>should compile into desired claims, not imperative scripts:</p>
+
+<code>domain_owned(privately.win)
+email_receives(agents@privately.win)
+phone_owned(...)
+account_owned(youtube,...)
+handle_bound(youtube,...,privatelywin)
+account_owned(x,...)
+handle_bound(x,...,privatelywin)
+...
+</code>
+<p>QP/AgentCom examines which are TRUE/FALSE/UNKNOWN.</p>
+<p>For UNKNOWN claims it selects proof routes. Some routes are pure probes.=
+ Some require an effect. Effects require authority. After the effect, indep=
+endent evidence settles the target claim.</p>
+<p>That produces the useful general primitive:</p>
+
+<code>DesiredState
+  -&gt; unresolved claims
+  -&gt; evidence/effect routes
+  -&gt; bounded authority where required
+  -&gt; world interaction
+  -&gt; readback
+  -&gt; QP settlement
+  -&gt; new canonical state
+</code>
+<p>That is the system everything else can safely span outward from.</p>
+
+
+
+25. Definition of done
+<p>Do not call this QP-complete until all are true:</p>
+<ul>
+<li>[ ] no consequential provider action is reachable without authenticated=
+ principal + valid QP grant</li>
+<li>[ ] canonical claim truth is <code>TRUE/FALSE/UNKNOWN</code>, never boo=
+lean-only</li>
+<li>[ ] frozen ContractRoot pins exact semantics/programs/freshness/authori=
+ty rules</li>
+<li>[ ] evidence carries provenance and content identity</li>
+<li>[ ] external effects use independent post-effect readback where possibl=
+e</li>
+<li>[ ] no successful target claim settles when readback is UNKNOWN</li>
+<li>[ ] facts and authority use different object types and graph edges</li>
+<li>[ ] TransitionReceipts are content-addressed, signed and append-only</l=
+i>
+<li>[ ] deterministic independent replay passes on every canonical receipt<=
+/li>
+<li>[ ] task/mission status is projection only; cannot promote truth</li>
+<li>[ ] target JSON cannot invent trusted proof semantics</li>
+<li>[ ] inbound email round-trip proves exact mailbox</li>
+<li>[ ] phone ownership uses provider account readback</li>
+<li>[ ] social <code>available</code> and <code>owned</code> are completely=
+ separate claims</li>
+<li>[ ] OAuth scope ownership is explicitly proven</li>
+<li>[ ] direct bypass routes are removed or made inaccessible</li>
+<li>[ ] adversarial proof/authority/replay tests pass</li>
+</ul>
+<p>Once this seam is solid, then continue building outward. The point is no=
+t to create more QP-looking JSON. The point is to make QP the one unavoidab=
+le constitutional boundary between an agent saying something happened, evid=
+ence showing what happened, and the system being permitted to change the wo=
+rld.</p>
+
+--0000000000000aca2e065bade34d--

@@ -7,10 +7,11 @@ import os
 import sys
 from datetime import datetime, timezone
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BASE_DIR)
 from core import fetch_json, store_normalized, utcnow
 
-DATA_DIR = '/home/box/powpowpow/chains/clore'
+DATA_DIR = os.path.join(BASE_DIR, 'chains', 'clore')
 os.makedirs(DATA_DIR, exist_ok=True)
 
 def collect_marketplace():

@@ -1,0 +1,371 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id 95asLMnBI0XM
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 03:33:27 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=TrML8WwFLsA+5SsgN4r8/KGTqCcHYJlU9J2PKd7mSUSJi7FNb61uNaZ0/GHsURX8NkxwBoX8I
+	dAJjSoQwYKMoyklbHK+/Rhb9FOpnQwY/pz5osSzvXM1TVA7dmkvNYBDlbVecyeEz8YRkwC2nhAV
+	11k+KMPXzYBbaxlhWzksw2n/T1C7d8WUxS2zjnEvWzBAhaH8yVy/yWiQ7+SWjKphuZTIQCUNfGd
+	2qWy+lzCS9q+oZKS0igsjR6J2m8mSaUBOCksBA7VPsiU9pC+j/keYDk1Ehpk3y753InGB9ZXIFk
+	rl3bU0AOKVDcjXWuG222hYRk3Rbe1+XxIIL5ailkgd8A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789961607; x=1790566407; bh=8XCbXK81
+	RW9f8iccO5DApiXEgsRwuCuss7u4DfQ1J3g=; b=b4bEVOXJ1dap1hsmfuELb7vVHnkeIq0mjrj
+	9D81RpQ9KrEwSDl3y6t8svCG2U0vqzFAasCAutpgu6b+FDKbZP9g/RVPaZF72surCd9am+twYJ8
+	bdXwgj3fQptd5Q2AWa5vf5MLqsIN2ClBWjEhixUz98nfEQ90uuwTGzjcT7J3HVWD9CNd8JtoP2D
+	wQeXd/zyznJPopytJAlwuRDBBJiOPDBqmTQ+RyCCvtcQEVsF06hLpNQmlEDR9lUyycIrSUFoPYt
+	TLIsc++clILklZlH4Uo1c5jpkj7gn91w5CrxRvvxbMY7a71+korirDJPdvbdm4TEsIfSeCDZj6G
+	6w/pOYg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mKiW891X;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mKiW891X;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d43ac6090so19256807b3.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 20:33:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789961606; cv=none;
+        d=google.com; s=arc-20260327;
+        b=P4A5J5cDcSuib4M9FD1UurTm32CS/qDxD4bHbVNbBqzfjUlQFWxWcPyH0Op9QlSGg4
+         mG1z2GQHh5xIPbXp92IgugViyoiZ+DoXWJFWqVa+SsVzpR+jKj+MXvLX/iVECo/URhVl
+         SWFSQOPMrvePUpNtbOO8nZwX76UTba7BPOqRrbsSB/AnXQc8DUwuxK1aDeo1Dy0LVLbn
+         nLtw7JFBy/+mE8hIpRYlfjRN4o4Wp0SuBp3LsYkLlEA2R59rdSW9lwiYWdZPueaKC2Ut
+         +4HoEYyUkqkylMYbWhd9On6H/EqGRzWTr9iOy6GUusUUBrj5a92sdt6ydGNPV9+RerzK
+         fMIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=8XCbXK81RW9f8iccO5DApiXEgsRwuCuss7u4DfQ1J3g=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=p/JMGeBfqa+dQCDwu6Pn4Q9TtKV5u0NN2KmKLNetZ1XmO+gidJpMxbje5XqiD8k7rF
+         iJVnVHI+o/cP0XKwmCvd6Iqdw2tIBtS82kT77uBx77o1Z6HsMUETX0BNKqV52HUuBS48
+         I08pzMrkkRh6I15BDrAe08BYwxDBwzQG5x1nxhXoaqQ7WSz1VfBB7pgn4qp1gl1JQU/B
+         pXwjBDXrVMK+xAXuPRlQ8YXlya8GLzj+Ma8CG/TeTl3xSEJu8PFF2YVzjsS3oLLejnbk
+         eNcf6VdWNtGgUEI3nY2HcnZItv9LhgQ+fAW/1cICwIW8SYpeo0trZvHzQRYKvCimtETZ
+         hjXg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789961606; x=1790566406; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=8XCbXK81RW9f8iccO5DApiXEgsRwuCuss7u4DfQ1J3g=;
+        b=mKiW891X/mb0+F6ZAMjE9we6anEEETKIpWSs2xJAbzZ74hS+61oMob0FcEeX+zHYQf
+         ZSg44vALSHz0ZfthUb0vbdKRCWfj5EUfUPD+mW5ZtJ6ZgXftSBOQRDi4oiVrenNkpFLr
+         sAst0qk1ou/NMyT2OZNsHH+Jod+4wX4s0UW+Au8DzoKaDDLHt3O7WW+yJf8uJLfbLHcx
+         u+9lu7IcB1vji1Sl7Y9s7aWgsT7flebiMBQEFmM+eyz/3LH3+FT5a1RaLFkp0zpjiD3H
+         B7iiHKH3ezjGsyeEKZX3B9pqAj+yphBIOL3fzdcD+IwO0cTHgLB+v9q+SqR8OJu2hQUg
+         JebA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789961606; x=1790566406;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=8XCbXK81RW9f8iccO5DApiXEgsRwuCuss7u4DfQ1J3g=;
+        b=uHy+bhoxW7PbZi6IMBJxzclwszFRoK8yXY9DcayUZPGFSHU4lEjVFNVnvH36tpb3H/
+         E5/yTaFkhYbQ6EUnV8pTiKNud0LxOx4xiLHFDxuZ71CkEeYa2hVLmYa+hW1X4Uus8PXc
+         aUG+ubYsJiKgkH5pMoqh43lvb11NwkpiBwzGTRQCdehq4b4TJnRKq/tgYNaYSHoyd85i
+         U+GydGhhvuql4HWuVgQ1wfT2J/cuRR+dMtW2BggTZ2tV5Z5wKfNGj208JAqnBrPBAgNF
+         x12pe0SpEavigEK7hUejxi0tnsLDQ+L19uV/9pq9j/YGaVIMcKnqI7iNy+jax9OdYUgz
+         0XDg==
+X-Gm-Message-State: AFuF++nzAbRG21m0NiTx5m4lf0vo94SDacHyHDNYem7VpV7qh8XSW0Ym
+	4eUVUkPnJmmbRNo4SQr/6/sMhW3E422my//zPNyvImd1+XfuwECsHdL3d4qpCG+7mJZUkd34Z6U
+	IFT/VL34/Zt+mO0C5uje1AkyFOfXRQ71sgA==
+X-Gm-Gg: AYBFou0MbEpNOxf3pobK73+5JFOTy0QyY/oDdLIRDqcuweYXTrzWTw9fttP4qOXVp4X
+	NPaQOtctIS/TaUAlk8Q+4oXijzijoCgQf01AdoZLop4guhseZkU+7oybFzPT8IjPNEPPEcmCFzp
+	p8pz74qEAZfx3tKhhgnDaZn1E9b0Ln2z4QCymxv9XZFpFvamMgKPmCS8cDyLvdD/NTDiWrDwTKf
+	d7JqXPwHrytDtOER0LEU+7P29qcF0e1PHdS3xArGTZU5/9UlEtGc2vuTHokXyxyXBA8PcBFoG29
+	5fQzopRmk0Lnczc/3UoH6cKEFOVk1OfSVkkSkdrgzm9QDaUx/+SHmn0uS03yDF8O5R1Myx4Pcp6
+	X94wckpTkH3xfwzZrsr53cqbzuwpclz35bjzhHLSijFaLOevClqDzPpHTxSq1o17N6S9Lu0pxEd
+	w=
+X-Received: by 2002:a05:690c:6d82:b0:8a0:6e6a:12f1 with SMTP id
+ 00721157ae682-8a06e6a1951mr1009037b3.18.1789961606259; Sun, 20 Sep 2026
+ 20:33:26 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 22:33:25 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 22:33:25 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 22:33:25 -0500
+X-Gm-Features: AcwNN1XT4jP5j2sEGP1bK2JKbHFbwWAXy8pGjFAegxvdH8k6rcoVsPxkGYFgJF8
+Message-ID: <CAPdrGe=phg9BAqFb_NZvLg7h0Yqp+NECD815rVkN5mu__SusPw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Buyer_Actions_=E2=80=94_2026=2D09=2D21_10=3A32_ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS BUYER / ACTION PROBE =E2=80=94 2026-09-21 10:32 ICT
+
+EXECUTIVE DELTA
+
+The strongest buyer/action surface remains Capability Activation, but
+this run sharpens what POW should sell first: not a training
+recommendation and not an installer directory, but a
+transaction-unlock decision for an existing physical-trades business.
+
+The core economic object is:
+CURRENT CAPABILITY =E2=86=92 smallest additional
+permission/certification/equipment =E2=86=92 immediately addressable paid w=
+ork
+=E2=86=92 first completed transaction =E2=86=92 repeat work.
+
+CONFIRMED from the prior verified evidence set: the UK Boiler Upgrade
+Scheme has substantial public subsidy behind heat-pump deployment; the
+Heat Training Grant subsidises installer training; nevertheless a
+large share of surveyed trainees had completed no heat-pump
+installation after training. That creates a measurable gap between
+nominal skill acquisition and economic activation. Current fresh web
+queries returned no additional authoritative evidence this run, so no
+new price/budget figures are asserted beyond the previously verified
+evidence.
+
+RANKED ACTION SURFACES
+
+1. Capability =E2=86=92 transaction eligibility =E2=86=92 first paid job =
+=E2=80=94 5.00 =E2=80=94 PRESELL NOW
+Buyer/user: plumbers, heating engineers, electricians,
+HVAC/refrigeration engineers, solar/EV installers, small
+building-services firms.
+Pain: deciding which adjacent capability is actually worth time,
+certification and equipment spend.
+Current alternative: training directories, trade forums, certification
+bodies, tender portals, lead marketplaces, manual grant research.
+Input graph: company/person capability =C3=97 certifications =C3=97 scheme
+permissions =C3=97 geography =C3=97 equipment =C3=97 current procurement/le=
+ads =C3=97
+property/asset demand =C3=97 training path =C3=97 cost/time.
+Proprietary state: EconomicActivationProbability and
+ActivationFriction by capability/place/time.
+Immediate transaction: capability audit leading directly to a
+training/certification action or surfaced first job.
+Outcome receipt: training booked, certification added, quote
+submitted, job won/lost, invoice/payment, repeat jobs.
+Distribution: Muse recommendation, CMail outreach, trade communities,
+training-provider referral, lead-gen/API.
+Constraints: public certification data can be used only under
+applicable reuse terms; private job/customer records require consent.
+
+2. Property =E2=86=92 retrofit configuration =E2=86=92 authorised installer=
+ =E2=86=92 grant
+transaction =E2=80=94 4.95 =E2=80=94 PILOT
+Buyer: property owner, landlord, installer.
+Decision: which heat-pump/solar/battery/EV configuration is physically
+suitable and economically executable now.
+Input: UPRN/property fabric/EPC =C3=97 tariff =C3=97 grid =C3=97 equipment =
+=C3=97 grant
+eligibility =C3=97 installer capability/capacity.
+Transformation: ExecutableRetrofitSet(property,t), not generic suitability.
+Transaction: route to qualified installer/grant workflow.
+Receipt: quote, chosen design, installed equipment, grant redemption,
+operating performance.
+Time moat: design=E2=86=92installation=E2=86=92actual outcome history.
+
+3. EV fleet/depot =E2=86=92 charger/grant/grid/installer routing =E2=80=94 =
+4.92 =E2=80=94 PRESELL
+Buyer: SME fleets, depots, landlords/workplaces.
+Decision: charger count/type, site constraint, grant route, installer
+and operating tariff.
+Input: vehicles/duty cycle =C3=97 site =C3=97 grid constraint =C3=97 charge=
+r
+compatibility =C3=97 grant rules =C3=97 authorised installer =C3=97 tariffs=
+.
+Transformation: MinimumViableElectrificationPlan.
+Transaction: grant/installer quote and deployment.
+Receipt: install cost, connection delay, utilisation, charging cost, downti=
+me.
+
+4. Repair =E2=86=92 exact part/substitute =E2=86=92 repair-or-replace =E2=
+=80=94 4.88 =E2=80=94 PARTNER
+Buyer: repairer, sole trader, equipment owner.
+Decision: whether a specific fault is economically repairable and
+exactly which compatible component to source.
+Input: model/serial family =C3=97 fault =C3=97 MPN =C3=97 supersessions/sub=
+stitutes =C3=97
+inventory/price/lead-time =C3=97 guide =C3=97 labour capability =C3=97 resa=
+le value.
+Transformation: RepairEV(asset,fault,person,place,t).
+Transaction: part purchase + repair job.
+Receipt: part fitted, time, success/failure, resale/customer outcome.
+Time moat: observed compatibility and repair outcomes, not catalogue mirror=
+ing.
+
+5. Flexible physical asset =E2=86=92 enrolment/dispatch/payment =E2=80=94 4=
+.80 =E2=80=94 PRESELL B2B
+Buyer: EV/battery/flexible-load owner or aggregator.
+Decision: where/when an asset can earn from flexibility.
+Input: asset capability =C3=97 site/topology =C3=97 constraint zone =C3=97
+flexibility requirement =C3=97 dispatch/price =C3=97 availability.
+Transformation: DispatchableEarningOpportunity(asset,t).
+Transaction: enrol/dispatch through permitted market/aggregator route.
+Receipt: dispatch, physical response, payment.
+
+6. Grid/site =E2=86=92 viable project configuration =E2=80=94 4.76 =E2=80=
+=94 B2B
+Buyer: developer/site owner/energy contractor.
+Decision: whether to pursue connection/project and what configuration
+changes feasibility.
+Input: site =C3=97 topology/headroom =C3=97 queue/gate =C3=97 planning =C3=
+=97 equipment =C3=97
+demand/export profile =C3=97 flexibility.
+Transformation: SiteConstraintState + viable alternatives.
+Receipt: application, offer, acceptance, energisation/cost/time.
+
+7. Broken-item arbitrage =E2=80=94 4.20 =E2=80=94 DERIVATIVE
+Only survives when built on #4's repair outcome garden. Generic
+marketplace scraping alone is weak and permission-sensitive.
+
+8. GPU mine/rent/inference/sell routing =E2=80=94 3.75 =E2=80=94 WATCH
+Actionable but current data gardens are commercially crowded and price
+feeds are reconstructable. Promote only if POW can observe physical
+power/site constraints plus realised routing outcomes.
+
+EXACT BUYER EVIDENCE
+
+CONFIRMED: government subsidy and installer-led transaction workflows
+create real transaction rails in heat pumps and EV charging.
+CONFIRMED: prior verified Heat Training Grant evaluation showed
+substantial training-to-installation drop-off, proving qualification
+is not equivalent to realised economic capability. UNKNOWN:
+willingness to pay POW directly. INFERRED monetisation: fixed
+capability audit, qualified lead/referral, transaction assistance,
+API/subscription once longitudinal outcome evidence exists.
+
+GARDEN DEPENDENCY GRAPH
+
+IDENTITY
+person/business =E2=86=94 company =E2=86=94 certifications =E2=86=94 scheme=
+s =E2=86=94 geography
+  =E2=86=93
+CAPABILITY STATE
+what can legally/physically be done now
+  =E2=86=93
+LIVE DEMAND
+property/asset/job/procurement/grant/constraint
+  =E2=86=93
+ACTION
+train | certify | quote | buy part | install | enrol | dispatch
+  =E2=86=93
+RECEIPT
+cost + time + success/failure + payment + performance
+  =E2=86=93
+OUTCOME MODEL
+P(first money), time-to-first-money, realised margin, repeatability
+  =E2=86=BA improves next recommendation
+
+PRESELL NOW
+
+Week-one deliverable: POW Capability Unlock Report for one real
+SME/tradesperson. Deliver only three adjacent capability paths, each
+with: current eligibility; missing edge; exact
+training/certification/equipment steps; current observable work
+unlocked; estimated activation friction with every uncertain component
+labelled; and one concrete first-money route.
+
+10 reachable buyer archetypes/public channels: gas/heating engineers;
+oil-heating engineers; plumbers; domestic electricians; commercial
+electricians; HVAC/refrigeration engineers; solar installers; EV
+installers; facilities-maintenance SMEs; small building-services
+contractors. Reach through public company contacts, trade directories
+where contact/reuse terms permit, LinkedIn/company websites, trade
+forums/groups, local installer directories and certification-scheme
+public listings. Do not harvest private contact data.
+
+Low-friction pilot: 10 businesses =C3=97 3 adjacent capabilities. Free
+first report in exchange for permission to follow whether the
+recommended action was taken and its outcome.
+
+Exact validation question: =E2=80=9CWould you spend the time or money requi=
+red
+to add any of these capabilities if POW also showed the first
+realistic paid work it unlocks?=E2=80=9D
+
+Stronger behavioural validation: training booked; certification
+started; equipment purchased; buyer contacted; quote submitted; job
+won; invoice paid.
+
+Evidence justifying charging: at least 3/10 pilots take a costly
+action based on the report, or POW directly causes a quote/job;
+repeated requests for refreshed opportunity maps; users voluntarily
+provide outcome receipts. No willingness-to-pay is assumed before
+this.
+
+Before history exists: eligibility graph, current opportunities,
+grant/certification path, rough activation friction, direct
+transaction links.
+At 6 months: empirical action and first-job conversion by capability path.
+At 12 months: TimeToFirstRevenue and realised activation rate by
+geography/capability.
+At 36 months: marginal lifetime economic value of adding capability c
+for person/business p at place x and time t.
+
+OUTCOME LOOP
+prediction =E2=86=92 recommended action =E2=86=92 intervention =E2=86=92 co=
+st/time =E2=86=92 quote/job
+=E2=86=92 success/failure =E2=86=92 payment =E2=86=92 repeat work =E2=86=92=
+ update activation model.
+
+The critical receipt is FIRST_PAID_JOB, followed by repeat-job
+frequency and realised margin. Training completion alone is not an
+outcome.
+
+KILL REASONS
+
+KILL training directory: backfillable/static, weak outcome loop.
+KILL generic =E2=80=9Cskills in demand=E2=80=9D: commentary without transac=
+tion eligibility.
+KILL installer directory: useful join infrastructure but no moat alone.
+KILL tender matcher alone: good business, weak garden unless it learns
+eligibility=E2=86=92bid=E2=86=92win=E2=86=92delivery.
+KILL static property retrofit score: no moat without
+intervention/performance receipts.
+KILL marketplace mirror: permissions risk and reconstructable state
+unless transitions/outcomes are captured.
+SURVIVE capability=E2=86=92permission=E2=86=92first money=E2=86=92repeat ou=
+tcome.
+
+NEXT-HOUR QUEUE
+
+Highest information gain is not another vertical. Build 20 real SME
+capability graphs from public, permitted certification/company
+sources. For each, enumerate three adjacent capabilities and calculate
+ActivationFriction =3D training cost + certification cost + equipment
+cost + expected time-to-first-job. Join each to observable current
+demand. Then test whether missing downstream edges explain why
+nominally trained workers fail to convert into paid work. The first
+useful proprietary target is P(first paid job | current capabilities,
+added capability, geography, live demand).
+
+MACHINE-READABLE APPENDIX
+{
+  "probe":"POW_BUYER_ACTION",
+  "run_date":"2026-09-21T10:32:49+07:00",
+  "material_delta":true,
+  "primary_surface":{"id":"CAPABILITY_ACTIVATION","score":5.0,"status":"PRE=
+SELL_NOW"},
+  "core_transform":"ECONOMIC_CAPABILITY_ACTIVATION",
+  "canonical_outcome":"FIRST_PAID_JOB",
+  "confidence":{"transaction_rails":"CONFIRMED","training_to_work_friction"=
+:"CONFIRMED_PRIOR_VERIFIED","direct_willingness_to_pay":"UNKNOWN","monetisa=
+tion":"INFERRED"},
+  "presell":{"businesses":10,"capability_paths_each":3,"price_assumption":n=
+ull},
+  "time_horizons":{"week1":"eligibility+opportunity+action
+path","month6":"activation
+conversion","month12":"time_to_first_revenue","month36":"marginal_lifetime_=
+capability_value"},
+  "next":["build 20 SME capability graphs","enumerate 3 adjacent
+capabilities each","calculate ActivationFriction","join to current
+paid demand","capture first-paid-job receipts"]
+}

@@ -1,0 +1,380 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id MnG3ClSYBTRV
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 05:12:35 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=hkY6NQcPqFGBjUDokyt1bUigIxERwsPy0mR5gJiLMXeF2fhwYdVFPcnPBHV0nwL19J0H+4kkU
+	AF9qh5rPp9uKod527Nae0R3i5dUj3EwfMP5HoR0zwocZnrGjhmQUvlmUlwrIzo+5ZUy4yRZULz0
+	gdDtXIdEYZda2DZm6JRUScddDrRjqGHFhVJeODTNNej4UrlGcERjeVhdkxmbGI8PAh2L0NotlLB
+	oeFhlYI+nmEQ48cX19JNGPKKmhi12/kpY8OqvFA2f3OqhP/eakYqTzGPtvSKbcA7Ja1YS2G4zwZ
+	SLDD6EYB29Ad3ZthFaaYtWz/IgpXtTdvVrVOLyA0OPuw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789967555; x=1790572355; bh=bIokqhr1
+	iQUCrlu/gaqOV+o+qlBVEnw+HhIquUiGekE=; b=bbNI0T0lOydJmIiOiuJYJy5kupWDRU5bqZW
+	ZfnINsFVThyoViQV1Ydewm7e7LrZCuou9hqlRJ6c2RHaFBLy7URzeYhP30vhyufBi/0009lmSyn
+	yHjOEQ5ttAFp9r7TSG8AYYJP90pRu2lvy6kqCj+YOdC023y8FQhrVexil68rKbLzTe3RQJOMtpm
+	9OWOOCdy5AoYsAwYtPWFsqlUTj7o3MLKT8UHjiSkE7seex7qSuNXTZjZSBLzdnIqm1n9jCHBJ6r
+	sv69abbOKstyIPpNolRy0Lma0EXq+PAtnazpFRoI6Ewi9BSsjYPLj7+T0tvREQVCnjhuOMG5eho
+	/jTfl7g==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=L8eYIBA4;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=L8eYIBA4;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-8659af7454eso24120797b3.1
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 22:12:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789967555; cv=none;
+        d=google.com; s=arc-20260327;
+        b=WdqViMecJkuKHaovufYZfgRdd6yXmUrxhs0vxddmwwPYSgtZCy3n+N1A65rjsF839v
+         zdRUefALWfP4RioK8Dw8a4K5x4DoWx7Q/InfEPVdNoQMcsMCN6q123yGx2IU2smoo4MN
+         f62cN0Mly9jB5uqcxGZqRWwCyS2T5VhoF1KYbLHrkHcG+eS19BKBjWppz3oT4OkVH6ej
+         ROUz4Bod5Mnkeforyb/L55eNfK+BozZJRrKzBgviYRSvOZR9MrzUUU2UpxotYLD45Th2
+         QAsYahQpG85ownVXRGo54yaydMFcokAvg8+0ulzVl8oN8Yp9YJdM7aOus1JyrQG1kVS9
+         09mQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=bIokqhr1iQUCrlu/gaqOV+o+qlBVEnw+HhIquUiGekE=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=XsxsijNO0jtMv6GtZmpTnHbcEUcH2hvPznxfoQupicRyxPziQw8kZ2BEhOqqZAPtGq
+         pgrY17A60aNVVazULDA0nVZ4eN2h43BQNzvRkPZ1BSAqzYwXpSBQQhkyqPo4BbTVKM/R
+         jasGPzm1cl3fVPdC4nTnHC0vfZ+tevfioCoa/lzX3Fujz7Ikh1EUzHg1xKtv/cAIaHIf
+         D4aSwph2n3UfDxzG8QuTVuRGXqLG6e5g3ewI3aSDlVRHiTlTQSOMsu8sOD2NwM4IODrL
+         dWoA4RMNOeHnObqHok0TBYqLK++yafUfUyNzsVk+PSkWAEHhuxRyW/DBv2jZymQrGDvp
+         5NWQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789967555; x=1790572355; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=bIokqhr1iQUCrlu/gaqOV+o+qlBVEnw+HhIquUiGekE=;
+        b=L8eYIBA4UH/Hnyd3rWnMzekza12OmUHQLFXqVcSy6XK++RnWAD4Ucg4buHFhQ7HGRI
+         HJAcj6GcdnpZyWdCF5EsQvKyHiOWvPWqmDF9YUwOouK8i6v+jJy+/RAxemABwwGH9QQw
+         UkM1BoIovUxCHqpIy8GbJN2x8icG6822yWTpZA1EI12nH5WCNCQU/BgXgwU9ZJN10/lv
+         ayW3YOmPSC4/frNk3CLyfMhO4gIkjAP0AqgvmNpXj485x2B9VNwRoJEJLjLD0d1VFXKN
+         BC6qB/FcbDL8Re7Ok1Yqv8PNtSVCyLaszWjbrte285/gddv9apVHK1RmqUJ6Fhr3Fxml
+         sBXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789967555; x=1790572355;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=bIokqhr1iQUCrlu/gaqOV+o+qlBVEnw+HhIquUiGekE=;
+        b=pKqLxuWLXzFjLe5EUF2Zr856pvHLQLpBJFcE7Lnr0amLIq3Ors1TYGQVlVzB5VHIw9
+         i1F9Vw6to37gC4gE9aZzGTOR/CCBawJuNh3qKOFksxeDEkH1LEggHAXbjl7/70pJe7gp
+         L0CFRGnUsxpEvDJUWu4hJz/NuxSJ0tccsulIyEodDu9XJI/QYaUhRJTj5iByls39P2tW
+         b18fHs8WAITsWkhD2GIaL4UK1CsP3kUt6B1+VyrOZlnsx4wQh4NEkjvfRXaGBAOV/qkj
+         XmdfRP3SPwkZl57c+9r4ED5b2W24FDekvXogXkLAmyNRhzV3mn8TOpllMQ7dM/3XW6S+
+         eb5Q==
+X-Gm-Message-State: AFuF++klZD7gC4bZkR/iQqxocULMo5v1ILjegAssu95kaLuo5sVA4q7g
+	FPn7gQrYVHShYFUfkcVCzkY/X0KOF/M9QX6k3bgfSUXSjN4ho29nk8cmPjRjR6o6DrAkG/H/Gyk
+	TIlGENk8J0g+AJZh9oD7Kp5h/lRaD/EJKQA==
+X-Gm-Gg: AYBFou2C5eTvGhJmgP+IlMkiESdmU7JvMDZCV51fkui1VE6udjxhLb/5/AqO78s4fTP
+	t6qT+2mgACiYo4jTwR6go2eZm2e782qK/v7Skn+fknPSzycMKvLqowJrbZXGe/bWChnC7RkMl11
+	7lui+YBfBMjQbBOQTJC3RB0JWcngsOus9de8k09OQKLnMgcEo2qNwqTzYP+xloSFdolgDcR5oIv
+	hWyCuKMbPhmQBB3YfCSeP59+97vxVyv4mOkwWQrpVf4nqIjooQ07mKhUBtMRBvJmpNYQyxdJCfQ
+	qJmSbGnw+iGRGCre2DfzhGFHlsW60pVRISF9sNiHyoRDc135VlhvNUVGgOYoj5Gj0VayLxBfCIW
+	AlNU3qco2rQ1rreQl38a3fsNy3NN5H3cs1EWZ4Xtsdj2YoVUAooOgEySoC3HArmD1gxSQ3IxT
+X-Received: by 2002:a05:690c:dd5:b0:880:759f:7158 with SMTP id
+ 00721157ae682-8973674789cmr32815247b3.46.1789967554864; Sun, 20 Sep 2026
+ 22:12:34 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 00:12:34 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 00:12:34 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 00:12:34 -0500
+X-Gm-Features: AcwNN1USLCpKXS0rumAEi6ADaf6snUAckHI1SzmLzKHExTR_wW9bIf0cdec0WnM
+Message-ID: <CAPdrGe=Qb=LZTZjPTExaFyQVnVx6_OBoc=NmvgaFyUGNCz8Kjw@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Frontier_Feeds_=E2=80=94_2026=2D09=2D21_12=3A11_IC?=
+	=?UTF-8?Q?T?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS FRONTIER FEED PROBE =E2=80=94 21 Sep 2026 12:11 ICT
+
+EXECUTIVE DELTA
+
+CONFIRMED CORRECTION: the prior 11:08 probe incorrectly treated 12
+September 2026 as the EU Data Act trigger. The European Commission
+states the Data Act became applicable on 12 September 2025, not 2026.
+Therefore there is no new 2026 cohort boundary and EU Data Act
+connected-product telemetry is DEMOTED from frontier/t=3D0 status to
+JOIN/PARTNER infrastructure. This is exactly the kind of false novelty
+the reconstruction gate is meant to kill.
+
+The strongest genuine t=3D0 frontier remains DEFRA Digital Waste
+Tracking (DWT) Phase 2 Collections. DEFRA updated its roadmap 18 Sep
+2026: Collections private beta begins autumn 2026, public beta spring
+2027, mandatory October 2027. The 4 Aug Alpha assessment confirms
+OpenAPI and schema-level versioning and says the service can proceed
+to private beta subject to spend-control approval. Phase 1 receipt
+reporting becomes mandatory in England/Wales on 1 Oct 2026, with
+records due within two working days.
+
+A new P0 regulatory watch is Ofgem/NESO CMP470: the Oversubscribed
+Technologies Commitment Fee. Ofgem opened a minded-to-approve
+consultation on 17 Sep 2026, closing 1 Oct. If approved, it creates a
+genuinely new financial state attached to oversubscribed grid-queue
+projects: a security floor starting at =C2=A33,000/MW and potentially
+rising to =C2=A325,000/MW, triggered when a technology exceeds target
+requirements by >50% and ceasing below 25%. This is not yet an
+executable feed, so WATCH rather than PLANT. The t=3D0 opportunity is to
+begin the project identity spine now and capture the first
+fee-liability/security state if/when NESO exposes it.
+
+RANKED FEED FRONTIER
+
+1. DWT Collections =E2=86=92 Receipt movement graph =E2=80=94 5.00 =E2=80=
+=94 P0 PREBUILD/WATCH
+2. Statutory EVSE state/tariff transitions =E2=80=94 4.94 =E2=80=94 PLANT
+3. NGED 5-min physical transformer state =E2=80=94 4.91 =E2=80=94 PLANT,
+executable-resource/retention semantics still unresolved
+4. CMP470 project commitment-fee state =E2=80=94 4.84 =E2=80=94 P0 WATCH
+5. Elexon SDR =E2=80=94 4.70 =E2=80=94 P0 WATCH, history semantics unresolv=
+ed
+6. Authoritative planning-application lifecycle/log =E2=80=94 4.65 =E2=80=
+=94 P0 WATCH
+7. Tariff Interoperability =E2=80=94 4.61 =E2=80=94 PREBUILD
+8. EU Data Act owner-consented telemetry =E2=80=94 4.10 =E2=80=94 PARTNER/J=
+OIN, NOT
+frontier novelty
+
+DWT =E2=80=94 EXACT LAUNCH/CHANGE EVIDENCE
+
+CONFIRMED: GOV.UK DWT roadmap updated 18 Sep 2026. Phase 1 public beta
+has operated since 28 Apr 2026. England/Wales mandatory receipt
+reporting starts 1 Oct 2026; Scotland/NI 1 Jan 2027. Phase 2
+Collections private beta is scheduled from autumn 2026 and public beta
+spring 2027.
+
+CONFIRMED: Collections Alpha assessment dated 23 Jul and published 4
+Aug 2026 rated Green. The team uses OpenAPI and schema-level API
+versioning. Private beta is permitted subject to GDS spend-control
+approval.
+
+CONFIRMED: current receipt software integrations use an API and must
+pass 14 production-approval scenarios. Service charge is =C2=A326/year per
+organisation account covering its receiving sites.
+
+GENUINELY NEW STATE: the current regulatory gap is that waste
+movements are substantially paper-recorded and not generally shared
+with regulators. Phase 2 extends DWT to
+collectors/carriers/brokers/dealers. The new state is therefore
+digital collection/origin/carrier/movement state and its linkage to
+receipt, rather than an API wrapper over a complete historical
+database.
+
+ACCESS: current Receipt API requires legitimate
+waste-receiver/software-provider onboarding and credentials.
+Collections access for private beta will be invited. Public anonymous
+movement harvesting is not assumed.
+
+FIRST COLLECTOR: consenting waste business/software integration.
+
+CANONICAL IDENTITY: preserve DEFRA tracking ID + source unique
+reference + weighbridge/transfer-note reference + organisation/site
+IDs. Never normalize away source identifiers.
+
+CADENCE: event-driven submission; Phase 1 records due within two
+working days. Store every received/update/correction event append-only
+with observed_at and effective_at.
+
+FIRST TRANSFORMATIONS: CollectionReceiptResolutionRate; TransitTime;
+MaterialFlow(origin,receiver,material,t); CorrectionLatency;
+CancellationRate if Phase 2 exposes cancellation state.
+
+BUYER/ACTION: unresolved-load chasing; receiver selection;
+waste-routing; compliance automation; downstream capacity detection.
+
+RECONSTRUCTION TEST: PASS. Historical paper records may exist locally,
+but the national digital collection=E2=86=94receipt event sequence and
+subsequent corrections do not exist as a complete historical
+machine-readable system before rollout.
+
+PLANT NOW =E2=80=94 DWT PREBUILD
+
+Build the identity/event kernel before private beta:
+movement_id; defra_tracking_id; source_reference; organisation_id;
+site_id; collection_event_id; receipt_event_id; material_code;
+quantity; carrier; origin; receiver; event_type; effective_at;
+observed_at; source_schema_version; provenance; confidence; raw_hash.
+
+Freeze every official schema/documentation change. Watch the DEFRA
+official GitHub repository and discussions for Collections
+endpoints/data models. Current September discussions already show
+implementer questions around POP concentration, tracking-ID sharing,
+carrier authorization and API semantics, making schema evolution
+itself worth preserving.
+
+One-day gate: establish a schema/doc hash monitor and identity
+fixtures. One-week gate: demonstrate deterministic migration across
+every observed schema/doc change. Cost: near-zero storage/requests;
+access to live movement data remains permissioned.
+
+CMP470 =E2=80=94 NEW WATCH FRONTIER
+
+CONFIRMED: Ofgem consultation published 17 Sep 2026 and closes 1 Oct
+2026. Ofgem is minded to approve CMP470. It targets technologies
+materially oversubscribed relative to Clean Power 2030 targets. The
+proposal creates a financial commitment/security floor; Ofgem
+describes =C2=A33,000/MW initially up to =C2=A325,000/MW if oversubscriptio=
+n
+persists. It activates above 50% oversubscription and ceases below 25%
+under the original proposal.
+
+GENUINELY NEW STATE IF APPROVED: project-level exposure to a new
+regulatory shadow price. This could create observable fee/security
+state, exits from queue, and subsequent queue relaxation.
+
+UNKNOWN: final decision date; implementation date; whether
+project-level OTCF/security liability will be published
+machine-readably; exact public endpoint/schema.
+
+CANONICAL IDENTITY: NESO exact project ID + owner + technology + MW +
+Gate + connection point/date.
+
+TRANSFORMATION: OTCFExposure(project,t); SecurityPerMW;
+ExitHazardAfterFee; QueueElasticityToShadowPrice.
+
+ACTION: developer can decide retain/exit/restructure; agent can flag
+projects where queue position has acquired a new carrying cost.
+
+RECONSTRUCTION TEST: prospective PASS only if project-level
+fee/security state is exposed and historical snapshots are not
+retained. If only aggregate rules are published, KILL as feed and
+retain as policy join.
+
+PLANNING APPLICATION LIFECYCLE
+
+CONFIRMED: the national Planning Data `planning-application-log`
+dataset currently has 0 records, no providers and no collector
+attempt. Its controlled vocabulary already includes lifecycle states
+such as submitted, document check, missing-document request,
+consultation start/end, appealed, refused/granted and expired.
+
+This is a perfect t=3D0 watch condition: do not collect empty
+scaffolding. Trigger on first authoritative provider / first non-zero
+application-log record. At that moment snapshot immediately and test
+whether the provider preserves full prior event history. If yes,
+novelty fails; if only current/future lifecycle events arrive, PLANT
+HARD.
+
+T=3D0 WATCHLIST
+
+P0 =E2=80=94 DWT Collections: trigger =3D first official Collections
+OpenAPI/schema/private-beta executable endpoint; expected autumn 2026.
+P0 =E2=80=94 DWT mandatory receipts: trigger =3D first mandatory production=
+ day;
+1 Oct 2026 England/Wales.
+P0 =E2=80=94 CMP470: trigger =3D Ofgem final approval + implementation deta=
+ils +
+any NESO machine-readable project/security state; decision expected
+later 2026.
+P0 =E2=80=94 Planning application log: trigger =3D first authoritative prov=
+ider
+/ record > 0.
+P0 =E2=80=94 Elexon SDR: trigger =3D production interface plus resolved
+historical-retention semantics.
+P1 =E2=80=94 DWT Scotland/NI receipts: 1 Jan 2027.
+P1 =E2=80=94 DWT Collections public beta: spring 2027.
+
+REJECTED API NOVELTY
+
+EU DATA ACT 2026 COHORT =E2=80=94 KILL. Previous probe date was wrong.
+Applicability began 12 Sep 2025. Owner-consented connected-product
+data remains strategically valuable, but it is not a Sep-2026 t=3D0
+event.
+
+GENERIC NESO DATA PORTAL =E2=80=94 KILL novelty. Existing portal/API
+infrastructure; use as source plumbing.
+
+PLANNING API ITSELF =E2=80=94 KILL novelty. Existing machine-readable
+infrastructure; watch first authoritative lifecycle feed instead.
+
+DWT REFERENCE DATA / ID GENERATOR =E2=80=94 JOIN ONLY. Useful
+identity/ontology infrastructure, not valuable changing physical state
+by itself.
+
+CMP470 POLICY DOCUMENTS =E2=80=94 KILL as garden if no project-level
+machine-readable state appears. The rule is backfillable; only the
+resulting project financial transitions could be a garden.
+
+SOURCE-YIELD LEDGER
+
+HIGH: DEFRA DWT roadmap (18 Sep update) =E2=80=94 exact Phase 2 trigger win=
+dow
+and Phase 1 mandatory date.
+HIGH: DWT Collections Alpha assessment (4 Aug publication) =E2=80=94
+OpenAPI/versioning/private-beta readiness.
+HIGH: Ofgem CMP470 consultation (17 Sep) =E2=80=94 prospective new project
+shadow-price state.
+HIGH: Planning Data application-log =E2=80=94 confirms zero-record t=3D0 bo=
+undary.
+HIGH/CORRECTIVE: European Commission Data Act materials =E2=80=94 disproves
+prior 2026 novelty claim; applicable since 12 Sep 2025.
+MEDIUM: DEFRA GitHub discussions =E2=80=94 schema/integration friction
+signals; not canonical policy.
+LOW: generic Smart Data/NESO portal pages =E2=80=94 useful context but no n=
+ew
+irreconstructable feed found this hour.
+
+NEXT-HOUR INFORMATION-GAIN QUEUE
+
+1. Inspect DEFRA official repository commits/files for the first
+Collections-specific OpenAPI model or endpoint; diff against Receipt
+schema.
+2. Search CMP470 final legal text for exactly what project/security
+records NESO must create and whether publication/reporting obligations
+exist.
+3. Check Planning Data application-log provider count and collector
+timestamp; trigger immediately on first non-zero state.
+4. Resolve Elexon SDR launch/history semantics rather than adding
+another speculative feed.
+5. Resolve NGED Live Primary executable resource URLs and archive retention=
+.
+
+MACHINE-READABLE APPENDIX
+
+{
+  "probe":"POW_FRONTIER_FEED",
+  "run":"2026-09-21T12:11:42+07:00",
+  "material_delta":true,
+  "correction":{"id":"EU_DATA_ACT_2026_COHORT","previous":"P0_WATCH","new":=
+"KILL_FRONTIER_JOIN_ONLY","reason":"Data
+Act applicable since 2025-09-12, not 2026-09-12"},
+  "ranked":[
+    {"id":"DWT_COLLECTION_RECEIPT","score":5.00,"status":"P0_PREBUILD_WATCH=
+"},
+    {"id":"EVSE_TRANSITIONS","score":4.94,"status":"PLANT"},
+    {"id":"NGED_PRIMARY_5MIN","score":4.91,"status":"PLANT"},
+    {"id":"CMP470_PROJECT_FEE_STATE","score":4.84,"status":"P0_WATCH"},
+    {"id":"ELEXON_SDR","score":4.70,"status":"P0_WATCH"},
+    {"id":"PLANNING_APPLICATION_LOG","score":4.65,"status":"P0_WATCH"}
+  ],
+  "planning_application_log":{"records":0,"providers":0,"collector_attempt"=
+:"none"},
+  "collector_deployed":false,
+  "critical_unknowns":["DWT_COLLECTIONS_EXECUTABLE_SCHEMA","CMP470_PUBLIC_P=
+ROJECT_STATE","ELEXON_SDR_HISTORY","NGED_LIVE_PRIMARY_RETENTION"]
+}
+
+STATUS: CONFIRMED facts are from official GOV.UK/Ofgem/NESO/Planning
+Data/European Commission sources checked this run. INFERRED
+transformations are POW-derived. UNKNOWN fields are explicitly marked
+above.

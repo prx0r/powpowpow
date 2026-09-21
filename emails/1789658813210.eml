@@ -1,0 +1,1232 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id hcdpepUn2a80
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 15:26:52 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=a5faAP6gnrFL0Qf6Fbh6fqE4hvTLROYbMG3rJn/eBYYXNBs8PWRUvT/TmMxixsR0l+6hPLOiG
+	0yK/qRnSwWC6t1aOZI30TKFgpOJkPuP6J+tTKjDjzXw3jGjenZBO9WuIZURscv/lpRP6ms4+8qv
+	oLVqcsemhXD83RvMoUvRvjQJ2ex42npQ1gtPrwz102fRmTzvxkB8LTtGgz4IsGZ1ZWhcE8SSV7Q
+	SKxtHmEQ7S7tx7RHOPPz+rplHaIyXKOX06QiqnTbXiKs6yCi3Pjz+V1yc0lYXZ07QOwCetFVqlB
+	hes5BdF573WiYVz/d0h0WaYln+Fe23HXiUxj9kNxsUrw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789658812; x=1790263612; bh=xfxxBs4W
+	O11GyiZ+5+WESFnfiEiymfuZFsIevuc+J90=; b=E7wAULH8sQVR0SFD6H5Snqx/cESBJ1/lHi/
+	njJ/VO9vTdsvPK0O+KW6khM96MneP+eEPg9iwlP5CAnN0r1/Hp7yGHbJzK70WfCXi4ZTeAsFuns
+	AmzxEJTAwlf4y+y7hBYE9rlaxZHAFQLWVYskGhyvWScvwuGqNUFqb683mrRdtbWTVM/evl8xIRq
+	H68bezWckEdICqn2OcgjFuU6wm9Vk2Inmc2l0Oa8XouHFgYPk1Ez5CzQDE2BKLWr5kUzsEOc2k9
+	ihvt1q0+LT46UV6wpReEdP9AnM0HtjzbPe7FqYso4yIFjjqTWPjw86diVIHOatRmILEaq0wdptc
+	oOf4Q8A==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=c8ttZhhK;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=c8ttZhhK;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d45ae011cso8258297b3.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 08:26:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789658812; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ZdnSWN3O5tATTeQIqMfzQ+hUyC4pBuA6Mp32qytv2fn2I7HX+cQaipoPo+H/AIPrBn
+         4VMi8MVqouQoEDGEodAYW4YaAuuPhFIDxoN6EcSlx9RdDbYJ0uHLuSZ6zryHVdzrw8Qe
+         NFGi7dFneilj6UkGd8/10fN/3KwgNXmYHWKzZ/C12XvXcHpZSmUFZmuuun4WPcH+rqNT
+         L+VBQEsF7h3tJI+LaNFX+CQp+vscAitAYtiFyMREUJ6I8BRrcmXCzm3mRlCRCF/aLYUF
+         pI+FClxfAiLp2DfsS8dwiWBLCWOyZIIgkuNr92kXueUCkBIY3SwMQvb01uAwRmfTmZCY
+         FOVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=xfxxBs4WO11GyiZ+5+WESFnfiEiymfuZFsIevuc+J90=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=EoZh380YiFYlLuK4NK8deMEN9v/ubyBibsWGpR6Fbho5Rkkw1nFM94JmnjBj3Xv0ka
+         ZRPfdsbC5wOdAH2cHHRnnrvF/q7pIXlvRS58wQl1PGiajBAARCBZCJ6hF0WrS8OdTOv/
+         KQZafQQFgXkWy2kUsNjsPkVXkFnEQZphKBjHowxgXX0zNWkt7iK5C01Zl8xYXBDonkx7
+         c8ZxZ8qWxLwvfErFPWiAxV3xqR+DBy9eWfIvl2XmUrkK3wTcbBo7xGJd6Wfb1Ml7KJ6C
+         HUCT1ZjuLEsOE/Rpi3BiTpwbnW12l/SVqOZdFDnovTvELTg6LJJidcwqcqpdQkodcIl1
+         S7mQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789658812; x=1790263612; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=xfxxBs4WO11GyiZ+5+WESFnfiEiymfuZFsIevuc+J90=;
+        b=c8ttZhhKN6xhnarYhaPTC+/c/q5YFGNCcqV3wO7ZjadBoT6i+/hn7frl70zgQe8qmL
+         7k2jdQR4mDgf6dSCsm69Q2ZsKqywDDAEu5x9ef39aJbsWskTGu4SlJrLyp+fftaA+n1f
+         d/O40AwtyeCc/XkgJ0TGeJV6S4tUNdy2dYUpHnUv3CSu1BgXNdu45LmLpYo375JDOfzs
+         SOPKNt568tGLpMkqHXSKvbturBBMDHN6HdNLj5Uc9GhEO9DNkAF2DkW4WiDVRk4vTtFA
+         2tqriJVKPYY+qgBVvwJt1v/5QzBGztUJd9o62E1ffcpqz7c2yVk1VANybb1I1hQZ97LO
+         JdlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789658812; x=1790263612;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=xfxxBs4WO11GyiZ+5+WESFnfiEiymfuZFsIevuc+J90=;
+        b=mNoxZQhQdJrPYmuSMoYaUCBSjnnQk2GY/bba3p01QqpVS/DverYbh2s/VnKIhcBn9d
+         LqbBCjXWD8udcPwkO5WvCSC9BFhTXgIhXFNQrUwUOlSZPSsMXiTqH07CHvP8EegS71HP
+         cWxhjiEAplVe7yZ9q5ryzSUbgeQ1LXvtEZGTbxZy/kKPFVXbkeWkQvEWGWSLevWfOsIP
+         oEzoDcGO49vERkYuHIkyK3DNlAY+DjEcrTtVL6s243pvTpk7D9PqfUI7YngzY3umwMsR
+         9y5/MmzhqadCQuZ0NT04qBX2nZjnIHCwGKzdA0wa1vIPIXkMeentzmfQ4phKVvB3gZlh
+         g1zA==
+X-Gm-Message-State: AFuF++nujto1uGb2dKW3Dy2NwSI7/QexLDP2/6BPCnX2EpYKsayzXS0k
+	I2DHFnI6Y1ZaOLt/oP5tJe6aIMCCqzMMOh4cS4GWfRBccjZHijgtWT5hGCMXXOFuJp1OyiLOR3m
+	VAofbei3od5mNLe9tIkPH++RCJB7Mm+M+Fw==
+X-Gm-Gg: AYBFou29l7/lewXZUrYwWUx3zmbAlzpjnZ25ydh7QFjhGq6BHEWRF++8Cmi0C5wN/eu
+	c5Y0wEos6MVnBU0bNeADlfegkM51ySdVLtqfdsfBi/nVWbufDev1QlSXSHW7MER2q9d0PZtQEVJ
+	5dBSBTLXjIn67IqPcZgK7tY40BZXTkf+hynaDJQEOQlLvzZ0hxlKxtVgcxau9FfsixgTf/KipDV
+	nONckr2N5YFqCvVW5/1QD97ASUvAjGJ8xTuyJZLLByYtzq7LbBmrpPH4PI4gOo52spfkndUwVh8
+	99BGUXpTNPNNLE15W6cScyeagXsD6xMj0AmuIi746XwFj3HSNNqOgilzj3LJnQrnRUMFU+k6iZS
+	vhIOcoXvdW697LTap4V7DjLk18Sj0oQWcNs2cIeQaYkRkAgIkVEKzKv0rPLx6QEv2fkr4KC4H
+X-Received: by 2002:a05:690c:e3e9:b0:81e:6a10:f90f with SMTP id
+ 00721157ae682-892247b1569mr19653357b3.17.1789658811757; Thu, 17 Sep 2026
+ 08:26:51 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 10:26:51 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 10:26:51 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 10:26:51 -0500
+X-Gm-Features: AcwNN1Uo4Oh-sCdav5UCBF5HJzSK-5C3inLPbfXaEB9Wvvjy8bqPTVyepGQhLrs
+Message-ID: <CAPdrGemFw1kHHcYzf9r-1Cw6e72qTw0KO6uxq1qrBCem23Szfg@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail_QP_peer_review_=40_004035a_=E2=80=94_2=2F3=3A_kernel=2C_Proo?=
+	=?UTF-8?Q?fSpecs=2C_replay_=2B_tests?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000be781a065baf69a1"
+
+--000000000000be781a065baf69a1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+cmail QP peer review =E2=80=94 Part 2/3
+
+This part reviews the QP kernel and whether the new =E2=80=9Cproofs=E2=80=
+=9D are actually
+legitimate under the canonical model:
+=CE=A0_QP =3D (K, C, E, J, A, G, =CE=9B, R, =CE=A3)
+
+where frozen contract, exact claim, provenance-bearing evidence, pinned
+judges, TRUE/FALSE/UNKNOWN actuality, hard gates, independent authority,
+transition receipt, and replay are all required.
+
+The short answer: *the new structures point in the right direction, but
+current receipts are not yet QP proofs.* Several core fields exist only
+nominally; replay does not validate them.
+1. qp/kernel.ts: good skeleton, incomplete verifier
+
+Good additions:
+
+   - explicit Actuality =3D TRUE | FALSE | UNKNOWN
+   - AND semantics with FALSE > UNKNOWN > TRUE
+   - structured Evidence
+   - exact Claim
+   - ProofSpec
+   - Grant
+   - TransitionReceipt
+   - receipt hashing
+   - Merkle roots
+   - independent replayReceipt() concept
+
+Keep this shape.
+
+The problem is what replayReceipt() currently fails to verify.
+1.1 Judge hashes are NOT verified
+
+Code explicitly says:
+// In production, we'd verify each judge's source hash matches
+spec.judges[i].program_hash // For now, verify count matches
+
+A judge count is not program identity.
+
+A malicious/different judge implementation can currently be supplied at
+replay time while still satisfying the same ProofSpec.
+
+This breaks J.
+Fix
+
+Replay must receive program bundles keyed by immutable bundle hash and
+reject unless:
+actual source hash =3D=3D spec program hash runtime hash =3D=3D pinned runt=
+ime hash
+dependency hash =3D=3D pinned dependency hash config hash =3D=3D pinned con=
+fig hash
+bundle hash recomputes exactly
+
+Do the same for gates.
+1.2 actuality_dag is ignored
+
+ProofSpec has:
+actuality_dag: string[]
+
+but replay simply computes:
+andDag(...judgeResults.map(r =3D> r.actuality))
+
+The declared DAG is not interpreted or checked.
+
+So K does not actually determine actuality semantics.
+Fix
+
+Represent an explicit deterministic expression tree/DAG such as:
+{ "op": "AND", "children": [ {"judge":"dns_configured"},
+{"judge":"route_configured"}, {"judge":"nonce_observed"} ] }
+
+Replay evaluates that exact frozen tree. Reject undeclared/missing/extra
+judge nodes.
+1.3 Evidence integrity is mostly unchecked
+
+Replay currently checks that provenance fields are present, but not that
+they are true or internally consistent.
+
+Missing checks include:
+evidence.claim_id =3D=3D claim.id sha256(response_payload) =3D=3D response_=
+hash
+recompute evidence.id from canonical evidence body normalized payload hash
+validity collector program identity allowed by ProofSpec collector runtime
+identity provenance signature signer trust provenance_policy_hash semantics
+independence_policy_hash semantics schema validation against
+evidence_schema_hash
+
+At present an evidence object can claim almost any collector/source and
+replay only checks strings exist.
+Fix
+
+Evidence must be content-addressed from a canonical evidence body.
+Suggested split:
+EvidenceEnvelope { claim_id class observed_at source locator
+collector_bundle_hash request_hash response_blob_hash normalized_blob_hash
+nonce independence_group } EvidenceID =3D H(canonical(EvidenceEnvelope))
+
+Raw payload remains content-addressed blob storage. Replay fetches exact
+bytes and recomputes all hashes.
+1.4 Freshness currently fails too open
+
+Current:
+const maxAge =3D spec.freshness[e.class] || 3600;
+
+Unknown evidence classes silently inherit one hour.
+
+Also invalid/future timestamps need explicit rejection/handling; NaN or
+negative age must not silently become fresh.
+Fix
+
+Unknown evidence class under a ProofSpec =3D inadmissible.
+
+Parse timestamps strictly. Require:
+observed_at <=3D settled_at + allowed_clock_skew settled_at - observed_at <=
+=3D
+exact frozen max age 1.5 Claim is not fully bound to ContractRoot
+
+Replay verifies receipt ContractRoot and receipt claim ID, but does not
+verify:
+claim.contract_root =3D=3D computeContractRoot(spec)
+
+Also makeClaim() hashes only predicate + subject; contract semantics are
+not part of the claim ID.
+
+It is reasonable for proposition identity to be independent of proof
+method, but then proof identity must explicitly be (claim_id, contract_root=
+)
+everywhere. Do not allow the same claim object to carry a mismatched root.
+1.6 State transition is not replayed
+
+state_after_root is not recomputed. Replay returns the receipt=E2=80=99s su=
+pplied
+root.
+
+Likewise it does not verify:
+
+   - proposal root from proposal bytes
+   - state_before root against canonical previous state
+   - transition program hash against ProofSpec
+   - transition function output
+   - previous receipt chain
+
+Therefore =CE=A3 currently replays judge results, not the actual committed
+transition.
+Fix
+
+Replay must run a pinned pure transition program:
+(state_before, claim, actuality, gates, authority, proposal) -> state_after
+
+and recompute the exact state root.
+1.7 QP signature is not verified
+
+Receipt contains:
+qp_signer qp_signature
+
+but replay does not verify either.
+
+So an unsigned receipt with empty signature can replay as valid.
+Fix
+
+Have a dedicated settlement signing key / KMS identity. Replay verifies
+signer against a trusted QP signer registry and verifies signature over
+canonical receipt hash/domain-separated bytes.
+
+Do not put this key in the connector/executor runtime.
+2. qp/judges.ts =E2=80=94 current judges are heuristic probes, not proof-gr=
+ade
+judges
+
+Almost every judge relies on regex/string presence instead of exact typed
+claims.
+
+Examples:
+judgeDnsValid
+
+TRUE if some evidence contains Cloudflare MX pattern and some evidence
+contains v=3Dspf1.
+
+It does not bind exact domain, record owner, authoritative DNS source,
+expected record set, or claim ID.
+judgeCfZoneActive
+
+TRUE if a Cloudflare-looking response contains:
+"status":"active"
+
+It does not prove this is the exact domain/account claimed.
+judgeEmailInfrastructure
+
+Uses loose conditions like response containing routing, mailbox, needs_me.
+
+Also the initial filter excludes routing_config, while later code checks
+for that class, so direct routing-config evidence can never reach the
+condition.
+
+Missing evidence becomes FALSE in several paths where QP semantics require
+UNKNOWN.
+judgeHandleAvailable
+
+Ambiguous/malformed evidence becomes FALSE. It should usually be UNKNOWN
+unless an admissible source gives a decisive taken result.
+judgeAccountCreated
+
+Looks for success|created|account_id in a signup response.
+
+That does *not* prove account_owned. Signup acknowledgement is candidate
+evidence; ownership requires authenticated readback/challenge.
+judgeOAuthAuthorized
+
+Looks for substring access_token.
+
+That does not prove exact principal, scopes, active state, expiration, or
+revocation state.
+Required approach
+
+Judges should consume normalized typed evidence only, e.g.:
+{ provider: "youtube", authenticated_principal: "...", channel_id: "UC...",
+scopes: [...], token_status: "active", observed_at: ... }
+
+No regexing arbitrary raw payload as canonical semantics.
+
+Raw payload is provenance evidence; normalized typed projection is what
+deterministic judges reason over.
+3. ProofSpecs are currently descriptive JSON, not frozen executable
+contracts
+
+The 13 new ProofSpecs are useful design docs, but many do not satisfy the
+TypeScript ProofSpec interface and their hashes are placeholders.
+
+Example account_owned.v1.json is missing fields required by ProofSpec:
+claim_schema_hash evidence_schema_hash actuality_dag provenance_policy_hash
+independence_policy_hash transition_program_hash
+
+Its judge is:
+judge_account_authenticated
+
+but the current qp/judges.ts does not implement that judge. It implements
+judgeAccountCreated, which is a different claim entirely.
+
+oauth_authorized.v1.json similarly references judge_oauth_valid, while
+current code exports judgeOAuthAuthorized with different semantics.
+
+domain_available.v1.json is structurally closer, but values such as:
+sha256:judgeRegistrarAvailable sha256:domain_available_schema
+sha256:standard
+
+are labels, not SHA-256 digests of actual program/schema/policy bytes.
+bundle_hash is empty.
+Required fix
+
+Do not hand-author hash-shaped strings.
+
+Build a ProofSpec compiler/registry:
+source schema + actual judge bundle + actual gate bundle + actual
+transition program + provenance policy + independence policy =E2=86=92 comp=
+ute
+hashes automatically =E2=86=92 emit canonical ProofSpec =E2=86=92 compute C=
+ontractRoot
+
+CI must reject:
+
+   - missing program
+   - unknown program ID
+   - empty bundle hash
+   - non-hex/placeholder hash
+   - ProofSpec missing required fields
+   - judge/gate not referenced by actuality DAG
+   - unregistered evidence class
+
+The JSON checked into proofspecs/ should ideally be generated canonical
+artifacts or validated source specs, not trusted because they contain the
+word sha256.
+4. qp/probes/email-roundtrip.ts =E2=80=94 right idea, broken evidence
+implementation
+
+The design is correct:
+nonce =E2=86=92 external sender =E2=86=92 exact mailbox =E2=86=92 exact tok=
+en correlation
+
+But the code currently violates its own Evidence interface.
+
+Evidence requires:
+response_payload: string response_hash: string // SHA256 of
+response_payload
+
+The roundtrip probe omits response_payload and stores raw JSON inside
+response_hash:
+response_hash: JSON.stringify({...})
+
+Then judgeNonceObserved() does:
+JSON.parse(e.response_hash)
+
+So payload and hash semantics are inverted.
+
+This escaped because qp/** is outside tsconfig.
+
+Other issues:
+
+   - timeout/send failure returns boolean valid:false; target Actuality
+   should usually be UNKNOWN absent decisive negative
+   - comment says prerequisites dns_configured and email_route_configured
+   are required, but function does not verify their settled receipts
+   - sender/poll collector authenticity is not established
+   - raw message hash is not actually fetched/verified
+
+Required fix
+
+Make probe output evidence only. It should not declare valid.
+
+QP judge decides actuality from:
+challenge-issued evidence send evidence exact mailbox receive evidence raw
+message bytes/hash prerequisite receipts 5. YouTube prototype contains an
+invalid ownership proof
+
+qp/social/youtube.ts is directionally useful because it goes to Google
+directly for readback/analytics.
+
+But:
+readbackChannel(accessToken, channelId)
+
+calls:
+youtube/v3/channels?id=3D<channelId>&part=3Dstatistics
+
+That proves a channel exists. It does *not* prove the supplied credential
+controls/owns that channel.
+
+Yet generateChannelReadbackEvidence() labels the result:
+claim:account_owned:youtube:<channelId>
+
+This is epistemically invalid.
+Correct ownership proof
+
+Use authenticated principal-bound readback, e.g. channels?mine=3Dtrue, then
+reconcile the exact returned channel ID to the claim. Where the API
+semantics differ, use an equivalent authenticated challenge/readback.
+
+Other YouTube issues:
+
+   - OAuth evidence trusts a caller-supplied scope list; use provider/token
+   introspection or exact authenticated calls
+   - evidence IDs depend on video/channel ID, not evidence content; state
+   changes reuse the same ID
+   - collector hash is hash of literal youtube-adapter, not code bundle
+   - runtime hash is literal node:20, not a content identity
+   - non-OK readbackVideo returns null, conflating not-found with
+   auth/quota/network failures
+   - Analytics returns [] on non-OK, conflating real zero rows with failed
+   observation
+   - raw access/refresh tokens are passed directly; move to
+   vault/credential proxy
+
+For QP, failure to observe must become UNKNOWN/error evidence, not
+empty-success.
+6. qp/social/executor.ts manually fabricates receipt internals
+
+After readback, it constructs a receipt containing:
+contract_root: "" claim_id: ad hoc action/id string state_before_root:
+hash("state:before") transition_program_hash: hash("social-execute")
+prev_receipt_hash: hash("prev") qp_signature: "" qp_signer:
+"social-gateway"
+
+Judge/gate roots are also manually formed from strings rather than actual
+pinned judge/gate result objects.
+
+That is not settlement.
+Required fix
+
+No adapter/gateway may construct a canonical receipt directly.
+
+Only QP settler should be able to produce a TransitionReceipt, after:
+ProofSpec resolution claim resolution program bundle resolution judge
+execution gate execution authority validation state transition replay
+signature append-only persistence
+
+Make receipt constructor internal/private to the kernel.
+7. Parallel incompatible proof system still exists under mcp/
+
+mcp/interface.ts defines another receipt:
+interface QPReceipt { protocol: "acom/0.1"; proof_level: number; gates:
+PASS/FAIL[]; passed: boolean; }
+
+This is incompatible with the new canonical qp/1 TransitionReceipt.
+
+mcp/domain.ts then simulates effects and manufactures successful
+evidence/proofs:
+available: true purchased: true zone_active: true
+
+and grants capabilities from those booleans.
+
+This is exactly the self-promotion model QP is meant to eliminate.
+Required fix
+
+Delete/retire this second proof language. MCP modules may expose
+UI/orchestration interfaces, but there must be ONE QP type system and ONE
+canonical receipt.
+8. qp/edges.ts has identity/direction problems
+
+Good idea: splitting REQUIRES / DERIVES / ENABLES / AUTHORIZES / EFFECTS /
+VERIFIES is correct.
+
+Implementation problems:
+
+   1. buildDomainChain() invents IDs such as:
+
+claim:domain_owned:<domain>
+
+but canonical makeClaim() generates:
+claim:<hash>
+
+These graphs cannot refer to the same claims.
+
+   1.
+
+   evaluationOrder() traverses incoming REQUIRES edges (to(id)) even though
+   REQUIRES is authored dependent =E2=86=92 prerequisite. This likely order=
+s
+   dependents/prerequisites incorrectly.
+   2.
+
+   No cycle detection; visited masks a cycle instead of rejecting invalid
+   proof graph.
+   3.
+
+   Graph is in-memory and not tied to canonical QP store.
+   4.
+
+   AUTHORIZES should target exact action/payload identity, not merely a
+   resulting claim.
+
+Use canonical Claim IDs from the registry and explicit cycle validation.
+9. Adversarial test suite overstates coverage
+
+qp/adversarial.test.ts is useful intent, but several tests do not test what
+their labels claim.
+
+Examples:
+test("missing evidence =E2=86=92 UNKNOWN", andDag() =3D=3D=3D "TRUE")
+
+The assertion contradicts the label.
+
+=E2=80=9Cmailbox B evidence cannot prove mailbox A=E2=80=9D only checks cla=
+im IDs differ;
+it never replays B evidence against A. The kernel currently does not
+enforce evidence claim_id, so a real test should expose that.
+
+The =E2=80=9Cwrong collector hash detected=E2=80=9D test assumes replay ver=
+ifies collector
+program hash, but replay does not.
+
+The consumed-grant test calls validateGrant() after consumeGrant(), but
+validateGrant() does not inspect consumed nonces.
+
+The test helper declares one judge in the spec while constructing receipts
+using two judges.
+
+Also this file itself constructs Evidence without the required
+response_payload, another symptom of it not being typechecked.
+Required test philosophy
+
+Each adversarial test should first be demonstrated RED against an
+intentionally broken implementation, then GREEN after the fix.
+
+Add exact attacks:
+modify max_amount in signed grant modify provider constraint replace judge
+implementation with same ID use evidence for claim B to settle claim A
+change raw payload without response_hash change response_hash without
+payload use unknown evidence class use future/invalid timestamp replace QP
+signature alter previous receipt chain alter state_after_root execute
+effect twice after crash/retry provider timeout after request sent 10.
+README currently overclaims the implementation
+
+README says:
+Every capacity produces a QP receipt =E2=80=94 deterministic, verifiable,
+append-only. Agent proposes =E2=86=92 QP validates authority =E2=86=92 exec=
+utes via adapter
+=E2=86=92 independent readback ... No self-promotion. Receipts are the sole=
+ path
+from UNKNOWN =E2=86=92 ACTIVE.
+
+Those statements are architectural goals, not current runtime facts.
+
+Current code still has direct effects, fabricated capacity evidence,
+in-memory task/capacity truth, unsent migrations, empty receipt signatures,
+and manual receipt construction.
+
+Please mark architecture sections as TARGET ARCHITECTURE until the
+invariants are enforced. Documentation that claims guarantees the code does
+not provide is especially dangerous in a proof system.
+Part 2 verdict
+
+Do NOT treat the 13 JSON files as 13 proofs yet.
+
+A legitimate ProofSpec is not a prose declaration of desired semantics. It
+is a frozen executable contract whose exact schemas, collectors, judges,
+gates, transition program, authority policy, freshness, independence
+requirements and hashes can all be independently replayed.
+
+The current repo has the *shape* of that system. The next work is to make
+those fields real and make settlement impossible without them.
+
+Part 3 gives the exact remediation sequence and how Monid should fit
+underneath QP without becoming part of the trusted truth boundary.
+
+--000000000000be781a065baf69a1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+cmail QP peer review =E2=80=94 Part 2/3
+<p>This part reviews the QP kernel and whether the new =E2=80=9Cproofs=E2=
+=80=9D are actually legitimate under the canonical model:</p>
+
+<code>=CE=A0_QP =3D (K, C, E, J, A, G, =CE=9B, R, =CE=A3)
+</code>
+<p>where frozen contract, exact claim, provenance-bearing evidence, pinned =
+judges, TRUE/FALSE/UNKNOWN actuality, hard gates, independent authority, tr=
+ansition receipt, and replay are all required.</p>
+<p>The short answer: <strong>the new structures point in the right directio=
+n, but current receipts are not yet QP proofs.</strong> Several core fields=
+ exist only nominally; replay does not validate them.</p>
+
+
+
+1. <code>qp/kernel.ts</code>: good skeleton, incomplete verifier
+<p>Good additions:</p>
+<ul>
+<li>explicit <code>Actuality =3D TRUE | FALSE | UNKNOWN</code></li>
+<li>AND semantics with FALSE &gt; UNKNOWN &gt; TRUE</li>
+<li>structured <code>Evidence</code></li>
+<li>exact <code>Claim</code></li>
+<li><code>ProofSpec</code></li>
+<li><code>Grant</code></li>
+<li><code>TransitionReceipt</code></li>
+<li>receipt hashing</li>
+<li>Merkle roots</li>
+<li>independent <code>replayReceipt()</code> concept</li>
+</ul>
+<p>Keep this shape.</p>
+<p>The problem is what <code>replayReceipt()</code> currently fails to veri=
+fy.</p>
+
+1.1 Judge hashes are NOT verified
+<p>Code explicitly says:</p>
+
+<code>// In production, we&#39;d verify each judge&#39;s source hash matche=
+s spec.judges[i].program_hash
+// For now, verify count matches
+</code>
+<p>A judge count is not program identity.</p>
+<p>A malicious/different judge implementation can currently be supplied at =
+replay time while still satisfying the same ProofSpec.</p>
+<p>This breaks <code>J</code>.</p>
+
+Fix
+<p>Replay must receive program bundles keyed by immutable bundle hash and r=
+eject unless:</p>
+
+<code>actual source hash =3D=3D spec program hash
+runtime hash =3D=3D pinned runtime hash
+dependency hash =3D=3D pinned dependency hash
+config hash =3D=3D pinned config hash
+bundle hash recomputes exactly
+</code>
+<p>Do the same for gates.</p>
+
+
+
+1.2 <code>actuality_dag</code> is ignored
+<p>ProofSpec has:</p>
+
+<code>actuality_dag: string[]
+</code>
+<p>but replay simply computes:</p>
+
+<code>andDag(...judgeResults.map(r =3D&gt; r.actuality))
+</code>
+<p>The declared DAG is not interpreted or checked.</p>
+<p>So <code>K</code> does not actually determine actuality semantics.</p>
+
+Fix
+<p>Represent an explicit deterministic expression tree/DAG such as:</p>
+
+<code>{
+  &quot;op&quot;: &quot;AND&quot;,
+  &quot;children&quot;: [
+    {&quot;judge&quot;:&quot;dns_configured&quot;},
+    {&quot;judge&quot;:&quot;route_configured&quot;},
+    {&quot;judge&quot;:&quot;nonce_observed&quot;}
+  ]
+}
+</code>
+<p>Replay evaluates that exact frozen tree. Reject undeclared/missing/extra=
+ judge nodes.</p>
+
+
+
+1.3 Evidence integrity is mostly unchecked
+<p>Replay currently checks that provenance fields are present, but not that=
+ they are true or internally consistent.</p>
+<p>Missing checks include:</p>
+
+<code>evidence.claim_id =3D=3D <a href=3D"http://claim.id">claim.id</a>
+sha256(response_payload) =3D=3D response_hash
+recompute <a href=3D"http://evidence.id">evidence.id</a> from canonical evi=
+dence body
+normalized payload hash validity
+collector program identity allowed by ProofSpec
+collector runtime identity
+provenance signature
+signer trust
+provenance_policy_hash semantics
+independence_policy_hash semantics
+schema validation against evidence_schema_hash
+</code>
+<p>At present an evidence object can claim almost any collector/source and =
+replay only checks strings exist.</p>
+
+Fix
+<p>Evidence must be content-addressed from a canonical evidence body. Sugge=
+sted split:</p>
+
+<code>EvidenceEnvelope {
+  claim_id
+  class
+  observed_at
+  source
+  locator
+  collector_bundle_hash
+  request_hash
+  response_blob_hash
+  normalized_blob_hash
+  nonce
+  independence_group
+}
+
+EvidenceID =3D H(canonical(EvidenceEnvelope))
+</code>
+<p>Raw payload remains content-addressed blob storage. Replay fetches exact=
+ bytes and recomputes all hashes.</p>
+
+
+
+1.4 Freshness currently fails too open
+<p>Current:</p>
+
+<code>const maxAge =3D spec.freshness[e.class] || 3600;
+</code>
+<p>Unknown evidence classes silently inherit one hour.</p>
+<p>Also invalid/future timestamps need explicit rejection/handling; <code>N=
+aN</code> or negative age must not silently become fresh.</p>
+
+Fix
+<p>Unknown evidence class under a ProofSpec =3D inadmissible.</p>
+<p>Parse timestamps strictly. Require:</p>
+
+<code>observed_at &lt;=3D settled_at + allowed_clock_skew
+settled_at - observed_at &lt;=3D exact frozen max age
+</code>
+
+
+
+1.5 Claim is not fully bound to ContractRoot
+<p>Replay verifies receipt ContractRoot and receipt claim ID, but does not =
+verify:</p>
+
+<code>claim.contract_root =3D=3D computeContractRoot(spec)
+</code>
+<p>Also <code>makeClaim()</code> hashes only predicate + subject; contract =
+semantics are not part of the claim ID.</p>
+<p>It is reasonable for proposition identity to be independent of proof met=
+hod, but then proof identity must explicitly be <code>(claim_id, contract_r=
+oot)</code> everywhere. Do not allow the same claim object to carry a misma=
+tched root.</p>
+
+
+
+1.6 State transition is not replayed
+<p><code>state_after_root</code> is not recomputed. Replay returns the rece=
+ipt=E2=80=99s supplied root.</p>
+<p>Likewise it does not verify:</p>
+<ul>
+<li>proposal root from proposal bytes</li>
+<li>state_before root against canonical previous state</li>
+<li>transition program hash against ProofSpec</li>
+<li>transition function output</li>
+<li>previous receipt chain</li>
+</ul>
+<p>Therefore <code>=CE=A3</code> currently replays judge results, not the a=
+ctual committed transition.</p>
+
+Fix
+<p>Replay must run a pinned pure transition program:</p>
+
+<code>(state_before, claim, actuality, gates, authority, proposal)
+    -&gt; state_after
+</code>
+<p>and recompute the exact state root.</p>
+
+
+
+1.7 QP signature is not verified
+<p>Receipt contains:</p>
+
+<code>qp_signer
+qp_signature
+</code>
+<p>but replay does not verify either.</p>
+<p>So an unsigned receipt with empty signature can replay as valid.</p>
+
+Fix
+<p>Have a dedicated settlement signing key / KMS identity. Replay verifies =
+signer against a trusted QP signer registry and verifies signature over can=
+onical receipt hash/domain-separated bytes.</p>
+<p>Do not put this key in the connector/executor runtime.</p>
+
+
+
+2. <code>qp/judges.ts</code> =E2=80=94 current judges are heuristic probes,=
+ not proof-grade judges
+<p>Almost every judge relies on regex/string presence instead of exact type=
+d claims.</p>
+<p>Examples:</p>
+
+<code>judgeDnsValid</code>
+<p>TRUE if some evidence contains Cloudflare MX pattern and some evidence c=
+ontains <code>v=3Dspf1</code>.</p>
+<p>It does not bind exact domain, record owner, authoritative DNS source, e=
+xpected record set, or claim ID.</p>
+
+<code>judgeCfZoneActive</code>
+<p>TRUE if a Cloudflare-looking response contains:</p>
+
+<code>&quot;status&quot;:&quot;active&quot;
+</code>
+<p>It does not prove this is the exact domain/account claimed.</p>
+
+<code>judgeEmailInfrastructure</code>
+<p>Uses loose conditions like response containing <code>routing</code>, <co=
+de>mailbox</code>, <code>needs_me</code>.</p>
+<p>Also the initial filter excludes <code>routing_config</code>, while late=
+r code checks for that class, so direct routing-config evidence can never r=
+each the condition.</p>
+<p>Missing evidence becomes FALSE in several paths where QP semantics requi=
+re UNKNOWN.</p>
+
+<code>judgeHandleAvailable</code>
+<p>Ambiguous/malformed evidence becomes FALSE. It should usually be UNKNOWN=
+ unless an admissible source gives a decisive taken result.</p>
+
+<code>judgeAccountCreated</code>
+<p>Looks for <code>success|created|account_id</code> in a signup response.<=
+/p>
+<p>That does <strong>not</strong> prove <code>account_owned</code>. Signup =
+acknowledgement is candidate evidence; ownership requires authenticated rea=
+dback/challenge.</p>
+
+<code>judgeOAuthAuthorized</code>
+<p>Looks for substring <code>access_token</code>.</p>
+<p>That does not prove exact principal, scopes, active state, expiration, o=
+r revocation state.</p>
+
+Required approach
+<p>Judges should consume normalized typed evidence only, e.g.:</p>
+
+<code>{
+  provider: &quot;youtube&quot;,
+  authenticated_principal: &quot;...&quot;,
+  channel_id: &quot;UC...&quot;,
+  scopes: [...],
+  token_status: &quot;active&quot;,
+  observed_at: ...
+}
+</code>
+<p>No regexing arbitrary raw payload as canonical semantics.</p>
+<p>Raw payload is provenance evidence; normalized typed projection is what =
+deterministic judges reason over.</p>
+
+
+
+3. ProofSpecs are currently descriptive JSON, not frozen executable contrac=
+ts
+<p>The 13 new ProofSpecs are useful design docs, but many do not satisfy th=
+e TypeScript <code>ProofSpec</code> interface and their hashes are placehol=
+ders.</p>
+<p>Example <code>account_owned.v1.json</code> is missing fields required by=
+ <code>ProofSpec</code>:</p>
+
+<code>claim_schema_hash
+evidence_schema_hash
+actuality_dag
+provenance_policy_hash
+independence_policy_hash
+transition_program_hash
+</code>
+<p>Its judge is:</p>
+
+<code>judge_account_authenticated
+</code>
+<p>but the current <code>qp/judges.ts</code> does not implement that judge.=
+ It implements <code>judgeAccountCreated</code>, which is a different claim=
+ entirely.</p>
+<p><code>oauth_authorized.v1.json</code> similarly references <code>judge_o=
+auth_valid</code>, while current code exports <code>judgeOAuthAuthorized</c=
+ode> with different semantics.</p>
+<p><code>domain_available.v1.json</code> is structurally closer, but values=
+ such as:</p>
+
+<code>sha256:judgeRegistrarAvailable
+sha256:domain_available_schema
+sha256:standard
+</code>
+<p>are labels, not SHA-256 digests of actual program/schema/policy bytes. <=
+code>bundle_hash</code> is empty.</p>
+
+Required fix
+<p>Do not hand-author hash-shaped strings.</p>
+<p>Build a ProofSpec compiler/registry:</p>
+
+<code>source schema
++ actual judge bundle
++ actual gate bundle
++ actual transition program
++ provenance policy
++ independence policy
+=E2=86=92 compute hashes automatically
+=E2=86=92 emit canonical ProofSpec
+=E2=86=92 compute ContractRoot
+</code>
+<p>CI must reject:</p>
+<ul>
+<li>missing program</li>
+<li>unknown program ID</li>
+<li>empty bundle hash</li>
+<li>non-hex/placeholder hash</li>
+<li>ProofSpec missing required fields</li>
+<li>judge/gate not referenced by actuality DAG</li>
+<li>unregistered evidence class</li>
+</ul>
+<p>The JSON checked into <code>proofspecs/</code> should ideally be generat=
+ed canonical artifacts or validated source specs, not trusted because they =
+contain the word <code>sha256</code>.</p>
+
+
+
+4. <code>qp/probes/email-roundtrip.ts</code> =E2=80=94 right idea, broken e=
+vidence implementation
+<p>The design is correct:</p>
+
+<code>nonce
+=E2=86=92 external sender
+=E2=86=92 exact mailbox
+=E2=86=92 exact token correlation
+</code>
+<p>But the code currently violates its own <code>Evidence</code> interface.=
+</p>
+<p><code>Evidence</code> requires:</p>
+
+<code>response_payload: string
+response_hash: string // SHA256 of response_payload
+</code>
+<p>The roundtrip probe omits <code>response_payload</code> and stores raw J=
+SON inside <code>response_hash</code>:</p>
+
+<code>response_hash: JSON.stringify({...})
+</code>
+<p>Then <code>judgeNonceObserved()</code> does:</p>
+
+<code>JSON.parse(e.response_hash)
+</code>
+<p>So payload and hash semantics are inverted.</p>
+<p>This escaped because <code>qp/**</code> is outside <code>tsconfig</code>=
+.</p>
+<p>Other issues:</p>
+<ul>
+<li>timeout/send failure returns boolean <code>valid:false</code>; target A=
+ctuality should usually be UNKNOWN absent decisive negative</li>
+<li>comment says prerequisites <code>dns_configured</code> and <code>email_=
+route_configured</code> are required, but function does not verify their se=
+ttled receipts</li>
+<li>sender/poll collector authenticity is not established</li>
+<li>raw message hash is not actually fetched/verified</li>
+</ul>
+
+Required fix
+<p>Make probe output evidence only. It should not declare <code>valid</code=
+>.</p>
+<p>QP judge decides actuality from:</p>
+
+<code>challenge-issued evidence
+send evidence
+exact mailbox receive evidence
+raw message bytes/hash
+prerequisite receipts
+</code>
+
+
+
+5. YouTube prototype contains an invalid ownership proof
+<p><code>qp/social/youtube.ts</code> is directionally useful because it goe=
+s to Google directly for readback/analytics.</p>
+<p>But:</p>
+
+<code>readbackChannel(accessToken, channelId)
+</code>
+<p>calls:</p>
+
+<code>youtube/v3/channels?id=3D&lt;channelId&gt;&amp;part=3Dstatistics
+</code>
+<p>That proves a channel exists. It does <strong>not</strong> prove the sup=
+plied credential controls/owns that channel.</p>
+<p>Yet <code>generateChannelReadbackEvidence()</code> labels the result:</p=
+>
+
+<code>claim:account_owned:youtube:&lt;channelId&gt;
+</code>
+<p>This is epistemically invalid.</p>
+
+Correct ownership proof
+<p>Use authenticated principal-bound readback, e.g. <code>channels?mine=3Dt=
+rue</code>, then reconcile the exact returned channel ID to the claim. Wher=
+e the API semantics differ, use an equivalent authenticated challenge/readb=
+ack.</p>
+<p>Other YouTube issues:</p>
+<ul>
+<li>OAuth evidence trusts a caller-supplied scope list; use provider/token =
+introspection or exact authenticated calls</li>
+<li>evidence IDs depend on video/channel ID, not evidence content; state ch=
+anges reuse the same ID</li>
+<li>collector hash is hash of literal <code>youtube-adapter</code>, not cod=
+e bundle</li>
+<li>runtime hash is literal <code>node:20</code>, not a content identity</l=
+i>
+<li>non-OK <code>readbackVideo</code> returns null, conflating not-found wi=
+th auth/quota/network failures</li>
+<li>Analytics returns <code>[]</code> on non-OK, conflating real zero rows =
+with failed observation</li>
+<li>raw access/refresh tokens are passed directly; move to vault/credential=
+ proxy</li>
+</ul>
+<p>For QP, failure to observe must become UNKNOWN/error evidence, not empty=
+-success.</p>
+
+
+
+6. <code>qp/social/executor.ts</code> manually fabricates receipt internals
+<p>After readback, it constructs a receipt containing:</p>
+
+<code>contract_root: &quot;&quot;
+claim_id: ad hoc action/id string
+state_before_root: hash(&quot;state:before&quot;)
+transition_program_hash: hash(&quot;social-execute&quot;)
+prev_receipt_hash: hash(&quot;prev&quot;)
+qp_signature: &quot;&quot;
+qp_signer: &quot;social-gateway&quot;
+</code>
+<p>Judge/gate roots are also manually formed from strings rather than actua=
+l pinned judge/gate result objects.</p>
+<p>That is not settlement.</p>
+
+Required fix
+<p>No adapter/gateway may construct a canonical receipt directly.</p>
+<p>Only QP settler should be able to produce a <code>TransitionReceipt</cod=
+e>, after:</p>
+
+<code>ProofSpec resolution
+claim resolution
+program bundle resolution
+judge execution
+gate execution
+authority validation
+state transition
+replay
+signature
+append-only persistence
+</code>
+<p>Make receipt constructor internal/private to the kernel.</p>
+
+
+
+7. Parallel incompatible proof system still exists under <code>mcp/</code>
+<p><code>mcp/interface.ts</code> defines another receipt:</p>
+
+<code>interface QPReceipt {
+  protocol: &quot;acom/0.1&quot;;
+  proof_level: number;
+  gates: PASS/FAIL[];
+  passed: boolean;
+}
+</code>
+<p>This is incompatible with the new canonical <code>qp/1</code> Transition=
+Receipt.</p>
+<p><code>mcp/domain.ts</code> then simulates effects and manufactures succe=
+ssful evidence/proofs:</p>
+
+<code>available: true
+purchased: true
+zone_active: true
+</code>
+<p>and grants capabilities from those booleans.</p>
+<p>This is exactly the self-promotion model QP is meant to eliminate.</p>
+
+Required fix
+<p>Delete/retire this second proof language. MCP modules may expose UI/orch=
+estration interfaces, but there must be ONE QP type system and ONE canonica=
+l receipt.</p>
+
+
+
+8. <code>qp/edges.ts</code> has identity/direction problems
+<p>Good idea: splitting <code>REQUIRES / DERIVES / ENABLES / AUTHORIZES / E=
+FFECTS / VERIFIES</code> is correct.</p>
+<p>Implementation problems:</p>
+<ol>
+<li><code>buildDomainChain()</code> invents IDs such as:</li>
+</ol>
+
+<code>claim:domain_owned:&lt;domain&gt;
+</code>
+<p>but canonical <code>makeClaim()</code> generates:</p>
+
+<code>claim:&lt;hash&gt;
+</code>
+<p>These graphs cannot refer to the same claims.</p>
+<ol>
+<li>
+<p><code>evaluationOrder()</code> traverses incoming REQUIRES edges (<code>=
+to(id)</code>) even though REQUIRES is authored dependent =E2=86=92 prerequ=
+isite. This likely orders dependents/prerequisites incorrectly.</p>
+</li>
+<li>
+<p>No cycle detection; <code>visited</code> masks a cycle instead of reject=
+ing invalid proof graph.</p>
+</li>
+<li>
+<p>Graph is in-memory and not tied to canonical QP store.</p>
+</li>
+<li>
+<p><code>AUTHORIZES</code> should target exact action/payload identity, not=
+ merely a resulting claim.</p>
+</li>
+</ol>
+<p>Use canonical Claim IDs from the registry and explicit cycle validation.=
+</p>
+
+
+
+9. Adversarial test suite overstates coverage
+<p><code>qp/adversarial.test.ts</code> is useful intent, but several tests =
+do not test what their labels claim.</p>
+<p>Examples:</p>
+
+<code>test(&quot;missing evidence =E2=86=92 UNKNOWN&quot;, andDag() =3D=3D=
+=3D &quot;TRUE&quot;)
+</code>
+<p>The assertion contradicts the label.</p>
+<p>=E2=80=9Cmailbox B evidence cannot prove mailbox A=E2=80=9D only checks =
+claim IDs differ; it never replays B evidence against A. The kernel current=
+ly does not enforce evidence <code>claim_id</code>, so a real test should e=
+xpose that.</p>
+<p>The =E2=80=9Cwrong collector hash detected=E2=80=9D test assumes replay =
+verifies collector program hash, but replay does not.</p>
+<p>The consumed-grant test calls <code>validateGrant()</code> after <code>c=
+onsumeGrant()</code>, but <code>validateGrant()</code> does not inspect con=
+sumed nonces.</p>
+<p>The test helper declares one judge in the spec while constructing receip=
+ts using two judges.</p>
+<p>Also this file itself constructs Evidence without the required <code>res=
+ponse_payload</code>, another symptom of it not being typechecked.</p>
+
+Required test philosophy
+<p>Each adversarial test should first be demonstrated RED against an intent=
+ionally broken implementation, then GREEN after the fix.</p>
+<p>Add exact attacks:</p>
+
+<code>modify max_amount in signed grant
+modify provider constraint
+replace judge implementation with same ID
+use evidence for claim B to settle claim A
+change raw payload without response_hash
+change response_hash without payload
+use unknown evidence class
+use future/invalid timestamp
+replace QP signature
+alter previous receipt chain
+alter state_after_root
+execute effect twice after crash/retry
+provider timeout after request sent
+</code>
+
+
+
+10. README currently overclaims the implementation
+<p>README says:</p>
+
+<code>Every capacity produces a QP receipt =E2=80=94 deterministic, verifia=
+ble, append-only.
+Agent proposes =E2=86=92 QP validates authority =E2=86=92 executes via adap=
+ter =E2=86=92 independent readback ...
+No self-promotion. Receipts are the sole path from UNKNOWN =E2=86=92 ACTIVE=
+.
+</code>
+<p>Those statements are architectural goals, not current runtime facts.</p>
+<p>Current code still has direct effects, fabricated capacity evidence, in-=
+memory task/capacity truth, unsent migrations, empty receipt signatures, an=
+d manual receipt construction.</p>
+<p>Please mark architecture sections as <code>TARGET ARCHITECTURE</code> un=
+til the invariants are enforced. Documentation that claims guarantees the c=
+ode does not provide is especially dangerous in a proof system.</p>
+
+
+
+Part 2 verdict
+<p>Do NOT treat the 13 JSON files as 13 proofs yet.</p>
+<p>A legitimate ProofSpec is not a prose declaration of desired semantics. =
+It is a frozen executable contract whose exact schemas, collectors, judges,=
+ gates, transition program, authority policy, freshness, independence requi=
+rements and hashes can all be independently replayed.</p>
+<p>The current repo has the <strong>shape</strong> of that system. The next=
+ work is to make those fields real and make settlement impossible without t=
+hem.</p>
+<p>Part 3 gives the exact remediation sequence and how Monid should fit und=
+erneath QP without becoming part of the trusted truth boundary.</p>
+
+--000000000000be781a065baf69a1--

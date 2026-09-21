@@ -1,0 +1,641 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id fEQ0y5uoiRli
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 10:00:28 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=V1YZosQ3rHA/0Q3Pdo4F8bEEW0hjGTQxnLZ5CHod/o923xIKQACObu5ubuthWmH5HrR+gNDLg
+	gY+2lJ2oGpqtJqwOvDxbPiZWlvHQX+ERkH3YVF0ab6PtWail0eJvcUcFmsBDsK2IRXIGgchgdTI
+	xZJDZ4SBgS3iRaY0jWQs2K2zmWytcKQKnPRz64upZuyUDx+GgxK+6qoTWyBNaF22/VYWNSSSwym
+	xDxkrGevYwqFPLzb7iojJJnmyUyM5tqcrpiwHe0fyzMyJ2SzfzfIoQquehEDZBbplEXySJCEg78
+	v0ZMpKxnZho5oJ9ScMDvKtXxok2vuuE3yj67/1+DEVkg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789725628; x=1790330428; bh=hRB57k8h
+	w19zTqVD8uOzZwiuDOPCcgkXMlDm9aWgvm8=; b=CcHFY2R+6OmAz6MvQaKX5nOZu15hkyZjdxD
+	V0XBXInaFH/z07IlzIbMHf05WK/evM/AM2kBT4nkZtX2n9MG404ac+No0/B9xP/fgaK9bC0Hp0p
+	dBGo9Bufz1LdNgwWNVdTI4QfUhOi4cfy770aRhm+N8h3g5Un0/9FiudFxXD/PVYAKRAgEql6OOU
+	HgbNqWk7Ti+4JEdbNcaNfrjgD+5g4QL/NDS+zphEV/s4ImDRqUVjsIv7TD8z2wrResKLdPqEhRn
+	r/VCLBycPtFMTeFoH9Y9l8gf1joLJ89JJDKKGdjqzZyLyjJiU7YjS2NTB7ox9G9pLQMKUyESkVW
+	yHEEtIg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=irnw/YPH;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=irnw/YPH;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4ab20a33so552846d50.1
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 03:00:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789725628; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HoudnhecmkGALznbg1UYxqUN7nKHnWFusDUqmsAQCnYPuOT5y5bHW4OUqnCD0/qZxf
+         GxUPTjdtBxXhHAheWuqug53J1gZQa6eg9TnyVoG+aFyI4BV2ZyBKajpaHNj4wwvmy2zW
+         /IrzVteTiiXrMEwZhuJAOEorlDK6bllZ+HMBPZZY3ThGwjGjDj+QchdgC0DP8//1vndd
+         Sxvx+heQFW27pjLPHaVzvNcyIdGl6Hxn3DfI7YI0+DClgWGbY4aKvsTyt6mrigOhWgbt
+         lPo7KR3sD9qDZinAKazsLfF5dAv0uetIjzoqAJJPL24A1SGAeK0qF+FrjOS0plU0YFBr
+         OQuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=hRB57k8hw19zTqVD8uOzZwiuDOPCcgkXMlDm9aWgvm8=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=BJcL/SWZRXyI7b8HNu4n9B2jXzR3bAxmssYnXoNsPX4vDMMDXMZK+6pZoszTaTWMUb
+         N2AdabL1NAR32G1XQU6WHYt7+AjyBpy1XQH2DzGP3XtvL/t3uSvRPqdajFso2Hd03ewX
+         lgmILRp6Q2IZX1Uo7oEc5aDrduT5eakSsZ/GlLYG+FK/kIOhP0A+odjd3kz1Xp+LMVDc
+         FEP922GiiPEDohOZnJtR9oO6VXa1LSr8M1yXutzVGbHcoYAivowvO1swg4BUZxXxSQ6P
+         ttokCHkiEaUX/Oob0IlaZiPug9gfO+ybzP+oaNXZ61X2aTs/4NsH8jg2VkanR6pL3d+S
+         xEQg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789725628; x=1790330428; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=hRB57k8hw19zTqVD8uOzZwiuDOPCcgkXMlDm9aWgvm8=;
+        b=irnw/YPHd+RzZp/w3U8ljUaPaXAmNNhPYU0RTdtQ91QDDYhOVU6F+/5agSDUcfCQJv
+         D4tbH0+evZI5cRr9KuE/VtpQM3X0d3lylZgTV0tac0fwmlUBK4g9YNXOuWTybiBweJGI
+         RpMFw8J8L4nD5uVddBp+GJGB6M+gDthobtfYhmV2+pOQCCAmY3cLLriYta7gX3YXtZTV
+         Gpi8q/jh7qOKq/tUnnuH8hKXYVnqefEBF3SajbFpUxGwc/4prsNZm97Kt5/8wEZTRlAh
+         AWrElFbn7+tQ2UDb3zWuigYXeWxYKZ0PqFEZRlqLL9JPCOmlocPApJ1YX1EaC1WbKuNH
+         Vrug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789725628; x=1790330428;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hRB57k8hw19zTqVD8uOzZwiuDOPCcgkXMlDm9aWgvm8=;
+        b=X/0+l7kmXCTr/pjzg1+FKteK3KlsWp47oi5ThVMyxs9VBP5FBN3ojJhA4xRPywo0SZ
+         cxSfHDJHaTkKKTEmWulamRm694ZnreJnXXxZ4A8hJcfGtZ0sxsugXWORySHmwdqsUEuT
+         V5xYIkwF6K4w7xqEBLbL+daeLYDVBsrubVKFM27DRwCYXVmbR45xHuW06ogT47Sn5tRb
+         66JJd9QBiLbHFTt8qw1ofnstPhE14A1Ma33bs8C8wUfxQnZOT2FfjxN+6Qc2liTSYdW+
+         dDqXkYUnAkGLm7NNEzE055ZtAo27lgQnVOoRJEBR9DTg07UofJ3T9CfY5Gevx/FonZNa
+         LLFg==
+X-Gm-Message-State: AFuF++kmLtXtGPaYyzrB102+JSuL985fFRPcJAP9guCgANVer1wJy32Q
+	VT0mtL+jEF8InVJz2co5pPBwDf3gKoABv7BzBzfv6jkMATO2ZT2ooAGrAz1nP8oYPQDZnj97kmU
+	Y8vYN9uq8wWLvzN1CuAx5ch3g5GcgP8S+Ww==
+X-Gm-Gg: AYBFou2E55/+TN91psZrpDg3TNF55WBqWSlxpsnImqU8rT0ltwX1MNCia8sCnVnnK69
+	X0xgZbV3GPpVC2Bp9AOyqKLqgsB9Cd+O7ps2RpRZVCIBG9QlClSn24fxXeKfq0Is3kcHVUhACyM
+	yFRRPefS81FCqyBbS27Jb8oLRj3NdYHgJ9CPYidTuEZpTi3RPQSZ/MG3rWmqtqiWIHPgvmO92xH
+	0tGfCioZXxsM17HF3WTfE5r0SeZmE3TNoC/eFsEBBapf4we9bzA+toicTkRxjDf/Fq8vkAqCzGq
+	yLb891S0hMH/q/t6wkL53dvBN4mXOCFvyoZGWCMI1wvi+vx//ozFByw9m/P+GG8J60E7s4II+XB
+	gNA13QxB+2TQrxFrUv6/12ZZQRh5WSubGR0+y7xEGwRum3VVYtt+pOI9KjcJA5TRNjsfKox8=
+X-Received: by 2002:a05:690e:4848:b0:671:2f98:1d4a with SMTP id
+ 956f58d0204a3-6717fdb1f36mr489585d50.56.1789725627144; Fri, 18 Sep 2026
+ 03:00:27 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 05:00:26 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 05:00:26 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 05:00:26 -0500
+X-Gm-Features: AcwNN1XRxEgvNOPn8XPmlC6HSX0_bKkM_1-lvGJ8VKfKxyziAf_BMlHDaZuvM6Y
+Message-ID: <CAPdrGe=p41gKBMd-Wuv2mxjWhsnD2NfN5P97fB7b2YB95FUE_Q@mail.gmail.com>
+Subject: =?UTF-8?B?Um9hc3QucGV0IE5ld3Mg4oCUIDIwMjYtMDktMTggMTY6NTkgQXNpYS9QaG5vbV9QZW5oIA==?=
+	=?UTF-8?B?4oCUIDEwIHN0cm9uZyB0b3BpY3M=?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000405d0a065bbef8fa"
+
+--000000000000405d0a065bbef8fa
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET NEWS SCANNER =E2=80=94 18 Sep 2026, 16:59 Asia/Phnom_Penh
+
+   1.
+
+   IPHONE 18 QUEUE MEME FEST =E2=80=94 MAKE NOW
+   FACT: iPhone 18 Pro/Pro Max went on sale in India Friday, producing long
+   queues in Delhi, Mumbai and Bengaluru; photos/videos are already being
+   turned into memes. Economic Times reports some buyers arrived overnight =
+or
+   before sunrise.
+   ROASTABLE: extraordinary human effort to replace an already-current
+   phone.
+   ANGLES: (a) dog waits 12 hours then asks what changed; (b) cat with
+   iPhone 17 Pro Max joins queue for emotional-support upgrade; =C2=A9 Appl=
+e Store
+   bouncer checks battery health; (d) pet archaeologist discovers last year=
+=E2=80=99s
+   phone; (e) owner says inflation is killing him while camping outside App=
+le.
+   PET: status-obsessed French bulldog / unimpressed orange cat.
+   CLIP: Bulldog camps overnight with tent; cat interviewer asks what his
+   current phone is; =E2=80=9C17 Pro Max=E2=80=9D; cat silently walks away.
+   HOOK: =E2=80=9CPOV: your iPhone is 11 months old.=E2=80=9D
+   SOURCE:
+   https://m.economictimes.com/news/new-updates/life-is-a-race-iphone-18-sa=
+le-sparks-hilarious-meme-fest-from-3-idiots-to-baghban-as-long-queues-form-=
+outside-apple-stores-across-india/articleshow/134324992.cms
+   FRESHNESS: today.
+   NOTE: parody consumer behaviour/product hype; avoid implying specific
+   buyers are financially irresponsible.
+   2.
+
+   CLAUDE IS HELPING BUILD CLAUDE =E2=80=94 MAKE NOW
+   FACT: Anthropic says Claude led 26% of model R&D projects under human
+   supervision in August and collaborated on roughly 90% of R&D tasks.
+   ROASTABLE: recursive corporate succession planning.
+   ANGLES: intern builds next intern; employee conducts own replacement
+   interview; infinite identical border collies; HR asks Claude for success=
+ion
+   plan and receives Claude; =E2=80=9Centry level, 400 years experience.=E2=
+=80=9D
+   PET: hyper-competent border collie engineer.
+   CLIP: boss asks dog to recruit someone smarter; dog rotates laptop
+   revealing identical dog; camera pans to office full of them.
+   HOOK: =E2=80=9CWhen the intern starts building the next intern.=E2=80=9D
+   SOURCE: https://apnews.com/article/4d3a7430f57cbc7c39e1c5f2b7d7e132
+   FRESHNESS: today.
+   NOTE: retain human-supervision qualifier; don=E2=80=99t imply autonomous=
+ RSI
+   already exists.
+   3.
+
+   KING CHARLES MEETS AI BOSSES =E2=80=94 MAKE NOW
+   FACT: King Charles met leaders from OpenAI, Anthropic, Google DeepMind
+   and Nvidia and urged that AI remain controlled and serve people and the
+   planet.
+   ROASTABLE: centuries-old royal protocol meets frontier AI alignment.
+   ANGLES: corgi solves alignment with SIT/STAY; royal warrant for AGI;
+   knight the chatbot; ask superintelligence if it understands =E2=80=9Csta=
+y=E2=80=9D; AI
+   required to bow before deployment.
+   PET: aristocratic corgi alignment officer.
+   CLIP: scientists argue at whiteboard; corgi enters and writes SIT / STAY
+   / GOOD BOY.
+   HOOK: =E2=80=9CBritain has solved AI alignment.=E2=80=9D
+   SOURCE:
+   https://www.stuff.tv/news/king-charles-is-bringing-together-the-worlds-t=
+op-ai-leaders-to-ask-how-we-can-make-tech-good-for-humanity/
+   FRESHNESS: today.
+   NOTE: parody public event/action, not political persuasion.
+   4.
+
+   CLAUDE-ASSISTED RESEARCHERS FIND OPENAI BUGS =E2=80=94 MAKE NOW
+   FACT: Hacktron researchers used Anthropic models while responsibly
+   investigating vulnerabilities in OpenAI systems, disclosed them and
+   received a $6,500 bug bounty; OpenAI patched issues.
+   ROASTABLE: rival AI effectively helps inspect the neighbour=E2=80=99s fe=
+nce.
+   ANGLES: cat security inspector checks rival dog=E2=80=99s gate; Claude s=
+ends
+   OpenAI an invoice; AI derby; $6,500 =E2=80=9Cneighbourhood watch=E2=80=
+=9D payout; dog
+   changes locks while cat watches.
+   PET: tuxedo-cat ethical hacker vs golden-retriever sysadmin.
+   CLIP: cat finds gate open, closes it, rings bell and hands dog invoice.
+   HOOK: =E2=80=9CClaude checked the neighbour=E2=80=99s security.=E2=80=9D
+   SOURCE: https://www.ft.com/content/c4aa118e-a258-48bc-b50e-28e453a95db8
+   FRESHNESS: today.
+   NOTE: frame as authorized/responsible research; don=E2=80=99t reproduce =
+exploit
+   details.
+   5.
+
+   JENSEN HUANG: AI ISN=E2=80=99T AN =E2=80=9CALIEN MIND=E2=80=9D =E2=80=94=
+ MAKE NOW
+   FACT: Jensen Huang publicly pushed back on describing AI as an alien
+   mind, framing it as human-engineered computation.
+   ROASTABLE: literalizing maximalist AI language.
+   ANGLES: alien needs CUDA drivers; UFO queues for GPUs; extraterrestrial
+   gets allocation denied; beagle opens GPU expecting alien; alien complain=
+s
+   about inference bill.
+   PET: conspiracy-theorist beagle.
+   CLIP: beagle ceremonially opens GPU box, waits, then whispers =E2=80=9Ct=
+he alien
+   needs drivers.=E2=80=9D
+   HOOK: =E2=80=9CBREAKING: alien mind requires CUDA.=E2=80=9D
+   SOURCE:
+   https://timesofindia.indiatimes.com/technology/tech-news/nvidia-ceo-jens=
+en-huang-just-told-openai-your-view-of-ai-as-new-form-of-alien-mind-is-wron=
+g-it-is-just-/articleshow/134324486.cms
+   FRESHNESS: today.
+   NOTE: parody terminology, not claim about AI consciousness.
+   6.
+
+   FEDERAL REGISTER BRIEFLY USED QWEN =E2=80=94 MAKE NOW
+   FACT: Reuters reports a U.S. government website operated by the National
+   Archives briefly used Alibaba=E2=80=99s Qwen to help search proposed fed=
+eral
+   regulations; the feature was later removed after online attention.
+   ROASTABLE: geopolitical rhetoric meets tedious search workload.
+   ANGLES: eagle quietly asks panda IT for help; =E2=80=9CAmerican AI leade=
+rship=E2=80=9D
+   speech then Qwen tab; bureaucrat discovers Ctrl+F isn=E2=80=99t enough; =
+procurement
+   meeting becomes awkward; 5,000-page document defeats patriotism.
+   PET: bald-eagle bureaucrat + panda IT tech.
+   CLIP: eagle gives patriotic speech, sees enormous regulation stack,
+   whispers to panda =E2=80=9Ctiny favour?=E2=80=9D
+   HOOK: =E2=80=9CWhen your rival has better search.=E2=80=9D
+   SOURCE:
+   https://www.reuters.com/legal/litigation/us-government-website-used-ai-s=
+earch-tool-china-that-fbi-said-copied-anthropic-2026-09-17/
+   FRESHNESS: today.
+   NOTE: do not imply espionage, compromise or malicious use.
+   7.
+
+   FLORIDA CRAB WITH A BLADE =E2=80=94 MAKE NOW
+   FACT: A viral Florida video appears to show a blue land crab holding a
+   pocket-knife blade while confronting a man and his dog; reporting says t=
+he
+   clip passed 20m views, while exactly how the crab acquired the blade
+   remains unclear.
+   ROASTABLE: already visual, absurd and animal-native.
+   ANGLES: Florida final boss; dog realizes crab came equipped; TSA
+   interview with crab; crustacean crime boss; =E2=80=9Cevolution update in=
+stalled.=E2=80=9D
+   PET: nervous Labrador news correspondent; crab as tiny mob boss.
+   CLIP: Labrador reports live from Florida; crab enters holding blade;
+   reporter immediately signs off.
+   HOOK: =E2=80=9CFlorida wildlife just unlocked tools.=E2=80=9D
+   SOURCE:
+   https://nypost.com/2026/09/17/us-news/blade-wielding-gangster-ass-crab-t=
+ries-attacking-florida-man-dog-shocking-video/
+   FRESHNESS: today.
+   NOTE: describe video cautiously; authenticity/how blade was acquired
+   isn=E2=80=99t established.
+   8.
+
+   TOM CRUISE SAYS TAYLOR SWIFT SCHOOLED HIM ON FOOTBALL =E2=80=94 MAKE NOW
+   FACT: Tom Cruise said on The Tonight Show that Taylor Swift was
+   schooling him on football while they watched a Chiefs game and that they
+   also discussed movies and music.
+   ROASTABLE: Mission: Impossible star receiving basic football onboarding.
+   ANGLES: spy receives classified football briefing; pet Tom studies
+   playbook like mission dossier; Taylor explains downs while dramatic acti=
+on
+   music plays; dog thinks every punt is impossible mission; =E2=80=9Cyour =
+mission,
+   should you choose to accept it: understand pass interference.=E2=80=9D
+   PET: intense Belgian Malinois action hero + calm cat football analyst.
+   CLIP: Malinois gets Mission Impossible-style briefing from cat; reveal
+   objective is understanding third-and-seven.
+   HOOK: =E2=80=9CMISSION: UNDERSTAND FOOTBALL.=E2=80=9D
+   SOURCE:
+   https://people.com/tom-cruise-reveals-what-he-was-talking-to-taylor-swif=
+t-about-as-pair-cheered-on-travis-kelce-chiefs-game-12127236
+   FRESHNESS: today.
+   NOTE: parody public interview; avoid celebrity likeness confusion by
+   using clearly fictional pet analogues.
+   9.
+
+   NEW 3-POUND WILD CAT SPECIES RECOGNIZED =E2=80=94 MAKE NOW
+   FACT: Researchers have identified Leopardus tilcayo, a small Bolivian
+   wild cat, as a distinct species; reporting describes it as roughly three
+   pounds and mini-leopard-like.
+   ROASTABLE: perfect native pet-brand hook: house cats discover taxonomy
+   can be a promotion.
+   ANGLES: LinkedIn =E2=80=9COpen to Species=E2=80=9D; domestic cat demands=
+ peer review;
+   cat asks why neighbour got species promotion; ancestry paperwork at dinn=
+er;
+   tiny leopard has more credentials than owner.
+   PET: status-conscious house cat academic.
+   CLIP: cat reads headline, opens LinkedIn and changes title from Domestic
+   Cat to =E2=80=9CIndependent Feline Taxon.=E2=80=9D
+   HOOK: =E2=80=9CWhen another cat gets promoted to a whole species.=E2=80=
+=9D
+   SOURCE:
+   https://nypost.com/2026/09/17/science/new-cat-species-identified-for-fir=
+st-time-in-100-years-its-3-pounds-and-looks-like-a-mini-leopard/
+   FRESHNESS: today.
+   NOTE: science joke; don=E2=80=99t disturb/conflate wild species with pet=
+s.
+   10.
+
+   BURNING MAN MARMOT HITCHHIKERS =E2=80=94 WATCH / MAKE IF VISUALS FIT
+   FACT: Two yellow-bellied marmots unexpectedly appeared in Bay Area urban
+   locations; rescuers suspect they may have hitchhiked in vehicle
+   undercarriages returning from places including Tahoe, Yosemite, Sequoia =
+or
+   Burning Man. Their exact origin isn=E2=80=99t known.
+   ROASTABLE: tiny accidental festival travelers returning to San Francisco=
+.
+   ANGLES: marmot insists it =E2=80=9Cfound itself in the desert=E2=80=9D; =
+asks for
+   ride-share rating; Burning Man decompression lasts until wildlife rescue=
+;
+   engine-bay Airbnb; pet owner asks what happened at Burning Man and marmo=
+t
+   refuses to discuss it.
+   PET: exhausted festival marmot.
+   CLIP: dusty marmot arrives home, owner asks =E2=80=9CBurning Man?=E2=80=
+=9D; marmot
+   silently drinks water and stares into distance.
+   HOOK: =E2=80=9CYour friend after one week at Burning Man.=E2=80=9D
+   SOURCE:
+   https://people.com/2-yellow-bellied-marmots-found-in-bay-area-may-have-h=
+itched-ride-from-burning-man-12124853
+   FRESHNESS: yesterday/current circulation.
+   NOTE: Burning Man is only one suspected origin; don=E2=80=99t state it a=
+s
+   established fact.
+
+TOP 5 TO MAKE RIGHT NOW
+
+   1. iPhone 18 Queue / =E2=80=9CYour phone is 11 months old=E2=80=9D =E2=
+=80=94 freshest organic
+   meme wave.
+   2. Florida Blade Crab =E2=80=94 absurd visual animal story with native R=
+oast.pet
+   fit.
+   3. Claude Builds Claude =E2=80=94 strongest AI recurring-format seed.
+   4. King Charles Solves Alignment =E2=80=94 instantly legible corgi visua=
+l.
+   5. Tom Cruise Football Mission =E2=80=94 current celebrity/sports crosso=
+ver with
+   a clean premise.
+
+3 REUSABLE JOKE MECHANICS
+
+   1. PET PERFORMANCE REVIEW: translate animal instincts, AI behavior and
+   consumer irrationality into HR/KPI language.
+   2. LITERALIZE THE HEADLINE: alien mind=E2=86=92alien with CUDA;
+   alignment=E2=86=92SIT/STAY; recursive AI=E2=86=92office of identical dog=
+s.
+   3. PET EXPERT / HUMAN ABSURDITY: animal is the calm professional
+   explaining why the humans=E2=80=99 real-world behavior makes no sense.
+
+WATCH NEXT HOUR
+
+   1. iPhone 18 launch-day queue clips/memes: prioritize direct
+   high-engagement posts and any especially absurd buyer quote.
+   2. King Charles AI meeting: watch for a memorable direct quote/photo
+   from participating AI executives.
+   3. Claude self-development disclosures: watch for concrete task examples
+   that can become a more specific sketch.
+
+--000000000000405d0a065bbef8fa
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET NEWS SCANNER =E2=80=94 18 Sep 2026, 16:59 Asia/Phnom_Penh</p>
+<ol>
+<li>
+<p>IPHONE 18 QUEUE MEME FEST =E2=80=94 MAKE NOW<br>
+FACT: iPhone 18 Pro/Pro Max went on sale in India Friday, producing long qu=
+eues in Delhi, Mumbai and Bengaluru; photos/videos are already being turned=
+ into memes. Economic Times reports some buyers arrived overnight or before=
+ sunrise.<br>
+ROASTABLE: extraordinary human effort to replace an already-current phone.<=
+br>
+ANGLES: (a) dog waits 12 hours then asks what changed; (b) cat with iPhone =
+17 Pro Max joins queue for emotional-support upgrade; =C2=A9 Apple Store bo=
+uncer checks battery health; (d) pet archaeologist discovers last year=E2=
+=80=99s phone; (e) owner says inflation is killing him while camping outsid=
+e Apple.<br>
+PET: status-obsessed French bulldog / unimpressed orange cat.<br>
+CLIP: Bulldog camps overnight with tent; cat interviewer asks what his curr=
+ent phone is; =E2=80=9C17 Pro Max=E2=80=9D; cat silently walks away.<br>
+HOOK: =E2=80=9CPOV: your iPhone is 11 months old.=E2=80=9D<br>
+SOURCE: <a href=3D"https://m.economictimes.com/news/new-updates/life-is-a-r=
+ace-iphone-18-sale-sparks-hilarious-meme-fest-from-3-idiots-to-baghban-as-l=
+ong-queues-form-outside-apple-stores-across-india/articleshow/134324992.cms=
+">https://m.economictimes.com/news/new-updates/life-is-a-race-iphone-18-sal=
+e-sparks-hilarious-meme-fest-from-3-idiots-to-baghban-as-long-queues-form-o=
+utside-apple-stores-across-india/articleshow/134324992.cms</a><br>
+FRESHNESS: today.<br>
+NOTE: parody consumer behaviour/product hype; avoid implying specific buyer=
+s are financially irresponsible.</p>
+</li>
+<li>
+<p>CLAUDE IS HELPING BUILD CLAUDE =E2=80=94 MAKE NOW<br>
+FACT: Anthropic says Claude led 26% of model R&amp;D projects under human s=
+upervision in August and collaborated on roughly 90% of R&amp;D tasks.<br>
+ROASTABLE: recursive corporate succession planning.<br>
+ANGLES: intern builds next intern; employee conducts own replacement interv=
+iew; infinite identical border collies; HR asks Claude for succession plan =
+and receives Claude; =E2=80=9Centry level, 400 years experience.=E2=80=9D<b=
+r>
+PET: hyper-competent border collie engineer.<br>
+CLIP: boss asks dog to recruit someone smarter; dog rotates laptop revealin=
+g identical dog; camera pans to office full of them.<br>
+HOOK: =E2=80=9CWhen the intern starts building the next intern.=E2=80=9D<br=
+>
+SOURCE: <a href=3D"https://apnews.com/article/4d3a7430f57cbc7c39e1c5f2b7d7e=
+132">https://apnews.com/article/4d3a7430f57cbc7c39e1c5f2b7d7e132</a><br>
+FRESHNESS: today.<br>
+NOTE: retain human-supervision qualifier; don=E2=80=99t imply autonomous RS=
+I already exists.</p>
+</li>
+<li>
+<p>KING CHARLES MEETS AI BOSSES =E2=80=94 MAKE NOW<br>
+FACT: King Charles met leaders from OpenAI, Anthropic, Google DeepMind and =
+Nvidia and urged that AI remain controlled and serve people and the planet.=
+<br>
+ROASTABLE: centuries-old royal protocol meets frontier AI alignment.<br>
+ANGLES: corgi solves alignment with SIT/STAY; royal warrant for AGI; knight=
+ the chatbot; ask superintelligence if it understands =E2=80=9Cstay=E2=80=
+=9D; AI required to bow before deployment.<br>
+PET: aristocratic corgi alignment officer.<br>
+CLIP: scientists argue at whiteboard; corgi enters and writes SIT / STAY / =
+GOOD BOY.<br>
+HOOK: =E2=80=9CBritain has solved AI alignment.=E2=80=9D<br>
+SOURCE: <a href=3D"https://www.stuff.tv/news/king-charles-is-bringing-toget=
+her-the-worlds-top-ai-leaders-to-ask-how-we-can-make-tech-good-for-humanity=
+/">https://www.stuff.tv/news/king-charles-is-bringing-together-the-worlds-t=
+op-ai-leaders-to-ask-how-we-can-make-tech-good-for-humanity/</a><br>
+FRESHNESS: today.<br>
+NOTE: parody public event/action, not political persuasion.</p>
+</li>
+<li>
+<p>CLAUDE-ASSISTED RESEARCHERS FIND OPENAI BUGS =E2=80=94 MAKE NOW<br>
+FACT: Hacktron researchers used Anthropic models while responsibly investig=
+ating vulnerabilities in OpenAI systems, disclosed them and received a $6,5=
+00 bug bounty; OpenAI patched issues.<br>
+ROASTABLE: rival AI effectively helps inspect the neighbour=E2=80=99s fence=
+.<br>
+ANGLES: cat security inspector checks rival dog=E2=80=99s gate; Claude send=
+s OpenAI an invoice; AI derby; $6,500 =E2=80=9Cneighbourhood watch=E2=80=9D=
+ payout; dog changes locks while cat watches.<br>
+PET: tuxedo-cat ethical hacker vs golden-retriever sysadmin.<br>
+CLIP: cat finds gate open, closes it, rings bell and hands dog invoice.<br>
+HOOK: =E2=80=9CClaude checked the neighbour=E2=80=99s security.=E2=80=9D<br=
+>
+SOURCE: <a href=3D"https://www.ft.com/content/c4aa118e-a258-48bc-b50e-28e45=
+3a95db8">https://www.ft.com/content/c4aa118e-a258-48bc-b50e-28e453a95db8</a=
+><br>
+FRESHNESS: today.<br>
+NOTE: frame as authorized/responsible research; don=E2=80=99t reproduce exp=
+loit details.</p>
+</li>
+<li>
+<p>JENSEN HUANG: AI ISN=E2=80=99T AN =E2=80=9CALIEN MIND=E2=80=9D =E2=80=94=
+ MAKE NOW<br>
+FACT: Jensen Huang publicly pushed back on describing AI as an alien mind, =
+framing it as human-engineered computation.<br>
+ROASTABLE: literalizing maximalist AI language.<br>
+ANGLES: alien needs CUDA drivers; UFO queues for GPUs; extraterrestrial get=
+s allocation denied; beagle opens GPU expecting alien; alien complains abou=
+t inference bill.<br>
+PET: conspiracy-theorist beagle.<br>
+CLIP: beagle ceremonially opens GPU box, waits, then whispers =E2=80=9Cthe =
+alien needs drivers.=E2=80=9D<br>
+HOOK: =E2=80=9CBREAKING: alien mind requires CUDA.=E2=80=9D<br>
+SOURCE: <a href=3D"https://timesofindia.indiatimes.com/technology/tech-news=
+/nvidia-ceo-jensen-huang-just-told-openai-your-view-of-ai-as-new-form-of-al=
+ien-mind-is-wrong-it-is-just-/articleshow/134324486.cms">https://timesofind=
+ia.indiatimes.com/technology/tech-news/nvidia-ceo-jensen-huang-just-told-op=
+enai-your-view-of-ai-as-new-form-of-alien-mind-is-wrong-it-is-just-/article=
+show/134324486.cms</a><br>
+FRESHNESS: today.<br>
+NOTE: parody terminology, not claim about AI consciousness.</p>
+</li>
+<li>
+<p>FEDERAL REGISTER BRIEFLY USED QWEN =E2=80=94 MAKE NOW<br>
+FACT: Reuters reports a U.S. government website operated by the National Ar=
+chives briefly used Alibaba=E2=80=99s Qwen to help search proposed federal =
+regulations; the feature was later removed after online attention.<br>
+ROASTABLE: geopolitical rhetoric meets tedious search workload.<br>
+ANGLES: eagle quietly asks panda IT for help; =E2=80=9CAmerican AI leadersh=
+ip=E2=80=9D speech then Qwen tab; bureaucrat discovers Ctrl+F isn=E2=80=99t=
+ enough; procurement meeting becomes awkward; 5,000-page document defeats p=
+atriotism.<br>
+PET: bald-eagle bureaucrat + panda IT tech.<br>
+CLIP: eagle gives patriotic speech, sees enormous regulation stack, whisper=
+s to panda =E2=80=9Ctiny favour?=E2=80=9D<br>
+HOOK: =E2=80=9CWhen your rival has better search.=E2=80=9D<br>
+SOURCE: <a href=3D"https://www.reuters.com/legal/litigation/us-government-w=
+ebsite-used-ai-search-tool-china-that-fbi-said-copied-anthropic-2026-09-17/=
+">https://www.reuters.com/legal/litigation/us-government-website-used-ai-se=
+arch-tool-china-that-fbi-said-copied-anthropic-2026-09-17/</a><br>
+FRESHNESS: today.<br>
+NOTE: do not imply espionage, compromise or malicious use.</p>
+</li>
+<li>
+<p>FLORIDA CRAB WITH A BLADE =E2=80=94 MAKE NOW<br>
+FACT: A viral Florida video appears to show a blue land crab holding a pock=
+et-knife blade while confronting a man and his dog; reporting says the clip=
+ passed 20m views, while exactly how the crab acquired the blade remains un=
+clear.<br>
+ROASTABLE: already visual, absurd and animal-native.<br>
+ANGLES: Florida final boss; dog realizes crab came equipped; TSA interview =
+with crab; crustacean crime boss; =E2=80=9Cevolution update installed.=E2=
+=80=9D<br>
+PET: nervous Labrador news correspondent; crab as tiny mob boss.<br>
+CLIP: Labrador reports live from Florida; crab enters holding blade; report=
+er immediately signs off.<br>
+HOOK: =E2=80=9CFlorida wildlife just unlocked tools.=E2=80=9D<br>
+SOURCE: <a href=3D"https://nypost.com/2026/09/17/us-news/blade-wielding-gan=
+gster-ass-crab-tries-attacking-florida-man-dog-shocking-video/">https://nyp=
+ost.com/2026/09/17/us-news/blade-wielding-gangster-ass-crab-tries-attacking=
+-florida-man-dog-shocking-video/</a><br>
+FRESHNESS: today.<br>
+NOTE: describe video cautiously; authenticity/how blade was acquired isn=E2=
+=80=99t established.</p>
+</li>
+<li>
+<p>TOM CRUISE SAYS TAYLOR SWIFT SCHOOLED HIM ON FOOTBALL =E2=80=94 MAKE NOW=
+<br>
+FACT: Tom Cruise said on The Tonight Show that Taylor Swift was schooling h=
+im on football while they watched a Chiefs game and that they also discusse=
+d movies and music.<br>
+ROASTABLE: Mission: Impossible star receiving basic football onboarding.<br=
+>
+ANGLES: spy receives classified football briefing; pet Tom studies playbook=
+ like mission dossier; Taylor explains downs while dramatic action music pl=
+ays; dog thinks every punt is impossible mission; =E2=80=9Cyour mission, sh=
+ould you choose to accept it: understand pass interference.=E2=80=9D<br>
+PET: intense Belgian Malinois action hero + calm cat football analyst.<br>
+CLIP: Malinois gets Mission Impossible-style briefing from cat; reveal obje=
+ctive is understanding third-and-seven.<br>
+HOOK: =E2=80=9CMISSION: UNDERSTAND FOOTBALL.=E2=80=9D<br>
+SOURCE: <a href=3D"https://people.com/tom-cruise-reveals-what-he-was-talkin=
+g-to-taylor-swift-about-as-pair-cheered-on-travis-kelce-chiefs-game-1212723=
+6">https://people.com/tom-cruise-reveals-what-he-was-talking-to-taylor-swif=
+t-about-as-pair-cheered-on-travis-kelce-chiefs-game-12127236</a><br>
+FRESHNESS: today.<br>
+NOTE: parody public interview; avoid celebrity likeness confusion by using =
+clearly fictional pet analogues.</p>
+</li>
+<li>
+<p>NEW 3-POUND WILD CAT SPECIES RECOGNIZED =E2=80=94 MAKE NOW<br>
+FACT: Researchers have identified Leopardus tilcayo, a small Bolivian wild =
+cat, as a distinct species; reporting describes it as roughly three pounds =
+and mini-leopard-like.<br>
+ROASTABLE: perfect native pet-brand hook: house cats discover taxonomy can =
+be a promotion.<br>
+ANGLES: LinkedIn =E2=80=9COpen to Species=E2=80=9D; domestic cat demands pe=
+er review; cat asks why neighbour got species promotion; ancestry paperwork=
+ at dinner; tiny leopard has more credentials than owner.<br>
+PET: status-conscious house cat academic.<br>
+CLIP: cat reads headline, opens LinkedIn and changes title from Domestic Ca=
+t to =E2=80=9CIndependent Feline Taxon.=E2=80=9D<br>
+HOOK: =E2=80=9CWhen another cat gets promoted to a whole species.=E2=80=9D<=
+br>
+SOURCE: <a href=3D"https://nypost.com/2026/09/17/science/new-cat-species-id=
+entified-for-first-time-in-100-years-its-3-pounds-and-looks-like-a-mini-leo=
+pard/">https://nypost.com/2026/09/17/science/new-cat-species-identified-for=
+-first-time-in-100-years-its-3-pounds-and-looks-like-a-mini-leopard/</a><br=
+>
+FRESHNESS: today.<br>
+NOTE: science joke; don=E2=80=99t disturb/conflate wild species with pets.<=
+/p>
+</li>
+<li>
+<p>BURNING MAN MARMOT HITCHHIKERS =E2=80=94 WATCH / MAKE IF VISUALS FIT<br>
+FACT: Two yellow-bellied marmots unexpectedly appeared in Bay Area urban lo=
+cations; rescuers suspect they may have hitchhiked in vehicle undercarriage=
+s returning from places including Tahoe, Yosemite, Sequoia or Burning Man. =
+Their exact origin isn=E2=80=99t known.<br>
+ROASTABLE: tiny accidental festival travelers returning to San Francisco.<b=
+r>
+ANGLES: marmot insists it =E2=80=9Cfound itself in the desert=E2=80=9D; ask=
+s for ride-share rating; Burning Man decompression lasts until wildlife res=
+cue; engine-bay Airbnb; pet owner asks what happened at Burning Man and mar=
+mot refuses to discuss it.<br>
+PET: exhausted festival marmot.<br>
+CLIP: dusty marmot arrives home, owner asks =E2=80=9CBurning Man?=E2=80=9D;=
+ marmot silently drinks water and stares into distance.<br>
+HOOK: =E2=80=9CYour friend after one week at Burning Man.=E2=80=9D<br>
+SOURCE: <a href=3D"https://people.com/2-yellow-bellied-marmots-found-in-bay=
+-area-may-have-hitched-ride-from-burning-man-12124853">https://people.com/2=
+-yellow-bellied-marmots-found-in-bay-area-may-have-hitched-ride-from-burnin=
+g-man-12124853</a><br>
+FRESHNESS: yesterday/current circulation.<br>
+NOTE: Burning Man is only one suspected origin; don=E2=80=99t state it as e=
+stablished fact.</p>
+</li>
+</ol>
+<p>TOP 5 TO MAKE RIGHT NOW</p>
+<ol>
+<li>iPhone 18 Queue / =E2=80=9CYour phone is 11 months old=E2=80=9D =E2=80=
+=94 freshest organic meme wave.</li>
+<li>Florida Blade Crab =E2=80=94 absurd visual animal story with native Roa=
+st.pet fit.</li>
+<li>Claude Builds Claude =E2=80=94 strongest AI recurring-format seed.</li>
+<li>King Charles Solves Alignment =E2=80=94 instantly legible corgi visual.=
+</li>
+<li>Tom Cruise Football Mission =E2=80=94 current celebrity/sports crossove=
+r with a clean premise.</li>
+</ol>
+<p>3 REUSABLE JOKE MECHANICS</p>
+<ol>
+<li>PET PERFORMANCE REVIEW: translate animal instincts, AI behavior and con=
+sumer irrationality into HR/KPI language.</li>
+<li>LITERALIZE THE HEADLINE: alien mind=E2=86=92alien with CUDA; alignment=
+=E2=86=92SIT/STAY; recursive AI=E2=86=92office of identical dogs.</li>
+<li>PET EXPERT / HUMAN ABSURDITY: animal is the calm professional explainin=
+g why the humans=E2=80=99 real-world behavior makes no sense.</li>
+</ol>
+<p>WATCH NEXT HOUR</p>
+<ol>
+<li>iPhone 18 launch-day queue clips/memes: prioritize direct high-engageme=
+nt posts and any especially absurd buyer quote.</li>
+<li>King Charles AI meeting: watch for a memorable direct quote/photo from =
+participating AI executives.</li>
+<li>Claude self-development disclosures: watch for concrete task examples t=
+hat can become a more specific sketch.</li>
+</ol>
+
+--000000000000405d0a065bbef8fa--

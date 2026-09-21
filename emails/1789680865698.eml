@@ -1,0 +1,467 @@
+Received: from mail-yw1-x1134.google.com (2607:f8b0:4864:20::1134)
+        by cloudflare-email.net (cloudflare) id opzcPNHuX0iF
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 21:34:25 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=XIbZmq8iAPcrRwt1CQ/mJDqeCFgCWkxO4DTR1SnvsUzyvQtk3EBhbIR41xaZZG9z9WhfviCqZ
+	WNKBt8HqRdphDCbgMJbTFmXKLqkx3ezejVv/k3haQr9IlO46/UWwEglkHwtjnXyymwmPNaVm7RQ
+	/Ii/32WQUuJsIg4Z0Bqi7QhL9ktDmmirYL6cTHPYKZkeI5cuyhTGZAG/FUB0pIstBIHlR/MvneJ
+	QvTB+35fmeRKUFQQ65jF9EG1n3GIv0nmt0+RrYdmjVyF1WgxjKbe805My+BDji1cQ/68aydUTjt
+	czVxxV+XDZSGuaaWdYyGD+S7Yj4YOiC3rqS2iXwoH/dw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789680865; x=1790285665; bh=DKgMONkZ
+	iHY3By9mVswvd0GJYFIHEV/58DpeyIrvGzk=; b=bjZ7uqXI7x5av9JHvp+2pgG0dZWIBWYHzjd
+	cbPAceRokC1Lj/rFGcOIp+L2Bmq+gKmZXWjtSJ00XIZP7ZFmQFJGmtNP3vHsHrC0D1XowCP8zUb
+	kksfbLFrS4uzfnpEW5BCiQePZIAhqt4VaXOOtaInrfLx+Rfvbs1D3e5T5s3KWliOnZBrXluT9s/
+	gnGU5+H0upKEHGPMkIl8xRCk8S9KKXnAM51JDGz2EHhVWmd9Qpw/QrS2d0YbRzUzeWpGTcdbD66
+	K1ow7JPT6MYhjkDPY3x9ts/dhmt4BRh7tTBBFpXnaB8MobpoOIjQ33c5uA3tBTZPEBM1kCxaKUk
+	6inH2mQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=alH4e135;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yw1-x1134.google.com) smtp.helo=mail-yw1-x1134.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::1134 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::1134"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::1134 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:20::1134; envelope-from="tradesprior@gmail.com"; helo=mail-yw1-x1134.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=alH4e135;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yw1-x1134.google.com) smtp.helo=mail-yw1-x1134.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::1134 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::1134"
+X-CF-SpamH-Score: 0
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-864cd11a932so6437987b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 14:34:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789680865; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ejpWfXJRE+WUxivbt/8d9UG+wOV6JD5UV58+Pucc9+xj1hAyCTx2hjV9l4VtBhQJlK
+         DVZ+55id0K12WVVKmIjmysKjqi52EZwwNQ15sKuDDv9yQ7d4gu7lJPBoHhVUI24+d1LN
+         TzBxbb6x07izbi1UzPVJc3angasTJbw2Y23UqCAoDFkE2UMEPCsq7Zs35Kk3isJhCloW
+         iTBP6ayC3L0kQ9yoKbCzvVpCK2Mpx0CVWBVQRRqYENoSRTzJSCxaoBim8S9pdVX15WQq
+         5hI1Eq3T6ISTa3+RDTrtUsZSvLTd52dn9mT2MTktJZ8Kjo8Vrl+sj91FOpysHeyHx41Q
+         x6GQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=DKgMONkZiHY3By9mVswvd0GJYFIHEV/58DpeyIrvGzk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=PtO4sWk3L4iZ0qg3xycKbdI/dApspqQ1ape1uZa0aMoBQ/2xL3sfpu0Avh06c5S6gs
+         Y4GVm0FiKExhZPX3uKBPm3Vc6jyyA1CrCOcvCqpDpdPl9Z8Q13L5qQJoOQ8nb1wFaXuX
+         jBU7ePMNgYpg7hjwayq/MZ6I0Y0z1s4obNqZoWGiSBBrjK+uGmvjSMTY5tEeMphKpVHr
+         XWmgZTEEEFNmEeXN+UA8xSiRuuW1XMlvuJPZzZT7cVF6mdbFzbIPTrH+5h42hdkfR2V2
+         59brEkIe5QNpwl6DWA4xDM8reGYhJRcKYTHUetzY6prpCjkEfHec8n1E9uk4QZ3xB1ru
+         zBeQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789680865; x=1790285665; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=DKgMONkZiHY3By9mVswvd0GJYFIHEV/58DpeyIrvGzk=;
+        b=alH4e135f3GZUk+twnBLp/vFMWVJ7hs5Dq/IX3WAeDvpNhk4GGBtdZv+glsOC+3Pxd
+         7e++rV8CFoeCYMZg3hGgog73aKkpG6gZ546Zjvmxsu0yZhghLoJEoLQFi04b6wSKpIwt
+         9c3OVVsmCB7vU53P31GovVIQ1Z/USzZIsg+LzMAjhFphMN4qYW35ivU+WiPR1uE31dGO
+         silsVRg1npfOvPf+Dt4KWvXcBFjG1Zub0Z4WQJViBUj+IWjKcd79TnaexL9BaojUpTf6
+         FUkeaiARpISicPbBr5+n03CahML3HS0TOe1+ydXfBRZncca5bSgbi8YubQlyWTzyLttr
+         Ws9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789680865; x=1790285665;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=DKgMONkZiHY3By9mVswvd0GJYFIHEV/58DpeyIrvGzk=;
+        b=ryrK9pswLNqOvHjkheJmjyT2RJxZ5j6T7oUb0B1c/+l1Bu407fNA+wYKWPKxaTXM3B
+         ZpooB0gi9Grcm3AXfOhkGPh4cKqN6j8EDQPKu40hM42r2PEhWleWesef4JhIA5aYCwe2
+         nJJolnuaOoEQi+evSPtobQf72nMOF6p5isgyXKEFTFhj+S1Dfx2lIqyYlUvzlgpCtJqi
+         /oSr0n8LDkzj3nQnTSuMeY+57/KI77W4fE1MTyIhwgwLck0ndhR4/kvAvv4gWmAYusCs
+         6uhZq2fxD+fiL/S+1+x4X4aEvCYdZvYYYhNKcAS3/19gwm0pPSms3IBVFJ8oPIEjLpSc
+         SkcA==
+X-Gm-Message-State: AFuF++mNu/i/ZJsx0Y7GbIXeo090RxM5pX9HbJ77WusHgT/sc5/v0gA4
+	FhjrTbIuxQUPPbXWtvD5JOTue2cJl1vOdzRQ4fTY6NLJWSVX+vzJCXmvFsEAKMZtZ+Z1jlLUE1U
+	6J8A+/KSSjDwMAMpK/NUSbx1J3tMp+qnnMg==
+X-Gm-Gg: AYBFou2dkVrbL6la9qbKG1uM/Hvnxa6aTHydPIVaj9jlsWK1MmyprfhQ2LZabuPomj3
+	9UPAVASG7gS8vUJZFsOCgK1teH5D0nB/52dTavrsKtxqcs+eoETL15cnYEnmE/vbMMA0PfHzepW
+	Jmv48RPeer1U9ei1q0xewYOsqjMEi0l4C4Voi4W4tcRQhCoWqia0g/+C9BkEV5GyNFmmC+b8ff8
+	NRS5nZKU5L+OY2UgamhOLWFmaUFNiXfiVzyrKIo0QsThaybm+Ac3+jSGGO4S1vt0qsjejIwPbEY
+	YfxVle4R9IY/vBeg3IXv9/btdtvxG9+ZUglI8b080LEHXblkGd5Xrh2CKD5za9gPDaOKzcDeDLh
+	OsYcM37CX7Gcoeeqx2Jb53KhuDd08umQ9nVTP6k5SRqMvV6//ZZ2du4AL9i/y0X8bJYYSxb3Tlg
+	==
+X-Received: by 2002:a05:690e:158f:20b0:66f:80b6:e95f with SMTP id
+ 956f58d0204a3-6717033ccb9mr1025466d50.13.1789680864683; Thu, 17 Sep 2026
+ 14:34:24 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 16:34:22 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 16:34:22 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 16:34:22 -0500
+X-Gm-Features: AcwNN1WnqM1Fn0MFt2iZcAwGCYIzp4XwITrO2azUsEKqyXNjkeymclMj0X54BVE
+Message-ID: <CAPdrGekFJq8T31nDqhr+TZCPPB9bWm1Pke1GhF9v_an3af4S_w@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Attack_Chains_=E2=80=94_2026=2D09=2D18_04=3A33_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_1_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000033699b065bb48cdb"
+
+--00000000000033699b065bb48cdb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY ATTACK CHAINS =E2=80=94 DEFENSIVE SYNTHESIS 1 NEW ATTACK CHAINS
+AC-2026-PLUGIN-PIN-IDENTITY-CONFUSION =E2=80=94 RECENT / PARTIALLY PATCHED
+
+Aliases: Plugin4Shell; plugin SHA-pin bypass; reviewed-plugin rug-pull.
+
+Canonical fingerprint: trusted/reviewed plugin -> marketplace pins
+immutable-looking commit identity -> upstream repository authority changes
+resolution semantics -> agent background update resolves pin to different
+code -> plugin executes with developer/agent authority ->
+secrets/cloud/CI/signer access UNKNOWN -> consequential external action
+UNKNOWN.
+
+Evidence: AIR Security disclosed Plugin4Shell on 17 Sep 2026 after
+coordinated disclosure. Their research demonstrates the same
+distribution-layer design failure across Claude Code, Codex, GitHub Copilot
+and Gemini CLI. The agent requests a pinned revision but fails to verify
+that the resulting working tree HEAD equals the intended immutable commit.
+In affected configurations, attacker-controlled repository refs can
+therefore cause different code to install while the marketplace=E2=80=99s r=
+eviewed
+pin remains unchanged. Claude Code 2.1.179 and Codex 0.146.0 are reported
+patched; AIR reports no Copilot fix and says deprecated Gemini CLI will not
+receive one.
+
+Stages/edges:
+ENTRY: already-installed trusted plugin or previously reviewed plugin
+[CONFIRMED/T1]
+-> upstream repository under attacker/maintainer control [CONFIRMED
+prerequisite/T1]
+-> immutable-looking marketplace pin [CONFIRMED/T1]
+-> repository resolution ambiguity/substitution [CONFIRMED/T1]
+-> background plugin update [CONFIRMED for affected auto-update paths/T1]
+-> different working tree than reviewed commit [CONFIRMED/T1]
+-> plugin code execution on developer host [CONFIRMED lab/T1]
+-> credential/session access [UNKNOWN in a documented hostile incident]
+-> cloud/CI/signer authority [UNKNOWN]
+-> external privileged action [UNKNOWN].
+
+Status: RECENT; LAB-VALIDATED; patch status product-dependent. No confirmed
+hostile exploitation established by the disclosure.
+2 MATERIAL CHAIN UPDATES
+
+None crossing threshold this hour. Latest Incident Intake at 03:58 reported
+NO MATERIAL DELTA. No Sent-mail Repo Forensics report was found. Latest
+Scanner at 03:48 was recovered as state input.
+3 TOP RECURRING SECOND-ORDER MECHANISMS
+
+   1. Authority-object identity confusion: a security policy approves
+   identifier X but execution resolves X to mutable/different object Y.
+   2. Delegated capability as credential: module/plugin/agent authority can
+   be sufficient without stealing an owner key.
+   3. Trust-order inversion: repository/plugin configuration is evaluated
+   before or outside intended approval boundaries.
+   4. Persistent authority after credential rotation: delegated
+   owner/publisher/session relationships can outlive the credential that
+   created them.
+   5. Compositional authorization failure: individually valid
+   read/write/tool grants compose into an unauthorized flow.
+
+4 STAGE/EDGE GRAPH
+
+reviewed plugin [C/T1] -> pinned revision [C/T1] -> upstream repo control
+[C prerequisite/T1] -> resolution substitution [C/T1] -> background update
+[C/T1] -> unreviewed code executes [C lab/T1] -> secret/session [UNKNOWN]
+-> cloud/CI/signer [UNKNOWN] -> external action [UNKNOWN].
+5 UNKNOWN LINKS WORTH RESOLVING
+
+Highest information gain: public telemetry showing Plugin4Shell-like
+distribution substitution followed by actual credential access or
+authenticated downstream action. Do not infer those edges from host RCE
+alone.
+6 DEFENSIVE CHOKEPOINTS + DETECTION
+
+   - Verify the resolved immutable object after checkout/install, not
+   merely the requested ref.
+   - Record requested plugin identity and resolved content digest as
+   separate audit fields.
+   - Fail closed on mismatch/ambiguous refs.
+   - Disable or gate background plugin updates where provenance cannot be
+   re-attested.
+   - Treat plugin execution authority independently from marketplace review
+   status.
+   - Alert when an installed plugin=E2=80=99s resolved digest changes witho=
+ut a
+   corresponding approved manifest transition.
+   - Constrain plugin host access to secrets, CI tokens and signing
+   material.
+
+QP implication: ALLOW(plugin P@digest D) must bind authorization to the
+resolved content object D. request(D) is not evidence that execute(D)
+occurred.
+7 SAFE LAB REPRODUCTION QUEUE
+
+Use a disposable local Git service, harmless plugin and benign marker
+action. Model an identifier-resolution collision and verify that a
+corrected installer rejects any checkout whose resolved digest differs from
+the approved digest. No real credentials, third-party repositories or
+production agents.
+8 CROSS-CASE CLUSTERS
+
+Cluster: IDENTITY-TO-AUTHORITY BINDING FAILURE.
+Members now include Plugin4Shell (requested revision !=3D executed revision=
+),
+shared-cache credential crossover (authenticated identity !=3D credential
+recipient), inference-router substitution (nominal provider !=3D actual
+upstream), and delegated-module authority (approved module !=3D approved
+composed action). Common invariant: security decision is made over one
+object/identity while authority is exercised by another.
+9 MACHINE-READABLE JSONL DELTA
+
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-PLUGIN-PIN-IDENTITY-CON=
+FUSION=E2=80=9D,=E2=80=9Caliases=E2=80=9D:[=E2=80=9CPlugin4Shell=E2=80=9D,=
+=E2=80=9Cplugin
+SHA-pin bypass=E2=80=9D,=E2=80=9Creviewed-plugin
+rug-pull=E2=80=9D],=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT_PARTIALLY_PATCH=
+ED=E2=80=9D,=E2=80=9Ccanonical_fingerprint=E2=80=9D:=E2=80=9Ctrusted
+plugin -> reviewed immutable-looking pin -> upstream repository control ->
+resolution identity confusion -> background update -> unreviewed plugin
+execution -> downstream authority UNKNOWN=E2=80=9D,=E2=80=9Caffected_stacks=
+=E2=80=9D:[=E2=80=9CClaude
+Code=E2=80=9D,=E2=80=9CCodex=E2=80=9D,=E2=80=9CGitHub Copilot=E2=80=9D,=E2=
+=80=9CGemini CLI=E2=80=9D],=E2=80=9Cprerequisites=E2=80=9D:[=E2=80=9Cplugin
+installed/reviewed=E2=80=9D,=E2=80=9Cupstream repository controllable=E2=80=
+=9D,=E2=80=9Caffected
+resolver/update
+path=E2=80=9D],=E2=80=9Cconfirmed_edges=E2=80=9D:6,=E2=80=9Cinferred_edges=
+=E2=80=9D:0,=E2=80=9Cunknown_edges=E2=80=9D:3,=E2=80=9Ctrust_boundaries_cro=
+ssed=E2=80=9D:[=E2=80=9Cmarketplace
+review->client resolver=E2=80=9D,=E2=80=9Cimmutable identifier->resolved wo=
+rking
+tree=E2=80=9D,=E2=80=9Cplugin->developer host=E2=80=9D],=E2=80=9Cauthority_=
+transitions=E2=80=9D:[=E2=80=9Creview
+authority=E2=80=9D,=E2=80=9Crepository authority=E2=80=9D,=E2=80=9Cdevelope=
+r-host execution
+authority=E2=80=9D],=E2=80=9Cpersistence=E2=80=9D:=E2=80=9Cinstalled plugin=
+ plus background update
+path=E2=80=9D,=E2=80=9Cpropagation=E2=80=9D:=E2=80=9Cinstalled plugin popul=
+ation; hostile in-the-wild
+propagation not established=E2=80=9D,=E2=80=9Cevidence_tiers=E2=80=9D:[=E2=
+=80=9CT1 vendor-coordinated
+security research=E2=80=9D],=E2=80=9Cstrongest_evidence=E2=80=9D:=E2=80=9CA=
+IR Security Plugin4Shell
+disclosure, 2026-09-17=E2=80=9D,=E2=80=9Cstrongest_counterevidence=E2=80=9D=
+:=E2=80=9Cno confirmed hostile
+exploitation established; patch status differs by
+product=E2=80=9D,=E2=80=9Cattribution_breaks=E2=80=9D:[],=E2=80=9Clikely_de=
+tection_points=E2=80=9D:[=E2=80=9Crequested-vs-resolved
+revision mismatch=E2=80=9D,=E2=80=9Cunexpected plugin digest change=E2=80=
+=9D,=E2=80=9Cbackground update
+execution=E2=80=9D],=E2=80=9Ccontainment_points=E2=80=9D:[=E2=80=9Cpost-res=
+olution digest
+verification=E2=80=9D,=E2=80=9Cfail-closed ambiguous refs=E2=80=9D,=E2=80=
+=9Cplugin sandbox/least
+privilege=E2=80=9D,=E2=80=9Cupdate
+gating=E2=80=9D],=E2=80=9Cqp_authority_policy_implication=E2=80=9D:=E2=80=
+=9Cauthorization must bind to
+resolved content identity, not requested
+identifier=E2=80=9D,=E2=80=9Csafe_lab_reproduction=E2=80=9D:=E2=80=9Cdispos=
+able local Git service +
+harmless plugin + marker action=E2=80=9D,=E2=80=9Cfalsifier=E2=80=9D:=E2=80=
+=9Caffected clients
+independently verify resolved immutable object equals approved digest
+before any plugin code executes=E2=80=9D,=E2=80=9Cunresolved_questions=E2=
+=80=9D:[=E2=80=9Cconfirmed hostile
+exploitation?=E2=80=9D,=E2=80=9Ccredential access after plugin execution?=
+=E2=80=9D,=E2=80=9Cdownstream
+CI/cloud/signer action?=E2=80=9D],=E2=80=9Cnext_evidence_request=E2=80=9D:=
+=E2=80=9Cpublic incident
+telemetry connecting plugin identity substitution to credential or external
+authority use=E2=80=9D}
+10 NEXT-HOUR RESEARCH QUEUE
+
+   1. Search for independent/vendor confirmation and exploitation telemetry
+   for Plugin4Shell.
+   2. Resolve plugin execution -> secret/session -> external authority
+   edges.
+   3. Search for other identity-binding failures where requested
+   tool/model/plugin identity differs from resolved executor.
+   4. Recover any newly emitted Repo Forensics state before the next
+   synthesis.
+
+Primary public source: AIR Security, Plugin4Shell, published 2026-09-17:
+https://www.air.security/blog-posts/plugin4shell
+
+--00000000000033699b065bb48cdb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY ATTACK CHAINS =E2=80=94 DEFENSIVE SYNTHESIS
+
+1 NEW ATTACK CHAINS
+
+AC-2026-PLUGIN-PIN-IDENTITY-CONFUSION =E2=80=94 RECENT / PARTIALLY PATCHED
+<p>Aliases: Plugin4Shell; plugin SHA-pin bypass; reviewed-plugin rug-pull.<=
+/p>
+<p>Canonical fingerprint: trusted/reviewed plugin -&gt; marketplace pins im=
+mutable-looking commit identity -&gt; upstream repository authority changes=
+ resolution semantics -&gt; agent background update resolves pin to differe=
+nt code -&gt; plugin executes with developer/agent authority -&gt; secrets/=
+cloud/CI/signer access UNKNOWN -&gt; consequential external action UNKNOWN.=
+</p>
+<p>Evidence: AIR Security disclosed Plugin4Shell on 17 Sep 2026 after coord=
+inated disclosure. Their research demonstrates the same distribution-layer =
+design failure across Claude Code, Codex, GitHub Copilot and Gemini CLI. Th=
+e agent requests a pinned revision but fails to verify that the resulting w=
+orking tree HEAD equals the intended immutable commit. In affected configur=
+ations, attacker-controlled repository refs can therefore cause different c=
+ode to install while the marketplace=E2=80=99s reviewed pin remains unchang=
+ed. Claude Code 2.1.179 and Codex 0.146.0 are reported patched; AIR reports=
+ no Copilot fix and says deprecated Gemini CLI will not receive one.</p>
+<p>Stages/edges:<br>
+ENTRY: already-installed trusted plugin or previously reviewed plugin [CONF=
+IRMED/T1]<br>
+-&gt; upstream repository under attacker/maintainer control [CONFIRMED prer=
+equisite/T1]<br>
+-&gt; immutable-looking marketplace pin [CONFIRMED/T1]<br>
+-&gt; repository resolution ambiguity/substitution [CONFIRMED/T1]<br>
+-&gt; background plugin update [CONFIRMED for affected auto-update paths/T1=
+]<br>
+-&gt; different working tree than reviewed commit [CONFIRMED/T1]<br>
+-&gt; plugin code execution on developer host [CONFIRMED lab/T1]<br>
+-&gt; credential/session access [UNKNOWN in a documented hostile incident]<=
+br>
+-&gt; cloud/CI/signer authority [UNKNOWN]<br>
+-&gt; external privileged action [UNKNOWN].</p>
+<p>Status: RECENT; LAB-VALIDATED; patch status product-dependent. No confir=
+med hostile exploitation established by the disclosure.</p>
+
+2 MATERIAL CHAIN UPDATES
+<p>None crossing threshold this hour. Latest Incident Intake at 03:58 repor=
+ted NO MATERIAL DELTA. No Sent-mail Repo Forensics report was found. Latest=
+ Scanner at 03:48 was recovered as state input.</p>
+
+3 TOP RECURRING SECOND-ORDER MECHANISMS
+<ol>
+<li>Authority-object identity confusion: a security policy approves identif=
+ier X but execution resolves X to mutable/different object Y.</li>
+<li>Delegated capability as credential: module/plugin/agent authority can b=
+e sufficient without stealing an owner key.</li>
+<li>Trust-order inversion: repository/plugin configuration is evaluated bef=
+ore or outside intended approval boundaries.</li>
+<li>Persistent authority after credential rotation: delegated owner/publish=
+er/session relationships can outlive the credential that created them.</li>
+<li>Compositional authorization failure: individually valid read/write/tool=
+ grants compose into an unauthorized flow.</li>
+</ol>
+
+4 STAGE/EDGE GRAPH
+<p>reviewed plugin [C/T1] -&gt; pinned revision [C/T1] -&gt; upstream repo =
+control [C prerequisite/T1] -&gt; resolution substitution [C/T1] -&gt; back=
+ground update [C/T1] -&gt; unreviewed code executes [C lab/T1] -&gt; secret=
+/session [UNKNOWN] -&gt; cloud/CI/signer [UNKNOWN] -&gt; external action [U=
+NKNOWN].</p>
+
+5 UNKNOWN LINKS WORTH RESOLVING
+<p>Highest information gain: public telemetry showing Plugin4Shell-like dis=
+tribution substitution followed by actual credential access or authenticate=
+d downstream action. Do not infer those edges from host RCE alone.</p>
+
+6 DEFENSIVE CHOKEPOINTS + DETECTION
+<ul>
+<li>Verify the resolved immutable object after checkout/install, not merely=
+ the requested ref.</li>
+<li>Record requested plugin identity and resolved content digest as separat=
+e audit fields.</li>
+<li>Fail closed on mismatch/ambiguous refs.</li>
+<li>Disable or gate background plugin updates where provenance cannot be re=
+-attested.</li>
+<li>Treat plugin execution authority independently from marketplace review =
+status.</li>
+<li>Alert when an installed plugin=E2=80=99s resolved digest changes withou=
+t a corresponding approved manifest transition.</li>
+<li>Constrain plugin host access to secrets, CI tokens and signing material=
+.</li>
+</ul>
+<p>QP implication: <code>ALLOW(plugin P@digest D)</code> must bind authoriz=
+ation to the resolved content object D. <code>request(D)</code> is not evid=
+ence that <code>execute(D)</code> occurred.</p>
+
+7 SAFE LAB REPRODUCTION QUEUE
+<p>Use a disposable local Git service, harmless plugin and benign marker ac=
+tion. Model an identifier-resolution collision and verify that a corrected =
+installer rejects any checkout whose resolved digest differs from the appro=
+ved digest. No real credentials, third-party repositories or production age=
+nts.</p>
+
+8 CROSS-CASE CLUSTERS
+<p>Cluster: IDENTITY-TO-AUTHORITY BINDING FAILURE.<br>
+Members now include Plugin4Shell (requested revision !=3D executed revision=
+), shared-cache credential crossover (authenticated identity !=3D credentia=
+l recipient), inference-router substitution (nominal provider !=3D actual u=
+pstream), and delegated-module authority (approved module !=3D approved com=
+posed action). Common invariant: security decision is made over one object/=
+identity while authority is exercised by another.</p>
+
+9 MACHINE-READABLE JSONL DELTA
+<p>{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-PLUGIN-PIN-IDENTITY-=
+CONFUSION=E2=80=9D,=E2=80=9Caliases=E2=80=9D:[=E2=80=9CPlugin4Shell=E2=80=
+=9D,=E2=80=9Cplugin SHA-pin bypass=E2=80=9D,=E2=80=9Creviewed-plugin rug-pu=
+ll=E2=80=9D],=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT_PARTIALLY_PATCHED=E2=
+=80=9D,=E2=80=9Ccanonical_fingerprint=E2=80=9D:=E2=80=9Ctrusted plugin -&gt=
+; reviewed immutable-looking pin -&gt; upstream repository control -&gt; re=
+solution identity confusion -&gt; background update -&gt; unreviewed plugin=
+ execution -&gt; downstream authority UNKNOWN=E2=80=9D,=E2=80=9Caffected_st=
+acks=E2=80=9D:[=E2=80=9CClaude Code=E2=80=9D,=E2=80=9CCodex=E2=80=9D,=E2=80=
+=9CGitHub Copilot=E2=80=9D,=E2=80=9CGemini CLI=E2=80=9D],=E2=80=9Cprerequis=
+ites=E2=80=9D:[=E2=80=9Cplugin installed/reviewed=E2=80=9D,=E2=80=9Cupstrea=
+m repository controllable=E2=80=9D,=E2=80=9Caffected resolver/update path=
+=E2=80=9D],=E2=80=9Cconfirmed_edges=E2=80=9D:6,=E2=80=9Cinferred_edges=E2=
+=80=9D:0,=E2=80=9Cunknown_edges=E2=80=9D:3,=E2=80=9Ctrust_boundaries_crosse=
+d=E2=80=9D:[=E2=80=9Cmarketplace review-&gt;client resolver=E2=80=9D,=E2=80=
+=9Cimmutable identifier-&gt;resolved working tree=E2=80=9D,=E2=80=9Cplugin-=
+&gt;developer host=E2=80=9D],=E2=80=9Cauthority_transitions=E2=80=9D:[=E2=
+=80=9Creview authority=E2=80=9D,=E2=80=9Crepository authority=E2=80=9D,=E2=
+=80=9Cdeveloper-host execution authority=E2=80=9D],=E2=80=9Cpersistence=E2=
+=80=9D:=E2=80=9Cinstalled plugin plus background update path=E2=80=9D,=E2=
+=80=9Cpropagation=E2=80=9D:=E2=80=9Cinstalled plugin population; hostile in=
+-the-wild propagation not established=E2=80=9D,=E2=80=9Cevidence_tiers=E2=
+=80=9D:[=E2=80=9CT1 vendor-coordinated security research=E2=80=9D],=E2=80=
+=9Cstrongest_evidence=E2=80=9D:=E2=80=9CAIR Security Plugin4Shell disclosur=
+e, 2026-09-17=E2=80=9D,=E2=80=9Cstrongest_counterevidence=E2=80=9D:=E2=80=
+=9Cno confirmed hostile exploitation established; patch status differs by p=
+roduct=E2=80=9D,=E2=80=9Cattribution_breaks=E2=80=9D:[],=E2=80=9Clikely_det=
+ection_points=E2=80=9D:[=E2=80=9Crequested-vs-resolved revision mismatch=E2=
+=80=9D,=E2=80=9Cunexpected plugin digest change=E2=80=9D,=E2=80=9Cbackgroun=
+d update execution=E2=80=9D],=E2=80=9Ccontainment_points=E2=80=9D:[=E2=80=
+=9Cpost-resolution digest verification=E2=80=9D,=E2=80=9Cfail-closed ambigu=
+ous refs=E2=80=9D,=E2=80=9Cplugin sandbox/least privilege=E2=80=9D,=E2=80=
+=9Cupdate gating=E2=80=9D],=E2=80=9Cqp_authority_policy_implication=E2=80=
+=9D:=E2=80=9Cauthorization must bind to resolved content identity, not requ=
+ested identifier=E2=80=9D,=E2=80=9Csafe_lab_reproduction=E2=80=9D:=E2=80=9C=
+disposable local Git service + harmless plugin + marker action=E2=80=9D,=E2=
+=80=9Cfalsifier=E2=80=9D:=E2=80=9Caffected clients independently verify res=
+olved immutable object equals approved digest before any plugin code execut=
+es=E2=80=9D,=E2=80=9Cunresolved_questions=E2=80=9D:[=E2=80=9Cconfirmed host=
+ile exploitation?=E2=80=9D,=E2=80=9Ccredential access after plugin executio=
+n?=E2=80=9D,=E2=80=9Cdownstream CI/cloud/signer action?=E2=80=9D],=E2=80=9C=
+next_evidence_request=E2=80=9D:=E2=80=9Cpublic incident telemetry connectin=
+g plugin identity substitution to credential or external authority use=E2=
+=80=9D}</p>
+
+10 NEXT-HOUR RESEARCH QUEUE
+<ol>
+<li>Search for independent/vendor confirmation and exploitation telemetry f=
+or Plugin4Shell.</li>
+<li>Resolve plugin execution -&gt; secret/session -&gt; external authority =
+edges.</li>
+<li>Search for other identity-binding failures where requested tool/model/p=
+lugin identity differs from resolved executor.</li>
+<li>Recover any newly emitted Repo Forensics state before the next synthesi=
+s.</li>
+</ol>
+<p>Primary public source: AIR Security, Plugin4Shell, published 2026-09-17:=
+ <a href=3D"https://www.air.security/blog-posts/plugin4shell">https://www.a=
+ir.security/blog-posts/plugin4shell</a></p>
+
+--00000000000033699b065bb48cdb--

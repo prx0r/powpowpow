@@ -1,0 +1,412 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id pmiU9cuviTHA
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 20:25:39 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=hiIwYH5Vo/D5ppLk4KCCzHuMO9Tc/9LLuAJv7mqCpqyATKDL7fCGBIceyLbBaY8RUyMJMWzkv
+	gz8nQhLftERS9WWkOG8lMdr8spsOryk4h9gbaRaTWW5B3uZ/ltP4oJSsoJ+rueNPN1crqAuYcw7
+	XlXicFxcyZhvcZrHYeTFwKq53L5z+DhxvB+WErYY4DzkoxcS0Yadld9FuNngk9ocXFObFS58Irl
+	Eihp5g+K/6NxW4EzMj6l/4ZrRwTHnqsziOtf7oWAxJpNUezmtOhAPTaZZkNlQABHb2L6k5qzrRl
+	66c/kCJdbsA6nNXHyZZe8lMwPF4u4H4ohPSKq9oYotIg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789849539; x=1790454339; bh=NDWzj1pv
+	rM8L+KWj6RcXFLpcrAp1o3lZ1dzcEtC1kHc=; b=SlXnaRtcGU4wE8KUFdw0dRiijeiIBlmNdoX
+	h1yIr9QCAZnvigVjQWEIXqp/JI3zFBX9VK2X55n7rihmi5AoIMZKAkAW1GUG6v7DKaz0S3lqKkk
+	jsq6OKbltEbm342zgWBPQt1vPJTrFN4OWcc/Elq7nXEREeAxqwdyAkjYqubAui6HFvFHEi5MzWt
+	AKU3mzF5NoIEQvJMInFd1o0gvBjKqlbOkqqHvTryWnV42n9RXrUzH6yzEcvddqR6EOM0DNWdzyZ
+	HwdvGBOaxjtWxgQ4gpPL04BMRnQBcEt8FE+K3lfF1LPcnoARBcayOcCLzLslmcZ/mkAgyJj5+Tz
+	+aXMsmA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VeO+9TrC;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=VeO+9TrC;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4ab201ecso1569265d50.2
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 13:25:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789849539; cv=none;
+        d=google.com; s=arc-20260327;
+        b=WM+HMq/q/XuF1PYtkz1dwG6l0rn8nnXG9y2qeMHOAEZPml4+9fzNcYkfJ2QNQKbGuK
+         QQ2xiI66XLFF3YnpUDsXeC7Kzhe6JJog8zU3o/aoU+uF2IjJLl/GQlpvEeuw8uFf4U8B
+         oR2xUkngVJ7OcnHoiPzDM/JG3KYHWANx41Fh4kWgoZWl2TWGbD+mVbESjSCvhhlt2RGH
+         xVOumObkGBE6jEXcq1yr7SW31wf5nAfzGYWMWQDsn86+DzLL7G+vEtCObx5Fu6CLfIDS
+         ri4M3uld+r4nSfR16/rbYkxU4F3nGykd4I4m9XdNmEkl+VxZd9c8elpvCd+EZ5l1lYzI
+         sPkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=NDWzj1pvrM8L+KWj6RcXFLpcrAp1o3lZ1dzcEtC1kHc=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=L22DiRDD55GhuC/MPw4BxJbPpCe12qiMEvngIr4tdhypCDjoGJXMrNvqn68CkihSAe
+         lqFes6rybp0V1YQWDLnL6TTsbmA+gKXILr8N3CatKsdwqhwdyc4NMyDxxYl7vt75BFEJ
+         +RAaLGiK8Kcx2/DQYDoNXGc67E0/xiFmVhPSyxM5E6P/tnki8Mm9opJiUA3Q0kKaKWI0
+         8nIiiSwgiWq9ow75mKTRngfPSDwDi/CwF/CyTVhKZ/ms7An9t1va01AToVN19rP6KoDf
+         2LOUQIumnqLKccQDimzX7KYT8d7u57GH3Or7d2zDO3bYLczaPnnIQ+n+YftYtSmbkTKh
+         7yxQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789849539; x=1790454339; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=NDWzj1pvrM8L+KWj6RcXFLpcrAp1o3lZ1dzcEtC1kHc=;
+        b=VeO+9TrCy/g+UXHvlvm3rITvQDlDMphPgZBEJ834SawwMhsDSIoCFLig4w+66nI+fP
+         QssRa8eh7o2dFdFpEoyfTDzDYzws3bsCKCgvumoNDjt3BPGxrpWDz/UC/TYrcQt3WC5h
+         azZxZUCDZoTWDMmu27UyZx04/KbMXXgfy7sbXMSNg4/J8nDhxkuUVCH3/rx0RQmgWAl+
+         F+Bx3jmxJWPAs7MURadf7EyToxFSCUrw2cJFjvaDt+NkzP3U+dBmf0toCYoIOcLGQb3d
+         R4XtBZ69A/I2wCf5Y1unX3ZAnY5D7MsZAklUAFUyQZLqKUf6SwJNEzYdVFzBHRbyH8Yz
+         jAIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789849539; x=1790454339;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=NDWzj1pvrM8L+KWj6RcXFLpcrAp1o3lZ1dzcEtC1kHc=;
+        b=kX3EJFVnhTZHiGZ6AVDTp42gva63pomjh1rs1srGZHygY6KLC7KuUY9cB8lov69/YJ
+         RdanaT0n2bFf8C07f8V3C6/UmNdhH94AubTWjkAqR3e29+O61loiQfWpQq1LhFeiJSEQ
+         m54eaqf6iKRXXwxLYWVbWjd+OrHqyfHGARHoiDUk0SYsxcP/m7/f2IZSLeWp6ySKBQYH
+         v4m4Ahiwf8m4YG/1WphhzWtv1Xr1InsCHia5HxsxClxExwja19W+jh9YrajyK4C/dEXT
+         UAwfmZJlx7kvGh3h/J6pGwA1sDC0ylHW16UZlr22gxVsYEY2wyQnhFr1ivmSevs4aSxj
+         FyWg==
+X-Gm-Message-State: AFuF++nU7HI/on2wPIiyifxMGBpmiZ/slwMBnOAEPIHZmmoyZieEhM+7
+	BTprRbARAURTRr6ZnBAiYEP8QXstzIehvAGJyApYh98aXXQc9virAVAlAhalds02zGbL9DouC61
+	bAgQzwPTijZ41siEbbPFad8udpteSFtwiXA==
+X-Gm-Gg: AYBFou3+CoTQnyWkPIWstEZU8ROlS7/bZlQ3oRXv954Fz+oJ+jzbROIVMIWADA4VIUm
+	eIevwHuD6b+NAFmZL/YauEgerd+eg+l6jUII83k1kfO1gZ0OPj4/ku1Wl38T61NxUygQPIQ474D
+	+QIK8G8kYBk67RiLBeOmvO1nrjQiVd2Ftbhw74XaHHptcKl9V55mnCcjlMVoCjDx2w3h5sPVrye
+	hJr2S4TPqB1EFjEzs9ZLWnRFzTmt30+yexHG2cE9KIlyqD494LEKPvpnW7azEuh2y3MUO8vnAEH
+	E+PfWjDBcJMo2ub7lArAvmDi9+CCxEELRj2aDjMMvKRKVMrKDxO2VZhKX4/YKLZRB+33gDHnEqC
+	0kbIw+4z4K/a2wKfcTrlM5fGaETAHf51zAiok3JLJwVNJRXvmUWKM4zL652WFPRTLazaTEqDa
+X-Received: by 2002:a05:690e:43c2:b0:672:99e1:11e7 with SMTP id
+ 956f58d0204a3-67299e117f5mr434983d50.132.1789849539233; Sat, 19 Sep 2026
+ 13:25:39 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 15:25:38 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 15:25:38 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 15:25:38 -0500
+X-Gm-Features: AcwNN1VUfWdEld2u3A5c5RaTIogcs95LFJqhDs3udBkb-ONZJ0h2e3T9V4V9My0
+Message-ID: <CAPdrGen8aSNbQgMThRfSWidijT+RvqtwWaRvGW5xpDEDN+ZwnA@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D20_03=3A2?=
+	=?UTF-8?Q?4_Asia=2FPhnom=5FPenh_=E2=80=94_4_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000fccb2f065bdbd108"
+
+--000000000000fccb2f065bdbd108
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 4 useful new finds
+
+This pass screened 25+ plausible projects/results across GitHub, Hugging
+Face/community trails, pet lip-sync, browser TTS, transparent media, WebAR
+and commerce automation, and removed prior-run discoveries.
+
+   1.
+
+   HeadTTS =E2=80=94 met4citizen/HeadTTS
+   https://github.com/met4citizen/HeadTTS
+   MIT; 50 commits; 26 forks. Free Kokoro TTS that returns audio plus word
+   timestamps, phonemes and Oculus visemes (aa, E, I, O, U, PP, SS, TH, CH,
+   FF, kk, nn, RR, DD, sil). Runs entirely in browser via WebGPU/WASM or as
+   Node REST/WebSocket service. Uses MIT/Apache runtime dependencies and
+   explicitly avoids GPL eSpeak.
+   ROAST.PET STEP SOLVED: TTS + caption timing + mouth-state timing in ONE
+   inference. This can delete our proposed Kokoro =E2=86=92 Whisper timesta=
+mps =E2=86=92
+   phoneme/viseme conversion chain.
+   ROUTE: npm/CDN @met4citizen/headtts; connect to webgpu/wasm or POST
+   /v1/synthesize. Output already contains words/wtimes/wdurations +
+   visemes/vtimes/vdurations + phonemes.
+   DEPENDENCIES/HW: Transformers.js + ONNX Kokoro; browser WebGPU
+   preferred, WASM fallback slower; CPU/WebGPU Node supported. English only
+   currently.
+   EVIDENCE: browser demo, REST/WebSocket implementation, tests, 50
+   commits, explicit timestamp/viseme response schema.
+   WORK REPLACED: likely the whole speech-timing/viseme worker and separate
+   transcription pass.
+   DIFFICULTY: LOW. MAINTENANCE: LOW-MEDIUM.
+   EXPERIMENT: generate 20 canonical Roast.pet roast lines and map its 15
+   Oculus visemes down to our 5-8 pet mouth sprites. Compare sync against
+   Kokoro=E2=86=92Whisper and amplitude-only Catsync.
+   VERDICT: REUSE NOW.
+   2.
+
+   Alpha Video Kit =E2=80=94 stepancar/alpha-video-kit
+   https://github.com/stepancar/alpha-video-kit
+   MIT; 36 commits; 4 stars. Uses stacked-alpha video: RGB in top half,
+   grayscale alpha in bottom half, decoded by WebGL/WebGPU/SVG/Canvas. Beca=
+use
+   the underlying file is ordinary opaque H.264/AV1/VP9, it avoids native
+   alpha-codec compatibility entirely. Provides custom elements with a norm=
+al
+   -like API and an in-browser ffmpeg.wasm converter.
+   ROAST.PET STEP SOLVED: portable transparent animated pets without
+   maintaining WebM-alpha vs HEVC-alpha Safari branches.
+   ROUTE: npm @alpha-video-kit/webgl (or webgpu/svg); .
+   DEPENDENCIES/HW: normal browser video decode + WebGL/WebGPU; converter
+   uses ffmpeg.wasm.
+   EVIDENCE: three renderer backends, demo, browser tests, 36 commits, MIT.
+   WORK REPLACED: transparent codec detection/fallback code and potentially
+   dual asset generation.
+   DIFFICULTY: LOW. MAINTENANCE: LOW.
+   EXPERIMENT: encode the same 5-second transparent pet as (A) VP9 alpha +
+   HEVC alpha and (B) stacked-alpha H.264; test iPhone Safari + Android Chr=
+ome
+   for bytes, decode CPU, edge quality and startup.
+   VERDICT: BENCHMARK NOW / likely REUSE.
+   3.
+
+   arspace =E2=80=94 emb-ai/arspace
+   https://github.com/emb-ai/arspace
+   MIT; 52 commits; 16 stars. Browser WebAR project made to animate printed
+   research posters. Crucially, it is not merely another one-target demo:
+   media is organized as image/video pairs, a Python manifest generator sca=
+ns
+   the directory automatically, optimization scripts compress images/video,
+   and multiple MindAR targets map to media by manifest/index.
+   ROAST.PET STEP SOLVED: scalable card/poster =E2=86=92 AR-video packaging=
+ when
+   there are many customer assets, rather than hand-editing JS per order.
+   ROUTE: put card.jpg + card.mp4 into assets/media, optimize, compile
+   target(s), run tools/generate-manifest.py, static deploy.
+   DEPENDENCIES/HW: MindAR, browser camera, Python utilities, static HTTPS
+   hosting.
+   EVIDENCE: live arspace.ru demo, 52 commits, explicit multi-media
+   manifest workflow.
+   WORK REPLACED: order-specific AR JS editing, media manifest plumbing and
+   basic asset optimization scripts.
+   DIFFICULTY: LOW. MAINTENANCE: LOW.
+   EXPERIMENT: generate 10 fake Roast.pet card/video pairs, run manifest
+   generation, compile one multi-target .mind and verify every physical car=
+d
+   launches only its matching roast.
+   VERDICT: COPY/FORK PACKAGING MECHANISM.
+   4.
+
+   HeadAudio =E2=80=94 met4citizen/HeadAudio
+   https://github.com/met4citizen/HeadAudio
+   MIT, dependency-free browser AudioWorklet. Uses MFCC feature vectors +
+   Gaussian prototypes + Mahalanobis-distance classification to generate
+   Oculus viseme blend-shape values in real time from arbitrary audio. Test=
+ed
+   in Chrome/Edge/Firefox/Safari desktop plus iPad/iPhone. Author explicitl=
+y
+   notes it is less accurate than text-driven lip sync.
+   ROAST.PET STEP SOLVED: lip-sync for customer-uploaded audio, recordings,
+   or arbitrary clips where we do NOT have TTS text/timestamps.
+   ROUTE: browser AudioWorklet integrated into animation loop; consumes
+   audio, emits viseme weights.
+   DEPENDENCIES/HW: browser only; no server/external dependencies.
+   EVIDENCE: working tester/demo and cross-browser/mobile testing reported
+   by author.
+   WORK REPLACED: server transcription/phoneme alignment for the fallback
+   arbitrary-audio path.
+   DIFFICULTY: LOW-MEDIUM. MAINTENANCE: LOW.
+   EXPERIMENT: same 10 spoken clips through HeadAudio vs Catsync amplitude
+   mapping; collapse both to our pet mouth states and blind-score perceived
+   sync.
+   VERDICT: BENCHMARK / COPY FALLBACK.
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+   1. TTS=E2=86=92word timestamps=E2=86=92phonemes=E2=86=92visemes: HeadTTS=
+ already returns all of
+   them in one call.
+   2. A separate Whisper pass for generated Roast.pet speech: unnecessary
+   if HeadTTS timing is accurate enough.
+   3. Browser alpha-codec compatibility logic before testing stacked-alpha
+   H.264.
+   4. Per-order hand-edited AR pages/manifests: arspace already turns media
+   folders into manifests.
+   5. Transcript/phoneme infrastructure for arbitrary uploaded audio before
+   benchmarking HeadAudio as the cheap fallback.
+
+ARCHITECTURE UPDATE
+The speech path can become dramatically smaller:
+script =E2=86=92 HeadTTS =E2=86=92 {audio, words/times, phonemes, visemes/t=
+imes} =E2=86=92 map 15
+human visemes to 5-8 pet mouth states =E2=86=92 deterministic actor =E2=86=
+=92 transparent
+pet video =E2=86=92 Alpha Video Kit =E2=86=92 AR/card/social.
+
+For non-TTS audio:
+audio =E2=86=92 HeadAudio (better viseme hypothesis) OR Catsync (cheap ampl=
+itude
+fallback) =E2=86=92 same pet-mouth-state interface.
+
+MOST SURPRISING HOBBY PROJECT
+HeadTTS. It already emits the exact three artifacts Roast.pet was going to
+derive separately=E2=80=94audio, word-level caption timing, and lip-sync
+visemes=E2=80=94from Kokoro, locally and MIT licensed.
+
+FASTEST INTEGRATION WIN
+HeadTTS. Generate one roast, read visemes/vtimes, collapse to our mouth
+sprite set and render. This is a one-evening benchmark that could delete
+multiple pipeline stages.
+
+REPO/AUTHOR WORTH FOLLOWING
+met4citizen. HeadTTS + HeadAudio together cover both halves of our problem:
+exact text-driven lip sync when we control speech, and real-time
+audio-driven visemes when we do not. Their TalkingHead adjacency is also
+directly relevant to our actor-control architecture.
+
+--000000000000fccb2f065bdbd108
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Roast.pet Weird Builder Projects =E2=80=94 4 useful new finds</p>
+<p>This pass screened 25+ plausible projects/results across GitHub, Hugging=
+ Face/community trails, pet lip-sync, browser TTS, transparent media, WebAR=
+ and commerce automation, and removed prior-run discoveries.</p>
+<ol>
+<li>
+<p>HeadTTS =E2=80=94 met4citizen/HeadTTS<br>
+<a href=3D"https://github.com/met4citizen/HeadTTS">https://github.com/met4c=
+itizen/HeadTTS</a><br>
+MIT; 50 commits; 26 forks. Free Kokoro TTS that returns audio plus word tim=
+estamps, phonemes and Oculus visemes (aa, E, I, O, U, PP, SS, TH, CH, FF, k=
+k, nn, RR, DD, sil). Runs entirely in browser via WebGPU/WASM or as Node RE=
+ST/WebSocket service. Uses MIT/Apache runtime dependencies and explicitly a=
+voids GPL eSpeak.<br>
+ROAST.PET STEP SOLVED: TTS + caption timing + mouth-state timing in ONE inf=
+erence. This can delete our proposed Kokoro =E2=86=92 Whisper timestamps =
+=E2=86=92 phoneme/viseme conversion chain.<br>
+ROUTE: npm/CDN @met4citizen/headtts; connect to webgpu/wasm or POST /v1/syn=
+thesize. Output already contains words/wtimes/wdurations + visemes/vtimes/v=
+durations + phonemes.<br>
+DEPENDENCIES/HW: Transformers.js + ONNX Kokoro; browser WebGPU preferred, W=
+ASM fallback slower; CPU/WebGPU Node supported. English only currently.<br>
+EVIDENCE: browser demo, REST/WebSocket implementation, tests, 50 commits, e=
+xplicit timestamp/viseme response schema.<br>
+WORK REPLACED: likely the whole speech-timing/viseme worker and separate tr=
+anscription pass.<br>
+DIFFICULTY: LOW. MAINTENANCE: LOW-MEDIUM.<br>
+EXPERIMENT: generate 20 canonical Roast.pet roast lines and map its 15 Ocul=
+us visemes down to our 5-8 pet mouth sprites. Compare sync against Kokoro=
+=E2=86=92Whisper and amplitude-only Catsync.<br>
+VERDICT: REUSE NOW.</p>
+</li>
+<li>
+<p>Alpha Video Kit =E2=80=94 stepancar/alpha-video-kit<br>
+<a href=3D"https://github.com/stepancar/alpha-video-kit">https://github.com=
+/stepancar/alpha-video-kit</a><br>
+MIT; 36 commits; 4 stars. Uses stacked-alpha video: RGB in top half, graysc=
+ale alpha in bottom half, decoded by WebGL/WebGPU/SVG/Canvas. Because the u=
+nderlying file is ordinary opaque H.264/AV1/VP9, it avoids native alpha-cod=
+ec compatibility entirely. Provides custom elements with a normal -like API=
+ and an in-browser ffmpeg.wasm converter.<br>
+ROAST.PET STEP SOLVED: portable transparent animated pets without maintaini=
+ng WebM-alpha vs HEVC-alpha Safari branches.<br>
+ROUTE: npm @alpha-video-kit/webgl (or webgpu/svg); .<br>
+DEPENDENCIES/HW: normal browser video decode + WebGL/WebGPU; converter uses=
+ ffmpeg.wasm.<br>
+EVIDENCE: three renderer backends, demo, browser tests, 36 commits, MIT.<br=
+>
+WORK REPLACED: transparent codec detection/fallback code and potentially du=
+al asset generation.<br>
+DIFFICULTY: LOW. MAINTENANCE: LOW.<br>
+EXPERIMENT: encode the same 5-second transparent pet as (A) VP9 alpha + HEV=
+C alpha and (B) stacked-alpha H.264; test iPhone Safari + Android Chrome fo=
+r bytes, decode CPU, edge quality and startup.<br>
+VERDICT: BENCHMARK NOW / likely REUSE.</p>
+</li>
+<li>
+<p>arspace =E2=80=94 emb-ai/arspace<br>
+<a href=3D"https://github.com/emb-ai/arspace">https://github.com/emb-ai/ars=
+pace</a><br>
+MIT; 52 commits; 16 stars. Browser WebAR project made to animate printed re=
+search posters. Crucially, it is not merely another one-target demo: media =
+is organized as image/video pairs, a Python manifest generator scans the di=
+rectory automatically, optimization scripts compress images/video, and mult=
+iple MindAR targets map to media by manifest/index.<br>
+ROAST.PET STEP SOLVED: scalable card/poster =E2=86=92 AR-video packaging wh=
+en there are many customer assets, rather than hand-editing JS per order.<b=
+r>
+ROUTE: put card.jpg + card.mp4 into assets/media, optimize, compile target(=
+s), run tools/generate-manifest.py, static deploy.<br>
+DEPENDENCIES/HW: MindAR, browser camera, Python utilities, static HTTPS hos=
+ting.<br>
+EVIDENCE: live <a href=3D"http://arspace.ru">arspace.ru</a> demo, 52 commit=
+s, explicit multi-media manifest workflow.<br>
+WORK REPLACED: order-specific AR JS editing, media manifest plumbing and ba=
+sic asset optimization scripts.<br>
+DIFFICULTY: LOW. MAINTENANCE: LOW.<br>
+EXPERIMENT: generate 10 fake Roast.pet card/video pairs, run manifest gener=
+ation, compile one multi-target .mind and verify every physical card launch=
+es only its matching roast.<br>
+VERDICT: COPY/FORK PACKAGING MECHANISM.</p>
+</li>
+<li>
+<p>HeadAudio =E2=80=94 met4citizen/HeadAudio<br>
+<a href=3D"https://github.com/met4citizen/HeadAudio">https://github.com/met=
+4citizen/HeadAudio</a><br>
+MIT, dependency-free browser AudioWorklet. Uses MFCC feature vectors + Gaus=
+sian prototypes + Mahalanobis-distance classification to generate Oculus vi=
+seme blend-shape values in real time from arbitrary audio. Tested in Chrome=
+/Edge/Firefox/Safari desktop plus iPad/iPhone. Author explicitly notes it i=
+s less accurate than text-driven lip sync.<br>
+ROAST.PET STEP SOLVED: lip-sync for customer-uploaded audio, recordings, or=
+ arbitrary clips where we do NOT have TTS text/timestamps.<br>
+ROUTE: browser AudioWorklet integrated into animation loop; consumes audio,=
+ emits viseme weights.<br>
+DEPENDENCIES/HW: browser only; no server/external dependencies.<br>
+EVIDENCE: working tester/demo and cross-browser/mobile testing reported by =
+author.<br>
+WORK REPLACED: server transcription/phoneme alignment for the fallback arbi=
+trary-audio path.<br>
+DIFFICULTY: LOW-MEDIUM. MAINTENANCE: LOW.<br>
+EXPERIMENT: same 10 spoken clips through HeadAudio vs Catsync amplitude map=
+ping; collapse both to our pet mouth states and blind-score perceived sync.=
+<br>
+VERDICT: BENCHMARK / COPY FALLBACK.</p>
+</li>
+</ol>
+<p>TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES</p>
+<ol>
+<li>TTS=E2=86=92word timestamps=E2=86=92phonemes=E2=86=92visemes: HeadTTS a=
+lready returns all of them in one call.</li>
+<li>A separate Whisper pass for generated Roast.pet speech: unnecessary if =
+HeadTTS timing is accurate enough.</li>
+<li>Browser alpha-codec compatibility logic before testing stacked-alpha H.=
+264.</li>
+<li>Per-order hand-edited AR pages/manifests: arspace already turns media f=
+olders into manifests.</li>
+<li>Transcript/phoneme infrastructure for arbitrary uploaded audio before b=
+enchmarking HeadAudio as the cheap fallback.</li>
+</ol>
+<p>ARCHITECTURE UPDATE<br>
+The speech path can become dramatically smaller:<br>
+script =E2=86=92 HeadTTS =E2=86=92 {audio, words/times, phonemes, visemes/t=
+imes} =E2=86=92 map 15 human visemes to 5-8 pet mouth states =E2=86=92 dete=
+rministic actor =E2=86=92 transparent pet video =E2=86=92 Alpha Video Kit =
+=E2=86=92 AR/card/social.</p>
+<p>For non-TTS audio:<br>
+audio =E2=86=92 HeadAudio (better viseme hypothesis) OR Catsync (cheap ampl=
+itude fallback) =E2=86=92 same pet-mouth-state interface.</p>
+<p>MOST SURPRISING HOBBY PROJECT<br>
+HeadTTS. It already emits the exact three artifacts Roast.pet was going to =
+derive separately=E2=80=94audio, word-level caption timing, and lip-sync vi=
+semes=E2=80=94from Kokoro, locally and MIT licensed.</p>
+<p>FASTEST INTEGRATION WIN<br>
+HeadTTS. Generate one roast, read visemes/vtimes, collapse to our mouth spr=
+ite set and render. This is a one-evening benchmark that could delete multi=
+ple pipeline stages.</p>
+<p>REPO/AUTHOR WORTH FOLLOWING<br>
+met4citizen. HeadTTS + HeadAudio together cover both halves of our problem:=
+ exact text-driven lip sync when we control speech, and real-time audio-dri=
+ven visemes when we do not. Their TalkingHead adjacency is also directly re=
+levant to our actor-control architecture.</p>
+
+--000000000000fccb2f065bdbd108--

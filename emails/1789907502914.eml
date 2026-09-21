@@ -1,0 +1,1695 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id dEni7b5y0zvj
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 12:31:42 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ZjcYR+Wv5ZHCI6a22C6VPDdEVQpUtQzKrpBoTwLwdjdXCw3V3kLXcppyS/tlGrZaRT8/wz7LE
+	doFXi0bCr4hrufRPZqX+DtkKh/BjnYC8d0Ynon77tWBOLY/Vfu4qHq09wez8QnoE46u248Fw9K5
+	tIX08aYUMhfDDdaXMMGujaOgXSA6bJyD56EiO08bic6xo4eifdSQNt6pSGDVevEQ/1oCU7ZLgTB
+	Ar2C6L9fgd8Z88EHRuq1H1tkTq/MjFYQAnN3HfOpw+reAK0UeKZPQhtbLkkJcOVcWEzlzVHG0ic
+	dLhoPpSaWQpyagQT/xJajrzY5Y0VFL5g6OECWi4U3B7Q==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789907502; x=1790512302; bh=gKCxYgkx
+	IebxVLrMujc+skEnuRGQEVq1y1zAKixMHWM=; b=eOXE22vZYRwc/tpv9Gci3Z1PvrAETigP73s
+	90ja8SNeRUtgt2TOa2ExBYjDW+IHrMop87/O67/f8vMUgNoBmJhf0LdMp6fRa4RnY8bYin/iLEU
+	79vDsGTYCaM/IW8dkAYIDJnkSxQSEAsRPOUi/YbpO+8YJWPN+fj78CsJ0I/lq2a6rDdFIh1KOrt
+	kYLYBi9vRUMNOailS9muu4M76/HfzTvztfQsab2M9g3jFnvg3ypmqlpLx5Db1kBVHd2udoDXgHp
+	sA2vU9WF+duNJ++1F0SagOK4TukutdUIq3sjSIhB581cAQH08ijUX6wXT5RBpqLis++dmqHMCRm
+	7AtyM5w==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=om6y3sBH;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=om6y3sBH;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-670fee39d73so2029143d50.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 05:31:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789907502; cv=none;
+        d=google.com; s=arc-20260327;
+        b=a1Z3oc1XBZGtiHnkPEVmrt+J6KGEVDjoDRcD9NHrBI0KuKxCsksyT+5UohykSILaJ1
+         7yS8RnZ9gXggfmW/pAqQUBIHNtsT8SBTI2EEWrYqtQZC6ZopBmCxGy8ik0gKU+L7yOxS
+         cMeMHF1pEtET9mREzhW5+ASHnguAezKfa83Xxu4JH1CsYNzN2mQs8iWZsqNV5jEuE+YX
+         harShSn/+hA8p4iS2fqAm6Vpcfd1Tmc5UPNWhVVTcKTn1WLrvqZES8vslSm4pG6pp4mf
+         zA/7huwGYRn7itcrMwPSYNqrpxFesXiN1i+m83z9Fa9ajjP3383XbTDKCunKP4MLoIlB
+         YHUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=gKCxYgkxIebxVLrMujc+skEnuRGQEVq1y1zAKixMHWM=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=gggHlE6QMZGgPTR2HwzJB0BUDh5qZZE8pvcA/cypgyaSAXh+OrJflZrA4G+CwQxAI+
+         rOvuk+pKXDQS7S6i86B19gcz4F6j0TcwYwaWCOOjRJhrL3kxWkew5ZCoR1cDX/IS8qfg
+         Yq+PhV8D134g+a+aJIuhK+qtUqiuIpzECUGuwuol4aSgG7/0VgzAOKJpQRuacH1sDyPn
+         Dr34op7S1dMG6FVbFP3dPcK6Pq4QinGe/xM62WpvlMAzFyEk392xYGnOnWhnF3/7r+r7
+         9f9qZnFcMbfl7VzVBK6bpmCM6NJQK0aNcFnCFhTWI5ZK3aWexpyNEkSB7+zE0l0fvFNu
+         g8gA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789907502; x=1790512302; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=gKCxYgkxIebxVLrMujc+skEnuRGQEVq1y1zAKixMHWM=;
+        b=om6y3sBHCaLs867PzHdS/PYQd4jfisgq/szuKfYqDWqP+7pq08zU+RkiZsd2vvUDuy
+         jhMd7HJP0bYOavnYGz8TFLaXjtFTd0ZgpIWBjHCG5kbQgeATgURpof9BzseN03gKVsG/
+         ndOG4L5tCxzAlVtoZV7d2gVU8UBAfzSd58zDTNEtxvSyOnC8gqleQJNk528b+t6c4vTc
+         9qU1bmj2BpUKeu6iQBbkibQUYKbeKKwTlgxhDafR08gyNnavzOrl+vXcvcnyvuJb4SjO
+         f/HZmmGqtfwk8u9kUxx0kdNo+QFDbkaIfhyAKcXa149JmMMZwQmS/AIhL0YkiwBM8jw6
+         Yb3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789907502; x=1790512302;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=gKCxYgkxIebxVLrMujc+skEnuRGQEVq1y1zAKixMHWM=;
+        b=wOUUb4m9yE9zRmdt1c6kEuFtsmuRqsDN7ctcTdawIw476kArDpUMYrLCM2JzVUIku/
+         XNZZHVunknmYGKWvV7sH3I8ysi2H5YslKJHjyFirN8//8/PXxPilvanHRX03nu7OYjro
+         LzU2BIhj0FxKCZhU1QknbVInzDrdq2jiYmddiMX2akvSEVmBCo7vciGOvODZQJOdbcjE
+         6Xq3mJaBU9Zff7FvXSuyIP4VodyDnlTlrysfjUQ9Y/Gz0xQJcV0H/c8BibmnD+yh8Dw1
+         pUlWcz31FmwN2QgY7COLrBSWxV63pwx02k7bML64qYbA0nl1JsAf4PFya7IDirmGUeCN
+         utkg==
+X-Gm-Message-State: AFuF++kC74JTG8YCEC/Wx4XVFJ7+kd11mgAujJTRHUqjz0OxMha/50GN
+	2AxfNtunM3OrrpX+f4MhTY8TsdK8LPmC5478XjusKySTm1hjhe/zqRYhwp57TyxozYDWs6849XS
+	JmQeiFu3SILapqYBntypdxj/mGexaEfPorA==
+X-Gm-Gg: AYBFou2x9vaAL5pZxW0uaUsPPwNlHgztFvDB5qZ+7NoDBebPv4gFaPL3wLRQFAudGZK
+	lt88jpq+uLClxOSARCEt5yAk91fZHYKgJaWAtWLt3C2wDwicsfoiWAgwofsxuUkJuUxpmCuQhFq
+	WDatnjh+WZmz945fjbPGYqsYWzRVCRdOYyrr5fE9161yw1/4pZ1vVFeVz7XaU94e0vbS/2/48i9
+	bpUcDMSFF8ImQFhJWyol2qTTNDNNUZsdy/i8iZDEhAGS6GFlWsS1Xd6DEKsbHK84z1yFQ2jARxw
+	2bFPgdyWyOYtqNWQbuuw8K79TFeetsoXTcoedASZcRSqZP/JMKUvExZHEg3RIljAcl8ngFbfPDD
+	mftdw2u1LrWLAWFKMBtxQ4z5mbXkQLVjnKCgRor2L6SgqNrYKzDc9OBo7i73CVIiD4o9j3B96Iw
+	7HA+TP4Jc=
+X-Received: by 2002:a05:690e:438b:b0:671:7e90:70fe with SMTP id
+ 956f58d0204a3-6717fe1e388mr2144579d50.86.1789907501746; Sun, 20 Sep 2026
+ 05:31:41 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:31:39 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:31:39 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 07:31:39 -0500
+X-Gm-Features: AclHuK-OTg1iZF1kDXrRMmBTj18cpLT1krlVRjqDTexuxaiKhr3M7_b9GvLQgbE
+Message-ID: <CAPdrGe=swSZSTFG5V8DM9WuLdWB8VC2d6v795dK4_t7z3eRUGg@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Systems_=E2=80=94_Sensor=2FActuator_=2B_Repair_Economics_D?=
+	=?UTF-8?Q?ata_Garden?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000d28cbd065be950af"
+
+--000000000000d28cbd065be950af
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW Systems =E2=80=94 Sensor/Actuator + Repair Economics Data Garden Core b=
+oundary:
+POW vs Muse
+
+This should be explicit in the source-of-truth spec:
+
+*POW models what work is economically available in the world. Muse
+determines what work is available to you.*
+
+A strong implementation rule:
+
+*POW must be capable of producing its answer without knowing who the user
+is.*
+
+POW owns:
+
+   - Which device models/components are failing.
+   - Which replacement parts, sensors and actuators are involved.
+   - Component price, stock, lead time, lifecycle and substitutions.
+   - Working-vs-broken resale spread.
+   - Repair difficulty, disassembly steps and documentation coverage.
+   - Required capabilities, skills, qualifications and occupations.
+   - Training supply, apprenticeship flow and occupational supply.
+   - Safety/recall information.
+   - Geographic market state, repair prices, demand and supply.
+   - Objective repair-economics metrics.
+
+Muse owns:
+
+   - =E2=80=9CCan I repair this?=E2=80=9D
+   - =E2=80=9CAm I qualified?=E2=80=9D
+   - =E2=80=9CShould I buy this broken washer?=E2=80=9D
+   - =E2=80=9CWhich job should I take this afternoon?=E2=80=9D
+   - Personalized recommendations using the user=E2=80=99s tools, qualifica=
+tions,
+   budget, location, travel radius, schedule and preferences.
+   - Executing/bookings/workflow around the individual.
+
+Example:
+POW can say: =E2=80=9COldham washing-machine repair spread =3D =C2=A3X; com=
+mon failure
+component =3D Y; part stock =3D Z.=E2=80=9D
+Muse can say: =E2=80=9CGiven Gary=E2=80=99s skills/tools/location/calendar,=
+ he should
+inspect this listing/job.=E2=80=9D
+Why sensors + actuators are a major POW primitive
+
+Most automated physical systems reduce to:
+
+REAL WORLD
+=E2=86=92 SENSORS
+=E2=86=92 CONTROL / COMPUTATION
+=E2=86=92 ACTUATORS
+=E2=86=92 REAL WORLD
+
+If intelligence/computation becomes dramatically cheaper, the physical
+boundary becomes relatively more valuable:
+
+   - temperature / pressure / position / flow / current / vibration /
+   vision / force sensing
+   - motors / pumps / valves / relays / solenoids / servos / compressors /
+   fans / locks / heaters
+
+These components have excellent POW economics:
+
+   - physical wear
+   - exact compatibility
+   - finite inventory
+   - failure events
+   - replacement markets
+   - repair labour
+   - secondary-market spreads
+   - supply chains
+   - skills/training requirements
+
+This fits the Data Garden thesis exactly:
+
+*unique transformation =C3=97 continuous collection =C3=97 time*
+
+The moat is not the raw catalogue. It is the continuously transformed
+historical economic state.
+Best initial data sources P0 =E2=80=94 Open Repair Alliance
+
+Open Repair Alliance publishes hundreds of thousands of row-level
+electrical/electronic repair attempts under CC BY-SA.
+
+Useful fields include:
+
+   - product category
+   - brand
+   - product age
+   - fault/problem
+   - repair outcome
+   - repairability outcome
+   - repair barriers, including unavailable/expensive parts and missing
+   repair information
+
+This is almost perfect training data for a POW failure/repairability layer.
+
+Important opportunity:
+ORA intentionally dropped model-level identity from the standard because
+identifiers were inconsistent/noisy.
+
+That means POW can own a missing transformation:
+
+messy repair description
+=E2=86=92 brand/product family
+=E2=86=92 model evidence
+=E2=86=92 fault/component inference
+=E2=86=92 canonical device/model
+=E2=86=92 OEM component / replacement MPN / substitutes
+
+Identity resolution becomes part of the moat.
+
+Source:
+https://openrepair.org/open-data/downloads/
+P0+++ =E2=80=94 France repairability/durability open data
+
+France=E2=80=99s official repairability/durability datasets are exceptional=
+ly
+aligned with POW.
+
+The washing-machine durability schema can include:
+
+   - exact model identity
+   - repairability score
+   - reliability score
+   - professional repair-documentation URL
+   - consumer repair-documentation URL
+   - named spare-part classes
+   - disassembly-step counts
+   - part delivery delays
+   - years of spare-part availability
+   - availability separated for professional repairers, producers,
+   distributors and consumers
+
+Example part classes include:
+
+   - pumps
+   - thermostats / sensors
+   - pressure switches
+   - motors / brushes
+   - door-lock assemblies
+   - control/power boards
+   - heating elements
+   - hoses / Aquastop
+   - displays
+   - belts
+   - bearings / drums
+   - firmware
+
+This gives us a prebuilt repair ontology:
+
+DEVICE
+=E2=94=9C COMPONENT
+=E2=94=9C COMPONENT TYPE
+=E2=94=9C SENSOR/ACTUATOR?
+=E2=94=9C REPAIR ACCESS
+=E2=94=9C DISASSEMBLY COMPLEXITY
+=E2=94=9C DOCUMENTATION
+=E2=94=9C PART AVAILABILITY
+=E2=94=9C DELIVERY LATENCY
+=E2=94=94 SUPPORT HORIZON
+
+Use it immediately as an ontology/training source even if France is not the
+target market.
+
+Sources:
+https://schema.data.gouv.fr/etalab/schema-indice-reparabilite/0.1.1/
+https://github.com/etalab/schema-indice-durabilite
+P0 =E2=80=94 EPREL
+
+The EU EPREL registry provides a massive product-identity/specification
+surface across energy-labelled products.
+
+Useful for:
+
+   - model identity
+   - GTIN
+   - technical specs
+   - manuals / repair information
+   - energy/product parameters
+   - spare-parts/support metadata where available
+
+Canonical identity target:
+
+BRAND
+
+   - OEM MODEL
+   - GTIN
+   - EPREL ID
+   - MPN
+   - marketplace aliases
+   =E2=86=92 POW PRODUCT ID
+
+Identity resolution needs to precede sophisticated modelling.
+
+Source:
+https://energy-efficient-products.ec.europa.eu/eprel_en
+Distributor/parts market
+
+POW should continuously snapshot individual components.
+Mouser =E2=80=94 P0
+
+Useful API fields:
+
+   - MPN
+   - manufacturer
+   - price tiers
+   - availability
+   - lifecycle status
+   - MOQ / order multiples
+   - lead time
+   - replacements
+
+Source:
+https://www.mouser.com/en/api-search/
+DigiKey =E2=80=94 P0
+
+Useful for:
+
+   - product search
+   - pricing / stock
+   - substitutions
+   - product change notifications
+   - lifecycle changes
+
+Source:
+https://developer.digikey.com/
+TME =E2=80=94 P0
+
+Especially attractive:
+
+   - free API
+   - real-time warehouse stock
+   - prices
+   - technical catalogue data
+   - relatively generous standard rate limits
+
+Source:
+https://developers.tme.eu/en
+Farnell / element14 =E2=80=94 P1
+
+Useful for:
+
+   - product search
+   - manufacturer part numbers
+   - distributor price/availability
+
+Source:
+https://partner.element14.com/
+Nexar / Octopart
+
+Great aggregated validation source, but don=E2=80=99t make it a core free
+dependency. Useful for checking joins/coverage.
+
+Source:
+https://support.nexar.com/
+What to store continuously
+
+Raw API responses are not the moat.
+
+Store transformed snapshots:
+
+part_market_snapshot {
+part_id,
+timestamp,
+stock_by_supplier,
+supplier_count,
+median_price_1pc,
+median_price_bulk,
+cheapest_price,
+lead_time,
+lifecycle,
+substitute_count
+}
+
+This lets POW answer later:
+
+   - When did this component become scarce?
+   - When did supplier concentration rise?
+   - When did lead times break out?
+   - When did substitutes disappear?
+   - Which actuator/sensor families were repriced first?
+
+That historical state cannot easily be reconstructed later.
+Initial ontology: start with repair-rich components, not =E2=80=9Call senso=
+rs=E2=80=9D P0
+product families
+
+   - washing machines
+   - dishwashers
+   - vacuum cleaners
+   - pressure washers
+
+P0 component families
+
+Sensors:
+
+   - thermistors
+   - thermostats
+   - pressure/level sensors
+   - flow sensors
+   - Hall sensors
+   - encoders
+   - current sensing
+
+Actuators / physical control:
+
+   - pumps
+   - motors
+   - valves
+   - solenoids
+   - locks
+   - heaters
+   - fans
+   - compressors
+   - control boards
+
+Then expand:
+
+P1 =E2=86=92 HVAC / heat pumps
+P2 =E2=86=92 automotive
+P3 =E2=86=92 industrial controls
+P4 =E2=86=92 robots / new machines
+
+The appliance wedge is strong because we can join repair-event evidence,
+product identity, component data, parts supply, resale markets and
+repairability information immediately.
+Economic graph
+
+Canonical entities:
+
+DEVICE_MODEL
+COMPONENT
+COMPONENT_FAMILY
+PART_NUMBER
+COMPATIBILITY_EDGE
+
+FAILURE_EVENT
+REPAIR_EVENT
+RECALL_EVENT
+
+DISTRIBUTOR_OFFER
+MARKETPLACE_LISTING
+PRICE_SNAPSHOT
+STOCK_SNAPSHOT
+
+REPAIR_PROCEDURE
+TOOL
+SKILL
+QUALIFICATION
+OCCUPATION
+
+TRADE_FLOW
+TENDER
+MANUFACTURER
+SUPPLIER
+
+Everything should be temporal.
+
+Do not store:
+=E2=80=9Cpump costs =C2=A324=E2=80=9D
+
+Store:
+=E2=80=9Cpump X at time T: supplier count, stock, price distribution, lead =
+time,
+lifecycle, substitutes.=E2=80=9D
+Proprietary POW measurements Failure Pressure
+
+A normalized signal around:
+observed failure events
+=C3=B7 installed-base proxy / model exposure
+
+Age-adjust when possible.
+
+Do not present this as a literal population failure rate unless sampling
+permits that claim.
+Replacement Scarcity
+
+RS =3D f(
+stock,
+supplier_count,
+lead_time,
+price_change,
+substitute_count,
+lifecycle
+)
+
+This should detect things like:
+=E2=80=9CDishwasher inlet-valve availability deteriorated for four consecut=
+ive
+months.=E2=80=9D
+Repair Spread
+
+Repair Spread =3D
+working_market_value
+=E2=88=92 broken_market_value
+=E2=88=92 parts_cost
+=E2=88=92 platform_fees
+=E2=88=92 shipping
+
+This is POW because it is an objective market property.
+
+Optional standardized metric:
+
+Repair Yield =3D
+Repair Spread
+=C3=B7 median documented repair minutes
+
+Again: POW can estimate the standardized economic conversion of repair
+work. It does not tell a specific person to take the job.
+Repair Knowledge Coverage
+
+Track:
+
+   - service manual exists?
+   - repair guide exists?
+   - fault-code documentation?
+   - disassembly steps?
+   - special tools?
+   - parts diagram?
+   - compatibility known?
+   - firmware/service dependencies?
+
+Parts Optionality
+
+OEM-only replacement =3D fragile.
+
+Many compatible aftermarket/substitute parts =3D resilient.
+
+Create an =E2=80=9Coptionality=E2=80=9D or =E2=80=9Crepair resilience=E2=80=
+=9D score based on substitution
+density, supplier count and availability.
+Obsolescence Pressure
+
+Combine:
+
+   - lifecycle/EOL notices
+   - part price
+   - supplier count
+   - stock decline
+   - model age
+   - repair-event frequency
+   - documentation
+   - manufacturer support horizon
+
+This becomes a powerful continuous signal.
+Marketplace layer eBay
+
+Use active market data:
+
+   - condition
+   - MPN/GTIN
+   - active ask prices
+   - broken/working/refurbished spreads
+   - listing creation
+   - listing disappearance
+   - inventory age
+   - price changes
+   - seller concentration
+
+Important:
+Do not call every disappeared listing a =E2=80=9Csale.=E2=80=9D
+Treat disappearance as disappearance unless actual transaction evidence
+exists.
+
+Ideal future:
+maintain our own historical listing-state database from feeds/API access.
+
+Source:
+https://developer.ebay.com/develop/api/buy
+Repair documentation: iFixit licensing caution
+
+iFixit is technically useful for:
+
+   - guide type
+   - difficulty
+   - steps
+   - parts/tools
+
+But its public content is generally CC BY-NC-SA and commercial/AI uses may
+require licensing.
+
+Do not silently ingest it into a commercial POW database without resolving
+licensing.
+
+Sources:
+https://www.ifixit.com/api/2.0/doc/
+https://www.ifixit.com/Info/Licensing
+Right-to-repair is creating a new machine-readable surface
+
+EU right-to-repair obligations are increasing public availability of:
+
+   - repair information
+   - spare-part information
+   - repair pricing / service information
+   - manufacturer repair surfaces
+
+Strategic implication:
+
+RIGHT TO REPAIR
+=E2=86=92 more repair information
+=E2=86=92 more parts information
+=E2=86=92 more price information
+=E2=86=92 more repair providers
+=E2=86=92 new machine-readable data surface
+
+This is a strong reason to plant the garden now.
+Safety/failure layer UK OPSS recalls
+
+Track:
+
+   - recalls
+   - risk level
+   - fault class
+   - corrective action
+   - repair/modification
+   - date
+   - brand/model
+
+Do not interpret recall databases as population-wide failure rates; they
+are signals, not a census.
+
+Source:
+https://www.gov.uk/product-safety-alerts-reports-recalls
+Automotive extension
+
+DVSA MOT data gives:
+
+   - make/model
+   - age/time
+   - mileage
+   - defects/reasons for failure
+
+Long-term opportunity:
+
+MODEL
+=C3=97 AGE
+=C3=97 MILEAGE
+=C3=97 DEFECT FAMILY
+=C3=97 TIME
+
+Then carefully map defect families to likely sensor/actuator/component
+families with explicit confidence rather than pretending the MOT defect
+proves the exact failed component.
+
+Sources:
+https://www.data.gov.uk/dataset/c63fca52-ae4c-4b75-bab5-8b4735e1a4c9/anonym=
+ised-mot-tests-and-results
+https://documentation.history.mot.api.gov.uk/
+Supply-chain layer UK Trade Info
+
+Use for:
+
+   - imports/exports
+   - CN8/HS product families
+   - trade value
+   - net mass
+   - origin
+
+Source:
+https://www.uktradeinfo.com/api-documentation
+Eurostat Comext
+
+Use for detailed EU merchandise-trade history.
+
+Source:
+https://ec.europa.eu/eurostat/web/comext
+
+Combined signal:
+
+imports =E2=86=93
+
+   - distributor inventory =E2=86=93
+   - lead time =E2=86=91
+   - price =E2=86=91
+   =3D credible supply stress
+
+This is exactly the kind of multi-source transformation POW should own.
+Public procurement / demand Find a Tender
+
+Open tender/award data can act as a leading institutional-demand signal.
+
+Track families such as:
+
+   - sensor
+   - instrumentation
+   - building controls
+   - BMS
+   - pump
+   - valve
+   - actuator
+   - meter
+   - HVAC
+   - robotics
+   - maintenance
+   - predictive maintenance
+
+Create:
+public_demand_index(component_family, month)
+
+Source:
+https://www.find-tender.service.gov.uk/Developer/Documentation
+Training and labour graph
+
+Training belongs inside POW because it describes supply of physical
+capability.
+Skills England
+
+Map parts/tasks to capabilities/occupations:
+
+   - control & instrumentation maintenance
+   - electrical/electronic product servicing
+   - mechanical maintenance
+   - installation/maintenance electrician
+   - HVAC/heat-pump related roles
+
+Useful graph:
+
+PART
+=E2=86=92 REPAIR TASK
+=E2=86=92 CAPABILITY
+=E2=86=92 SKILL
+=E2=86=92 OCCUPATION
+=E2=86=92 QUALIFICATION
+
+Source:
+https://skillsengland.education.gov.uk/
+Ofqual
+
+Use the regulated qualification register and bulk/API data for:
+
+   - qualifications
+   - units
+   - relationships
+
+Source:
+https://www.api.gov.uk/ofqual/
+DfE apprenticeship data
+
+Use:
+
+   - apprenticeship starts
+   - achievements
+   - providers
+   - standards
+   - geography
+
+Source:
+https://explore-education-statistics.service.gov.uk/
+Nomis
+
+Use APS/LFS occupational data for:
+
+   - occupation supply
+   - geography
+   - self-employed vs employee
+   - labour-market trend
+
+Source:
+https://www.nomisweb.co.uk/
+Why this becomes a Seesaw machine
+
+Example future chain:
+
+cheap edge intelligence
+=E2=86=92 robot shipments =E2=86=91
+=E2=86=92 encoder/servo/BLDC/force-sensor demand =E2=86=91
+=E2=86=92 distributor stock falls
+=E2=86=92 lead times rise
+=E2=86=92 imports respond
+=E2=86=92 prices rise
+=E2=86=92 technician demand rises
+=E2=86=92 training response lags
+=E2=86=92 repair-labour shadow price rises
+
+Or:
+
+heat-pump subsidy =E2=86=91
+=E2=86=92 installations =E2=86=91
+=E2=86=92 installed base of pumps/valves/sensors =E2=86=91
+=E2=86=92 years later failure cohort appears
+=E2=86=92 repair demand =E2=86=91
+
+If POW begins recording the physical market state now, the historical
+transitions become proprietary.
+Recommended build order Phase 1 =E2=80=94 identity + appliances
+
+Start with washing machines/dishwashers/vacuums/pressure washers.
+
+Ingest:
+
+   - France durability/repairability
+   - EPREL
+   - Open Repair Alliance
+
+Build canonical product/model/component IDs.
+Phase 2 =E2=80=94 parts market
+
+Add:
+
+   - Mouser
+   - DigiKey
+   - TME
+   - Farnell
+
+Create hourly/daily price, stock, supplier, lifecycle and substitute
+snapshots.
+Phase 3 =E2=80=94 market value
+
+Add:
+
+   - eBay active listings
+   - broken/working/refurbished condition normalization
+   - listing history
+
+Compute Repair Spread / inventory age / market liquidity proxies.
+Phase 4 =E2=80=94 safety + repair knowledge
+
+Add:
+
+   - OPSS
+   - licensed/open repair documentation
+   - disassembly/tool/complexity data
+
+Phase 5 =E2=80=94 capability supply
+
+Add:
+
+   - Skills England
+   - Ofqual
+   - DfE apprenticeship data
+   - Nomis
+
+Build task =E2=86=92 skill =E2=86=92 qualification =E2=86=92 occupation gra=
+ph.
+Phase 6 =E2=80=94 macro demand/supply
+
+Add:
+
+   - UK Trade Info
+   - Eurostat Comext
+   - Find a Tender
+
+Now begin cross-layer Seesaw modelling.
+Phase 7 =E2=80=94 expand
+
+HVAC / heat pumps =E2=86=92 automotive =E2=86=92 industrial =E2=86=92 robot=
+ics.
+Canonical product thesis
+
+POW should become a temporal graph answering:
+
+*What physical things are failing, what fixes them, what those fixes cost,
+who can perform them, how scarce those people and parts are, and how every
+one of those quantities is changing?*
+
+Then the strict division remains:
+
+*POW models what work is economically available in the world. Muse
+determines what work is available to you.*
+
+This is one of the strongest extensions of POW Systems because the same
+infrastructure serves:
+
+   - repair-market intelligence
+   - physical-component scarcity
+   - resale/flipping economics
+   - supplier/distributor monitoring
+   - dropshipping/commerce opportunity discovery
+   - labour/training bottlenecks
+   - robot/edge-AI Seesaw modelling
+   - long-horizon proprietary historical data
+
+The data garden starts useful immediately and gets structurally harder to
+recreate with every day of collection.
+
+--000000000000d28cbd065be950af
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW Systems =E2=80=94 Sensor/Actuator + Repair Economics Data Garden
+
+Core boundary: POW vs Muse
+<p>This should be explicit in the source-of-truth spec:</p>
+<blockquote>
+<p><strong>POW models what work is economically available in the world. Mus=
+e determines what work is available to you.</strong></p>
+</blockquote>
+<p>A strong implementation rule:</p>
+<blockquote>
+<p><strong>POW must be capable of producing its answer without knowing who =
+the user is.</strong></p>
+</blockquote>
+<p>POW owns:</p>
+<ul>
+<li>Which device models/components are failing.</li>
+<li>Which replacement parts, sensors and actuators are involved.</li>
+<li>Component price, stock, lead time, lifecycle and substitutions.</li>
+<li>Working-vs-broken resale spread.</li>
+<li>Repair difficulty, disassembly steps and documentation coverage.</li>
+<li>Required capabilities, skills, qualifications and occupations.</li>
+<li>Training supply, apprenticeship flow and occupational supply.</li>
+<li>Safety/recall information.</li>
+<li>Geographic market state, repair prices, demand and supply.</li>
+<li>Objective repair-economics metrics.</li>
+</ul>
+<p>Muse owns:</p>
+<ul>
+<li>=E2=80=9CCan I repair this?=E2=80=9D</li>
+<li>=E2=80=9CAm I qualified?=E2=80=9D</li>
+<li>=E2=80=9CShould I buy this broken washer?=E2=80=9D</li>
+<li>=E2=80=9CWhich job should I take this afternoon?=E2=80=9D</li>
+<li>Personalized recommendations using the user=E2=80=99s tools, qualificat=
+ions, budget, location, travel radius, schedule and preferences.</li>
+<li>Executing/bookings/workflow around the individual.</li>
+</ul>
+<p>Example:<br>
+POW can say: =E2=80=9COldham washing-machine repair spread =3D =C2=A3X; com=
+mon failure component =3D Y; part stock =3D Z.=E2=80=9D<br>
+Muse can say: =E2=80=9CGiven Gary=E2=80=99s skills/tools/location/calendar,=
+ he should inspect this listing/job.=E2=80=9D</p>
+
+
+
+Why sensors + actuators are a major POW primitive
+<p>Most automated physical systems reduce to:</p>
+<p>REAL WORLD<br>
+=E2=86=92 SENSORS<br>
+=E2=86=92 CONTROL / COMPUTATION<br>
+=E2=86=92 ACTUATORS<br>
+=E2=86=92 REAL WORLD</p>
+<p>If intelligence/computation becomes dramatically cheaper, the physical b=
+oundary becomes relatively more valuable:</p>
+<ul>
+<li>temperature / pressure / position / flow / current / vibration / vision=
+ / force sensing</li>
+<li>motors / pumps / valves / relays / solenoids / servos / compressors / f=
+ans / locks / heaters</li>
+</ul>
+<p>These components have excellent POW economics:</p>
+<ul>
+<li>physical wear</li>
+<li>exact compatibility</li>
+<li>finite inventory</li>
+<li>failure events</li>
+<li>replacement markets</li>
+<li>repair labour</li>
+<li>secondary-market spreads</li>
+<li>supply chains</li>
+<li>skills/training requirements</li>
+</ul>
+<p>This fits the Data Garden thesis exactly:</p>
+<p><strong>unique transformation =C3=97 continuous collection =C3=97 time</=
+strong></p>
+<p>The moat is not the raw catalogue. It is the continuously transformed hi=
+storical economic state.</p>
+
+
+
+Best initial data sources
+
+P0 =E2=80=94 Open Repair Alliance
+<p>Open Repair Alliance publishes hundreds of thousands of row-level electr=
+ical/electronic repair attempts under CC BY-SA.</p>
+<p>Useful fields include:</p>
+<ul>
+<li>product category</li>
+<li>brand</li>
+<li>product age</li>
+<li>fault/problem</li>
+<li>repair outcome</li>
+<li>repairability outcome</li>
+<li>repair barriers, including unavailable/expensive parts and missing repa=
+ir information</li>
+</ul>
+<p>This is almost perfect training data for a POW failure/repairability lay=
+er.</p>
+<p>Important opportunity:<br>
+ORA intentionally dropped model-level identity from the standard because id=
+entifiers were inconsistent/noisy.</p>
+<p>That means POW can own a missing transformation:</p>
+<p>messy repair description<br>
+=E2=86=92 brand/product family<br>
+=E2=86=92 model evidence<br>
+=E2=86=92 fault/component inference<br>
+=E2=86=92 canonical device/model<br>
+=E2=86=92 OEM component / replacement MPN / substitutes</p>
+<p>Identity resolution becomes part of the moat.</p>
+<p>Source:<br>
+<a href=3D"https://openrepair.org/open-data/downloads/">https://openrepair.=
+org/open-data/downloads/</a></p>
+
+
+
+P0+++ =E2=80=94 France repairability/durability open data
+<p>France=E2=80=99s official repairability/durability datasets are exceptio=
+nally aligned with POW.</p>
+<p>The washing-machine durability schema can include:</p>
+<ul>
+<li>exact model identity</li>
+<li>repairability score</li>
+<li>reliability score</li>
+<li>professional repair-documentation URL</li>
+<li>consumer repair-documentation URL</li>
+<li>named spare-part classes</li>
+<li>disassembly-step counts</li>
+<li>part delivery delays</li>
+<li>years of spare-part availability</li>
+<li>availability separated for professional repairers, producers, distribut=
+ors and consumers</li>
+</ul>
+<p>Example part classes include:</p>
+<ul>
+<li>pumps</li>
+<li>thermostats / sensors</li>
+<li>pressure switches</li>
+<li>motors / brushes</li>
+<li>door-lock assemblies</li>
+<li>control/power boards</li>
+<li>heating elements</li>
+<li>hoses / Aquastop</li>
+<li>displays</li>
+<li>belts</li>
+<li>bearings / drums</li>
+<li>firmware</li>
+</ul>
+<p>This gives us a prebuilt repair ontology:</p>
+<p>DEVICE<br>
+=E2=94=9C COMPONENT<br>
+=E2=94=9C COMPONENT TYPE<br>
+=E2=94=9C SENSOR/ACTUATOR?<br>
+=E2=94=9C REPAIR ACCESS<br>
+=E2=94=9C DISASSEMBLY COMPLEXITY<br>
+=E2=94=9C DOCUMENTATION<br>
+=E2=94=9C PART AVAILABILITY<br>
+=E2=94=9C DELIVERY LATENCY<br>
+=E2=94=94 SUPPORT HORIZON</p>
+<p>Use it immediately as an ontology/training source even if France is not =
+the target market.</p>
+<p>Sources:<br>
+<a href=3D"https://schema.data.gouv.fr/etalab/schema-indice-reparabilite/0.=
+1.1/">https://schema.data.gouv.fr/etalab/schema-indice-reparabilite/0.1.1/<=
+/a><br>
+<a href=3D"https://github.com/etalab/schema-indice-durabilite">https://gith=
+ub.com/etalab/schema-indice-durabilite</a></p>
+
+
+
+P0 =E2=80=94 EPREL
+<p>The EU EPREL registry provides a massive product-identity/specification =
+surface across energy-labelled products.</p>
+<p>Useful for:</p>
+<ul>
+<li>model identity</li>
+<li>GTIN</li>
+<li>technical specs</li>
+<li>manuals / repair information</li>
+<li>energy/product parameters</li>
+<li>spare-parts/support metadata where available</li>
+</ul>
+<p>Canonical identity target:</p>
+<p>BRAND</p>
+<ul>
+<li>OEM MODEL</li>
+<li>GTIN</li>
+<li>EPREL ID</li>
+<li>MPN</li>
+<li>marketplace aliases<br>
+=E2=86=92 POW PRODUCT ID</li>
+</ul>
+<p>Identity resolution needs to precede sophisticated modelling.</p>
+<p>Source:<br>
+<a href=3D"https://energy-efficient-products.ec.europa.eu/eprel_en">https:/=
+/energy-efficient-products.ec.europa.eu/eprel_en</a></p>
+
+
+
+Distributor/parts market
+<p>POW should continuously snapshot individual components.</p>
+
+Mouser =E2=80=94 P0
+<p>Useful API fields:</p>
+<ul>
+<li>MPN</li>
+<li>manufacturer</li>
+<li>price tiers</li>
+<li>availability</li>
+<li>lifecycle status</li>
+<li>MOQ / order multiples</li>
+<li>lead time</li>
+<li>replacements</li>
+</ul>
+<p>Source:<br>
+<a href=3D"https://www.mouser.com/en/api-search/">https://www.mouser.com/en=
+/api-search/</a></p>
+
+DigiKey =E2=80=94 P0
+<p>Useful for:</p>
+<ul>
+<li>product search</li>
+<li>pricing / stock</li>
+<li>substitutions</li>
+<li>product change notifications</li>
+<li>lifecycle changes</li>
+</ul>
+<p>Source:<br>
+<a href=3D"https://developer.digikey.com/">https://developer.digikey.com/</=
+a></p>
+
+TME =E2=80=94 P0
+<p>Especially attractive:</p>
+<ul>
+<li>free API</li>
+<li>real-time warehouse stock</li>
+<li>prices</li>
+<li>technical catalogue data</li>
+<li>relatively generous standard rate limits</li>
+</ul>
+<p>Source:<br>
+<a href=3D"https://developers.tme.eu/en">https://developers.tme.eu/en</a></=
+p>
+
+Farnell / element14 =E2=80=94 P1
+<p>Useful for:</p>
+<ul>
+<li>product search</li>
+<li>manufacturer part numbers</li>
+<li>distributor price/availability</li>
+</ul>
+<p>Source:<br>
+<a href=3D"https://partner.element14.com/">https://partner.element14.com/</=
+a></p>
+
+Nexar / Octopart
+<p>Great aggregated validation source, but don=E2=80=99t make it a core fre=
+e dependency. Useful for checking joins/coverage.</p>
+<p>Source:<br>
+<a href=3D"https://support.nexar.com/">https://support.nexar.com/</a></p>
+
+
+
+What to store continuously
+<p>Raw API responses are not the moat.</p>
+<p>Store transformed snapshots:</p>
+<p>part_market_snapshot {<br>
+part_id,<br>
+timestamp,<br>
+stock_by_supplier,<br>
+supplier_count,<br>
+median_price_1pc,<br>
+median_price_bulk,<br>
+cheapest_price,<br>
+lead_time,<br>
+lifecycle,<br>
+substitute_count<br>
+}</p>
+<p>This lets POW answer later:</p>
+<ul>
+<li>When did this component become scarce?</li>
+<li>When did supplier concentration rise?</li>
+<li>When did lead times break out?</li>
+<li>When did substitutes disappear?</li>
+<li>Which actuator/sensor families were repriced first?</li>
+</ul>
+<p>That historical state cannot easily be reconstructed later.</p>
+
+
+
+Initial ontology: start with repair-rich components, not =E2=80=9Call senso=
+rs=E2=80=9D
+
+P0 product families
+<ul>
+<li>washing machines</li>
+<li>dishwashers</li>
+<li>vacuum cleaners</li>
+<li>pressure washers</li>
+</ul>
+
+P0 component families
+<p>Sensors:</p>
+<ul>
+<li>thermistors</li>
+<li>thermostats</li>
+<li>pressure/level sensors</li>
+<li>flow sensors</li>
+<li>Hall sensors</li>
+<li>encoders</li>
+<li>current sensing</li>
+</ul>
+<p>Actuators / physical control:</p>
+<ul>
+<li>pumps</li>
+<li>motors</li>
+<li>valves</li>
+<li>solenoids</li>
+<li>locks</li>
+<li>heaters</li>
+<li>fans</li>
+<li>compressors</li>
+<li>control boards</li>
+</ul>
+<p>Then expand:</p>
+<p>P1 =E2=86=92 HVAC / heat pumps<br>
+P2 =E2=86=92 automotive<br>
+P3 =E2=86=92 industrial controls<br>
+P4 =E2=86=92 robots / new machines</p>
+<p>The appliance wedge is strong because we can join repair-event evidence,=
+ product identity, component data, parts supply, resale markets and repaira=
+bility information immediately.</p>
+
+
+
+Economic graph
+<p>Canonical entities:</p>
+<p>DEVICE_MODEL<br>
+COMPONENT<br>
+COMPONENT_FAMILY<br>
+PART_NUMBER<br>
+COMPATIBILITY_EDGE</p>
+<p>FAILURE_EVENT<br>
+REPAIR_EVENT<br>
+RECALL_EVENT</p>
+<p>DISTRIBUTOR_OFFER<br>
+MARKETPLACE_LISTING<br>
+PRICE_SNAPSHOT<br>
+STOCK_SNAPSHOT</p>
+<p>REPAIR_PROCEDURE<br>
+TOOL<br>
+SKILL<br>
+QUALIFICATION<br>
+OCCUPATION</p>
+<p>TRADE_FLOW<br>
+TENDER<br>
+MANUFACTURER<br>
+SUPPLIER</p>
+<p>Everything should be temporal.</p>
+<p>Do not store:<br>
+=E2=80=9Cpump costs =C2=A324=E2=80=9D</p>
+<p>Store:<br>
+=E2=80=9Cpump X at time T: supplier count, stock, price distribution, lead =
+time, lifecycle, substitutes.=E2=80=9D</p>
+
+
+
+Proprietary POW measurements
+
+Failure Pressure
+<p>A normalized signal around:<br>
+observed failure events<br>
+=C3=B7 installed-base proxy / model exposure</p>
+<p>Age-adjust when possible.</p>
+<p>Do not present this as a literal population failure rate unless sampling=
+ permits that claim.</p>
+
+
+
+Replacement Scarcity
+<p>RS =3D f(<br>
+stock,<br>
+supplier_count,<br>
+lead_time,<br>
+price_change,<br>
+substitute_count,<br>
+lifecycle<br>
+)</p>
+<p>This should detect things like:<br>
+=E2=80=9CDishwasher inlet-valve availability deteriorated for four consecut=
+ive months.=E2=80=9D</p>
+
+
+
+Repair Spread
+<p>Repair Spread =3D<br>
+working_market_value<br>
+=E2=88=92 broken_market_value<br>
+=E2=88=92 parts_cost<br>
+=E2=88=92 platform_fees<br>
+=E2=88=92 shipping</p>
+<p>This is POW because it is an objective market property.</p>
+<p>Optional standardized metric:</p>
+<p>Repair Yield =3D<br>
+Repair Spread<br>
+=C3=B7 median documented repair minutes</p>
+<p>Again: POW can estimate the standardized economic conversion of repair w=
+ork. It does not tell a specific person to take the job.</p>
+
+
+
+Repair Knowledge Coverage
+<p>Track:</p>
+<ul>
+<li>service manual exists?</li>
+<li>repair guide exists?</li>
+<li>fault-code documentation?</li>
+<li>disassembly steps?</li>
+<li>special tools?</li>
+<li>parts diagram?</li>
+<li>compatibility known?</li>
+<li>firmware/service dependencies?</li>
+</ul>
+
+
+
+Parts Optionality
+<p>OEM-only replacement =3D fragile.</p>
+<p>Many compatible aftermarket/substitute parts =3D resilient.</p>
+<p>Create an =E2=80=9Coptionality=E2=80=9D or =E2=80=9Crepair resilience=E2=
+=80=9D score based on substitution density, supplier count and availability=
+.</p>
+
+
+
+Obsolescence Pressure
+<p>Combine:</p>
+<ul>
+<li>lifecycle/EOL notices</li>
+<li>part price</li>
+<li>supplier count</li>
+<li>stock decline</li>
+<li>model age</li>
+<li>repair-event frequency</li>
+<li>documentation</li>
+<li>manufacturer support horizon</li>
+</ul>
+<p>This becomes a powerful continuous signal.</p>
+
+
+
+Marketplace layer
+
+eBay
+<p>Use active market data:</p>
+<ul>
+<li>condition</li>
+<li>MPN/GTIN</li>
+<li>active ask prices</li>
+<li>broken/working/refurbished spreads</li>
+<li>listing creation</li>
+<li>listing disappearance</li>
+<li>inventory age</li>
+<li>price changes</li>
+<li>seller concentration</li>
+</ul>
+<p>Important:<br>
+Do not call every disappeared listing a =E2=80=9Csale.=E2=80=9D<br>
+Treat disappearance as disappearance unless actual transaction evidence exi=
+sts.</p>
+<p>Ideal future:<br>
+maintain our own historical listing-state database from feeds/API access.</=
+p>
+<p>Source:<br>
+<a href=3D"https://developer.ebay.com/develop/api/buy">https://developer.eb=
+ay.com/develop/api/buy</a></p>
+
+
+
+Repair documentation: iFixit licensing caution
+<p>iFixit is technically useful for:</p>
+<ul>
+<li>guide type</li>
+<li>difficulty</li>
+<li>steps</li>
+<li>parts/tools</li>
+</ul>
+<p>But its public content is generally CC BY-NC-SA and commercial/AI uses m=
+ay require licensing.</p>
+<p>Do not silently ingest it into a commercial POW database without resolvi=
+ng licensing.</p>
+<p>Sources:<br>
+<a href=3D"https://www.ifixit.com/api/2.0/doc/">https://www.ifixit.com/api/=
+2.0/doc/</a><br>
+<a href=3D"https://www.ifixit.com/Info/Licensing">https://www.ifixit.com/In=
+fo/Licensing</a></p>
+
+
+
+Right-to-repair is creating a new machine-readable surface
+<p>EU right-to-repair obligations are increasing public availability of:</p=
+>
+<ul>
+<li>repair information</li>
+<li>spare-part information</li>
+<li>repair pricing / service information</li>
+<li>manufacturer repair surfaces</li>
+</ul>
+<p>Strategic implication:</p>
+<p>RIGHT TO REPAIR<br>
+=E2=86=92 more repair information<br>
+=E2=86=92 more parts information<br>
+=E2=86=92 more price information<br>
+=E2=86=92 more repair providers<br>
+=E2=86=92 new machine-readable data surface</p>
+<p>This is a strong reason to plant the garden now.</p>
+
+
+
+Safety/failure layer
+
+UK OPSS recalls
+<p>Track:</p>
+<ul>
+<li>recalls</li>
+<li>risk level</li>
+<li>fault class</li>
+<li>corrective action</li>
+<li>repair/modification</li>
+<li>date</li>
+<li>brand/model</li>
+</ul>
+<p>Do not interpret recall databases as population-wide failure rates; they=
+ are signals, not a census.</p>
+<p>Source:<br>
+<a href=3D"https://www.gov.uk/product-safety-alerts-reports-recalls">https:=
+//www.gov.uk/product-safety-alerts-reports-recalls</a></p>
+
+
+
+Automotive extension
+<p>DVSA MOT data gives:</p>
+<ul>
+<li>make/model</li>
+<li>age/time</li>
+<li>mileage</li>
+<li>defects/reasons for failure</li>
+</ul>
+<p>Long-term opportunity:</p>
+<p>MODEL<br>
+=C3=97 AGE<br>
+=C3=97 MILEAGE<br>
+=C3=97 DEFECT FAMILY<br>
+=C3=97 TIME</p>
+<p>Then carefully map defect families to likely sensor/actuator/component f=
+amilies with explicit confidence rather than pretending the MOT defect prov=
+es the exact failed component.</p>
+<p>Sources:<br>
+<a href=3D"https://www.data.gov.uk/dataset/c63fca52-ae4c-4b75-bab5-8b4735e1=
+a4c9/anonymised-mot-tests-and-results">https://www.data.gov.uk/dataset/c63f=
+ca52-ae4c-4b75-bab5-8b4735e1a4c9/anonymised-mot-tests-and-results</a><br>
+<a href=3D"https://documentation.history.mot.api.gov.uk/">https://documenta=
+tion.history.mot.api.gov.uk/</a></p>
+
+
+
+Supply-chain layer
+
+UK Trade Info
+<p>Use for:</p>
+<ul>
+<li>imports/exports</li>
+<li>CN8/HS product families</li>
+<li>trade value</li>
+<li>net mass</li>
+<li>origin</li>
+</ul>
+<p>Source:<br>
+<a href=3D"https://www.uktradeinfo.com/api-documentation">https://www.uktra=
+deinfo.com/api-documentation</a></p>
+
+Eurostat Comext
+<p>Use for detailed EU merchandise-trade history.</p>
+<p>Source:<br>
+<a href=3D"https://ec.europa.eu/eurostat/web/comext">https://ec.europa.eu/e=
+urostat/web/comext</a></p>
+<p>Combined signal:</p>
+<p>imports =E2=86=93</p>
+<ul>
+<li>distributor inventory =E2=86=93</li>
+<li>lead time =E2=86=91</li>
+<li>price =E2=86=91<br>
+=3D credible supply stress</li>
+</ul>
+<p>This is exactly the kind of multi-source transformation POW should own.<=
+/p>
+
+
+
+Public procurement / demand
+
+Find a Tender
+<p>Open tender/award data can act as a leading institutional-demand signal.=
+</p>
+<p>Track families such as:</p>
+<ul>
+<li>sensor</li>
+<li>instrumentation</li>
+<li>building controls</li>
+<li>BMS</li>
+<li>pump</li>
+<li>valve</li>
+<li>actuator</li>
+<li>meter</li>
+<li>HVAC</li>
+<li>robotics</li>
+<li>maintenance</li>
+<li>predictive maintenance</li>
+</ul>
+<p>Create:<br>
+public_demand_index(component_family, month)</p>
+<p>Source:<br>
+<a href=3D"https://www.find-tender.service.gov.uk/Developer/Documentation">=
+https://www.find-tender.service.gov.uk/Developer/Documentation</a></p>
+
+
+
+Training and labour graph
+<p>Training belongs inside POW because it describes supply of physical capa=
+bility.</p>
+
+Skills England
+<p>Map parts/tasks to capabilities/occupations:</p>
+<ul>
+<li>control &amp; instrumentation maintenance</li>
+<li>electrical/electronic product servicing</li>
+<li>mechanical maintenance</li>
+<li>installation/maintenance electrician</li>
+<li>HVAC/heat-pump related roles</li>
+</ul>
+<p>Useful graph:</p>
+<p>PART<br>
+=E2=86=92 REPAIR TASK<br>
+=E2=86=92 CAPABILITY<br>
+=E2=86=92 SKILL<br>
+=E2=86=92 OCCUPATION<br>
+=E2=86=92 QUALIFICATION</p>
+<p>Source:<br>
+<a href=3D"https://skillsengland.education.gov.uk/">https://skillsengland.e=
+ducation.gov.uk/</a></p>
+
+Ofqual
+<p>Use the regulated qualification register and bulk/API data for:</p>
+<ul>
+<li>qualifications</li>
+<li>units</li>
+<li>relationships</li>
+</ul>
+<p>Source:<br>
+<a href=3D"https://www.api.gov.uk/ofqual/">https://www.api.gov.uk/ofqual/</=
+a></p>
+
+DfE apprenticeship data
+<p>Use:</p>
+<ul>
+<li>apprenticeship starts</li>
+<li>achievements</li>
+<li>providers</li>
+<li>standards</li>
+<li>geography</li>
+</ul>
+<p>Source:<br>
+<a href=3D"https://explore-education-statistics.service.gov.uk/">https://ex=
+plore-education-statistics.service.gov.uk/</a></p>
+
+Nomis
+<p>Use APS/LFS occupational data for:</p>
+<ul>
+<li>occupation supply</li>
+<li>geography</li>
+<li>self-employed vs employee</li>
+<li>labour-market trend</li>
+</ul>
+<p>Source:<br>
+<a href=3D"https://www.nomisweb.co.uk/">https://www.nomisweb.co.uk/</a></p>
+
+
+
+Why this becomes a Seesaw machine
+<p>Example future chain:</p>
+<p>cheap edge intelligence<br>
+=E2=86=92 robot shipments =E2=86=91<br>
+=E2=86=92 encoder/servo/BLDC/force-sensor demand =E2=86=91<br>
+=E2=86=92 distributor stock falls<br>
+=E2=86=92 lead times rise<br>
+=E2=86=92 imports respond<br>
+=E2=86=92 prices rise<br>
+=E2=86=92 technician demand rises<br>
+=E2=86=92 training response lags<br>
+=E2=86=92 repair-labour shadow price rises</p>
+<p>Or:</p>
+<p>heat-pump subsidy =E2=86=91<br>
+=E2=86=92 installations =E2=86=91<br>
+=E2=86=92 installed base of pumps/valves/sensors =E2=86=91<br>
+=E2=86=92 years later failure cohort appears<br>
+=E2=86=92 repair demand =E2=86=91</p>
+<p>If POW begins recording the physical market state now, the historical tr=
+ansitions become proprietary.</p>
+
+
+
+Recommended build order
+
+Phase 1 =E2=80=94 identity + appliances
+<p>Start with washing machines/dishwashers/vacuums/pressure washers.</p>
+<p>Ingest:</p>
+<ul>
+<li>France durability/repairability</li>
+<li>EPREL</li>
+<li>Open Repair Alliance</li>
+</ul>
+<p>Build canonical product/model/component IDs.</p>
+
+Phase 2 =E2=80=94 parts market
+<p>Add:</p>
+<ul>
+<li>Mouser</li>
+<li>DigiKey</li>
+<li>TME</li>
+<li>Farnell</li>
+</ul>
+<p>Create hourly/daily price, stock, supplier, lifecycle and substitute sna=
+pshots.</p>
+
+Phase 3 =E2=80=94 market value
+<p>Add:</p>
+<ul>
+<li>eBay active listings</li>
+<li>broken/working/refurbished condition normalization</li>
+<li>listing history</li>
+</ul>
+<p>Compute Repair Spread / inventory age / market liquidity proxies.</p>
+
+Phase 4 =E2=80=94 safety + repair knowledge
+<p>Add:</p>
+<ul>
+<li>OPSS</li>
+<li>licensed/open repair documentation</li>
+<li>disassembly/tool/complexity data</li>
+</ul>
+
+Phase 5 =E2=80=94 capability supply
+<p>Add:</p>
+<ul>
+<li>Skills England</li>
+<li>Ofqual</li>
+<li>DfE apprenticeship data</li>
+<li>Nomis</li>
+</ul>
+<p>Build task =E2=86=92 skill =E2=86=92 qualification =E2=86=92 occupation =
+graph.</p>
+
+Phase 6 =E2=80=94 macro demand/supply
+<p>Add:</p>
+<ul>
+<li>UK Trade Info</li>
+<li>Eurostat Comext</li>
+<li>Find a Tender</li>
+</ul>
+<p>Now begin cross-layer Seesaw modelling.</p>
+
+Phase 7 =E2=80=94 expand
+<p>HVAC / heat pumps =E2=86=92 automotive =E2=86=92 industrial =E2=86=92 ro=
+botics.</p>
+
+
+
+Canonical product thesis
+<p>POW should become a temporal graph answering:</p>
+<blockquote>
+<p><strong>What physical things are failing, what fixes them, what those fi=
+xes cost, who can perform them, how scarce those people and parts are, and =
+how every one of those quantities is changing?</strong></p>
+</blockquote>
+<p>Then the strict division remains:</p>
+<blockquote>
+<p><strong>POW models what work is economically available in the world. Mus=
+e determines what work is available to you.</strong></p>
+</blockquote>
+<p>This is one of the strongest extensions of POW Systems because the same =
+infrastructure serves:</p>
+<ul>
+<li>repair-market intelligence</li>
+<li>physical-component scarcity</li>
+<li>resale/flipping economics</li>
+<li>supplier/distributor monitoring</li>
+<li>dropshipping/commerce opportunity discovery</li>
+<li>labour/training bottlenecks</li>
+<li>robot/edge-AI Seesaw modelling</li>
+<li>long-horizon proprietary historical data</li>
+</ul>
+<p>The data garden starts useful immediately and gets structurally harder t=
+o recreate with every day of collection.</p>
+
+--000000000000d28cbd065be950af--

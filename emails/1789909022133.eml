@@ -1,0 +1,1382 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id eNKtakqPW22W
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 12:57:01 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=GGd3lm7jK1MKi2rsDBNfB94SzCvea1XBUl6p0r4+pdK52vn3IFQ9lbAUiPcAAxy8jtmCBCrqo
+	mMzxqLQcPTvKjeyC/FKdTiCG0PSdriyC+AYtJetdaTh4oYt3CoGLcsY0WgCaM4z1k0HvfpS025Q
+	EFw4hCS91pbe1WY6HyShMW65Nj/egKJa5KTGpODK1sbr44K9+pIEqUXDR/0z3tEI3aMh8XToxtl
+	HwCx3Dr3KnAeOH2o7Cnh2N3So/o/En6JCeFAGmyBFwi4uU71bz9APbYlX2+XriKPBoOgUWAoXjf
+	MjnPjNcEK7RX3a108aC2DA5J6EP5vz8FHtUx1onNmYfw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789909021; x=1790513821; bh=IU4+tNkI
+	UcblL2MAvJkCb8sdmo8vi2A90fOg3OyMSEA=; b=A1hWWVxv9wzycIdegDH4SG6MS2qF7Dddu7q
+	4MTXQibwXjAtZdmsl7VKfJiO/0uW/jKVqbLzwCyaCveaNLJX/EmKeptcNarKZUzosgqv2pjIwVZ
+	sSHbYJ6prkXd/5HHLb352AsQyp2cFOxmobwTYSc8oPq/HdpuqU0IBoXmw038FhMhhP5RMysXRYj
+	V2j5W4IMkAxnYh3MesLJ2gfOtdq7fqZuMHnIMTXbyHZUr2n9aaPnMYm0npZXxQEQQyQuHZ/4YvT
+	UPngGNDuGl3bGih2Zd0RdgxadzZwP39y6BXzy0AwtTOv8lATbQSzggOsj2aTOd+Efj8aEy4UFLT
+	FWTUbMg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Ef/OPF75;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Ef/OPF75;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-85d43ac608dso15288547b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 05:57:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789909021; cv=none;
+        d=google.com; s=arc-20260327;
+        b=B6oEtJPz+z8rOBjcf44f7heck8Y1SHUCDBLjUusT5k9GGEEpEC+NCQDqnshT7fuo6J
+         hXbbDRM5tufOVdrAhl5Th/wR7wlsnogBhm5QKNr9ZlDkSxzajWdOtgJNum+rn67Lbh/I
+         1G4i/unnW8dcXX/lvGXNLlbiu0w9Ry73Lr5WcRATDPFg6L1K+Y6vo4I280JdJb1a3M1p
+         Ux/5tlyME+3tRGM9QBsuh1h2bT0Gz3zmx88MBxCyOInDxiyXUdajTgUc3GV9i3lliit/
+         9jmfNDXQgjJe0yMOYpKHh8kv6nGHyE8kwqlKY+kPthR/yqYwSgcQ5/R7HBv/ed9l/D2N
+         w90A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=IU4+tNkIUcblL2MAvJkCb8sdmo8vi2A90fOg3OyMSEA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=PPiQHkt0WtTDgipfDBT7kLZV0vK2ebvUPP6pBBvHWzANzLfL1c/hLlunt+uA+yW10i
+         wZ+6PC3ZMX1qxsVw/6cOi1OytlMiLB/iqu7mSIa34EeSD3dJF5ypLH3L4Q1itdNZI6FW
+         oMpD1+ML4QHuaYhEpn2KsPTqUvvb4ig8lHPRVqk/K+xk7+hyfvDLdTbD6r9eX5d+T2AG
+         hByJO8NDAhYRsOj4LvAghPJbXhCXzFCjXBsjimIkGU9p3RHqbID3Eu7P2J9I5I4sK4DP
+         CYrrzGSOPQpaFbRcfQRsVbWiSGX+7+EzxK2oWyVkapgHZSoabr3Zo+Vpm6YXhySDmjmX
+         iXQw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789909021; x=1790513821; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=IU4+tNkIUcblL2MAvJkCb8sdmo8vi2A90fOg3OyMSEA=;
+        b=Ef/OPF75uOUT9RGPYR/jgyDxCA0UlH9Qu2xbvA8S5G127hYwDboBcWKqhV+rQymg0F
+         9vyaa+kWWREOA9IIqgI7hoRcyw7S/5UAS885x1lYIJoZvscH/7jZHtIUaGr1ONkb/hfG
+         e+VWTEOTmA9oRUe0NbHfa6mbm4aXlMW6rJEzdPJIDinVxlcSkuwGx0DtKukddHVxEPxg
+         xPxlVLZ4YmcmikgrkUL2ZWk3geDpvBZo1qeEgfAPPXCciIKbEOz+zHEIiP5ih0iwANHN
+         hQL8PKY+YNedm2B/bvRln+RdzfosFDWOnn2D3g0nFmjYFAwAD8ZXQMP+KsoHOOB2LIKq
+         vm0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789909021; x=1790513821;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=IU4+tNkIUcblL2MAvJkCb8sdmo8vi2A90fOg3OyMSEA=;
+        b=LCdRk3VctbA3h9et1nc1tk4aGDZktRi5hPX1Q1WjpFm3ORYK8/TevdO0008hncUddm
+         94/o5yxirMwKAY3MocXgUbyOeVbU9/ieP+s2p2qL15z7dZpU0bcvRohT+dnmdAixogwS
+         r/3Yr1ED6Fn8Psw1kvr94tg091iSCfXa+1qyND/sZ/rdc2GO3KTO/plWy4jEilvx8zDX
+         zXT67Y3dms+6EN1X6loDaLn+O5wbzTfHnANkr/cCHrOqDRzvvB3wuuAyC/VJk4CG0aso
+         SAKpTmX2HHV8As9bhsOQC18Ev+iuKAHvFZiDTbIdRGlWqlxrQhnK5Of3Vb9gt6j36KJP
+         rihA==
+X-Gm-Message-State: AFuF++myyMEtWoBmo5ZxJ6oW9sz7iw5CxhPcLxvx6g+cog3xxCMjy17c
+	oy8kM30tbTe2oqL2Pcq89Ct9/dGLquWlY1luCCfWUOqPF1YW2xcwk7xcGC5878jMXyqbv1ZZ45S
+	9ubalva2V78OGYbP06L7MYzceB3eJ5YTRLg==
+X-Gm-Gg: AYBFou0PnaL7+kznoRJve+UIHrZuZAqrd3IaF3mgeH2KZ5dx2uzH3N6Ht5RnU5HxBIf
+	4/Ql57Vz+OXOyHAVykmCutFw7MQLgSTR7+TbgSJNihNT7cN/3MZeN3a/WWV6KJutT57Gvp1/3ZQ
+	Nbmi3bjbr5CcUw0WqsX1lA9xDggWoka2VuicbG5lPe/StDSpM7oZgl9KgHyjCqdnnOAV07/QxV+
+	jym9YEGsI7fhASeYwvvVASuWO8YZHOSObeerMLejE0T2U2mZyYLghWn7iW29z6wMjTJ7rTIaioA
+	Wde1wsB1OZxZzV8UhjwCQRwuVfZ8eoW3+0RLlyWc8NEnDUisqYky2/lVzdjmFV1ItzMJkGRsBT/
+	DXiG0JE4LZ+RRdEje3868i0W/MCnPvtQkN9Dctncjy/9BjjN4UnFvWvj4pRw+tCDepnL+SDI5
+X-Received: by 2002:a05:690c:19:b0:870:2111:244f with SMTP id
+ 00721157ae682-897311d4a4dmr22505967b3.2.1789909021090; Sun, 20 Sep 2026
+ 05:57:01 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:57:00 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 07:57:00 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 07:57:00 -0500
+X-Gm-Features: AcwNN1Wdmk5NhHqHtVAK2M4BbAbGQp8sOfXvClX_J7l4sCjHZrKd7LbTWE4rlHk
+Message-ID: <CAPdrGenhg8TfrUR_USg7BtXXT16uxW9qGpKxnr+O0apbkPb87g@mail.gmail.com>
+Subject: =?UTF-8?Q?POW=2ESYSTEMS_=E2=80=94_Post=E2=80=91AGI_Physical_Scarcity_=2B_Greer?=
+	=?UTF-8?Q?_=2F_Catabolic_Capital_Report?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000061e9ed065be9ab00"
+
+--00000000000061e9ed065be9ab00
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS =E2=80=94 Post=E2=80=91AGI Physical Scarcity + Catabolic Capita=
+l Thesis
+
+Date: 20 September 2026
+Executive thesis
+
+POW should be positioned as the live economic graph of the physical world
+that intelligence cannot instantly commoditize.
+
+Our post=E2=80=91AGI premise was already: when cognition/software becomes c=
+heap,
+scarcity migrates toward physical activation, authoritative world state,
+failure histories, qualification/permission, power, cooling, physical
+feedback, calibration, repair capacity, and the ability to make real
+objects actually work.
+
+Greer adds a second axis: civilization does not only build capital; it has
+to maintain an ever-larger installed base. When the cost of maintenance
+rises faster than surplus, systems do not disappear overnight. They degrade
+selectively, get patched, cannibalized, repaired, substituted, regionalized
+and abandoned at the margin.
+
+POW should combine both:
+
+*Post=E2=80=91AGI:* what remains scarce when intelligence is abundant?
+*Greer:* which parts of the installed physical system become harder/more
+valuable to maintain?
+*POW:* measure those scarcity gradients continuously before they become
+obvious.
+
+A useful formulation:
+
+Physical Alpha =3D
+(importance =C3=97 scarcity =C3=97 qualification =C3=97 failure frequency =
+=C3=97 replacement
+friction)
+=C3=B7 (substitutability =C3=97 software-replicability)
+
+And the durable moat is not the formula. It is the historical dataset.
+The reframing
+
+POW is not primarily:
+
+   - a crypto dashboard
+   - a mining calculator
+   - a content site
+   - a repair marketplace
+   - an AI-news site
+
+POW is:
+
+*A physical-scarcity observatory: a time-series graph of machines,
+components, sensors, energy, failures, maintenance, repairability,
+qualified capacity and substitution.*
+
+Crypto/mining remains a perfect first vertical because it exposes physical
+compute economics unusually clearly: machine price, hashrate, power price,
+thermals, network demand, issuance, depreciation and resale are all
+observable.
+
+But the same kernel extends into:
+
+   - sensors and instrumentation
+   - actuators
+   - 3D printers / local fabrication
+   - robotics
+   - solar / batteries / inverters
+   - electronics and PCB supply
+   - server / GPU / home-lab hardware
+   - industrial controls
+   - EV / vehicle failure ecology
+   - eventually HVAC, pumps, motors and trades equipment
+
+Why AGI makes this more valuable, not less
+
+If model intelligence becomes near-free, software analysis rapidly
+commoditizes. An agent can write code, read manuals and reason about
+repairs.
+
+But the agent still needs reality.
+
+It needs to know:
+
+   - what exact physical object exists
+   - where it is
+   - what state it is in now
+   - which component failed
+   - which replacement part is actually available
+   - whether a substitute is compatible
+   - who is permitted/qualified to install it
+   - how often that repair works
+   - whether a supplier really has stock
+   - what the local electricity / thermal / logistics constraint is
+   - whether an old machine is cheaper to maintain than replace
+   - how rapidly those facts decay
+
+This is the old WorldStateReliability concept:
+
+WorldStateReliability =3D
+identity certainty =C3=97 state freshness =C3=97 provenance =C3=97 permissi=
+on
+
+POW should accumulate exactly the reality layer future agents need.
+Greer =C3=97 post=E2=80=91AGI: the surprising market
+
+The major market may be *maintenance intelligence for a rapidly expanding
+technological installed base*.
+
+AGI/robotics may cause a burst of physical capital creation:
+
+   - robots
+   - machine vision
+   - cameras
+   - environmental sensors
+   - smart meters
+   - actuators
+   - edge computers
+   - GPUs
+   - inverters
+   - batteries
+   - EV chargers
+   - 3D printers
+   - local microfactories
+
+Every installed device is a future maintenance claim.
+
+Therefore:
+
+automation boom
+=E2=86=92 installed physical capital explodes
+=E2=86=92 failure population grows
+=E2=86=92 parts/support/software age
+=E2=86=92 repair and substitution become economically meaningful
+=E2=86=92 maintenance telemetry becomes valuable
+
+That is pure Greer, but AGI accelerates the creation of the capital stock
+that later needs maintaining.
+The POW graph
+
+Every physical object should eventually fit roughly:
+
+Asset
+=E2=86=92 Model / identity
+=E2=86=92 Components
+=E2=86=92 Sensors / state
+=E2=86=92 Energy requirement
+=E2=86=92 Failure modes
+=E2=86=92 Repair operations
+=E2=86=92 Replacement parts
+=E2=86=92 Compatible substitutes
+=E2=86=92 Market prices
+=E2=86=92 Installed-base estimate
+=E2=86=92 Qualification / permission requirements
+=E2=86=92 Local service capacity
+=E2=86=92 Outcome history
+=E2=86=92 Scrap / donor-part value
+
+The atomic economic event is not =E2=80=9Cnews.=E2=80=9D It is a *state tra=
+nsition*.
+
+Examples:
+
+   - component goes out of stock
+   - lead time doubles
+   - printer failure rate rises
+   - firmware support ends
+   - used price falls below donor-part value
+   - electricity price crosses machine breakeven
+   - recall appears
+   - failure reports cluster around one subsystem
+   - replacement component becomes available from new supplier
+   - a machine gains open firmware
+   - repair success improves
+   - certified installer population fails to keep pace with deployments
+
+Those are machine-readable POW events.
+The highest-value gardens to plant now 1. Electronic component scarcity
+garden
+
+Start immediately.
+
+Use Nexar/Octopart + DigiKey.
+
+Nexar currently exposes supply-chain data across tens of millions of
+electronic components, including stock, pricing, lifecycle and lead-time
+data updated daily. DigiKey Product Information V4 exposes product
+search/details and real-time pricing/availability through authenticated
+APIs.
+
+Collect hourly/daily snapshots for selected families:
+
+   - power electronics
+   - MOSFETs / IGBTs
+   - motor drivers
+   - current sensors
+   - encoders
+   - temperature / pressure / vibration sensors
+   - ADC/DAC
+   - industrial comms
+   - MCUs
+   - power supplies
+   - fans
+   - bearings where distributor data exists
+   - connector families
+   - 3D printer control electronics
+   - mining/compute PSU-related parts
+
+Do not attempt everything. Track the =E2=80=9Cboring indispensable=E2=80=9D=
+ components with
+high downstream gating leverage.
+
+Sources:
+Nexar API: https://nexar.com/api
+Nexar developer docs: https://nexar.com/developer
+DigiKey API: https://developer.digikey.com/
+DigiKey Product Information V4:
+https://developer.digikey.com/products/product-information-v4
+
+Critical derived metrics:
+
+   - stock_decay_rate
+   - lead_time_acceleration
+   - supplier_concentration
+   - price_elasticity_to_stock
+   - lifecycle_risk
+   - substitution_count
+   - qualification_debt
+   - component_content_per_target_machine
+
+This is almost exactly the post=E2=80=91AGI =E2=80=9CO-ring bottleneck=E2=
+=80=9D garden.
+2. Repair/failure garden
+
+Open Repair Alliance is extraordinarily useful as a seed dataset: its
+latest published aggregate contains 305,649 rows of electrical/electronic
+repair attempts, licensed CC BY-SA 4.0.
+
+Source:
+https://openrepair.org/open-data/downloads/
+
+iFixit provides structured repair guides, including device/component
+hierarchy, tools, difficulty and repair procedures. Non-commercial API
+access is free; commercial access requires contacting iFixit.
+
+Sources:
+https://www.ifixit.com/News/3981/the-worlds-first-repair-api
+https://www.ifixit.com/Info/Repair_Guide
+
+This gives POW a starting failure ontology:
+device =E2=86=92 component =E2=86=92 symptom =E2=86=92 intervention =E2=86=
+=92 difficulty =E2=86=92 tools =E2=86=92 outcome
+
+Then POW should collect its OWN outcome layer wherever possible. That
+proprietary outcome history is much more valuable than copying guides.
+
+Metrics:
+
+   - failure_capture_ratio
+   - component_failure_frequency
+   - repair_success_probability
+   - median repair time
+   - spare_part_availability
+   - donor_part_value
+   - economically_repairable_probability
+   - repair_vs_replace_spread
+
+3. 3D printer / local fabrication telemetry garden
+
+This could be a sleeper.
+
+3D printers are tiny cyberphysical factories. In a post=E2=80=91AGI world t=
+hey are
+an early laboratory for local autonomous manufacturing.
+
+OctoPrint already exposes printer state, temperatures, job state and
+temperature history via its API.
+
+Source:
+https://docs.octoprint.org/en/main/api/printer.html
+
+Moonraker exposes persistent print-job history, including lists queryable
+by time.
+
+Source:
+https://moonraker.readthedocs.io/en/latest/external_api/history/
+
+Klipper maintains a large open configuration corpus for mainstream
+printers, boards, kits and kinematic types.
+
+Source:
+https://github.com/Klipper3d/klipper/blob/master/docs/Example_Configs.md
+
+POW opportunity:
+create an opt-in tiny adapter/plugin that records anonymized:
+
+   - printer model
+   - board / hotend / extruder / sensor config
+   - material
+   - job length
+   - success/failure
+   - error state
+   - temp traces
+   - maintenance events
+   - replaced component
+   - print hours before failure
+   - energy if available
+   - repair outcome
+
+The garden compounds into:
+*real-world machine reliability by model/component/configuration.*
+
+That could later power agents deciding:
+
+   - which printer to buy
+   - which machine to route a job to
+   - preventive maintenance
+   - whether a used machine is mispriced
+   - which spare parts to hold
+   - which designs are robust to local fabrication
+
+This is exactly the kind of data that cannot be recreated retrospectively
+once the world realizes it wants it.
+4. Sensor truth / calibration garden
+
+Public sensor APIs are useful less because POW needs to become a weather
+service and more because they provide a sandbox for modelling *sensor
+identity, drift, availability, provenance and physical truth bandwidth*.
+
+OpenAQ v3 exposes locations, instruments, manufacturers, sensors and
+historical measurements.
+
+Sources:
+https://docs.openaq.org/api
+https://docs.openaq.org/resources/sensors
+
+UK Environment Agency flood-monitoring API exposes monitoring stations and
+near-real-time water levels/flows, often measured at roughly 15-minute
+intervals.
+
+Source:
+https://environment.data.gov.uk/flood-monitoring/doc/reference
+
+USGS=E2=80=99s modernized Water Data APIs expose continuous real-time senso=
+r
+measurements, daily values and station/time-series metadata in
+machine-readable formats.
+
+Source:
+https://www.usgs.gov/tools/usgs-water-data-apis
+
+Potential POW research:
+
+   - sensor dropout
+   - measurement disagreement
+   - maintenance gaps
+   - station age
+   - calibration proxies
+   - failure/recovery events
+   - geographic undersensing
+   - value of redundant sensors
+
+This teaches the kernel how to model reality reliability before POW
+eventually ingests private industrial sensor streams.
+5. UK energy / physical-compute constraint garden
+
+Elexon=E2=80=99s Insights Solution APIs are public, production-grade REST A=
+PIs and
+currently require no API key.
+
+Source:
+https://developer.data.elexon.co.uk/
+
+NESO=E2=80=99s data portal exposes CKAN APIs and datasets including 2026 hi=
+storic
+demand, wind/solar and interconnector outturn.
+
+Sources:
+https://www.neso.energy/data-portal/api-guidance
+https://www.neso.energy/data-portal/historic-demand-data/historic_demand_da=
+ta_2026
+
+Collect:
+
+   - system demand
+   - imbalance
+   - generation mix
+   - wind/solar outturn
+   - constraint events
+   - regional power proxies where available
+   - wholesale price relationships
+   - compute/mining breakeven overlays
+
+The point is not a prettier energy dashboard.
+
+The point is to learn:
+*which physical compute/industrial activities become viable at which energy
+states?*
+6. Used-equipment / donor-part market garden
+
+eBay Browse API supports search by keyword/category/GTIN/product and
+filters including condition and price.
+
+Source:
+https://developer.ebay.com/api-docs/buy/api-browse.html
+
+Collect repeated snapshots of:
+
+   - machine model
+   - asking price
+   - condition
+   - parts-only listings
+   - refurbished listings
+   - component listings
+   - listing disappearance
+   - geographical supply where permitted
+
+Important limitation: active listing data is not the same thing as reliable
+realized transaction data. POW should explicitly label observability rather
+than pretending asking prices are sale prices.
+
+But repeated snapshots can still reveal:
+
+   - supply surges
+   - depreciation
+   - parts-only ratios
+   - model-specific failure ecology
+   - donor-part floors
+   - repair-vs-replace spreads
+
+7. Regulated failure datasets as a template
+
+NHTSA is an excellent example of what the mature POW failure graph should
+look like. Its APIs/data expose recalls, complaints and manufacturer
+communications; complaints can be queried by model/year/make, and bulk data
+is downloadable.
+
+Source:
+https://www.nhtsa.gov/nhtsa-datasets-and-apis
+
+In the UK, DVSA=E2=80=99s MOT history API provides vehicle/test/recall data=
+, and
+MOT histories include defects/failures for vehicles.
+
+Source:
+https://www.gov.uk/government/publications/dvsa-privacy-notices/mot-history=
+-api-privacy-notice
+
+OPSS publishes UK product safety alerts, reports and recalls.
+
+Source:
+https://www.gov.uk/guidance/product-recalls-and-alerts
+
+These sources demonstrate the value of longitudinal failure traces.
+
+POW eventually wants NHTSA-like failure intelligence for:
+
+   - miners
+   - GPUs/PSUs
+   - solar inverters
+   - home batteries
+   - 3D printers
+   - robots
+   - sensors
+   - industrial electronics
+
+There is no universal regulator forcing those datasets into existence. That
+absence is the opportunity.
+The new category POW can own
+
+I would define the category as:
+
+*Physical Technology Intelligence*
+
+Not IoT.
+Not repair.
+Not industrial analytics.
+Not market data.
+
+POW answers:
+
+What physical technologies exist, what do they depend on, what state are
+they in, what is getting scarce, what is failing, what can substitute for
+it, and where is the economic value moving?
+
+That lets POW cover things as different as:
+
+   - Qubic miners
+   - a $4 pressure sensor
+   - a 3D printer hotend
+   - a solar inverter
+   - a robot gearbox
+   - a GPU fan
+   - an industrial PLC
+
+because the graph primitive is the same.
+Catabolic metrics POW should add permanently
+
+For every asset class:
+
+   1. Installed Base =E2=80=94 estimated deployed population.
+   2. Maintenance Burden =E2=80=94 expected annual parts/labour/energy need=
+ed to
+   preserve service.
+   3. Failure Capture Ratio =E2=80=94 how much real failure data POW can ob=
+serve.
+   4. Repairability =E2=80=94 probability a failure can be economically res=
+tored.
+   5. Replacement Friction =E2=80=94 price =C3=97 lead time =C3=97 qualific=
+ation =C3=97
+   installation.
+   6. Dependency Depth =E2=80=94 number/fragility of external systems requi=
+red to
+   remain useful.
+   7. Openability =E2=80=94 firmware/docs/parts/tooling accessibility.
+   8. Cannibalization Value =E2=80=94 recoverable component value from dead
+   machines.
+   9. Retrovation Score =E2=80=94 whether an older/simpler technology is be=
+coming
+   relatively more attractive.
+   10. Qualified Capacity =E2=80=94 physical capacity =C3=97 purity/quality=
+ =C3=97 customer
+   qualification =C3=97 geographic access.
+   11. State Decay Rate =E2=80=94 how quickly observations become stale.
+   12. Reality Calibration Ratio =E2=80=94 proportion of claims grounded by
+   physical outcome data.
+
+The =E2=80=9CGreer signal=E2=80=9D
+
+A key POW signal should detect when new-build economics starts crossing
+over into maintenance economics.
+
+For asset x:
+
+Catabolic Pressure(x) =3D
+Maintenance Requirement(x)
+/
+Replacement + Productive Surplus Available(x)
+
+Observable proxies:
+
+   - median installed age =E2=86=91
+   - failure mentions =E2=86=91
+   - used parts prices =E2=86=91 relative to whole-machine prices
+   - parts-only listing volume =E2=86=91
+   - lead times =E2=86=91
+   - refurbishment share =E2=86=91
+   - repair-guide engagement =E2=86=91
+   - support/documentation declines
+   - OEM discontinuations =E2=86=91
+   - spare-part supplier count =E2=86=93
+   - energy/operating cost share =E2=86=91
+
+When these move together, POW should flag:
+
+*MAINTENANCE ECONOMY FORMING*
+
+That is potentially both a trading signal and a business-opportunity signal=
+.
+What POW should NOT do
+
+Do not build the downstream =E2=80=9CGary in Oldham=E2=80=9D workflow insid=
+e POW.
+
+POW:
+=E2=80=9CFailure rate for this inverter cohort is rising; replacement board=
+s are
+scarce; used broken units have positive donor economics.=E2=80=9D
+
+Muse/downstream agent:
+=E2=80=9CGary, given your skills and location, this broken unit is worth bu=
+ying and
+repairing.=E2=80=9D
+
+POW remains the physical state / proof / economic signal layer.
+Immediate implementation order Week 1: plant irreversible time-series
+gardens
+
+   1. Nexar/Octopart selected component snapshots
+   2. DigiKey selected component snapshots
+   3. Elexon/NESO UK energy snapshots
+   4. eBay selected physical-tech category snapshots
+   5. Open Repair Alliance import
+   6. NHTSA/MOT/OPSS failure-schema import
+
+The rule is: if today=E2=80=99s state cannot be reconstructed a year from n=
+ow,
+snapshot it now.
+Week 2: build the common graph
+
+Canonical primitives:
+
+   - asset
+   - component
+   - observation
+   - state
+   - failure
+   - repair
+   - dependency
+   - substitution
+   - market_quote
+   - capacity
+   - qualification
+   - location
+   - evidence/provenance
+
+Every source adapter maps into those.
+Week 3: first proprietary telemetry wedge
+
+Build an OctoPrint/Moonraker =E2=80=9CPOW probe.=E2=80=9D
+
+Make it tiny and opt-in.
+
+Output:
+
+   - anonymized machine/config identity
+   - print/job outcomes
+   - temperatures/errors
+   - failure/maintenance events
+   - component replacements
+
+Do not overbuild a product. The product is the accumulating dataset.
+Week 4: signals
+
+Ship only a handful:
+
+   - SCARCITY FORMING
+   - FAILURE CLUSTER
+   - REPAIR ECONOMY FORMING
+   - DONOR VALUE > MACHINE PRICE
+   - OBSOLESCENCE / SUPPORT DECAY
+   - RETROVATION
+   - QUALIFIED CAPACITY BOTTLENECK
+   - ENERGY BREAKEVEN CROSSING
+
+The deeper bet
+
+In a software-scarce world, owning code mattered.
+
+In an intelligence-abundant world, the scarce layer becomes:
+
+*proof that the physical world is actually in state X and that action Y
+actually worked.*
+
+A future superhuman agent can infer a lot.
+
+It cannot infer the exact failure history that nobody recorded.
+
+It cannot reconstruct stock snapshots nobody archived.
+
+It cannot know a printer=E2=80=99s real MTBF by configuration if nobody col=
+lected
+telemetry.
+
+It cannot recover a decade of component scarcity history after the fact.
+
+It cannot recreate physical experience from software alone.
+
+That is the garden.
+One-line POW positioning
+
+*POW.SYSTEMS maps the physical bottlenecks, failures and maintenance
+economics that remain scarce when intelligence becomes abundant.*
+
+Or even sharper:
+
+*POW.SYSTEMS is the historical state graph of technological reality.*
+
+The second is probably the deeper moat.
+
+Sources were checked on 20 September 2026.
+
+--00000000000061e9ed065be9ab00
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS =E2=80=94 Post=E2=80=91AGI Physical Scarcity + Catabolic Capita=
+l Thesis
+<p>Date: 20 September 2026</p>
+
+Executive thesis
+<p>POW should be positioned as the live economic graph of the physical worl=
+d that intelligence cannot instantly commoditize.</p>
+<p>Our post=E2=80=91AGI premise was already: when cognition/software become=
+s cheap, scarcity migrates toward physical activation, authoritative world =
+state, failure histories, qualification/permission, power, cooling, physica=
+l feedback, calibration, repair capacity, and the ability to make real obje=
+cts actually work.</p>
+<p>Greer adds a second axis: civilization does not only build capital; it h=
+as to maintain an ever-larger installed base. When the cost of maintenance =
+rises faster than surplus, systems do not disappear overnight. They degrade=
+ selectively, get patched, cannibalized, repaired, substituted, regionalize=
+d and abandoned at the margin.</p>
+<p>POW should combine both:</p>
+<p><strong>Post=E2=80=91AGI:</strong> what remains scarce when intelligence=
+ is abundant?<br>
+<strong>Greer:</strong> which parts of the installed physical system become=
+ harder/more valuable to maintain?<br>
+<strong>POW:</strong> measure those scarcity gradients continuously before =
+they become obvious.</p>
+<p>A useful formulation:</p>
+<p>Physical Alpha =3D<br>
+(importance =C3=97 scarcity =C3=97 qualification =C3=97 failure frequency =
+=C3=97 replacement friction)<br>
+=C3=B7 (substitutability =C3=97 software-replicability)</p>
+<p>And the durable moat is not the formula. It is the historical dataset.</=
+p>
+
+The reframing
+<p>POW is not primarily:</p>
+<ul>
+<li>a crypto dashboard</li>
+<li>a mining calculator</li>
+<li>a content site</li>
+<li>a repair marketplace</li>
+<li>an AI-news site</li>
+</ul>
+<p>POW is:</p>
+<blockquote>
+<p><strong>A physical-scarcity observatory: a time-series graph of machines=
+, components, sensors, energy, failures, maintenance, repairability, qualif=
+ied capacity and substitution.</strong></p>
+</blockquote>
+<p>Crypto/mining remains a perfect first vertical because it exposes physic=
+al compute economics unusually clearly: machine price, hashrate, power pric=
+e, thermals, network demand, issuance, depreciation and resale are all obse=
+rvable.</p>
+<p>But the same kernel extends into:</p>
+<ul>
+<li>sensors and instrumentation</li>
+<li>actuators</li>
+<li>3D printers / local fabrication</li>
+<li>robotics</li>
+<li>solar / batteries / inverters</li>
+<li>electronics and PCB supply</li>
+<li>server / GPU / home-lab hardware</li>
+<li>industrial controls</li>
+<li>EV / vehicle failure ecology</li>
+<li>eventually HVAC, pumps, motors and trades equipment</li>
+</ul>
+
+Why AGI makes this more valuable, not less
+<p>If model intelligence becomes near-free, software analysis rapidly commo=
+ditizes. An agent can write code, read manuals and reason about repairs.</p=
+>
+<p>But the agent still needs reality.</p>
+<p>It needs to know:</p>
+<ul>
+<li>what exact physical object exists</li>
+<li>where it is</li>
+<li>what state it is in now</li>
+<li>which component failed</li>
+<li>which replacement part is actually available</li>
+<li>whether a substitute is compatible</li>
+<li>who is permitted/qualified to install it</li>
+<li>how often that repair works</li>
+<li>whether a supplier really has stock</li>
+<li>what the local electricity / thermal / logistics constraint is</li>
+<li>whether an old machine is cheaper to maintain than replace</li>
+<li>how rapidly those facts decay</li>
+</ul>
+<p>This is the old WorldStateReliability concept:</p>
+<p>WorldStateReliability =3D<br>
+identity certainty =C3=97 state freshness =C3=97 provenance =C3=97 permissi=
+on</p>
+<p>POW should accumulate exactly the reality layer future agents need.</p>
+
+Greer =C3=97 post=E2=80=91AGI: the surprising market
+<p>The major market may be <strong>maintenance intelligence for a rapidly e=
+xpanding technological installed base</strong>.</p>
+<p>AGI/robotics may cause a burst of physical capital creation:</p>
+<ul>
+<li>robots</li>
+<li>machine vision</li>
+<li>cameras</li>
+<li>environmental sensors</li>
+<li>smart meters</li>
+<li>actuators</li>
+<li>edge computers</li>
+<li>GPUs</li>
+<li>inverters</li>
+<li>batteries</li>
+<li>EV chargers</li>
+<li>3D printers</li>
+<li>local microfactories</li>
+</ul>
+<p>Every installed device is a future maintenance claim.</p>
+<p>Therefore:</p>
+<p>automation boom<br>
+=E2=86=92 installed physical capital explodes<br>
+=E2=86=92 failure population grows<br>
+=E2=86=92 parts/support/software age<br>
+=E2=86=92 repair and substitution become economically meaningful<br>
+=E2=86=92 maintenance telemetry becomes valuable</p>
+<p>That is pure Greer, but AGI accelerates the creation of the capital stoc=
+k that later needs maintaining.</p>
+
+The POW graph
+<p>Every physical object should eventually fit roughly:</p>
+<p>Asset<br>
+=E2=86=92 Model / identity<br>
+=E2=86=92 Components<br>
+=E2=86=92 Sensors / state<br>
+=E2=86=92 Energy requirement<br>
+=E2=86=92 Failure modes<br>
+=E2=86=92 Repair operations<br>
+=E2=86=92 Replacement parts<br>
+=E2=86=92 Compatible substitutes<br>
+=E2=86=92 Market prices<br>
+=E2=86=92 Installed-base estimate<br>
+=E2=86=92 Qualification / permission requirements<br>
+=E2=86=92 Local service capacity<br>
+=E2=86=92 Outcome history<br>
+=E2=86=92 Scrap / donor-part value</p>
+<p>The atomic economic event is not =E2=80=9Cnews.=E2=80=9D It is a <strong=
+>state transition</strong>.</p>
+<p>Examples:</p>
+<ul>
+<li>component goes out of stock</li>
+<li>lead time doubles</li>
+<li>printer failure rate rises</li>
+<li>firmware support ends</li>
+<li>used price falls below donor-part value</li>
+<li>electricity price crosses machine breakeven</li>
+<li>recall appears</li>
+<li>failure reports cluster around one subsystem</li>
+<li>replacement component becomes available from new supplier</li>
+<li>a machine gains open firmware</li>
+<li>repair success improves</li>
+<li>certified installer population fails to keep pace with deployments</li>
+</ul>
+<p>Those are machine-readable POW events.</p>
+
+The highest-value gardens to plant now
+
+1. Electronic component scarcity garden
+<p>Start immediately.</p>
+<p>Use Nexar/Octopart + DigiKey.</p>
+<p>Nexar currently exposes supply-chain data across tens of millions of ele=
+ctronic components, including stock, pricing, lifecycle and lead-time data =
+updated daily. DigiKey Product Information V4 exposes product search/detail=
+s and real-time pricing/availability through authenticated APIs.</p>
+<p>Collect hourly/daily snapshots for selected families:</p>
+<ul>
+<li>power electronics</li>
+<li>MOSFETs / IGBTs</li>
+<li>motor drivers</li>
+<li>current sensors</li>
+<li>encoders</li>
+<li>temperature / pressure / vibration sensors</li>
+<li>ADC/DAC</li>
+<li>industrial comms</li>
+<li>MCUs</li>
+<li>power supplies</li>
+<li>fans</li>
+<li>bearings where distributor data exists</li>
+<li>connector families</li>
+<li>3D printer control electronics</li>
+<li>mining/compute PSU-related parts</li>
+</ul>
+<p>Do not attempt everything. Track the =E2=80=9Cboring indispensable=E2=80=
+=9D components with high downstream gating leverage.</p>
+<p>Sources:<br>
+Nexar API: <a href=3D"https://nexar.com/api">https://nexar.com/api</a><br>
+Nexar developer docs: <a href=3D"https://nexar.com/developer">https://nexar=
+.com/developer</a><br>
+DigiKey API: <a href=3D"https://developer.digikey.com/">https://developer.d=
+igikey.com/</a><br>
+DigiKey Product Information V4: <a href=3D"https://developer.digikey.com/pr=
+oducts/product-information-v4">https://developer.digikey.com/products/produ=
+ct-information-v4</a></p>
+<p>Critical derived metrics:</p>
+<ul>
+<li>stock_decay_rate</li>
+<li>lead_time_acceleration</li>
+<li>supplier_concentration</li>
+<li>price_elasticity_to_stock</li>
+<li>lifecycle_risk</li>
+<li>substitution_count</li>
+<li>qualification_debt</li>
+<li>component_content_per_target_machine</li>
+</ul>
+<p>This is almost exactly the post=E2=80=91AGI =E2=80=9CO-ring bottleneck=
+=E2=80=9D garden.</p>
+
+2. Repair/failure garden
+<p>Open Repair Alliance is extraordinarily useful as a seed dataset: its la=
+test published aggregate contains 305,649 rows of electrical/electronic rep=
+air attempts, licensed CC BY-SA 4.0.</p>
+<p>Source:<br>
+<a href=3D"https://openrepair.org/open-data/downloads/">https://openrepair.=
+org/open-data/downloads/</a></p>
+<p>iFixit provides structured repair guides, including device/component hie=
+rarchy, tools, difficulty and repair procedures. Non-commercial API access =
+is free; commercial access requires contacting iFixit.</p>
+<p>Sources:<br>
+<a href=3D"https://www.ifixit.com/News/3981/the-worlds-first-repair-api">ht=
+tps://www.ifixit.com/News/3981/the-worlds-first-repair-api</a><br>
+<a href=3D"https://www.ifixit.com/Info/Repair_Guide">https://www.ifixit.com=
+/Info/Repair_Guide</a></p>
+<p>This gives POW a starting failure ontology:<br>
+device =E2=86=92 component =E2=86=92 symptom =E2=86=92 intervention =E2=86=
+=92 difficulty =E2=86=92 tools =E2=86=92 outcome</p>
+<p>Then POW should collect its OWN outcome layer wherever possible. That pr=
+oprietary outcome history is much more valuable than copying guides.</p>
+<p>Metrics:</p>
+<ul>
+<li>failure_capture_ratio</li>
+<li>component_failure_frequency</li>
+<li>repair_success_probability</li>
+<li>median repair time</li>
+<li>spare_part_availability</li>
+<li>donor_part_value</li>
+<li>economically_repairable_probability</li>
+<li>repair_vs_replace_spread</li>
+</ul>
+
+3. 3D printer / local fabrication telemetry garden
+<p>This could be a sleeper.</p>
+<p>3D printers are tiny cyberphysical factories. In a post=E2=80=91AGI worl=
+d they are an early laboratory for local autonomous manufacturing.</p>
+<p>OctoPrint already exposes printer state, temperatures, job state and tem=
+perature history via its API.</p>
+<p>Source:<br>
+<a href=3D"https://docs.octoprint.org/en/main/api/printer.html">https://doc=
+s.octoprint.org/en/main/api/printer.html</a></p>
+<p>Moonraker exposes persistent print-job history, including lists queryabl=
+e by time.</p>
+<p>Source:<br>
+<a href=3D"https://moonraker.readthedocs.io/en/latest/external_api/history/=
+">https://moonraker.readthedocs.io/en/latest/external_api/history/</a></p>
+<p>Klipper maintains a large open configuration corpus for mainstream print=
+ers, boards, kits and kinematic types.</p>
+<p>Source:<br>
+<a href=3D"https://github.com/Klipper3d/klipper/blob/master/docs/Example_Co=
+nfigs.md">https://github.com/Klipper3d/klipper/blob/master/docs/Example_Con=
+figs.md</a></p>
+<p>POW opportunity:<br>
+create an opt-in tiny adapter/plugin that records anonymized:</p>
+<ul>
+<li>printer model</li>
+<li>board / hotend / extruder / sensor config</li>
+<li>material</li>
+<li>job length</li>
+<li>success/failure</li>
+<li>error state</li>
+<li>temp traces</li>
+<li>maintenance events</li>
+<li>replaced component</li>
+<li>print hours before failure</li>
+<li>energy if available</li>
+<li>repair outcome</li>
+</ul>
+<p>The garden compounds into:<br>
+<strong>real-world machine reliability by model/component/configuration.</s=
+trong></p>
+<p>That could later power agents deciding:</p>
+<ul>
+<li>which printer to buy</li>
+<li>which machine to route a job to</li>
+<li>preventive maintenance</li>
+<li>whether a used machine is mispriced</li>
+<li>which spare parts to hold</li>
+<li>which designs are robust to local fabrication</li>
+</ul>
+<p>This is exactly the kind of data that cannot be recreated retrospectivel=
+y once the world realizes it wants it.</p>
+
+4. Sensor truth / calibration garden
+<p>Public sensor APIs are useful less because POW needs to become a weather=
+ service and more because they provide a sandbox for modelling <strong>sens=
+or identity, drift, availability, provenance and physical truth bandwidth</=
+strong>.</p>
+<p>OpenAQ v3 exposes locations, instruments, manufacturers, sensors and his=
+torical measurements.</p>
+<p>Sources:<br>
+<a href=3D"https://docs.openaq.org/api">https://docs.openaq.org/api</a><br>
+<a href=3D"https://docs.openaq.org/resources/sensors">https://docs.openaq.o=
+rg/resources/sensors</a></p>
+<p>UK Environment Agency flood-monitoring API exposes monitoring stations a=
+nd near-real-time water levels/flows, often measured at roughly 15-minute i=
+ntervals.</p>
+<p>Source:<br>
+<a href=3D"https://environment.data.gov.uk/flood-monitoring/doc/reference">=
+https://environment.data.gov.uk/flood-monitoring/doc/reference</a></p>
+<p>USGS=E2=80=99s modernized Water Data APIs expose continuous real-time se=
+nsor measurements, daily values and station/time-series metadata in machine=
+-readable formats.</p>
+<p>Source:<br>
+<a href=3D"https://www.usgs.gov/tools/usgs-water-data-apis">https://www.usg=
+s.gov/tools/usgs-water-data-apis</a></p>
+<p>Potential POW research:</p>
+<ul>
+<li>sensor dropout</li>
+<li>measurement disagreement</li>
+<li>maintenance gaps</li>
+<li>station age</li>
+<li>calibration proxies</li>
+<li>failure/recovery events</li>
+<li>geographic undersensing</li>
+<li>value of redundant sensors</li>
+</ul>
+<p>This teaches the kernel how to model reality reliability before POW even=
+tually ingests private industrial sensor streams.</p>
+
+5. UK energy / physical-compute constraint garden
+<p>Elexon=E2=80=99s Insights Solution APIs are public, production-grade RES=
+T APIs and currently require no API key.</p>
+<p>Source:<br>
+<a href=3D"https://developer.data.elexon.co.uk/">https://developer.data.ele=
+xon.co.uk/</a></p>
+<p>NESO=E2=80=99s data portal exposes CKAN APIs and datasets including 2026=
+ historic demand, wind/solar and interconnector outturn.</p>
+<p>Sources:<br>
+<a href=3D"https://www.neso.energy/data-portal/api-guidance">https://www.ne=
+so.energy/data-portal/api-guidance</a><br>
+<a href=3D"https://www.neso.energy/data-portal/historic-demand-data/histori=
+c_demand_data_2026">https://www.neso.energy/data-portal/historic-demand-dat=
+a/historic_demand_data_2026</a></p>
+<p>Collect:</p>
+<ul>
+<li>system demand</li>
+<li>imbalance</li>
+<li>generation mix</li>
+<li>wind/solar outturn</li>
+<li>constraint events</li>
+<li>regional power proxies where available</li>
+<li>wholesale price relationships</li>
+<li>compute/mining breakeven overlays</li>
+</ul>
+<p>The point is not a prettier energy dashboard.</p>
+<p>The point is to learn:<br>
+<strong>which physical compute/industrial activities become viable at which=
+ energy states?</strong></p>
+
+6. Used-equipment / donor-part market garden
+<p>eBay Browse API supports search by keyword/category/GTIN/product and fil=
+ters including condition and price.</p>
+<p>Source:<br>
+<a href=3D"https://developer.ebay.com/api-docs/buy/api-browse.html">https:/=
+/developer.ebay.com/api-docs/buy/api-browse.html</a></p>
+<p>Collect repeated snapshots of:</p>
+<ul>
+<li>machine model</li>
+<li>asking price</li>
+<li>condition</li>
+<li>parts-only listings</li>
+<li>refurbished listings</li>
+<li>component listings</li>
+<li>listing disappearance</li>
+<li>geographical supply where permitted</li>
+</ul>
+<p>Important limitation: active listing data is not the same thing as relia=
+ble realized transaction data. POW should explicitly label observability ra=
+ther than pretending asking prices are sale prices.</p>
+<p>But repeated snapshots can still reveal:</p>
+<ul>
+<li>supply surges</li>
+<li>depreciation</li>
+<li>parts-only ratios</li>
+<li>model-specific failure ecology</li>
+<li>donor-part floors</li>
+<li>repair-vs-replace spreads</li>
+</ul>
+
+7. Regulated failure datasets as a template
+<p>NHTSA is an excellent example of what the mature POW failure graph shoul=
+d look like. Its APIs/data expose recalls, complaints and manufacturer comm=
+unications; complaints can be queried by model/year/make, and bulk data is =
+downloadable.</p>
+<p>Source:<br>
+<a href=3D"https://www.nhtsa.gov/nhtsa-datasets-and-apis">https://www.nhtsa=
+.gov/nhtsa-datasets-and-apis</a></p>
+<p>In the UK, DVSA=E2=80=99s MOT history API provides vehicle/test/recall d=
+ata, and MOT histories include defects/failures for vehicles.</p>
+<p>Source:<br>
+<a href=3D"https://www.gov.uk/government/publications/dvsa-privacy-notices/=
+mot-history-api-privacy-notice">https://www.gov.uk/government/publications/=
+dvsa-privacy-notices/mot-history-api-privacy-notice</a></p>
+<p>OPSS publishes UK product safety alerts, reports and recalls.</p>
+<p>Source:<br>
+<a href=3D"https://www.gov.uk/guidance/product-recalls-and-alerts">https://=
+www.gov.uk/guidance/product-recalls-and-alerts</a></p>
+<p>These sources demonstrate the value of longitudinal failure traces.</p>
+<p>POW eventually wants NHTSA-like failure intelligence for:</p>
+<ul>
+<li>miners</li>
+<li>GPUs/PSUs</li>
+<li>solar inverters</li>
+<li>home batteries</li>
+<li>3D printers</li>
+<li>robots</li>
+<li>sensors</li>
+<li>industrial electronics</li>
+</ul>
+<p>There is no universal regulator forcing those datasets into existence. T=
+hat absence is the opportunity.</p>
+
+The new category POW can own
+<p>I would define the category as:</p>
+<p><strong>Physical Technology Intelligence</strong></p>
+<p>Not IoT.<br>
+Not repair.<br>
+Not industrial analytics.<br>
+Not market data.</p>
+<p>POW answers:</p>
+<blockquote>
+<p>What physical technologies exist, what do they depend on, what state are=
+ they in, what is getting scarce, what is failing, what can substitute for =
+it, and where is the economic value moving?</p>
+</blockquote>
+<p>That lets POW cover things as different as:</p>
+<ul>
+<li>Qubic miners</li>
+<li>a $4 pressure sensor</li>
+<li>a 3D printer hotend</li>
+<li>a solar inverter</li>
+<li>a robot gearbox</li>
+<li>a GPU fan</li>
+<li>an industrial PLC</li>
+</ul>
+<p>because the graph primitive is the same.</p>
+
+Catabolic metrics POW should add permanently
+<p>For every asset class:</p>
+<ol>
+<li>Installed Base =E2=80=94 estimated deployed population.</li>
+<li>Maintenance Burden =E2=80=94 expected annual parts/labour/energy needed=
+ to preserve service.</li>
+<li>Failure Capture Ratio =E2=80=94 how much real failure data POW can obse=
+rve.</li>
+<li>Repairability =E2=80=94 probability a failure can be economically resto=
+red.</li>
+<li>Replacement Friction =E2=80=94 price =C3=97 lead time =C3=97 qualificat=
+ion =C3=97 installation.</li>
+<li>Dependency Depth =E2=80=94 number/fragility of external systems require=
+d to remain useful.</li>
+<li>Openability =E2=80=94 firmware/docs/parts/tooling accessibility.</li>
+<li>Cannibalization Value =E2=80=94 recoverable component value from dead m=
+achines.</li>
+<li>Retrovation Score =E2=80=94 whether an older/simpler technology is beco=
+ming relatively more attractive.</li>
+<li>Qualified Capacity =E2=80=94 physical capacity =C3=97 purity/quality =
+=C3=97 customer qualification =C3=97 geographic access.</li>
+<li>State Decay Rate =E2=80=94 how quickly observations become stale.</li>
+<li>Reality Calibration Ratio =E2=80=94 proportion of claims grounded by ph=
+ysical outcome data.</li>
+</ol>
+
+The =E2=80=9CGreer signal=E2=80=9D
+<p>A key POW signal should detect when new-build economics starts crossing =
+over into maintenance economics.</p>
+<p>For asset x:</p>
+<p>Catabolic Pressure(x) =3D<br>
+Maintenance Requirement(x)<br>
+/<br>
+Replacement + Productive Surplus Available(x)</p>
+<p>Observable proxies:</p>
+<ul>
+<li>median installed age =E2=86=91</li>
+<li>failure mentions =E2=86=91</li>
+<li>used parts prices =E2=86=91 relative to whole-machine prices</li>
+<li>parts-only listing volume =E2=86=91</li>
+<li>lead times =E2=86=91</li>
+<li>refurbishment share =E2=86=91</li>
+<li>repair-guide engagement =E2=86=91</li>
+<li>support/documentation declines</li>
+<li>OEM discontinuations =E2=86=91</li>
+<li>spare-part supplier count =E2=86=93</li>
+<li>energy/operating cost share =E2=86=91</li>
+</ul>
+<p>When these move together, POW should flag:</p>
+<p><strong>MAINTENANCE ECONOMY FORMING</strong></p>
+<p>That is potentially both a trading signal and a business-opportunity sig=
+nal.</p>
+
+What POW should NOT do
+<p>Do not build the downstream =E2=80=9CGary in Oldham=E2=80=9D workflow in=
+side POW.</p>
+<p>POW:<br>
+=E2=80=9CFailure rate for this inverter cohort is rising; replacement board=
+s are scarce; used broken units have positive donor economics.=E2=80=9D</p>
+<p>Muse/downstream agent:<br>
+=E2=80=9CGary, given your skills and location, this broken unit is worth bu=
+ying and repairing.=E2=80=9D</p>
+<p>POW remains the physical state / proof / economic signal layer.</p>
+
+Immediate implementation order
+
+Week 1: plant irreversible time-series gardens
+<ol>
+<li>Nexar/Octopart selected component snapshots</li>
+<li>DigiKey selected component snapshots</li>
+<li>Elexon/NESO UK energy snapshots</li>
+<li>eBay selected physical-tech category snapshots</li>
+<li>Open Repair Alliance import</li>
+<li>NHTSA/MOT/OPSS failure-schema import</li>
+</ol>
+<p>The rule is: if today=E2=80=99s state cannot be reconstructed a year fro=
+m now, snapshot it now.</p>
+
+Week 2: build the common graph
+<p>Canonical primitives:</p>
+<ul>
+<li>asset</li>
+<li>component</li>
+<li>observation</li>
+<li>state</li>
+<li>failure</li>
+<li>repair</li>
+<li>dependency</li>
+<li>substitution</li>
+<li>market_quote</li>
+<li>capacity</li>
+<li>qualification</li>
+<li>location</li>
+<li>evidence/provenance</li>
+</ul>
+<p>Every source adapter maps into those.</p>
+
+Week 3: first proprietary telemetry wedge
+<p>Build an OctoPrint/Moonraker =E2=80=9CPOW probe.=E2=80=9D</p>
+<p>Make it tiny and opt-in.</p>
+<p>Output:</p>
+<ul>
+<li>anonymized machine/config identity</li>
+<li>print/job outcomes</li>
+<li>temperatures/errors</li>
+<li>failure/maintenance events</li>
+<li>component replacements</li>
+</ul>
+<p>Do not overbuild a product. The product is the accumulating dataset.</p>
+
+Week 4: signals
+<p>Ship only a handful:</p>
+<ul>
+<li>SCARCITY FORMING</li>
+<li>FAILURE CLUSTER</li>
+<li>REPAIR ECONOMY FORMING</li>
+<li>DONOR VALUE &gt; MACHINE PRICE</li>
+<li>OBSOLESCENCE / SUPPORT DECAY</li>
+<li>RETROVATION</li>
+<li>QUALIFIED CAPACITY BOTTLENECK</li>
+<li>ENERGY BREAKEVEN CROSSING</li>
+</ul>
+
+The deeper bet
+<p>In a software-scarce world, owning code mattered.</p>
+<p>In an intelligence-abundant world, the scarce layer becomes:</p>
+<p><strong>proof that the physical world is actually in state X and that ac=
+tion Y actually worked.</strong></p>
+<p>A future superhuman agent can infer a lot.</p>
+<p>It cannot infer the exact failure history that nobody recorded.</p>
+<p>It cannot reconstruct stock snapshots nobody archived.</p>
+<p>It cannot know a printer=E2=80=99s real MTBF by configuration if nobody =
+collected telemetry.</p>
+<p>It cannot recover a decade of component scarcity history after the fact.=
+</p>
+<p>It cannot recreate physical experience from software alone.</p>
+<p>That is the garden.</p>
+
+One-line POW positioning
+<p><strong>POW.SYSTEMS maps the physical bottlenecks, failures and maintena=
+nce economics that remain scarce when intelligence becomes abundant.</stron=
+g></p>
+<p>Or even sharper:</p>
+<p><strong>POW.SYSTEMS is the historical state graph of technological reali=
+ty.</strong></p>
+<p>The second is probably the deeper moat.</p>
+
+
+<p>Sources were checked on 20 September 2026.</p>
+
+--00000000000061e9ed065be9ab00--

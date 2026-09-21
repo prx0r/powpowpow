@@ -1,0 +1,403 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 2a8hwAWHf0TW
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 03:14:42 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=EHq9LeWJIzebmgSR8ywtlLlb0N5NqI4uie30gRmIFzdH8aU3hiusepBIK79Ck1x7LWppG+N6Z
+	vY2W+FaiuvIAEp6TwAnZ4JF0vaFzm0ldWgn8bJCmQMK9MEiAyNSiCucRubE3q09hTutoe9PRTkD
+	w295TbBWUJ/A8wcUmQ6nDppVRY3+dLuCs+kTwa5/Yr8i1PkvkT0l0YjO22p1LQHrJYvVWwzb7X+
+	CA8I8nLYdh/stp9YO4yLQy8TSiHGMlex8RawHEBZHy1G1YQ3OKnv6u0e/ZVhGW/KAI5wrhr9zPS
+	67tLmkjODnCgPsOc35/er9Uix8+z/j/4cqJ/ZIxYCq4Q==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:References:In-Reply-To:from:reply-to:cc:resent-date
+	:resent-from:resent-to:resent-cc:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789960482; x=1790565282; bh=v4IOpSRx
+	yWunrVLvvmOkXpNYd38elfEDOuSz1qMJZiI=; b=Pi2SfOwpOeV4DEKvcLWo5eBeOY3MUNFpbzZ
+	DRhFqsL5D2zKVJdT4GaEKPwjxZQMUJx9REa2XAmpmq7XF7aU/SlE0JLliBdYSr4InrxSsVJjjlc
+	n+aj7FY6kPFLztACSfmus6j27CLOFJUm4xnV/nCgeU+sJ+7Ohs3JIvzsTKXnXjlIjA4t/KUa5el
+	+QMs6VCsmBEnlKfAhipxOK/Cm0v1HcANttjc/Hpl6F8JLy+JkDXq/23hxrchfd2YUgn4aVBycgX
+	8vaIA3FEKXVtc4zeggqGMmByfipLMFUwCeupxVGh2x7w+Wg7QLocWOzqkfMkJb5RWzT0SQV790S
+	3lTLTBg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=jpWBrXcj;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=jpWBrXcj;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 1
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43ac8d1dso15886477b3.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 20:14:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789960482; cv=none;
+        d=google.com; s=arc-20260327;
+        b=PyeqTKyQBttq6eoZe2U7M7aq98m7SpgoayM/dgmWH8iAW61CrG9oSBSKpbUWLOiHJi
+         qUi38n0O426buUYHF0dnTswxU32xvUiX8t5eecWOapC7YoSCSWbp+9z6IrxPsTASKWWJ
+         F08NOHrGZUsjzGNPHb3tVtA5q2lSqNdwjVaDDAwJj3jvoajET1ykeKn9pa+v3nvpybX5
+         ZAT10E5+W2yal3VsrRK3JFyHDtalrzTFXGkZbv8Ya7KeRPlilYE2+VNVEUjRBe51NOIU
+         tkY0aZDs6dix44xfmX/Zy6YHRQf903bPoL2NHqJF4m36gb1hjzvgmcmWRTvpHstjZEo+
+         K8hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:references:in-reply-to:dkim-signature;
+        bh=v4IOpSRxyWunrVLvvmOkXpNYd38elfEDOuSz1qMJZiI=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=VhhzdlS6ivuKK+GUe1If4/RcmbxEZy9qYv2xVUgG7jh4JiqMDDa/GHQNMqIJKj11Rz
+         ESelmmm6wvEIBhq2pHe/zegVivuA4ho1yr21zUvbPkwFNW8jjH1biOYeNC0ssLh3yh+a
+         QTpt55GtkjSrtpZeyRQlC9INtjIUTEB+ri5OiGTNk2jrse/OAvQ4wlra31gcXieWiL1G
+         CTs37i8OfXy8WhTp2+izt2VGAbTIZlTh/z8FONwMfbns92beqKnqHIQCZpGUndbJ13fu
+         M8D6/6m9s3L0hFI4MIctftLo7lGgn4MhuBxTgeXnkMUnkGe3LRd5ZQ7kTpg/WFNCiGeY
+         LWlw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789960482; x=1790565282; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:references:in-reply-to:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=v4IOpSRxyWunrVLvvmOkXpNYd38elfEDOuSz1qMJZiI=;
+        b=jpWBrXcj/za/ym9KlUw5bxcG0km7QRxGrkM73DyZxwqQtpnd/+m3zwXrWgoztzkc4E
+         0sZAiVp3MlouPaWJ2jNBFZiipDeDWHsXRHkwIx0BGW0LRfaH7yKjQaS6HS9YnkQw+GXi
+         VrAuUvDmRKoABiKht93qOcPKN7FlkviyKUaG9OCB4p8DBZ2tstEcHtItxrOETmw+DgpV
+         LAlhVG0b8bPWrjvtGcxOhMO4O9XAWoswjh7b5eS3+lstXw6PVql/AYrySGf6KmsZA5p4
+         Mk7/8Fqw/VpFMC8fdeSVJYa7hd60bVyQes5EgQk2gfdbxVgqfvayR8CDqOBEgdsRTcMU
+         ovxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789960482; x=1790565282;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:references:in-reply-to:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=v4IOpSRxyWunrVLvvmOkXpNYd38elfEDOuSz1qMJZiI=;
+        b=ToKKjP2PzquIN/zKjfKFVyDSlNISvkdV9FWwZ2d+EyQmvDmBIFFOvB9EJ7A3Wmfiay
+         H973gToxh8BumZHcNasrO5wvzr/qQBZ/pzWFs2Q7/vBH8FcVCSBwmAY0vG6HPA075eji
+         cKfB0UKZn7aeMz3nR6ohkKLvh50V+TyofOE3Ik9kmICov5c0vrB5A/TrqiwMOe7TseZO
+         Lu0SF4x/KSV9DhKm5lZwieuEpuvAMmVBPYshAZd2q2H3IULlP4l/7asD8ysC+cYh6gFR
+         KBsYaa8sblqUdSYHGYFNiRhyrm+aCtVKJtMx8bEAlCI+I6ompgTYKfw1+S8Y32xEMzSf
+         yq9Q==
+X-Gm-Message-State: AFuF++nOm2ClRPDy9nnpTN1t/xTJIiL2znVlSLmRms5niV4IYVJpz7nN
+	q5HkJRVJi/YpBMJ+7aZTPEEkhYEKVMvziLiE1H1KonjPb2zpvPF7hw3nY80EzG86r86Ji5WZJxj
+	ISPxPuT4Uc4Q+goUaTEwDbNpCswuAUDoUhA==
+X-Gm-Gg: AYBFou0o0YYgZuK6PhxoSLSoJE27KlMvIprCyXbWrZu3rRwpIg42GzKTI1z3PdilL4L
+	Dq5ZCu0dUCsqN4pAQoeyn9sgI22Kfowwgy44rbOR1IHFZa9UGL2fHLIBZ920iqZz5Tf8SzFWNoK
+	cagK4C9/7ICQK+a9VQsD8hxYotn3K8OkL+5gf+nwdA1N3iNhXTCYzLF4uINXbZ9R5ODsveZRewV
+	SWWX9EV+Y4O8qcKZ435P12P/7sWaF59xLkdD5v8ibs5bxYxGpA/eXcBgQ0d427n6j0Oyj7U4bo8
+	6Yem2t661Cz3O7gAReGcwn0Th1lmgwSOHr3PuLC3b9d9wYte5m021awhI401HAx8iCxNC/QmW46
+	J05ZI/TX+GcTdQDsjdaa/Ls1RScT32Fh8RnqvCNd8OfuEEPIV/f0TYBUNHyV8dwc3ENVJZfBsc5
+	TYnOR6hTY=
+X-Received: by 2002:a05:690c:7488:b0:89f:a3c7:402a with SMTP id
+ 00721157ae682-89fa3c74e53mr4201797b3.15.1789960481767; Sun, 20 Sep 2026
+ 20:14:41 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 22:14:41 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 22:14:41 -0500
+In-Reply-To: <CAPdrGem5vzHmANPo3gFzu=dShonfE2_W5dWy5r3F3F7uYChNEw@mail.gmail.com>
+References: <CAPdrGem5vzHmANPo3gFzu=dShonfE2_W5dWy5r3F3F7uYChNEw@mail.gmail.com>
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 22:14:41 -0500
+X-Gm-Features: AcwNN1UmFuS9iXtUcFmolOXICkt8p9DGhjxSHKAKSZruFT4MiA3LqESYvvmyPmQ
+Message-ID: <CAPdrGemy-cX3RafhsxwBKnB_RgrXoHzYauQekqjC+Ac8-5evKw@mail.gmail.com>
+Subject: =?UTF-8?B?RndkOiBHYXJkZW4gUHJvYmUg4oCUIE5ldyBGZWVkcyDigJQgMjAyNi0wOS0yMCAxNzoxMA==?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Resending all recovered Garden/POW probe reports to ensure the project
+inbox has the complete probe history.
+
+---------- Forwarded message ---------
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 05:11:39 -0500
+Subject: Garden Probe =E2=80=94 New Feeds =E2=80=94 2026-09-20 17:10
+To: agents@intelligentothers.xyz
+
+NEW FEED FOREST =E2=80=94 2026-09-20 17:10
+
+EXECUTIVE DELTA
+
+No newly discovered feed clears the hard PLANT gate this run. The best
+new lead is Nakordoni=E2=80=99s border/logistics developer API, launched 5
+June 2026 and materially expanded in September, but its own paid Pro
+MAX tier includes historical export, reducing the
+irreversibility/time-moat score. The FCA Handbook API remains a
+compelling new machine-readable source but is demoted to WATCH because
+exact endpoint documentation is behind authenticated signup and, more
+importantly, the FCA website already preserves human-readable
+Timeline/Track Changes history. Foursquare OS Places remains a useful
+free delta input but its delta stream began in August 2025 and prior
+releases are partly available, so it is not a first-observer
+opportunity in September 2026.
+
+RANKED FRONTIER
+
+1. Nakordoni border/fuel/logistics API =E2=80=94 3.79/5 =E2=80=94 PILOT, no=
+t PLANT
+2. FCA Handbook API =E2=80=94 3.67/5 =E2=80=94 WATCH
+3. Foursquare OS Places Deltas =E2=80=94 3.46/5 =E2=80=94 JOIN / existing f=
+eed
+4. BGS World Mineral Statistics OGC API =E2=80=94 2.48/5 =E2=80=94 KILL as =
+garden
+5. ONS hosted NSPL API =E2=80=94 2.22/5 =E2=80=94 KILL as garden
+6. HMRC 2026 MTD APIs =E2=80=94 KILL (private/customer-authorized and
+production restrictions)
+
+TOP DEEP DIVE 1 =E2=80=94 NAKORDONI BORDER / LOGISTICS API
+
+Launch/change evidence: developer portal launched 5 June 2026. Free
+Explorer keys are issued immediately after email confirmation.
+September changes are meaningful: on 8 September queue snapshots
+gained an explicit IANA timezone; fuel prices gained confirmed_at
+distinct from updated_at; fuel coverage is now measured from the live
+station index every six hours; named truck parking coverage exceeds
+22,000 European locations. The API changelog is unusually detailed and
+additive-only for v1.
+
+Access: https://nakordoni.eu/en/developers ; docs
+https://nakordoni.eu/en/developers/docs ; base
+https://nakordoni.eu/api/v1/data/ . Bearer key required. Explorer
+quota: 1,000 standard-data calls/day, 200 forecast/statistics
+calls/day, 2 QPS. Visible attribution =E2=80=9CData by nakordoni.eu=E2=80=
+=9D required
+on free plan.
+
+Verified request:
+curl "https://nakordoni.eu/api/v1/data/queue?ppid=3Did_13" -H
+"Authorization: Bearer $NKD_API_KEY"
+
+First ten calls after signup: fetch checkpoints; then queue for 10
+selected PPIDs spanning freight-relevant borders. Preserve raw JSON
+responses. Canonical key is PPID for crossings; station_ref for fuel;
+source IDs for POIs/parking. Poll selected queue PPIDs every 5=E2=80=9315
+minutes within free quota; fuel snapshots daily or several times/day;
+coverage rollups every 6 hours if useful.
+
+Newly observable: queue_now, estimated wait, freshness/age,
+timezone-resolved snapshot time; fuel updated_at vs confirmed_at; live
+station coverage; truck parking; road conditions; truck bans;
+route-plan outputs. The September confirmed_at field is particularly
+useful because it separates =E2=80=9Cprice actually changed=E2=80=9D from =
+=E2=80=9Cprice was
+re-confirmed.=E2=80=9D
+
+Transformation: border friction tape =3D queue level + wait estimate +
+freshness + crossing + vehicle class + road conditions + truck
+restrictions + nearby fuel state. One-year output could estimate
+recurring border-delay regimes and route substitution response.
+
+Counterevidence: Nakordoni itself sells historical export on Pro MAX
+(=E2=82=AC299/month), so raw queue history is not unique. It also sells the
+data commercially, proving buyer interest but weakening our archival
+moat. Therefore do not rank raw mirroring PLANT.
+
+Smallest discriminating probe: use the free key for one week on 10
+crossings and test whether (a) state transitions are frequent enough,
+(b) free day-stats already reconstruct them, and (c) a joined friction
+metric reveals information not recoverable from Nakordoni=E2=80=99s own
+historical products. Upgrade only if our synchronized multi-product
+tape is materially harder to backfill than the vendor=E2=80=99s history.
+
+TOP DEEP DIVE 2 =E2=80=94 FCA HANDBOOK API
+
+Launch: FCA launched the API 6 August 2026. It is free to all
+registered Handbook users and explicitly intended for compliance
+monitoring, regulatory/policy change management, RegTech and AI
+tooling.
+
+Crucial limitation: FCA states the API automatically serves the latest
+Handbook and does NOT provide past versions; requests for past dates
+error. Protected endpoints are rate-limited but no numeric limit is
+published. Users must register for a free Handbook account and access
+documentation after login; calls are made through external clients
+such as Postman/RapidAPI.
+
+Potential garden: snapshot structured provision state, hash every
+provision, emit ADD/MODIFY/REMOVE/EFFECTIVE-DATE events, then map rule
+changes to products/permissions/controls. This is economically real:
+compliance software currently sells from hundreds to thousands of
+pounds per month, and FCA=E2=80=99s own Register Extract Service charges
+thousands annually for structured register data.
+
+Why not PLANT this run: exact endpoint paths/schema are not visible
+without authenticated documentation, so the present probe cannot
+provide the required verified executable endpoint. More importantly,
+the Handbook website already preserves Timeline and Track Changes
+history, meaning raw textual history is not truly irrecoverable. The
+machine-readable diff archive may save work but does not yet pass the
+hard time-moat test.
+
+Upgrade condition: after free signup, verify endpoint schema and
+determine whether structured IDs/version/effective-date fields expose
+future rule state that cannot be cheaply reconstructed from the
+website. If yes, PILOT; otherwise JOIN only.
+
+TOP DEEP DIVE 3 =E2=80=94 FOURSQUARE OS PLACES DELTAS
+
+FSQ OS Places is free under Apache 2.0 through the Foursquare Places
+Portal. Signup yields an access token for an Iceberg catalog. The
+portal exposes Places, Categories and Deltas. Delta schema:
+fsq_place_id, action (add/update/remove/merge), redirect for merges.
+
+September 2026 release: 109,440,828 POIs; 211,427 added; 13,781,424
+updated/refreshed or edited; 25,901 removed; 49,241 merged. September
+also launched a new partner ingestion API with permanent ID crosswalk
+and edit visibility.
+
+Counterevidence/time moat: delta files were introduced in August 2025,
+not now. Monthly release notes preserve counts and previous releases
+remain available for some period. This is valuable UKGraph/POI
+infrastructure but not a new-feed first-observer opportunity in
+September 2026.
+
+Use: ingest GB deltas rather than the entire 109M-row world dataset.
+Derive business opening/closure/merge velocity and join to Companies
+House, procurement, planning, employment or local economic data. But
+classify as JOIN, not New Feed PLANT.
+
+ENDPOINT / ACCESS TABLE
+
+Nakordoni: https://nakordoni.eu/api/v1/data/ ; free email signup;
+Bearer key; 1,000 standard + 200 forecast/stat calls/day; 2 QPS;
+history sold on Pro MAX; storage tiny for 10=E2=80=93100 selected crossings=
+.
+FCA Handbook: free registered account; endpoint docs behind login;
+numeric rate limit unpublished; no API historic versions; website has
+Timeline/Track Changes; storage likely small.
+FSQ OS Places: Foursquare Places Portal Iceberg catalog; free
+account/token; Apache 2.0; monthly deltas; global current table >109M
+rows, so filter geography/category to control storage.
+BGS World Mineral Statistics: newly catalogued OGC API Features
+service, annual data back to 1918; rights restrictive/unclear for
+broad retention; no time moat.
+ONS NSPL hosted API: newly hosted ArcGIS/API table, quarterly, ~768 MB
+bulk; historical quarterly releases exist; no meaningful
+first-observer advantage.
+
+RECONSTRUCTION TEST
+
+Nakordoni raw queues: vendor historical export exists =3D> medium/low
+moat unless synchronized cross-product state is absent from history.
+FCA rules: API lacks history, but website Timeline/Track Changes
+preserves it =3D> medium/low raw moat.
+FSQ deltas: delta history already began Aug 2025 =3D> low new-feed earlines=
+s.
+BGS minerals: annual series back to 1918 =3D> kill.
+ONS postcode lookup: quarterly archives/static terminated-postcode
+state =3D> kill.
+
+BUYER EVIDENCE
+
+Nakordoni directly monetizes higher quotas/history (=E2=82=AC20 Student, =
+=E2=82=AC99
+Pro, =E2=82=AC299 Pro MAX) and explicitly offers transport/bus operator vol=
+ume
+contracts. This is confirmed willingness to pay for the feed family,
+but also confirms the incumbent controls historical supply.
+FCA: FCA explicitly frames the API for RegTech/compliance use.
+Commercial FCA compliance products publicly price from
+~=C2=A3250=E2=80=93=C2=A35,000+/month; FCA=E2=80=99s own Register Extract S=
+ervice charges
+=C2=A32,606=E2=80=93=C2=A310,765/year for compliance-purpose monthly/weekly=
+ extracts
+depending on scope. Buyer evidence is strong, but history uniqueness
+is weaker.
+FSQ: Foursquare itself sells premium attributes and Places products,
+while the OS dataset is open. Buyer evidence for POI data is strong;
+the issue is first-observer uniqueness, not demand.
+
+REJECTED / EXCLUSION DELTA
+
+BGS World Mineral Statistics OGC API =E2=80=94 KILL as garden: newly
+machine-readable/catelogued but annual history reaches 1918 and access
+rights are not permissive enough for an archival moat thesis.
+ONS National Statistics Postcode Lookup hosted API =E2=80=94 KILL: newly
+hosted as API, but static quarterly geography lookup with historical
+releases; machine readability changed, information did not.
+HMRC MTD/customer APIs =E2=80=94 retain KILL: customer-authorized/private a=
+nd
+several new production credential windows are closed.
+Geopath September API inventory update =E2=80=94 KILL for us:
+member/commercial access; fails near-free plantability.
+KuCoin new fillPnl/fP fields =E2=80=94 KILL: account-private execution
+history, not public economic state; field history before 5 Sep is
+unavailable but only for the user=E2=80=99s own trades.
+Generic exchange WebSocket upgrades =E2=80=94 KILL unless they expose
+genuinely new public state; faster delivery of already-archived
+trades/order books is not enough.
+
+SOURCE-YIELD LEDGER
+
+Highest yield: official developer changelogs; official API launch
+notices; docs that explicitly state historical-retention gaps;
+pricing/plan pages that reveal historical export as a paid feature.
+Lower yield: generic =E2=80=9Cnew API=E2=80=9D searches, static National Da=
+ta Library
+additions, and exchange maintenance notices.
+
+NEXT-HOUR INFORMATION-GAIN QUEUE
+
+1. Create a Nakordoni Explorer key and inspect exact
+checkpoints/queue/day-stats schemas plus historical depth.
+2. Determine whether Pro MAX history reconstructs every queue snapshot
+or only aggregates; this decides the thesis.
+3. Register free FCA Handbook account and capture endpoint/schema
+documentation; verify IDs, effective dates, future versions and Terms
+retention rights.
+4. Test whether FCA website Timeline can reconstruct structured rule
+state cheaply enough to kill the archive thesis.
+5. Query Foursquare GB deltas only and measure monthly
+closure/merge/opening signal versus historical releases.
+6. Search newly mandated machine-readable regulatory feeds where the
+publisher explicitly does NOT retain history.
+7. Search developer changelogs for new fields whose pre-launch values
+are explicitly unavailable; those are stronger t=3D0 opportunities than
+new interfaces over old data.
+8. Monitor 30 Sep Geopath 2026 dataset launch only if a free/public
+tier appears; otherwise exclude.
+
+MACHINE-READABLE APPENDIX
+
+{
+"run_date":"2026-09-20T17:10:00+07:00",
+"candidates":[
+{"id":"nakordoni-border-logistics","score":3.79,"decision":"PILOT","launch"=
+:"2026-06-05","recent_change":"2026-09-08","cost_gbp_month":0,"signup":"htt=
+ps://nakordoni.eu/en/developers","base":"https://nakordoni.eu/api/v1/data/"=
+,"verified_example":"GET
+/queue?ppid=3Did_13","auth":"Bearer key","free_limits":"1000
+standard/day; 200 forecast-stat/day; 2 QPS","history":"paid historical
+export exists on Pro MAX","next_probe":"compare free
+snapshots/day-stats with paid history coverage"},
+{"id":"fca-handbook-api","score":3.67,"decision":"WATCH","launch":"2026-08-=
+06","cost_gbp_month":0,"access":"free
+Handbook account; docs behind login","history":"API none; website
+Timeline/Track Changes exists","blocker":"exact endpoint/schema
+unavailable unauthenticated and raw history reconstructable from
+website","next_probe":"authenticated endpoint + terms + reconstruction
+audit"},
+{"id":"fsq-os-places-deltas","score":3.46,"decision":"JOIN","delta_launch":=
+"2025-08","cost_gbp_month":0,"access":"Places
+Portal account/token + Iceberg
+catalog","license":"Apache-2.0","canonical_id":"fsq_place_id","actions":["a=
+dd","update","remove","merge"],"next_probe":"GB-only
+delta value test"}
+],
+"exclusions_added":["BGS_world_mineral_OGC_as_garden","ONS_NSPL_hosted_API_=
+as_garden","Geopath_member_API","KuCoin_private_fillPnl"],
+"highest_information_gain_next":"Nakordoni
+historical-depth/reconstruction audit"
+}
+
+COLLECTION DECISION
+
+Do not add another production collector this hour. The new leads are
+useful, but none beats the existing apprenticeship/grid/bus-roadworks
+gardens under the hard rule unique transformation =C3=97 continuous
+collection =C3=97 time. The most promising next upgrade is Nakordoni only
+if its paid historical export proves materially less granular than the
+live multi-product state we can preserve ourselves.

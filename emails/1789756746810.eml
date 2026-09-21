@@ -1,0 +1,386 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id OAVcq17FXRot
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 18:39:06 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=EvYDytDWNfUEnKzuBlFtYoAEKgLzjKnHunFpBd2a2tCQ5rNIdDJ0h2y7K2x6bFa0syRUpYhld
+	K1PrqBjZ2NaZiVFZLKAeOL2poVaMT1qA7SpCjuYD5XShd6koGcgavUd/s/rSYThUrXTwZGiXYNQ
+	WjThWhtBVm7AdgMwGlPHmm+TSJZRtuptnpSo4umgtJoGNiWYxLErZMiFY4Pqto+FgDZd3utyxMS
+	KSXnPYkpOcJ6QCK+ZYEwBuym8B6KjdMawKTiEzB3ZCYluPRJQVYGa/mOtfsTlnUEIFCu9RqNmzy
+	jKj+xqliW3qS+CDUzouDh3pz7nKSii54G37Tc1KDW2mA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789756746; x=1790361546; bh=m0dzGHtg
+	e9EZyOalg1stZji4nHsg/cZav3nhomViHGU=; b=eRSm1XwfxyXvuhezRsqwk7MCIMZDrDym2XE
+	W50DhAUQhyVaS3AGMD1mBkoplicDgqy9pwjWIGZhhgVkV2lkrBEEJ4ldaKCZqfEPwFBJ7ZwcRAE
+	ZZNllMirTomdz8HdeXJzmVwT9s5QQxiH1BaJOmYc2MZCTvK2ZU61odq4V3RCSOTHIpl+xgD8t//
+	MoAbMgoEA7xenfk4kLb9D/62t+B/9EO5n+ReH8eNDl3B19xSFy2sgdL4mJ1Vh7IQAH5GoukXfRK
+	z63N9mMpBp9u1f8tcXxhWp8k8hdWXbG7yz2zVdmWSJcRVMA40R0JW+7Xb7kfa5irwNu5PhmHDD2
+	92z44tQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Yo3n7dmO;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Yo3n7dmO;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-85d43daa8f4so8224527b3.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 11:39:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789756746; cv=none;
+        d=google.com; s=arc-20260327;
+        b=cnzEe3W2WzZ4/ErvIHL9VZwZvyb/EgtMAXG3G3+ic1X8lE1NRthhNtYOzFWZhVaB5I
+         qV5gENOFCz7RMVcqKJc4t4T7RENqmZrN1TWGRQ5lNkCCjxzJjErbpC0jz9cX5I2L7OpF
+         G1RnJe9ivJPe/JFVmc2tO4mSP6EIFQTIxCLOWFDYOb4ZBy5S44Ssg1UgNFN2+uySt80K
+         mBVkD/QORm9YWnKuIn0QPPOVNUjtEoNeSA4t+6sdrt9vrgwuxLgc/P+q0Ouan0dY9PSu
+         +5jNCIGhbkzj5lfbBBdfUbJXjE+5g7a1X32TmPMpsXBQLR0fEsJkQ/iuKPpzcPgkmxYi
+         3p7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=m0dzGHtge9EZyOalg1stZji4nHsg/cZav3nhomViHGU=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=puoq9yySWj68luXXZyy6ofJ9Svc0JHC91vx3BSs6hm1OdezGYUvlYJZ7XiJEW/3csg
+         fwtzZNVsyqcoJoAu+/cp8jReT31X2IJjSxxIAlMlvKA2fGAsv3jyd5eZS5KR1cpoZvNY
+         3uXpUwQbUGRevlvLPP4Dq4EQApu/SPZxFqWUUkrxvZAANxxg745v0wEGFSLpB9yZOc/g
+         8nPh0/dyhVm/P3JOTRR4jlOj6n6EGq1DbuDHHiszcLJ32W6ttX64D4KdMslIGOg4Cg+z
+         Q/Tk0vSVukqjtyAg9Zpzk43ZMT5mwYFaARheQcW5oiBNyUL1rBC644XEcRr0re34zGlP
+         oLrQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789756746; x=1790361546; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=m0dzGHtge9EZyOalg1stZji4nHsg/cZav3nhomViHGU=;
+        b=Yo3n7dmOAWJAzVdYIoJLbDrUGs48f2gOtHJz3BvvOMpeI3NTUeZvDISYKuD40y9Ye/
+         RL0TYa92Cqn/TDQcR8c2lzDau9pgr+crz1SOd5KHnsIIU6XKdcYLvLPTiq+7BceHnj51
+         RE72VIQmz+n1vS0ObcCru4oloslSzDpclWXicdATHbEGIBENvlH2ywulQZvcIa8lIBe/
+         2yz13cHck5ybNKozdmnL7BOXUjtg4hDTo3hZPdGKd1w9H6KlFfQzWYPwIY8ylgch7X1O
+         HQWaarYeoTyWKq7SdYN2EHrrkKYwm7+kNbGOoA/z5r1wQEqV0BNci5jKzd7D4hg+Jk6w
+         UH9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789756746; x=1790361546;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=m0dzGHtge9EZyOalg1stZji4nHsg/cZav3nhomViHGU=;
+        b=w8ott/ZBJmXbEGHa6Gy9qNkRgjHWGkgRLAd+k7Rv1b0ke/j0wB/xjmOIUPJhM2mrLa
+         Zsg8Msm+Z5AUsUWbA4ynACn7PWRUtq5A7R2+JIr35T6iCX90SNt6z5sx5xOMgARpY7gX
+         PW3iFbmC2YKa201dGBIDxSYj8v9d4/QuMLYDZmyQgkIqpC8g5ZwAZBtPU0jX1XhtWaHI
+         Zqz2mWkci2mvcfqQbHJaFww03F9ulJWlQ6vmH2Sv9CyTPaUvGEXamcVwgw0BgCxMMUyX
+         U5uq4yC3NVVzJMo8fjbBCsoe2IyzqJvIQvyQUgpg3lYu391XaBcDXB0/kP5fVDJAt7oG
+         64xg==
+X-Gm-Message-State: AFuF++mmTwO53DTY1dDmNpvzs9nRtNaV38osbgvva79idFGWuzsdxF8O
+	VjcT1C1IBbQc+fnjOdf2yWgQfF4YXzZrnW2YsBk3WuH5Xa91TpRcy/N+JWw53RJ+S1D3JcIQmRX
+	PoPCtLjPhHXOOMMZYPb9zZb4RM3wPnHaPbw==
+X-Gm-Gg: AYBFou0e+12/hU2luvyVVcXCJepmelQYO3YicCoIBSM3vV32KPcaqVs8RCRDq9RbrtQ
+	NLwaaJuOW7RfUn3YZMf9evRn7J4KqnxSKW3WOvpfPLJoFuj5P2I9KUcDyGSVE6n4j5qQr0FtuKY
+	3s0TvbxYq160tnIkZphFKcPGo42RLuM26rJYjZK5ktFy9Rw+YEDaMaYGqXJCozRExcf1USJHEQc
+	+PF/96IYdcxdp7fHk+grzKvDa0jWlXAmgp0/JcG7IGkJf7HLJAdhKM4moPJoao9USDPOdd+Mnxj
+	Zwc7eYqyslsKMtwMS+AyoxL7lSetlx3btJDcZ87ElEgh+TUV1XLieFBy0kGbo40Wr2Z4E/cuw2L
+	rWJMkdKXLwykzq4hJBP+EsMq9UFbP/5HpS7xFi7pjTOQHp2+yakna1uW5U28UKeAJmyEztOkF+k
+	xwu839
+X-Received: by 2002:a05:690e:25d0:b0:672:99e1:11fd with SMTP id
+ 956f58d0204a3-67299e1172bmr82390d50.154.1789756745749; Fri, 18 Sep 2026
+ 11:39:05 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 13:39:04 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 13:39:04 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 13:39:04 -0500
+X-Gm-Features: AcwNN1VfSVSmaxOkfeY8yVRwvbqPj6MCaylCiSpAXOoOBeSBpZKcT6LK_YFtMrE
+Message-ID: <CAPdrGe=Q=1tmWwffgcsY3yJHhUgBejKYM4UXhcvzo-7KjKkQog@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D19_01=3A38_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+STATE
+Checked prior SENT Roast.pet Viral Formats reports through 2026-09-19
+00:37 and excluded semantic repeats. Fresh evidence checked across
+September TikTok/meme reporting, Reels presentation trends,
+creator-format reporting and current short-form behavior. This run
+favors mechanisms, not sounds or copyrighted clips.
+
+1) PET HOOD RESEARCH DEPARTMENT / BAD SCIENCE LAB
+Sources: https://trending.knowyourmeme.com/editorials/guides/what-is-the-so=
+und-faster-than-light-meme-the-viral-zias-and-blou-streaming-clip-and-memes=
+-explained--2
+Why viewers watch: a confidently stupid experiment gets edited as if
+it were a civilization-level scientific breakthrough. The September
+resurgence specifically adds ironic genius/scientist edits to a simple
+amateur test.
+Core mechanic: test an obvious proposition badly, obtain a ridiculous
+conclusion, then over-celebrate it as peer-reviewed science.
+Pet protagonist: use the customer's real vice as the research
+question: =E2=80=9CCan Milo hear a cheese wrapper through three walls?=E2=
+=80=9D
+Best use: social clip, birthday card QR, recurring pet-series episode.
+15=E2=80=9345 sec template: 0=E2=80=933s institutional title =E2=80=9CROAST=
+.PET BEHAVIOURAL
+RESEARCH=E2=80=9D; 3=E2=80=938s hypothesis; 8=E2=80=9318s owner runs crude =
+test; 18=E2=80=9325s pet
+instantly reacts/fails; 25=E2=80=9335s fake chart + Nobel-level edit; 35=E2=
+=80=9340s
+conclusion: =E2=80=9CCheese detection exceeds known physics.=E2=80=9D
+Hook: =E2=80=9CScientists have finally tested why [PET] can=E2=80=99t hear =
+=E2=80=98come here=E2=80=99
+but can hear cheese from 40 metres.=E2=80=9D
+Assets: pet cutout/short clip, lab lower thirds, fake chart generator,
+experiment props, triumphant sting.
+Complexity: MEDIUM.
+Novelty: HIGH; unlike prior stat sheets/scouting reports, the joke is
+an actual repeatable experiment protocol.
+Verdict: MAKE TEMPLATE NOW.
+
+2) PET =E2=80=9CWHO I AM=E2=80=9D / EMBARRASSING SELF-INTRO
+Sources: https://trending.knowyourmeme.com/editorials/guides/what-is-the-ha=
+minations-cringe-meme-the-who-i-am-tiktok-trend-explained
+Why viewers watch: self-description is inherently vulnerable;
+overearnest introductions become funny when the stated identity
+clashes with what everyone knows.
+Core mechanic: sincere autobiographical introduction repeatedly
+undermined by visual evidence.
+Pet protagonist: pet introduces name, age, hobbies and virtues while
+photos prove each claim false.
+Best use: birthday, adoption anniversary, social profile launch.
+15=E2=80=9345 sec template: 0=E2=80=934s =E2=80=9CHi, I=E2=80=99m Archie=E2=
+=80=9D; 4=E2=80=9310s =E2=80=9CI=E2=80=99m 7 and very
+mature=E2=80=9D =E2=86=92 bin photo; 10=E2=80=9317s =E2=80=9Cmy hobbies are=
+ fitness=E2=80=9D =E2=86=92 sleeping;
+17=E2=80=9324s =E2=80=9CI value family=E2=80=9D =E2=86=92 owner pushed off =
+sofa; 24=E2=80=9332s =E2=80=9Cpeople say
+I=E2=80=99m easygoing=E2=80=9D =E2=86=92 infamous incident; 32=E2=80=9338s =
+end-card =E2=80=9CThat=E2=80=99s who I am.=E2=80=9D
+Hook: =E2=80=9C[PET] was asked to introduce himself to the class.=E2=80=9D
+Assets: 4=E2=80=936 customer photos, pet voice, doodle/profile graphics, lo=
+re fields.
+Complexity: LOW.
+Novelty: HIGH; more personal than dating profile because it is an
+autobiographical contradiction engine.
+Verdict: MAKE TEMPLATE NOW.
+
+3) ULTRA-WIDE PET CINEMA / 5120=C3=971080 SERIOUS FILM
+Sources: https://www.marketing-interactive.com/how-instagram-skinny-cinemat=
+ic-reels-are-stealing-the-scroll
+Why viewers watch: the bizarrely thin aspect ratio interrupts a feed
+and makes mundane footage feel absurdly cinematic. Reporting
+identifies the skinny 5120=C3=971080 presentation as a September Reels
+obsession.
+Core mechanic: give a microscopic everyday event the visual grammar of
+prestige cinema.
+Pet protagonist: turn the walk to the food bowl, theft of one sock, or
+stare through a window into a widescreen epic.
+Best use: premium social clip, AR card reveal.
+15=E2=80=9345 sec template: 0=E2=80=934s ultra-wide title =E2=80=9C[PET]: T=
+HE LAST BISCUIT=E2=80=9D;
+4=E2=80=9312s slow approach; 12=E2=80=9320s owner guards biscuit; 20=E2=80=
+=9330s stare-down;
+30=E2=80=9336s pet steals it; 36=E2=80=9340s tiny end credit =E2=80=9CBased=
+ on actual events.=E2=80=9D
+Hook: =E2=80=9CA film by someone who has lived with [PET] for too long.=E2=
+=80=9D
+Assets: pet identity reference, 2=E2=80=933 generated/real scenes, letterbo=
+x
+compositor, original cinematic SFX.
+Complexity: MEDIUM.
+Novelty: HIGH as a presentation layer that can wrap many Roast.pet jokes.
+Verdict: TEST.
+
+4) PET CELEBRITY ENTITLEMENT / =E2=80=9CI NO LONGER CARRY ID=E2=80=9D
+Sources: https://buffer.com/resources/trending-songs-tiktok/
+Why viewers watch: tiny personal achievements are treated as evidence
+of enormous fame; September trend roundups show creators reworking the
+=E2=80=9CI will no longer be carrying photo ID=E2=80=9D line to announce th=
+eir
+supposed celebrity.
+Core mechanic: one pathetic achievement triggers an absurd escalation
+in status and demands.
+Pet protagonist: after 14 likes / winning =E2=80=9Cbest boy=E2=80=9D / catc=
+hing one
+ball, pet issues a celebrity rider.
+Best use: birthday card, social clip, T-shirt quote.
+15=E2=80=9345 sec template: 0=E2=80=935s =E2=80=9CFollowing yesterday=E2=80=
+=99s achievement=E2=80=A6=E2=80=9D; 5=E2=80=9312s
+pet press statement; 12=E2=80=9322s demands: no eye contact, chicken-only
+green room, owner must book appointment; 22=E2=80=9330s reveal achievement
+(=E2=80=9Csat on command once=E2=80=9D); 30=E2=80=9335s paparazzi exit.
+Hook: =E2=80=9CAfter going viral in the family WhatsApp, [PET] has released=
+ a
+statement.=E2=80=9D
+Assets: pet podium/cutout, statement template, paparazzi flashes,
+lore-specific demands.
+Complexity: LOW.
+Novelty: MEDIUM-HIGH; distinct from award speech because the punchline
+is post-fame entitlement.
+Verdict: MAKE TEMPLATE NOW.
+
+5) PET =E2=80=9CKINDA CHIC=E2=80=9D =E2=80=94 ROMANTICIZE THE VICE
+Sources: https://buffer.com/resources/trending-songs-tiktok/
+Why viewers watch: creators are reframing ordinary moments as
+aesthetically desirable with a simple text treatment; the comedy
+version works by beautifying behavior that plainly does not deserve
+it.
+Core mechanic: describe a gross, chaotic or annoying behavior in
+aspirational lifestyle language.
+Pet protagonist: =E2=80=9Ceating from the bin=E2=80=9D becomes =E2=80=9Cloc=
+ally sourced
+tasting menu=E2=80=9D; sleeping all day becomes =E2=80=9Cslow living=E2=80=
+=9D; stealing socks
+becomes =E2=80=9Ccurating textiles.=E2=80=9D
+Best use: cheap social clip/carousel, card insert, T-shirt.
+15=E2=80=9330 sec template: 0=E2=80=933s ugly/real photo; 3=E2=80=938s butt=
+er-yellow aesthetic
+caption; 8=E2=80=9318s 3 vice shots each translated into luxury language;
+18=E2=80=9324s hero portrait; 24=E2=80=9328s =E2=80=9C[PET]. Kinda chic.=E2=
+=80=9D
+Hook: =E2=80=9CThings [PET] does that are actually kinda chic.=E2=80=9D
+Assets: customer photos, typography template, behavior=E2=86=92luxury-copy =
+transformer.
+Complexity: LOW.
+Novelty: HIGH as a copy-first inversion mechanic.
+Verdict: MAKE TEMPLATE NOW.
+
+6) PET BRAIN IN THE WRONG JOB / SIMULATION EXPERIMENT
+Sources: https://trending.knowyourmeme.com/editorials/guides/whats-with-all=
+-these-fly-brain-simulations-the-viral-jokes-and-memes-about-a-fruit-flys-b=
+rain-being-mapped-explained
+Why viewers watch: a real scientific object is placed into
+increasingly inappropriate tasks; current fly-brain memes include
+simulations playing games, trading Bitcoin and driving.
+Core mechanic: preserve one agent=E2=80=99s tiny/simple decision policy whi=
+le
+changing the environment to something absurdly consequential.
+Pet protagonist: model the pet=E2=80=99s known behavioral rules (=E2=80=9Cf=
+ood > owner
+> everything else=E2=80=9D) and drop them into air-traffic control, trading=
+,
+restaurant management, etc.
+Best use: recurring social series; tech/gaming audience crossover.
+15=E2=80=9345 sec template: 0=E2=80=935s =E2=80=9CWe uploaded [PET]=E2=80=
+=99s brain=E2=80=9D; 5=E2=80=9310s show
+3-rule decision tree; 10=E2=80=9325s insert into serious job; 25=E2=80=9335=
+s job
+immediately collapses because food/ball/squirrel appears; 35=E2=80=9340s fa=
+ke
+benchmark score.
+Hook: =E2=80=9CWe gave [PET] control of a hedge fund. There was one problem=
+.=E2=80=9D
+Assets: pet lore decision tree, generic original UI environments,
+voiceover, fake telemetry.
+Complexity: MEDIUM.
+Novelty: HIGH; unlike prior AI-replacement benchmark, the pet=E2=80=99s act=
+ual
+behavioral policy is transported across environments and can become
+episodic.
+Verdict: TEST.
+
+7) PET GHOSTING EXCUSE / SECRET SECOND LIFE
+Sources: https://buffer.com/resources/trending-songs-tiktok/
+Why viewers watch: a familiar social excuse sets up a reveal of what
+the person was supposedly doing instead; current September usage jokes
+about ignoring notifications because =E2=80=9CI=E2=80=99m working.=E2=80=9D
+Core mechanic: socially acceptable excuse =E2=86=92 visual reveal of
+ridiculous true activity.
+Pet protagonist: =E2=80=9CSorry I ignored you, I=E2=80=99ve been working=E2=
+=80=9D =E2=86=92 montage of
+sleeping, staring at wall, stealing food, barking at nothing.
+Best use: 10=E2=80=9320 sec social clip, friendship/birthday card.
+15=E2=80=9325 sec template: 0=E2=80=934s owner text =E2=80=9Cwhy are you ig=
+noring me?=E2=80=9D; 4=E2=80=937s
+pet =E2=80=9Csorry, been working=E2=80=9D; 7=E2=80=9320s rapid job-title mo=
+ntage: perimeter
+security / crumb acquisition / textile relocation / strategic nap;
+20=E2=80=9324s =E2=80=9Cbusy again ttyl.=E2=80=9D
+Hook: =E2=80=9CWhy [PET] hasn=E2=80=99t replied for 6 hours.=E2=80=9D
+Assets: 3=E2=80=935 photos/clips, chat UI, occupation labels.
+Complexity: LOW.
+Novelty: MEDIUM-HIGH; differs from group-chat leak because the reveal
+is an excuse-vs-reality montage.
+Verdict: TEST.
+
+8) PET QUESTION THAT BREAKS THE INTERVIEW
+Sources: https://knowyourmeme.com/newsfeed/trending
+Why viewers watch: an innocuous podcast question produces a
+disproportionate/non-answer reaction; Know Your Meme lists the =E2=80=9CWha=
+t=E2=80=99s
+Your Favorite Cereal?=E2=80=9D podcast clip as a September exploitable
+brainrot meme.
+Core mechanic: ask an impossibly simple question, then let the
+subject=E2=80=99s bizarre response become the entire character reveal.
+Pet protagonist: interviewer asks =E2=80=9CWho=E2=80=99s your favorite pers=
+on?=E2=80=9D or
+=E2=80=9CDid you eat the chicken?=E2=80=9D; pet freezes, glitches, deflects=
+, checks
+camera, or gives an obviously incriminating answer.
+Best use: short social clip, birthday/family roast.
+15=E2=80=9330 sec template: 0=E2=80=934s podcast two-shot; 4=E2=80=937s sim=
+ple personalized
+question; 7=E2=80=9314s long pet reaction; 14=E2=80=9320s interviewer repea=
+ts
+question; 20=E2=80=9327s absurd/non-answer tied to lore; 27=E2=80=9330s har=
+d cut.
+Hook: =E2=80=9CWe asked [PET] one very simple question.=E2=80=9D
+Assets: reusable original podcast set, pet talking head, reaction
+library, one lore question + payoff.
+Complexity: MEDIUM.
+Novelty: HIGH versus generic podcast clip: the template is
+specifically question =E2=86=92 silence/reaction =E2=86=92 character-reveal=
+ing
+non-answer.
+Verdict: MAKE TEMPLATE NOW.
+
+END REPORT
+TOP 3 FORMATS TO TEMPLATE THIS HOUR
+1. Pet Hood Research Department =E2=80=94 strongest recurring show engine a=
+nd
+naturally uses private pet behavior.
+2. Pet =E2=80=9CWho I Am=E2=80=9D =E2=80=94 almost deterministic from exist=
+ing customer photos
++ questionnaire; extremely personal.
+3. Pet Celebrity Entitlement =E2=80=94 cheap, fast, quoteable and naturally
+produces card/T-shirt copy.
+
+EASIEST TO AUTOMATE END-TO-END
+Pet =E2=80=9CKinda Chic=E2=80=9D: select 3 customer incidents/photos =E2=86=
+=92 translate each
+vice into aspirational lifestyle language =E2=86=92 fixed typography/motion
+template =E2=86=92 export. No lip-sync or scene continuity required.
+
+HIGHEST SHAREABILITY POTENTIAL
+Pet =E2=80=9CWho I Am.=E2=80=9D Friends/family can instantly compare the pe=
+t=E2=80=99s claimed
+personality with incidents they personally recognize. The private-lore
+contradiction is the share trigger, not generic AI spectacle.
+
+ONE WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+Pet Brain In The Wrong Job. Build a persistent 3=E2=80=935-rule =E2=80=9Cbe=
+havioral
+policy=E2=80=9D for each pet, then repeatedly simulate that same character =
+in
+new jobs/worlds. It creates a reusable comedic model of the pet rather
+than another portrait/video.
+
+PRODUCT NOTE
+This run reinforces a useful schema addition: store `claimed_trait`
+and `contradicting_incident` pairs, plus 3=E2=80=935 simple `behavior_rules=
+`
+(e.g. IF food visible =E2=86=92 abandon task; IF vacuum =E2=86=92 flee; IF =
+owner sits
+=E2=86=92 occupy owner). Those fields directly generate self-intros, scienc=
+e
+experiments, simulations, celebrity demands and future formats.

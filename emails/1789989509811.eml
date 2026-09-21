@@ -1,0 +1,549 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id d16xTiabEV6x
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 11:18:29 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=aqHdp5U9CV/Axlq9pLzIEzb05DcNtE+q9R0e1ewCtqGWDxSn3pqt9NYvBixaiCKo0Pp0s1mGO
+	4g84nVYzqMMmU58lQOMjqhkpGCCJ1lDqkuXVLj/zp71TnzRYY3o6FCVdpTCDRjgzvpW3E8DyuzZ
+	boxD88MsYHBU2vFSu9VnCH5J8s6/OBGMtQabFhifG7+zqeuSirB5XdwybA7UMAKlKRvqqqFZI9r
+	JG4UA6EsihhthfmA2G0hTaq3fRjl5B/H7Cw2aWriAONMD1qQIkSNbzxo+OPl0LY8cq1NRnUaRJ1
+	O9J2POw6T6x/WRBdZzxJjIyE3ukxamt1cniLr8+TE9tw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789989509; x=1790594309; bh=7M0FlTME
+	+ngOv0MwX7DZBME4XOBukOnoj1LMfFWnFyY=; b=GylOk7JRrFXOnDjDxM6Stl684egSXNgwSw2
+	frinDGUhtLxDeE8VxTAuBDvpgm32HrwTSsIx3ZBkaJbHh0G/sFZXirGwOHVhF8bcNDCZvCs8bSa
+	8y8OnfHDqhfFABd9FVIQhYXMaxBrtln1y2XY5h9PQ4A6PBtXR/piyrAa8OB0zgba6ylBZQY3Byb
+	yTfgFfPGFT+MQeHAsJxspA1WOIW+ENkig4FN/T7GEVQDZYQVXD3auUHYX8Pbk3/lMty/bDHsLpP
+	QBUVt946hPS8pLJo2XnEF4RV2mhvIhDfaR8O3R7gt+4jh5MP9j6Vmq4sCIkbGvYq1g1fJAx/lEC
+	7oHUSBQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IoZ9wxX3;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IoZ9wxX3;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43db0c17so24809157b3.3
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 04:18:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789989509; cv=none;
+        d=google.com; s=arc-20260327;
+        b=RVnzwGkh4aAIAeg2gSG9Rtjj+/Oq1M9izvUOLD19dZLtx3hnHSaKNv+kaigggqMfVD
+         VDusOxNBQdxPQjb841iNnuMPLj4WHB8Z1iQMqmv52U8VylMPwEVBycjVsWalO7sn+962
+         PW8tig5U6yDajSeSnzcLVscKssF34p3Vd0nLQ+MH7WyWB1WKEMOWMcT5GAsY+H4b5xg6
+         s1FwktRUs7R9CEaPqNW5NNNpW8iISiGEYG4TbVTKp9tHkEEuqSJ/unTkuJ4Fd7RsdE5t
+         2rZ65Ldb1Dcamn2uh4Sdav86fhus4s7Z2L5Py7GBQAXXMlD/L8FNcSIzO21o9Z2QTk0b
+         /noQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=7M0FlTME+ngOv0MwX7DZBME4XOBukOnoj1LMfFWnFyY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=GfOEB+B4RYQ76fmB7p4uIdwUkdTyiarTvufKx97dsMM+3YpN/Rdt20Snwo9AGmM42B
+         ZhT14K3kAw+RXs7GYi5KjZy94//vdmF2zF/yY6fyig18Hqg3n7P8DU4UEPmbB3ba1RwT
+         D8jGJCXsuQihEccLKnmvpjnNBR6UGnipb4c1hy3DY7WyDd2z6KyTQ65tWkRsL/pcZU87
+         4rspJG6e7gMcz+eb8HRfHLW3HtjT9ECrdCfw8RrMi5FYGyJP8vYhOW1lv1iwM3d9Gv5d
+         aguAxNp9BWualJ2y1VnFWeRBpUqNbTd4VmlvRloNjMSUXyCJpcSgyEYyvk2a4q024KqD
+         rcsA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789989509; x=1790594309; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=7M0FlTME+ngOv0MwX7DZBME4XOBukOnoj1LMfFWnFyY=;
+        b=IoZ9wxX3OAYG/cc7KJPYiS6mHzw3h8MMIERUBQ0WTiIPmKtuaJepyXQV+uCZshEwB6
+         El4XCihARBtMxbTqHhVJWgCCp43rD5ZVqND/lOkMU1QttgtCV8Bgy3c956DM6E5gK4JG
+         HSkEs4DS6xbXGvMge5MG4vRvPH9o5308t1hGlIDgGKRMFKU1bfVT/uik7YKQEwhNQ+/k
+         TToW3NdKPTVFgIh3ptHAgshyI5EG1lrDJvGMlOwCKP6GVFnvzLbON4qtXWtSFwgQUcA7
+         Ala7pZi70NVavsZebN2Uxovw3jw3xfD7QiWuDovywmOYqseaYjD6E1cQilsUQRy2+3WK
+         tOkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789989509; x=1790594309;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7M0FlTME+ngOv0MwX7DZBME4XOBukOnoj1LMfFWnFyY=;
+        b=RUjc3qbkQFXjBJvskxfnWiQSiaujxkvEO9JiTtCRX/iXAedaRQaJhQ111ycUFePvCT
+         JuKMpr3GttN3BozHFYt6hmeHU9ZkMpjMiVkhSyJbVjECxnFkSXV5E78vsmR3IV3Hv8vr
+         6qnK/tlPzi3wle1H+2H+TdATrcs8bGJ/IOk1udXQPedjbVt381qTcCcUmMPRNhaBm5o+
+         Pmwwo363ycZG1GzvSX6gWs1EdL6w0n4fnsSrkyGW1OnAy3UeaJuuSrJ/78WSfx3yQE1o
+         I9AS7cR39rBnQqb7sYM2jyh5ryj3zItQxfdEypjODMqDPNmjcsX4/ncc4GPNWXPbY9BX
+         ZmKA==
+X-Gm-Message-State: AFuF++kHUKEn8+hesWryRnSRHnz5+kvt4nqJSvhPJ0xjrHBwnqEEpNbi
+	QO1Trl4vIzATIuvmkU6zPRbDw2QohAKcRrzwGwtJhsp8yMhXLwt0lYAqfoFNYuxlkHaURBVOaH2
+	a05NJphLDpTAqcu4JpoTLRHD8gWzJZ+1N6Q==
+X-Gm-Gg: AYBFou3UL/HyCyolye0Pnx+UMIM4yH+ghTXMlRQSoRlcurbQYf9GW0WckakzSF7d8T4
+	rrXVwCKDbi8wgljeedaV5RbJuYmThjzSVUSZEekK9Kx4DYPJLBGvk3Le3YU9ceqO4WVHokO3UY5
+	kXKeUq6YJjiubG8dmkW/2/pmdiQoAZWoT1z85m4rTPY6jE8wd1qVc81xiFQvi1oCJK8LygerUOd
+	qTVf1lWDFvWYX6mUIB9JCWT9ADxJ17iZhKQ/ZlIcnjZsOgtlBvr3xi86sVjJPoW2zjZEeREFNhR
+	QOkCkQdFl02mIPf9q8lGXvD8c1Dc3RRA4OP4d67kGKiH7wp2+rBDh6pYV9LJGjOgxeHi6gIilQu
+	MWmHT/FTrH8vWb5gVRHWTtelyglhhkrWmLy9kywBEuhl0gLdpscIAzsplRYLurm/jSTzucL90VU
+	4Wab/1
+X-Received: by 2002:a53:d016:0:b0:671:459d:e9cd with SMTP id
+ 956f58d0204a3-6717fcd9ea6mr2461472d50.39.1789989508931; Mon, 21 Sep 2026
+ 04:18:28 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 06:18:28 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Mon, 21 Sep 2026 06:18:28 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Mon, 21 Sep 2026 06:18:28 -0500
+X-Gm-Features: AcwNN1V2Yz7_WtCgLb7374H9ZX2-X7Mp4rnd25ndM51wqqn2ElRaXF90F6TjGKc
+Message-ID: <CAPdrGemRBR91GArGuiVz6tkF8WDnZeZXn-u5DOvKD1vohH9bxQ@mail.gmail.com>
+Subject: =?UTF-8?B?UE9XIFByb2JlIOKAlCBDb25zdHJhaW50cyDigJQgMjAyNi0wOS0yMSAxODoxNyBJQ1Q=?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000d4e484065bfc68b4"
+
+--000000000000d4e484065bfc68b4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS CONSTRAINT / SEESAW PROBE =E2=80=94 2026-09-21 18:17 ICT Execut=
+ive
+delta
+
+Material promotion this run: DATA-CENTRE GRID CONNECTION CAPACITY becomes
+the #2 constraint experiment, immediately behind BESS. Ofgem says
+contracted demand offers rose from 41 GW to 125 GW between Nov 2024 and Jun
+2025, largely driven by data centres; its July consultation references
+roughly 73 GW of data-centre demand and proposes a commitment fee plus
+project milestones. The proposed fee range is =C2=A3237,500=E2=80=93=C2=A37=
+12,500 per MW
+(about 2.5=E2=80=937.5% of average project costs), refundable on energisati=
+on and
+forfeited on early queue exit. The consultation closed 17 Sep 2026 and is
+awaiting a decision. This creates an unusually observable shadow-price
+experiment parallel to CMP470 BESS.
+
+BESS remains #1. Ofgem=E2=80=99s 17 Sep CMP470 consultation says ~90 GW of =
+battery
+capacity is operational or in the reformed queue against ~29 GW projected
+requirement in 2035. The original proposal activates when oversubscription
+exceeds 50% and ceases below 25%; existing security can offset the new
+requirement. NESO=E2=80=99s TEC register is repeatedly observable and now i=
+ncludes
+Gate status.
+
+Generic EV charger scarcity remains killed: DfT reports 121,171 public
+chargers and 28,887 rapid+ chargers at 1 Jul 2026, with 5,119 chargers
+added during 2026 to that date. The useful constraint remains
+reliability-adjusted local kW, not national unit count.
+Ranked constraints
+
+   1. BESS / grid connection allocation =E2=80=94 5.00 =E2=80=94 CONFIRMED =
+=E2=80=94 PLANT HARD
+   2. Data-centre demand / grid connection allocation =E2=80=94 4.99 =E2=80=
+=94 CONFIRMED
+   policy constraint; project-level observability partly UNKNOWN =E2=80=94 =
+PLANT/WATCH
+   DECISION
+   3. Local grid headroom =E2=86=92 flexibility =E2=80=94 4.97 =E2=80=94 IN=
+FERRED =E2=80=94 PLANT
+   4. Transformer/cable capacity =E2=80=94 4.91 =E2=80=94 CONFIRMED =E2=80=
+=94 PLANT relaxation tape
+   5. Heat-pump transaction-capable installer capacity =E2=80=94 4.80 =E2=
+=80=94 INFERRED =E2=80=94
+   PILOT
+   6. Reliable high-power EV capacity =E2=80=94 4.67 =E2=80=94 INFERRED/loc=
+al =E2=80=94 PLANT
+
+Seesaw maps 1 BESS
+
+Demand driver: storage requirements + speculative queue entry.
+Constraint proxy: project queue MW, Gate, connection point/date,
+exits/resizes.
+Shadow price: CMP448/CMP470 security and cancellation economics.
+Supply response: exit, resize, relocation, project acceleration, network
+reinforcement.
+Expected lag: months for queue response; years for physical network
+capacity.
+Geography: connection point/network node.
+Action: stay/exit/resize/relocate/defer; compare nodes.
+Falsifier: exposed projects do not exit/resize more than controls, or exits
+fail to improve dates/headroom.
+2 Data centres
+
+Demand driver: AI/cloud/data-centre power demand; contracted demand offers
+expanded 41=E2=86=92125 GW in under a year.
+Constraint proxy: connection offers, MW, project milestones, location,
+queue state, network reinforcement dependency.
+Shadow price: proposed =C2=A3237.5k=E2=80=93=C2=A3712.5k/MW commitment fee,=
+ forfeited on
+early exit and refunded at energisation.
+Supply response: speculative project exit, milestone compliance,
+relocation, behind-the-meter generation/storage, HV connection changes,
+network build.
+Expected lag: immediate project repricing after policy decision; years for
+energisation/network build.
+Geography: project/connection point; likely strongest where demand clusters
+collide with constrained transmission/distribution capacity.
+Action: proceed/exit/resize/relocate; compare connection strategies and
+sites.
+Alternative explanation: queue MW materially overstates genuine build
+intention.
+Falsifier: fee/milestones do not change exit/progression hazard, or
+released capacity does not accelerate viable projects.
+3 Transformer/cable
+
+Demand driver: unprecedented network build.
+Constraint: equipment manufacturing capacity.
+Shadow-price proxies: transformer/cable prices and lead time.
+Ofgem evidence: transformer prices ~75% above 2021; cable prices ~100%
+above; HVDC cable lead times often >5 years.
+Supply response: UK network-manufacturing turnover >25% and employment >50%
+higher since 2023.
+Transformation: ScarcityRelaxationVelocity rather than static shortage
+detection.
+Falsifier: prices/lead times fail to fall despite capacity growth because
+global demand absorbs new supply.
+4 Heat pumps
+
+Demand: BUS/grants and electrification.
+Constraint candidate: transaction-capable accredited installers, not
+nominal headcount.
+Supply response: Heat Training Grant discounts up to =C2=A3500; updated 8 S=
+ep
+guidance explicitly routes trained engineers into competent-person schemes.
+Needed POW state: site=E2=86=92provider=E2=86=92CLAIM/REJECT=E2=86=92quote =
+latency=E2=86=92quote
+price=E2=86=92completion.
+Status: INFERRED. Generic installer shortage remains unproven.
+5 EV
+
+National unit scarcity: KILL.
+Local state:
+EffectiveChargingCapacity(place,t)=3D=CE=A3(kW=C3=97availability=C3=97relia=
+bility=C3=97temporal-fit).
+Shadow price: local tariff / reliable kW and detour/wait cost.
+Counterevidence: national charger stock is expanding rapidly.
+Exact source stack / hard gate
+
+BESS: Ofgem CMP470 consultation + NESO TEC register. Rights/access:
+public/free; cadence: repeatedly observable register snapshots; keys:
+project/name/company/connection point/Gate with resolver; transformation:
+project transition tape; reconstruction test: attempt D+30/D+90 recovery of
+superseded project states.
+
+Data centres: Ofgem Proposed Data Centre Connection Reforms (29 Jul 2026;
+closed 17 Sep) + Ofgem demand-connections reform + NESO connection/Gate-2
+publications and relevant demand-project information-gathering outputs.
+Rights/access: public policy sources free; exact project-level demand
+register coverage remains UNKNOWN. Canonical keys:
+project=E2=86=92company=E2=86=92site=E2=86=92connection point=E2=86=92MW. H=
+ard gate: do not call this PLANT
+HARD until project-level repeated observability is confirmed.
+
+Transformer/cable: Ofgem network supply-chain evidence/calls; augment with
+procurement/manufacturer lead-time observations only where rights permit.
+Key: equipment class=C3=97manufacturer/spec=C3=97time. Cadence monthly/quar=
+terly
+depending feed.
+
+EV: DfT quarterly infrastructure statistics for baseline; operator open
+status/tariff feeds for ephemeral state. Generic quarterly mirror is not a
+moat.
+
+Heat pumps: DESNZ heat-pump deployment quarterly statistics +
+MCS/competent-person identity + first-party installer outcome receipts.
+Public aggregate deployment is backfillable; receipts are the moat.
+PLANT NOW
+
+A. Freeze every identifiable pre-CMP470 BESS project and append
+PROJECT_EXIT, PROJECT_RESIZE, MW_CHANGE, DATE_CHANGE, POINT_CHANGE,
+GATE_CHANGE, SECURITY_REQUIREMENT, SECURITY_POSTED, ENERGISED,
+SOURCE_CORRECTION. Compute CommitmentAdjustedQueue,
+ExitHazardAfterSecurityShock, QueueElasticityToShadowPrice, ReleasedMW,
+ConnectionDateImprovementAfterExit.
+
+B. Build the same schema NOW for data-centre demand projects before Ofgem=
+=E2=80=99s
+final policy decision: PROJECT_ENTER/EXIT, MW_CHANGE, SITE_CHANGE,
+CONNECTION_POINT_CHANGE, OFFER_ACCEPTED, MILESTONE_MET/MISSED,
+FEE_EXPOSURE, ENERGISED. Even partial identity is valuable if
+confidence/provenance are preserved. Do not infer missing project
+identities.
+
+C. Continue transformer/cable relaxation tape: price index, lead time,
+manufacturing investment/capacity, procurement award and delivery where
+lawful. Measure whether supply response actually relaxes the constraint.
+Geographic hotspots
+
+CONFIRMED national queue-level pressure for BESS and data centres. Exact
+project/node hotspots are UNKNOWN until project=E2=86=92connection-point jo=
+ins are
+resolved; do not manufacture regional rankings. For EV, quarterly DfT
+geography supports local charger-density comparisons, but POW should wait
+for reliability-adjusted live state before calling operational hotspots.
+Counterfactuals / kill gates
+
+BESS/data centres: kill shadow-price thesis if fee exposure fails to alter
+exit/resize/progression relative to matched controls. Kill =E2=80=98release=
+d queue
+=3D relieved physical constraint=E2=80=99 if exits occur without improved c=
+onnection
+dates/headroom.
+Transformer/cable: downgrade if price/lead-time normalize faster than
+expected or new capacity removes scarcity.
+Heat pumps: kill generic labour shortage if claim/quote/completion latency
+is normal despite rising demand.
+EV: generic national scarcity remains KILL while supply growth remains
+strong; only local reliability-adjusted scarcity survives.
+Product recalls: useful action/repair joins but not currently a top
+economy-wide constraint. Recent OPSS reports include EV-charger import
+rejections and a Wallbox modification programme; treat these as
+product-level interventions, not evidence of national charger shortage.
+Next-hour information-gain queue
+
+   1. Resolve whether NESO exposes repeatable project-level data-centre
+   demand identities/MW/connection points.
+   2. Snapshot the pre-decision data-centre cohort if legally/publicly
+   available.
+   3. Resolve CMP470 project-level security observability and map BESS
+   projects to connection points.
+   4. Quantify one local headroom/flex region where released MW can be
+   linked to project outcomes.
+   5. Do not broaden into new constraint narratives until #1=E2=80=93#3 are
+   resolved.
+
+Machine-readable appendix
+
+{=E2=80=9Cprobe=E2=80=9D:=E2=80=9CPOW_CONSTRAINT_SEESAW=E2=80=9D,=E2=80=9Cr=
+un=E2=80=9D:=E2=80=9C2026-09-21T18:17:42+07:00=E2=80=9D,=E2=80=9Ccollector_=
+deployed=E2=80=9D:false,=E2=80=9Cmaterial_delta=E2=80=9D:=E2=80=9CDATA_CENT=
+RE_GRID_CONNECTION_PROMOTED=E2=80=9D,=E2=80=9Cranked=E2=80=9D:[[=E2=80=9CBE=
+SS_GRID_CONNECTION=E2=80=9D,5.00,=E2=80=9CPLANT_HARD=E2=80=9D,=E2=80=9CCONF=
+IRMED=E2=80=9D],[=E2=80=9CDATA_CENTRE_GRID_CONNECTION=E2=80=9D,4.99,=E2=80=
+=9CPLANT_WATCH_DECISION=E2=80=9D,=E2=80=9CCONFIRMED_POLICY_PROJECT_OBSERVAB=
+ILITY_UNKNOWN=E2=80=9D],[=E2=80=9CLOCAL_GRID_HEADROOM_FLEX=E2=80=9D,4.97,=
+=E2=80=9CPLANT=E2=80=9D,=E2=80=9CINFERRED=E2=80=9D],[=E2=80=9CTRANSFORMER_C=
+ABLE=E2=80=9D,4.91,=E2=80=9CPLANT=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D],[=
+=E2=80=9CHEAT_PUMP_TRANSACTION_CAPACITY=E2=80=9D,4.80,=E2=80=9CPILOT=E2=80=
+=9D,=E2=80=9CINFERRED=E2=80=9D],[=E2=80=9CLOCAL_RELIABLE_EV_CHARGING=E2=80=
+=9D,4.67,=E2=80=9CPLANT=E2=80=9D,=E2=80=9CINFERRED=E2=80=9D]],=E2=80=9Ckill=
+s=E2=80=9D:[=E2=80=9CGENERIC_NATIONAL_EV_CHARGER_SCARCITY=E2=80=9D,=E2=80=
+=9CGENERIC_GREEN_SKILLS_SHORTAGE=E2=80=9D],=E2=80=9Ccritical_unknowns=E2=80=
+=9D:[=E2=80=9CDATA_CENTRE_PROJECT_LEVEL_REGISTER=E2=80=9D,=E2=80=9CCMP470_P=
+ROJECT_SECURITY_STATE=E2=80=9D,=E2=80=9CPROJECT_TO_CONNECTION_POINT_HEADROO=
+M_JOIN=E2=80=9D,=E2=80=9CLOCAL_INSTALLER_REVEALED_CAPACITY=E2=80=9D]}
+
+--000000000000d4e484065bfc68b4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS CONSTRAINT / SEESAW PROBE =E2=80=94 2026-09-21 18:17 ICT
+
+Executive delta
+<p>Material promotion this run: DATA-CENTRE GRID CONNECTION CAPACITY become=
+s the #2 constraint experiment, immediately behind BESS. Ofgem says contrac=
+ted demand offers rose from 41 GW to 125 GW between Nov 2024 and Jun 2025, =
+largely driven by data centres; its July consultation references roughly 73=
+ GW of data-centre demand and proposes a commitment fee plus project milest=
+ones. The proposed fee range is =C2=A3237,500=E2=80=93=C2=A3712,500 per MW =
+(about 2.5=E2=80=937.5% of average project costs), refundable on energisati=
+on and forfeited on early queue exit. The consultation closed 17 Sep 2026 a=
+nd is awaiting a decision. This creates an unusually observable shadow-pric=
+e experiment parallel to CMP470 BESS.</p>
+<p>BESS remains #1. Ofgem=E2=80=99s 17 Sep CMP470 consultation says ~90 GW =
+of battery capacity is operational or in the reformed queue against ~29 GW =
+projected requirement in 2035. The original proposal activates when oversub=
+scription exceeds 50% and ceases below 25%; existing security can offset th=
+e new requirement. NESO=E2=80=99s TEC register is repeatedly observable and=
+ now includes Gate status.</p>
+<p>Generic EV charger scarcity remains killed: DfT reports 121,171 public c=
+hargers and 28,887 rapid+ chargers at 1 Jul 2026, with 5,119 chargers added=
+ during 2026 to that date. The useful constraint remains reliability-adjust=
+ed local kW, not national unit count.</p>
+
+Ranked constraints
+<ol>
+<li>BESS / grid connection allocation =E2=80=94 5.00 =E2=80=94 CONFIRMED =
+=E2=80=94 PLANT HARD</li>
+<li>Data-centre demand / grid connection allocation =E2=80=94 4.99 =E2=80=
+=94 CONFIRMED policy constraint; project-level observability partly UNKNOWN=
+ =E2=80=94 PLANT/WATCH DECISION</li>
+<li>Local grid headroom =E2=86=92 flexibility =E2=80=94 4.97 =E2=80=94 INFE=
+RRED =E2=80=94 PLANT</li>
+<li>Transformer/cable capacity =E2=80=94 4.91 =E2=80=94 CONFIRMED =E2=80=94=
+ PLANT relaxation tape</li>
+<li>Heat-pump transaction-capable installer capacity =E2=80=94 4.80 =E2=80=
+=94 INFERRED =E2=80=94 PILOT</li>
+<li>Reliable high-power EV capacity =E2=80=94 4.67 =E2=80=94 INFERRED/local=
+ =E2=80=94 PLANT</li>
+</ol>
+
+Seesaw maps
+
+1 BESS
+<p>Demand driver: storage requirements + speculative queue entry.<br>
+Constraint proxy: project queue MW, Gate, connection point/date, exits/resi=
+zes.<br>
+Shadow price: CMP448/CMP470 security and cancellation economics.<br>
+Supply response: exit, resize, relocation, project acceleration, network re=
+inforcement.<br>
+Expected lag: months for queue response; years for physical network capacit=
+y.<br>
+Geography: connection point/network node.<br>
+Action: stay/exit/resize/relocate/defer; compare nodes.<br>
+Falsifier: exposed projects do not exit/resize more than controls, or exits=
+ fail to improve dates/headroom.</p>
+
+2 Data centres
+<p>Demand driver: AI/cloud/data-centre power demand; contracted demand offe=
+rs expanded 41=E2=86=92125 GW in under a year.<br>
+Constraint proxy: connection offers, MW, project milestones, location, queu=
+e state, network reinforcement dependency.<br>
+Shadow price: proposed =C2=A3237.5k=E2=80=93=C2=A3712.5k/MW commitment fee,=
+ forfeited on early exit and refunded at energisation.<br>
+Supply response: speculative project exit, milestone compliance, relocation=
+, behind-the-meter generation/storage, HV connection changes, network build=
+.<br>
+Expected lag: immediate project repricing after policy decision; years for =
+energisation/network build.<br>
+Geography: project/connection point; likely strongest where demand clusters=
+ collide with constrained transmission/distribution capacity.<br>
+Action: proceed/exit/resize/relocate; compare connection strategies and sit=
+es.<br>
+Alternative explanation: queue MW materially overstates genuine build inten=
+tion.<br>
+Falsifier: fee/milestones do not change exit/progression hazard, or release=
+d capacity does not accelerate viable projects.</p>
+
+3 Transformer/cable
+<p>Demand driver: unprecedented network build.<br>
+Constraint: equipment manufacturing capacity.<br>
+Shadow-price proxies: transformer/cable prices and lead time.<br>
+Ofgem evidence: transformer prices ~75% above 2021; cable prices ~100% abov=
+e; HVDC cable lead times often &gt;5 years.<br>
+Supply response: UK network-manufacturing turnover &gt;25% and employment &=
+gt;50% higher since 2023.<br>
+Transformation: ScarcityRelaxationVelocity rather than static shortage dete=
+ction.<br>
+Falsifier: prices/lead times fail to fall despite capacity growth because g=
+lobal demand absorbs new supply.</p>
+
+4 Heat pumps
+<p>Demand: BUS/grants and electrification.<br>
+Constraint candidate: transaction-capable accredited installers, not nomina=
+l headcount.<br>
+Supply response: Heat Training Grant discounts up to =C2=A3500; updated 8 S=
+ep guidance explicitly routes trained engineers into competent-person schem=
+es.<br>
+Needed POW state: site=E2=86=92provider=E2=86=92CLAIM/REJECT=E2=86=92quote =
+latency=E2=86=92quote price=E2=86=92completion.<br>
+Status: INFERRED. Generic installer shortage remains unproven.</p>
+
+5 EV
+<p>National unit scarcity: KILL.<br>
+Local state: EffectiveChargingCapacity(place,t)=3D=CE=A3(kW=C3=97availabili=
+ty=C3=97reliability=C3=97temporal-fit).<br>
+Shadow price: local tariff / reliable kW and detour/wait cost.<br>
+Counterevidence: national charger stock is expanding rapidly.</p>
+
+Exact source stack / hard gate
+<p>BESS: Ofgem CMP470 consultation + NESO TEC register. Rights/access: publ=
+ic/free; cadence: repeatedly observable register snapshots; keys: project/n=
+ame/company/connection point/Gate with resolver; transformation: project tr=
+ansition tape; reconstruction test: attempt D+30/D+90 recovery of supersede=
+d project states.</p>
+<p>Data centres: Ofgem Proposed Data Centre Connection Reforms (29 Jul 2026=
+; closed 17 Sep) + Ofgem demand-connections reform + NESO connection/Gate-2=
+ publications and relevant demand-project information-gathering outputs. Ri=
+ghts/access: public policy sources free; exact project-level demand registe=
+r coverage remains UNKNOWN. Canonical keys: project=E2=86=92company=E2=86=
+=92site=E2=86=92connection point=E2=86=92MW. Hard gate: do not call this PL=
+ANT HARD until project-level repeated observability is confirmed.</p>
+<p>Transformer/cable: Ofgem network supply-chain evidence/calls; augment wi=
+th procurement/manufacturer lead-time observations only where rights permit=
+. Key: equipment class=C3=97manufacturer/spec=C3=97time. Cadence monthly/qu=
+arterly depending feed.</p>
+<p>EV: DfT quarterly infrastructure statistics for baseline; operator open =
+status/tariff feeds for ephemeral state. Generic quarterly mirror is not a =
+moat.</p>
+<p>Heat pumps: DESNZ heat-pump deployment quarterly statistics + MCS/compet=
+ent-person identity + first-party installer outcome receipts. Public aggreg=
+ate deployment is backfillable; receipts are the moat.</p>
+
+PLANT NOW
+<p>A. Freeze every identifiable pre-CMP470 BESS project and append PROJECT_=
+EXIT, PROJECT_RESIZE, MW_CHANGE, DATE_CHANGE, POINT_CHANGE, GATE_CHANGE, SE=
+CURITY_REQUIREMENT, SECURITY_POSTED, ENERGISED, SOURCE_CORRECTION. Compute =
+CommitmentAdjustedQueue, ExitHazardAfterSecurityShock, QueueElasticityToSha=
+dowPrice, ReleasedMW, ConnectionDateImprovementAfterExit.</p>
+<p>B. Build the same schema NOW for data-centre demand projects before Ofge=
+m=E2=80=99s final policy decision: PROJECT_ENTER/EXIT, MW_CHANGE, SITE_CHAN=
+GE, CONNECTION_POINT_CHANGE, OFFER_ACCEPTED, MILESTONE_MET/MISSED, FEE_EXPO=
+SURE, ENERGISED. Even partial identity is valuable if confidence/provenance=
+ are preserved. Do not infer missing project identities.</p>
+<p>C. Continue transformer/cable relaxation tape: price index, lead time, m=
+anufacturing investment/capacity, procurement award and delivery where lawf=
+ul. Measure whether supply response actually relaxes the constraint.</p>
+
+Geographic hotspots
+<p>CONFIRMED national queue-level pressure for BESS and data centres. Exact=
+ project/node hotspots are UNKNOWN until project=E2=86=92connection-point j=
+oins are resolved; do not manufacture regional rankings. For EV, quarterly =
+DfT geography supports local charger-density comparisons, but POW should wa=
+it for reliability-adjusted live state before calling operational hotspots.=
+</p>
+
+Counterfactuals / kill gates
+<p>BESS/data centres: kill shadow-price thesis if fee exposure fails to alt=
+er exit/resize/progression relative to matched controls. Kill =E2=80=98rele=
+ased queue =3D relieved physical constraint=E2=80=99 if exits occur without=
+ improved connection dates/headroom.<br>
+Transformer/cable: downgrade if price/lead-time normalize faster than expec=
+ted or new capacity removes scarcity.<br>
+Heat pumps: kill generic labour shortage if claim/quote/completion latency =
+is normal despite rising demand.<br>
+EV: generic national scarcity remains KILL while supply growth remains stro=
+ng; only local reliability-adjusted scarcity survives.<br>
+Product recalls: useful action/repair joins but not currently a top economy=
+-wide constraint. Recent OPSS reports include EV-charger import rejections =
+and a Wallbox modification programme; treat these as product-level interven=
+tions, not evidence of national charger shortage.</p>
+
+Next-hour information-gain queue
+<ol>
+<li>Resolve whether NESO exposes repeatable project-level data-centre deman=
+d identities/MW/connection points.</li>
+<li>Snapshot the pre-decision data-centre cohort if legally/publicly availa=
+ble.</li>
+<li>Resolve CMP470 project-level security observability and map BESS projec=
+ts to connection points.</li>
+<li>Quantify one local headroom/flex region where released MW can be linked=
+ to project outcomes.</li>
+<li>Do not broaden into new constraint narratives until #1=E2=80=93#3 are r=
+esolved.</li>
+</ol>
+
+Machine-readable appendix
+<p>{=E2=80=9Cprobe=E2=80=9D:=E2=80=9CPOW_CONSTRAINT_SEESAW=E2=80=9D,=E2=80=
+=9Crun=E2=80=9D:=E2=80=9C2026-09-21T18:17:42+07:00=E2=80=9D,=E2=80=9Ccollec=
+tor_deployed=E2=80=9D:false,=E2=80=9Cmaterial_delta=E2=80=9D:=E2=80=9CDATA_=
+CENTRE_GRID_CONNECTION_PROMOTED=E2=80=9D,=E2=80=9Cranked=E2=80=9D:[[=E2=80=
+=9CBESS_GRID_CONNECTION=E2=80=9D,5.00,=E2=80=9CPLANT_HARD=E2=80=9D,=E2=80=
+=9CCONFIRMED=E2=80=9D],[=E2=80=9CDATA_CENTRE_GRID_CONNECTION=E2=80=9D,4.99,=
+=E2=80=9CPLANT_WATCH_DECISION=E2=80=9D,=E2=80=9CCONFIRMED_POLICY_PROJECT_OB=
+SERVABILITY_UNKNOWN=E2=80=9D],[=E2=80=9CLOCAL_GRID_HEADROOM_FLEX=E2=80=9D,4=
+.97,=E2=80=9CPLANT=E2=80=9D,=E2=80=9CINFERRED=E2=80=9D],[=E2=80=9CTRANSFORM=
+ER_CABLE=E2=80=9D,4.91,=E2=80=9CPLANT=E2=80=9D,=E2=80=9CCONFIRMED=E2=80=9D]=
+,[=E2=80=9CHEAT_PUMP_TRANSACTION_CAPACITY=E2=80=9D,4.80,=E2=80=9CPILOT=E2=
+=80=9D,=E2=80=9CINFERRED=E2=80=9D],[=E2=80=9CLOCAL_RELIABLE_EV_CHARGING=E2=
+=80=9D,4.67,=E2=80=9CPLANT=E2=80=9D,=E2=80=9CINFERRED=E2=80=9D]],=E2=80=9Ck=
+ills=E2=80=9D:[=E2=80=9CGENERIC_NATIONAL_EV_CHARGER_SCARCITY=E2=80=9D,=E2=
+=80=9CGENERIC_GREEN_SKILLS_SHORTAGE=E2=80=9D],=E2=80=9Ccritical_unknowns=E2=
+=80=9D:[=E2=80=9CDATA_CENTRE_PROJECT_LEVEL_REGISTER=E2=80=9D,=E2=80=9CCMP47=
+0_PROJECT_SECURITY_STATE=E2=80=9D,=E2=80=9CPROJECT_TO_CONNECTION_POINT_HEAD=
+ROOM_JOIN=E2=80=9D,=E2=80=9CLOCAL_INSTALLER_REVEALED_CAPACITY=E2=80=9D]}</p=
+>
+
+--000000000000d4e484065bfc68b4--

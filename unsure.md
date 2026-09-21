@@ -1,6 +1,25 @@
 # PowPowPow — Unsure / Open Questions
 
-## Schema Questions
+## Resolved 2026-09-19 (shipped)
+
+- **Q2 raw vs snapshots:** BOTH. Raw stays immutable (WS ticks batched
+  200 frames/5s after measuring ~1k files/min naive); normalized JSONL
+  is the hot query layer; nightly Parquet compact measured **16.8x**
+  (`scripts/compact_parquet.py`, DuckDB-verified).
+- **Q8 database:** Parquet + DuckDB, no server (`pip install pyarrow
+  duckdb`). QuestDB/Timescale/ClickHouse deferred until SQL/Grafana
+  needs earn the ops cost.
+- **Q9 WS reconnects:** exponential backoff + resubscribe in
+  `venue_l2` REST (checkpoints) and `venue_ws` + `l2_archival` (tick),
+  all systemd-supervised with restart.
+- **Q10 retention:** keep everything; Parquet makes it ~1/17th the bytes.
+- **Q11 PowDaily:** seed exists as compiled coin pages
+  (`scripts/compile_coins.py` → `pages/`); video pipeline not started.
+- **Q4/Q5 electricity/depreciation:** inputs, not constants
+  (`electricity_usd_kwh` param, 3yr straight-line default, assumptions
+  printed on every card).
+
+## Schema Questions (original, kept for history)
 
 ### 1. How to handle rate limiting across 8 chains?
 Some APIs (CoinGecko, Binance) have strict rate limits. Need a proper rate limiter or queue system.

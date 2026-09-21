@@ -1,0 +1,1003 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id cWn26st0Kb7U
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 17:07:18 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=SwyiYzro/S5vpt5ayz/cec9RIEQv3o130MKUZTUm7C6WbEdlei3MHfut6Kb3B9Ygn7c2pYT+N
+	ZKLfEdwBnuKcZKXkC9giEh6963DQVzjklz7ysVRYweiEt6PawWDr62q03B6TDxHn/HI7u+DXwY3
+	JnQMeIAE0hMpRq7Func63ITXV0qXtSiApQ9xza/3kmuUVcm3fmro/5GAgeb6g4Kf+eUGm3pzT3I
+	CJOoT2tx+jcBVTMUQgyb4Rj4PyA1cDpRTWZJ1hfFJgfutryi9OoQTnpXujG8bOr/o1IFwLdL759
+	x3QHCJR5ThzksxAj1TCWJPXZHxMksCrRQPALpv1SW+jA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789664838; x=1790269638; bh=7fkSSbuC
+	EwNG61NSxLoCY5vFWwII+nkRajU1nOBGr8U=; b=fr2q74iIdV4Sav3SY1CB1DW6A2vUpLCFF0u
+	qBBA+x4xMNjTE8o742BruYljsZ5fDXpPX+P69KyJwH2K9yuBa3vPLp4qdiP26Z8q2ZXTUGhYJWB
+	3Z6Ziee97ZMmmGQS2mZiKXGcZStQT0P/rYZcFA9ddu4gvw+xfP+6oB68n+3/50bD+jPwZ+WH4Zh
+	NbltYpNMWgcl0po+XkLqP+lgGJo5KOYTfLogRSV2VUhXWYPHilavqPwygMgsMGTyTeJkZTEy6eC
+	BRwgldB648JyZc98Xa1NJxYCyEPSlSrJMS50i5TvdKn6ubflid+WP2W82/5JiuPoW8o4nr5OuSJ
+	IJavfbQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ezJO3L/s;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ezJO3L/s;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4ab201ebso906347d50.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 10:07:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789664838; cv=none;
+        d=google.com; s=arc-20260327;
+        b=FFNFbmtFraO16EQwnyKJAapxGYWBzVfrVyTJpmlen1URne4tFIi6ljMvnuCTQepuLZ
+         +RNw1csYldZMNMaX4QRgsJcDqvyvoRz9aRQ89TUvQz8M/bM+dh/2vSPWrie8VY31TIws
+         zCE6cDqKzejJQRFlnNZcc0NCSu7zmnG3gQ38kyb/mLZJQRxPFIH4qd8LnA3SBsnP9B4t
+         kMQnFD2W56eMFAvmHFTAFF0zouFyHR0E5Wp42HHHY7KZuBFx+HNUc0PA5J0RLnEWiUDz
+         iQknNi0vUxIBFadUAdQuco+oNP+BiOSCs2inoQAT+D62pdjoQq0NnvREd65+CBjk8FlG
+         /7oQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=7fkSSbuCEwNG61NSxLoCY5vFWwII+nkRajU1nOBGr8U=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=q4CX51vBsX44I/r+gOUlKi06Hh5czzmUlK+RgmFvDvMyA2bP8dNmXxUUT8YZvyj1tk
+         ZXp4lW93wVmqPZdDwF7vvFcyg2i0y/tWAp50lzn6zty9rFMZ8FbfLGKnHs5s0skHvafe
+         9qsELRWOFvRoAR8nmZ8bm/zG46cIuW4xpSMPfSTUqaEBAH4/IDeRyKnZ4qdFmsH6hAAZ
+         e/aPKKC1h6NPGJr4xDxpNUCmm0G8tbqz6Exb1v/f7b0TtezQCjfXYcCE4K+GBbR5I5o6
+         U7Fwr650O9RWradJaNbaSOLUVdRNyF2yMnaZPSXQxOWYS7K5I9kASHu2L4Ml2XDcBkYB
+         o2rg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789664838; x=1790269638; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=7fkSSbuCEwNG61NSxLoCY5vFWwII+nkRajU1nOBGr8U=;
+        b=ezJO3L/sKXYoF7OE4X4EghVQhiuc+RKkpm3M69pildvmdi7JKhpHlc2dgmQB3koZlm
+         Dl28IUO0ieR15CrYV/3BtdoS3pH43eWOXqBqKnx0xp1RE3UGSqABu4vi/Wz9RNvWmnrP
+         MOD+XKHepCX6OHHfRJ6BDVvDecHjefM4UQFZ0zsH31NLhUR6uCUlvkpHM8VAwlYIrsOi
+         81wLXdHHiveyCRJh87Mg894upNey3xAs6wNoJvHKZjrMv1A4gjtTrJLSjErwI+G1Qr6u
+         hSg6GfHfYWj5SYskx3Uxla74Sdxv5TJ2KScpMVUzDQPgvz1zEcHKwPO/Qn2LTozB+wH3
+         aCVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789664838; x=1790269638;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7fkSSbuCEwNG61NSxLoCY5vFWwII+nkRajU1nOBGr8U=;
+        b=2i1OoWXm+VoL4g2PUnKOQkKe4I7Li9SZT5AN5GWoiAliwpKhmFOwcpDdxf5KuAcdow
+         gMFk6G/2oeLIaQAW4bfaa/qOyGcVxmlasXXjM0H2EICRigzJgvro062N2pvDX2TW7Vxy
+         93Hb66d3rJaCOVF70dXT9n5OFqFaNR69PlakAJGLwwiF1m4XH2cKBai8gp2ivuyt7CPS
+         tD6KpLJLUiWLM8H4pkuBJwM86s4l5DLu/xMGivn/jfCZJaFxClWl6t+0gIcOihYLB8rW
+         iRQ0w7Wtd2LlYNmstKra35VnwbeE/VHfupIEG5XsKPZOH305M7OYb6luOdcw6h3o5JGN
+         NWyA==
+X-Gm-Message-State: AFuF++l46ryv8T/3OuEv5UIEy7rwfH8WomaU0G6UrIJ1/RxE5ZcIV7fM
+	zIiSQfShVQi3ZORDkwuyzI7kIxMaxB413FSDthTnss8JX21ZxilWeUZVvMt/RAc4Rc7QmlultbW
+	snpOSBM90gVkKaSyEY1RPMKQCXO0xq+4jQw==
+X-Gm-Gg: AYBFou3HZAM4TkmVBK8OcWvpAuZaB6UdZQDELcjxYLU/sOA9nVhRs30w/S2oCw6x6pH
+	oBsuydNnBoP5H7rcvrszYnGlFnPL23j/UhsHrtuiK6FBkBz903JEHGqvvP8DIcCiXJqlk1ph+l/
+	tLbJTPr2XbbIHL70tQFt9OuKHTM1eKW9HMV237DVoqzkhMhkP7VMwvWZsEiDlM2Z5CIDHG0DQlR
+	jWjHON2aafRqxcYchxeIddR8xPgcsWVSRYsd4GhjDmMOUyDT/9AEJkvSAoF28YIYFV3SoWKU1k6
+	i1n71l271LuwD+J5weYYVWtcDQof6yWqMW/QTr6fq/Sdy/1G0ljj7b2zDBxL+LzI3yy0ix5GJAI
+	SQhnG7VDIUtX5S8WX1opcYhDnvcvdTR+0kdgcLi+TtAtFWNwRkrKYv0z8uA7EdKXbSyNFeYHAzq
+	ut9vvUB3Y=
+X-Received: by 2002:a05:690e:4594:10b0:66f:b569:2d83 with SMTP id
+ 956f58d0204a3-671631f19b3mr1756568d50.19.1789664837607; Thu, 17 Sep 2026
+ 10:07:17 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:07:15 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 12:07:15 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 12:07:15 -0500
+X-Gm-Features: AcwNN1X7OUruHxC3O65iDVYCLcwJH1iFMtUdbSzL-smcgTTZx3zU5KXzNnITB1s
+Message-ID: <CAPdrGeksQfd7Of1wUATpr+QRjgXc+1Zkc5X38=cEVR+POy4ASA@mail.gmail.com>
+Subject: =?UTF-8?Q?cmail_peer_review_3=2F4_=E2=80=94_exact_implementation_order?=
+	=?UTF-8?Q?=2C_tests=2C_persistence_=2B_acceptance_gates?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000e9a638065bb0d025"
+
+--000000000000e9a638065bb0d025
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Continue from part 2. This is the concrete build order. Follow it in
+sequence. Do not parallelize platform expansion before the foundation
+passes.
+
+PHASE 0 =E2=80=94 FREEZE EFFECTFUL DEVELOPMENT
+
+Until P0 auth/authority is fixed:
+
+   - disable/quarantine live domain purchase, phone purchase, email send
+   and DNS mutation routes in production OR require an external admin secre=
+t
+   not derivable from request body.
+   - do not run real-money integration tests from public MCP.
+   - preserve existing provider adapters, but stop adding new ones.
+
+The priority is making one path trustworthy, not increasing endpoint count.
+
+PHASE 1 =E2=80=94 MAKE THE REPO BUILDABLE AND TESTABLE
+
+   1. Fix current compile errors:
+
+
+   - replace all stale actor references in src/mcp.ts with authenticated
+   principal where audit identity is intended.
+   - import/use one canonical sha256 helper or remove ad-hoc hashes.
+   - remove if (!null) return null in src/capacity.ts.
+   - remove result.pass; legacy capacity code should be deleted rather than
+   patched if possible.
+
+
+   1.
+
+   Replace package scripts with explicit suites, e.g.:
+
+   =E2=80=9Ctypecheck=E2=80=9D: =E2=80=9Ctsc --noEmit=E2=80=9D
+   =E2=80=9Ctest=E2=80=9D: =E2=80=9Cvitest run=E2=80=9D
+   =E2=80=9Ctest:qp=E2=80=9D: =E2=80=9Cvitest run qp/
+*/*.test.ts" =E2=80=9Ctest:security=E2=80=9D: "vitest run security/*/*.test=
+.ts=E2=80=9D
+   =E2=80=9Cverify=E2=80=9D: =E2=80=9Cnpm run typecheck && npm test=E2=80=
+=9D
+   2.
+
+   Rewrite qp/adversarial.test.ts as normal Vitest tests.
+
+The current file contains self-contradictory/broken assertions:
+
+   - test label says =E2=80=9Cmissing evidence -> UNKNOWN=E2=80=9D while as=
+serting empty
+   AND DAG is TRUE.
+   - makeEvidence omits required response_payload.
+   - wrong collector hash is expected to fail even though replay does not
+   verify collector hash.
+   - consumed grant is expected to fail validateGrant even though
+   validateGrant does not check durable consumption.
+   - makeReceipt computes roots using two judges while makeSpec declares
+   one.
+   - gateEvidenceFresh is called with the wrong argument shape in at least
+   one case.
+
+Do not claim =E2=80=9C26 adversarial tests pass=E2=80=9D until these are re=
+al assertions
+under CI.
+
+   1. Add GitHub Actions:
+
+
+   - npm ci
+   - npm run typecheck
+   - npm test
+   - ProofSpec schema validation
+   - architectural boundary tests
+   - migration validation
+
+
+   1. Canonical branch:
+
+
+   - repo default branch is still main while active code is on master.
+   - choose one canonical branch.
+   - merge/repoint once, then protect it.
+   - require CI before merge.
+   - release proof software from signed tags/build manifests, not mutable
+   branch names.
+
+PHASE 2 =E2=80=94 ONE AUTH SYSTEM FOR EVERY HTTP/MCP SURFACE
+
+Create src/auth.ts:
+interface Principal { id: string tenant_id: string roles: string[]
+capabilities: string[] authn_method: "api_key"|"session"|"jwt" }
+authenticate(req, env): Promise<Principal | null> authorize(principal,
+operation, resource): Decision
+
+API keys:
+
+   - store hash only.
+   - token format should contain nonsecret key id + random secret.
+   - lookup key id, constant-time verify hash/secret as appropriate.
+   - support revoke/expiry/tenant.
+
+No endpoint receives actor from caller for authorization.
+
+Apply middleware to:
+
+   - /mcp
+   - /admin/*
+   - /api/inbox
+   - /api/drafts
+   - sensitive stats/UI
+   - future OAuth/approval endpoints
+
+Define explicit operation table:
+email.read email.draft email.send domain.read domain.purchase dns.mutate
+phone.read phone.purchase social.read social.post qp.grant.approve
+qp.receipt.read
+
+Unknown operation -> DENY.
+
+Do not map arbitrary tools to READ by default.
+
+Add tests:
+
+   - no auth -> private endpoint 401
+   - invalid token -> 401
+   - valid read token -> cannot purchase
+   - valid writer without grant -> cannot purchase
+   - caller actor=3D=E2=80=9Cowner=E2=80=9D has no effect
+   - empty actor cannot become admin
+   - cross-tenant resource -> denied
+
+PHASE 3 =E2=80=94 REAL QP PERSISTENCE
+
+Move QP migration into configured migrations/ path, version after 0003.
+
+Create qp/store.ts or src/qp-store.ts with a narrow interface:
+putContract(spec) getContract(root) putClaim(claim) putEvidence(evidence)
+createGrant(grant) reserveGrant(grantId, effectAttemptId, now)
+appendEffectAttempt(attempt) updateEffectAttempt(...)
+appendReceipt(receipt) appendEvent(event) getLedgerHead(scope)
+getSettledClaim(claimId, contractRoot)
+
+No direct SQL scattered through MCP for QP state.
+
+Add tables/constraints for:
+
+   - principals/api keys if not separate
+   - trusted issuers
+   - QP signers/public keys
+   - effect specs/program registry if stored dynamically
+   - effect_attempts + idempotency keys
+   - ledger head per tenant/scope
+
+Invariants:
+
+   - grant nonce unique
+   - receipt hash unique
+   - effect idempotency key unique
+   - event seq/hash unique
+   - foreign keys from receipt -> contract/claim/grant
+   - no receipt overwrite
+   - no evidence overwrite under same id with different bytes
+
+PHASE 4 =E2=80=94 CANONICAL CRYPTO PRIMITIVES
+
+Create one module qp/crypto.ts:
+canonicalJson(value) sha256Bytes/string(value) hashObject(domain, value)
+signDigest(domain, digest, privateKey) verifyDigest(...) merkleRoot(domain,
+leaves)
+
+Use domain separation:
+qp:proofspec:v1 qp:evidence:v1 qp:grant:v1 qp:proposal:v1
+qp:judge-result:v1 qp:gate-result:v1 qp:receipt:v1 qp:event:v1
+
+Do not concatenate arbitrary strings without domains/length framing.
+
+Evidence/receipt/grant IDs should be full content hashes or
+collision-resistant full digest identifiers; truncation is okay only for
+display aliases, not identity.
+
+PHASE 5 =E2=80=94 TRUSTED PROGRAM REGISTRY
+
+Create build-time program manifest:
+program-manifest.json
+
+For each judge/gate/transition/probe/adapter:
+
+   - id
+   - source hash
+   - runtime/workerd version identifier
+   - config hash
+   - dependency lock hash
+   - bundle hash
+   - git commit/tree/build artifact hash
+
+On build, generate manifest from actual files.
+
+At runtime, ProofSpecs reference bundle hashes from this manifest.
+Missing hash -> fail closed.
+
+Do not use:
+sha256("effect-gateway") runtime_hash: "node:20"
+
+when running in Cloudflare Workers. Hash the actual build/program identity.
+
+PHASE 6 =E2=80=94 MAKE ONE PROOFSPEC FULLY REAL
+
+Start with a read-only claim because it has no authority complexity:
+domain_available(domain)
+
+Flow:
+
+   1. load domain_available.v1 ProofSpec.
+   2. make exact Claim.
+   3. registrar probe performs fresh provider check.
+   4. probe emits content-addressed Evidence.
+   5. QP resolves pinned judge.
+   6. judge returns TRUE/FALSE/UNKNOWN.
+   7. gates enforce freshness/provenance.
+   8. deterministic transition settles state.
+   9. QP signs TransitionReceipt.
+   10. store receipt/event.
+   11. replay from stored spec+claim+evidence+program manifest.
+   12. independent receipt.verify returns pass.
+
+Acceptance:
+
+   - changing one evidence byte -> replay fail.
+   - changing collector hash -> fail.
+   - stale evidence -> fail/UNKNOWN according to protocol.
+   - malformed registrar response -> UNKNOWN.
+   - NXDOMAIN alone cannot yield TRUE.
+   - different domain cannot reuse evidence.
+   - different ContractRoot cannot reuse receipt.
+
+PHASE 7 =E2=80=94 THEN BUILD THE FIRST REAL EFFECT: DOMAIN PURCHASE
+
+Use these objects:
+Claim A =3D domain_available(D) Quote Q =3D provider quote with
+price/currency/expiry Grant G =3D authorized cf.domain.register for exact
+payload+max price EffectProposal P =3D {domain, account, quote_id, max_cost=
+,
+contact_hash} Claim B =3D purchase_accepted(D, transaction) Claim C =3D
+domain_owned(D, account)
+
+Preconditions:
+
+   - Claim A settled TRUE and fresh.
+   - quote fresh.
+   - Grant G active, subject matches principal, provider/resource/cost
+   constraints pass.
+
+Flow:
+
+   1. create effect_attempt PREPARED durably.
+   2. reserve grant atomically.
+   3. call Cloudflare with stable idempotency/reconciliation identity where
+   provider supports it.
+   4. immediately persist provider response/transaction evidence.
+   5. read back exact domain from expected account/registrar state.
+   6. build ownership evidence.
+   7. run domain_owned ProofSpec judge/gates.
+   8. settle signed receipt TRUE/FALSE/UNKNOWN.
+   9. if provider call may have succeeded but readback fails ->
+   UNKNOWN_RECONCILE, never blindly retry purchase.
+   10. reconciliation job reads account state and settles later.
+
+The final response to agent should include:
+
+   - effect_attempt_id
+   - receipt_hash
+   - actuality
+   - provider transaction/order id if safe
+   - observed cost
+   - resulting claim id
+
+Add qp.receipt.get and qp.receipt.verify tools so a receipt hash is usable.
+
+PHASE 8 =E2=80=94 SECURITY/ADVERSARIAL TEST MATRIX
+
+AUTH:
+
+   - arbitrary long bearer token rejected
+   - anonymous cannot DRAFT/SEND/PURCHASE
+   - body actor owner ignored
+   - admin endpoints require admin principal
+   - revoked key rejected
+   - cross-tenant key rejected
+
+AUTHORITY:
+
+   - wrong signer rejected
+   - untrusted issuer rejected
+   - wrong subject rejected
+   - wrong action rejected
+   - one payload byte changed rejected
+   - max price exceeded rejected
+   - wrong provider/resource rejected
+   - expired/revoked grant rejected
+   - reuse after max_uses rejected across simulated restart
+   - concurrent double reservation: exactly one succeeds
+
+EVIDENCE:
+
+   - response payload mutation detected
+   - response hash mutation detected
+   - wrong claim id detected
+   - wrong collector bundle detected
+   - stale/future evidence rejected
+   - evidence class not in ProofSpec rejected
+   - independence policy violation rejected
+
+RECEIPTS:
+
+   - unsigned receipt rejected
+   - wrong signer rejected
+   - changed state_after rejected
+   - changed evidence set rejected
+   - changed judge reason/evidence ids changes root
+   - broken prev link rejected
+   - wrong ContractRoot rejected
+   - wrong transition program rejected
+
+EFFECTS:
+
+   - missing prerequisite claim denied
+   - arbitrary caller readback function impossible by API design
+   - adapter success + failed readback -> UNKNOWN, not TRUE
+   - adapter error -> effect attempt persisted
+   - crash after provider success -> reconciliation finds state and settles
+   without duplicate purchase
+   - retry uses same attempt/idempotency identity
+
+SEMANTICS:
+
+   - registrable=3Dfalse never proves domain_owned
+   - infrastructure configured never proves email_receives
+   - public YouTube channel existence never proves account_owned
+   - access token presence never alone proves oauth_authorized
+
+PHASE 9 =E2=80=94 EMAIL PROOF IMPLEMENTATION
+
+Create separate ProofSpecs/claims:
+email_infrastructure_configured(domain) email_route_configured(address)
+email_receives(address) email_send_accepted(message)
+email_delivered(message) // only if independently observable
+
+For email_receives:
+
+   - QP generates nonce.
+   - independent sender sends exact nonce to exact mailbox.
+   - cmail records raw inbound message.
+   - probe queries exact mailbox/address + nonce.
+   - evidence includes sender, recipient, nonce, raw-message hash, provider
+   message id, sent/received times.
+   - TRUE only after nonce judge.
+
+capacity.verify receive_email must not use infrastructure-only verifier.
+
+PHASE 10 =E2=80=94 DELETE TRUTH BY TASK STATUS
+
+Today task.deliver/task.complete and mission.status still form a parallel
+state system.
+
+Refactor:
+
+   - tasks are intentions/work items.
+   - tasks can be DONE operationally, but DONE never makes a claim TRUE.
+   - mission projection reads settled QP claims.
+   - capability unlocks derive only from claims settled TRUE under accepted
+   ContractRoots.
+   - task completion may trigger a probe, not truth promotion.
+
+PHASE 11 =E2=80=94 REMOVE LEGACY RUNTIMES
+
+Delete/archive from production imports:
+
+   - src/capacity.ts legacy proofs
+   - mcp/interface.ts acom/0.1 receipt model
+   - mcp/domain.ts simulated purchase/proofs
+   - any pass:boolean proof logic
+   - scripts that label infrastructure-only 7/7 as email_receives CERTIFIED
+
+Keep useful probes, but have them emit Evidence for QP rather than verdicts=
+.
+
+PHASE 12 =E2=80=94 EDGE GRAPH FIXES
+
+qp/edges.ts REQUIRES semantics are A -> B means A requires B.
+evaluationOrder currently traverses incoming REQUIRES (to(id)) rather than
+A=E2=80=99s requirements (from(id)), so ordering is backwards/incorrect.
+
+Fix:
+
+   - dependencies =3D graph.from(claim, REQUIRES).map(target)
+   - DFS dependencies first
+   - explicit cycle detection; cycle is spec/config error
+   - deterministic edge data; created_at must not affect proof graph
+   identity
+
+PHASE 13 =E2=80=94 FIRST ACCEPTANCE MILESTONE
+
+Do not call QP production-grade until this exact demo works from a clean
+deploy:
+
+A. read-only:
+prove domain_available(example)
+-> signed receipt
+-> persisted
+-> replay PASS
+
+B. authorized effect in a sandbox/test resource:
+human authenticates
+-> approves exact effect
+-> durable grant signed by trusted issuer
+-> agent submits grant_id + proposal
+-> QP checks prerequisite
+-> QP PREPARES
+-> adapter executes exactly once
+-> independent account readback
+-> pinned judge/gates
+-> signed receipt
+-> persisted ledger/event chain
+-> independent replay PASS
+
+C. negative controls:
+same request no grant -> denied before adapter
+changed payload -> denied
+fabricated readback -> impossible/untrusted
+timeout after effect -> UNKNOWN + reconciliation, no duplicate
+
+Only after A/B/C pass should you re-enable real-money actions and add
+social adapters.
+
+Part 4 gives the resulting product architecture and roadmap after the
+kernel is trustworthy.
+
+--000000000000e9a638065bb0d025
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Continue from part 2. This is the concrete build order. Follow it in seq=
+uence. Do not parallelize platform expansion before the foundation passes.<=
+/p>
+<p>PHASE 0 =E2=80=94 FREEZE EFFECTFUL DEVELOPMENT</p>
+<p>Until P0 auth/authority is fixed:</p>
+<ul>
+<li>disable/quarantine live domain purchase, phone purchase, email send and=
+ DNS mutation routes in production OR require an external admin secret not =
+derivable from request body.</li>
+<li>do not run real-money integration tests from public MCP.</li>
+<li>preserve existing provider adapters, but stop adding new ones.</li>
+</ul>
+<p>The priority is making one path trustworthy, not increasing endpoint cou=
+nt.</p>
+<p>PHASE 1 =E2=80=94 MAKE THE REPO BUILDABLE AND TESTABLE</p>
+<ol>
+<li>Fix current compile errors:</li>
+</ol>
+<ul>
+<li>replace all stale <code>actor</code> references in src/mcp.ts with auth=
+enticated principal where audit identity is intended.</li>
+<li>import/use one canonical sha256 helper or remove ad-hoc hashes.</li>
+<li>remove <code>if (!null) return null</code> in src/capacity.ts.</li>
+<li>remove <code>result.pass</code>; legacy capacity code should be deleted=
+ rather than patched if possible.</li>
+</ul>
+<ol>
+<li>
+<p>Replace package scripts with explicit suites, e.g.:</p>
+<p>=E2=80=9Ctypecheck=E2=80=9D: =E2=80=9Ctsc --noEmit=E2=80=9D<br>
+=E2=80=9Ctest=E2=80=9D: =E2=80=9Cvitest run=E2=80=9D<br>
+=E2=80=9Ctest:qp=E2=80=9D: =E2=80=9Cvitest run qp/<strong>/*.test.ts&quot;<=
+br>
+=E2=80=9Ctest:security=E2=80=9D: &quot;vitest run security/</strong>/*.test=
+.ts=E2=80=9D<br>
+=E2=80=9Cverify=E2=80=9D: =E2=80=9Cnpm run typecheck &amp;&amp; npm test=E2=
+=80=9D</p>
+</li>
+<li>
+<p>Rewrite qp/adversarial.test.ts as normal Vitest tests.</p>
+</li>
+</ol>
+<p>The current file contains self-contradictory/broken assertions:</p>
+<ul>
+<li>test label says =E2=80=9Cmissing evidence -&gt; UNKNOWN=E2=80=9D while =
+asserting empty AND DAG is TRUE.</li>
+<li>makeEvidence omits required response_payload.</li>
+<li>wrong collector hash is expected to fail even though replay does not ve=
+rify collector hash.</li>
+<li>consumed grant is expected to fail validateGrant even though validateGr=
+ant does not check durable consumption.</li>
+<li>makeReceipt computes roots using two judges while makeSpec declares one=
+.</li>
+<li>gateEvidenceFresh is called with the wrong argument shape in at least o=
+ne case.</li>
+</ul>
+<p>Do not claim =E2=80=9C26 adversarial tests pass=E2=80=9D until these are=
+ real assertions under CI.</p>
+<ol>
+<li>Add GitHub Actions:</li>
+</ol>
+<ul>
+<li>npm ci</li>
+<li>npm run typecheck</li>
+<li>npm test</li>
+<li>ProofSpec schema validation</li>
+<li>architectural boundary tests</li>
+<li>migration validation</li>
+</ul>
+<ol>
+<li>Canonical branch:</li>
+</ol>
+<ul>
+<li>repo default branch is still main while active code is on master.</li>
+<li>choose one canonical branch.</li>
+<li>merge/repoint once, then protect it.</li>
+<li>require CI before merge.</li>
+<li>release proof software from signed tags/build manifests, not mutable br=
+anch names.</li>
+</ul>
+<p>PHASE 2 =E2=80=94 ONE AUTH SYSTEM FOR EVERY HTTP/MCP SURFACE</p>
+<p>Create <code>src/auth.ts</code>:</p>
+
+<code>interface Principal {
+  id: string
+  tenant_id: string
+  roles: string[]
+  capabilities: string[]
+  authn_method: &quot;api_key&quot;|&quot;session&quot;|&quot;jwt&quot;
+}
+
+authenticate(req, env): Promise&lt;Principal | null&gt;
+authorize(principal, operation, resource): Decision
+</code>
+<p>API keys:</p>
+<ul>
+<li>store hash only.</li>
+<li>token format should contain nonsecret key id + random secret.</li>
+<li>lookup key id, constant-time verify hash/secret as appropriate.</li>
+<li>support revoke/expiry/tenant.</li>
+</ul>
+<p>No endpoint receives <code>actor</code> from caller for authorization.</=
+p>
+<p>Apply middleware to:</p>
+<ul>
+<li>/mcp</li>
+<li>/admin/*</li>
+<li>/api/inbox</li>
+<li>/api/drafts</li>
+<li>sensitive stats/UI</li>
+<li>future OAuth/approval endpoints</li>
+</ul>
+<p>Define explicit operation table:</p>
+
+<code>email.read
+email.draft
+email.send
+domain.read
+domain.purchase
+dns.mutate
+phone.read
+phone.purchase
+social.read
+<a href=3D"http://social.post">social.post</a>
+qp.grant.approve
+qp.receipt.read
+</code>
+<p>Unknown operation -&gt; DENY.</p>
+<p>Do not map arbitrary tools to READ by default.</p>
+<p>Add tests:</p>
+<ul>
+<li>no auth -&gt; private endpoint 401</li>
+<li>invalid token -&gt; 401</li>
+<li>valid read token -&gt; cannot purchase</li>
+<li>valid writer without grant -&gt; cannot purchase</li>
+<li>caller actor=3D=E2=80=9Cowner=E2=80=9D has no effect</li>
+<li>empty actor cannot become admin</li>
+<li>cross-tenant resource -&gt; denied</li>
+</ul>
+<p>PHASE 3 =E2=80=94 REAL QP PERSISTENCE</p>
+<p>Move QP migration into configured <code>migrations/</code> path, version=
+ after 0003.</p>
+<p>Create <code>qp/store.ts</code> or <code>src/qp-store.ts</code> with a n=
+arrow interface:</p>
+
+<code>putContract(spec)
+getContract(root)
+putClaim(claim)
+putEvidence(evidence)
+createGrant(grant)
+reserveGrant(grantId, effectAttemptId, now)
+appendEffectAttempt(attempt)
+updateEffectAttempt(...)
+appendReceipt(receipt)
+appendEvent(event)
+getLedgerHead(scope)
+getSettledClaim(claimId, contractRoot)
+</code>
+<p>No direct SQL scattered through MCP for QP state.</p>
+<p>Add tables/constraints for:</p>
+<ul>
+<li>principals/api keys if not separate</li>
+<li>trusted issuers</li>
+<li>QP signers/public keys</li>
+<li>effect specs/program registry if stored dynamically</li>
+<li>effect_attempts + idempotency keys</li>
+<li>ledger head per tenant/scope</li>
+</ul>
+<p>Invariants:</p>
+<ul>
+<li>grant nonce unique</li>
+<li>receipt hash unique</li>
+<li>effect idempotency key unique</li>
+<li>event seq/hash unique</li>
+<li>foreign keys from receipt -&gt; contract/claim/grant</li>
+<li>no receipt overwrite</li>
+<li>no evidence overwrite under same id with different bytes</li>
+</ul>
+<p>PHASE 4 =E2=80=94 CANONICAL CRYPTO PRIMITIVES</p>
+<p>Create one module <code>qp/crypto.ts</code>:</p>
+
+<code>canonicalJson(value)
+sha256Bytes/string(value)
+hashObject(domain, value)
+signDigest(domain, digest, privateKey)
+verifyDigest(...)
+merkleRoot(domain, leaves)
+</code>
+<p>Use domain separation:</p>
+
+<code>qp:proofspec:v1
+qp:evidence:v1
+qp:grant:v1
+qp:proposal:v1
+qp:judge-result:v1
+qp:gate-result:v1
+qp:receipt:v1
+qp:event:v1
+</code>
+<p>Do not concatenate arbitrary strings without domains/length framing.</p>
+<p>Evidence/receipt/grant IDs should be full content hashes or collision-re=
+sistant full digest identifiers; truncation is okay only for display aliase=
+s, not identity.</p>
+<p>PHASE 5 =E2=80=94 TRUSTED PROGRAM REGISTRY</p>
+<p>Create build-time program manifest:</p>
+
+<code>program-manifest.json
+</code>
+<p>For each judge/gate/transition/probe/adapter:</p>
+<ul>
+<li>id</li>
+<li>source hash</li>
+<li>runtime/workerd version identifier</li>
+<li>config hash</li>
+<li>dependency lock hash</li>
+<li>bundle hash</li>
+<li>git commit/tree/build artifact hash</li>
+</ul>
+<p>On build, generate manifest from actual files.</p>
+<p>At runtime, ProofSpecs reference bundle hashes from this manifest.<br>
+Missing hash -&gt; fail closed.</p>
+<p>Do not use:</p>
+
+<code>sha256(&quot;effect-gateway&quot;)
+runtime_hash: &quot;node:20&quot;
+</code>
+<p>when running in Cloudflare Workers. Hash the actual build/program identi=
+ty.</p>
+<p>PHASE 6 =E2=80=94 MAKE ONE PROOFSPEC FULLY REAL</p>
+<p>Start with a read-only claim because it has no authority complexity:</p>
+
+<code>domain_available(domain)
+</code>
+<p>Flow:</p>
+<ol>
+<li>load domain_available.v1 ProofSpec.</li>
+<li>make exact Claim.</li>
+<li>registrar probe performs fresh provider check.</li>
+<li>probe emits content-addressed Evidence.</li>
+<li>QP resolves pinned judge.</li>
+<li>judge returns TRUE/FALSE/UNKNOWN.</li>
+<li>gates enforce freshness/provenance.</li>
+<li>deterministic transition settles state.</li>
+<li>QP signs TransitionReceipt.</li>
+<li>store receipt/event.</li>
+<li>replay from stored spec+claim+evidence+program manifest.</li>
+<li>independent <code>receipt.verify</code> returns pass.</li>
+</ol>
+<p>Acceptance:</p>
+<ul>
+<li>changing one evidence byte -&gt; replay fail.</li>
+<li>changing collector hash -&gt; fail.</li>
+<li>stale evidence -&gt; fail/UNKNOWN according to protocol.</li>
+<li>malformed registrar response -&gt; UNKNOWN.</li>
+<li>NXDOMAIN alone cannot yield TRUE.</li>
+<li>different domain cannot reuse evidence.</li>
+<li>different ContractRoot cannot reuse receipt.</li>
+</ul>
+<p>PHASE 7 =E2=80=94 THEN BUILD THE FIRST REAL EFFECT: DOMAIN PURCHASE</p>
+<p>Use these objects:</p>
+
+<code>Claim A =3D domain_available(D)
+Quote Q =3D provider quote with price/currency/expiry
+Grant G =3D authorized cf.domain.register for exact payload+max price
+EffectProposal P =3D {domain, account, quote_id, max_cost, contact_hash}
+Claim B =3D purchase_accepted(D, transaction)
+Claim C =3D domain_owned(D, account)
+</code>
+<p>Preconditions:</p>
+<ul>
+<li>Claim A settled TRUE and fresh.</li>
+<li>quote fresh.</li>
+<li>Grant G active, subject matches principal, provider/resource/cost const=
+raints pass.</li>
+</ul>
+<p>Flow:</p>
+<ol>
+<li>create effect_attempt PREPARED durably.</li>
+<li>reserve grant atomically.</li>
+<li>call Cloudflare with stable idempotency/reconciliation identity where p=
+rovider supports it.</li>
+<li>immediately persist provider response/transaction evidence.</li>
+<li>read back exact domain from expected account/registrar state.</li>
+<li>build ownership evidence.</li>
+<li>run <code>domain_owned</code> ProofSpec judge/gates.</li>
+<li>settle signed receipt TRUE/FALSE/UNKNOWN.</li>
+<li>if provider call may have succeeded but readback fails -&gt; UNKNOWN_RE=
+CONCILE, never blindly retry purchase.</li>
+<li>reconciliation job reads account state and settles later.</li>
+</ol>
+<p>The final response to agent should include:</p>
+<ul>
+<li>effect_attempt_id</li>
+<li>receipt_hash</li>
+<li>actuality</li>
+<li>provider transaction/order id if safe</li>
+<li>observed cost</li>
+<li>resulting claim id</li>
+</ul>
+<p>Add <code>qp.receipt.get</code> and <code>qp.receipt.verify</code> tools=
+ so a receipt hash is usable.</p>
+<p>PHASE 8 =E2=80=94 SECURITY/ADVERSARIAL TEST MATRIX</p>
+<p>AUTH:</p>
+<ul>
+<li>arbitrary long bearer token rejected</li>
+<li>anonymous cannot DRAFT/SEND/PURCHASE</li>
+<li>body actor owner ignored</li>
+<li>admin endpoints require admin principal</li>
+<li>revoked key rejected</li>
+<li>cross-tenant key rejected</li>
+</ul>
+<p>AUTHORITY:</p>
+<ul>
+<li>wrong signer rejected</li>
+<li>untrusted issuer rejected</li>
+<li>wrong subject rejected</li>
+<li>wrong action rejected</li>
+<li>one payload byte changed rejected</li>
+<li>max price exceeded rejected</li>
+<li>wrong provider/resource rejected</li>
+<li>expired/revoked grant rejected</li>
+<li>reuse after max_uses rejected across simulated restart</li>
+<li>concurrent double reservation: exactly one succeeds</li>
+</ul>
+<p>EVIDENCE:</p>
+<ul>
+<li>response payload mutation detected</li>
+<li>response hash mutation detected</li>
+<li>wrong claim id detected</li>
+<li>wrong collector bundle detected</li>
+<li>stale/future evidence rejected</li>
+<li>evidence class not in ProofSpec rejected</li>
+<li>independence policy violation rejected</li>
+</ul>
+<p>RECEIPTS:</p>
+<ul>
+<li>unsigned receipt rejected</li>
+<li>wrong signer rejected</li>
+<li>changed state_after rejected</li>
+<li>changed evidence set rejected</li>
+<li>changed judge reason/evidence ids changes root</li>
+<li>broken prev link rejected</li>
+<li>wrong ContractRoot rejected</li>
+<li>wrong transition program rejected</li>
+</ul>
+<p>EFFECTS:</p>
+<ul>
+<li>missing prerequisite claim denied</li>
+<li>arbitrary caller readback function impossible by API design</li>
+<li>adapter success + failed readback -&gt; UNKNOWN, not TRUE</li>
+<li>adapter error -&gt; effect attempt persisted</li>
+<li>crash after provider success -&gt; reconciliation finds state and settl=
+es without duplicate purchase</li>
+<li>retry uses same attempt/idempotency identity</li>
+</ul>
+<p>SEMANTICS:</p>
+<ul>
+<li>registrable=3Dfalse never proves domain_owned</li>
+<li>infrastructure configured never proves email_receives</li>
+<li>public YouTube channel existence never proves account_owned</li>
+<li>access token presence never alone proves oauth_authorized</li>
+</ul>
+<p>PHASE 9 =E2=80=94 EMAIL PROOF IMPLEMENTATION</p>
+<p>Create separate ProofSpecs/claims:</p>
+
+<code>email_infrastructure_configured(domain)
+email_route_configured(address)
+email_receives(address)
+email_send_accepted(message)
+email_delivered(message) // only if independently observable
+</code>
+<p>For email_receives:</p>
+<ul>
+<li>QP generates nonce.</li>
+<li>independent sender sends exact nonce to exact mailbox.</li>
+<li>cmail records raw inbound message.</li>
+<li>probe queries exact mailbox/address + nonce.</li>
+<li>evidence includes sender, recipient, nonce, raw-message hash, provider =
+message id, sent/received times.</li>
+<li>TRUE only after nonce judge.</li>
+</ul>
+<p><code>capacity.verify receive_email</code> must not use infrastructure-o=
+nly verifier.</p>
+<p>PHASE 10 =E2=80=94 DELETE TRUTH BY TASK STATUS</p>
+<p>Today task.deliver/task.complete and mission.status still form a paralle=
+l state system.</p>
+<p>Refactor:</p>
+<ul>
+<li>tasks are intentions/work items.</li>
+<li>tasks can be DONE operationally, but DONE never makes a claim TRUE.</li=
+>
+<li>mission projection reads settled QP claims.</li>
+<li>capability unlocks derive only from claims settled TRUE under accepted =
+ContractRoots.</li>
+<li>task completion may trigger a probe, not truth promotion.</li>
+</ul>
+<p>PHASE 11 =E2=80=94 REMOVE LEGACY RUNTIMES</p>
+<p>Delete/archive from production imports:</p>
+<ul>
+<li>src/capacity.ts legacy proofs</li>
+<li>mcp/interface.ts acom/0.1 receipt model</li>
+<li>mcp/domain.ts simulated purchase/proofs</li>
+<li>any pass:boolean proof logic</li>
+<li>scripts that label infrastructure-only 7/7 as <code>email_receives</cod=
+e> CERTIFIED</li>
+</ul>
+<p>Keep useful probes, but have them emit Evidence for QP rather than verdi=
+cts.</p>
+<p>PHASE 12 =E2=80=94 EDGE GRAPH FIXES</p>
+<p>qp/edges.ts REQUIRES semantics are <code>A -&gt; B</code> means A requir=
+es B. evaluationOrder currently traverses incoming REQUIRES (<code>to(id)</=
+code>) rather than A=E2=80=99s requirements (<code>from(id)</code>), so ord=
+ering is backwards/incorrect.</p>
+<p>Fix:</p>
+<ul>
+<li>dependencies =3D graph.from(claim, REQUIRES).map(target)</li>
+<li>DFS dependencies first</li>
+<li>explicit cycle detection; cycle is spec/config error</li>
+<li>deterministic edge data; created_at must not affect proof graph identit=
+y</li>
+</ul>
+<p>PHASE 13 =E2=80=94 FIRST ACCEPTANCE MILESTONE</p>
+<p>Do not call QP production-grade until this exact demo works from a clean=
+ deploy:</p>
+<p>A. read-only:<br>
+prove domain_available(example)<br>
+-&gt; signed receipt<br>
+-&gt; persisted<br>
+-&gt; replay PASS</p>
+<p>B. authorized effect in a sandbox/test resource:<br>
+human authenticates<br>
+-&gt; approves exact effect<br>
+-&gt; durable grant signed by trusted issuer<br>
+-&gt; agent submits grant_id + proposal<br>
+-&gt; QP checks prerequisite<br>
+-&gt; QP PREPARES<br>
+-&gt; adapter executes exactly once<br>
+-&gt; independent account readback<br>
+-&gt; pinned judge/gates<br>
+-&gt; signed receipt<br>
+-&gt; persisted ledger/event chain<br>
+-&gt; independent replay PASS</p>
+<p>C. negative controls:<br>
+same request no grant -&gt; denied before adapter<br>
+changed payload -&gt; denied<br>
+fabricated readback -&gt; impossible/untrusted<br>
+timeout after effect -&gt; UNKNOWN + reconciliation, no duplicate</p>
+<p>Only after A/B/C pass should you re-enable real-money actions and add so=
+cial adapters.</p>
+<p>Part 4 gives the resulting product architecture and roadmap after the ke=
+rnel is trustworthy.</p>
+
+--000000000000e9a638065bb0d025--

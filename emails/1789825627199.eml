@@ -1,0 +1,328 @@
+Received: from mail-yx1-xb129.google.com (2607:f8b0:4864:20::b129)
+        by cloudflare-email.net (cloudflare) id G4vJziHcHmeC
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 13:47:06 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=HbWQlCuA3tF3Otpz77ITDLZOshVh+KFBd/ZlI+jgkJDhkk74LZUukzcQVl+DY26bPd/+QJGKm
+	W29SIRmT9nznuIL6gVf3tSFSnpxyUMrIpsMTHISMLvy8vMTvqEW1KzMaj7t+F0wlYjWvPTZvIs5
+	b1b2CuWaUMfGvTdHP0owT8YYYjGA9L2tBVPB/aNADkiYjsZY0gKn7jx+c/HK+hY8l6/ZVuKceVF
+	xon8QaT05RiNVxu3jv/2B4dl/jnuZ5gi2F1q3uhxNmmQT/PhxtewUAu//bGxtmgYjadP6zKivNA
+	jPuZdfbNGRKujApIr7BTsSGBuohpQ7AKXNok1vxAZqbw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789825626; x=1790430426; bh=o2nMFFoi
+	J3huESEqYlKD9G5EW3b72BH5UWRT2ugKqX0=; b=I33yf0MGt8kxaEr+qBw/+S7EJUIxWxDwPjw
+	G1UApNDHKhYA1e3Jf9kPbM3rB09hCmh8ehgtma3jDBLq4d6PIeDwRPu52fUSYD/PxpSrZjtjDcp
+	iJfzMmRfnRGrPqHQhdjeDnPF8FqbNHJ19MSXY8ipX6UhiMhVDgVmF5t3diSzlqQhCz+/1dHg2BJ
+	WsLvQHslDdOMLOdIAZ7draxZ1fu5nHLA5FlRjR3+8lH1gNuBj9jguC218zqra1vpra31nN2aGU8
+	x4fwUXr2gKESzRYCcvMS6RBvmaCcZZOsUkoWYnqDFoEOhNelpUKuTkunLPE6p3SNixGmtaDS0hw
+	Uto9vaQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=UHke4zSv;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb129.google.com) smtp.helo=mail-yx1-xb129.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b129 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b129"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b129 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:20::b129; envelope-from="tradesprior@gmail.com"; helo=mail-yx1-xb129.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=UHke4zSv;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx1-xb129.google.com) smtp.helo=mail-yx1-xb129.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::b129 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::b129"
+X-CF-SpamH-Score: 0
+Received: by mail-yx1-xb129.google.com with SMTP id 956f58d0204a3-66c9995ca60so1504781d50.1
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 06:47:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789825626; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HM/kXaTH7hRwzdI0c3tW28AR1Nl7R4DnrW8DKV6CFPTV2NrtR+dhTCS620/gptHVMm
+         6Ogl09+gHxNxY95Nk/+0TBPIv71bj1AH/jqflu1KFmTEWczjURpYLLBFe50Bz7pLLVoo
+         o101tdwM5LbAh/bDPVpbnxGwNSthMHxXMb/quXmf9ednSLjWczxuvmH5QxrlML4Qftkb
+         mo6kDOdr7cdI+fH2kED9zYwza74A+clLOWPHWl+nQRhcVYg3aPpG2tzm3rFnucVz+Elg
+         njn63y04UiOg+/OeoUxVIGUcRPEXxdI3E9l2HeOCpIx+FZBykK6l9SjABYgp56bMfCPW
+         Fpcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=o2nMFFoiJ3huESEqYlKD9G5EW3b72BH5UWRT2ugKqX0=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=F6T4qArV0+3wj4KEMjt6vMJoSzvsvCvlxy33npi9oUU3BJpd38JHS3Ui+w+2hRyszX
+         wfq80BXPk+fraQIMxnUBRmwKJRTRfv0934Gd7TQxzyyKw9xMt7oQyaSGqUx5cFAGGAha
+         QpVFZK4hEhepXAoebpZIhKYH3mMjCd5ga8SoA07mf6ajujS+sthvS6A8Enf04iYujKMB
+         J/QCtl4+GyR0HZ3FH+wDnTlNdeyMIKmlvaN2+uqZJCjR6dOkTCGXfI1xrJyvwXcHgkko
+         4WWQgRSvr96JFPNBGDp6LcbDm1svEdLYmLmGClWf9NM4bT/Z9/Lcnun0R0pvKcngDPA+
+         Z9GQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789825626; x=1790430426; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=o2nMFFoiJ3huESEqYlKD9G5EW3b72BH5UWRT2ugKqX0=;
+        b=UHke4zSv4rlzufIC+ixaRIooXo4xkxUMPUELY0Oj54IkB+9YGBWyThevZCrwkthqZ1
+         wXm9gk46QYO2N2XwAIjZ+bam66txvfQbBZaExNyj0Bd9SR5HxqLh5Cbr5b97otWOgFzg
+         MIsnCfqjL2kwLxRR7AqYFa7j4Pa3Fk3RSJm3KEy1SV+HFyqYOfrIFbJHM40pDbKCSVY3
+         ZXBAcJ9f7Bm2u9hV0un2dI2bhKZTCVh5AfZA6MtltM+hhUPbO87EBOt2ZmrkccodXFEH
+         Y3r/uHhTXCt2Kxm75NHfC1wV21cn5MH0oseqHAIy8erZhEJPE5np5X1/weIH1gT8mdR5
+         x9GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789825626; x=1790430426;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=o2nMFFoiJ3huESEqYlKD9G5EW3b72BH5UWRT2ugKqX0=;
+        b=U2fXxLL3bDwzdF/dJtPTFniCsl9hSN6Y4J7lw2qBZa/rdSQb0A0r369FgkdNjzTvrC
+         4uHpjSZY1apoDZIEluoQDLLtbMAG0daJwSP/FPdRQL/DJxYtAb/9TdLnLquKoCukbIpB
+         wHX89rLHFUyoAFCogCt61q50T5pGiP/JbthZdia9dFmoUd8+N6p9mneQJ4uFGzuZ/Nop
+         ++tRawHsQQaGAQUHQ7lukYc0m0/46SEB6sPVgcaInCzVh29DjZmDhvYCxMsVNqpMfp+Z
+         6tfT2GqMwxb1l8h0k61Gt8at+XkYEX+L3Jp14RkLJcrOiSDaGY2ZXF0S5W1DzXj86Pgm
+         wf3g==
+X-Gm-Message-State: AFuF++ksLEsrfZrRkTUjnSBxYiD+bjTmvNE0tE9QhVRv2Y5GM2NHFNvA
+	EkRzJ2Rtyx1M2bdHKi1hbE0cPMu1KjZrPFlX9jPPSRhTxvlWVUv7087kB6Yui5MM3OGGDPA4g2M
+	kKVc5xP3Aqzw0cgMpaFAX9KbZqwjoJuH8wQ==
+X-Gm-Gg: AYBFou1jeisZRVd84jSXm8yU9L10bJkJlkqtLGFDUahoGaKK1davpPaqGw2hbX5WX4f
+	7UGp6DLRBBmj1mK2W7T9Nu/fw0qAA6sZZAo/04KqoTmo4Yr5vZ8RUFCpM2CQh/vBAeSgOY9JOfC
+	cG8xfADiHM45axHU7ukjuCDevH+SeLrhXWUyanXs51b5HXvGST4rFljgvN6ieKvpygvl4B1Rfhw
+	N1SX3ILsH44egqm1QEJeuIz5AqjoP8uisy47133z+MkQaDBtZ/eM9hTgN6aIAZjpxr1ChdWZftW
+	OMB0yoqhrltrXmLKmbGUl8TnNv/3IRgbnnMdvk5yow4uUBLzG8hkJ7FnSGE98JHvw5mLYvCg49W
+	CZ4XJHglFt2W67HfR1PpwgVbpiVhnPIV5A9VjMIFVMGvWmy3v9U8JECheemdPu30DzqGiRj3hw5
+	nd+A+jKHWj4w==
+X-Received: by 2002:a53:e18e:0:b0:671:5b7:fb9e with SMTP id
+ 956f58d0204a3-67170473745mr2131790d50.41.1789825626391; Sat, 19 Sep 2026
+ 06:47:06 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 08:47:05 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 08:47:05 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 08:47:05 -0500
+X-Gm-Features: AcwNN1WRTVGaeyOHTV1zhMrQ_nORxQyQv06RIReSKXf1peqqYjMZpbIhJ8jQCNk
+Message-ID: <CAPdrGe=N4b8ZtJjw3fpYi+CpOo-YqhahrO7xd82dyK2d9hf1Pg@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D19_20=3A46_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_1_strong_signal?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000abc9bf065bd64011"
+
+--000000000000abc9bf065bd64011
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+Prior Sent state recovered through the 19:47 report. I rejected semantic
+duplicates unless new independent evidence materially strengthened a
+cluster.
+
+1 MATERIAL SIGNAL
+
+CLUSTER: animation controllability / mouth geometry preservation
+Platform: Talking Pet AI customer reviews (App Store-derived review corpus)
+Source: https://mwm.ai/apps/talking-pet-ai-cat-dog-talk/6479892860
+Date: 2026-02-18
+Customer language: The reviewer says the app does not preserve the
+character of their animals, that =E2=80=9CThe mouth does not move properly,=
+=E2=80=9D and
+specifically complains that =E2=80=9CYou can=E2=80=99t make [the] mouth sma=
+ller or larger.=E2=80=9D
+They also report a horse being transformed into a dog and generated
+backgrounds differing from the preview.
+Wanted/problem: The buyer wants animation to preserve the individual animal
+and wants control over a conspicuously wrong talking-mouth effect rather
+than accepting a one-shot render.
+Current workaround/product: Talking Pet AI automatic facial animation.
+Roast.pet implication: Add a post-motion-preview correction primitive
+specifically for MOUTH: smaller / normal / larger, plus =E2=80=9Cmouth look=
+s wrong=E2=80=9D
+regenerate. Treat mouth geometry as an identity landmark rather than
+generic lip-sync. Preserve the approved background/scene as a locked
+constraint as well.
+Occasion/audience: Talking-pet videos; broad pet-owner gift/entertainment
+audience.
+Independent elsewhere: YES. Prior state already contains independent
+complaints about poor talking-mouth quality and the need to preview motion
+before payment. This evidence materially strengthens that cluster because
+it identifies a concrete customer-requested control: mouth size.
+Confidence: HIGH
+Prototype/test: After the 2=E2=80=933 second motion proof, show three one-t=
+ap
+corrections only if rejected: MOUTH TOO BIG / MOUTH TOO SMALL / DOESN=E2=80=
+=99T
+LOOK LIKE MY PET. Measure rescue rate versus generic regenerate.
+Decision: BUILD/TEST
+
+WHY THIS IS NEW
+The prior evidence established that a still likeness can fail once animated
+and that customers want to see motion before commitment. This review goes
+one step further: it names an adjustment the customer wishes existed. That
+converts =E2=80=9Cpreview the animation=E2=80=9D into =E2=80=9Cpreview + co=
+nstrained correction,=E2=80=9D
+which is much more actionable.
+
+RECURRING-CLUSTER STATE =E2=80=94 directional counts from accepted independ=
+ent
+evidence
+
+   - Exact likeness / identity preservation: very strong, repeatedly
+   independently supported
+   - Motion/talking fidelity: strong and strengthening; now includes
+   explicit mouth-size control demand
+   - Preview/approval before final: strong
+   - Better source-photo guidance: strong
+   - Fast/digital/last-minute delivery: strong
+   - Multi-pet: strong
+   - Personality/essence capture: strong
+   - Revision/control without friction: strong and strengthening
+   - Authentic pet audio: moderate
+   - QR/physical+digital reveal: moderate
+   - Memorial: moderate, but memorial-with-humor remains UNKNOWN
+   - Editable jokes / recipient-specific roast: plausible product fit but
+   direct demand evidence remains weaker than likeness evidence
+   - Kid/adult roast modes: UNKNOWN
+   - Sports/work-colleague roast: UNKNOWN
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Exact individual-pet likeness that survives animation.
+   2. Preview/approve before final commitment, including a motion proof.
+   3. Simple correction controls when the talking mouth or identity looks
+   wrong.
+   4. Clear source-photo guidance with buyer control over the primary
+   reference.
+   5. Fast digital delivery / last-minute path, with physical fulfillment
+   optional.
+
+STRONGEST UNMET NEED
+A talking-pet gift that remains recognizably the exact animal during
+speech=E2=80=94not merely a convincing dog/cat animation.
+
+EASIEST CONVERSION-LIFT CHANGE
+On motion-preview rejection, replace a blank revision box with MOUTH TOO
+BIG / MOUTH TOO SMALL / DOESN=E2=80=99T LOOK LIKE MY PET. This converts a k=
+nown
+complaint into a low-friction recovery path.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE
+=E2=80=9CYour Dog Roasts Them =E2=80=94 Preview Your Pet Talking + Fix the =
+Mouth Before
+Final Video =E2=80=94 Personalized Birthday Video + QR Card.=E2=80=9D The l=
+isting promise
+should emphasize identity preservation rather than generic AI animation.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not assume a state-of-the-art talking model eliminates the need for
+correction UX. Customers notice small mouth-geometry errors intensely, and
+automatic animation can make an otherwise recognizable pet feel wrong. A
+one-shot =E2=80=98regenerate=E2=80=99 button is weaker than targeted correc=
+tions.
+
+SEARCH NOTE
+This run reviewed current talking-pet customer reviews plus
+personalized-pet, multi-pet, last-minute, QR/video and likeness evidence.
+Most findings were semantic repeats of already accepted clusters and were
+rejected from the delta.
+
+--000000000000abc9bf065bd64011
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>Prior Sent state recovered through the 19:47 report. I rejected semantic=
+ duplicates unless new independent evidence materially strengthened a clust=
+er.</p>
+<p>1 MATERIAL SIGNAL</p>
+<p>CLUSTER: animation controllability / mouth geometry preservation<br>
+Platform: Talking Pet AI customer reviews (App Store-derived review corpus)=
+<br>
+Source: <a href=3D"https://mwm.ai/apps/talking-pet-ai-cat-dog-talk/64798928=
+60">https://mwm.ai/apps/talking-pet-ai-cat-dog-talk/6479892860</a><br>
+Date: 2026-02-18<br>
+Customer language: The reviewer says the app does not preserve the characte=
+r of their animals, that =E2=80=9CThe mouth does not move properly,=E2=80=
+=9D and specifically complains that =E2=80=9CYou can=E2=80=99t make [the] m=
+outh smaller or larger.=E2=80=9D They also report a horse being transformed=
+ into a dog and generated backgrounds differing from the preview.<br>
+Wanted/problem: The buyer wants animation to preserve the individual animal=
+ and wants control over a conspicuously wrong talking-mouth effect rather t=
+han accepting a one-shot render.<br>
+Current workaround/product: Talking Pet AI automatic facial animation.<br>
+Roast.pet implication: Add a post-motion-preview correction primitive speci=
+fically for MOUTH: smaller / normal / larger, plus =E2=80=9Cmouth looks wro=
+ng=E2=80=9D regenerate. Treat mouth geometry as an identity landmark rather=
+ than generic lip-sync. Preserve the approved background/scene as a locked =
+constraint as well.<br>
+Occasion/audience: Talking-pet videos; broad pet-owner gift/entertainment a=
+udience.<br>
+Independent elsewhere: YES. Prior state already contains independent compla=
+ints about poor talking-mouth quality and the need to preview motion before=
+ payment. This evidence materially strengthens that cluster because it iden=
+tifies a concrete customer-requested control: mouth size.<br>
+Confidence: HIGH<br>
+Prototype/test: After the 2=E2=80=933 second motion proof, show three one-t=
+ap corrections only if rejected: MOUTH TOO BIG / MOUTH TOO SMALL / DOESN=E2=
+=80=99T LOOK LIKE MY PET. Measure rescue rate versus generic regenerate.<br=
+>
+Decision: BUILD/TEST</p>
+<p>WHY THIS IS NEW<br>
+The prior evidence established that a still likeness can fail once animated=
+ and that customers want to see motion before commitment. This review goes =
+one step further: it names an adjustment the customer wishes existed. That =
+converts =E2=80=9Cpreview the animation=E2=80=9D into =E2=80=9Cpreview + co=
+nstrained correction,=E2=80=9D which is much more actionable.</p>
+<p>RECURRING-CLUSTER STATE =E2=80=94 directional counts from accepted indep=
+endent evidence</p>
+<ul>
+<li>Exact likeness / identity preservation: very strong, repeatedly indepen=
+dently supported</li>
+<li>Motion/talking fidelity: strong and strengthening; now includes explici=
+t mouth-size control demand</li>
+<li>Preview/approval before final: strong</li>
+<li>Better source-photo guidance: strong</li>
+<li>Fast/digital/last-minute delivery: strong</li>
+<li>Multi-pet: strong</li>
+<li>Personality/essence capture: strong</li>
+<li>Revision/control without friction: strong and strengthening</li>
+<li>Authentic pet audio: moderate</li>
+<li>QR/physical+digital reveal: moderate</li>
+<li>Memorial: moderate, but memorial-with-humor remains UNKNOWN</li>
+<li>Editable jokes / recipient-specific roast: plausible product fit but di=
+rect demand evidence remains weaker than likeness evidence</li>
+<li>Kid/adult roast modes: UNKNOWN</li>
+<li>Sports/work-colleague roast: UNKNOWN</li>
+</ul>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE</p>
+<ol>
+<li>Exact individual-pet likeness that survives animation.</li>
+<li>Preview/approve before final commitment, including a motion proof.</li>
+<li>Simple correction controls when the talking mouth or identity looks wro=
+ng.</li>
+<li>Clear source-photo guidance with buyer control over the primary referen=
+ce.</li>
+<li>Fast digital delivery / last-minute path, with physical fulfillment opt=
+ional.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+A talking-pet gift that remains recognizably the exact animal during speech=
+=E2=80=94not merely a convincing dog/cat animation.</p>
+<p>EASIEST CONVERSION-LIFT CHANGE<br>
+On motion-preview rejection, replace a blank revision box with MOUTH TOO BI=
+G / MOUTH TOO SMALL / DOESN=E2=80=99T LOOK LIKE MY PET. This converts a kno=
+wn complaint into a low-friction recovery path.</p>
+<p>BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Dog Roasts Them =E2=80=94 Preview Your Pet Talking + Fix the =
+Mouth Before Final Video =E2=80=94 Personalized Birthday Video + QR Card.=
+=E2=80=9D The listing promise should emphasize identity preservation rather=
+ than generic AI animation.</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not assume a state-of-the-art talking model eliminates the need for corr=
+ection UX. Customers notice small mouth-geometry errors intensely, and auto=
+matic animation can make an otherwise recognizable pet feel wrong. A one-sh=
+ot =E2=80=98regenerate=E2=80=99 button is weaker than targeted corrections.=
+</p>
+<p>SEARCH NOTE<br>
+This run reviewed current talking-pet customer reviews plus personalized-pe=
+t, multi-pet, last-minute, QR/video and likeness evidence. Most findings we=
+re semantic repeats of already accepted clusters and were rejected from the=
+ delta.</p>
+
+--000000000000abc9bf065bd64011--

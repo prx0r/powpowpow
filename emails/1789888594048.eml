@@ -1,0 +1,337 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id ropWBKxAMR6J
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:16:33 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=hoVo8bVgV6yQE7TfvQ/Pvq3kTfONHXALSjFhI2ZdNKhpOlV2rtQjYAB6J8MiQSBawGPg1J17t
+	DjkTZP/jsIyrYtzO4rvim164f2CzG5QmHK9WoTameKWnHLUbFcfUdbqh1SrgzSkEfwIB+Ttn0yQ
+	jzj0SC+VHesI1VL1IQLSn6AG+UgCzSPHpPXEo6WdCKLVrJgrGvRl4TS+CnYActNgM4QcSAMvuun
+	gkPgslMQGMP/GkOrkzs01NUttXzHJUdvFRixqwWnfuid7Z5uYnEsPt4mlgvJkxHDkHB9AlZEsep
+	y+3cDGkYGXpTmbyFhpFH5fzVkEy/D+W5U+kntc+c2yjw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888593; x=1790493393; bh=Y/y0hUTs
+	VWNArLo9YQyYHp2/Wja+bV4wwSRQwlZPQCA=; b=I5Iq7spMzYw093MP9vltTVcEwr7kgZLGNsj
+	3AaTvPmD9zoyIVG17pJWUTSsc31laUIfSOChIV1bsn607qk4ZMy5w+Q9dm5LXk18NLISb03GArY
+	ulkzbkelGE6lqAuLbGNYdJlg/T1zRWPAKA/5LsFLewKOIUFKmWS4bvGawaVaWPznDYFPoAPw4T8
+	78y4W5BHtrT13Pr2dqRvaWOv06klw2qFpAyo7Wavh/RR67EhlYUbOKfxCSCJNO/ILV8aE7EOjyr
+	UYajxlmsRzPqduS99rCsq0YZpeitmK6b09bbpoYmu9rQtF7zSIfmkW/TGV7N8sH09g2j3No/sVD
+	aW3zfkw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=I5GVAX4v;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=I5GVAX4v;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d45ae011cso18801597b3.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:16:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888593; cv=none;
+        d=google.com; s=arc-20260327;
+        b=bHsFO3aGf/hRpiYDyWj+x7x5cmaFibxLzZuUENVoUOD1vPu5px7qKsjNviQ8T3fdk9
+         iO3ClGgHA9Vl5xVyb/EOPJgirW6ybh5hs2dREI7RzfFTh9Yl6GVA2EOqlQaVotFsqC/z
+         eklvaXD/8bBC/rfSez+vVtMFVBWKF5bEfrxBchLzgAyy/sJlW3fIACcfdBVeJgiEe2fJ
+         Xf7fen8QByn9W0dLOV4mTPXdNSJ2LNUSGJ7LjpWd+4DnrsANo/kn9vvC/uZyVYu5DhPD
+         mtgiMxsrOjNnaRitWuT/YF6ZWOuKe65llBji6SIM6E+1c5E8v1cZAXbhlCJjwd4zK6ZR
+         /N9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=Y/y0hUTsVWNArLo9YQyYHp2/Wja+bV4wwSRQwlZPQCA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=CLzRe0jUdeEsJDkh1ss7zbauNDKkfGviZJmOf0WqOZMm9QPbwJmDq3iUm1FSDD/kIB
+         /XZkGxXiAxkkg+4543pyo2ca1VH7uO5RRNyvbp0I2oVKvIJuyLZ4Wutr/vJy+3ss9s4g
+         5f60WFRw/ZRW0P2rFE9qNSPgmLut9lmVfrE5QOBBvvRxUwmck8/espuhzk1bpZVPloC1
+         zDB8GwoRdjzi30CwG8iAjFtJCjFCnlyqARBtw1939P8Bp+RUIKd8wAfqGa7Lkmo5L5QH
+         Z1Q4w9M3k/2/HOrUUGaU0YTvDTIEhsbyE05363im9FCadvj6+GsDdxdKyBscSbCx8zXE
+         razg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888593; x=1790493393; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Y/y0hUTsVWNArLo9YQyYHp2/Wja+bV4wwSRQwlZPQCA=;
+        b=I5GVAX4v08eMqESjO1lDnHnfy9hOESwwHSS1v67JC9S45QUVJ0h0KAQ/644LORPkvG
+         B188ka2xS4PFP5PF2EMILq4GHmvZuBZkSTqlvQB1vpOU7h8UF5rdEx65f6i81bzYeeX1
+         vYEdOOf+SqqoV6M8/hv+Feb/ePMtY+7A88F8TawxpgiIVw+eR39eMwM8kmbP8pdmwcM3
+         DH/DAJ/K4wy3ndBCGjSPSzUoa/q99lUx9NKcdSWMjH6pmDHiBoW65bojsOBGJvVoMlYq
+         pTZ2YJdPhjr8qvg8JSLPNWSJrgA7aub+pbtXQs6yi7qZvaeqZEvlR1DGk1VvHA5G/FrO
+         BM0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888593; x=1790493393;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Y/y0hUTsVWNArLo9YQyYHp2/Wja+bV4wwSRQwlZPQCA=;
+        b=KaFhjXvnux4yzaKTRkQGIqVs2kOUQQS0NI5N4L/z1yVHwtmIcJZkxH7noAUnNHlSa5
+         wUX0TOYm6faB+j2DHW7aBOarTb8d+lDIyMkpdzG9Fj/POSy1Iw44J9Q5ya5i9go+C5oL
+         88GRLfLA8X7eaSi8HEx40cxKsymIfbndyntKJz28aSOoNDmhPHsy1CoIVePaUNWlrC+I
+         +iSVcPh/vsQysTxGM5a/tOIJYr1IYsxhc55yZYnr83HQD507+bVTjie7TqfhyvZ1TWZ2
+         HKW7z60pViEX38BxcRH8a3Cj+gb6jpMRssl9evAYFVUyy5ybyAZnAq3A1RsIu5p7wnV9
+         EwbQ==
+X-Gm-Message-State: AFuF++m01QFm+MQqPUAXMQJBVlXZetk5ddia/p9FGLHEFbCANsJTwnQU
+	ND/StaUyIRyOVWHgU05GH/NIAf0K5yiynRQYu/MkqgJpJMUNe2VQCkC/9b6LYZErOMPJhaqGoAm
+	maXNlI8ABMboj9jWbAtBmxQKB4hJQ1tnL4Q==
+X-Gm-Gg: AYBFou2v4ztzJTKRBReN28Q3Ov2NisNX/EBgqZi4snonViH+iPu0tGxngkh/oilG1xW
+	1AogMLPSKXvJt7DssMdAfmdejdLmhtOkYSWRq8Vfd3FDYrBV9wSAtiO55LVR3CZCkE2FjRewA+F
+	oXHdhiKcLkxLb1mRxr1O6Hn+5O/OuBWMiO7T9/yb2dZIZieRztN/WBq/4jDb3CueKuXZpq6MdNF
+	QEkHqsRz35CoxxkxrcDtdYEdhtARQaui0L11c8kf9GwDSZQXjijP9ORHYvdElSiWKIpt4w5Fljb
+	yx1ZOwgrsODxQZutV3qXtKvPC5PGU73lZ67yNtbTrwanSCoeTSrT7Oel2uKxFTXODfVMlbvizJZ
+	quVkSVSFHrldRECPuCkCecbEqrVjOhRABqStyQMtAUrKNUcDoP9ae+LOYOUXQOfSvKuaSOfqk
+X-Received: by 2002:a05:690c:7283:b0:878:d58d:e142 with SMTP id
+ 00721157ae682-897352abb2dmr23344967b3.44.1789888593288; Sun, 20 Sep 2026
+ 00:16:33 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:32 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:16:32 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:16:32 -0500
+X-Gm-Features: AcwNN1XWisN66sEz_RyVbQfY0R_p85LUP_oZkk0C4O_t7BsOQao9U-ljhl6UfIw
+Message-ID: <CAPdrGekxgDB_smiEQhYXB-uYn8YM9=RLTdcdr1EQay6RLGHB3Q@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D19_22=3A2?=
+	=?UTF-8?Q?2_Asia=2FPhnom=5FPenh_=E2=80=94_4_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 4 useful projects
+
+This run screened 25+ candidates across pet landmarks,
+background/matting, sprite generation, browser video, captions, WebAR,
+Etsy/POD tooling and mockup automation, while excluding projects
+already surfaced in prior runs. Four new finds survived.
+
+1) reearth/kamishibai =E2=80=94 REUSE NOW / BENCHMARK NOW
+
+URL: https://github.com/reearth/kamishibai
+
+Creator: Re:Earth / reearth
+
+Recent activity: surfaced current within the last month
+
+License: MIT
+
+What it solves: deterministic web-page-to-video rendering without
+forcing Roast.pet into a heavyweight video framework. The entire
+contract is window.kamishibai =3D { meta, seek(ms) }. Any
+React/DOM/canvas/WebGL page can therefore become the renderer. It
+captures exact time-addressed frames through headless Chrome and
+assembles them with ffmpeg.
+
+Why this is unusually relevant: it supports incremental frame reuse by
+hashing committed DOM state, parallel headless-Chrome capture,
+narration/TTS prepasses, audio/video components, soft subtitle tracks,
+burn-in subtitles, SRT output and an agent-facing kamishibai skill
+authoring guide. It deliberately stays a mechanism rather than
+becoming an editor/framework.
+
+Install/demo route: npm i kamishibai react react-dom; expose
+window.kamishibai; run kamishibai render .... Dependencies are Node,
+Playwright/Chromium and ffmpeg. CPU only; parallel workers can
+accelerate capture.
+
+Evidence: runnable examples for React, video and narration; explicit
+deterministic-render contract; frame caching; subtitle mux/burn-in;
+MIT repository. Caveat: it does not promise cross-environment pixel
+identity, so Chromium/fonts must be pinned.
+
+Work replaced: potentially most of our custom render-loop, frame
+capture, subtitle muxing, render caching and agent documentation.
+
+Integration: LOW=E2=80=93MEDIUM. Maintenance risk: LOW=E2=80=93MEDIUM becau=
+se it is
+tiny (currently ~1 star), but the output boundary is ordinary
+frames/video and therefore easy to replace.
+
+Exact experiment: take the current canonical 15-second Roast.pet
+HTML/canvas actor, implement only seek(ms), render at 30 fps, then
+change one caption and rerender with incremental reuse. Compare total
+LOC/render time against htmlrec/WebMotion/LeClap.
+
+Verdict: REUSE NOW / BENCHMARK NOW.
+
+2) tayles/ai-sprite-image-generator =E2=80=94 BENCHMARK NOW
+
+URL: https://github.com/tayles/ai-sprite-image-generator
+
+Creator: David Taylor / tayles
+
+Recent activity: surfaced current within the last month
+
+License: verify before embedding; surfaced metadata did not establish
+license terms
+
+What it solves: batching many named visual states into dense generated
+sprite sheets and automatically splitting them back into individual
+images. It uses Nano Banana Pro through kie.ai and explicitly supports
+animals, avatars, game assets and product photos.
+
+The economic trick is useful: instead of paying one image-generation
+call per state, it asks for a 5x5 4K grid and splits the result into
+25 cells. The author=E2=80=99s documented price comparison puts that at
+roughly $0.0048/cell at the prices they observed. It also includes
+parallel batches, API rate limiting, retries and named cell
+definitions.
+
+Install/API route: npm install ai-sprite-image-generator or bunx
+ai-sprite-image-generator. Requires a KIE API key; no local GPU.
+
+Evidence: package/CLI API, integration tests, examples for
+cats/animals/product imagery, automatic image splitting, retries and
+concurrency controls.
+
+Work replaced: our first implementation of state batching, sheet
+prompting, grid splitting, retries and concurrency.
+
+Integration: LOW. Maintenance risk: MEDIUM because it depends on a
+third-party inference wrapper/model naming.
+
+Exact experiment: define cells neutral, blink, side-eye, stare,
+recoil, mouth-A, mouth-E, mouth-O, mouth-M from one approved pet
+reference. Compare cost, identity drift and usable-cell percentage
+against generating those states individually. The key metric is cost
+per accepted immutable state, not cost per raw image.
+
+Verdict: BENCHMARK NOW; do not embed until license is verified.
+
+3) CTDave001/automated_mockups =E2=80=94 REUSE NOW
+
+URL: https://github.com/CTDave001/automated_mockups
+
+Creator: CTDave001
+
+Activity/maturity: 29 commits, ~69 stars, 18 forks
+
+License: MIT
+
+What it solves: deterministic product mockups without manually
+entering placement coordinates for every scene. Templates contain a
+known colored placeholder; the tool detects the placeholder=E2=80=99s
+position, dimensions and rotation once, saves parameters to JSON, then
+generates every design =C3=97 mockup combination in parallel.
+
+Install/API route: pip install mockup-generator; run mockup-generator
+calculate --hex-color ... once on template folders, then
+mockup-generator generate .... Python 3.8+, NumPy, Pillow,
+scikit-image, OpenCV; CPU only.
+
+Evidence: CLI + Python API, tests, examples, rotation detection, nine
+alignments, fit/fill/stretch modes, PNG/JPEG/WebP output and parallel
+workers.
+
+Work replaced: almost all fixed-scene mockup calibration and batch
+composition for Roast.pet cards/T-shirts/posters. More importantly,
+designers can author a mockup by painting a placeholder rather than
+editing JSON coordinates.
+
+Integration: LOW. Maintenance risk: LOW; the primitive is simple and
+deterministic.
+
+Exact experiment: make five Roast.pet canonical mockups (card on desk,
+card in hand, T-shirt front, framed print, phone+card) with a #FF0000
+placeholder. Run calculate once and then generate all five from 20
+fake pet designs. Manually inspect perspective/rotation failures.
+
+Verdict: REUSE NOW.
+
+4) sov2000/etspi-cli =E2=80=94 WATCH / USE AS ESCAPE HATCH
+
+URL: https://github.com/sov2000/etspi-cli
+
+Creator: sov2000
+
+Maturity: ~3 stars; surfaced active last month
+
+License: GPL-3.0
+
+What it solves: nearly the complete Etsy Open API v3 surface from a
+shell: OAuth/token refresh, shop/listing reads, draft creation,
+listing updates, inventory, images, videos, digital files and
+properties. Crucially for Roast.pet, it can upload Etsy listing video
+directly and transform listing JSON into draft/update-ready JSON.
+
+Install route: pipx install etspi; Etsy API credentials required. It
+persists/refreshes OAuth tokens and supports JMESPath shaping plus
+JSON file I/O.
+
+Evidence: explicit commands for image upload/ranking/alt text,
+listing-video upload/update/delete, digital-file upload, inventory and
+draft creation.
+
+Why not adopt as core: GPL-3.0 and we already found more purpose-built
+Etsy automation (etsykit). But this is an excellent operational/debug
+CLI and a reference for API edge cases.
+
+Work replaced: ad-hoc curl scripts and most manual Etsy API debugging.
+
+Integration: LOW as a separate operator CLI. Maintenance risk: MEDIUM
+because Etsy API behavior changes.
+
+Exact experiment: against a disposable draft listing, use Etspi to
+read listing JSON, upload one Roast.pet mockup, upload one 15-second
+listing video, retrieve both, then delete/replace them. Keep it as the
+manual escape hatch even if etsykit remains the production publisher.
+
+Verdict: WATCH / USE AS ESCAPE HATCH, not embedded production code.
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+- A bespoke deterministic browser capture loop =E2=80=94 benchmark Kamishib=
+ai first.
+
+- A frame cache/incremental rerender system =E2=80=94 Kamishibai already
+fingerprints unchanged React DOM frames.
+
+- Manual mockup placement coordinates for every product scene =E2=80=94 use
+color-placeholder auto-calibration from automated_mockups.
+
+- One expensive image-generation call per pet state =E2=80=94 benchmark den=
+se
+named sprite-sheet generation and split the cells.
+
+- Etsy API debugging scripts =E2=80=94 Etspi already exposes almost the who=
+le
+API from the shell.
+
+Most surprising hobby project
+
+Kamishibai. One star, yet it has exactly the architectural property
+Roast.pet needs: every frame is a pure function of time, with
+incremental frame reuse, parallel capture, subtitles, narration
+support and an agent-readable authoring skill. It is more interesting
+to us than many 1,000-star generic video frameworks because it refuses
+to become a framework.
+
+Fastest integration win
+
+automated_mockups. Paint a colored rectangle into five existing
+product-scene images, run its calculator once, and Roast.pet
+immediately gets deterministic batch listing images without
+hand-calibrating coordinates.
+
+Repo/author worth following
+
+reearth/kamishibai. Its design philosophy=E2=80=94tiny deterministic contra=
+ct,
+ordinary web primitives, CI verification, agent-readable skill=E2=80=94is
+unusually aligned with keeping Roast.pet=E2=80=99s custom kernel small.
+
+Search coverage this run included GitHub projects around animal
+landmarks/pose, sprite generation, browser matting/background removal,
+WebAR/MindAR, WebCodecs/subtitles, Etsy API tooling, Printify/POD
+workflows and product mockup generation. Previously surfaced projects
+such as Alphaveil, BorderCut, PICORN, Light Converter, cat-filter,
+dog_detection, ScratchLipSyncTool, MindAR and prior Etsy helpers were
+intentionally not re-reported.

@@ -1,0 +1,471 @@
+Received: from mail-qk1-x72f.google.com (2607:f8b0:4864:20::72f)
+        by cloudflare-email.net (cloudflare) id P60Z9sWg8iGR
+        for <agents@intelligentothers.xyz>; Fri, 11 Sep 2026 11:59:00 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=JTvoMSWH7eV1sYuGLIVqnN4EYr2w5FPMx1k0kwfvv3Kr8XIhFlexBpl94AbYnGZknXkcaWBfk
+	YRxXF3L0o3y6DfwcYq2gqEPjMXmaKuXgzG9D3SlIzE1DUXnBePedKmvSj1OMnCymlXCRNmQ/cJl
+	TTcdH/+WP2hDudl3SI33vE9yLvg4fOJxFAPqQAn9S79z/h5i971CF9tQP+LDMlLDB1Lmxlh522V
+	Usdj1N4PJCd/4l6IctLsaL9efd0boWY1LPxNjgU2yzKP1MtjgGgSfq1CN2YQEocOslQzaTycxKy
+	XZ+L8FPSllVLF6WvRIpGkNhE3P/VXvnNQ9fCo2c2R4Ow==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:References:In-Reply-To:from:reply-to:cc:resent-date
+	:resent-from:resent-to:resent-cc:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789127940; x=1789732740; bh=Y7KP7XIS
+	WatAn9Ku8fhBGhbbwgADcV0w2nwWHlumy9c=; b=XpypGPWyIS0/Kp/d1cVvmLfASPgsiHaYeo0
+	l7QyD9Y3kKiaiXpfVCZffGPn4bmSpoxrzDLtXjYJoIyrPVHpYgnoL/CcanjoomlaUouNCSVUtZn
+	uzpfQ0gi0TzpGUsXTxgrHFosFdXnpBOj7FW1CJtPFYt9j2he/tAxAFpiOLg8lfPdjUemJIk8jt/
+	JsAXf9yoiXq76oIgSK2ePLWypz5gHV5pz5S72e2oLmNiJKUn+KFON/1L5qNST55USLMtx7wUG/j
+	RxUvVWbNZGlQXl1yn8PgQbR6uhMBghZ7BUyw79M44dHKnfkW6X/MgcJ4K1bknrjtbqNkH0+/vE/
+	UW0snqg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=FIlbZSCJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-qk1-x72f.google.com) smtp.helo=mail-qk1-x72f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::72f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::72f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::72f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:20::72f; envelope-from="tradesprior@gmail.com"; helo=mail-qk1-x72f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=FIlbZSCJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-qk1-x72f.google.com) smtp.helo=mail-qk1-x72f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:20::72f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:20::72f"
+X-CF-SpamH-Score: 1
+Received: by mail-qk1-x72f.google.com with SMTP id af79cd13be357-9399d91ee7aso102440485a.0
+        for <agents@intelligentothers.xyz>; Fri, 11 Sep 2026 04:59:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789127940; cv=none;
+        d=google.com; s=arc-20260327;
+        b=So34TQiJ7IHpzDQB8tlUmrGpOltdlQKBWLrfwYzc+mjMQrKdf4itNvTxaedw9moDJm
+         Ddx9IJbTuNOlboKri86cg3mEPMKS+iWuNmLB9FB4XkoulxGMFtOQNsxHqIzWoKKSvc7K
+         6O21hCO94+QCZJazGIa6OQJR6VOSwEnU3aQdIk1grvoCelyU8pAYlgo4epvm68sqDJkg
+         FWv696ucgNe7hfX4YgZdDCA4/4mTHpw3gocb+TaO88tw7mr+fjwza1Azx8xawP4F20+H
+         BJ3vnbQsQZE/CElqpK2xrZz7RrqJp9EldszfziHi+b4tPf6TfHeTYscXcKU/Z/ojMebf
+         mQsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:references:in-reply-to
+         :dkim-signature;
+        bh=Y7KP7XISWatAn9Ku8fhBGhbbwgADcV0w2nwWHlumy9c=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=s7hy0KrC+LfM++Yqw4BPh/0eWaq9jMrhNGWih4Iip4CJMtmRdbgA4enF3xtpsZSWP1
+         WmKJc7SHijik4iLy0rNn8efWt7dNswTdVbt+0ZQ8D2iKsilr5cOmTPX1vdp2y6mUOmu/
+         g0GYk4QKwzErK+IniS0umOgX5r72a8DMtGubUa0SxPy6PDW4uesOJmaLfPS1BRpyzGD6
+         rkEQFfU7dB3bN/m8wOo/1YWkfpf5Bs12q2NhxzlOtmBZ8wox0HegfoRvudu2/yRPo4xR
+         Ro99R94zyTeT5qOEGaZ5HD2oUyQVcsu1T6CmljIqKPhPaz/wR604CRHqUKKsHPJPf+wA
+         JzrA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789127940; x=1789732740; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Y7KP7XISWatAn9Ku8fhBGhbbwgADcV0w2nwWHlumy9c=;
+        b=FIlbZSCJeWtjt9Du3VwbrFA9bj7TAKbK18cKJKdzE/tEEwplsbTsddethIg/y8cX97
+         fNEvPEygKdaWyJkPw/VEKnI8kjrY/U/6lLma6DBPXuQBTajkqu5nqROL4X7slT/XUQ8y
+         G8wgrVsoS7WCEtHB5eS7Mv9cdnkg+vmi4LguFAKGwx8gceO/ydeKycF9hWj69xr/hgt2
+         BNdlhkEPHwCNAfR5TolZ1rkSz/NjmffqgGBrTKgtcsD8X5/q6EkTF2ejqWCH/mxq21zO
+         IXKTMV/FAqxdJiRg0zubbGSok3aFA5WWbQUJUKRGfY0O4QeAGy0magdm0isKrv58RFJ/
+         7rcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1789127940; x=1789732740;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=Y7KP7XISWatAn9Ku8fhBGhbbwgADcV0w2nwWHlumy9c=;
+        b=s7AO97uVVhmKmcNmy8/cyNxNQ8TrqjrqRxvBq9xiEMUEmpqfUyscu5Fs7JWGLodXFr
+         ggSz/KhrWMalZnEIlz/AYjU3mi3FA7YRddQHt/yOyavFo36qMpBpippEbMshVcx3h42h
+         YvIr7mMZzeZmex529DaDDySA1gG8MSd+sRB3BHBnSpnXc/ozjBqZFfg41C6xvRxNbGCz
+         6PLXOndYm/00BVBhJvBMW6NDpb0Z1bTFEhDYbrRbVmuPouSllaAz3ZYIGu8eUhyg5Rrz
+         yVKckBLEGElMfZsjXf062ChvQiGCDBwQBS1b/wE8chc/WX6r/NVHWIOJSMZkPL3b8AO0
+         Vh+g==
+X-Gm-Message-State: AFuF++lJEXmF8SVX3l3fXYSDZmxGxjYFbCIJJKbTLOmwgoRA45OEHqGo
+	v8kRh7R2MybdK8f+eRx2DH7ASx4xYxnSIv7yjMa/dyPR6SiNRwdCXveUg9AhM5FMYJAQNEFXCWQ
+	+TI7poXFkVOut/ghUG0ug9P2g5RP7MxNzvRRA
+X-Gm-Gg: AYBFou12VVrte+btPBfqEfH8f41LNWgRr7kL49jO9Ae25jJM3nY26i/H9g8iHzqZv1I
+	xqEWdANO1UYMnYWXCyMEQUfVK1Oyt2O/gC3mRL1aL3wU2o9EXpnVOw2vjLR+93KUexLuM9hG1Dy
+	M5IipNCnuLn2gLiUQZSs8OWPCVesnZqQhxlp40aDzThrX++oMNa5sMFYY3H0+B3tCZnqEkasSaa
+	JBhEbpB+DDfNgoZA+Ld+O0O5AoHgMspm0jhLc3JH3j1+NgeSC/ILmXHGxGvImwCDoSuJDY6FyKi
+	bIIAELSbwS3zBW80c3LN2UcY7kaYB/mOPb0D+GW7G1UGIWrOFyl2HEmZlyfaUZo4l9qmaQt50ww
+	jX8OGrjz2/kqnnJjfQjNTyeXVJ8lYrMJza2zHcOlCrNKeuX6dMU9uDouh75lKKNSspcpDn8HL
+X-Received: by 2002:a05:690e:4514:10b0:66e:4064:7475 with SMTP id
+ 956f58d0204a3-6712451b9a2mr996332d50.1.1789126549661; Fri, 11 Sep 2026
+ 04:35:49 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 11 Sep 2026 07:35:49 -0400
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 11 Sep 2026 07:35:49 -0400
+In-Reply-To: <CAPdrGemai_AJ5HJ0k7tKUwiRpqR03WnNg_Cegs_v0QSs43ALCg@mail.gmail.com>
+References: <CAPdrGemai_AJ5HJ0k7tKUwiRpqR03WnNg_Cegs_v0QSs43ALCg@mail.gmail.com>
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 11 Sep 2026 07:35:49 -0400
+X-Gm-Features: AcwNN1VIpGpzn-mrYRknxvruqEw0DI37uipBViI0_YgN77nKQDBcfpAblJfN4F0
+Message-ID: <CAPdrGe=kvYbLjQ2VmLPPKNJs9ffKPdoKCWcY=D3FhHiUFhN55Q@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_Post=2DAGI_Alpha_Hunt_=E2=80=94_InP_crystal_growth=2C_ind?=
+	=?UTF-8?Q?ium_optionality_=26_measurement_density?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000736f52065b337cd3"
+
+--000000000000736f52065b337cd3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 10 Sep 2026 04:37:02 -0500
+Subject: Post-AGI Alpha Hunt =E2=80=94 InP crystal growth, indium optionali=
+ty &
+measurement density
+To: tradesprior@gmail.com
+
+Post-AGI Alpha Hunt =E2=80=94 10 Sep 2026
+
+Highest-signal new rabbit holes from this run
+
+   1. InP crystal-growth equipment may be a better bottleneck than InP
+   epitaxy itself
+
+The AI-optics thesis has moved one layer upstream. Recent industry
+reporting estimates 2026 effective InP substrate capacity at only
+~0.6=E2=80=930.75M wafers versus ~2.6=E2=80=933.0M wafers of demand, with 2=
+-inch
+optical-grade substrate prices rising from about $800 in 2025 to roughly
+$2,300=E2=80=932,500 by April 2026. Large-diameter crystal growth is diffic=
+ult,
+yields take years to improve, and customer qualification adds latency.
+
+PVA TePla (ETR:TPE) is particularly interesting because it sells the VGF
+crystal-growth equipment used for 4=E2=80=936 inch GaAs/InP crystals. Its Q=
+1 2026
+order intake rose 164% YoY to =E2=82=AC121.6M, and management explicitly id=
+entified
+initial equipment orders for InP crystal production tied to AI data
+centers. H1 reporting later showed =E2=82=AC186.7M order intake (+80%), inc=
+luding
+InP crystal-growth systems and HBM ultrasonic metrology.
+
+Why this may be alpha: the market sees =E2=80=9Coptics demand=E2=80=9D; the=
+ scarcer
+economic node may be the equipment that expands qualified bulk-substrate
+capacity. This is picks-and-shovels beneath the picks-and-shovels.
+
+Falsifiers: InP is displaced rapidly by silicon photonics/external laser
+architectures that materially reduce InP consumption; 6-inch yields ramp
+much faster than expected; Chinese equipment vendors commoditize VGF
+systems; PVA=E2=80=99s orders fail to convert into revenue/margin.
+
+Sources:
+https://www.pvatepla.com/corporate/investorrelations/financial-news/pva-tep=
+la-off-to-a-strong-start-to-the-year/
+https://www.pvatepla.com/products-technologies/crystal-growth/vertical-grad=
+ient-freeze/kronos/
+https://en.etnews.com/20260708200006
+https://www.trendforce.com/news/2026/08/06/news-inp-shortage-emerges-as-ai-=
+optical-interconnect-bottleneck/
+
+   1. Non-Chinese indium recovery is becoming strategic optionality
+
+China produces roughly 70% of global indium and has tightened scrutiny
+around indium/InP exports. Reuters reported in June that InP had already
+been placed under Chinese export controls and that the U.S. Defense
+Logistics Agency is preparing to stockpile up to 403 tons of indium over
+three years.
+
+Korea Zinc (KRX:010130) may be a hidden exposure. It is Korea=E2=80=99s onl=
+y
+domestic indium producer and reportedly produces around 90=E2=80=93100 tons
+annually. In Q2 2026 it increased indium sales volume 51% QoQ while prices
+had roughly doubled from the prior year; indium=E2=80=99s share of its rare=
+-metals
+revenue more than doubled. The company is also considering moving
+downstream into indium compounds for data-center customers.
+
+The deeper thesis is supply elasticity: indium is largely a by-product of
+zinc refining, so price cannot summon new primary mine output quickly. A
+recycler/smelter with proprietary recovery technology can therefore own
+convex optionality without needing to predict which laser vendor wins.
+
+Falsifiers: Chinese export friction eases; optical architectures materially
+reduce indium intensity; zinc-smelting byproduct recovery scales quickly
+elsewhere; indium prices collapse as inventories normalize.
+
+Sources:
+https://www.reuters.com/world/china/china-tightens-indium-export-checks-ai-=
+demand-increases-2026-06-19/
+https://en.sedaily.com/finance/2026/08/17/korea-zinc-cashes-in-on-indium-pr=
+ice-surge-driven-by-ai
+https://www.reuters.com/world/asia-pacific/korea-zinc-talks-with-us-tech-fi=
+rms-extract-rare-earths-data-centre-waste-2026-03-12/
+
+   1. =E2=80=9CMeasurement density=E2=80=9D may rise faster than wafer star=
+ts
+
+INFICON (SIX:IFCN) is a useful test case for a broader factor: as
+semiconductor process windows narrow and tools become more complex, the
+number/value of measurements required per manufacturing step rises. This
+can create growth even without proportional wafer-volume growth.
+
+INFICON=E2=80=99s Q2 2026 sales reached a record $198.1M (+18.3% YoY); H1
+Semiconductor & Vacuum Coating revenue rose 27.2%. Order intake hit an
+all-time high, and management raised FY2026 guidance to $750=E2=80=93780M r=
+evenue
+with a 19=E2=80=9320% operating margin. The company cites leading-edge logi=
+c, HBM,
+data-center infrastructure and increased sensor usage at advanced nodes as
+drivers.
+
+The concept to add to the kernel is Measurement Density =3D measurements /
+process step =C3=97 process steps / device =C3=97 devices produced. If AI h=
+ardware
+complexity increases the first two terms, metrology/process-control
+suppliers can outgrow the underlying wafer market.
+
+Falsifiers: integrated tool vendors internalize sensing; process
+simplification offsets node complexity; Chinese sensor substitutes compress
+pricing; semiconductor capex turns before measurement intensity rises.
+
+Sources:
+https://www.inficon.com/en/news/inficon-delivers-record-second-quarter-2026=
+-and-raises-full-year-guidance
+
+   1. High-vacuum infrastructure is a cross-world necessity, but
+   crowdedness matters
+
+VAT Group=E2=80=99s Q1 2026 semiconductor valve orders rose 64.5% YoY and b=
+acklog
+rose 24.9%. VAT explicitly says AI-driven fab expansion, leading-edge logic
+and HBM are underpinning a structural equipment cycle, with more than 110
+fabs under construction globally.
+
+This is less obscure than PVA/INFICON, so the alpha may be in second-tier
+or component suppliers rather than VAT itself. But the kernel should treat
+ultra-high-vacuum integrity as a cross-world necessity across advanced
+semiconductors, quantum systems, thin-film optics and scientific
+instrumentation.
+
+Useful feature: Vacuum Criticality =3D vacuum steps =C3=97 contamination
+sensitivity =C3=97 downtime cost =C3=97 leak-detection intensity.
+
+Falsifiers: tool architecture consolidates vacuum subsystems; fab-capex
+cycle rolls over; local Chinese vacuum suppliers take high-end share faster
+than expected.
+
+Sources:
+https://www.vatgroup.com/news/medienmitteilung-zum-lagebericht-q1-2026
+https://www.vatgroup.com/investor-relations/annual-report/outlook
+
+   1. Humanoid robotics may already be migrating from reducer scarcity to
+   precision-machining/measurement scarcity
+
+The obvious trade is harmonic/RV reducers. The less obvious derivative is
+what constrains reducer capacity expansion: ultra-precision grinding,
+encoder gratings, bearings, metrology and force-torque sensor
+manufacturing. Industry reporting shows reducer orders booked into 2027
+while Chinese localization is already increasing quickly, implying that
+simply owning reducer makers risks being late to the bottleneck.
+
+The research direction should therefore be: reducer demand -> capacity
+additions -> precision-machine-tool and inspection demand. This is exactly
+the bottleneck-derivative framework: find what becomes scarce when today=E2=
+=80=99s
+shortage is successfully addressed.
+
+Falsifiers: humanoid unit volumes remain mostly pilot-scale; direct-drive
+actuators reduce reducer intensity; China overbuilds component capacity and
+destroys margins before machine-tool suppliers monetize the cycle.
+
+Source:
+https://www.geyontech.com/tech-library/62/
+
+Kernel additions from this run
+
+   - bulk_crystal_growth_capacity
+   - qualification_latency_by_wafer_diameter
+   - byproduct_supply_elasticity
+   - non_china_supply_share
+   - measurement_density
+   - vacuum_criticality
+   - bottleneck_derivative_score
+   - capacity_expansion_enabler
+
+Highest-priority names for deeper valuation work: PVA TePla first; INFICON
+second; Korea Zinc as a strategic-material optionality case; then search
+globally for smaller suppliers to PVA/InP crystal-growth lines and
+INFICON/VAT-adjacent vacuum/process-control components.
+
+This memo is research, not investment advice.
+
+--000000000000736f52065b337cd3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">----------=
+ Forwarded message ---------<br>From: Prior Trades &lt;<a href=3D"mailto:tr=
+adesprior@gmail.com">tradesprior@gmail.com</a>&gt;<br>Date: Thu, 10 Sep 202=
+6 04:37:02 -0500<br>Subject: Post-AGI Alpha Hunt =E2=80=94 InP crystal grow=
+th, indium optionality &amp; measurement density<br>To: <a href=3D"mailto:t=
+radesprior@gmail.com">tradesprior@gmail.com</a></div><br><p>Post-AGI Alpha =
+Hunt =E2=80=94 10 Sep 2026</p>
+<p>Highest-signal new rabbit holes from this run</p>
+<ol>
+<li>InP crystal-growth equipment may be a better bottleneck than InP epitax=
+y itself</li>
+</ol>
+<p>The AI-optics thesis has moved one layer upstream. Recent industry repor=
+ting estimates 2026 effective InP substrate capacity at only ~0.6=E2=80=930=
+.75M wafers versus ~2.6=E2=80=933.0M wafers of demand, with 2-inch optical-=
+grade substrate prices rising from about $800 in 2025 to roughly $2,300=E2=
+=80=932,500 by April 2026. Large-diameter crystal growth is difficult, yiel=
+ds take years to improve, and customer qualification adds latency.</p>
+<p>PVA TePla (ETR:TPE) is particularly interesting because it sells the VGF=
+ crystal-growth equipment used for 4=E2=80=936 inch GaAs/InP crystals. Its =
+Q1 2026 order intake rose 164% YoY to =E2=82=AC121.6M, and management expli=
+citly identified initial equipment orders for InP crystal production tied t=
+o AI data centers. H1 reporting later showed =E2=82=AC186.7M order intake (=
++80%), including InP crystal-growth systems and HBM ultrasonic metrology.</=
+p>
+<p>Why this may be alpha: the market sees =E2=80=9Coptics demand=E2=80=9D; =
+the scarcer economic node may be the equipment that expands qualified bulk-=
+substrate capacity. This is picks-and-shovels beneath the picks-and-shovels=
+.</p>
+<p>Falsifiers: InP is displaced rapidly by silicon photonics/external laser=
+ architectures that materially reduce InP consumption; 6-inch yields ramp m=
+uch faster than expected; Chinese equipment vendors commoditize VGF systems=
+; PVA=E2=80=99s orders fail to convert into revenue/margin.</p>
+<p>Sources:<br>
+<a href=3D"https://www.pvatepla.com/corporate/investorrelations/financial-n=
+ews/pva-tepla-off-to-a-strong-start-to-the-year/">https://www.pvatepla.com/=
+corporate/investorrelations/financial-news/pva-tepla-off-to-a-strong-start-=
+to-the-year/</a><br>
+<a href=3D"https://www.pvatepla.com/products-technologies/crystal-growth/ve=
+rtical-gradient-freeze/kronos/">https://www.pvatepla.com/products-technolog=
+ies/crystal-growth/vertical-gradient-freeze/kronos/</a><br>
+<a href=3D"https://en.etnews.com/20260708200006">https://en.etnews.com/2026=
+0708200006</a><br>
+<a href=3D"https://www.trendforce.com/news/2026/08/06/news-inp-shortage-eme=
+rges-as-ai-optical-interconnect-bottleneck/">https://www.trendforce.com/new=
+s/2026/08/06/news-inp-shortage-emerges-as-ai-optical-interconnect-bottlenec=
+k/</a></p>
+<ol>
+<li>Non-Chinese indium recovery is becoming strategic optionality</li>
+</ol>
+<p>China produces roughly 70% of global indium and has tightened scrutiny a=
+round indium/InP exports. Reuters reported in June that InP had already bee=
+n placed under Chinese export controls and that the U.S. Defense Logistics =
+Agency is preparing to stockpile up to 403 tons of indium over three years.=
+</p>
+<p>Korea Zinc (KRX:010130) may be a hidden exposure. It is Korea=E2=80=99s =
+only domestic indium producer and reportedly produces around 90=E2=80=93100=
+ tons annually. In Q2 2026 it increased indium sales volume 51% QoQ while p=
+rices had roughly doubled from the prior year; indium=E2=80=99s share of it=
+s rare-metals revenue more than doubled. The company is also considering mo=
+ving downstream into indium compounds for data-center customers.</p>
+<p>The deeper thesis is supply elasticity: indium is largely a by-product o=
+f zinc refining, so price cannot summon new primary mine output quickly. A =
+recycler/smelter with proprietary recovery technology can therefore own con=
+vex optionality without needing to predict which laser vendor wins.</p>
+<p>Falsifiers: Chinese export friction eases; optical architectures materia=
+lly reduce indium intensity; zinc-smelting byproduct recovery scales quickl=
+y elsewhere; indium prices collapse as inventories normalize.</p>
+<p>Sources:<br>
+<a href=3D"https://www.reuters.com/world/china/china-tightens-indium-export=
+-checks-ai-demand-increases-2026-06-19/">https://www.reuters.com/world/chin=
+a/china-tightens-indium-export-checks-ai-demand-increases-2026-06-19/</a><b=
+r>
+<a href=3D"https://en.sedaily.com/finance/2026/08/17/korea-zinc-cashes-in-o=
+n-indium-price-surge-driven-by-ai">https://en.sedaily.com/finance/2026/08/1=
+7/korea-zinc-cashes-in-on-indium-price-surge-driven-by-ai</a><br>
+<a href=3D"https://www.reuters.com/world/asia-pacific/korea-zinc-talks-with=
+-us-tech-firms-extract-rare-earths-data-centre-waste-2026-03-12/">https://w=
+ww.reuters.com/world/asia-pacific/korea-zinc-talks-with-us-tech-firms-extra=
+ct-rare-earths-data-centre-waste-2026-03-12/</a></p>
+<ol>
+<li>=E2=80=9CMeasurement density=E2=80=9D may rise faster than wafer starts=
+</li>
+</ol>
+<p>INFICON (SIX:IFCN) is a useful test case for a broader factor: as semico=
+nductor process windows narrow and tools become more complex, the number/va=
+lue of measurements required per manufacturing step rises. This can create =
+growth even without proportional wafer-volume growth.</p>
+<p>INFICON=E2=80=99s Q2 2026 sales reached a record $198.1M (+18.3% YoY); H=
+1 Semiconductor &amp; Vacuum Coating revenue rose 27.2%. Order intake hit a=
+n all-time high, and management raised FY2026 guidance to $750=E2=80=93780M=
+ revenue with a 19=E2=80=9320% operating margin. The company cites leading-=
+edge logic, HBM, data-center infrastructure and increased sensor usage at a=
+dvanced nodes as drivers.</p>
+<p>The concept to add to the kernel is Measurement Density =3D measurements=
+ / process step =C3=97 process steps / device =C3=97 devices produced. If A=
+I hardware complexity increases the first two terms, metrology/process-cont=
+rol suppliers can outgrow the underlying wafer market.</p>
+<p>Falsifiers: integrated tool vendors internalize sensing; process simplif=
+ication offsets node complexity; Chinese sensor substitutes compress pricin=
+g; semiconductor capex turns before measurement intensity rises.</p>
+<p>Sources:<br>
+<a href=3D"https://www.inficon.com/en/news/inficon-delivers-record-second-q=
+uarter-2026-and-raises-full-year-guidance">https://www.inficon.com/en/news/=
+inficon-delivers-record-second-quarter-2026-and-raises-full-year-guidance</=
+a></p>
+<ol>
+<li>High-vacuum infrastructure is a cross-world necessity, but crowdedness =
+matters</li>
+</ol>
+<p>VAT Group=E2=80=99s Q1 2026 semiconductor valve orders rose 64.5% YoY an=
+d backlog rose 24.9%. VAT explicitly says AI-driven fab expansion, leading-=
+edge logic and HBM are underpinning a structural equipment cycle, with more=
+ than 110 fabs under construction globally.</p>
+<p>This is less obscure than PVA/INFICON, so the alpha may be in second-tie=
+r or component suppliers rather than VAT itself. But the kernel should trea=
+t ultra-high-vacuum integrity as a cross-world necessity across advanced se=
+miconductors, quantum systems, thin-film optics and scientific instrumentat=
+ion.</p>
+<p>Useful feature: Vacuum Criticality =3D vacuum steps =C3=97 contamination=
+ sensitivity =C3=97 downtime cost =C3=97 leak-detection intensity.</p>
+<p>Falsifiers: tool architecture consolidates vacuum subsystems; fab-capex =
+cycle rolls over; local Chinese vacuum suppliers take high-end share faster=
+ than expected.</p>
+<p>Sources:<br>
+<a href=3D"https://www.vatgroup.com/news/medienmitteilung-zum-lagebericht-q=
+1-2026">https://www.vatgroup.com/news/medienmitteilung-zum-lagebericht-q1-2=
+026</a><br>
+<a href=3D"https://www.vatgroup.com/investor-relations/annual-report/outloo=
+k">https://www.vatgroup.com/investor-relations/annual-report/outlook</a></p=
+>
+<ol>
+<li>Humanoid robotics may already be migrating from reducer scarcity to pre=
+cision-machining/measurement scarcity</li>
+</ol>
+<p>The obvious trade is harmonic/RV reducers. The less obvious derivative i=
+s what constrains reducer capacity expansion: ultra-precision grinding, enc=
+oder gratings, bearings, metrology and force-torque sensor manufacturing. I=
+ndustry reporting shows reducer orders booked into 2027 while Chinese local=
+ization is already increasing quickly, implying that simply owning reducer =
+makers risks being late to the bottleneck.</p>
+<p>The research direction should therefore be: reducer demand -&gt; capacit=
+y additions -&gt; precision-machine-tool and inspection demand. This is exa=
+ctly the bottleneck-derivative framework: find what becomes scarce when tod=
+ay=E2=80=99s shortage is successfully addressed.</p>
+<p>Falsifiers: humanoid unit volumes remain mostly pilot-scale; direct-driv=
+e actuators reduce reducer intensity; China overbuilds component capacity a=
+nd destroys margins before machine-tool suppliers monetize the cycle.</p>
+<p>Source:<br>
+<a href=3D"https://www.geyontech.com/tech-library/62/">https://www.geyontec=
+h.com/tech-library/62/</a></p>
+<p>Kernel additions from this run</p>
+<ul>
+<li>bulk_crystal_growth_capacity</li>
+<li>qualification_latency_by_wafer_diameter</li>
+<li>byproduct_supply_elasticity</li>
+<li>non_china_supply_share</li>
+<li>measurement_density</li>
+<li>vacuum_criticality</li>
+<li>bottleneck_derivative_score</li>
+<li>capacity_expansion_enabler</li>
+</ul>
+<p>Highest-priority names for deeper valuation work: PVA TePla first; INFIC=
+ON second; Korea Zinc as a strategic-material optionality case; then search=
+ globally for smaller suppliers to PVA/InP crystal-growth lines and INFICON=
+/VAT-adjacent vacuum/process-control components.</p>
+<p>This memo is research, not investment advice.</p></div>
+
+--000000000000736f52065b337cd3--

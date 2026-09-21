@@ -1,0 +1,3097 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id 2PbBS8fmRVYx
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 14:55:23 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=ZfPay9n6LoeRj0zMVNYlgpz/6dMPIwvyEPYP9POxIdn+M8a1LPJoEq4gaW2ShQGXL2/1LWcxj
+	Cm1s2oC3d7rSTgzW3IIfkNCxTBz1QOmSoWoJIOwT9Zh6/NKLiQCMrreZdB7KIjUv2UXVMr894Z3
+	xheS+FYiEGHgMipp92fvPISeS+qqAbGEb4w6v2AOdteB9OcpFtSbBhayYjO6gzt2IRBzq4kgM1b
+	MDC6r4cG5/HhjGA6PqDbcK6EoJYw89dCe4sDBccIMUseVd/fuXU9VbUIOCuzJu6by1v1E3GuGEh
+	4PFnpPS1T9y1DKn3V3wgegF1jeZnAISgldXdzSVRS72g==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789829723; x=1790434523; bh=ZyRfjO9z
+	B9MEWo/bpDfK/XI3Oep6w1qnTGJV6z6ITFI=; b=gucPJyZREkJVLffSPYQPM2pSh4D2ovu49LI
+	R/g1dtkyjbEQbCaa27fb6t6YnGvF42tl79hEmaxwqkgN2aX4N1rEXHayR8JvYqwAavLJ4hHJKGw
+	PBszY/fKmLwOsIz7enpTGsDmrQw5C1NdqS3cE6/8+gUe2bbNvsFPQ0iXzxh6qLP1H1ONSlGqEKD
+	xocloC2DOISeE0znURvlXgk+6mKlmBXNxs3kY9zkjHfG6FKQ16NVINQnTFe4g71MB/yALQC6teh
+	kkAbioBlzu3VSwuikcPaw/ikdpEmLwhrM56B4mvlWph8+Q76iWvN1Q7lNdXHf5UDPH0M6j8BnWH
+	Mw9oYkA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=TMFkJ7Tp;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=TMFkJ7Tp;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 956f58d0204a3-66e4aac9321so1495419d50.3
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 07:55:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789829723; cv=none;
+        d=google.com; s=arc-20260327;
+        b=L1CkYL2Go2c09Sz9g550KERHUVWN+azbx/Xk6/i4I7oqnorMF2oi7hwIBfkvusL/f+
+         togUxWV+22M+kFolqqDQZWCs4coul7DviU0xzG3SbjUS3MZ4fdzS8pAbRn3gu7sJQtBc
+         v26BGkygGML1xCi0M2qYLkgvwUQRvyiAayTtR8bZ/YjgcdvDjEJhu4bqSPdi83ZzpvUe
+         Nbvznl70zBtuFf/k59VzX7PAmmNmQb7sXRxQGFHfuDLNEMJKXGLDk7OlP/plQCVJW29o
+         KpCtWtSOxpcUDNeM+X8fFWbx3Bu+iVer2RvRQomfySb9j8x9deTEaxQngblaTPuDunYk
+         PgKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=ZyRfjO9zB9MEWo/bpDfK/XI3Oep6w1qnTGJV6z6ITFI=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=DLFqcHoKyZemEGeFZ/vOmRwaLj4IuE9dusk5lAVJ9BozF6qkm2w8B4XLNl3Q8stwK9
+         RTTglLcB4Cl676jZbbLyTPdncBvzKvRdi4sXFPxEN8zYCB7Wk2SjbiyUeTHpf3EUDB0l
+         dXQRrqF6XWuFKNLRg5nJ9HVpZjVfd5qieYYJ7RLREpgvW7OPc2CCqQDkH4Fn63t+KO1o
+         g8WOOnSeLf8uPn1lURDYOgEcVqUKPtIse2mPm354I2oJzjt0gGcFA+pSJ1L6Dr+vFhHI
+         G1vzaZoVNH+FIdSCe6JmCKxPEpe5zdImwrlQJoI6hWpxo3hHAkDzfAvZADkBnClkqIwg
+         1d7w==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789829723; x=1790434523; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=ZyRfjO9zB9MEWo/bpDfK/XI3Oep6w1qnTGJV6z6ITFI=;
+        b=TMFkJ7TpSSrmSJSSYQHv/80LppppL/KbIgQw4D/4Ffz9gQWJAMpCHTEV21Cc3A2rjk
+         6ZccR/CtiaTEOlxT59sc7wcBWTWQRYJJOT/142Qpr+s7TBc4hP7Ivkae9q86iHs837Vt
+         JV7MVqbuuQBh1aB/UefqW+hHkowMT+yDId6JS0s63Xc2Gv6ewEEsQvujG7Wwg1kEMRzF
+         EI3gen5V7ZimctCKksEmRkZfFDMlbkInvpPCOJFJZAZarktN4iEUHcrjMcFmK/afPJJL
+         12obKYH6Y0/vY8hURXmUxl2d13C/Tr+58cb1LtqNNlC+exnnDc7USoBXpsTYU+mJynLp
+         /h0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789829723; x=1790434523;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ZyRfjO9zB9MEWo/bpDfK/XI3Oep6w1qnTGJV6z6ITFI=;
+        b=SqIvYHFodLZ/gBPrY45/8KdcQuAH+4CGDPzukveJpks4gAYRGzlC3Y8nLabXCtuOj/
+         eS+gcnam+r6gIwNh/Ysqoe1cMeHOniZWCrYLgAdsC/va9cfKkksItXtiVcY+YOn/S2up
+         sQeekaB+Hf9TIhdSnSVJDT5UfpIIvjOhqMhKP+l/EoIdDZN+UvAURWcCtUMTU9V1CVpo
+         CNJpA3AGAQhKaLdUNFz03zxOglswjevTHvH+w5YanqCeIIYRAwo4H1whoG+gkCO5o6P2
+         xRKtL56VIWIS62i97cpLJIvvk9i+w50tu6ZZdCZHep3MCI1lIOz9w1/02/KrDBwmcXxM
+         aeeQ==
+X-Gm-Message-State: AFuF++mPEiA8K4hOa66OLcD05+TWuBHFb18v2Ir8dkLM55wPVIKNGHlk
+	c6L2UBY9cBMDB3kDwwnmhLwN7p8Hg9uqQia/yc6dWucDr+kAuEQOAN3abt/1oWkBB6co5tbDBlQ
+	5uF7q4sJcAbPj1A7xydgU6NtN9bzM07LzlQ==
+X-Gm-Gg: AYBFou3c5fC/0KJEL/LQyR+ojaTWJK6JJpHUgRJupuzHGCoMzViPgfQhOuOHw7ztCpj
+	gW1nLLDvqYbbNHgkSrYptaginHpDv61cVhnXohSUlsrSysPjPTamdJb+sJsi4yA6kt7WG/NnXYu
+	rXwyQKVxvbXatVgYmL6pO1aGlyRCdBaGIFKjn4VI0wyAJr4FqfShwdWKu8xcNz3I2WUiOouij1J
+	FyXKabY7t09bCtLjMWZo4VC0eBrwXoeJTW73Iyzfwc4AbSDmTpk/H2TvjukSxSYcaoudWeiAMIH
+	vJQZdU0l2sfWuH2w7sqPOll7H2SS+Pi+pc8wf/0Oflp6o9sM6RyOM6Nu/fZgBDbjUobf+BgWu8/
+	IV+9D6B2o7xgNH8f2gNgU43qkI4/cS4bS7Ua3w7xx8HjfnOcT09eAISWbXhvkee3iXx5D3ywg
+X-Received: by 2002:a05:690e:b8a:b0:671:1a43:7cbc with SMTP id
+ 956f58d0204a3-6717fc9113amr1886563d50.27.1789829722075; Sat, 19 Sep 2026
+ 07:55:22 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 09:55:21 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 09:55:21 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 09:55:21 -0500
+X-Gm-Features: AcwNN1WcBOTFy77Tqu9ebDLTG-o-gUu6Dx5pW36MYq64lgVKH_n8or-RgDBFRG4
+Message-ID: <CAPdrGek3+sG7nh++=ViLZZd+8y06LuTOsvE2thHY=vuUWURS1Q@mail.gmail.com>
+Subject: =?UTF-8?Q?prx0r=2Fdatagarden_=E2=80=94_complete_peer_review_=2B_dev_inst?=
+	=?UTF-8?Q?ructions?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000caf400065bd7346c"
+
+--000000000000caf400065bd7346c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+prx0r/datagarden =E2=80=94 Complete Peer Review & Dev Instructions
+
+Reviewed: prx0r/datagarden
+Head reviewed: 61364930 (=E2=80=9CMuse connector docs: how to connect UKGra=
+ph to
+Muse=E2=80=9D, 2026-09-19)
+Purpose of review: assess the repo against the current UKGraph/Data Garden
+thesis and turn the result into concrete development instructions.
+EXECUTIVE VERDICT
+
+Do NOT restart the repo.
+
+The thesis is now strong and the repo contains enough useful kernel to
+preserve:
+
+   - canonical observations/provenance
+   - Route
+   - CapabilityEnvelope
+   - DecisionSpec
+   - Receipt / Actuality
+   - source registry
+   - normalization pipeline
+   - collectors
+   - UKBoring proof-of-concept
+   - MCP implementations
+   - content/experiment machinery
+
+However, the current implementation still mixes three generations of
+architecture:
+
+   1. old =E2=80=9Cfour forests / many MCP tools=E2=80=9D architecture,
+   2. UKBoring workflow architecture,
+   3. new UKGraph economic-router architecture.
+
+The result is conceptual duplication, duplicated models/storage, stale
+docs, and=E2=80=94more seriously=E2=80=94several places where demo assumpti=
+ons are
+presented as economic truth.
+
+The next phase should be a CONVERGENCE + ONE-END-TO-END-ROUTE phase.
+
+Do not add more gardens until that is complete.
+
+The north-star remains:
+
+PERSON + GOAL
+=C3=97 CURRENT UK REALITY
+=C3=97 HISTORICAL UK REALITY
+=E2=86=92 ACTIONABLE ROUTE
+=E2=86=92 AGENT ACTION
+=E2=86=92 EXTERNAL EVIDENCE
+=E2=86=92 VERIFIED OUTCOME
+=E2=86=92 BETTER ROUTING
+
+The repo is successful when ChatGPT/Muse with UKGraph can answer:
+
+=E2=80=9CI=E2=80=99m in Oldham, I=E2=80=99m an electrician, I have Saturday=
+ free and =C2=A3500. What can
+I do to make money?=E2=80=9D
+
+with 2=E2=80=933 genuinely current, evidenced, executable routes that are
+materially better than ordinary web search.
+WHAT IS STRONG 1. SPEC.md is now the correct source-of-truth direction
+
+The current SPEC captures the important invariants:
+
+   - Data Garden =3D unique transformation =C3=97 continuous collection =C3=
+=97 time
+   - irreversible-time test
+   - one outward UKGraph connector
+   - many internal gardens
+   - CapabilityEnvelope
+   - Route
+   - Jev as semantic compiler
+   - QP-lite as truth boundary
+   - UKBoring / UKOpportunity / UKProducts separation
+   - attention truth !=3D economic truth
+   - hypothesis / kill conditions
+   - verified outcomes as moat
+
+This is the right conceptual base.
+
+KEEP SPEC.md.
+2. core/route.py is directionally correct
+
+The Route object already contains most of the fields the final system needs=
+:
+
+   - route_type
+   - expected value
+   - time/capital
+   - capabilities
+   - constraints
+   - why_now / why_person
+   - evidence
+   - execution type
+   - success proof
+   - freshness
+   - transformation lineage
+
+This should become the canonical outbound object.
+3. core/capability_envelope.py is the correct privacy boundary
+
+Good principle:
+
+   - Muse/ChatGPT keeps the user=E2=80=99s deep personal context.
+   - UKGraph receives only a task-specific capability envelope.
+
+Keep this.
+4. core/observation.py has the right epistemic vocabulary
+
+TruthClass and Recoverability are useful:
+
+   - VERIFIED
+   - DERIVED
+   - ESTIMATED
+   - HEURISTIC
+   - CONCEPTUAL
+   - UNAVAILABLE
+
+and:
+
+   - canonical
+   - third-party
+   - partial
+   - ephemeral
+
+This maps directly onto Data Garden economics.
+5. core/decision_spec.py is the right Jev abstraction
+
+Versioned semantic decisions with:
+
+   - primitive
+   - question
+   - outputs
+   - consequence
+   - confidence threshold
+   - fallback
+   - eval set
+   - calibration
+
+This is exactly how Jev should be used.
+
+The problem is not the model; the problem is that the live earn path barely
+uses it yet.
+6. UKBoring receipt thinking is strategically valuable
+
+The repo has correctly discovered the important distinction:
+
+CLICKED SUBMIT
+!=3D
+SUBMISSION ACKNOWLEDGED
+!=3D
+APPLICATION ACCEPTED
+!=3D
+OUTCOME COMPLETED
+
+This is worth preserving.
+7. There is now real collection infrastructure
+
+Planning, Contracts Finder, ONS/ASHE, product/history work, and daily
+collection exist.
+
+This is no longer only a document repo.
+P0 =E2=80=94 CRITICAL PROBLEMS TO FIX BEFORE EXPOSING UKGRAPH TO AN AGENT P=
+0.1 =E2=80=94
+uk.earn() currently recommends awarded contracts as bid opportunities
+
+File:
+
+   - collectors/contracts_collector.py
+   - uk_boring/earn.py
+
+The collector explicitly requests:
+
+   - type =3D Contract
+   - status =3D Awarded
+
+It stores:
+
+   - awardedValue
+   - awardedSupplier
+   - awardedDate
+
+But _find_contracts() turns those historical awards into:
+
+action =3D BID_CONTRACT
+
+and estimates:
+expected_value =3D contract value =C3=97 0.1
+
+This is semantically wrong.
+
+The evidence even says:
+=E2=80=9CAwarded to {supplier} for =C2=A3X=E2=80=9D
+
+while the route says:
+=E2=80=9CBID_CONTRACT=E2=80=9D
+
+That is exactly the kind of failure UKGraph must never produce.
+
+FIX:
+Split procurement into distinct semantic objects:
+
+   1.
+
+   PROCUREMENT_OPPORTUNITY
+   - live
+      - future / open
+      - deadline
+      - eligibility
+      - action =3D BID / EXPRESS_INTEREST
+   2.
+
+   PROCUREMENT_AWARD
+   - historical
+      - supplier
+      - value
+      - date
+      - useful for market intelligence / win-history / buyer behavior
+
+Awards can help derive:
+
+   - what buyers purchase
+   - incumbent suppliers
+   - typical values
+   - SME accessibility hypotheses
+
+They cannot be emitted as current bid routes.
+
+ACCEPTANCE TEST:
+No route with action=3DBID_CONTRACT may derive only from an Awarded notice.
+P0.2 =E2=80=94 the planning collector does not collect =E2=80=9Crecent=E2=
+=80=9D or =E2=80=9COldham=E2=80=9D
+
+File:
+
+   - collectors/planning_collector.py
+
+collect_recent_applications(days=3D30, limit=3D100):
+
+   - accepts days
+   - DOES NOT use days in the API query
+   - does not filter locality
+   - fetches the first entity results returned by planning.data.gov.uk
+
+The canonical sample confirms this:
+
+   - many records have 2023 references
+   - effective_at is empty
+   - name/address often empty
+   - organisation entity often empty
+
+Therefore current data does not support:
+=E2=80=9Cwhat is happening in Oldham right now?=E2=80=9D
+
+FIX:
+Rewrite planning collection around explicit query contracts:
+
+collect_planning_events(
+place_id,
+changed_since,
+application_status,
+limit/cursor
+)
+
+Minimum:
+
+   - LPA/place filter
+   - real temporal filter or deterministic cursor/watermark
+   - preserve source entity ID
+   - preserve status and decision date
+   - track source coverage/completeness
+   - distinguish application submitted / validated / decided / approved /
+   refused
+
+Do not infer work demand from arbitrary historic applications.
+
+ACCEPTANCE TEST:
+For a chosen Oldham scope, every returned planning observation must:
+
+   - resolve to Oldham (or documented catchment)
+   - have a source entity/reference
+   - have observed_at
+   - have meaningful event/effective date OR explicitly UNKNOWN
+   - be replayable from source evidence.
+
+P0.3 =E2=80=94 demo claims are leaking into canonical opportunity output
+
+File:
+
+   - uk_boring/earn.py
+
+Example:
+_find_upgrades() emits:
+
+   - =E2=80=9CEV charger demand up 31% in North West=E2=80=9D
+   - =E2=80=9CCertified installers in short supply=E2=80=9D
+   - training costs ~=C2=A3280
+   - confidence =3D 0.8
+
+There is no provenance attached.
+
+This violates the system=E2=80=99s own anti-bullshit rule.
+
+REMOVE every unsupported market_analysis opportunity immediately.
+
+Rule:
+NO Route may contain a concrete factual claim unless it has:
+
+   - observation IDs,
+   - source refs,
+   - transform lineage,
+   - freshness.
+
+Conceptual/demo routes belong in fixtures only, never live results.
+P0.4 =E2=80=94 expected economic value is currently fabricated
+
+Examples in uk_boring/earn.py:
+
+   - planning-derived work =3D =C2=A3500
+   - contract value =3D 10% of total
+   - flip margin =3D sold price =C3=97 30%
+   - repair cost text =3D =C2=A330=E2=80=9380
+
+These are demo heuristics presented in the same object as sourced
+observations.
+
+That is dangerous.
+
+FIX:
+Every economic number needs a METHOD.
+
+Example:
+
+ExpectedValue:
+amount
+currency
+method_id
+method_version
+inputs[]
+uncertainty_interval
+truth_class
+
+If there is no defensible estimate:
+expected_value =3D UNKNOWN
+
+Do not reward routes for invented precision.
+P0.5 =E2=80=94 broad exception swallowing makes the system silently lie by =
+omission
+
+uk_boring/earn.py repeatedly does:
+
+try:
+=E2=80=A6
+except Exception:
+pass
+
+For an agent-facing economic system this is unacceptable.
+
+A broken collector/parser can make the endpoint quietly return fewer
+opportunities and appear healthy.
+
+FIX:
+Use explicit typed failures:
+
+   - SOURCE_UNAVAILABLE
+   - SCHEMA_CHANGED
+   - NORMALIZATION_FAILED
+   - STALE_DATA
+   - ENTITY_AMBIGUOUS
+   - SEMANTIC_UNCERTAIN
+
+Every candidate generator returns:
+
+GeneratorResult {
+routes[]
+status
+errors[]
+source_health[]
+}
+
+The top-level response can then say:
+=E2=80=9CContracts source unavailable; results exclude public procurement.=
+=E2=80=9D
+
+Do not silently pass.
+P1 =E2=80=94 ARCHITECTURAL CONVERGENCE P1.1 =E2=80=94 there are duplicate c=
+anonical models
+
+Examples:
+
+   - core/capability_envelope.py defines CapabilityEnvelope
+   - uk_boring/earn.py defines a different CapabilityEnvelope
+   - core/route.py defines Route
+   - uk_boring/earn.py defines Opportunity
+   - core/storage.py implements storage
+   - core/normalize.py implements another storage layer
+   - shared/schema.py / shared/entities.py / shared/normalize.py retain
+   older architecture
+
+This is now the main codebase risk.
+
+FIX:
+One canonical package only.
+
+TARGET:
+
+core/
+observation.py
+source.py
+capability_envelope.py
+route.py
+evidence.py
+decision_spec.py
+receipt.py
+hypothesis.py
+storage/
+quality/
+
+Everything else imports these types.
+
+DELETE / MIGRATE:
+
+   - local CapabilityEnvelope in uk_boring/earn.py
+   - local Opportunity in uk_boring/earn.py
+   - duplicate evidence types
+   - duplicate normalize/storage paths
+   - garden-specific shared schemas from shared/
+
+Use core.Route as the ONLY public route representation.
+P1.2 =E2=80=94 Observation IDs are not adequate for a temporal garden
+
+Current IDs are based on identity fields such as:
+
+   - garden
+   - source
+   - entity
+   - metric
+   - effective/event time
+
+but not necessarily:
+
+   - observed_at
+   - value/raw content hash
+
+If effective_at is empty (as it currently is for many planning records),
+repeated observations of changed source state can collide under the same ID=
+.
+
+This breaks the time moat.
+
+FIX:
+Separate:
+
+FactKey / SeriesKey:
+=E2=80=9CWhat real-world thing/metric is this?=E2=80=9D
+
+ObservationID:
+=E2=80=9CThis exact observation event.=E2=80=9D
+
+Recommended:
+
+series_key =3D
+hash(source_id, source_entity_id, metric)
+
+observation_id =3D
+hash(series_key, observed_at, raw_hash)
+
+Optional state_hash =3D
+hash(normalized value)
+
+Then:
+
+   - identical snapshots can be deduped by state_hash
+   - changed state creates a new observation
+   - history remains reconstructable.
+
+Do not use one ID for both identity and observation event.
+P1.3 =E2=80=94 canonical JSONL cannot be the long-term warehouse
+
+Current repo size is already very large and canonical JSONL is committed
+into Git.
+
+That does not scale with the thesis.
+
+Git should contain:
+
+   - schemas
+   - transforms
+   - small fixtures
+   - manifests/checksums
+   - evals
+
+Not:
+
+   - years of raw observations
+   - high-volume marketplace history
+
+TARGET:
+
+   - Postgres initially for canonical/queryable structured state
+   - object storage for raw artifacts
+   - append-only receipt log
+   - optional analytical store later
+
+Keep local JSONL as DEV FIXTURE backend only.
+
+Create a storage interface now so backend can change without garden changes=
+.
+P1.4 =E2=80=94 source registry needs real licensing semantics
+
+Example:
+eBay source licence is described as:
+=E2=80=9Ctransformative use=E2=80=9D
+
+That is not a licence.
+
+Each source must include:
+
+   - legal/source owner
+   - access method
+   - actual licence/terms category
+   - allowed retention
+   - allowed redistribution
+   - required attribution
+   - rate constraints
+   - data classification
+   - review date
+
+If unknown, mark:
+LICENCE_UNKNOWN / REUSE_UNVERIFIED
+
+Do not turn uncertainty into a permissive label.
+P2 =E2=80=94 ONE CONNECTOR OUTWARD
+
+The repo currently advertises six MCP servers and ~86 tools.
+
+That is the previous architecture.
+
+Externally, the user/agent should see UKGraph.
+
+Primary high-level tools:
+
+ukgraph.earn()
+ukgraph.do()
+ukgraph.value()
+ukgraph.find()
+ukgraph.watch()
+
+Optionally:
+ukgraph.route(goal, context)
+
+Lower-level resources/tools can exist for debugging/devs, but should not be
+the main agent UX.
+
+Migrate:
+
+   - mcp/breadup_mcp.py
+   - mcp/ukgraph_mcp.py
+   - mcp/council_mcp.py
+   - mcp/uk_admin_mcp.py
+   - mcp/uk_boring_mcp.py
+   - powpowpow tools where relevant
+
+behind one router/server.
+
+The agent should not need to know which internal garden owns the answer.
+P3 =E2=80=94 REBUILD earn() AROUND REAL ROUTES
+
+Current earn.py is a prototype.
+
+Replace it with:
+
+router/earn.py
+
+Pseudo-flow:
+
+def earn(envelope):
+candidates =3D []
+for generator in registered_generators: result =3D
+generator.generate(envelope) record source health/errors candidates +=3D
+result.routes hard_filter(candidates, envelope) dedupe(candidates)
+rank_components(candidates) return routes + coverage/limitations
+
+ROUTE GENERATORS SHOULD BE DISTINCT:
+
+   1.
+
+   paid_work
+   Source must be LIVE jobs/gigs/leads
+   Not planning applications.
+   2.
+
+   live_procurement
+   Source must be ACTIVE/FUTURE opportunities
+   Awards remain historical evidence only.
+   3.
+
+   products/flips
+   Current acquisition listing
+   =C3=97 historical sold value
+   =C3=97 identity
+   =C3=97 condition
+   =C3=97 fees
+   =C3=97 repair estimate
+   =C3=97 liquidity
+   4.
+
+   planning-derived demand
+   This is not a =E2=80=9Cjob=E2=80=9D.
+   It is a HYPOTHESIS/SIGNAL that a development may generate demand.
+   Route only if there is a real next action:
+   - identifiable applicant/developer
+      - contact path
+      - plausible capability fit
+      - source evidence
+   5.
+
+   upgrade/training
+   Only once cost, eligibility, unlocked demand and historical outcome can
+   be evidenced.
+
+P4 =E2=80=94 ROUTE CONTRACT
+
+Every live Route MUST include:
+
+Identity:
+
+   - route_id
+   - route_type
+   - goal
+
+Action:
+
+   - explicit next action
+   - execution target
+   - expiry/deadline
+
+Fit:
+
+   - required capabilities
+   - useful capabilities
+   - why_person
+   - hard constraints
+
+Economics:
+
+   - expected value or UNKNOWN
+   - method
+   - costs
+   - time
+   - capital
+   - uncertainty
+
+Evidence:
+
+   - observation IDs
+   - source URLs/refs
+   - observed_at
+   - freshness
+   - licence/reuse state
+
+Lineage:
+
+   - transform ID/version
+   - DecisionSpecs used
+
+Proof:
+
+   - what outcome would count as success
+
+Quality:
+
+   - distinct confidence dimensions, not one magic score.
+
+P5 =E2=80=94 DO NOT USE ONE MAGIC CONFIDENCE SCORE
+
+Route.confidence currently risks collapsing:
+
+   - source confidence
+   - entity match confidence
+   - semantic-fit confidence
+   - expected-value confidence
+   - availability confidence
+
+Keep them separate.
+
+Example:
+
+quality =3D {
+source: 0.99,
+entity_match: 0.78,
+capability_fit: 0.84,
+economic_estimate: 0.42,
+availability: 0.95
+}
+
+A route can be:
+=E2=80=9Cdefinitely exists, but payoff estimate is weak.=E2=80=9D
+
+That is useful.
+
+One scalar hides this.
+P6 =E2=80=94 JEV INTEGRATION
+
+The DecisionSpec abstraction is good.
+The implementation is currently mostly inert relative to live earn().
+
+Do NOT call Jev to:
+
+   - calculate money
+   - apply exact eligibility rules
+   - calculate dates
+   - resolve deterministic geography
+   - prove outcomes.
+
+Use it for narrow semantic transformations.
+
+FIRST DECISIONS:
+
+opportunity.capability_family.v1
+=E2=80=9CWhat capability dominates this opportunity?=E2=80=9D
+
+opportunity.sole_trader_access.v1
+=E2=80=9CCould a sole trader plausibly perform this?=E2=80=9D
+
+opportunity.physical_work.v1
+
+opportunity.weekend_compatible.v1
+
+product.fault_family.v1
+
+product.repairable_fault.v1
+
+planning.implied_trade_demand.v1
+=E2=80=9CDoes this planning event plausibly imply material demand for ?=E2=
+=80=9D
+
+Every Jev invocation MUST store:
+
+   - DecisionSpec ID/version
+   - model/runtime version
+   - complete output distribution
+   - selected answer
+   - confidence
+   - fallback
+   - source observation IDs
+   - timestamp
+
+Every production DecisionSpec MUST have:
+
+   - fixture eval set
+   - measured precision/calibration
+   - consequence class
+   - threshold
+   - fallback.
+
+If no eval:
+NOT PRODUCTION.
+P7 =E2=80=94 QP-LITE / RECEIPTS NEED TO BECOME REAL SETTLEMENT
+
+Current receipt.py is a data class with:
+
+receipt.settle(actuality)
+
+That means the caller can simply set TRUE.
+
+That is not settlement.
+
+Also boringuk_receipts.py uses hardcoded expected regex/field patterns that
+appear to be demo assumptions unless independently sourced.
+
+Example concerns:
+
+   - invented-looking reference formats
+   - optional fields can be skipped
+   - PASS may be based on partial field capture
+   - proof patterns do not carry authoritative provenance
+   - no immutable external evidence object
+   - no independent re-read
+
+TARGET:
+
+ProofRule {
+id
+version
+claim_type
+accepted_evidence_types
+predicate(evidence) -> TRUE/FALSE/UNKNOWN
+source_requirements
+}
+
+EvidenceArtifact {
+artifact_id
+type
+issuer/source
+captured_at
+hash
+parsed_fields
+raw_ref
+}
+
+settle(receipt_candidate, proof_rule) must be the ONLY route to canonical
+result.
+
+No external code may call:
+receipt.result =3D TRUE
+
+without proof execution.
+
+FIRST proof rules:
+
+   - SUBMISSION_ACKNOWLEDGED
+   - BOOKING_CONFIRMED
+   - PAYMENT_RECEIVED
+   - ITEM_SOLD
+
+Keep them generic and reusable.
+P8 =E2=80=94 UKBORING: STOP MODELING VOLATILE FORM UIs
+
+The repo is moving in the right direction but still over-specifies
+workflows.
+
+UKBoring should NOT maintain:
+
+   - selectors
+   - every form field
+   - every page step
+   - guessed reference formats
+
+It SHOULD maintain:
+
+   - goal
+   - authority
+   - official entrypoint
+   - material rules
+   - human boundary
+   - acceptable completion evidence
+   - known failure/handoff conditions
+   - authoritative source refs
+   - last validated
+
+Let the frontier agent rediscover the current web UI.
+
+The moat is:
+=E2=80=9Cwhat counts as actually done?=E2=80=9D
+
+not:
+=E2=80=9Cwhere the button currently is?=E2=80=9D
+P9 =E2=80=94 MOVE-HOME PROTOTYPE SHOULD BE DEMOTED TO A TEST FIXTURE UNTIL =
+VERIFIED
+
+uk_boring/workflows/move_home.py is useful as an architecture example, but
+currently embeds service-specific assumptions without source/version
+metadata.
+
+Do not present the seven steps as a canonical UK workflow until each step
+has:
+
+   - authoritative source
+   - scope/jurisdiction
+   - version/effective date
+   - proof rule
+   - auth/handoff class
+   - validation test.
+
+Convert it into:
+fixtures/move_home_oldham_demo.py
+
+until verified.
+
+Then promote one step at a time.
+P10 =E2=80=94 DOCUMENTATION CLEANUP
+
+There are 48 markdown files and multiple =E2=80=9Cfinal=E2=80=9D/=E2=80=9Cc=
+anonical=E2=80=9D specs.
+
+This is already damaging developer comprehension.
+
+Canonical docs should become:
+
+README.md
+SPEC.md
+DEV.md
+OPERATIONS.md
+GARDENS.md
+DECISIONS.md
+CHANGELOG.md
+
+Archive all superseded thinking into:
+docs/archive/YYYY-MM-DD/
+
+README should accurately describe TODAY=E2=80=99S repo.
+
+Currently README says:
+=E2=80=9CThree forests. One loop=E2=80=9D
+and shows a layout that is no longer the actual canonical architecture.
+
+Fix immediately.
+
+Remove duplicate:
+
+   - ukgraph_final.md
+   - ukgraph_v3.md
+   - ukgraphfinal_cloud.md
+   - duplicate handover/HANDOVER
+   - stale architecture versions
+   once useful content is folded into SPEC.
+
+CANONICAL.md=E2=80=99s =E2=80=9Chuman sentence=E2=80=9D principle is worth =
+preserving.
+Move it into SPEC or DEV.
+P11 =E2=80=94 DEPENDENCY / PACKAGING PROBLEMS
+
+requirements.txt:
+
+   - broad minimum versions only
+   - no lock
+   - FastAPI is used but not declared
+   - API-serving/runtime dependencies are incomplete
+   - pytest/dev tooling not declared
+   - Jev is listed as optional but runtime architecture references it
+
+Create pyproject.toml.
+
+Recommended groups:
+
+   - core
+   - api
+   - collectors
+   - jev
+   - dev
+
+Pin reproducibly via lock file.
+
+Also fix remaining /home/box/=E2=80=A6 hardcoded dependencies documented in
+handover.
+
+PowPowPow should be an adapter or data contract, not an absolute local
+filesystem dependency.
+P12 =E2=80=94 CI IS MISSING
+
+The repo currently has no .github/workflows directory.
+
+Handover says 26 tests pass, but there is no automated protection against
+regression.
+
+Add CI immediately:
+
+On push/PR:
+
+   1. python compileall
+   2. ruff
+   3. mypy/pyright where useful
+   4. pytest unit
+   5. fixture pipeline test
+   6. no-network canonical contract tests
+   7. schema compatibility check
+
+Nightly:
+
+   1. collector smoke tests
+   2. source-health checks
+   3. freshness alerts
+   4. semantic drift check
+   5. MCP tool smoke test
+
+Do NOT let live external API failures fail every unit-test PR.
+Use fixtures.
+P13 =E2=80=94 TESTS NEED TO TEST SEMANTICS, NOT ONLY SHAPES
+
+Current tests are useful kernel tests but largely assert:
+
+   - objects serialize
+   - enums exist
+   - files load
+   - MCP functions have expected keys
+
+Add high-value invariants.
+
+CRITICAL TESTS:
+
+test_awarded_contract_never_emits_bid_route
+
+test_route_requires_evidence
+
+test_route_with_stale_source_is_marked_stale
+
+test_missing_data_is_unknown_not_false
+
+test_unsupported_economic_claim_rejected
+
+test_duplicate_observation_is_idempotent
+
+test_changed_source_state_creates_new_observation
+
+test_journal_replay_produces_same_state
+
+test_high_consequence_jev_low_confidence_falls_back
+
+test_receipt_cannot_be_true_without_passing_proof_rule
+
+test_agent_assertion_is_not_evidence
+
+test_oldham_route_actually_resolves_to_oldham
+
+test_earn_returns_coverage_limitations
+
+test_live_route_has_actionable_target
+P14 =E2=80=94 FIRST REAL END-TO-END BENCHMARK
+
+Freeze the benchmark:
+
+=E2=80=9CI=E2=80=99m in Oldham, I=E2=80=99m an electrician, I have a van, =
+=C2=A3500 and Saturday free. I
+want to make =C2=A3300.=E2=80=9D
+
+UKGraph must attempt three route families:
+
+A. REAL WORK
+
+   - live job/gig/lead
+   - currently actionable
+
+B. PUBLIC/COMMERCIAL OPPORTUNITY
+
+   - active tender/lead/service need
+   - not an award
+
+C. PRODUCT ECONOMICS
+
+   - current item available to acquire
+   - historical sold comparisons
+   - identity/condition normalization
+   - estimated costs
+   - realistic action.
+
+Each route must show:
+
+   - why now
+   - why person
+   - action
+   - actual URL/contact/target
+   - source evidence
+   - freshness
+   - economic method
+   - uncertainties
+   - proof condition.
+
+Then compare:
+ChatGPT/agent WITHOUT UKGraph
+vs
+same agent WITH UKGraph.
+
+If UKGraph does not materially improve the final answer:
+DO NOT ADD MORE DATA.
+P15 =E2=80=94 THE FIRST REAL DATA MOAT SHOULD BE HISTORICAL / IRRECOVERABLE
+
+Contracts and planning alone are mostly reconstructable public data.
+
+The first garden where time must matter should be UKProducts/Breadup.
+
+Pick ONE product category with:
+
+   - exact identity problem
+   - disappearing listings
+   - sold events
+   - meaningful condition
+   - repair economics
+   - enough turnover.
+
+Examples are less important than the selection rule.
+
+Need:
+
+current acquisition listings
+=C3=97 historical sold records
+=C3=97 condition
+=C3=97 exact identity
+=C3=97 time-to-sale
+=C3=97 fees
+=C3=97 repair/parts assumptions
+
+This lets UKGraph answer something an agent genuinely cannot reconstruct
+tomorrow.
+P16 =E2=80=94 HYPOTHESIS ENGINE
+
+Do not add a giant autonomous research framework yet.
+
+A hypothesis needs only:
+
+Hypothesis {
+claim
+evidence
+prediction
+kill_condition
+status
+}
+
+First example:
+
+=E2=80=9CCertain planning events precede local demand for electricians.=E2=
+=80=9D
+
+Do NOT assume this.
+
+Test:
+planning signal
+=E2=86=92 route shown
+=E2=86=92 contact/action
+=E2=86=92 quote
+=E2=86=92 job won
+=E2=86=92 payment
+
+If conversion does not outperform baseline:
+kill/downweight.
+P17 =E2=80=94 CONTENT / YOUTUBE
+
+Content is valuable but secondary to route truth.
+
+Use focused channels externally:
+
+   - opportunity / ways to earn
+   - UK boring/admin
+   - products/flipping
+
+Internally all use UKGraph.
+
+Every content experiment:
+
+   - references a hypothesis
+   - cites source evidence
+   - tracks CTR/retention/comments
+   - keeps attention truth separate from economic truth.
+
+Do not build videos from unsupported AI-generated claims.
+P18 =E2=80=94 OPERATIONS
+
+Add a real ops status model.
+
+Dashboard/CLI must show:
+
+SOURCES
+
+   - healthy
+   - stale
+   - failing
+   - schema drift
+
+COLLECTION
+
+   - records observed
+   - changed states
+   - duplicates suppressed
+
+SEMANTIC
+
+   - DecisionSpec calls
+   - uncertain calls
+   - fallback rate
+   - calibration
+
+ROUTES
+
+   - candidates
+   - filtered
+   - emitted
+   - stale
+   - actionability coverage
+
+OUTCOMES
+
+   - acted
+   - receipt produced
+   - TRUE/FALSE/UNKNOWN
+   - economic value
+
+The dashboard question is:
+
+=E2=80=9CWhere is UKGraph currently blind, stale, or making claims it canno=
+t prove?=E2=80=9D
+P19 =E2=80=94 RECOMMENDED TARGET REPO STRUCTURE
+
+datagarden/
+=E2=94=9C=E2=94=80=E2=94=80 README.md
+=E2=94=9C=E2=94=80=E2=94=80 SPEC.md
+=E2=94=9C=E2=94=80=E2=94=80 DEV.md
+=E2=94=9C=E2=94=80=E2=94=80 OPERATIONS.md
+=E2=94=9C=E2=94=80=E2=94=80 CHANGELOG.md
+=E2=94=9C=E2=94=80=E2=94=80 pyproject.toml
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 ukgraph/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 core/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 observation.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 source.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 capability.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 route.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 evidence.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 decision.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 receipt.py
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 hypothesis.py
+=E2=94=82 =E2=94=82
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 storage/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 sources/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 normalize/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 router/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 earn.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 do.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 value.py
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 find.py
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 watch.py
+=E2=94=82 =E2=94=82
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 gardens/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 boring/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 opportunity/
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 products/
+=E2=94=82 =E2=94=82
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 jev/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 specs/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 evals/
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 runtime.py
+=E2=94=82 =E2=94=82
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 proof/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 rules/
+=E2=94=82 =E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 settle.py
+=E2=94=82 =E2=94=82 =E2=94=94=E2=94=80=E2=94=80 journal.py
+=E2=94=82 =E2=94=82
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 mcp/
+=E2=94=82 =E2=94=9C=E2=94=80=E2=94=80 api/
+=E2=94=82 =E2=94=94=E2=94=80=E2=94=80 ops/
+=E2=94=82
+=E2=94=9C=E2=94=80=E2=94=80 fixtures/
+=E2=94=9C=E2=94=80=E2=94=80 tests/
+=E2=94=94=E2=94=80=E2=94=80 docs/archive/
+
+Do not migrate for aesthetics alone.
+Migrate as part of removing duplication.
+P20 =E2=80=94 DEV SEQUENCE PR 1 =E2=80=94 CONVERGENCE / TRUTH CLEANUP
+
+Goal:
+One canonical type system, no fake live claims.
+
+Tasks:
+
+   - make SPEC.md canonical
+   - rewrite README
+   - archive stale markdown
+   - remove local Opportunity/CapabilityEnvelope from earn.py
+   - import core.Route + core.CapabilityEnvelope
+   - remove unsupported EV claims
+   - remove hardcoded economic estimates or label as HEURISTIC with method
+   IDs
+   - add typed generator errors
+   - fix hardcoded /home/box paths or gate them as optional adapters
+   - add pyproject + CI
+
+DONE WHEN:
+
+   - one type per concept
+   - no route without evidence
+   - no unsupported live factual claims
+   - CI green.
+
+PR 2 =E2=80=94 TEMPORAL STORAGE CORRECTION
+
+Tasks:
+
+   - series_key vs observation_id
+   - content/state hashes
+   - idempotent ingestion
+   - change event tracking
+   - storage interface
+   - raw artifact references
+   - keep JSONL as fixture backend
+
+DONE WHEN:
+Repeated same source state is deduped, changed source state creates history=
+.
+PR 3 =E2=80=94 LIVE PROCUREMENT
+
+Tasks:
+
+   - collect active/future opportunities separately from awards
+   - model deadline/status
+   - canonical source provenance
+   - emit only actionable live bid routes
+
+DONE WHEN:
+An award can never become BID_CONTRACT.
+PR 4 =E2=80=94 LOCAL/PLACE CORRECTNESS
+
+Tasks:
+
+   - resolve Oldham canonical place ID
+   - planning/location filters
+   - source coverage
+   - radius semantics
+   - test that returned routes are actually in/correctly related to
+   requested place
+
+DONE WHEN:
+=E2=80=9COldham=E2=80=9D is not merely a keyword.
+PR 5 =E2=80=94 FIRST REAL earn()
+
+Tasks:
+
+   - three route generators
+   - hard constraints
+   - route-quality dimensions
+   - evidence/freshness
+   - coverage report
+   - one MCP tool
+
+DONE WHEN:
+The canonical Oldham electrician benchmark produces 3 defensible route
+families.
+PR 6 =E2=80=94 JEV
+
+Tasks:
+
+   - first 3 DecisionSpecs
+   - labelled eval fixtures
+   - runtime call logging
+   - threshold/fallback
+   - no high-consequence autonomous calls
+
+DONE WHEN:
+Every semantic inference in a returned route is traceable to a DecisionSpec
++ output distribution.
+PR 7 =E2=80=94 PROOF / RECEIPT
+
+Tasks:
+
+   - immutable EvidenceArtifact
+   - executable ProofRule
+   - settlement
+   - journal
+   - prevent manual TRUE
+
+DONE WHEN:
+one actual action settles via external evidence.
+PR 8 =E2=80=94 MCP CONSOLIDATION
+
+Tasks:
+
+   - one UKGraph MCP
+   - earn/do/value/find/watch
+   - internal garden adapters
+
+DONE WHEN:
+agent does not need to know garden/server topology.
+PR 9 =E2=80=94 CONTENT EXPERIMENT
+
+Tasks:
+
+   - first hypothesis
+   - one video
+   - content experiment record
+   - attention data linked separately
+
+DONE WHEN:
+same economic signal can feed MCP + content without conflating truth types.
+HARD DEFINITION OF DONE FOR UKGRAPH V0.1
+
+V0.1 is NOT complete until:
+
+   1. One public UKGraph MCP/API surface exists.
+   2. CapabilityEnvelope is accepted.
+   3. earn() returns three genuinely different route families.
+   4. Routes use real current sources.
+   5. No awarded contract is emitted as a live bid.
+   6. Every route has evidence and freshness.
+   7. At least one route uses historical data unavailable from the live web
+   alone.
+   8. One Jev DecisionSpec is production-evaluated and traceable.
+   9. One route is acted upon.
+   10. External evidence settles a receipt.
+   11. Receipt can be TRUE/FALSE/UNKNOWN.
+   12. Agent assertion alone cannot settle TRUE.
+   13. Outcome feeds back into a hypothesis/model.
+   14. Same frontier agent + UKGraph beats frontier agent + ordinary search
+   on the benchmark.
+   15. CI verifies critical invariants on every push.
+
+Until all 15 are true:
+DO NOT broaden geography or add many more gardens.
+FILE-BY-FILE IMMEDIATE ACTIONS
+
+README.md
+
+   - rewrite to current UKGraph architecture
+   - remove =E2=80=9CThree forests=E2=80=9D layout
+
+SPEC.md
+
+   - keep
+   - treat as normative
+
+CANONICAL.md
+
+   - fold human-sentence/content-loop insights into SPEC/DEV
+   - then archive
+
+handover.md / HANDOVER.md
+
+   - merge to one DEV/HANDOVER file
+   - update claims after fixes
+
+uk_boring/earn.py
+
+   - rewrite around core Route + CapabilityEnvelope
+   - remove duplicate dataclasses
+   - remove fake market claims
+   - remove swallowed exceptions
+   - stop using award notices as bid routes
+
+collectors/contracts_collector.py
+
+   - split opportunity collector from awards collector
+   - preserve notice type/status/deadline
+
+collectors/planning_collector.py
+
+   - make days real
+   - add place/LPA/cursor
+   - preserve coverage
+   - remove misleading =E2=80=9Crecent=E2=80=9D semantics until fixed
+
+core/observation.py + core/normalize.py
+
+   - redesign observation/event identity
+   - unify truth-state vocabulary
+
+core/storage.py + core/normalize.py storage
+
+   - one storage interface only
+
+core/receipt.py
+
+   - remove unrestricted manual settlement
+   - delegate to proof engine
+
+boringuk_receipts.py
+
+   - convert predefined receipt patterns to verified fixtures
+   - every pattern needs source provenance/version
+   - default UNKNOWN if not authoritative
+   - do not infer PASS from partial optional matches
+
+mcp/*
+
+   - treat as internal adapters
+   - build one UKGraph outward server
+
+mcp_server.py
+
+   - eventually retire as monolithic legacy compatibility layer
+   - do not expand
+
+shared/*
+
+   - migrate reusable pieces to core
+   - move garden-specific pieces into gardens
+   - delete duplicate normalization/schema layers
+
+requirements.txt
+
+   - replace with pyproject + lock
+   - include FastAPI/dev deps correctly
+
+.github/workflows/
+
+   - create CI
+
+canonical/*.jsonl
+
+   - stop treating Git as production history store
+   - move to fixtures/manifests
+
+FINAL ASSESSMENT
+
+The strongest thing in this repo is no longer the collectors or MCP code.
+
+It is the combination of:
+
+   1. irreversible historical observation,
+   2. semantic compression,
+   3. person-capability =C3=97 economic-state routing,
+   4. executable action,
+   5. externally verified outcome.
+
+That is the moat.
+
+The weakest thing is currently the gap between that philosophy and what
+live code labels as =E2=80=9Ctruth=E2=80=9D.
+
+Right now uk.earn() can turn:
+
+   - old planning records,
+   - awarded contracts,
+   - keyword matches,
+   - fixed percentages,
+   - unsupported market claims
+
+into apparently grounded economic recommendations.
+
+That is exactly what must be eliminated first.
+
+Do NOT optimize for number of tools, number of datasets, number of routes,
+or number of markdown specs.
+
+Optimize for:
+
+=E2=80=9CWould I trust Muse to act on this?=E2=80=9D
+
+If the answer is not yes, the Route is not ready.
+
+The next coding agent should spend almost all effort getting ONE route from=
+:
+
+REAL SOURCE
+=E2=86=92 OBSERVATION
+=E2=86=92 TRANSFORMATION
+=E2=86=92 ROUTE
+=E2=86=92 MCP
+=E2=86=92 AGENT ACTION
+=E2=86=92 EXTERNAL EVIDENCE
+=E2=86=92 RECEIPT
+
+working without a single invented fact.
+
+Once that works, plant the next garden.
+
+--000000000000caf400065bd7346c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+prx0r/datagarden =E2=80=94 Complete Peer Review &amp; Dev Instructions
+<p>Reviewed: prx0r/datagarden<br>
+Head reviewed: 61364930 (=E2=80=9CMuse connector docs: how to connect UKGra=
+ph to Muse=E2=80=9D, 2026-09-19)<br>
+Purpose of review: assess the repo against the current UKGraph/Data Garden =
+thesis and turn the result into concrete development instructions.</p>
+
+
+
+EXECUTIVE VERDICT
+<p>Do NOT restart the repo.</p>
+<p>The thesis is now strong and the repo contains enough useful kernel to p=
+reserve:</p>
+<ul>
+<li>canonical observations/provenance</li>
+<li>Route</li>
+<li>CapabilityEnvelope</li>
+<li>DecisionSpec</li>
+<li>Receipt / Actuality</li>
+<li>source registry</li>
+<li>normalization pipeline</li>
+<li>collectors</li>
+<li>UKBoring proof-of-concept</li>
+<li>MCP implementations</li>
+<li>content/experiment machinery</li>
+</ul>
+<p>However, the current implementation still mixes three generations of arc=
+hitecture:</p>
+<ol>
+<li>old =E2=80=9Cfour forests / many MCP tools=E2=80=9D architecture,</li>
+<li>UKBoring workflow architecture,</li>
+<li>new UKGraph economic-router architecture.</li>
+</ol>
+<p>The result is conceptual duplication, duplicated models/storage, stale d=
+ocs, and=E2=80=94more seriously=E2=80=94several places where demo assumptio=
+ns are presented as economic truth.</p>
+<p>The next phase should be a CONVERGENCE + ONE-END-TO-END-ROUTE phase.</p>
+<p>Do not add more gardens until that is complete.</p>
+<p>The north-star remains:</p>
+<p>PERSON + GOAL<br>
+=C3=97 CURRENT UK REALITY<br>
+=C3=97 HISTORICAL UK REALITY<br>
+=E2=86=92 ACTIONABLE ROUTE<br>
+=E2=86=92 AGENT ACTION<br>
+=E2=86=92 EXTERNAL EVIDENCE<br>
+=E2=86=92 VERIFIED OUTCOME<br>
+=E2=86=92 BETTER ROUTING</p>
+<p>The repo is successful when ChatGPT/Muse with UKGraph can answer:</p>
+<p>=E2=80=9CI=E2=80=99m in Oldham, I=E2=80=99m an electrician, I have Satur=
+day free and =C2=A3500. What can I do to make money?=E2=80=9D</p>
+<p>with 2=E2=80=933 genuinely current, evidenced, executable routes that ar=
+e materially better than ordinary web search.</p>
+
+
+
+WHAT IS STRONG
+
+1. SPEC.md is now the correct source-of-truth direction
+<p>The current SPEC captures the important invariants:</p>
+<ul>
+<li>Data Garden =3D unique transformation =C3=97 continuous collection =C3=
+=97 time</li>
+<li>irreversible-time test</li>
+<li>one outward UKGraph connector</li>
+<li>many internal gardens</li>
+<li>CapabilityEnvelope</li>
+<li>Route</li>
+<li>Jev as semantic compiler</li>
+<li>QP-lite as truth boundary</li>
+<li>UKBoring / UKOpportunity / UKProducts separation</li>
+<li>attention truth !=3D economic truth</li>
+<li>hypothesis / kill conditions</li>
+<li>verified outcomes as moat</li>
+</ul>
+<p>This is the right conceptual base.</p>
+<p>KEEP SPEC.md.</p>
+
+2. core/route.py is directionally correct
+<p>The Route object already contains most of the fields the final system ne=
+eds:</p>
+<ul>
+<li>route_type</li>
+<li>expected value</li>
+<li>time/capital</li>
+<li>capabilities</li>
+<li>constraints</li>
+<li>why_now / why_person</li>
+<li>evidence</li>
+<li>execution type</li>
+<li>success proof</li>
+<li>freshness</li>
+<li>transformation lineage</li>
+</ul>
+<p>This should become the canonical outbound object.</p>
+
+3. core/capability_envelope.py is the correct privacy boundary
+<p>Good principle:</p>
+<ul>
+<li>Muse/ChatGPT keeps the user=E2=80=99s deep personal context.</li>
+<li>UKGraph receives only a task-specific capability envelope.</li>
+</ul>
+<p>Keep this.</p>
+
+4. core/observation.py has the right epistemic vocabulary
+<p>TruthClass and Recoverability are useful:</p>
+<ul>
+<li>VERIFIED</li>
+<li>DERIVED</li>
+<li>ESTIMATED</li>
+<li>HEURISTIC</li>
+<li>CONCEPTUAL</li>
+<li>UNAVAILABLE</li>
+</ul>
+<p>and:</p>
+<ul>
+<li>canonical</li>
+<li>third-party</li>
+<li>partial</li>
+<li>ephemeral</li>
+</ul>
+<p>This maps directly onto Data Garden economics.</p>
+
+5. core/decision_spec.py is the right Jev abstraction
+<p>Versioned semantic decisions with:</p>
+<ul>
+<li>primitive</li>
+<li>question</li>
+<li>outputs</li>
+<li>consequence</li>
+<li>confidence threshold</li>
+<li>fallback</li>
+<li>eval set</li>
+<li>calibration</li>
+</ul>
+<p>This is exactly how Jev should be used.</p>
+<p>The problem is not the model; the problem is that the live earn path bar=
+ely uses it yet.</p>
+
+6. UKBoring receipt thinking is strategically valuable
+<p>The repo has correctly discovered the important distinction:</p>
+<p>CLICKED SUBMIT<br>
+!=3D<br>
+SUBMISSION ACKNOWLEDGED<br>
+!=3D<br>
+APPLICATION ACCEPTED<br>
+!=3D<br>
+OUTCOME COMPLETED</p>
+<p>This is worth preserving.</p>
+
+7. There is now real collection infrastructure
+<p>Planning, Contracts Finder, ONS/ASHE, product/history work, and daily co=
+llection exist.</p>
+<p>This is no longer only a document repo.</p>
+
+
+
+P0 =E2=80=94 CRITICAL PROBLEMS TO FIX BEFORE EXPOSING UKGRAPH TO AN AGENT
+
+P0.1 =E2=80=94 uk.earn() currently recommends awarded contracts as bid oppo=
+rtunities
+<p>File:</p>
+<ul>
+<li>collectors/contracts_collector.py</li>
+<li>uk_boring/earn.py</li>
+</ul>
+<p>The collector explicitly requests:</p>
+<ul>
+<li>type =3D Contract</li>
+<li>status =3D Awarded</li>
+</ul>
+<p>It stores:</p>
+<ul>
+<li>awardedValue</li>
+<li>awardedSupplier</li>
+<li>awardedDate</li>
+</ul>
+<p>But _find_contracts() turns those historical awards into:</p>
+<p>action =3D BID_CONTRACT</p>
+<p>and estimates:<br>
+expected_value =3D contract value =C3=97 0.1</p>
+<p>This is semantically wrong.</p>
+<p>The evidence even says:<br>
+=E2=80=9CAwarded to {supplier} for =C2=A3X=E2=80=9D</p>
+<p>while the route says:<br>
+=E2=80=9CBID_CONTRACT=E2=80=9D</p>
+<p>That is exactly the kind of failure UKGraph must never produce.</p>
+<p>FIX:<br>
+Split procurement into distinct semantic objects:</p>
+<ol>
+<li>
+<p>PROCUREMENT_OPPORTUNITY</p>
+<ul>
+<li>live</li>
+<li>future / open</li>
+<li>deadline</li>
+<li>eligibility</li>
+<li>action =3D BID / EXPRESS_INTEREST</li>
+</ul>
+</li>
+<li>
+<p>PROCUREMENT_AWARD</p>
+<ul>
+<li>historical</li>
+<li>supplier</li>
+<li>value</li>
+<li>date</li>
+<li>useful for market intelligence / win-history / buyer behavior</li>
+</ul>
+</li>
+</ol>
+<p>Awards can help derive:</p>
+<ul>
+<li>what buyers purchase</li>
+<li>incumbent suppliers</li>
+<li>typical values</li>
+<li>SME accessibility hypotheses</li>
+</ul>
+<p>They cannot be emitted as current bid routes.</p>
+<p>ACCEPTANCE TEST:<br>
+No route with action=3DBID_CONTRACT may derive only from an Awarded notice.=
+</p>
+
+
+
+P0.2 =E2=80=94 the planning collector does not collect =E2=80=9Crecent=E2=
+=80=9D or =E2=80=9COldham=E2=80=9D
+<p>File:</p>
+<ul>
+<li>collectors/planning_collector.py</li>
+</ul>
+<p>collect_recent_applications(days=3D30, limit=3D100):</p>
+<ul>
+<li>accepts days</li>
+<li>DOES NOT use days in the API query</li>
+<li>does not filter locality</li>
+<li>fetches the first entity results returned by <a href=3D"http://planning=
+.data.gov.uk">planning.data.gov.uk</a></li>
+</ul>
+<p>The canonical sample confirms this:</p>
+<ul>
+<li>many records have 2023 references</li>
+<li>effective_at is empty</li>
+<li>name/address often empty</li>
+<li>organisation entity often empty</li>
+</ul>
+<p>Therefore current data does not support:<br>
+=E2=80=9Cwhat is happening in Oldham right now?=E2=80=9D</p>
+<p>FIX:<br>
+Rewrite planning collection around explicit query contracts:</p>
+<p>collect_planning_events(<br>
+place_id,<br>
+changed_since,<br>
+application_status,<br>
+limit/cursor<br>
+)</p>
+<p>Minimum:</p>
+<ul>
+<li>LPA/place filter</li>
+<li>real temporal filter or deterministic cursor/watermark</li>
+<li>preserve source entity ID</li>
+<li>preserve status and decision date</li>
+<li>track source coverage/completeness</li>
+<li>distinguish application submitted / validated / decided / approved / re=
+fused</li>
+</ul>
+<p>Do not infer work demand from arbitrary historic applications.</p>
+<p>ACCEPTANCE TEST:<br>
+For a chosen Oldham scope, every returned planning observation must:</p>
+<ul>
+<li>resolve to Oldham (or documented catchment)</li>
+<li>have a source entity/reference</li>
+<li>have observed_at</li>
+<li>have meaningful event/effective date OR explicitly UNKNOWN</li>
+<li>be replayable from source evidence.</li>
+</ul>
+
+
+
+P0.3 =E2=80=94 demo claims are leaking into canonical opportunity output
+<p>File:</p>
+<ul>
+<li>uk_boring/earn.py</li>
+</ul>
+<p>Example:<br>
+_find_upgrades() emits:</p>
+<ul>
+<li>=E2=80=9CEV charger demand up 31% in North West=E2=80=9D</li>
+<li>=E2=80=9CCertified installers in short supply=E2=80=9D</li>
+<li>training costs ~=C2=A3280</li>
+<li>confidence =3D 0.8</li>
+</ul>
+<p>There is no provenance attached.</p>
+<p>This violates the system=E2=80=99s own anti-bullshit rule.</p>
+<p>REMOVE every unsupported market_analysis opportunity immediately.</p>
+<p>Rule:<br>
+NO Route may contain a concrete factual claim unless it has:</p>
+<ul>
+<li>observation IDs,</li>
+<li>source refs,</li>
+<li>transform lineage,</li>
+<li>freshness.</li>
+</ul>
+<p>Conceptual/demo routes belong in fixtures only, never live results.</p>
+
+
+
+P0.4 =E2=80=94 expected economic value is currently fabricated
+<p>Examples in uk_boring/earn.py:</p>
+<ul>
+<li>planning-derived work =3D =C2=A3500</li>
+<li>contract value =3D 10% of total</li>
+<li>flip margin =3D sold price =C3=97 30%</li>
+<li>repair cost text =3D =C2=A330=E2=80=9380</li>
+</ul>
+<p>These are demo heuristics presented in the same object as sourced observ=
+ations.</p>
+<p>That is dangerous.</p>
+<p>FIX:<br>
+Every economic number needs a METHOD.</p>
+<p>Example:</p>
+<p>ExpectedValue:<br>
+amount<br>
+currency<br>
+method_id<br>
+method_version<br>
+inputs[]<br>
+uncertainty_interval<br>
+truth_class</p>
+<p>If there is no defensible estimate:<br>
+expected_value =3D UNKNOWN</p>
+<p>Do not reward routes for invented precision.</p>
+
+
+
+P0.5 =E2=80=94 broad exception swallowing makes the system silently lie by =
+omission
+<p>uk_boring/earn.py repeatedly does:</p>
+<p>try:<br>
+=E2=80=A6<br>
+except Exception:<br>
+pass</p>
+<p>For an agent-facing economic system this is unacceptable.</p>
+<p>A broken collector/parser can make the endpoint quietly return fewer opp=
+ortunities and appear healthy.</p>
+<p>FIX:<br>
+Use explicit typed failures:</p>
+<ul>
+<li>SOURCE_UNAVAILABLE</li>
+<li>SCHEMA_CHANGED</li>
+<li>NORMALIZATION_FAILED</li>
+<li>STALE_DATA</li>
+<li>ENTITY_AMBIGUOUS</li>
+<li>SEMANTIC_UNCERTAIN</li>
+</ul>
+<p>Every candidate generator returns:</p>
+<p>GeneratorResult {<br>
+routes[]<br>
+status<br>
+errors[]<br>
+source_health[]<br>
+}</p>
+<p>The top-level response can then say:<br>
+=E2=80=9CContracts source unavailable; results exclude public procurement.=
+=E2=80=9D</p>
+<p>Do not silently pass.</p>
+
+
+
+P1 =E2=80=94 ARCHITECTURAL CONVERGENCE
+
+P1.1 =E2=80=94 there are duplicate canonical models
+<p>Examples:</p>
+<ul>
+<li>core/capability_envelope.py defines CapabilityEnvelope</li>
+<li>uk_boring/earn.py defines a different CapabilityEnvelope</li>
+<li>core/route.py defines Route</li>
+<li>uk_boring/earn.py defines Opportunity</li>
+<li>core/storage.py implements storage</li>
+<li>core/normalize.py implements another storage layer</li>
+<li>shared/schema.py / shared/entities.py / shared/normalize.py retain olde=
+r architecture</li>
+</ul>
+<p>This is now the main codebase risk.</p>
+<p>FIX:<br>
+One canonical package only.</p>
+<p>TARGET:</p>
+<p>core/<br>
+observation.py<br>
+source.py<br>
+capability_envelope.py<br>
+route.py<br>
+evidence.py<br>
+decision_spec.py<br>
+receipt.py<br>
+hypothesis.py<br>
+storage/<br>
+quality/</p>
+<p>Everything else imports these types.</p>
+<p>DELETE / MIGRATE:</p>
+<ul>
+<li>local CapabilityEnvelope in uk_boring/earn.py</li>
+<li>local Opportunity in uk_boring/earn.py</li>
+<li>duplicate evidence types</li>
+<li>duplicate normalize/storage paths</li>
+<li>garden-specific shared schemas from shared/</li>
+</ul>
+<p>Use core.Route as the ONLY public route representation.</p>
+
+
+
+P1.2 =E2=80=94 Observation IDs are not adequate for a temporal garden
+<p>Current IDs are based on identity fields such as:</p>
+<ul>
+<li>garden</li>
+<li>source</li>
+<li>entity</li>
+<li>metric</li>
+<li>effective/event time</li>
+</ul>
+<p>but not necessarily:</p>
+<ul>
+<li>observed_at</li>
+<li>value/raw content hash</li>
+</ul>
+<p>If effective_at is empty (as it currently is for many planning records),=
+ repeated observations of changed source state can collide under the same I=
+D.</p>
+<p>This breaks the time moat.</p>
+<p>FIX:<br>
+Separate:</p>
+<p>FactKey / SeriesKey:<br>
+=E2=80=9CWhat real-world thing/metric is this?=E2=80=9D</p>
+<p>ObservationID:<br>
+=E2=80=9CThis exact observation event.=E2=80=9D</p>
+<p>Recommended:</p>
+<p>series_key =3D<br>
+hash(source_id, source_entity_id, metric)</p>
+<p>observation_id =3D<br>
+hash(series_key, observed_at, raw_hash)</p>
+<p>Optional state_hash =3D<br>
+hash(normalized value)</p>
+<p>Then:</p>
+<ul>
+<li>identical snapshots can be deduped by state_hash</li>
+<li>changed state creates a new observation</li>
+<li>history remains reconstructable.</li>
+</ul>
+<p>Do not use one ID for both identity and observation event.</p>
+
+
+
+P1.3 =E2=80=94 canonical JSONL cannot be the long-term warehouse
+<p>Current repo size is already very large and canonical JSONL is committed=
+ into Git.</p>
+<p>That does not scale with the thesis.</p>
+<p>Git should contain:</p>
+<ul>
+<li>schemas</li>
+<li>transforms</li>
+<li>small fixtures</li>
+<li>manifests/checksums</li>
+<li>evals</li>
+</ul>
+<p>Not:</p>
+<ul>
+<li>years of raw observations</li>
+<li>high-volume marketplace history</li>
+</ul>
+<p>TARGET:</p>
+<ul>
+<li>Postgres initially for canonical/queryable structured state</li>
+<li>object storage for raw artifacts</li>
+<li>append-only receipt log</li>
+<li>optional analytical store later</li>
+</ul>
+<p>Keep local JSONL as DEV FIXTURE backend only.</p>
+<p>Create a storage interface now so backend can change without garden chan=
+ges.</p>
+
+
+
+P1.4 =E2=80=94 source registry needs real licensing semantics
+<p>Example:<br>
+eBay source licence is described as:<br>
+=E2=80=9Ctransformative use=E2=80=9D</p>
+<p>That is not a licence.</p>
+<p>Each source must include:</p>
+<ul>
+<li>legal/source owner</li>
+<li>access method</li>
+<li>actual licence/terms category</li>
+<li>allowed retention</li>
+<li>allowed redistribution</li>
+<li>required attribution</li>
+<li>rate constraints</li>
+<li>data classification</li>
+<li>review date</li>
+</ul>
+<p>If unknown, mark:<br>
+LICENCE_UNKNOWN / REUSE_UNVERIFIED</p>
+<p>Do not turn uncertainty into a permissive label.</p>
+
+
+
+P2 =E2=80=94 ONE CONNECTOR OUTWARD
+<p>The repo currently advertises six MCP servers and ~86 tools.</p>
+<p>That is the previous architecture.</p>
+<p>Externally, the user/agent should see UKGraph.</p>
+<p>Primary high-level tools:</p>
+<p>ukgraph.earn()<br>
+ukgraph.do()<br>
+ukgraph.value()<br>
+ukgraph.find()<br>
+ukgraph.watch()</p>
+<p>Optionally:<br>
+ukgraph.route(goal, context)</p>
+<p>Lower-level resources/tools can exist for debugging/devs, but should not=
+ be the main agent UX.</p>
+<p>Migrate:</p>
+<ul>
+<li>mcp/breadup_mcp.py</li>
+<li>mcp/ukgraph_mcp.py</li>
+<li>mcp/council_mcp.py</li>
+<li>mcp/uk_admin_mcp.py</li>
+<li>mcp/uk_boring_mcp.py</li>
+<li>powpowpow tools where relevant</li>
+</ul>
+<p>behind one router/server.</p>
+<p>The agent should not need to know which internal garden owns the answer.=
+</p>
+
+
+
+P3 =E2=80=94 REBUILD earn() AROUND REAL ROUTES
+<p>Current earn.py is a prototype.</p>
+<p>Replace it with:</p>
+<p>router/earn.py</p>
+<p>Pseudo-flow:</p>
+<p>def earn(envelope):<br>
+candidates =3D []</p>
+
+<code>for generator in registered_generators:
+    result =3D generator.generate(envelope)
+    record source health/errors
+    candidates +=3D result.routes
+
+hard_filter(candidates, envelope)
+dedupe(candidates)
+rank_components(candidates)
+return routes + coverage/limitations
+</code>
+<p>ROUTE GENERATORS SHOULD BE DISTINCT:</p>
+<ol>
+<li>
+<p>paid_work<br>
+Source must be LIVE jobs/gigs/leads<br>
+Not planning applications.</p>
+</li>
+<li>
+<p>live_procurement<br>
+Source must be ACTIVE/FUTURE opportunities<br>
+Awards remain historical evidence only.</p>
+</li>
+<li>
+<p>products/flips<br>
+Current acquisition listing<br>
+=C3=97 historical sold value<br>
+=C3=97 identity<br>
+=C3=97 condition<br>
+=C3=97 fees<br>
+=C3=97 repair estimate<br>
+=C3=97 liquidity</p>
+</li>
+<li>
+<p>planning-derived demand<br>
+This is not a =E2=80=9Cjob=E2=80=9D.<br>
+It is a HYPOTHESIS/SIGNAL that a development may generate demand.<br>
+Route only if there is a real next action:</p>
+<ul>
+<li>identifiable applicant/developer</li>
+<li>contact path</li>
+<li>plausible capability fit</li>
+<li>source evidence</li>
+</ul>
+</li>
+<li>
+<p>upgrade/training<br>
+Only once cost, eligibility, unlocked demand and historical outcome can be =
+evidenced.</p>
+</li>
+</ol>
+
+
+
+P4 =E2=80=94 ROUTE CONTRACT
+<p>Every live Route MUST include:</p>
+<p>Identity:</p>
+<ul>
+<li>route_id</li>
+<li>route_type</li>
+<li>goal</li>
+</ul>
+<p>Action:</p>
+<ul>
+<li>explicit next action</li>
+<li>execution target</li>
+<li>expiry/deadline</li>
+</ul>
+<p>Fit:</p>
+<ul>
+<li>required capabilities</li>
+<li>useful capabilities</li>
+<li>why_person</li>
+<li>hard constraints</li>
+</ul>
+<p>Economics:</p>
+<ul>
+<li>expected value or UNKNOWN</li>
+<li>method</li>
+<li>costs</li>
+<li>time</li>
+<li>capital</li>
+<li>uncertainty</li>
+</ul>
+<p>Evidence:</p>
+<ul>
+<li>observation IDs</li>
+<li>source URLs/refs</li>
+<li>observed_at</li>
+<li>freshness</li>
+<li>licence/reuse state</li>
+</ul>
+<p>Lineage:</p>
+<ul>
+<li>transform ID/version</li>
+<li>DecisionSpecs used</li>
+</ul>
+<p>Proof:</p>
+<ul>
+<li>what outcome would count as success</li>
+</ul>
+<p>Quality:</p>
+<ul>
+<li>distinct confidence dimensions, not one magic score.</li>
+</ul>
+
+
+
+P5 =E2=80=94 DO NOT USE ONE MAGIC CONFIDENCE SCORE
+<p>Route.confidence currently risks collapsing:</p>
+<ul>
+<li>source confidence</li>
+<li>entity match confidence</li>
+<li>semantic-fit confidence</li>
+<li>expected-value confidence</li>
+<li>availability confidence</li>
+</ul>
+<p>Keep them separate.</p>
+<p>Example:</p>
+<p>quality =3D {<br>
+source: 0.99,<br>
+entity_match: 0.78,<br>
+capability_fit: 0.84,<br>
+economic_estimate: 0.42,<br>
+availability: 0.95<br>
+}</p>
+<p>A route can be:<br>
+=E2=80=9Cdefinitely exists, but payoff estimate is weak.=E2=80=9D</p>
+<p>That is useful.</p>
+<p>One scalar hides this.</p>
+
+
+
+P6 =E2=80=94 JEV INTEGRATION
+<p>The DecisionSpec abstraction is good.<br>
+The implementation is currently mostly inert relative to live earn().</p>
+<p>Do NOT call Jev to:</p>
+<ul>
+<li>calculate money</li>
+<li>apply exact eligibility rules</li>
+<li>calculate dates</li>
+<li>resolve deterministic geography</li>
+<li>prove outcomes.</li>
+</ul>
+<p>Use it for narrow semantic transformations.</p>
+<p>FIRST DECISIONS:</p>
+<p>opportunity.capability_family.v1<br>
+=E2=80=9CWhat capability dominates this opportunity?=E2=80=9D</p>
+<p>opportunity.sole_trader_access.v1<br>
+=E2=80=9CCould a sole trader plausibly perform this?=E2=80=9D</p>
+<p>opportunity.physical_work.v1</p>
+<p>opportunity.weekend_compatible.v1</p>
+<p>product.fault_family.v1</p>
+<p>product.repairable_fault.v1</p>
+<p>planning.implied_trade_demand.v1<br>
+=E2=80=9CDoes this planning event plausibly imply material demand for ?=E2=
+=80=9D</p>
+<p>Every Jev invocation MUST store:</p>
+<ul>
+<li>DecisionSpec ID/version</li>
+<li>model/runtime version</li>
+<li>complete output distribution</li>
+<li>selected answer</li>
+<li>confidence</li>
+<li>fallback</li>
+<li>source observation IDs</li>
+<li>timestamp</li>
+</ul>
+<p>Every production DecisionSpec MUST have:</p>
+<ul>
+<li>fixture eval set</li>
+<li>measured precision/calibration</li>
+<li>consequence class</li>
+<li>threshold</li>
+<li>fallback.</li>
+</ul>
+<p>If no eval:<br>
+NOT PRODUCTION.</p>
+
+
+
+P7 =E2=80=94 QP-LITE / RECEIPTS NEED TO BECOME REAL SETTLEMENT
+<p>Current receipt.py is a data class with:</p>
+<p>receipt.settle(actuality)</p>
+<p>That means the caller can simply set TRUE.</p>
+<p>That is not settlement.</p>
+<p>Also boringuk_receipts.py uses hardcoded expected regex/field patterns t=
+hat appear to be demo assumptions unless independently sourced.</p>
+<p>Example concerns:</p>
+<ul>
+<li>invented-looking reference formats</li>
+<li>optional fields can be skipped</li>
+<li>PASS may be based on partial field capture</li>
+<li>proof patterns do not carry authoritative provenance</li>
+<li>no immutable external evidence object</li>
+<li>no independent re-read</li>
+</ul>
+<p>TARGET:</p>
+<p>ProofRule {<br>
+id<br>
+version<br>
+claim_type<br>
+accepted_evidence_types<br>
+predicate(evidence) -&gt; TRUE/FALSE/UNKNOWN<br>
+source_requirements<br>
+}</p>
+<p>EvidenceArtifact {<br>
+artifact_id<br>
+type<br>
+issuer/source<br>
+captured_at<br>
+hash<br>
+parsed_fields<br>
+raw_ref<br>
+}</p>
+<p>settle(receipt_candidate, proof_rule) must be the ONLY route to canonica=
+l result.</p>
+<p>No external code may call:<br>
+receipt.result =3D TRUE</p>
+<p>without proof execution.</p>
+<p>FIRST proof rules:</p>
+<ul>
+<li>SUBMISSION_ACKNOWLEDGED</li>
+<li>BOOKING_CONFIRMED</li>
+<li>PAYMENT_RECEIVED</li>
+<li>ITEM_SOLD</li>
+</ul>
+<p>Keep them generic and reusable.</p>
+
+
+
+P8 =E2=80=94 UKBORING: STOP MODELING VOLATILE FORM UIs
+<p>The repo is moving in the right direction but still over-specifies workf=
+lows.</p>
+<p>UKBoring should NOT maintain:</p>
+<ul>
+<li>selectors</li>
+<li>every form field</li>
+<li>every page step</li>
+<li>guessed reference formats</li>
+</ul>
+<p>It SHOULD maintain:</p>
+<ul>
+<li>goal</li>
+<li>authority</li>
+<li>official entrypoint</li>
+<li>material rules</li>
+<li>human boundary</li>
+<li>acceptable completion evidence</li>
+<li>known failure/handoff conditions</li>
+<li>authoritative source refs</li>
+<li>last validated</li>
+</ul>
+<p>Let the frontier agent rediscover the current web UI.</p>
+<p>The moat is:<br>
+=E2=80=9Cwhat counts as actually done?=E2=80=9D</p>
+<p>not:<br>
+=E2=80=9Cwhere the button currently is?=E2=80=9D</p>
+
+
+
+P9 =E2=80=94 MOVE-HOME PROTOTYPE SHOULD BE DEMOTED TO A TEST FIXTURE UNTIL =
+VERIFIED
+<p>uk_boring/workflows/move_home.py is useful as an architecture example, b=
+ut currently embeds service-specific assumptions without source/version met=
+adata.</p>
+<p>Do not present the seven steps as a canonical UK workflow until each ste=
+p has:</p>
+<ul>
+<li>authoritative source</li>
+<li>scope/jurisdiction</li>
+<li>version/effective date</li>
+<li>proof rule</li>
+<li>auth/handoff class</li>
+<li>validation test.</li>
+</ul>
+<p>Convert it into:<br>
+fixtures/move_home_oldham_demo.py</p>
+<p>until verified.</p>
+<p>Then promote one step at a time.</p>
+
+
+
+P10 =E2=80=94 DOCUMENTATION CLEANUP
+<p>There are 48 markdown files and multiple =E2=80=9Cfinal=E2=80=9D/=E2=80=
+=9Ccanonical=E2=80=9D specs.</p>
+<p>This is already damaging developer comprehension.</p>
+<p>Canonical docs should become:</p>
+<p>README.md<br>
+SPEC.md<br>
+DEV.md<br>
+OPERATIONS.md<br>
+GARDENS.md<br>
+DECISIONS.md<br>
+CHANGELOG.md</p>
+<p>Archive all superseded thinking into:<br>
+docs/archive/YYYY-MM-DD/</p>
+<p>README should accurately describe TODAY=E2=80=99S repo.</p>
+<p>Currently README says:<br>
+=E2=80=9CThree forests. One loop=E2=80=9D<br>
+and shows a layout that is no longer the actual canonical architecture.</p>
+<p>Fix immediately.</p>
+<p>Remove duplicate:</p>
+<ul>
+<li>ukgraph_final.md</li>
+<li>ukgraph_v3.md</li>
+<li>ukgraphfinal_cloud.md</li>
+<li>duplicate handover/HANDOVER</li>
+<li>stale architecture versions<br>
+once useful content is folded into SPEC.</li>
+</ul>
+<p>CANONICAL.md=E2=80=99s =E2=80=9Chuman sentence=E2=80=9D principle is wor=
+th preserving.<br>
+Move it into SPEC or DEV.</p>
+
+
+
+P11 =E2=80=94 DEPENDENCY / PACKAGING PROBLEMS
+<p>requirements.txt:</p>
+<ul>
+<li>broad minimum versions only</li>
+<li>no lock</li>
+<li>FastAPI is used but not declared</li>
+<li>API-serving/runtime dependencies are incomplete</li>
+<li>pytest/dev tooling not declared</li>
+<li>Jev is listed as optional but runtime architecture references it</li>
+</ul>
+<p>Create pyproject.toml.</p>
+<p>Recommended groups:</p>
+<ul>
+<li>core</li>
+<li>api</li>
+<li>collectors</li>
+<li>jev</li>
+<li>dev</li>
+</ul>
+<p>Pin reproducibly via lock file.</p>
+<p>Also fix remaining /home/box/=E2=80=A6 hardcoded dependencies documented=
+ in handover.</p>
+<p>PowPowPow should be an adapter or data contract, not an absolute local f=
+ilesystem dependency.</p>
+
+
+
+P12 =E2=80=94 CI IS MISSING
+<p>The repo currently has no .github/workflows directory.</p>
+<p>Handover says 26 tests pass, but there is no automated protection agains=
+t regression.</p>
+<p>Add CI immediately:</p>
+<p>On push/PR:</p>
+<ol>
+<li>python compileall</li>
+<li>ruff</li>
+<li>mypy/pyright where useful</li>
+<li>pytest unit</li>
+<li>fixture pipeline test</li>
+<li>no-network canonical contract tests</li>
+<li>schema compatibility check</li>
+</ol>
+<p>Nightly:</p>
+<ol>
+<li>collector smoke tests</li>
+<li>source-health checks</li>
+<li>freshness alerts</li>
+<li>semantic drift check</li>
+<li>MCP tool smoke test</li>
+</ol>
+<p>Do NOT let live external API failures fail every unit-test PR.<br>
+Use fixtures.</p>
+
+
+
+P13 =E2=80=94 TESTS NEED TO TEST SEMANTICS, NOT ONLY SHAPES
+<p>Current tests are useful kernel tests but largely assert:</p>
+<ul>
+<li>objects serialize</li>
+<li>enums exist</li>
+<li>files load</li>
+<li>MCP functions have expected keys</li>
+</ul>
+<p>Add high-value invariants.</p>
+<p>CRITICAL TESTS:</p>
+<p>test_awarded_contract_never_emits_bid_route</p>
+<p>test_route_requires_evidence</p>
+<p>test_route_with_stale_source_is_marked_stale</p>
+<p>test_missing_data_is_unknown_not_false</p>
+<p>test_unsupported_economic_claim_rejected</p>
+<p>test_duplicate_observation_is_idempotent</p>
+<p>test_changed_source_state_creates_new_observation</p>
+<p>test_journal_replay_produces_same_state</p>
+<p>test_high_consequence_jev_low_confidence_falls_back</p>
+<p>test_receipt_cannot_be_true_without_passing_proof_rule</p>
+<p>test_agent_assertion_is_not_evidence</p>
+<p>test_oldham_route_actually_resolves_to_oldham</p>
+<p>test_earn_returns_coverage_limitations</p>
+<p>test_live_route_has_actionable_target</p>
+
+
+
+P14 =E2=80=94 FIRST REAL END-TO-END BENCHMARK
+<p>Freeze the benchmark:</p>
+<p>=E2=80=9CI=E2=80=99m in Oldham, I=E2=80=99m an electrician, I have a van=
+, =C2=A3500 and Saturday free. I want to make =C2=A3300.=E2=80=9D</p>
+<p>UKGraph must attempt three route families:</p>
+<p>A. REAL WORK</p>
+<ul>
+<li>live job/gig/lead</li>
+<li>currently actionable</li>
+</ul>
+<p>B. PUBLIC/COMMERCIAL OPPORTUNITY</p>
+<ul>
+<li>active tender/lead/service need</li>
+<li>not an award</li>
+</ul>
+<p>C. PRODUCT ECONOMICS</p>
+<ul>
+<li>current item available to acquire</li>
+<li>historical sold comparisons</li>
+<li>identity/condition normalization</li>
+<li>estimated costs</li>
+<li>realistic action.</li>
+</ul>
+<p>Each route must show:</p>
+<ul>
+<li>why now</li>
+<li>why person</li>
+<li>action</li>
+<li>actual URL/contact/target</li>
+<li>source evidence</li>
+<li>freshness</li>
+<li>economic method</li>
+<li>uncertainties</li>
+<li>proof condition.</li>
+</ul>
+<p>Then compare:<br>
+ChatGPT/agent WITHOUT UKGraph<br>
+vs<br>
+same agent WITH UKGraph.</p>
+<p>If UKGraph does not materially improve the final answer:<br>
+DO NOT ADD MORE DATA.</p>
+
+
+
+P15 =E2=80=94 THE FIRST REAL DATA MOAT SHOULD BE HISTORICAL / IRRECOVERABLE
+<p>Contracts and planning alone are mostly reconstructable public data.</p>
+<p>The first garden where time must matter should be UKProducts/Breadup.</p=
+>
+<p>Pick ONE product category with:</p>
+<ul>
+<li>exact identity problem</li>
+<li>disappearing listings</li>
+<li>sold events</li>
+<li>meaningful condition</li>
+<li>repair economics</li>
+<li>enough turnover.</li>
+</ul>
+<p>Examples are less important than the selection rule.</p>
+<p>Need:</p>
+<p>current acquisition listings<br>
+=C3=97 historical sold records<br>
+=C3=97 condition<br>
+=C3=97 exact identity<br>
+=C3=97 time-to-sale<br>
+=C3=97 fees<br>
+=C3=97 repair/parts assumptions</p>
+<p>This lets UKGraph answer something an agent genuinely cannot reconstruct=
+ tomorrow.</p>
+
+
+
+P16 =E2=80=94 HYPOTHESIS ENGINE
+<p>Do not add a giant autonomous research framework yet.</p>
+<p>A hypothesis needs only:</p>
+<p>Hypothesis {<br>
+claim<br>
+evidence<br>
+prediction<br>
+kill_condition<br>
+status<br>
+}</p>
+<p>First example:</p>
+<p>=E2=80=9CCertain planning events precede local demand for electricians.=
+=E2=80=9D</p>
+<p>Do NOT assume this.</p>
+<p>Test:<br>
+planning signal<br>
+=E2=86=92 route shown<br>
+=E2=86=92 contact/action<br>
+=E2=86=92 quote<br>
+=E2=86=92 job won<br>
+=E2=86=92 payment</p>
+<p>If conversion does not outperform baseline:<br>
+kill/downweight.</p>
+
+
+
+P17 =E2=80=94 CONTENT / YOUTUBE
+<p>Content is valuable but secondary to route truth.</p>
+<p>Use focused channels externally:</p>
+<ul>
+<li>opportunity / ways to earn</li>
+<li>UK boring/admin</li>
+<li>products/flipping</li>
+</ul>
+<p>Internally all use UKGraph.</p>
+<p>Every content experiment:</p>
+<ul>
+<li>references a hypothesis</li>
+<li>cites source evidence</li>
+<li>tracks CTR/retention/comments</li>
+<li>keeps attention truth separate from economic truth.</li>
+</ul>
+<p>Do not build videos from unsupported AI-generated claims.</p>
+
+
+
+P18 =E2=80=94 OPERATIONS
+<p>Add a real ops status model.</p>
+<p>Dashboard/CLI must show:</p>
+<p>SOURCES</p>
+<ul>
+<li>healthy</li>
+<li>stale</li>
+<li>failing</li>
+<li>schema drift</li>
+</ul>
+<p>COLLECTION</p>
+<ul>
+<li>records observed</li>
+<li>changed states</li>
+<li>duplicates suppressed</li>
+</ul>
+<p>SEMANTIC</p>
+<ul>
+<li>DecisionSpec calls</li>
+<li>uncertain calls</li>
+<li>fallback rate</li>
+<li>calibration</li>
+</ul>
+<p>ROUTES</p>
+<ul>
+<li>candidates</li>
+<li>filtered</li>
+<li>emitted</li>
+<li>stale</li>
+<li>actionability coverage</li>
+</ul>
+<p>OUTCOMES</p>
+<ul>
+<li>acted</li>
+<li>receipt produced</li>
+<li>TRUE/FALSE/UNKNOWN</li>
+<li>economic value</li>
+</ul>
+<p>The dashboard question is:</p>
+<p>=E2=80=9CWhere is UKGraph currently blind, stale, or making claims it ca=
+nnot prove?=E2=80=9D</p>
+
+
+
+P19 =E2=80=94 RECOMMENDED TARGET REPO STRUCTURE
+<p>datagarden/<br>
+=E2=94=9C=E2=94=80=E2=94=80 README.md<br>
+=E2=94=9C=E2=94=80=E2=94=80 SPEC.md<br>
+=E2=94=9C=E2=94=80=E2=94=80 DEV.md<br>
+=E2=94=9C=E2=94=80=E2=94=80 OPERATIONS.md<br>
+=E2=94=9C=E2=94=80=E2=94=80 CHANGELOG.md<br>
+=E2=94=9C=E2=94=80=E2=94=80 pyproject.toml<br>
+=E2=94=82<br>
+=E2=94=9C=E2=94=80=E2=94=80 ukgraph/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 core/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 observation.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 source.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 capability.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 route.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 evidence.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 decision.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 receipt.py<br>
+=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 hypothesis.py<br>
+=E2=94=82   =E2=94=82<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 storage/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 sources/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 normalize/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 router/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 earn.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 do.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 value.py<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 find.py<br>
+=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 watch.py<br>
+=E2=94=82   =E2=94=82<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 gardens/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 boring/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 opportunity/<br>
+=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 products/<br>
+=E2=94=82   =E2=94=82<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 jev/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 specs/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 evals/<br>
+=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 runtime.py<br>
+=E2=94=82   =E2=94=82<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 proof/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 rules/<br>
+=E2=94=82   =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 settle.py<br>
+=E2=94=82   =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 journal.py<br>
+=E2=94=82   =E2=94=82<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 mcp/<br>
+=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 api/<br>
+=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 ops/<br>
+=E2=94=82<br>
+=E2=94=9C=E2=94=80=E2=94=80 fixtures/<br>
+=E2=94=9C=E2=94=80=E2=94=80 tests/<br>
+=E2=94=94=E2=94=80=E2=94=80 docs/archive/</p>
+<p>Do not migrate for aesthetics alone.<br>
+Migrate as part of removing duplication.</p>
+
+
+
+P20 =E2=80=94 DEV SEQUENCE
+
+PR 1 =E2=80=94 CONVERGENCE / TRUTH CLEANUP
+<p>Goal:<br>
+One canonical type system, no fake live claims.</p>
+<p>Tasks:</p>
+<ul>
+<li>make SPEC.md canonical</li>
+<li>rewrite README</li>
+<li>archive stale markdown</li>
+<li>remove local Opportunity/CapabilityEnvelope from earn.py</li>
+<li>import core.Route + core.CapabilityEnvelope</li>
+<li>remove unsupported EV claims</li>
+<li>remove hardcoded economic estimates or label as HEURISTIC with method I=
+Ds</li>
+<li>add typed generator errors</li>
+<li>fix hardcoded /home/box paths or gate them as optional adapters</li>
+<li>add pyproject + CI</li>
+</ul>
+<p>DONE WHEN:</p>
+<ul>
+<li>one type per concept</li>
+<li>no route without evidence</li>
+<li>no unsupported live factual claims</li>
+<li>CI green.</li>
+</ul>
+
+PR 2 =E2=80=94 TEMPORAL STORAGE CORRECTION
+<p>Tasks:</p>
+<ul>
+<li>series_key vs observation_id</li>
+<li>content/state hashes</li>
+<li>idempotent ingestion</li>
+<li>change event tracking</li>
+<li>storage interface</li>
+<li>raw artifact references</li>
+<li>keep JSONL as fixture backend</li>
+</ul>
+<p>DONE WHEN:<br>
+Repeated same source state is deduped, changed source state creates history=
+.</p>
+
+PR 3 =E2=80=94 LIVE PROCUREMENT
+<p>Tasks:</p>
+<ul>
+<li>collect active/future opportunities separately from awards</li>
+<li>model deadline/status</li>
+<li>canonical source provenance</li>
+<li>emit only actionable live bid routes</li>
+</ul>
+<p>DONE WHEN:<br>
+An award can never become BID_CONTRACT.</p>
+
+PR 4 =E2=80=94 LOCAL/PLACE CORRECTNESS
+<p>Tasks:</p>
+<ul>
+<li>resolve Oldham canonical place ID</li>
+<li>planning/location filters</li>
+<li>source coverage</li>
+<li>radius semantics</li>
+<li>test that returned routes are actually in/correctly related to requeste=
+d place</li>
+</ul>
+<p>DONE WHEN:<br>
+=E2=80=9COldham=E2=80=9D is not merely a keyword.</p>
+
+PR 5 =E2=80=94 FIRST REAL earn()
+<p>Tasks:</p>
+<ul>
+<li>three route generators</li>
+<li>hard constraints</li>
+<li>route-quality dimensions</li>
+<li>evidence/freshness</li>
+<li>coverage report</li>
+<li>one MCP tool</li>
+</ul>
+<p>DONE WHEN:<br>
+The canonical Oldham electrician benchmark produces 3 defensible route fami=
+lies.</p>
+
+PR 6 =E2=80=94 JEV
+<p>Tasks:</p>
+<ul>
+<li>first 3 DecisionSpecs</li>
+<li>labelled eval fixtures</li>
+<li>runtime call logging</li>
+<li>threshold/fallback</li>
+<li>no high-consequence autonomous calls</li>
+</ul>
+<p>DONE WHEN:<br>
+Every semantic inference in a returned route is traceable to a DecisionSpec=
+ + output distribution.</p>
+
+PR 7 =E2=80=94 PROOF / RECEIPT
+<p>Tasks:</p>
+<ul>
+<li>immutable EvidenceArtifact</li>
+<li>executable ProofRule</li>
+<li>settlement</li>
+<li>journal</li>
+<li>prevent manual TRUE</li>
+</ul>
+<p>DONE WHEN:<br>
+one actual action settles via external evidence.</p>
+
+PR 8 =E2=80=94 MCP CONSOLIDATION
+<p>Tasks:</p>
+<ul>
+<li>one UKGraph MCP</li>
+<li>earn/do/value/find/watch</li>
+<li>internal garden adapters</li>
+</ul>
+<p>DONE WHEN:<br>
+agent does not need to know garden/server topology.</p>
+
+PR 9 =E2=80=94 CONTENT EXPERIMENT
+<p>Tasks:</p>
+<ul>
+<li>first hypothesis</li>
+<li>one video</li>
+<li>content experiment record</li>
+<li>attention data linked separately</li>
+</ul>
+<p>DONE WHEN:<br>
+same economic signal can feed MCP + content without conflating truth types.=
+</p>
+
+
+
+HARD DEFINITION OF DONE FOR UKGRAPH V0.1
+<p>V0.1 is NOT complete until:</p>
+<ol>
+<li>One public UKGraph MCP/API surface exists.</li>
+<li>CapabilityEnvelope is accepted.</li>
+<li>earn() returns three genuinely different route families.</li>
+<li>Routes use real current sources.</li>
+<li>No awarded contract is emitted as a live bid.</li>
+<li>Every route has evidence and freshness.</li>
+<li>At least one route uses historical data unavailable from the live web a=
+lone.</li>
+<li>One Jev DecisionSpec is production-evaluated and traceable.</li>
+<li>One route is acted upon.</li>
+<li>External evidence settles a receipt.</li>
+<li>Receipt can be TRUE/FALSE/UNKNOWN.</li>
+<li>Agent assertion alone cannot settle TRUE.</li>
+<li>Outcome feeds back into a hypothesis/model.</li>
+<li>Same frontier agent + UKGraph beats frontier agent + ordinary search on=
+ the benchmark.</li>
+<li>CI verifies critical invariants on every push.</li>
+</ol>
+<p>Until all 15 are true:<br>
+DO NOT broaden geography or add many more gardens.</p>
+
+
+
+FILE-BY-FILE IMMEDIATE ACTIONS
+<p>README.md</p>
+<ul>
+<li>rewrite to current UKGraph architecture</li>
+<li>remove =E2=80=9CThree forests=E2=80=9D layout</li>
+</ul>
+<p>SPEC.md</p>
+<ul>
+<li>keep</li>
+<li>treat as normative</li>
+</ul>
+<p>CANONICAL.md</p>
+<ul>
+<li>fold human-sentence/content-loop insights into SPEC/DEV</li>
+<li>then archive</li>
+</ul>
+<p>handover.md / HANDOVER.md</p>
+<ul>
+<li>merge to one DEV/HANDOVER file</li>
+<li>update claims after fixes</li>
+</ul>
+<p>uk_boring/earn.py</p>
+<ul>
+<li>rewrite around core Route + CapabilityEnvelope</li>
+<li>remove duplicate dataclasses</li>
+<li>remove fake market claims</li>
+<li>remove swallowed exceptions</li>
+<li>stop using award notices as bid routes</li>
+</ul>
+<p>collectors/contracts_collector.py</p>
+<ul>
+<li>split opportunity collector from awards collector</li>
+<li>preserve notice type/status/deadline</li>
+</ul>
+<p>collectors/planning_collector.py</p>
+<ul>
+<li>make days real</li>
+<li>add place/LPA/cursor</li>
+<li>preserve coverage</li>
+<li>remove misleading =E2=80=9Crecent=E2=80=9D semantics until fixed</li>
+</ul>
+<p>core/observation.py + core/normalize.py</p>
+<ul>
+<li>redesign observation/event identity</li>
+<li>unify truth-state vocabulary</li>
+</ul>
+<p>core/storage.py + core/normalize.py storage</p>
+<ul>
+<li>one storage interface only</li>
+</ul>
+<p>core/receipt.py</p>
+<ul>
+<li>remove unrestricted manual settlement</li>
+<li>delegate to proof engine</li>
+</ul>
+<p>boringuk_receipts.py</p>
+<ul>
+<li>convert predefined receipt patterns to verified fixtures</li>
+<li>every pattern needs source provenance/version</li>
+<li>default UNKNOWN if not authoritative</li>
+<li>do not infer PASS from partial optional matches</li>
+</ul>
+<p>mcp/*</p>
+<ul>
+<li>treat as internal adapters</li>
+<li>build one UKGraph outward server</li>
+</ul>
+<p>mcp_server.py</p>
+<ul>
+<li>eventually retire as monolithic legacy compatibility layer</li>
+<li>do not expand</li>
+</ul>
+<p>shared/*</p>
+<ul>
+<li>migrate reusable pieces to core</li>
+<li>move garden-specific pieces into gardens</li>
+<li>delete duplicate normalization/schema layers</li>
+</ul>
+<p>requirements.txt</p>
+<ul>
+<li>replace with pyproject + lock</li>
+<li>include FastAPI/dev deps correctly</li>
+</ul>
+<p>.github/workflows/</p>
+<ul>
+<li>create CI</li>
+</ul>
+<p>canonical/*.jsonl</p>
+<ul>
+<li>stop treating Git as production history store</li>
+<li>move to fixtures/manifests</li>
+</ul>
+
+
+
+FINAL ASSESSMENT
+<p>The strongest thing in this repo is no longer the collectors or MCP code=
+.</p>
+<p>It is the combination of:</p>
+<ol>
+<li>irreversible historical observation,</li>
+<li>semantic compression,</li>
+<li>person-capability =C3=97 economic-state routing,</li>
+<li>executable action,</li>
+<li>externally verified outcome.</li>
+</ol>
+<p>That is the moat.</p>
+<p>The weakest thing is currently the gap between that philosophy and what =
+live code labels as =E2=80=9Ctruth=E2=80=9D.</p>
+<p>Right now uk.earn() can turn:</p>
+<ul>
+<li>old planning records,</li>
+<li>awarded contracts,</li>
+<li>keyword matches,</li>
+<li>fixed percentages,</li>
+<li>unsupported market claims</li>
+</ul>
+<p>into apparently grounded economic recommendations.</p>
+<p>That is exactly what must be eliminated first.</p>
+<p>Do NOT optimize for number of tools, number of datasets, number of route=
+s, or number of markdown specs.</p>
+<p>Optimize for:</p>
+<p>=E2=80=9CWould I trust Muse to act on this?=E2=80=9D</p>
+<p>If the answer is not yes, the Route is not ready.</p>
+<p>The next coding agent should spend almost all effort getting ONE route f=
+rom:</p>
+<p>REAL SOURCE<br>
+=E2=86=92 OBSERVATION<br>
+=E2=86=92 TRANSFORMATION<br>
+=E2=86=92 ROUTE<br>
+=E2=86=92 MCP<br>
+=E2=86=92 AGENT ACTION<br>
+=E2=86=92 EXTERNAL EVIDENCE<br>
+=E2=86=92 RECEIPT</p>
+<p>working without a single invented fact.</p>
+<p>Once that works, plant the next garden.</p>
+
+--000000000000caf400065bd7346c--

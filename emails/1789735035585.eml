@@ -1,0 +1,403 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 8eezaAXDvJZd
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 12:37:15 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=QEKTmWeS/fz+rtmvwgbydNdnSrZaJLj5j7Hoind7tOxdUZiZgi5h1q7EMeDelxOYZC4JuYW+i
+	6xgjg/xwrQypJZD+Qxxti+J03NBEdsuXdOxOnVwCxKZgAq3yjVaMHvFs6r9N9SFAq61VZNemETw
+	wY20fUEz0uJ/mQo/AmVeauj94y+TRh95XBVRCKdXgaiCgIe78q3k3qjl/DtGFCKkhYMOjMMOpg1
+	zTnhcXIqs8wX1WzsoSHV6rqOjhoreCn6j2SAjz6kKav3BO78Z8jvPjVzXifsTgPkp3P7ESRdPZN
+	SmREU9+5lShmBnJTS+aqyiJ4CSK4Ol+gguXrdZRfucZA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789735035; x=1790339835; bh=hxwBEFY8
+	EJtIspFZu4ynPmhVCnPjBJI2Xs7ABpEv59o=; b=YTQJphgmNQz/IM5A8GeMG8dfi9W8l4oTUKt
+	OnLBdkwYzQ2EF543Mdk+HqrJt8L6IlmYO1UKwEHZuXIzRIHNyLJFx8Leip7qIvI/5+LAjRr5I+e
+	adowfrhYIWkxBknnaPBR2zu/kzcNiDzLPjSkqwaILpqUWkwZGg0KKh2h33RQiP7UxBKSEJco62L
+	d8zztggiHBFh+V7qNWdl3W6NgruLinusa5nayl7CdN521rir4bp7kQ07oOUNe4G4dAGzibAGxQA
+	Afe/HA15S/ChlGO3cfkHlYARw+NGKovykAm1861D97D0RDwFCU3s2jcsWz6ozM/DiiZLv31OVHH
+	bij6GMg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HDxJs+bo;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HDxJs+bo;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 1
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4aac929eso691322d50.0
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 05:37:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789735035; cv=none;
+        d=google.com; s=arc-20260327;
+        b=kcyzmmJpRxWz82b+xYOKg8WCbsHWzvvvTrLmP8q5AxUu+0b6SCqZ8W8O4DTYBi1uj7
+         9/SeCkwwPqFe5AVKFGhTUz7rkTDEfc40RY/9QjXY9tMz7IHPZT0UPupAXEq4y1+x7X48
+         ikW9sskra843VHj3VOGW/tLToEMp+H0gNVnAPbbeRcj1ScYoQ9oKoQl0sRqdCaTznzF1
+         3ojGcicKpZY07Sji9+WVYuq8DwfnKsDzNFDfyUO0lEogaAHW08iKxBvjplDhQfhkdYI8
+         cgONP03Fg+Nx1Eb2FNXQIjuJXOPWcsfa59W9Ad1Em5bgEp7p1nLgHViS9iZP/nCNtnAV
+         UThQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=hxwBEFY8EJtIspFZu4ynPmhVCnPjBJI2Xs7ABpEv59o=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=S9oV+KuyuldxywIQISTPW6ZJIzNH/hfrFJ9iHunfsNW10+ynl2EubbT2Iw8XpNXUtq
+         rdnSQjOm2soDW//c/1cuIqP7yp/CTx6jnCWJJ48Y+pUsCo8nJvy0eBHSABhEIdz8Pdp/
+         l6L2X9Ucb4Bjq5A6YQ9lOsK80hDYUnEZ8G/GU2PZauXjEdlJM5ktoj5aV5TQ7DKOViOS
+         3FmGIWqNlei+buQhUgbqSOKS2DCKcchX/zPaIfohTLlap1O/ZKKz71E0LLUlf5t6ez/b
+         BXSgBmG307owrS+T0/eicLIW70I0iwVFUIzuNI+6IMV6JWdJ4QFEH38lphtbDBzLkSxL
+         qQuA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789735035; x=1790339835; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hxwBEFY8EJtIspFZu4ynPmhVCnPjBJI2Xs7ABpEv59o=;
+        b=HDxJs+boieyYnyhSQJLM2qq8efRnjXyppURSipZuL2oBptCyQNVkHOT9YaoKISAGvr
+         m0Tt3uKinC0LCcf8SoObQV6gRx+ab/7HLMkxPT249YSgj+XMKBaqU2iRUnij3sZTLMxV
+         IlJShDrAt0QFcAd9PPFCF9z9NLoOZvT/l/PnDgKKWqJy3gnDTFEoG/uPkipEwWyH+T0P
+         MiRnaRIwlIyTsqP3g9OZecg8HssBiJuiXu5G8ClbN2Xfa89c5qasyrYRyTYsZPHlr2i3
+         9MJm0JG4bHUqqtBgAJp4ps/lLne6n864dfCenctMp2EjPlGF0lYovpxbKvc6/uxc9CKr
+         d6VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789735035; x=1790339835;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=hxwBEFY8EJtIspFZu4ynPmhVCnPjBJI2Xs7ABpEv59o=;
+        b=y3SDUDqV3BfHgabqe4E4ncfMd1kjcc02cyQPZOesSKVNvG8z1TyrkjZ8MsJfeJ1YNn
+         wq8cWUgI+pfnWjrqaqY9Vm6aK612Nv6sHrlwL4XUeZyiVaf1UTDb7LDRHpaIZ4m/anOT
+         cQlBcBRb9a2U6ZokV1sguVjpcau6whgWuLDT95dVIHHdMR09hjFDUTLAfYMLUeLsVIvh
+         YyweiYAlYU0iNcCsfKu+qXldcXQsqxWSATJ3qYkD7j45stJ4ZsB3wVpwUWAyXAI8nqNz
+         VZIZtpkjjbkg+QilFzp4vYLQMGlnatTol/4aC9v7vj3a16QJ8pxiATWsD8fmC7Hev3KL
+         +E1w==
+X-Gm-Message-State: AFuF++mJJfuaOTYnsMiRY3vkqQV5cZP6x2d70vRZVwVlJ/qauGwBkACn
+	+4P57IMRe6HlcjH9heFRZ9UCWZh4vC2Nj55FDolPJuvywPatKmxXT+/hXwtUc6yJIt1aiF1WgRp
+	XcOkta1CJ0isT2lp2YoHy6hRG1F2teO6WJw==
+X-Gm-Gg: AYBFou26PlziSxP/O822Gr0MyR3z4SF2klg2wAmch1xCIDJnezTBtXWZo+GlUuzATSk
+	UZjWOafMxG2q6dqJF5UmGfiFt3tcCxeC9cjRLrPbxzfx2ublVEj+t1nEffRp6MtimKb4YrVeq5o
+	p7/WfQ6Q2SfAWLt04Jy4I3So3IOWbncYwY6dQ96nazzlj6r7e9Ro8jmNDbXtrEEbrB4vfTJK1Z6
+	hBANa807tGX4GX5Xm5QlsfSdWrQqOOEIqMiPkPzetQF5v1/C36GP3ELTOB1OgDNwK+yvXUY7GZO
+	9uxIwKr2RhQ90qmqY9l5EgZvDlFoWBfeSW2dlRBwTqUBpqtRQeUYl1UglWCrORg5yZdE4WXeE/S
+	akbSc1ixRjo+Nj/gYS2VUG/eRL1cwwNhxsVKsp0XINBrQL8bY8ROx0pTPkcn7XEGnQyPXb7LY4R
+	fa
+X-Received: by 2002:a05:690e:151c:b0:66f:b219:9eda with SMTP id
+ 956f58d0204a3-6717fc90b47mr708813d50.22.1789735033754; Fri, 18 Sep 2026
+ 05:37:13 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 07:37:13 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 07:37:13 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 07:37:13 -0500
+X-Gm-Features: AcwNN1WmvWzL3kK1YCfjhV_z1DxJC0gD1ImL3HsmJI0vGvxSq78JMGVcI2frktM
+Message-ID: <CAPdrGen-W0LDWxtcNHorTOajZ02wR60=ibYZk66R-siD_CnQ=Q@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D18_19=3A36_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+State check: compared against all prior sent Roast.pet Viral Formats
+reports through 17:35. Semantic repeats (press conference, performance
+review, starter pack, true crime, patch notes, decades, NPC dialogue,
+face-dance, persistent sitcom, etc.) were excluded unless the
+implementation mechanism materially changed. Fresh evidence checked
+Sept 18, 2026 across TikTok trend trackers, Shorts tracking, Reels,
+meme tracking, sports/game-day formats and current brand comedy.
+
+1) PET PRIZED-POSSESSION REVEAL / =E2=80=9CMY [PET]=E2=80=9D
+Current evidence: NewEngen Sept 2026 TikTok tracker =E2=80=94
+https://newengen.com/insights/september-tiktok-trends/ ; Instagram
+crossover tracker =E2=80=94
+https://engen.netlify.app/insights/instagram-trends/
+Why viewers watch: enormous emotional reaction is applied to an
+ordinary reveal; the mismatch is instantly legible and taggable.
+Core mechanic: treat a mundane/familiar thing as if it is the most
+extraordinary acquisition imaginable.
+Pet protagonist: owner introduces their scruffy old dog/cat with
+absurd new-purchase excitement; invert again by giving the pet an
+absurd =E2=80=9Cfeature list.=E2=80=9D
+Best use: birthday social clip, acquisition/adoption anniversary, card QR b=
+onus.
+15=E2=80=9325s template: 0=E2=80=933s owner/AI narrator: =E2=80=9CGuys. I f=
+inally got one.=E2=80=9D
+3=E2=80=936s huge reveal of pet. 6=E2=80=9315s three increasingly stupid re=
+asons this
+specimen is elite, personalized from lore. 15=E2=80=9320s pet deadpan react=
+ion
++ =E2=80=9Chad him 11 years.=E2=80=9D
+Hook: =E2=80=9CI FINALLY GOT A [BREED]!!!=E2=80=9D / =E2=80=9COnly took me =
+11 years to find
+this specimen.=E2=80=9D
+Assets: pet cutout, one reveal transition, owner/pet facts,
+typography, optional original excited VO.
+Complexity: LOW.
+Novelty: distinct from unboxing-the-pet because the joke is
+disproportionate pride rather than product mechanics.
+Verdict: MAKE TEMPLATE NOW.
+
+2) PET PERMANENT PLUS-ONE / =E2=80=9CI=E2=80=99M WITH [PET]=E2=80=9D
+Current evidence: NewEngen reports the September =E2=80=9CI=E2=80=99m With =
+Max=E2=80=9D format
+flooding TikTok, where creators reveal the person/thing dominating
+their life =E2=80=94 explicitly including dogs:
+https://newengen.com/insights/september-tiktok-trends/
+Why viewers watch: highly recognizable relationship dependency;
+viewers immediately think of their own equivalent and tag/send.
+Core mechanic: repeated question =E2=86=92 same answer =E2=86=92 reveal the
+inseparable companion.
+Pet protagonist: every human activity cuts back to =E2=80=9C[owner]? With
+Biscuit.=E2=80=9D Escalate to absurd contexts where the pet should not be
+present.
+Best use: owner/pet relationship gift, birthday, couples-style card,
+social clip.
+15=E2=80=9330s template: 0=E2=80=934s =E2=80=9CWhere=E2=80=99s Sarah?=E2=80=
+=9D =E2=86=92 =E2=80=9CWith Milo.=E2=80=9D 4=E2=80=9312s three
+rapid mundane contexts. 12=E2=80=9322s increasingly absurd generated contex=
+ts
+(board meeting, wedding aisle, moon landing). 22=E2=80=9326s real pet photo=
+:
+=E2=80=9CHe has separation anxiety. She apparently does too.=E2=80=9D
+Hook: =E2=80=9CEvery time anyone asks where I am=E2=80=A6=E2=80=9D
+Assets: pet avatar/cutout, owner name, 3 real routines, 2 generated backgro=
+unds.
+Complexity: LOW=E2=80=93MEDIUM.
+Novelty: relationship repetition engine, not compatibility test.
+Verdict: MAKE TEMPLATE NOW.
+
+3) PET GAME-DAY STARTING LINEUP INTRO
+Current evidence: Vogue Business TikTok Trend Tracker, Sept 11, says
+#GameDay content is active around NFL/college football, including
+pre-game rituals, group clips and stadium routines:
+https://www.vogue.com/article/the-vogue-business-tiktok-trend-tracker
+; Sprout also identifies episodic series as a major 2026 retention
+priority: https://sproutsocial.com/insights/social-media-trends-uk/
+Why viewers watch: sports broadcast grammar gives trivial household
+behavior artificial importance and creates repeatable =E2=80=9Cseason=E2=80=
+=9D
+content.
+Core mechanic: present household pets/people with serious
+broadcast-style positions, stats and introductions.
+Pet protagonist: =E2=80=9CStarting at Left Sofa: Winston, 8 years old, 14
+career slippers destroyed.=E2=80=9D Owner becomes opposing team/scouting
+target.
+Best use: sports fan birthdays, cards, T-shirts, collectible card + AR.
+20=E2=80=9335s template: stadium sting =E2=86=92 player tunnel silhouette =
+=E2=86=92 pet hero
+reveal =E2=86=92 3 personalized lower-third stats =E2=86=92 one =E2=80=9Cca=
+reer highlight=E2=80=9D
+reenactment =E2=86=92 matchup card =E2=80=9CWinston vs Dad=E2=80=99s Dinner=
+.=E2=80=9D
+Hook: =E2=80=9CTonight=E2=80=99s starting lineup has one known disciplinary=
+ problem.=E2=80=9D
+Assets: original sports package, scoreboard/lower thirds, pet
+cutout/avatar, lore-to-stat converter.
+Complexity: MEDIUM.
+Novelty: differs from sports commentary/post-match interview by making
+the pet a rostered athlete with persistent career stats.
+Verdict: MAKE TEMPLATE NOW.
+
+4) PET SCOUTING REPORT / DRAFT COMBINE
+Current evidence: game-day season is active in TikTok=E2=80=99s current wee=
+kly
+data (Vogue above); ranking/big-board mechanics remain native
+sports/gaming share objects, e.g. current NBA ranking builders:
+https://hoopquiz.org/draft/rankings-maker/
+Why viewers watch: quantitative authority applied to subjective
+nonsense invites debate and screenshots.
+Core mechanic: convert personality defects into measurable athletic attribu=
+tes.
+Pet protagonist: =E2=80=9CFood awareness 99; recall 12; vertical 4 inches;
+xSocks stolen/90: 3.8.=E2=80=9D Finish with projected draft destination:
+=E2=80=9CKitchen, Round 1.=E2=80=9D
+Best use: card/T-shirt/collectible, sports-owner birthday.
+15=E2=80=9325s template: measurement screen =E2=86=92 4 animated tests =E2=
+=86=92 scouting
+strengths =E2=86=92 red flag =E2=86=92 overall grade =E2=86=92 draft projec=
+tion.
+Hook: =E2=80=9CNFL scouts have serious concerns about [PET].=E2=80=9D
+Assets: stat schema, test animations, pet cutout, owner questionnaire.
+Complexity: LOW=E2=80=93MEDIUM.
+Novelty: materially different from generic stat sheet because it uses
+scouting uncertainty, combine tests and draft outcome.
+Verdict: TEST.
+
+5) PET BRAND-ACCOUNT CLAPBACK / COMMENT ROAST
+Current evidence: Business Traveller, Sept 17, documents Ryanair=E2=80=99s
+continuing customer-roasting/self-deprecating meme strategy and
+unusually large social following:
+https://www.businesstraveller.com/insights/meme-machine-the-evil-genius-of-=
+ryanairs-social-media-strategy/
+; NewEngen notes brands joining the current Luke Bryan comment-section
+roast wave: https://newengen.com/insights/september-tiktok-trends/
+Why viewers watch: the =E2=80=9Cofficial account=E2=80=9D speaks with an un=
+expectedly
+rude, human voice; comment =E2=86=92 response creates native episodic conte=
+nt.
+Core mechanic: authoritative brand voice answers a harmless complaint
+with a personalized one-line roast.
+Pet protagonist: fake official account =E2=80=9C@MiloSupport=E2=80=9D respo=
+nds to
+owner complaints: =E2=80=9CHe stole my dinner=E2=80=9D =E2=86=92 =E2=80=9Cs=
+kill issue.=E2=80=9D Build 4
+escalating complaint/reply pairs from real lore.
+Best use: social clip, card insert, post-purchase recurring content.
+15=E2=80=9325s template: complaint screenshot =E2=86=92 pet account reply =
+=E2=86=92 second
+complaint =E2=86=92 harsher reply =E2=86=92 final owner accusation =E2=86=
+=92 pet posts
+photographic evidence against owner.
+Hook: =E2=80=9CI filed a complaint with my dog.=E2=80=9D
+Assets: original comment UI, pet profile icon, structured owner/pet
+lore, text generator.
+Complexity: LOW.
+Novelty: customer-support ticket existed previously; this is public
+social clapback grammar optimized for comments and sequels.
+Verdict: MAKE TEMPLATE NOW.
+
+6) PET =E2=80=9CFAKE TRAPDOOR=E2=80=9D PHYSICAL IMPOSSIBILITY GAG
+Current evidence: Buffer=E2=80=99s September 2026 TikTok sound tracker
+identifies the Beat It stair trend =E2=80=94 fake trap doors, staged tumble=
+s
+and fake escalators =E2=80=94 as active:
+https://buffer.com/resources/trending-songs-tiktok/
+Why viewers watch: one-shot visual illusion creates a replay impulse
+because viewers inspect how the impossible motion worked.
+Core mechanic: familiar physical space suddenly behaves impossibly.
+Pet protagonist: pet approaches food/sofa/owner, then an obviously
+impossible floor/sofa mechanism transports it directly to its
+obsession; keep it cartoonish and harmless.
+Best use: social clip/AR demo; weaker as static card.
+15=E2=80=9320s template: 0=E2=80=935s ordinary pet approach =E2=86=92 5=E2=
+=80=939s impossible
+floor/portal gag =E2=86=92 9=E2=80=9314s pet arrives beside treat =E2=86=92=
+ 14=E2=80=9318s freeze
+frame =E2=80=9Cefficiency upgrade.=E2=80=9D
+Hook: visual first; text: =E2=80=9C[PET] discovered a shortcut to dinner.=
+=E2=80=9D
+Assets: pet motion clip/avatar, original room plate, simple
+mask/warp/portal effect.
+Complexity: MEDIUM.
+Novelty: first Roast.pet format built primarily around a replayable
+physical illusion rather than dialogue/lore.
+Verdict: TEST.
+
+7) PET WORKPLACE ESCALATION / TERRIBLE REQUESTS
+Current evidence: Lightreel=E2=80=99s Sept 12 workplace-content review says
+recurring employee characters are a clear native TikTok signal; Rare
+Beauty=E2=80=99s coworkers perform increasingly absurd requests inside a
+recurring dialogue structure:
+https://lightreel.ai/blogs/makeup-brands-on-tiktok
+Why viewers watch: escalation has a predictable grammar but
+unpredictable next beat; recurring =E2=80=9Ccoworkers=E2=80=9D become chara=
+cters.
+Core mechanic: one character calmly makes requests that become
+progressively less reasonable while the other complies.
+Pet protagonist: pet is manager; owner is employee. =E2=80=9CMove my bed.=
+=E2=80=9D =E2=86=92
+=E2=80=9CWarm it.=E2=80=9D =E2=86=92 =E2=80=9CNow leave.=E2=80=9D =E2=86=92=
+ =E2=80=9CActually bring dinner.=E2=80=9D Personalized to
+pet habits.
+Best use: social series, birthday clip, =E2=80=9Cboss pet=E2=80=9D T-shirt.
+20=E2=80=9335s template: title card =E2=80=9CWorking for [PET], Day 1=E2=80=
+=9D =E2=86=92 request 1
+normal =E2=86=92 request 2 entitled =E2=86=92 request 3 impossible =E2=86=
+=92 owner protests =E2=86=92
+pet silently issues final request/fires owner.
+Hook: =E2=80=9CPOV: your manager is 9kg and has never worked.=E2=80=9D
+Assets: one office/house set, pet avatar, request ladder, recurring
+lower thirds.
+Complexity: LOW=E2=80=93MEDIUM.
+Novelty: unlike job interview/performance review, this is an
+indefinitely repeatable boss/employee sitcom engine.
+Verdict: TEST.
+
+8) PET ABSURD PRIDE CEREMONY / TROPHY FOR NOTHING
+Current evidence: NewEngen=E2=80=99s current =E2=80=9CMy American Girl Doll=
+=E2=80=9D and =E2=80=9CHow
+Could This Day Get Any Better=E2=80=9D trends both use disproportionate
+celebration of mundane objects/outcomes; current September
+format-first comedy is dominated by hard reveals and contrast:
+https://newengen.com/insights/september-tiktok-trends/ and
+https://www.socialpilot.co/blog/tiktok-trends
+Why viewers watch: ceremonial seriousness collides with a worthless achieve=
+ment.
+Core mechanic: award maximum prestige for minimum accomplishment.
+Pet protagonist: red carpet + trophy for =E2=80=9CThree Consecutive Days
+Without Eating a Sock,=E2=80=9D =E2=80=9CBest Supporting Actor in Pretendin=
+g Not to
+Hear Dad,=E2=80=9D etc., based on actual lore.
+Best use: birthday card, trophy-style print, social clip, anniversary.
+20=E2=80=9330s template: nominee montage =E2=86=92 envelope =E2=86=92 drama=
+tic winner reveal =E2=86=92
+pet accepts =E2=86=92 8-second acceptance speech insulting owner =E2=86=92 =
+lower-third
+immediately announces trophy has been revoked for fresh misconduct.
+Hook: =E2=80=9CAfter eight years, [PET] has finally won something.=E2=80=9D
+Assets: original award-stage package, trophy graphic, pet podium
+avatar, one achievement + one recurring vice.
+Complexity: MEDIUM.
+Novelty: award speech was a generic target class but has not appeared
+in prior accepted set; implementation adds personalized
+false-achievement/revocation loop.
+Verdict: TEST.
+
+TOP 3 FORMATS TO TEMPLATE THIS HOUR
+1. PET PRIZED-POSSESSION REVEAL =E2=80=94 cheapest fresh trend-native templ=
+ate
+and directly pet-native.
+2. PET GAME-DAY STARTING LINEUP =E2=80=94 strongest bridge into the
+collectible card/T-shirt/AR product architecture; persistent stats
+make sequels possible.
+3. PET BRAND-ACCOUNT CLAPBACK =E2=80=94 almost zero generation cost and
+naturally produces recurring posts/comments from one customer lore
+pack.
+
+EASIEST TO AUTOMATE END-TO-END
+PET BRAND-ACCOUNT CLAPBACK. Inputs can be only pet name + 3 behaviors
++ owner name + one incident + pet photo. Output is deterministic UI
+animation, text and pet avatar; no scene continuity or image-to-video
+reliability dependency.
+
+HIGHEST SHAREABILITY POTENTIAL
+PET PERMANENT PLUS-ONE. The underlying current format is explicitly
+built around identifying =E2=80=9Cyour Max=E2=80=9D; it naturally triggers
+tagging/sending to the person whose pet relationship matches it.
+
+WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+PET GAME-DAY CAREER SYSTEM: don=E2=80=99t generate only one sports card. Gi=
+ve
+the pet a persistent fictional sports career with career totals that
+update across future gifts: socks stolen, meals intercepted, delivery
+drivers defended against, recall percentage, disciplinary record.
+Birthday =3D new season/player card; Christmas =3D season review; AR scan
+=3D broadcast highlight reel. This converts customer lore into
+accumulating canon and makes later products structurally better than
+the first.
+
+PRODUCT NOTE
+This hour reinforces a useful split: Roast.pet should maintain (A)
+lore fields and (B) format renderers. The same canonical fields =E2=80=94
+vice, obsession, famous incident, owner relationship, recurring
+target/object, achievement, nemesis =E2=80=94 can drive clapbacks, sports
+stats, awards, workplace requests and reveals. Avoid coupling customer
+data collection to any single viral trend.
+
+Source dates checked: Vogue Business Sept 11 2026; Lightreel Sept 12;
+Business Traveller Sept 17; current TikTok trackers crawled Sept 18;
+Buffer September tracker; Sprout August 20 update. Copyrighted
+trending audio is evidence for the mechanism, not a production
+dependency: Roast.pet should use original VO/music/visual grammar
+where commercial rights are unclear.

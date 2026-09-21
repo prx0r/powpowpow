@@ -1,266 +1,180 @@
 """
-Corrected Miner Economics
-All formulas dimensionally coherent.
+Miner Economics Calculator — network-share model with stated assumptions.
+
+Revenue per rig:
+    rig_hashrate / network_hashrate * daily_emission * price
+
+Sell pressure uses a disclosed per-coin methodology until miner-flow
+measurement exists (see SELL_METHODOLOGY). Nothing here is presented as
+measured miner behavior.
 """
 
 import json
 import os
-from datetime import datetime, timezone
 import sys
+from datetime import datetime, timezone
 
-sys.path.insert(0, '/home/box/powpowpow')
-from core import utcnow
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
-# Hardware specs with NETWORK context
-HARDWARE = {
-    'PRL': {
-        'H100': {'hashrate': 3000e12, 'power': 700, 'cost': 30000, 'algo': 'PearlHash'},
-        'H200': {'hashrate': 4000e12, 'power': 700, 'cost': 40000, 'algo': 'PearlHash'},
-        'RTX_4090': {'hashrate': 250e12, 'power': 450, 'cost': 2000, 'algo': 'PearlHash'},
-        'network_hashrate': 21.9e18,  # Must provide network context
-    },
+CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
+ECONOMICS_DIR = os.path.join(CHAINS_DIR, 'economics')
+os.makedirs(ECONOMICS_DIR, exist_ok=True)
+
+CALCULATION_VERSION = "2.0.0-network-share"
+
+
+def load_json(filename):
+    path = os.path.join(CHAINS_DIR, filename)
+    if os.path.exists(path):
+        with open(path) as f:
+            return json.load(f)
+    return {}
+
+
+FUNDAMENTALS = load_json('chain_fundamentals.json')
+MINER_REVENUE = load_json('miner_revenue.json')
+
+# Seeded network state (same provenance as v1_live_cards). Live collectors
+# should override via network_data param.
+NETWORK = {
+    'XMR': {'daily_emission': 432.0, 'network_hashrate': 5.6e9,
+            'hashrate_source': 'minero.cc/docs 2026-09-18', 'as_of': '2026-09-18'},
+    'PRL': {'daily_emission': 500000.0, 'network_hashrate': 21.9e18,
+            'hashrate_source': 'prlscan 2026-09-18', 'as_of': '2026-09-18'},
+}
+
+# Hardware registry with provenance. hashrate H/s, power W, cost USD.
+HARDWARE_SPECS = {
     'XMR': {
-        'Ryzen_9_7950X': {'hashrate': 22000, 'power': 170, 'cost': 600, 'algo': 'RandomX'},
-        'Ryzen_7_7800X3D': {'hashrate': 15000, 'power': 120, 'cost': 400, 'algo': 'RandomX'},
-        'network_hashrate': 5.9e9,  # 5.9 GH/s
-        'daily_emission': 432,  # XMR/day
+        'RandomX': {
+            'cpu': {'hashrate': 20000, 'power': 100, 'cost': 500,
+                    'spec_source': 'xmrig aggregate 2026-09-18', 'spec_date': '2026-09-18'},
+            'high_end_cpu': {'hashrate': 100000, 'power': 200, 'cost': 2000,
+                             'spec_source': 'xmrig aggregate 2026-09-18', 'spec_date': '2026-09-18'},
+        }
     },
-    'KAS': {
-        'KS5_Pro': {'hashrate': 21e15, 'power': 3150, 'cost': 15000, 'algo': 'kHeavyHash'},
-        'KS3_L': {'hashrate': 6e12, 'power': 3400, 'cost': 5000, 'algo': 'kHeavyHash'},
-        'network_hashrate': None,  # Need to fetch
-    },
-    'QUAN': {
-        'RTX_4090': {'hashrate': 1e9, 'power': 450, 'cost': 2000, 'algo': 'Poseidon2'},
-        'network_hashrate': None,
+    'PRL': {
+        'PearlHash': {
+            'rtx_4080': {'hashrate': 203e12, 'power': 270, 'cost': 1250,
+                         'spec_source': 'kryptex 2026-09-18', 'spec_date': '2026-09-18'},
+            'cmp_170hx': {'hashrate': 175e12, 'power': 240, 'cost': 4000,
+                          'spec_source': 'kryptex 2026-09-18', 'spec_date': '2026-09-18'},
+        }
     },
 }
 
-ELECTRICITY = 0.10
-DEPRECIATION_YEARS = 3
+# Sell methodology per coin — assumption until pool→miner→exchange flow exists.
+SELL_METHODOLOGY = {
+    '_default': {'sell_fraction': 0.6, 'method': 'assumed constant; replace with miner-flow measurement',
+                 'confidence': 'low'},
+}
 
-def calculate_mining_revenue(chain, hw_name, price, network_hashrate=None, daily_emission=None):
-    """
-    CORRECT revenue formula:
-    R_h = (h_machine / H_network) * E_network * P
-    """
-    if chain not in HARDWARE or hw_name not in HARDWARE[chain]:
+DEFAULT_ELECTRICITY = 0.10
+
+
+def rig_revenue_usd_day(rig_hashrate, network_hashrate, daily_emission, price):
+    if not rig_hashrate or not network_hashrate or not daily_emission or not price:
         return None
-    
-    specs = HARDWARE[chain][hw_name]
-    h_machine = specs['hashrate']
-    
-    # Get network context
-    H_network = network_hashrate or HARDWARE[chain].get('network_hashrate')
-    E_network = daily_emission or HARDWARE[chain].get('daily_emission')
-    
-    if not H_network or not E_network:
-        return None  # Cannot calculate without network context
-    
-    # CORRECT: machine share × emission × price
-    machine_share = h_machine / H_network
-    daily_revenue = machine_share * E_network * price
-    
-    return {
-        'machine_share': machine_share,
-        'daily_revenue': daily_revenue,
-        'hourly_revenue': daily_revenue / 24,
-    }
-
-def calculate_costs(hw_name, chain):
-    """Calculate all costs for a hardware type."""
-    if chain not in HARDWARE or hw_name not in HARDWARE[chain]:
+    if network_hashrate <= 0 or price <= 0:
         return None
-    
-    specs = HARDWARE[chain][hw_name]
-    
-    electricity = (specs['power'] / 1000) * 24 * ELECTRICITY
-    hw_amort = specs['cost'] / (DEPRECIATION_YEARS * 365)
-    
-    return {
-        'electricity_usd_day': electricity,
-        'hw_amort_usd_day': hw_amort,
-        'total_cost_usd_day': electricity + hw_amort,
-    }
+    return rig_hashrate / network_hashrate * daily_emission * price
 
-def calculate_mining_margin(chain, hw_name, price, network_hashrate=None, daily_emission=None):
-    """
-    CORRECT margin:
-    Margin = (Revenue - Cost) / Revenue
-    """
-    rev = calculate_mining_revenue(chain, hw_name, price, network_hashrate, daily_emission)
-    costs = calculate_costs(hw_name, chain)
-    
-    if not rev or not costs:
-        return None
-    
-    net = rev['daily_revenue'] - costs['total_cost_usd_day']
-    margin = net / rev['daily_revenue'] if rev['daily_revenue'] > 0 else 0
-    
-    return {
-        'daily_revenue': rev['daily_revenue'],
-        'daily_costs': costs['total_cost_usd_day'],
-        'net_profit': net,
-        'margin': margin,
-        'machine_share': rev['machine_share'],
-        'payback_days': specs['cost'] / net if net > 0 else None,
-    }
 
-def calculate_resource_premium(chain, hw_name, price, rental_price, network_hashrate=None, daily_emission=None):
-    """
-    Resource Premium = protocol_revenue_per_hour / external_rental_per_hour
-    """
-    rev = calculate_mining_revenue(chain, hw_name, price, network_hashrate, daily_emission)
-    if not rev:
-        return None
-    
-    hourly_protocol = rev['hourly_revenue']
-    hourly_rental = rental_price
-    
-    premium = hourly_protocol / hourly_rental if hourly_rental > 0 else 0
-    
-    return {
-        'protocol_revenue_per_hour': hourly_protocol,
-        'external_rental_per_hour': hourly_rental,
-        'resource_premium': premium,
-        'interpretation': f'Protocol pays {premium:.1f}x external market' if premium > 1 else f'External market pays {1/premium:.1f}x protocol',
-    }
+def calculate_miner_economics(symbol, electricity=DEFAULT_ELECTRICITY, network_data=None):
+    """Calculate miner economics with methodology + assumptions on output."""
+    fund = FUNDAMENTALS.get(symbol, {})
+    revenue = MINER_REVENUE.get(symbol, {})
+    net = dict(NETWORK.get(symbol, {}))
+    if network_data:
+        net.update({k: v for k, v in network_data.items() if v is not None})
 
-def calculate_allocation_wedge(chain, hw_name, price, rental_price, network_hashrate=None, daily_emission=None):
-    """
-    Allocation Wedge = π_protocol - π_outside_option
-    """
-    rev = calculate_mining_revenue(chain, hw_name, price, network_hashrate, daily_emission)
-    costs = calculate_costs(hw_name, chain)
-    
-    if not rev or not costs:
-        return None
-    
-    # Protocol profit
-    pi_protocol = rev['daily_revenue'] - costs['total_cost_usd_day']
-    
-    # Outside option profit (rental)
-    pi_rental = rental_price * 24 - costs['electricity_usd_day']
-    
-    wedge = pi_protocol - pi_rental
-    
-    return {
-        'pi_protocol': pi_protocol,
-        'pi_rental': pi_rental,
-        'allocation_wedge': wedge,
-        'interpretation': 'Migrate TO protocol' if wedge > 0 else 'Migrate AWAY from protocol',
-    }
+    daily_emission = fund.get('daily_emission', 0) or net.get('daily_emission', 0) or 0
+    price = revenue.get('price', 0) or 0
+    daily_emission_usd = daily_emission * price if daily_emission and price else 0
 
-def calculate_creation_pressure(emission_usd_hour, bid_depth_5pct):
-    """
-    Creation Pressure = emission per hour / 5% bid depth
-    """
-    if bid_depth_5pct <= 0:
-        return None
-    
-    cp = emission_usd_hour / bid_depth_5pct
-    return {
-        'emission_usd_hour': emission_usd_hour,
-        'bid_depth_5pct': bid_depth_5pct,
-        'creation_pressure': cp,
-        'interpretation': f'{cp:.1%} of 5% book created per hour',
-    }
+    sell_meta = SELL_METHODOLOGY.get(symbol, SELL_METHODOLOGY['_default'])
+    sell_fraction = sell_meta['sell_fraction']
+    daily_sell_pressure = daily_emission_usd * sell_fraction if daily_emission_usd else 0
 
-def calculate_absorption(aggressive_buy_usd, net_bid_addition_usd, aggressive_sell_usd, miner_exchange_usd, window_seconds=3600):
-    """
-    Absorption = (Buy + Net Bid Additions) / (Sell + Miner Exchange)
-    All terms in same time window.
-    """
-    numerator = aggressive_buy_usd + net_bid_addition_usd
-    denominator = aggressive_sell_usd + miner_exchange_usd
-    
-    if denominator <= 0:
-        return None
-    
-    absorption = numerator / denominator
-    
-    return {
-        'window_seconds': window_seconds,
-        'aggressive_buy_usd': aggressive_buy_usd,
-        'net_bid_addition_usd': net_bid_addition_usd,
-        'aggressive_sell_usd': aggressive_sell_usd,
-        'miner_exchange_usd': miner_exchange_usd,
-        'absorption': absorption,
-        'interpretation': 'Demand exceeds supply' if absorption > 1 else 'Supply exceeds demand',
-    }
-
-def build_live_card(chain, price, network_hashrate=None, daily_emission=None, rental_price=None):
-    """Build corrected live card with all proper formulas."""
-    card = {
-        'chain': chain,
-        'timestamp': utcnow(),
-        'price_usd': price,
-    }
-    
-    if chain in HARDWARE:
-        for hw_name, specs in HARDWARE[chain].items():
-            if hw_name == 'network_hashrate':
-                continue
-            
-            # Revenue (correct formula)
-            rev = calculate_mining_revenue(chain, hw_name, price, network_hashrate, daily_emission)
-            costs = calculate_costs(hw_name, chain)
-            
-            if rev and costs:
-                net = rev['daily_revenue'] - costs['total_cost_usd_day']
-                margin = net / rev['daily_revenue'] if rev['daily_revenue'] > 0 else 0
-                
-                card[hw_name] = {
+    hardware_profitability = {}
+    if symbol in HARDWARE_SPECS:
+        for algo, devices in HARDWARE_SPECS[symbol].items():
+            for device, specs in devices.items():
+                rev = rig_revenue_usd_day(specs['hashrate'], net.get('network_hashrate'),
+                                          daily_emission, price)
+                elec = (specs['power'] / 1000) * 24 * electricity
+                profit = rev - elec if rev is not None else None
+                hardware_profitability[device] = {
                     'hashrate': specs['hashrate'],
-                    'power_watts': specs['power'],
+                    'power_w': specs['power'],
                     'cost_usd': specs['cost'],
-                    'algo': specs['algo'],
-                    'machine_share': rev['machine_share'],
-                    'revenue_usd_day': round(rev['daily_revenue'], 2),
-                    'revenue_usd_hour': round(rev['hourly_revenue'], 4),
-                    'electricity_usd_day': round(costs['electricity_usd_day'], 2),
-                    'hw_amort_usd_day': round(costs['hw_amort_usd_day'], 2),
-                    'total_cost_usd_day': round(costs['total_cost_usd_day'], 2),
-                    'net_profit_usd_day': round(net, 2),
-                    'margin': round(margin, 4),
-                    'payback_days': round(specs['cost'] / net, 0) if net > 0 else None,
+                    'spec_source': specs.get('spec_source'),
+                    'spec_date': specs.get('spec_date'),
+                    'network_hashrate': net.get('network_hashrate'),
+                    'network_hashrate_source': net.get('hashrate_source'),
+                    'daily_revenue_usd': round(rev, 2) if rev is not None else None,
+                    'daily_electricity_usd': round(elec, 2),
+                    'daily_profit_usd': round(profit, 2) if profit is not None else None,
+                    'revenue_method': 'rig/network * emission * price' if rev is not None
+                    else 'no estimate — missing network hashrate, emission, or price',
+                    'payback_days': specs['cost'] / profit if profit and profit > 0 else None,
+                    'annual_roi': (profit * 365 / specs['cost'] * 100) if profit and specs['cost'] > 0 else None,
                 }
-                
-                # Resource premium if rental price provided
-                if rental_price:
-                    rp = calculate_resource_premium(chain, hw_name, price, rental_price, network_hashrate, daily_emission)
-                    if rp:
-                        card[hw_name]['resource_premium'] = rp['resource_premium']
-    
-    return card
+
+    return {
+        'timestamp': datetime.now(timezone.utc).isoformat(),
+        'calculation_version': CALCULATION_VERSION,
+        'symbol': symbol,
+        'name': fund.get('name'),
+        'daily_emission': daily_emission,
+        'daily_emission_usd': daily_emission_usd,
+        'annual_emission_usd': daily_emission_usd * 365 if daily_emission_usd else 0,
+        'sell_fraction': sell_fraction,
+        'sell_methodology': sell_meta['method'],
+        'sell_confidence': sell_meta['confidence'],
+        'daily_sell_pressure_usd': daily_sell_pressure,
+        'annual_sell_pressure_usd': daily_sell_pressure * 365 if daily_sell_pressure else 0,
+        'volume_24h': revenue.get('volume_24h', 0),
+        'absorption_ratio': revenue.get('volume_24h', 0) / daily_emission_usd if daily_emission_usd > 0 else None,
+        'market_cap': revenue.get('market_cap', 0),
+        'dilution_pressure': revenue.get('miner_burden', {}).get('dilution_pressure'),
+        'hardware_profitability': hardware_profitability,
+        'electricity_cost_kwh': electricity,
+    }
+
+
+def calculate_all(electricity=DEFAULT_ELECTRICITY):
+    print(f"\n{'='*60}")
+    print(f"Calculating Miner Economics ({CALCULATION_VERSION}) — {datetime.now(timezone.utc).isoformat()}")
+    print(f"{'='*60}")
+    all_economics = {}
+    for symbol in FUNDAMENTALS:
+        print(f"\n[{symbol}]")
+        try:
+            economics = calculate_miner_economics(symbol, electricity=electricity)
+            all_economics[symbol] = economics
+            print(f"  Daily emission: ${economics['daily_emission_usd']:,.0f}")
+            print(f"  Daily sell pressure ({economics['sell_methodology'][:40]}...): "
+                  f"${economics['daily_sell_pressure_usd']:,.0f}")
+            print(f"  Absorption: {economics['absorption_ratio']:.1f}x" if economics['absorption_ratio'] else "  Absorption: N/A")
+            if economics['hardware_profitability']:
+                print("  Hardware profitability:")
+                for device, prof in economics['hardware_profitability'].items():
+                    if prof['daily_profit_usd'] is None:
+                        print(f"    {device}: NO ESTIMATE ({prof['revenue_method']})")
+                    elif prof['payback_days']:
+                        print(f"    {device}: ${prof['daily_profit_usd']:.2f}/day, {prof['payback_days']:.0f} days payback")
+                    else:
+                        print(f"    {device}: ${prof['daily_profit_usd']:.2f}/day")
+        except Exception as e:
+            print(f"  Error: {e}")
+    output_file = os.path.join(ECONOMICS_DIR, 'miner_economics.json')
+    with open(output_file, 'w') as f:
+        json.dump(all_economics, f, indent=2, default=str)
+    print(f"\n[SAVED] {output_file}")
+    return all_economics
+
 
 if __name__ == '__main__':
-    # Test with XMR (we have network data)
-    print("Testing corrected economics...")
-    
-    # XMR
-    card = build_live_card('XMR', 564.59)
-    print(f"\nXMR Card:")
-    for hw, info in card.items():
-        if isinstance(info, dict) and 'revenue_usd_day' in info:
-            print(f"  {hw}:")
-            print(f"    Machine share: {info['machine_share']:.8f}")
-            print(f"    Revenue/day: ${info['revenue_usd_day']:.2f}")
-            print(f"    Costs/day: ${info['total_cost_usd_day']:.2f}")
-            print(f"    Net profit: ${info['net_profit_usd_day']:.2f}")
-            print(f"    Margin: {info['margin']:.2%}")
-    
-    # Resource premium
-    rp = calculate_resource_premium('XMR', 'Ryzen_9_7950X', 564.59, 0.02)
-    print(f"\nResource Premium (vs $0.02/hr rental):")
-    print(f"  Protocol: ${rp['protocol_revenue_per_hour']:.4f}/hr")
-    print(f"  External: ${rp['external_rental_per_hour']:.4f}/hr")
-    print(f"  Premium: {rp['resource_premium']:.1f}x")
-    
-    # Allocation wedge
-    wedge = calculate_allocation_wedge('XMR', 'Ryzen_9_7950X', 564.59, 0.02)
-    print(f"\nAllocation Wedge:")
-    print(f"  Protocol profit: ${wedge['pi_protocol']:.2f}/day")
-    print(f"  Rental profit: ${wedge['pi_rental']:.2f}/day")
-    print(f"  Wedge: ${wedge['allocation_wedge']:.2f}/day")
-    print(f"  {wedge['interpretation']}")
+    calculate_all()

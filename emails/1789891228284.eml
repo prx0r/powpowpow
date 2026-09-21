@@ -1,0 +1,901 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id N6yDG52ns5H9
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 08:00:27 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=IG32enYNPoxrZt14k8R9+EaIuL7u1kqZqooOuPEaJz6CQvkixVDfThCrDSqcx9WQUYE3K+m1v
+	fYFWSDiWQXTO1u13dWk2voti+keOiku8f/mRlH7MCbdiVJN/MjrvvSk6d7zj9OyXgHCwYXi9x8t
+	c6cJmnYc2HWiw0AkJzz6FS7hrYngbG8REFiR7lgT5GDOKXrtdVSAZYdxMPsSbILL3ANz1ya1VMQ
+	E43KrNV6c0XKtsZ4VS8Ail07f1RiWbCepfRnRkqqpV9GHEX6ZIcCxvsc5f6rCF53SX6smnNHOeK
+	xSWLy674jFEuBXKLsUtZN0SgSkfnX6MGkojVBDQyB5RA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789891228; x=1790496028; bh=Xvdy5l01
+	owwErTTINortPh0LBeoEBARJ/pYPaFw3JBw=; b=eDRClNfJ8KM6E2vXDqfAsasXxaT1e3bz8zk
+	cxSh0Uq3DbMat0gShFqxfeJk7GYOHdiFtWKEDSgr1jEAaQ97yE9+IP91Ym7CycZdrbwMmR61Kmi
+	Weiqt4k8E/FvnEXuJ6dswV+3B+vrbz4sq38gR6VhhcK4bHff5CQC6JYroxadUvmHz2MIAJa3Aed
+	AosX2sAxO8sm+KaQu3wdo+Cu1NNfMOE/9XdG+oz6PDw6uupOaJUkXGp+bBV37McsyyFC+lkUfTi
+	dTOj5Jc7z9JHr/nppn9hMsoxXVi1s9tbA5ks/acXpzViHimAOw2nRHexGiV4BNSpgNYldG5tzOu
+	0sw+XlQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=r6S5Tyew;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=r6S5Tyew;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d440939efso15971587b3.1
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 01:00:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789891227; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Gw41gNVWH7mkf45sJWaqeOWF9bCrUZPKrurjtft92bZ5E5nGGrod+fffHG0YUgyhyh
+         lmfoU9yCO4701eyAI1tUGvFp7laDuo0XHbsZIPd4dVzhYvegcYnpQlwxK1hbfJPmGZXE
+         8z+Deq7kIbtJQ8j0NizAHGOFV97BC3giOiaWlsF7jSXNMPHPoKaKNfRaaY7rzLnmPnZ0
+         rGOs29i7gFr+OrMpa9tdHeSF5zC0dzj0cBbN41HUKVcS0ZyoVN1+wYjuEFkAFURoQov2
+         nvZmjhiPmDCo4mqztsliB9CxqroxR9a2m/TQ19PxEIFnYDpJOyglt5kN+8yNNIgvj3dk
+         5GXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Xvdy5l01owwErTTINortPh0LBeoEBARJ/pYPaFw3JBw=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=f6aLY+AQN0+2Lx+yzpEArwadRRkCGVJwfVYaS9G5w+CZrIga+rZ7x+XT2tuhEQVUJ+
+         /MQ9ufx33XRN0QB7hSqjzwbE1Y32GSCyEv1mpo3ujkuuUdkl4hN+DSh3LTAsnnwkmPav
+         jzOn1wMMN4TwAvUSJk2kQMGpuXVgFIGH/i7c1DnNaIr5Y0M7EhGbDS0+KHxxYsWie2ks
+         VeKBrTJskMwp231vT0Gowb9aT1i7NFCKx4CUoM2QtGUkQUMpWBDL8wedR4JXvpWk6CxL
+         E1xeaKdmIj37OUobxWA/sgSPJpZDrN53LppnaHfRwvgz1trD0zp0VOn+uWw0Q0p/W1ds
+         uNKw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789891227; x=1790496027; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=Xvdy5l01owwErTTINortPh0LBeoEBARJ/pYPaFw3JBw=;
+        b=r6S5Tyew69g9djbewIR9NBCkRprM3G/5ILpxRvX0XlDdEMgpJvjCni+rGYwwRGAu4X
+         3nhPd/iPFwVPZmIqApfPC+UMf6Wzx9ENnrbbihB17Eq83x+HS0dveth0QwMgh+FWxjal
+         fCocnz1KfwANE1QDjIkqWsnfhCxLfrK662LA5Aos4aWLhYQsyTvMfKMrbo/YqcsFs9r1
+         nVpOrZ9ezuJjZjDo6HjdYr7OvtG1OUKvnlC6UPRPb1ls+qpiHPK9clpVtYb8rEK12ept
+         Ty0I9NGtxlXgpg0VglxzrBpZrukQmz7yWWVz7Tu7KpE99cgdvQqjsU7OWVZkmz2hIOzn
+         b9tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789891227; x=1790496027;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Xvdy5l01owwErTTINortPh0LBeoEBARJ/pYPaFw3JBw=;
+        b=I7i7XVR12s3UVZYTffbZMCs94reyKxV0vDxifVUpOitKeHDbhBPL/vVGNsNU9HPSBf
+         rY29+xkTloxP64qnI4MeyPOxC/6s1z9+kWSaGPmUhzO8nRKyaAup6IN1gUGm3hPC78Ds
+         Fg9a+wR5IjYQo3uR/yJPVL03llk5Ii8MP1ZnnIxx4WA69F9E6UoxFJoVDRA82AqRpHH5
+         3j17mFUl3GkjllAY8CHvjWYJes6ei17snlr8UbFvpGWnrEVji8+Z+Caf2jJMDNueuBlu
+         YzHQ06JlW3WSkCVMQpkakeOz8F9PLwTstkEcMJlIVfcQ0+YHc3jSjEgqdh0VPbLsrGSU
+         3xRg==
+X-Gm-Message-State: AFuF++nPQzU7MgnvpJMXAZvEYNj14TWeTQ9q2zQYmsZy6bA33EzlqUQA
+	X1RIN+Ndq4KZfDpdRreLOJb6mEkH/fqHC44rQt/E6Hy5DtphSGkSRQ8F84q5+bvTGHMMCqI/+nt
+	Xo9X9wRYwCfDcI7NTxtzgWrwBRGeRx76C+w==
+X-Gm-Gg: AYBFou2e2ggYn6mRamjhpdEOARyBkUCDUeWSzp/PTSjYoVwrowNrBGnWt0tz5ufzkbF
+	FSPX4vcmA6uxRyliU6yPFPNSMvXlIF0BQRMNw90MEOUBHVzAU5WMK+CwIqHoRgrC7QYozzAdtlz
+	AtAIS4bY4pKNJ+OZ0O7eCCBWJ4YNwFf0l5K5ZSS+nWxc5poCJvQJFqzPAkSIx060QWiYBW6siG+
+	+hdZh/V94nvVPlG8dg5dofjBtTT5ZAhPJ52ZKNLjwLJEphqbOcRZwQMJRNAcRNV78g1LWSwjn3t
+	DFr+g2u5lhjUNlWfNhtqyBh5fuw3JmhXaGXDSDzNDXziZNlxcv7YYPSwgFiOKeJzLd+EyKELOLv
+	Z2vPIGMa5HApR7Y0g3Q6P6IaPZUMs54jZ7/wezBlP1jRwT5tHpfbmzW5GVchtphbRLgKHufo=
+X-Received: by 2002:a05:690c:a7d8:b0:873:5bb2:6bff with SMTP id
+ 00721157ae682-89734cb7f31mr18687987b3.41.1789891227210; Sun, 20 Sep 2026
+ 01:00:27 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 03:00:26 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 03:00:26 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 03:00:26 -0500
+X-Gm-Features: AcwNN1UmxP_8o8s-elSftMB6d5fhPE5XhbxmeayFTSrRxIlZOTQLLKEsaH8GUQw
+Message-ID: <CAPdrGe=38nebH-GDukcUhn3OgHr3r+kLfpnxRDwZiysrk=F+VA@mail.gmail.com>
+Subject: =?UTF-8?Q?Garden_Probe_=E2=80=94_Ephemeral_Data_=E2=80=94_2026=2D09=2D20_15=3A00?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000c8d85c065be586c8"
+
+--000000000000c8d85c065be586c8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ephemeral Data Forest Probe =E2=80=94 20 Sep 2026 Executive delta
+
+First baseline run. The strongest genuinely time-sensitive seed is *UK
+grid-connection queue state*, not generic marketplaces. Second is *UK
+planning-application state transitions joined to grid/infrastructure
+entities*. Third is *live EV-charger availability/price reliability history=
+*.
+Used-car listings are commercially validated but fail the whitespace test
+because MarketCheck and Carapis already preserve normalized listing/history
+products. Electricity wholesale data is rich but Elexon explicitly
+preserves superseded forecasts/backfill, so raw archiving has weak
+irreversibility.
+
+Forest standard: unique transformation =C3=97 continuous collection =C3=97 =
+time.
+Ranked dashboard
+Rank Candidate Irrev. Buyer Transform Join Feas. Durable Forest score
+Verdict
+1 UK grid queue change-history / project probability 4.5 4.5 5.0 5.0 4.5 4.=
+5
+*4.68/5* PLANT
+2 Planning application event/history graph 4.0 4.5 4.5 5.0 4.0 4.0 *4.38/5*
+PLANT/PILOT
+3 EV charger live reliability + price history 4.5 4.0 4.5 4.5 2.5 4.0
+*4.18/5* PILOT, access-dependent
+4 Care-home capacity/vacancy micro-history 3.0 4.0 4.5 4.5 3.0 4.5 *3.85/5*
+WATCH/PILOT
+5 Livestock auction microstructure 3.5 3.0 4.0 3.5 3.5 3.5 *3.53/5* WEIRD
+BRANCH=E2=80=94TEST 1. UK grid-connection queue change-history =E2=80=94 st=
+rongest seed
+
+*What changes/disappears:* project rows, capacities, connection dates, gate
+status, ownership/naming and queue composition. Gridview reports NESO=E2=80=
+=99s TEC
+register snapshot of 18 Sep 2026 at 2,200 rows / 1,705 active queue
+projects and says the register updates Tuesdays and Fridays. Government
+says transmission demand applications grew 460% in six months to June 2025
+and waits can reach 15 years; Ofgem says demand applications surged from
+41GW to 125GW in under a year, largely data centres. This is not a cosmetic
+dataset: queue state is becoming an economic bottleneck.
+
+*Raw sources:* NESO TEC register / related DNO registers; Ofgem connections
+consultations; planning applications; Companies House; project/developer
+sites; future grid-reform decisions.
+
+*Canonical key:* persistent project identity built from register identifier
+where present + site/geospatial identity + developer/owner + technology +
+connection point. Preserve aliases and temporal ownership.
+
+*Transformation:* turn snapshots into a GRID_PROJECT_EVENT stream:
+entered_queue, capacity_changed, date_moved, gate_changed, owner_changed,
+planning_advanced, planning_failed, connected, disappeared. Derive queue_ag=
+e,
+date_slippage, survival_probability, speculation_score, MW_at_risk,
+constraint_pressure[grid_node], and eventually empirical connection-time
+distributions by technology/region/developer.
+
+*One-year asset:* ~100 twice-weekly snapshots plus project-level event
+history through an unusually important reform period. The transformed event
+history is materially harder to reconstruct than the current register.
+
+*Buyers/decisions:* developers, data-centre site selectors, BESS/renewables
+developers, grid consultants, infrastructure funds, lenders and
+land/property investors deciding where projects can actually connect and
+which nominal queue positions are credible.
+
+*Counterevidence:* Gridview already snapshots/displays the queue and
+incumbents may retain old NESO files. Therefore raw TEC archives alone are
+not a moat. The moat must be cross-source temporal identity +
+planning/company evidence + probabilistic viability/constraint metrics.
+
+*Legal/access:* public official registers are the preferred spine; preserve
+source licensing/provenance per snapshot and avoid relying on third-party
+redistribution rights.
+
+*Smallest experiment:* save every official TEC/DNO snapshot for 30 days;
+entity-resolve changes; test whether we can explain every row delta and
+whether project-level changes are absent or cumbersome in public historical
+access.
+
+*Falsifier:* NESO launches a complete versioned project-history API with
+stable IDs and historical states, or an incumbent cheaply sells the same
+cross-source event graph.
+
+*Evidence graph:* CONFIRMED: queue is huge, changing and economically
+consequential. CONFIRMED: TEC file is updated twice weekly. INFERRED:
+buyers will pay specifically for our transformed history. UNKNOWN: exact
+completeness of retrievable historic snapshots.
+2. UK planning application event/history graph
+
+Commercial evidence is unusually strong. PlanNexus advertises a live
+normalized API across 375+ authorities; PlanningAPI UK advertises 2.4M+
+applications across 400+ councils and a monitoring API/webhooks aimed at
+loan portfolios. That directly validates a paying use case for normalized
+planning-change data. Meanwhile the official Planning Data service exposes
+100+ datasets, but its planning-application dataset currently shows only
+100,627 records, says its collector last ran in Sep 2025, and states the
+data was created by MHCLG pending replacement with authoritative sources.
+Official quarterly statistics are aggregated, not a full project event
+archive.
+
+*What disappears:* validation dates, document/status changes, amendments,
+objections/consultations, decision timing, conditions and council-portal
+state; local portals are fragmented and mutable.
+
+*Transformation:* entity-resolve application =E2=86=92 site =E2=86=92 parce=
+l/address =E2=86=92
+applicant/developer/company =E2=86=92 project type =E2=86=92 grid node. Pre=
+serve every
+status/document delta and derive approval_velocity, decision_latency,
+amendment_count, project_survival, local_supply_pipeline, developer_hit_rat=
+e,
+constraint_events.
+
+*Buyers:* property lenders, developers, brokers, site selectors, insurers,
+local-market intelligence, construction suppliers. Existing monitoring
+products prove that planning changes affect real decisions.
+
+*Counterevidence:* this is already a commercial category;
+PlanNexus/PlanningAPI may have substantial history. We should not build
+another generic planning API. Our wedge is *temporal economic
+transformation* and joins into UKGraph/grid/Companies House.
+
+*Smallest experiment:* choose 3 councils + 100 economically meaningful
+applications; snapshot daily for 30 days; measure event yield, portal
+reproducibility and how many useful transitions are not represented in
+official aggregate history.
+
+*Falsifier:* commercial providers expose cheap complete point-in-time
+application/document history with equivalent entity joins.
+3. EV charger reliability + dynamic-price history
+
+Zapmap says its Search API covers 95% of UK charge points, with real-time
+status for >75%, including availability/in-use/out-of-service, kWh price,
+network and power. DfT=E2=80=99s 1 July 2026 statistics count 121,171 publi=
+c
+chargers; a single operator=E2=80=99s correction removed ~1,270 chargers fr=
+om open
+data in June, demonstrating that even official/open network state is
+mutable.
+
+*Transformation:* charger/connector-level state transitions =E2=86=92 uptim=
+e,
+outage-duration distribution, congestion by hour, realized usable capacity,
+price-change frequency, =C2=A3/available-kW, reliability-adjusted coverage,
+operator/site quality, and local capacity pressure. Join traffic/POIs,
+planning, EV adoption, electricity/grid constraints and operator/company
+identity.
+
+*Buyers:* fleet routing, chargepoint investors/operators, forecourt/site
+investors, local authorities, property/retail location intelligence. Zapmap
+itself sells APIs and industry intelligence, validating commercial demand.
+
+*Counterevidence:* Zapmap is a strong incumbent and likely has deep
+proprietary history. Access to sufficiently broad real-time status may be
+commercial rather than freely redistributable. This makes it a pilot rather
+than immediate full-scale garden.
+
+*Smallest experiment:* identify open CPO/OCPI feeds or permitted API
+sample; track 1,000 chargers at 5=E2=80=9315 minute cadence for 30 days and=
+ test
+whether derived reliability metrics differ materially from static
+availability/quarterly DfT measures.
+
+*Falsifier:* incumbent historical reliability/price series is already
+cheaply purchasable at connector resolution, or licensing prevents
+retention/derived use.
+Evidence / counterevidence
+
+   - *Grid queue:* CONFIRMED =E2=80=94 official policy describes extreme qu=
+eue
+   growth and long waits; Ofgem is actively reforming speculative data-cent=
+re
+   queue entries. Counter: third parties already expose current register st=
+ate.
+   - *Planning:* CONFIRMED =E2=80=94 commercial APIs explicitly sell normal=
+ized
+   live planning monitoring. Counter: category is not greenfield; generic
+   aggregation is commoditized.
+   - *EV charging:* CONFIRMED =E2=80=94 real-time availability and price ex=
+ist and
+   commercial buyers consume them. Counter: Zapmap has 95% coverage and lik=
+ely
+   historical advantage.
+   - *Care homes:* CONFIRMED =E2=80=94 DHSC publishes occupancy/vacancy ser=
+ies and
+   CQC provider data; Aug 2026 occupancy was 86.8% nationally with local
+   variation. INFERRED =E2=80=94 provider-level vacancy snapshots could sup=
+port
+   lender/operator/site intelligence. Counter: published statistics now
+   backfill monthly occupancy to Jan 2023, reducing time moat at aggregate
+   level.
+   - *Livestock auctions:* CONFIRMED =E2=80=94 live auction system is econo=
+mically
+   large: LAA reports >=C2=A33bn 2025 turnover and 10.76m head. Individual =
+marts
+   publish detailed sale reports. INFERRED =E2=80=94 normalized lot/class/l=
+ocation
+   histories could reveal local price/liquidity basis. Counter: reports oft=
+en
+   remain archived, so irreversibility may be only moderate.
+
+Buyer / willingness-to-pay analysis
+
+Strongest direct commercial validation this run: planning monitoring APIs,
+EV charging data APIs, and used-car data feeds. MarketCheck openly prices
+UK listing/history API calls and sells custom daily/weekly/monthly feeds
+over 600k+ listings. This proves businesses pay for normalized ephemeral
+marketplace state=E2=80=94but also *kills used cars as a fresh garden* unle=
+ss we
+discover a novel transformation or neglected submarket. PlanningAPI
+explicitly pitches status monitoring for loan portfolios, an excellent
+example of the buyer-decision test. Zapmap sells live availability data to
+business integrations.
+
+Grid queue has weaker direct price-page evidence but much stronger economic
+constraint evidence: multi-year connection waits and active
+government/Ofgem intervention make queue credibility directly relevant to
+capital allocation.
+Reconstruction test
+
+*Grid queue: PASS, conditional.* Current registers can be saved, but
+complete cross-source project identity and reform-era state transitions are
+not obviously available as a canonical historical product. Start now.
+
+*Planning events: PASS, but competitive.* Council portals mutate and
+official central coverage is incomplete. However commercial aggregators
+exist. Only plant if our transformed temporal graph is differentiated.
+
+*EV charger reliability: PASS on raw ephemerality; CONDITIONAL on
+competitive/access moat.* Minute-level availability is intrinsically
+ephemeral, but incumbents may already own it.
+
+*Care capacity: WEAK PASS.* Provider/current availability may be ephemeral,
+but official aggregate history is increasingly backfilled.
+
+*Livestock microstructure: TEST.* Sale reports may persist, but lot-level
+pre-sale catalogues, withdrawals and bid/clearance dynamics could
+disappear. Need source audit.
+Kill-gates / exclusion registry
+
+   1. *Generic UK used-car listings/history =E2=80=94 REJECT as new forest.=
+*
+   MarketCheck already tracks every UK used-car listing in real time,
+   advertises advert/sales feeds from 600k+ live listings and VRM history;
+   Carapis also normalizes 200+ marketplaces and advertises price history.
+   Buyer demand is proven, whitespace is poor.
+   2. *Raw GB wholesale electricity data =E2=80=94 REJECT as archive-only f=
+orest.*
+   Elexon=E2=80=99s public no-key Insights APIs explicitly allow retrieval =
+by
+   published time, superseded forecasts and archive backfill; many datasets
+   are already deeply historical. Potential derived research remains, but
+   merely snapshotting is not a time moat.
+   3. *Generic official planning aggregates =E2=80=94 REJECT.* Quarterly/li=
+ve
+   tables are already historical and reconstructable. Only application-leve=
+l
+   event state is interesting.
+   4. *Generic care-home registry snapshots =E2=80=94 REJECT alone.* CQC/ma=
+rket
+   providers already refresh the registry; only
+   capacity/fees/availability/ownership transitions joined over time merit
+   further work.
+   5. *Medicine shortage notice mirroring =E2=80=94 WATCH, not plant yet.* =
+Daily
+   trackers already preserve official DHSC/CPE shortage state; need to find=
+ a
+   harder-to-reconstruct pharmacy-level availability/price layer before it
+   clears the transformation gate.
+
+Source-yield ledger
+
+*Very high yield:* official regulator/government material around grid
+connections; commercial API product pages that reveal buyer use cases and
+incumbent coverage.
+*High yield:* official DfT EV infrastructure releases; official planning
+platform docs.
+*Medium:* specialist sector pages (care, livestock) for weird branches.
+*Low/negative:* generic searches for pharmacy/childcare availability; most
+results expose aggregate or already-archived data rather than ephemeral
+microstate.
+Next-hour information-gain queue
+
+   1. Audit official NESO TEC and DNO register historical accessibility:
+   can old snapshots be fetched systematically, and are stable project IDs
+   present?
+   2. Search commercial grid-intelligence vendors to quantify buyer
+   pricing/competitive history products; this is the biggest unknown on
+   candidate #1.
+   3. Inspect 3 council planning portals and compare against
+   PlanNexus/PlanningAPI fields/history to identify *missing temporal
+   events* worth owning.
+   4. Audit open OCPI/CPO feeds and Public Charge Point Regulations
+   data-access rules; determine whether connector-level availability can be
+   retained and transformed legally at low cost.
+   5. Probe livestock pre-sale catalogues vs post-sale reports: identify
+   data that actually disappears (withdrawals, unsold lots, lot metadata)
+   rather than archived prices.
+   6. Explore one non-UK weird branch next run to avoid UKGraph tunnel
+   vision: freight capacity, industrial spare-part inventory, cloud/GPU spo=
+t
+   capacity, laboratory reagent availability, or municipal permits.
+
+Machine-readable state { "run_date":"2026-09-20", "candidates":[
+{"id":"uk-grid-queue-events","score":4.68,"status":"PLANT","evidence":{"que=
+ue_change":"CONFIRMED","buyer_payment":"INFERRED","historic_reconstructabil=
+ity":"UNKNOWN"},"sources":["
+https://www.gov.uk/government/news/government-to-tackle-speculative-demand-=
+grid-connection-requests
+","
+https://www.ofgem.gov.uk/press-release/ofgem-acts-free-grid-capacity-tackli=
+ng-speculative-data-centre-projects"],"next_probe":"audit
+official snapshot history and commercial competitors"},
+{"id":"uk-planning-event-graph","score":4.38,"status":"PILOT","evidence":{"=
+live_fragmentation":"CONFIRMED","commercial_monitoring":"CONFIRMED","whites=
+pace":"INFERRED"},"sources":["
+https://www.planning.data.gov.uk/docs","https://plannexus.io/","
+https://planningapi.uk/"],"next_probe":"portal-vs-aggregator temporal gap
+test"},
+{"id":"uk-ev-charger-reliability","score":4.18,"status":"PILOT","evidence":=
+{"ephemeral_status":"CONFIRMED","buyer_market":"CONFIRMED","retention_right=
+s":"UNKNOWN"},"sources":["
+https://www.zapmap.com/for-business/products/zapmap-spark/search-api","
+https://www.gov.uk/government/statistics/electric-vehicle-charging-infrastr=
+ucture-statistics-1-july-2026/public-electric-vehicle-charging-infrastructu=
+re-statistics-1-july-2026"],"next_probe":"open-feed/licensing
+audit"}, {"id":"care-capacity-microhistory","score":3.85,"status":"WATCH"},
+{"id":"livestock-auction-microstructure","score":3.53,"status":"TEST"} ],
+"exclusions":[ {"id":"generic-used-cars","reason":"strong incumbent
+live/history products"}, {"id":"raw-gb-electricity","reason":"Elexon
+supports archive/superseded backfill"},
+{"id":"planning-aggregates","reason":"already historical/reconstructable"},
+{"id":"generic-care-registry","reason":"existing CQC history/current market
+layers"}, {"id":"medicine-shortage-notices","reason":"existing daily
+trackers; insufficient transformation"} ] } Primary links
+
+   - GOV.UK grid demand queue reform:
+   https://www.gov.uk/government/news/government-to-tackle-speculative-dema=
+nd-grid-connection-requests
+   - Ofgem data-centre connection reform:
+   https://www.ofgem.gov.uk/press-release/ofgem-acts-free-grid-capacity-tac=
+kling-speculative-data-centre-projects
+   - Planning Data docs: https://www.planning.data.gov.uk/docs
+   - Planning application dataset:
+   https://www.planning.data.gov.uk/dataset/planning-application
+   - DfT EV infrastructure 1 Jul 2026:
+   https://www.gov.uk/government/statistics/electric-vehicle-charging-infra=
+structure-statistics-1-july-2026/public-electric-vehicle-charging-infrastru=
+cture-statistics-1-july-2026
+   - Elexon developer portal: https://developer.data.elexon.co.uk/
+   - DHSC adult social care Aug 2026:
+   https://www.gov.uk/government/statistics/adult-social-care-provider-stat=
+istics-england-quarterly-update-to-august-2026/adult-social-care-provider-s=
+tatistics-england-quarterly-update-to-august-2026
+
+Bottom line: *plant the grid-queue event forest immediately if the next
+audit confirms historical-state whitespace.* It has the best combination of
+irreversible timing, capital-allocation relevance, hard entity joins and
+compatibility with UKGraph. Planning is the next best seed but should be
+treated as a differentiated event/causal graph, not another planning API.
+
+--000000000000c8d85c065be586c8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ephemeral Data Forest Probe =E2=80=94 20 Sep 2026
+
+Executive delta
+<p>First baseline run. The strongest genuinely time-sensitive seed is <stro=
+ng>UK grid-connection queue state</strong>, not generic marketplaces. Secon=
+d is <strong>UK planning-application state transitions joined to grid/infra=
+structure entities</strong>. Third is <strong>live EV-charger availability/=
+price reliability history</strong>. Used-car listings are commercially vali=
+dated but fail the whitespace test because MarketCheck and Carapis already =
+preserve normalized listing/history products. Electricity wholesale data is=
+ rich but Elexon explicitly preserves superseded forecasts/backfill, so raw=
+ archiving has weak irreversibility.</p>
+<p>Forest standard: unique transformation =C3=97 continuous collection =C3=
+=97 time.</p>
+
+Ranked dashboard
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Candidate</th>
+<th>Irrev.</th>
+<th>Buyer</th>
+<th>Transform</th>
+<th>Join</th>
+<th>Feas.</th>
+<th>Durable</th>
+<th>Forest score</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>UK grid queue change-history / project probability</td>
+<td>4.5</td>
+<td>4.5</td>
+<td>5.0</td>
+<td>5.0</td>
+<td>4.5</td>
+<td>4.5</td>
+<td><strong>4.68/5</strong></td>
+<td>PLANT</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Planning application event/history graph</td>
+<td>4.0</td>
+<td>4.5</td>
+<td>4.5</td>
+<td>5.0</td>
+<td>4.0</td>
+<td>4.0</td>
+<td><strong>4.38/5</strong></td>
+<td>PLANT/PILOT</td>
+</tr>
+<tr>
+<td>3</td>
+<td>EV charger live reliability + price history</td>
+<td>4.5</td>
+<td>4.0</td>
+<td>4.5</td>
+<td>4.5</td>
+<td>2.5</td>
+<td>4.0</td>
+<td><strong>4.18/5</strong></td>
+<td>PILOT, access-dependent</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Care-home capacity/vacancy micro-history</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>4.5</td>
+<td>4.5</td>
+<td>3.0</td>
+<td>4.5</td>
+<td><strong>3.85/5</strong></td>
+<td>WATCH/PILOT</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Livestock auction microstructure</td>
+<td>3.5</td>
+<td>3.0</td>
+<td>4.0</td>
+<td>3.5</td>
+<td>3.5</td>
+<td>3.5</td>
+<td><strong>3.53/5</strong></td>
+<td>WEIRD BRANCH=E2=80=94TEST</td>
+</tr>
+</tbody>
+</table>
+
+1. UK grid-connection queue change-history =E2=80=94 strongest seed
+<p><strong>What changes/disappears:</strong> project rows, capacities, conn=
+ection dates, gate status, ownership/naming and queue composition. Gridview=
+ reports NESO=E2=80=99s TEC register snapshot of 18 Sep 2026 at 2,200 rows =
+/ 1,705 active queue projects and says the register updates Tuesdays and Fr=
+idays. Government says transmission demand applications grew 460% in six mo=
+nths to June 2025 and waits can reach 15 years; Ofgem says demand applicati=
+ons surged from 41GW to 125GW in under a year, largely data centres. This i=
+s not a cosmetic dataset: queue state is becoming an economic bottleneck.</=
+p>
+<p><strong>Raw sources:</strong> NESO TEC register / related DNO registers;=
+ Ofgem connections consultations; planning applications; Companies House; p=
+roject/developer sites; future grid-reform decisions.</p>
+<p><strong>Canonical key:</strong> persistent project identity built from r=
+egister identifier where present + site/geospatial identity + developer/own=
+er + technology + connection point. Preserve aliases and temporal ownership=
+.</p>
+<p><strong>Transformation:</strong> turn snapshots into a <code>GRID_PROJEC=
+T_EVENT</code> stream: entered_queue, capacity_changed, date_moved, gate_ch=
+anged, owner_changed, planning_advanced, planning_failed, connected, disapp=
+eared. Derive <code>queue_age</code>, <code>date_slippage</code>, <code>sur=
+vival_probability</code>, <code>speculation_score</code>, <code>MW_at_risk<=
+/code>, <code>constraint_pressure[grid_node]</code>, and eventually empiric=
+al connection-time distributions by technology/region/developer.</p>
+<p><strong>One-year asset:</strong> ~100 twice-weekly snapshots plus projec=
+t-level event history through an unusually important reform period. The tra=
+nsformed event history is materially harder to reconstruct than the current=
+ register.</p>
+<p><strong>Buyers/decisions:</strong> developers, data-centre site selector=
+s, BESS/renewables developers, grid consultants, infrastructure funds, lend=
+ers and land/property investors deciding where projects can actually connec=
+t and which nominal queue positions are credible.</p>
+<p><strong>Counterevidence:</strong> Gridview already snapshots/displays th=
+e queue and incumbents may retain old NESO files. Therefore raw TEC archive=
+s alone are not a moat. The moat must be cross-source temporal identity + p=
+lanning/company evidence + probabilistic viability/constraint metrics.</p>
+<p><strong>Legal/access:</strong> public official registers are the preferr=
+ed spine; preserve source licensing/provenance per snapshot and avoid relyi=
+ng on third-party redistribution rights.</p>
+<p><strong>Smallest experiment:</strong> save every official TEC/DNO snapsh=
+ot for 30 days; entity-resolve changes; test whether we can explain every r=
+ow delta and whether project-level changes are absent or cumbersome in publ=
+ic historical access.</p>
+<p><strong>Falsifier:</strong> NESO launches a complete versioned project-h=
+istory API with stable IDs and historical states, or an incumbent cheaply s=
+ells the same cross-source event graph.</p>
+<p><strong>Evidence graph:</strong> CONFIRMED: queue is huge, changing and =
+economically consequential. CONFIRMED: TEC file is updated twice weekly. IN=
+FERRED: buyers will pay specifically for our transformed history. UNKNOWN: =
+exact completeness of retrievable historic snapshots.</p>
+
+2. UK planning application event/history graph
+<p>Commercial evidence is unusually strong. PlanNexus advertises a live nor=
+malized API across 375+ authorities; PlanningAPI UK advertises 2.4M+ applic=
+ations across 400+ councils and a monitoring API/webhooks aimed at loan por=
+tfolios. That directly validates a paying use case for normalized planning-=
+change data. Meanwhile the official Planning Data service exposes 100+ data=
+sets, but its planning-application dataset currently shows only 100,627 rec=
+ords, says its collector last ran in Sep 2025, and states the data was crea=
+ted by MHCLG pending replacement with authoritative sources. Official quart=
+erly statistics are aggregated, not a full project event archive.</p>
+<p><strong>What disappears:</strong> validation dates, document/status chan=
+ges, amendments, objections/consultations, decision timing, conditions and =
+council-portal state; local portals are fragmented and mutable.</p>
+<p><strong>Transformation:</strong> entity-resolve application =E2=86=92 si=
+te =E2=86=92 parcel/address =E2=86=92 applicant/developer/company =E2=86=92=
+ project type =E2=86=92 grid node. Preserve every status/document delta and=
+ derive <code>approval_velocity</code>, <code>decision_latency</code>, <cod=
+e>amendment_count</code>, <code>project_survival</code>, <code>local_supply=
+_pipeline</code>, <code>developer_hit_rate</code>, <code>constraint_events<=
+/code>.</p>
+<p><strong>Buyers:</strong> property lenders, developers, brokers, site sel=
+ectors, insurers, local-market intelligence, construction suppliers. Existi=
+ng monitoring products prove that planning changes affect real decisions.</=
+p>
+<p><strong>Counterevidence:</strong> this is already a commercial category;=
+ PlanNexus/PlanningAPI may have substantial history. We should not build an=
+other generic planning API. Our wedge is <em>temporal economic transformati=
+on</em> and joins into UKGraph/grid/Companies House.</p>
+<p><strong>Smallest experiment:</strong> choose 3 councils + 100 economical=
+ly meaningful applications; snapshot daily for 30 days; measure event yield=
+, portal reproducibility and how many useful transitions are not represente=
+d in official aggregate history.</p>
+<p><strong>Falsifier:</strong> commercial providers expose cheap complete p=
+oint-in-time application/document history with equivalent entity joins.</p>
+
+3. EV charger reliability + dynamic-price history
+<p>Zapmap says its Search API covers 95% of UK charge points, with real-tim=
+e status for &gt;75%, including availability/in-use/out-of-service, kWh pri=
+ce, network and power. DfT=E2=80=99s 1 July 2026 statistics count 121,171 p=
+ublic chargers; a single operator=E2=80=99s correction removed ~1,270 charg=
+ers from open data in June, demonstrating that even official/open network s=
+tate is mutable.</p>
+<p><strong>Transformation:</strong> charger/connector-level state transitio=
+ns =E2=86=92 uptime, outage-duration distribution, congestion by hour, real=
+ized usable capacity, price-change frequency, <code>=C2=A3/available-kW</co=
+de>, reliability-adjusted coverage, operator/site quality, and local capaci=
+ty pressure. Join traffic/POIs, planning, EV adoption, electricity/grid con=
+straints and operator/company identity.</p>
+<p><strong>Buyers:</strong> fleet routing, chargepoint investors/operators,=
+ forecourt/site investors, local authorities, property/retail location inte=
+lligence. Zapmap itself sells APIs and industry intelligence, validating co=
+mmercial demand.</p>
+<p><strong>Counterevidence:</strong> Zapmap is a strong incumbent and likel=
+y has deep proprietary history. Access to sufficiently broad real-time stat=
+us may be commercial rather than freely redistributable. This makes it a pi=
+lot rather than immediate full-scale garden.</p>
+<p><strong>Smallest experiment:</strong> identify open CPO/OCPI feeds or pe=
+rmitted API sample; track 1,000 chargers at 5=E2=80=9315 minute cadence for=
+ 30 days and test whether derived reliability metrics differ materially fro=
+m static availability/quarterly DfT measures.</p>
+<p><strong>Falsifier:</strong> incumbent historical reliability/price serie=
+s is already cheaply purchasable at connector resolution, or licensing prev=
+ents retention/derived use.</p>
+
+Evidence / counterevidence
+<ul>
+<li><strong>Grid queue:</strong> CONFIRMED =E2=80=94 official policy descri=
+bes extreme queue growth and long waits; Ofgem is actively reforming specul=
+ative data-centre queue entries. Counter: third parties already expose curr=
+ent register state.</li>
+<li><strong>Planning:</strong> CONFIRMED =E2=80=94 commercial APIs explicit=
+ly sell normalized live planning monitoring. Counter: category is not green=
+field; generic aggregation is commoditized.</li>
+<li><strong>EV charging:</strong> CONFIRMED =E2=80=94 real-time availabilit=
+y and price exist and commercial buyers consume them. Counter: Zapmap has 9=
+5% coverage and likely historical advantage.</li>
+<li><strong>Care homes:</strong> CONFIRMED =E2=80=94 DHSC publishes occupan=
+cy/vacancy series and CQC provider data; Aug 2026 occupancy was 86.8% natio=
+nally with local variation. INFERRED =E2=80=94 provider-level vacancy snaps=
+hots could support lender/operator/site intelligence. Counter: published st=
+atistics now backfill monthly occupancy to Jan 2023, reducing time moat at =
+aggregate level.</li>
+<li><strong>Livestock auctions:</strong> CONFIRMED =E2=80=94 live auction s=
+ystem is economically large: LAA reports &gt;=C2=A33bn 2025 turnover and 10=
+.76m head. Individual marts publish detailed sale reports. INFERRED =E2=80=
+=94 normalized lot/class/location histories could reveal local price/liquid=
+ity basis. Counter: reports often remain archived, so irreversibility may b=
+e only moderate.</li>
+</ul>
+
+Buyer / willingness-to-pay analysis
+<p>Strongest direct commercial validation this run: planning monitoring API=
+s, EV charging data APIs, and used-car data feeds. MarketCheck openly price=
+s UK listing/history API calls and sells custom daily/weekly/monthly feeds =
+over 600k+ listings. This proves businesses pay for normalized ephemeral ma=
+rketplace state=E2=80=94but also <strong>kills used cars as a fresh garden<=
+/strong> unless we discover a novel transformation or neglected submarket. =
+PlanningAPI explicitly pitches status monitoring for loan portfolios, an ex=
+cellent example of the buyer-decision test. Zapmap sells live availability =
+data to business integrations.</p>
+<p>Grid queue has weaker direct price-page evidence but much stronger econo=
+mic constraint evidence: multi-year connection waits and active government/=
+Ofgem intervention make queue credibility directly relevant to capital allo=
+cation.</p>
+
+Reconstruction test
+<p><strong>Grid queue: PASS, conditional.</strong> Current registers can be=
+ saved, but complete cross-source project identity and reform-era state tra=
+nsitions are not obviously available as a canonical historical product. Sta=
+rt now.</p>
+<p><strong>Planning events: PASS, but competitive.</strong> Council portals=
+ mutate and official central coverage is incomplete. However commercial agg=
+regators exist. Only plant if our transformed temporal graph is differentia=
+ted.</p>
+<p><strong>EV charger reliability: PASS on raw ephemerality; CONDITIONAL on=
+ competitive/access moat.</strong> Minute-level availability is intrinsical=
+ly ephemeral, but incumbents may already own it.</p>
+<p><strong>Care capacity: WEAK PASS.</strong> Provider/current availability=
+ may be ephemeral, but official aggregate history is increasingly backfille=
+d.</p>
+<p><strong>Livestock microstructure: TEST.</strong> Sale reports may persis=
+t, but lot-level pre-sale catalogues, withdrawals and bid/clearance dynamic=
+s could disappear. Need source audit.</p>
+
+Kill-gates / exclusion registry
+<ol>
+<li><strong>Generic UK used-car listings/history =E2=80=94 REJECT as new fo=
+rest.</strong> MarketCheck already tracks every UK used-car listing in real=
+ time, advertises advert/sales feeds from 600k+ live listings and VRM histo=
+ry; Carapis also normalizes 200+ marketplaces and advertises price history.=
+ Buyer demand is proven, whitespace is poor.</li>
+<li><strong>Raw GB wholesale electricity data =E2=80=94 REJECT as archive-o=
+nly forest.</strong> Elexon=E2=80=99s public no-key Insights APIs explicitl=
+y allow retrieval by published time, superseded forecasts and archive backf=
+ill; many datasets are already deeply historical. Potential derived researc=
+h remains, but merely snapshotting is not a time moat.</li>
+<li><strong>Generic official planning aggregates =E2=80=94 REJECT.</strong>=
+ Quarterly/live tables are already historical and reconstructable. Only app=
+lication-level event state is interesting.</li>
+<li><strong>Generic care-home registry snapshots =E2=80=94 REJECT alone.</s=
+trong> CQC/market providers already refresh the registry; only capacity/fee=
+s/availability/ownership transitions joined over time merit further work.</=
+li>
+<li><strong>Medicine shortage notice mirroring =E2=80=94 WATCH, not plant y=
+et.</strong> Daily trackers already preserve official DHSC/CPE shortage sta=
+te; need to find a harder-to-reconstruct pharmacy-level availability/price =
+layer before it clears the transformation gate.</li>
+</ol>
+
+Source-yield ledger
+<p><strong>Very high yield:</strong> official regulator/government material=
+ around grid connections; commercial API product pages that reveal buyer us=
+e cases and incumbent coverage.<br>
+<strong>High yield:</strong> official DfT EV infrastructure releases; offic=
+ial planning platform docs.<br>
+<strong>Medium:</strong> specialist sector pages (care, livestock) for weir=
+d branches.<br>
+<strong>Low/negative:</strong> generic searches for pharmacy/childcare avai=
+lability; most results expose aggregate or already-archived data rather tha=
+n ephemeral microstate.</p>
+
+Next-hour information-gain queue
+<ol>
+<li>Audit official NESO TEC and DNO register historical accessibility: can =
+old snapshots be fetched systematically, and are stable project IDs present=
+?</li>
+<li>Search commercial grid-intelligence vendors to quantify buyer pricing/c=
+ompetitive history products; this is the biggest unknown on candidate #1.</=
+li>
+<li>Inspect 3 council planning portals and compare against PlanNexus/Planni=
+ngAPI fields/history to identify <em>missing temporal events</em> worth own=
+ing.</li>
+<li>Audit open OCPI/CPO feeds and Public Charge Point Regulations data-acce=
+ss rules; determine whether connector-level availability can be retained an=
+d transformed legally at low cost.</li>
+<li>Probe livestock pre-sale catalogues vs post-sale reports: identify data=
+ that actually disappears (withdrawals, unsold lots, lot metadata) rather t=
+han archived prices.</li>
+<li>Explore one non-UK weird branch next run to avoid UKGraph tunnel vision=
+: freight capacity, industrial spare-part inventory, cloud/GPU spot capacit=
+y, laboratory reagent availability, or municipal permits.</li>
+</ol>
+
+Machine-readable state
+
+<code>{
+  &quot;run_date&quot;:&quot;2026-09-20&quot;,
+  &quot;candidates&quot;:[
+    {&quot;id&quot;:&quot;uk-grid-queue-events&quot;,&quot;score&quot;:4.68=
+,&quot;status&quot;:&quot;PLANT&quot;,&quot;evidence&quot;:{&quot;queue_cha=
+nge&quot;:&quot;CONFIRMED&quot;,&quot;buyer_payment&quot;:&quot;INFERRED&qu=
+ot;,&quot;historic_reconstructability&quot;:&quot;UNKNOWN&quot;},&quot;sour=
+ces&quot;:[&quot;<a href=3D"https://www.gov.uk/government/news/government-t=
+o-tackle-speculative-demand-grid-connection-requests">https://www.gov.uk/go=
+vernment/news/government-to-tackle-speculative-demand-grid-connection-reque=
+sts</a>&quot;,&quot;<a href=3D"https://www.ofgem.gov.uk/press-release/ofgem=
+-acts-free-grid-capacity-tackling-speculative-data-centre-projects">https:/=
+/www.ofgem.gov.uk/press-release/ofgem-acts-free-grid-capacity-tackling-spec=
+ulative-data-centre-projects</a>&quot;],&quot;next_probe&quot;:&quot;audit =
+official snapshot history and commercial competitors&quot;},
+    {&quot;id&quot;:&quot;uk-planning-event-graph&quot;,&quot;score&quot;:4=
+.38,&quot;status&quot;:&quot;PILOT&quot;,&quot;evidence&quot;:{&quot;live_f=
+ragmentation&quot;:&quot;CONFIRMED&quot;,&quot;commercial_monitoring&quot;:=
+&quot;CONFIRMED&quot;,&quot;whitespace&quot;:&quot;INFERRED&quot;},&quot;so=
+urces&quot;:[&quot;<a href=3D"https://www.planning.data.gov.uk/docs">https:=
+//www.planning.data.gov.uk/docs</a>&quot;,&quot;<a href=3D"https://plannexu=
+s.io/">https://plannexus.io/</a>&quot;,&quot;<a href=3D"https://planningapi=
+.uk/">https://planningapi.uk/</a>&quot;],&quot;next_probe&quot;:&quot;porta=
+l-vs-aggregator temporal gap test&quot;},
+    {&quot;id&quot;:&quot;uk-ev-charger-reliability&quot;,&quot;score&quot;=
+:4.18,&quot;status&quot;:&quot;PILOT&quot;,&quot;evidence&quot;:{&quot;ephe=
+meral_status&quot;:&quot;CONFIRMED&quot;,&quot;buyer_market&quot;:&quot;CON=
+FIRMED&quot;,&quot;retention_rights&quot;:&quot;UNKNOWN&quot;},&quot;source=
+s&quot;:[&quot;<a href=3D"https://www.zapmap.com/for-business/products/zapm=
+ap-spark/search-api">https://www.zapmap.com/for-business/products/zapmap-sp=
+ark/search-api</a>&quot;,&quot;<a href=3D"https://www.gov.uk/government/sta=
+tistics/electric-vehicle-charging-infrastructure-statistics-1-july-2026/pub=
+lic-electric-vehicle-charging-infrastructure-statistics-1-july-2026">https:=
+//www.gov.uk/government/statistics/electric-vehicle-charging-infrastructure=
+-statistics-1-july-2026/public-electric-vehicle-charging-infrastructure-sta=
+tistics-1-july-2026</a>&quot;],&quot;next_probe&quot;:&quot;open-feed/licen=
+sing audit&quot;},
+    {&quot;id&quot;:&quot;care-capacity-microhistory&quot;,&quot;score&quot=
+;:3.85,&quot;status&quot;:&quot;WATCH&quot;},
+    {&quot;id&quot;:&quot;livestock-auction-microstructure&quot;,&quot;scor=
+e&quot;:3.53,&quot;status&quot;:&quot;TEST&quot;}
+  ],
+  &quot;exclusions&quot;:[
+    {&quot;id&quot;:&quot;generic-used-cars&quot;,&quot;reason&quot;:&quot;=
+strong incumbent live/history products&quot;},
+    {&quot;id&quot;:&quot;raw-gb-electricity&quot;,&quot;reason&quot;:&quot=
+;Elexon supports archive/superseded backfill&quot;},
+    {&quot;id&quot;:&quot;planning-aggregates&quot;,&quot;reason&quot;:&quo=
+t;already historical/reconstructable&quot;},
+    {&quot;id&quot;:&quot;generic-care-registry&quot;,&quot;reason&quot;:&q=
+uot;existing CQC history/current market layers&quot;},
+    {&quot;id&quot;:&quot;medicine-shortage-notices&quot;,&quot;reason&quot=
+;:&quot;existing daily trackers; insufficient transformation&quot;}
+  ]
+}
+</code>
+
+Primary links
+<ul>
+<li><a href=3D"http://GOV.UK">GOV.UK</a> grid demand queue reform: <a href=
+=3D"https://www.gov.uk/government/news/government-to-tackle-speculative-dem=
+and-grid-connection-requests">https://www.gov.uk/government/news/government=
+-to-tackle-speculative-demand-grid-connection-requests</a></li>
+<li>Ofgem data-centre connection reform: <a href=3D"https://www.ofgem.gov.u=
+k/press-release/ofgem-acts-free-grid-capacity-tackling-speculative-data-cen=
+tre-projects">https://www.ofgem.gov.uk/press-release/ofgem-acts-free-grid-c=
+apacity-tackling-speculative-data-centre-projects</a></li>
+<li>Planning Data docs: <a href=3D"https://www.planning.data.gov.uk/docs">h=
+ttps://www.planning.data.gov.uk/docs</a></li>
+<li>Planning application dataset: <a href=3D"https://www.planning.data.gov.=
+uk/dataset/planning-application">https://www.planning.data.gov.uk/dataset/p=
+lanning-application</a></li>
+<li>DfT EV infrastructure 1 Jul 2026: <a href=3D"https://www.gov.uk/governm=
+ent/statistics/electric-vehicle-charging-infrastructure-statistics-1-july-2=
+026/public-electric-vehicle-charging-infrastructure-statistics-1-july-2026"=
+>https://www.gov.uk/government/statistics/electric-vehicle-charging-infrast=
+ructure-statistics-1-july-2026/public-electric-vehicle-charging-infrastruct=
+ure-statistics-1-july-2026</a></li>
+<li>Elexon developer portal: <a href=3D"https://developer.data.elexon.co.uk=
+/">https://developer.data.elexon.co.uk/</a></li>
+<li>DHSC adult social care Aug 2026: <a href=3D"https://www.gov.uk/governme=
+nt/statistics/adult-social-care-provider-statistics-england-quarterly-updat=
+e-to-august-2026/adult-social-care-provider-statistics-england-quarterly-up=
+date-to-august-2026">https://www.gov.uk/government/statistics/adult-social-=
+care-provider-statistics-england-quarterly-update-to-august-2026/adult-soci=
+al-care-provider-statistics-england-quarterly-update-to-august-2026</a></li=
+>
+</ul>
+<p>Bottom line: <strong>plant the grid-queue event forest immediately if th=
+e next audit confirms historical-state whitespace.</strong> It has the best=
+ combination of irreversible timing, capital-allocation relevance, hard ent=
+ity joins and compatibility with UKGraph. Planning is the next best seed bu=
+t should be treated as a differentiated event/causal graph, not another pla=
+nning API.</p>
+
+--000000000000c8d85c065be586c8--

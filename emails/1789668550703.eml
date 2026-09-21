@@ -1,0 +1,1002 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 4O0VJtSq1oaw
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 18:09:10 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=FCaDjkVUmjmCLkvhljNo+EJ5O9UbRRezODWoP6zhtLTCuxh9gTsc1TQ/ClkgPiqp+7ZsbtsZQ
+	+X51hVJs2fh88CMF1GiOPC72EmGugoxPtQdSRjg6hUC7WhoNCi4pLw5h9LHKZP5i8zlAakiPdhl
+	SgKkh7NAKFcJZWFUDcsc+xfaTQ4TGzAWiouODeZh68GpBlzsp5230BpLHgzEw2H4iafGlDv5+j0
+	6N7U9Tyl6hCe5QQ2EqNub1J9k+gSO3ebvS/Mxws7H5ike9x+KQ9Lbz44ID6UNVb0+hK0pc4kgSB
+	sPIlxW5P7F9MMArLxSBpqSQLabJFPFWo8IGPbhCHj1ww==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789668550; x=1790273350; bh=v8xVvUJn
+	KgxJ5UqW1ZNIbzQeZyaNcxauvJsbyrNpuMA=; b=YDI5JgM8WnFALScQYp440ifs5fKVCZ10Q0N
+	81Wf8tZBiIeYLnBw5ce2l/Tsa8WBDnEyJzoZCgPfbLaRcP+i9k6Xul+srsVauSuCL93cHaa5nfO
+	bD5juQtUnqzR+GhMklg9FTMY+eupClA9ovhXESt4egoMz6xbJvmVHRCaA6BllkUIaGPHDOQzv14
+	oVB5o7XjvlUSsRJM1YBTxKn9MVtaqcQb0zHUoPhufTA1d6gdH62tAF8YlErotsktHSYIEdfCnz/
+	k/olgyd7AlNpmyLUpS/6JgSg4y8aLQ02YcXvZNiWRWIQp4kXBxIaW3MY71Gr3GiOZEcr16hjXql
+	VRx+UbQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Bc5fG3zj;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Bc5fG3zj;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43ac8d1eso8059357b3.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 11:09:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789668550; cv=none;
+        d=google.com; s=arc-20260327;
+        b=nubs8B/apf0zi3KnnVM8SescXUyaXEU54zsg2+21VkHoo3OghgW4pwXdZnikJ0mIjX
+         izJJUlYmy4dxTpWLegvJFt/Mp0xfM9574sS4s99vTD8Ggy/vB/F6YL5KP7S1Hwb7LR61
+         yHJJkgsUQ/sCBMsF8rR2PR2R9HjvgkPOYpZPYUUJ2SNQd3Ztaml0nofzkiKq37AS3ssg
+         75oLNPQQKvmqWej4axAwiHLXA6bMyZrCJwH39g5aMPQzs5uDx9hQYMvb6sPryUR2V4H0
+         2y4fleBtQWKFosSGGpevRHLBJFJPlUfsgv0EiMn63a2S8/ggrvytHvrDcoNZPm1QdWYL
+         wOlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=v8xVvUJnKgxJ5UqW1ZNIbzQeZyaNcxauvJsbyrNpuMA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=O7/5VS8nyeyIe2vqgRyijnl0q66j4Eqz+k7+D+KCvt/AvOWFMBSrtzplkhh7Tq2O8G
+         aRbe+yqOvmkKk3lrQm/o2/7FNAKrNI7mqO5WX9sZ3XMLFXfTQrcnTZ9tvGaMkjkGc0jD
+         iJqTyJRZZQqBtoNfPznvpOLc7ox2gn3zY15umUwqpP0hOi44AxxN640xUapPz4uw3wlN
+         CXWBdry9VJHZBV5ToXqA6Tk0tgA31tRNgNDY6rXOlB0lQ50Aysw34zk8mj0VMaCFKmmN
+         6XA5Vss9uFxy3ByBW8SJVCH+rq3VcqOSY26JMexI7PSTmjMbQxjtC3IjAzkXARBy+4X6
+         qSOA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789668550; x=1790273350; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=v8xVvUJnKgxJ5UqW1ZNIbzQeZyaNcxauvJsbyrNpuMA=;
+        b=Bc5fG3zjLzDEnUflJCtm2RbkgzsNmLkTK3QrRYBBt6DfE4JKl7oncCCcjjkvR6P8KU
+         Rwib/0BHo/M/rB7VbyKieF4elJ6z4YQsmzlYKRb+cAXNvZMHcCqIcdBliwUboNQg0dl+
+         qrTbtOfCo9i+/GwuhbOpobDeHCy2zhrjQjyqEFO5m7pOOgEvrhDTzTu/e1PBdY4XICyK
+         QyzTPHDLriEbhT5yWSOlAF+tN15Vkq74JPuKbIKAX20tBLPGUb8+TCH+oSRSmGBBJEpw
+         kemJ/hw66L8+ePxhNNCs5jClcpi+NuZyEJITiLuElmarerpxSrkHzsQcAvRrJDT6vOGb
+         JzTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789668550; x=1790273350;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=v8xVvUJnKgxJ5UqW1ZNIbzQeZyaNcxauvJsbyrNpuMA=;
+        b=2Kfr6mb3hGPSQNTIeLAN6Pf8x8EjSi4VG0HBJ+Phbqz39fYBHvZXCb2q/yvULLBrUU
+         xMGH949VvoIGvDrwoB4TV3pcF07HQsy4ukgdaYQrLKr54T8YGy6b7rlhiAzUnbFGy4kM
+         LOgEXKtVTSrKuiXt1bNuBUBI9SY/O3ORzmjWw0AFDC6arNnuvNy6Pa8KIL+SmSGYO9mS
+         fPmg0q05AfZjk0PCkNIKRmFf3T0fflmt02VDHAISrx2ACqs24zzaMXqQJKAn34MWfNo0
+         Gf6JTcobisqtUSauNhG9RmoPcMNDhsWjtaXZ/7kkRHV6CRkpeszy4747HjuoFKDRrZyd
+         p+Qg==
+X-Gm-Message-State: AFuF++m6l/mpa8f78+XCiCjPXm+6+fyxAYGEQ0O5g+LaG4/1Dk/zdMwG
+	R7IYW+iQG74e/UmTN7QrX5/kUDxmqKadb1T47pIyU4BWQqFCr8SWq9WksRiyS5T5Am+XX6Vo6yv
+	fK5y6ome0ybioRR4KhEqyN1pDeZyGwezuGA==
+X-Gm-Gg: AYBFou37sc69FMg3etL+O+5ZrHR7IKwmfXs8W9n0oHdoq618qKGk5rrkpdHcLfndNT8
+	4XQpTplbawBqt3c1Oc/GvTSPm7lrgnHRlFu5jIT6+JvPiLgKZMtV7DCOC33vPMWds1iFkTKcJlp
+	hYexDC04YRAqU9mcSDQgbYCls/fZP0HyVbIz861srzEvoJJMdWpoPiPTpynuUY3y6ffo7oV6sgu
+	dh+qwzt9xnKoIuBw5vt/nNfpsMb34+uHuir0XcJr6A9BGInuCAuMYk7ON2DLBpNPKjk3f09ZuM7
+	6DOgsl8PUhBTA7FT/3Acn+z+Jg1UU1ufeJmo/MI9kb3r58KFMr0X0CHOvZeiX3ku09qto26cOGT
+	1bDKUJcyO680b5V3onV8Rs73zQlRxTaSkH3ypkclVOo0exM3nttUxsWvL2j50MhBnrX5xxm7w
+X-Received: by 2002:a05:690c:a60f:b0:887:f4fc:ee35 with SMTP id
+ 00721157ae682-89221bc995bmr18459687b3.19.1789668549505; Thu, 17 Sep 2026
+ 11:09:09 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 03:09:09 +0900
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 03:09:09 +0900
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 03:09:09 +0900
+X-Gm-Features: AcwNN1XrRWfJl4WEPrYBC2_fI55RiyK-uMcqa6keJYFNi38OHH9kqkBnddoxUW4
+Message-ID: <CAPdrGekb7827yFfSGhVwDK8bwO-yBDgLB-AjN8_Li3=-v1CJbQ@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_build_5=2F5_=E2=80=94_exact_implementation_order=2C_MCP_?=
+	=?UTF-8?Q?surface=2C_acceptance_gates?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000028b7a0065bb1ae79"
+
+--00000000000028b7a0065bb1ae79
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Execute in this order. Do not jump ahead to UI/branding/extra providers
+until each gate passes.
+
+   1. REPO BOOTSTRAP
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+If prx0r/pmail does not exist and gh is authenticated with repo-create
+permission:
+gh repo create prx0r/pmail --public --description "Tor-first, XMR-funded
+communications for pseudonymous agents" git clone
+https://github.com/prx0r/pmail.git cd pmail
+
+If repo creation is unavailable, create local git repo and stop before
+remote push; do not substitute another repo name.
+
+Use a clean main branch. Add AGENTS.md stating the constitution from emails
+1-4.
+
+   1. PHASE A =E2=80=94 PRIVACY TYPES + POLICY ENGINE
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Implement before network code:
+
+   - PrivacyClass
+   - IdentitySurface
+   - PrivacyPolicy
+   - deterministic privacy-class composition
+   - forbidden-dependency checks
+   - source/evidence references
+
+Tests:
+
+   - ANON_CORE + ANON_CORE remains ANON_CORE
+   - introducing pseudonymous external bridge degrades exactly once
+   - introducing legal-ID dependency becomes IDENTITY_BRIDGED
+   - strict ANON_CORE policy rejects identity bridge
+   - no route can improve its privacy classification by adding dependencies
+
+
+   1. PHASE B =E2=80=94 ACCOUNTLESS SESSION + CAPABILITY
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Implement:
+createSession(): { session_id, operator_public_key?, recovery_capability?,
+state: "UNFUNDED" }
+
+Do not require a username/password/email/phone.
+
+Use cryptographically random opaque capabilities. Persist only hashes where
+bearer secret recovery is unnecessary.
+
+Add lifecycle:
+UNFUNDED -> FUNDED -> ACTIVE -> EXHAUSTED/REVOKED
+
+   1. PHASE C =E2=80=94 XMR PAYMENT VERTICAL
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+Integrate MoneroPay / wallet RPC as sidecar.
+
+MVP proof:
+
+   1. create anonymous session
+   2. issue unique XMR invoice
+   3. pay test invoice
+   4. observe confirmation
+   5. atomically mint capability credits exactly once
+   6. QP proves xmr_payment_received
+   7. Obsigna-compatible receipt includes QP extension
+
+Critical tests:
+
+   - duplicate callback cannot double-credit
+   - partial payment does not become paid
+   - wrong invoice cannot fund another session
+   - overpayment deterministic handling
+   - expiry deterministic
+   - wallet/service restart does not lose entitlement state
+   - no private spend key enters app logs or agent context
+
+
+   1. PHASE D =E2=80=94 SIMPLEX VERTICAL
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+
+Run SimpleX CLI/service locally, ideally behind Tor.
+
+Implement SimplexAdapter:
+
+   - create/revoke PMail-facing contact address
+   - inbound message event
+   - outbound message
+   - normalized message commitment
+
+MVP proof:
+
+   - fresh PMail session gets a SimpleX contact endpoint
+   - independent SimpleX client connects
+   - send random nonce inbound
+   - PMail sees exact nonce
+   - reply with separate nonce
+   - independent client sees exact reply
+   - QP claims both directions using immutable evidence commitments
+
+The product is already meaningful when phases A-D work:
+no account -> XMR -> capability -> private messaging -> verified receipt.
+
+   1. PHASE E =E2=80=94 TOR SERVICE
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Expose service control/API through an onion service. Onion service is
+canonical ANON_CORE network endpoint. Clearnet/custom domain is optional
+later.
+
+Requirements:
+
+   - do not require clearnet domain for operation
+   - do not log source IP by default
+   - explicit structured log allowlist
+   - no secrets in URLs
+   - CSP/security headers if browser UI exists
+   - Tor/onion reachability ProofSpec
+
+
+   1. PHASE F =E2=80=94 PHONE PROVIDER CONTRACT
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Implement generic provider contract before any provider-specific
+assumptions.
+interface PhoneBridgeProvider { describeIdentitySurface():
+Promise<IdentitySurface>; listProducts(query: PhoneQuery):
+Promise<PhoneProduct[]>; quote(product: PhoneProduct): Promise<Quote>;
+provision(input: ProvisionInput, authority: AuthorityRef):
+Promise<AttemptEvidence>; readback(ref: ProviderResourceRef):
+Promise<ObservationEvidence>; capabilities(ref: ProviderResourceRef):
+Promise<PhoneCapabilities>; renew?(ref: ProviderResourceRef, authority:
+AuthorityRef): Promise<AttemptEvidence>; cancel?(ref: ProviderResourceRef,
+authority: AuthorityRef): Promise<AttemptEvidence>; }
+
+No provider can directly mint QP truth.
+
+   1. PHASE G =E2=80=94 PIKASIM EXPERIMENTAL ADAPTER
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Use their current MCP endpoint, not browser automation.
+
+Implement browse/search first. Capture schemas/fixtures. Then gated
+purchase path.
+
+Do not enable autonomous purchase by default. First live purchase requires
+explicit human bounded authorization and a small budget.
+
+After provision, independently test every advertised capability. Provider
+response alone is not enough.
+
+If full voice+SMS+data with crypto funding and no conventional identity
+actually survives empirical testing, promote the adapter from EXPERIMENTAL
+to VALIDATED with dated evidence.
+
+   1. PHASE H =E2=80=94 SILENT LINK ADAPTER
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+Use documented public API.
+
+Model limited truth accurately:
+
+   - inbound SMS capability
+   - data capability
+   - renewal/lease
+   - no generic outbound SMS or voice claims
+
+This provider is useful specifically because it demonstrates that PMail can
+compose partial bridge capabilities rather than pretending every number is
+equivalent.
+
+   1. PHASE I =E2=80=94 QP PRIVACY PROOFS
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+
+Create frozen ProofSpecs for at least:
+xmr_payment_received.v1 capability_minted.v1 simplex_receives.v1
+simplex_sends.v1 onion_service_reachable.v1 provider_identity_surface.v1
+operation_privacy_class.v1 sms_receives.v1 sms_sends.v1 voice_receives.v1
+voice_sends.v1 runtime_attested.v1 // can remain inactive until TEE phase
+
+Semantics:
+
+   - TRUE only on exact evidence
+   - FALSE only on decisive contradiction
+   - timeout/provider unavailable/parse error =3D> UNKNOWN
+   - marketing docs are metadata, not operational proof
+   - provider execution response !=3D external outcome
+
+
+   1. PHASE J =E2=80=94 RECEIPTS
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Adopt Agent Receipts/Obsigna envelope.
+
+Outer receipt handles:
+
+   - signing
+   - canonicalization
+   - chain
+   - generic action/outcome metadata
+
+QP extension handles:
+
+   - Claim
+   - ContractRoot
+   - Actuality
+   - evidence root
+   - semantic replay
+   - privacy class
+   - identity surface root
+   - external identity dependencies
+
+Do not expose raw PII/provider secrets/phone number unless explicitly
+required. Use commitments where possible.
+
+   1. PHASE K =E2=80=94 SECRETS
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Integrate Agent Vault before adding providers that need long-lived
+credentials.
+
+Hard requirement:
+
+   - agent cannot read actual provider credentials
+   - service allowlist/egress policy
+   - strict unmatched-host deny in production
+   - short-lived agent-vault session token
+   - management plane separate from agent sandbox
+
+
+   1. PHASE L =E2=80=94 TEE / DSTACK
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+
+Once local MVP works, provide a RuntimeAttestor interface and dstack
+implementation.
+
+Attestation must bind:
+
+   - workload/image/compose identity
+   - QP verifier version/bundle
+   - privacy-policy bundle
+   - optional receipt signer workload identity
+
+Do not make running in TEE equivalent to anonymous. It proves execution
+isolation/identity, not network anonymity.
+
+   1. MCP/API SURFACE
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Keep tool surface small:
+
+Read-only:
+pmail.status pmail.privacy.explain pmail.bridges.list pmail.phone.search
+pmail.receipt.get pmail.receipt.verify
+
+State-changing:
+pmail.session.create pmail.xmr.invoice pmail.simplex.address.create
+pmail.simplex.send pmail.phone.provision pmail.phone.renew
+pmail.phone.sms.send
+
+All state-changing provider/money actions must pass exact authority +
+privacy policy + effect gateway.
+
+Do not expose generic http.fetch_with_secret or generic wallet send to
+agents.
+
+   1. STORAGE / LOGGING
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Separate:
+
+   - public receipt data
+   - private evidence
+   - secrets
+   - ephemeral transport metadata
+
+Default data minimization:
+
+   - no raw IP storage unless operationally required
+   - no full phone numbers in public receipts
+   - no wallet seeds
+   - no API tokens
+   - no SimpleX local database in git
+   - no raw telecom payload committed
+
+Add pre-commit secret scan and fixture sanitizer.
+
+   1. FAILURE / RECONCILIATION
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+
+For every consequential external action:
+AUTHORIZE -> RESERVE -> ACT -> READBACK -> SETTLE
+
+If ACT may have happened and readback fails:
+
+   - do NOT retry blindly
+   - mark RECONCILIATION_REQUIRED
+   - preserve attempt evidence
+   - retry readback first
+
+This matters especially for XMR sends and paid phone provisioning.
+
+   1. LIVE PHONE ACCEPTANCE GATE
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+
+A provider is VALIDATED only if live evidence proves:
+
+   - actual onboarding fields
+   - actual payment rail used
+   - actual number/resource type
+   - actual inbound/outbound directions
+   - actual voice behavior
+   - actual expiry/renewal state
+   - actual API/readback behavior
+
+Never infer capabilities from product name.
+
+   1. SECURITY/PRIVACY RED-TEAM TESTS
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Must include:
+
+   - request asks ANON_CORE but resolver attempts IDENTITY_BRIDGED provider
+   =3D> reject
+   - raw provider credential leaks into agent output =3D> test fail
+   - receipt includes email/name/phone unexpectedly =3D> test fail
+   - reused XMR callback =3D> no double credit
+   - reused grant =3D> no second effect
+   - wrong session invoice =3D> no entitlement
+   - bridge readback unavailable =3D> UNKNOWN
+   - spoofed provider success =3D> cannot create TRUE
+   - provider claims no-KYC but live form requests ID =3D> route
+   reclassified/rejected
+   - phone advertises SMS but independent nonce not observed =3D> claim not
+   TRUE
+   - action response timeout after possible spend =3D> reconciliation, not
+   blind retry
+
+
+   1. DOCUMENTATION REQUIRED BEFORE MVP COMPLETE
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Create:
+
+   - THREAT-MODEL.md
+   - PRIVACY-CLASSES.md
+   - docs/providers/pikasim.md
+   - docs/providers/silentlink.md
+   - docs/xmr.md
+   - docs/simplex.md
+   - docs/receipts.md
+   - docs/live-test-procedure.md
+   - UPSTREAM.md with exact repos/licenses/commit pins used
+
+Document claims carefully:
+GOOD: =E2=80=9CPMail does not require legal identity in ANON_CORE mode.=E2=
+=80=9D
+BAD: =E2=80=9CPMail is untraceable.=E2=80=9D
+GOOD: =E2=80=9CThis provider route requested no conventional identity in ou=
+r dated
+test.=E2=80=9D
+BAD: =E2=80=9CThis provider can never identify anyone.=E2=80=9D
+
+   1. DEFINITION OF DONE =E2=80=94 MVP
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+
+Do not call MVP complete until this exact demo passes:
+[ ] fresh user reaches onion endpoint / SimpleX ingress [ ] no
+signup/name/email/phone required [ ] fresh XMR invoice/subaddress created [
+] XMR payment observed and confirmed [ ] entitlement/capability minted once
+[ ] SimpleX private address created [ ] independent inbound nonce proven [
+] outbound reply nonce proven [ ] QP receipt generated in Agent
+Receipts-compatible envelope [ ] privacy class computed from real
+dependency surfaces [ ] no forbidden identity bridge used [ ] receipt
+verifies independently [ ] restart preserves payment/capability truth [ ]
+logs/fixtures contain no secret material
+
+Then phone MVP extension:
+[ ] one crypto-funded/no-conventional-ID provider purchased lawfully [ ]
+exact provider onboarding surface recorded [ ] number/resource persisted [
+] inbound SMS nonce independently proven [ ] outbound SMS proven if
+advertised [ ] voice directions proven if advertised [ ] capability matrix
+matches reality [ ] renewal/expiry behavior recorded [ ] public receipt
+reveals only minimum commitments
+
+   1. PRODUCT DEMO
+   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+The portfolio demo should be one command/script:
+
+npm run demo:anonymous-lifecycle
+
+It prints only:
+
+   - session commitment
+   - XMR invoice
+   - funding state
+   - SimpleX endpoint
+   - proof state
+   - privacy class
+   - receipt hash
+
+Never print wallet secrets/provider secrets/private phone activation
+material.
+
+End goal:
+
+No account. No card. No identity required by PMail. XMR in -> private
+capability -> private communication -> verifiable privacy/outcome receipts.
+
+That is the PMail product boundary. Build this vertical completely before
+adding social automation, conventional email, domains, or a large dashboard=
+.
+
+--00000000000028b7a0065bb1ae79
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Execute in this order. Do not jump ahead to UI/branding/extra providers =
+until each gate passes.</p>
+<ol>
+<li>REPO BOOTSTRAP<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>If <code>prx0r/pmail</code> does not exist and <code>gh</code> is authen=
+ticated with repo-create permission:</p>
+
+<code>gh repo create prx0r/pmail --public --description &quot;Tor-first, XM=
+R-funded communications for pseudonymous agents&quot;
+git clone <a href=3D"https://github.com/prx0r/pmail.git">https://github.com=
+/prx0r/pmail.git</a>
+cd pmail
+</code>
+<p>If repo creation is unavailable, create local git repo and stop before r=
+emote push; do not substitute another repo name.</p>
+<p>Use a clean main branch. Add <code>AGENTS.md</code> stating the constitu=
+tion from emails 1-4.</p>
+<ol>
+<li>PHASE A =E2=80=94 PRIVACY TYPES + POLICY ENGINE<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Implement before network code:</p>
+<ul>
+<li><code>PrivacyClass</code></li>
+<li><code>IdentitySurface</code></li>
+<li><code>PrivacyPolicy</code></li>
+<li>deterministic privacy-class composition</li>
+<li>forbidden-dependency checks</li>
+<li>source/evidence references</li>
+</ul>
+<p>Tests:</p>
+<ul>
+<li>ANON_CORE + ANON_CORE remains ANON_CORE</li>
+<li>introducing pseudonymous external bridge degrades exactly once</li>
+<li>introducing legal-ID dependency becomes IDENTITY_BRIDGED</li>
+<li>strict ANON_CORE policy rejects identity bridge</li>
+<li>no route can improve its privacy classification by adding dependencies<=
+/li>
+</ul>
+<ol>
+<li>PHASE B =E2=80=94 ACCOUNTLESS SESSION + CAPABILITY<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Implement:</p>
+
+<code>createSession(): {
+  session_id,
+  operator_public_key?,
+  recovery_capability?,
+  state: &quot;UNFUNDED&quot;
+}
+</code>
+<p>Do not require a username/password/email/phone.</p>
+<p>Use cryptographically random opaque capabilities. Persist only hashes wh=
+ere bearer secret recovery is unnecessary.</p>
+<p>Add lifecycle:</p>
+
+<code>UNFUNDED -&gt; FUNDED -&gt; ACTIVE -&gt; EXHAUSTED/REVOKED
+</code>
+<ol>
+<li>PHASE C =E2=80=94 XMR PAYMENT VERTICAL<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Integrate MoneroPay / wallet RPC as sidecar.</p>
+<p>MVP proof:</p>
+<ol>
+<li>create anonymous session</li>
+<li>issue unique XMR invoice</li>
+<li>pay test invoice</li>
+<li>observe confirmation</li>
+<li>atomically mint capability credits exactly once</li>
+<li>QP proves <code>xmr_payment_received</code></li>
+<li>Obsigna-compatible receipt includes QP extension</li>
+</ol>
+<p>Critical tests:</p>
+<ul>
+<li>duplicate callback cannot double-credit</li>
+<li>partial payment does not become paid</li>
+<li>wrong invoice cannot fund another session</li>
+<li>overpayment deterministic handling</li>
+<li>expiry deterministic</li>
+<li>wallet/service restart does not lose entitlement state</li>
+<li>no private spend key enters app logs or agent context</li>
+</ul>
+<ol>
+<li>PHASE D =E2=80=94 SIMPLEX VERTICAL<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D</li>
+</ol>
+<p>Run SimpleX CLI/service locally, ideally behind Tor.</p>
+<p>Implement <code>SimplexAdapter</code>:</p>
+<ul>
+<li>create/revoke PMail-facing contact address</li>
+<li>inbound message event</li>
+<li>outbound message</li>
+<li>normalized message commitment</li>
+</ul>
+<p>MVP proof:</p>
+<ul>
+<li>fresh PMail session gets a SimpleX contact endpoint</li>
+<li>independent SimpleX client connects</li>
+<li>send random nonce inbound</li>
+<li>PMail sees exact nonce</li>
+<li>reply with separate nonce</li>
+<li>independent client sees exact reply</li>
+<li>QP claims both directions using immutable evidence commitments</li>
+</ul>
+<p>The product is already meaningful when phases A-D work:<br>
+<code>no account -&gt; XMR -&gt; capability -&gt; private messaging -&gt; v=
+erified receipt</code>.</p>
+<ol>
+<li>PHASE E =E2=80=94 TOR SERVICE<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Expose service control/API through an onion service. Onion service is ca=
+nonical ANON_CORE network endpoint. Clearnet/custom domain is optional late=
+r.</p>
+<p>Requirements:</p>
+<ul>
+<li>do not require clearnet domain for operation</li>
+<li>do not log source IP by default</li>
+<li>explicit structured log allowlist</li>
+<li>no secrets in URLs</li>
+<li>CSP/security headers if browser UI exists</li>
+<li>Tor/onion reachability ProofSpec</li>
+</ul>
+<ol>
+<li>PHASE F =E2=80=94 PHONE PROVIDER CONTRACT<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Implement generic provider contract before any provider-specific assumpt=
+ions.</p>
+
+<code>interface PhoneBridgeProvider {
+  describeIdentitySurface(): Promise&lt;IdentitySurface&gt;;
+  listProducts(query: PhoneQuery): Promise&lt;PhoneProduct[]&gt;;
+  quote(product: PhoneProduct): Promise&lt;Quote&gt;;
+  provision(input: ProvisionInput, authority: AuthorityRef): Promise&lt;Att=
+emptEvidence&gt;;
+  readback(ref: ProviderResourceRef): Promise&lt;ObservationEvidence&gt;;
+  capabilities(ref: ProviderResourceRef): Promise&lt;PhoneCapabilities&gt;;
+  renew?(ref: ProviderResourceRef, authority: AuthorityRef): Promise&lt;Att=
+emptEvidence&gt;;
+  cancel?(ref: ProviderResourceRef, authority: AuthorityRef): Promise&lt;At=
+temptEvidence&gt;;
+}
+</code>
+<p>No provider can directly mint QP truth.</p>
+<ol>
+<li>PHASE G =E2=80=94 PIKASIM EXPERIMENTAL ADAPTER<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Use their current MCP endpoint, not browser automation.</p>
+<p>Implement browse/search first. Capture schemas/fixtures. Then gated purc=
+hase path.</p>
+<p>Do not enable autonomous purchase by default. First live purchase requir=
+es explicit human bounded authorization and a small budget.</p>
+<p>After provision, independently test every advertised capability. Provide=
+r response alone is not enough.</p>
+<p>If full voice+SMS+data with crypto funding and no conventional identity =
+actually survives empirical testing, promote the adapter from <code>EXPERIM=
+ENTAL</code> to <code>VALIDATED</code> with dated evidence.</p>
+<ol>
+<li>PHASE H =E2=80=94 SILENT LINK ADAPTER<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Use documented public API.</p>
+<p>Model limited truth accurately:</p>
+<ul>
+<li>inbound SMS capability</li>
+<li>data capability</li>
+<li>renewal/lease</li>
+<li>no generic outbound SMS or voice claims</li>
+</ul>
+<p>This provider is useful specifically because it demonstrates that PMail =
+can compose partial bridge capabilities rather than pretending every number=
+ is equivalent.</p>
+<ol>
+<li>PHASE I =E2=80=94 QP PRIVACY PROOFS<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Create frozen ProofSpecs for at least:</p>
+
+<code>xmr_payment_received.v1
+capability_minted.v1
+simplex_receives.v1
+simplex_sends.v1
+onion_service_reachable.v1
+provider_identity_surface.v1
+operation_privacy_class.v1
+sms_receives.v1
+sms_sends.v1
+voice_receives.v1
+voice_sends.v1
+runtime_attested.v1   // can remain inactive until TEE phase
+</code>
+<p>Semantics:</p>
+<ul>
+<li>TRUE only on exact evidence</li>
+<li>FALSE only on decisive contradiction</li>
+<li>timeout/provider unavailable/parse error =3D&gt; UNKNOWN</li>
+<li>marketing docs are metadata, not operational proof</li>
+<li>provider execution response !=3D external outcome</li>
+</ul>
+<ol>
+<li>PHASE J =E2=80=94 RECEIPTS<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Adopt Agent Receipts/Obsigna envelope.</p>
+<p>Outer receipt handles:</p>
+<ul>
+<li>signing</li>
+<li>canonicalization</li>
+<li>chain</li>
+<li>generic action/outcome metadata</li>
+</ul>
+<p>QP extension handles:</p>
+<ul>
+<li>Claim</li>
+<li>ContractRoot</li>
+<li>Actuality</li>
+<li>evidence root</li>
+<li>semantic replay</li>
+<li>privacy class</li>
+<li>identity surface root</li>
+<li>external identity dependencies</li>
+</ul>
+<p>Do not expose raw PII/provider secrets/phone number unless explicitly re=
+quired. Use commitments where possible.</p>
+<ol>
+<li>PHASE K =E2=80=94 SECRETS<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Integrate Agent Vault before adding providers that need long-lived crede=
+ntials.</p>
+<p>Hard requirement:</p>
+<ul>
+<li>agent cannot read actual provider credentials</li>
+<li>service allowlist/egress policy</li>
+<li>strict unmatched-host deny in production</li>
+<li>short-lived agent-vault session token</li>
+<li>management plane separate from agent sandbox</li>
+</ul>
+<ol>
+<li>PHASE L =E2=80=94 TEE / DSTACK<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D</li>
+</ol>
+<p>Once local MVP works, provide a <code>RuntimeAttestor</code> interface a=
+nd dstack implementation.</p>
+<p>Attestation must bind:</p>
+<ul>
+<li>workload/image/compose identity</li>
+<li>QP verifier version/bundle</li>
+<li>privacy-policy bundle</li>
+<li>optional receipt signer workload identity</li>
+</ul>
+<p>Do not make <code>running in TEE</code> equivalent to <code>anonymous</c=
+ode>. It proves execution isolation/identity, not network anonymity.</p>
+<ol>
+<li>MCP/API SURFACE<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Keep tool surface small:</p>
+<p>Read-only:</p>
+
+<code>pmail.status
+pmail.privacy.explain
+pmail.bridges.list
+pmail.phone.search
+pmail.receipt.get
+pmail.receipt.verify
+</code>
+<p>State-changing:</p>
+
+<code>pmail.session.create
+pmail.xmr.invoice
+pmail.simplex.address.create
+pmail.simplex.send
+pmail.phone.provision
+pmail.phone.renew
+pmail.phone.sms.send
+</code>
+<p>All state-changing provider/money actions must pass exact authority + pr=
+ivacy policy + effect gateway.</p>
+<p>Do not expose generic <code>http.fetch_with_secret</code> or generic wal=
+let send to agents.</p>
+<ol>
+<li>STORAGE / LOGGING<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Separate:</p>
+<ul>
+<li>public receipt data</li>
+<li>private evidence</li>
+<li>secrets</li>
+<li>ephemeral transport metadata</li>
+</ul>
+<p>Default data minimization:</p>
+<ul>
+<li>no raw IP storage unless operationally required</li>
+<li>no full phone numbers in public receipts</li>
+<li>no wallet seeds</li>
+<li>no API tokens</li>
+<li>no SimpleX local database in git</li>
+<li>no raw telecom payload committed</li>
+</ul>
+<p>Add pre-commit secret scan and fixture sanitizer.</p>
+<ol>
+<li>FAILURE / RECONCILIATION<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D</li>
+</ol>
+<p>For every consequential external action:</p>
+
+<code>AUTHORIZE -&gt; RESERVE -&gt; ACT -&gt; READBACK -&gt; SETTLE
+</code>
+<p>If ACT may have happened and readback fails:</p>
+<ul>
+<li>do NOT retry blindly</li>
+<li>mark <code>RECONCILIATION_REQUIRED</code></li>
+<li>preserve attempt evidence</li>
+<li>retry readback first</li>
+</ul>
+<p>This matters especially for XMR sends and paid phone provisioning.</p>
+<ol>
+<li>LIVE PHONE ACCEPTANCE GATE<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D</li>
+</ol>
+<p>A provider is <code>VALIDATED</code> only if live evidence proves:</p>
+<ul>
+<li>actual onboarding fields</li>
+<li>actual payment rail used</li>
+<li>actual number/resource type</li>
+<li>actual inbound/outbound directions</li>
+<li>actual voice behavior</li>
+<li>actual expiry/renewal state</li>
+<li>actual API/readback behavior</li>
+</ul>
+<p>Never infer capabilities from product name.</p>
+<ol>
+<li>SECURITY/PRIVACY RED-TEAM TESTS<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Must include:</p>
+<ul>
+<li>request asks ANON_CORE but resolver attempts IDENTITY_BRIDGED provider =
+=3D&gt; reject</li>
+<li>raw provider credential leaks into agent output =3D&gt; test fail</li>
+<li>receipt includes email/name/phone unexpectedly =3D&gt; test fail</li>
+<li>reused XMR callback =3D&gt; no double credit</li>
+<li>reused grant =3D&gt; no second effect</li>
+<li>wrong session invoice =3D&gt; no entitlement</li>
+<li>bridge readback unavailable =3D&gt; UNKNOWN</li>
+<li>spoofed provider success =3D&gt; cannot create TRUE</li>
+<li>provider claims no-KYC but live form requests ID =3D&gt; route reclassi=
+fied/rejected</li>
+<li>phone advertises SMS but independent nonce not observed =3D&gt; claim n=
+ot TRUE</li>
+<li>action response timeout after possible spend =3D&gt; reconciliation, no=
+t blind retry</li>
+</ul>
+<ol>
+<li>DOCUMENTATION REQUIRED BEFORE MVP COMPLETE<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>Create:</p>
+<ul>
+<li><code>THREAT-MODEL.md</code></li>
+<li><code>PRIVACY-CLASSES.md</code></li>
+<li><code>docs/providers/pikasim.md</code></li>
+<li><code>docs/providers/silentlink.md</code></li>
+<li><code>docs/xmr.md</code></li>
+<li><code>docs/simplex.md</code></li>
+<li><code>docs/receipts.md</code></li>
+<li><code>docs/live-test-procedure.md</code></li>
+<li><code>UPSTREAM.md</code> with exact repos/licenses/commit pins used</li=
+>
+</ul>
+<p>Document claims carefully:<br>
+GOOD: =E2=80=9CPMail does not require legal identity in ANON_CORE mode.=E2=
+=80=9D<br>
+BAD: =E2=80=9CPMail is untraceable.=E2=80=9D<br>
+GOOD: =E2=80=9CThis provider route requested no conventional identity in ou=
+r dated test.=E2=80=9D<br>
+BAD: =E2=80=9CThis provider can never identify anyone.=E2=80=9D</p>
+<ol>
+<li>DEFINITION OF DONE =E2=80=94 MVP<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D</li>
+</ol>
+<p>Do not call MVP complete until this exact demo passes:</p>
+
+<code>[ ] fresh user reaches onion endpoint / SimpleX ingress
+[ ] no signup/name/email/phone required
+[ ] fresh XMR invoice/subaddress created
+[ ] XMR payment observed and confirmed
+[ ] entitlement/capability minted once
+[ ] SimpleX private address created
+[ ] independent inbound nonce proven
+[ ] outbound reply nonce proven
+[ ] QP receipt generated in Agent Receipts-compatible envelope
+[ ] privacy class computed from real dependency surfaces
+[ ] no forbidden identity bridge used
+[ ] receipt verifies independently
+[ ] restart preserves payment/capability truth
+[ ] logs/fixtures contain no secret material
+</code>
+<p>Then phone MVP extension:</p>
+
+<code>[ ] one crypto-funded/no-conventional-ID provider purchased lawfully
+[ ] exact provider onboarding surface recorded
+[ ] number/resource persisted
+[ ] inbound SMS nonce independently proven
+[ ] outbound SMS proven if advertised
+[ ] voice directions proven if advertised
+[ ] capability matrix matches reality
+[ ] renewal/expiry behavior recorded
+[ ] public receipt reveals only minimum commitments
+</code>
+<ol>
+<li>PRODUCT DEMO<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</li>
+</ol>
+<p>The portfolio demo should be one command/script:</p>
+<p><code>npm run demo:anonymous-lifecycle</code></p>
+<p>It prints only:</p>
+<ul>
+<li>session commitment</li>
+<li>XMR invoice</li>
+<li>funding state</li>
+<li>SimpleX endpoint</li>
+<li>proof state</li>
+<li>privacy class</li>
+<li>receipt hash</li>
+</ul>
+<p>Never print wallet secrets/provider secrets/private phone activation mat=
+erial.</p>
+<p>End goal:</p>
+<p><code>No account. No card. No identity required by PMail. XMR in -&gt; p=
+rivate capability -&gt; private communication -&gt; verifiable privacy/outc=
+ome receipts.</code></p>
+<p>That is the PMail product boundary. Build this vertical completely befor=
+e adding social automation, conventional email, domains, or a large dashboa=
+rd.</p>
+
+--00000000000028b7a0065bb1ae79--

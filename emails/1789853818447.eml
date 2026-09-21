@@ -1,0 +1,393 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id OiE4rxQpLG0e
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 21:36:57 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=L+lsD4/breYjcNu11tZOCvnYe69ip6uW6Bdo0NY+dcMSqgFAbT5O9Wy81gd0PmPAh09/OoYoe
+	uvaI4snHb7aiVizJe8fdUzR0TAauM8K1W8y3fLIfwusR8+Sj3d+XGDORbev59bXY3RV1XYjcIQh
+	FdR8j0/Rwry/xNOARDvurbwZVOYvsqSEc2Kjb19rJCwjG6l0VwEUPFoH2pI+JdOSmbXkXZRUNUN
+	XfGUFw4Vff0U0iGttBTf+QTt8yZ6QEmxm/SWhG52YjS3kT49aBufJwfWuVaZQJX8eyD5w/O9Dc8
+	Q+K1Fc3JvDju5uFYEq6bDvNC4QHa/IBv89rOVLAH1WWQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789853817; x=1790458617; bh=/SEALocl
+	2NSx2dmoiW/RmJTK3e+Mbqy2niky27ufnHg=; b=M6WCZu6W//PIU5dgEhE9da5fkclv2SfxOTj
+	lYpyBYqlUUx1DyXr/ibIF2ZWEG+jiv7bFor6dfJi2gE1Y6/WZuDvVgahwyv212Iu2sGzL/RhR6L
+	haR7xY84s6Q99Etwpm/ud4KTyVS7OEnSSiU/By35cEduQ2hqYTd4bX6DkT4mEZRxPZJUsXTkWlr
+	QIIgZbljrDLkXfnXSlosNalyz2QDXOKCwTdzZaKnSsNB4/VRxLKFUYSmMsiLli5oGYTb3Ee8Mfz
+	UaBy/IR7DUmAwQFeWSiuIG8fADRPPc3Bi4a42e1HDcmr/HPCILQ+XPoWqSyEJAU912NXujQV73g
+	/HWMibA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=pGh+bg7a;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=pGh+bg7a;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 956f58d0204a3-66e4aac9321so1633243d50.3
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 14:36:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789853817; cv=none;
+        d=google.com; s=arc-20260327;
+        b=s/dQlTJ/5/eOenVmyjUBcnBjFpzlvo/350gT7Uflg9ragm1bmz6tCQ3aF6H8KmLZEF
+         L6rR3IYe62BSlyUa9B4A0Uxs0arEhw5jlLcBTpUeYFaXEhCylHS8Mgswj0SHFnas0Koz
+         Xv1XXoN58kxiT535/FxkEb0ntDqZ5g5TR9duon9woFCxiuA0IgHuZ81pMHeSsVsnmZRn
+         ENtcX3oui7VRB2lA+8feDFIFX04z5s6pzE70VZ1ylIrGYlJQhqPEGCIE6EJV9zcG4I0f
+         Wg/29J1/CdhPawL/rIkFK6t+RHpfRPWNq9ulmX4yg4ZZYmuVkhQEDlg3PKjvRH+/pijy
+         J4DA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=/SEALocl2NSx2dmoiW/RmJTK3e+Mbqy2niky27ufnHg=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=ijh+AfHogS/ZkvcSXrNYehHoyT3wNQo+lxReGMnP243MS9rKbjHQ5o685ddsbQGdsx
+         qn3IW6igyx18Cfg5QUmaErXk1pyYQ+0GCfSsg02512bfPQb/SFPpiwrlGwB5bhRpl4/7
+         lwG4tqeQeyABH6ni+/bmT/fnosfajynogd8OFAaP2VtU+bOArT1zRq9rc5hcD6vlQr4E
+         iXLu+9dewbVi37uP4i4I42FWpiG7SMMSQKhaePmY8vagwfumrDc+sZEw+NK+WnJEoAxY
+         BdaN7tyknoM2WeO3hZAPNWVLYyFETgwmWzVcGczVLecj1T159MmfXP2JRVJUf2fD6g/8
+         NaRQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789853817; x=1790458617; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=/SEALocl2NSx2dmoiW/RmJTK3e+Mbqy2niky27ufnHg=;
+        b=pGh+bg7adD6TBAnnaIOtqWC4JpuQFUctbnkmHWTkWq0sWGTCJ6f57ofuo3Gx1T5Ls9
+         rPuNW2uJUUB8HzNiXTYL8j8HskJKndZ4FYpcpfSqhMI3tgC7/RrcVAECVtvfLbgyfCwH
+         CwN94IhcDIDA29+o8WwBRCEIdXZdwpdN2PA9FcsUTZVJsPW+m+HMTbNwIslRGMezov5A
+         FNWEmfMjOP37SFT2Nsipg0KyYJC6oLjRZhvgS4f0ZKANNP0oU3PQIT5PiC/j5/QN/dRj
+         EOGug037tysK7AAkisthXgl5nI9c68ZYHc+0yla/BoJ0B7m5bqNJUJAlJ57KkyRo3npJ
+         B1PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789853817; x=1790458617;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=/SEALocl2NSx2dmoiW/RmJTK3e+Mbqy2niky27ufnHg=;
+        b=UKOql9Xx64Hhx+n2pxwRiPr9QOKL7Zn1t3DSS9aXxQCQqn/zXlBWTxnmp1LCrfK8Ju
+         s24tqJt40lnlV0y0MXBlJBHnobTk60DNzTXlcri+1E8iT2yqzUutF0FiVHxcN1LliAeg
+         luH62s7F82AAdzTn5buPZXqlFhf2zO5Ol4tk532B/04UHWq/Ot+mMlrP7OyV/YDK7UY6
+         7zxKzmK51hv/ayhvWwa6NdLjCB6xbcn6ou4oQTvaiE2uOtSTfBeqiSMxymo6sBTJQzUo
+         KJXXUXO9tpFhxzenC6O0oTGhRKBE87ahzTVB/kqk16eit2s+PhzI+rE4xjufWhcVxsq6
+         I4Sg==
+X-Gm-Message-State: AFuF++lLWiykupNw9M+4RHc0VoRMnAmGZkpO+juKu8YBob88FRbfg238
+	dImVcisP6OjHiXVEh0F96MjKwycerMWzNjBs2lz8OKoVhoC05rv4zCvI6Bd+7gF0FTz55sztAjr
+	WJRbTBATQJPGdT8+4cksFWne499Gtu3EoIA==
+X-Gm-Gg: AYBFou02UXIe8+fydaUy2a3ks6iXgZb0fLT2gXxwBzHBz5K0t027Gs1/BD8otpdaoC3
+	JiiG8awVbBzm7Dnphu9joKQggX5U72aGimKrOYRAKwpMV3tnUB+DLz4edGd0Mf0JJ3NHxroK27V
+	40v4eXCbv83pw6ZNIskmhjNWy4O2Uuda9yYIMJGmHpxVBzTfaXTxbp1+LEPBrDwfFn8Bi7/mDGP
+	4z6EBxPt3DjNtDroqycM9pRdj+a9b20SZQThXLR2VuVvUgwVj1YWa7+VK2UJ9vFBwfWmvi7Du8d
+	ljcXb8bcGmWGb4QPfHxGw0L7uc9YF29vx09BO/qhJMhVtWfRknpxAdTVoYZxaA3oKpka9TLiLBw
+	FjIgLLGiDDp5Sg72uBPJbcG36QqewUddkSUVqgYtRJRegybz3sRCbOvCZddE3rEkDlVs7pkL/tl
+	o=
+X-Received: by 2002:a05:690c:e209:20b0:870:c600:686c with SMTP id
+ 00721157ae682-897318ab476mr16077807b3.18.1789853816984; Sat, 19 Sep 2026
+ 14:36:56 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 16:36:56 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 16:36:56 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 16:36:56 -0500
+X-Gm-Features: AcwNN1UkVeW0rt5NFGyy8-dq45zQnYADppm2Ze182wGue_KTMB1nJxHZiSqvPpU
+Message-ID: <CAPdrGemaOG9sGguvcsjGuxsfb+umSMFk+uQpMLwxd2OY3i3tXA@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D20_04=3A36_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_1_strong_format?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000f61ac6065bdcd0e3"
+
+--000000000000f61ac6065bdcd0e3
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+STATE
+Checked prior SENT Roast.pet Viral Formats =E2=80=94 reports, including the=
+ latest
+2026-09-20 03:33 NO MATERIAL FORMAT DELTA report, and excluded semantic
+repeats. Fresh search covered current TikTok/Shorts/Reels trend trackers,
+meme trackers and viral-video feeds. Most current material was repetition
+of mechanisms already captured (celebrity-match reveals, deadpan lists,
+innocent-photo/savage-story flips, finance-bro parody, character overlays,
+relationship montages). One implementation angle is materially strong
+enough to add.
+
+   1. ORIGINAL TWO-SHOT FREESTYLE BOOTH / PET VS OWNER MIC TRADE
+
+Current evidence/source URLs:
+
+   - Starrd, published Sep 19:
+   https://www.getstarrd.app/blog/how-to-make-on-the-radar-ai-video =E2=80=
+=94
+   reports the current On The Radar-style AI trend as a two-photo,
+   fixed-booth, 14-second vertical template in which two subjects trade a h=
+ook
+   at one microphone.
+   - Current September TikTok trend coverage continues to show
+   format-first, hard-punchline templates outperforming dependence on polis=
+hed
+   lip-sync: https://www.socialpilot.co/blog/tiktok-trends
+
+Why viewers watch it:
+Instant transformation + recognizable performance grammar + the absurdity
+of seeing two subjects who should not be performers behave like an
+established duo. The fixed camera and fixed stage make the identity
+substitution itself the event.
+
+Core mechanic in one sentence:
+Drop two familiar identities into a tightly constrained performance booth
+and make them alternate short lines that expose their relationship.
+
+Roast.pet protagonist implementation:
+Do NOT copy On The Radar branding, green booth, logo or copyrighted song.
+Build an original Roast.pet booth: one pet + owner (or pet + rival such as
+vacuum/postman/other pet), one microphone, alternating personalized
+accusation/rebuttal bars. The pet always gets the final line.
+
+Best use:
+Birthday video, social clip, QR card, friendship/couple gift, multi-pet
+household gift. Strong later T-shirt still: two performers at mic + final
+diss caption.
+
+Exact 15=E2=80=9330 sec template:
+0=E2=80=932s: ROAST.PET BOOTH =E2=80=94 ARCHIE vs MUM
+2=E2=80=935s owner: =E2=80=9CWho ate the birthday cake?=E2=80=9D
+5=E2=80=938s Archie: =E2=80=9CWho left it at nose height?=E2=80=9D
+8=E2=80=9311s owner: =E2=80=9CYou cost me =C2=A380 at the vet.=E2=80=9D
+11=E2=80=9314s Archie: =E2=80=9CYou paid =C2=A3200 for highlights.=E2=80=9D
+14=E2=80=9318s owner reaction / beat stop.
+18=E2=80=9322s Archie close-up: =E2=80=9CNext question.=E2=80=9D
+22=E2=80=9325s end card: ARCHIE 1 =E2=80=94 MUM 0 / SCAN FOR THE FULL ROAST=
+.
+
+Hook/on-screen text:
+=E2=80=9CWE PUT ARCHIE AND HIS OWNER IN THE BOOTH. THIS GOT PERSONAL.=E2=80=
+=9D
+Alternates: =E2=80=9CARCHIE WAS GIVEN ONE CHANCE TO DEFEND HIMSELF.=E2=80=
+=9D / =E2=80=9CMUM BROUGHT
+RECEIPTS. ARCHIE BROUGHT BARS.=E2=80=9D
+
+Reusable assets needed:
+Original booth background; fixed mic/desk; canonical pet cutout/avatar;
+owner photo/avatar; two-shot pose; close-up reaction pose;
+waveform/subtitle system; 6=E2=80=9310 second original beat beds;
+fact-to-accusation/rebuttal generator; score bug; end card. For
+pet-vs-object episodes, maintain reusable rival avatars (vacuum, squirrel,
+postman silhouette, bin).
+
+Production complexity: MEDIUM
+Once the two-shot booth and lip-sync/reaction primitives exist, each
+customer instance becomes LOW/MEDIUM.
+
+Novelty vs formats already found:
+Materially different from generic diss-track/podcast concepts because the
+viral evidence is specifically for a TWO-IDENTITY, TWO-PHOTO, FIXED-STAGE
+substitution template. The valuable primitive is not =E2=80=9Crap=E2=80=9D;=
+ it is
+alternating A/B relationship conflict inside one reusable performance
+environment. That also means the same engine can generate press-conference
+faceoffs, therapy pairs, courtroom examination and rivalry broadcasts later=
+.
+
+Verdict: MAKE TEMPLATE NOW
+
+COPYRIGHT/RIGHTS NOTE
+Treat the current branded On The Radar execution only as evidence for the
+mechanism. Roast.pet should own its booth art, logo, beat and dialogue
+grammar. No copied show logo, set dressing or commercial track is required.
+
+REJECTED / WATCHED THIS RUN
+
+   - Celebrity Lookalike percentages: active Sep 19 but already captured as
+   Pet Archetype Lookalike Percentages / resemblance formats.
+   - Reasons-to-get-a-bob deadpan list: strong current evidence (~18M-view
+   origin reported by SocialPilot) but mechanically overlaps prior
+   repetitive-list / bad-advice phrasebook structures.
+   - Dancing cartoon dog overlay: useful production primitive, not a
+   sufficiently distinct personalized comedy format.
+   - Right Round fake aftermath: already covered by
+   evidence/criminal-lore/staged-chaos family.
+   - Remember November / polar-bear future meme: specific lore/IP-dependent
+   and not sufficiently generalizable.
+   - Dark Owen traffic-light meme: rejected outright; tied to a real
+   teenager=E2=80=99s death and inappropriate for the product.
+
+END REPORT
+TOP 3 FORMATS TO TEMPLATE THIS HOUR
+
+   1. Original Two-Shot Freestyle Booth / Pet vs Owner Mic Trade =E2=80=94 =
+MAKE
+   TEMPLATE NOW
+   2. Pet Police Sketch =E2=80=94 retained from prior scan
+   3. Innocent Photo =E2=86=92 Criminal Lore =E2=80=94 retained from prior =
+scan
+
+Easiest format to automate end-to-end:
+Zero Lore / Maximum Damage remains easiest overall. Among new material, the
+Two-Shot Booth becomes highly automatable once its fixed scene exists
+because input is only two identities + customer facts =E2=86=92 alternating
+dialogue.
+
+Highest shareability potential:
+Pet Police Sketch remains highest broadly. Two-Shot Booth may outperform
+for owner/pet sharing because both recipient and giver become characters.
+
+One weird format nobody in personalized pet gifts appears to be using:
+PET vs ITS NEMESIS RAP LEAGUE. Keep a persistent league table for each pet:
+Archie vs Vacuum I, Archie vs Squirrel II, Archie vs Postman III. Each
+rival gets a booth faceoff; comments determine the winner; the W/L record
+updates on the pet=E2=80=99s collectible card and future videos. This combi=
+nes the
+persistent-lore system with a current two-character substitution mechanic
+instead of producing a disposable one-off video.
+
+Strategic implementation delta:
+Build the TWO-SUBJECT SCENE primitive, not merely a rap template. Inputs =
+=3D
+subject A, subject B, relationship, 3 facts, conflict, winner. Outputs can
+later skin the same alternating-dialogue timeline as freestyle booth,
+courtroom, couples therapy, press conference, post-match interview or
+interrogation.
+
+--000000000000f61ac6065bdcd0e3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA</p>
+<p>STATE<br>
+Checked prior SENT <code>Roast.pet Viral Formats =E2=80=94</code> reports, =
+including the latest 2026-09-20 03:33 NO MATERIAL FORMAT DELTA report, and =
+excluded semantic repeats. Fresh search covered current TikTok/Shorts/Reels=
+ trend trackers, meme trackers and viral-video feeds. Most current material=
+ was repetition of mechanisms already captured (celebrity-match reveals, de=
+adpan lists, innocent-photo/savage-story flips, finance-bro parody, charact=
+er overlays, relationship montages). One implementation angle is materially=
+ strong enough to add.</p>
+<ol>
+<li>ORIGINAL TWO-SHOT FREESTYLE BOOTH / PET VS OWNER MIC TRADE</li>
+</ol>
+<p>Current evidence/source URLs:</p>
+<ul>
+<li>Starrd, published Sep 19: <a href=3D"https://www.getstarrd.app/blog/how=
+-to-make-on-the-radar-ai-video">https://www.getstarrd.app/blog/how-to-make-=
+on-the-radar-ai-video</a> =E2=80=94 reports the current On The Radar-style =
+AI trend as a two-photo, fixed-booth, 14-second vertical template in which =
+two subjects trade a hook at one microphone.</li>
+<li>Current September TikTok trend coverage continues to show format-first,=
+ hard-punchline templates outperforming dependence on polished lip-sync: <a=
+ href=3D"https://www.socialpilot.co/blog/tiktok-trends">https://www.socialp=
+ilot.co/blog/tiktok-trends</a></li>
+</ul>
+<p>Why viewers watch it:<br>
+Instant transformation + recognizable performance grammar + the absurdity o=
+f seeing two subjects who should not be performers behave like an establish=
+ed duo. The fixed camera and fixed stage make the identity substitution its=
+elf the event.</p>
+<p>Core mechanic in one sentence:<br>
+Drop two familiar identities into a tightly constrained performance booth a=
+nd make them alternate short lines that expose their relationship.</p>
+<p>Roast.pet protagonist implementation:<br>
+Do NOT copy On The Radar branding, green booth, logo or copyrighted song. B=
+uild an original Roast.pet booth: one pet + owner (or pet + rival such as v=
+acuum/postman/other pet), one microphone, alternating personalized accusati=
+on/rebuttal bars. The pet always gets the final line.</p>
+<p>Best use:<br>
+Birthday video, social clip, QR card, friendship/couple gift, multi-pet hou=
+sehold gift. Strong later T-shirt still: two performers at mic + final diss=
+ caption.</p>
+<p>Exact 15=E2=80=9330 sec template:<br>
+0=E2=80=932s: ROAST.PET BOOTH =E2=80=94 ARCHIE vs MUM<br>
+2=E2=80=935s owner: =E2=80=9CWho ate the birthday cake?=E2=80=9D<br>
+5=E2=80=938s Archie: =E2=80=9CWho left it at nose height?=E2=80=9D<br>
+8=E2=80=9311s owner: =E2=80=9CYou cost me =C2=A380 at the vet.=E2=80=9D<br>
+11=E2=80=9314s Archie: =E2=80=9CYou paid =C2=A3200 for highlights.=E2=80=9D=
+<br>
+14=E2=80=9318s owner reaction / beat stop.<br>
+18=E2=80=9322s Archie close-up: =E2=80=9CNext question.=E2=80=9D<br>
+22=E2=80=9325s end card: ARCHIE 1 =E2=80=94 MUM 0 / SCAN FOR THE FULL ROAST=
+.</p>
+<p>Hook/on-screen text:<br>
+=E2=80=9CWE PUT ARCHIE AND HIS OWNER IN THE BOOTH. THIS GOT PERSONAL.=E2=80=
+=9D<br>
+Alternates: =E2=80=9CARCHIE WAS GIVEN ONE CHANCE TO DEFEND HIMSELF.=E2=80=
+=9D / =E2=80=9CMUM BROUGHT RECEIPTS. ARCHIE BROUGHT BARS.=E2=80=9D</p>
+<p>Reusable assets needed:<br>
+Original booth background; fixed mic/desk; canonical pet cutout/avatar; own=
+er photo/avatar; two-shot pose; close-up reaction pose; waveform/subtitle s=
+ystem; 6=E2=80=9310 second original beat beds; fact-to-accusation/rebuttal =
+generator; score bug; end card. For pet-vs-object episodes, maintain reusab=
+le rival avatars (vacuum, squirrel, postman silhouette, bin).</p>
+<p>Production complexity: MEDIUM<br>
+Once the two-shot booth and lip-sync/reaction primitives exist, each custom=
+er instance becomes LOW/MEDIUM.</p>
+<p>Novelty vs formats already found:<br>
+Materially different from generic diss-track/podcast concepts because the v=
+iral evidence is specifically for a TWO-IDENTITY, TWO-PHOTO, FIXED-STAGE su=
+bstitution template. The valuable primitive is not =E2=80=9Crap=E2=80=9D; i=
+t is alternating A/B relationship conflict inside one reusable performance =
+environment. That also means the same engine can generate press-conference =
+faceoffs, therapy pairs, courtroom examination and rivalry broadcasts later=
+.</p>
+<p>Verdict: MAKE TEMPLATE NOW</p>
+<p>COPYRIGHT/RIGHTS NOTE<br>
+Treat the current branded On The Radar execution only as evidence for the m=
+echanism. Roast.pet should own its booth art, logo, beat and dialogue gramm=
+ar. No copied show logo, set dressing or commercial track is required.</p>
+<p>REJECTED / WATCHED THIS RUN</p>
+<ul>
+<li>Celebrity Lookalike percentages: active Sep 19 but already captured as =
+Pet Archetype Lookalike Percentages / resemblance formats.</li>
+<li>Reasons-to-get-a-bob deadpan list: strong current evidence (~18M-view o=
+rigin reported by SocialPilot) but mechanically overlaps prior repetitive-l=
+ist / bad-advice phrasebook structures.</li>
+<li>Dancing cartoon dog overlay: useful production primitive, not a suffici=
+ently distinct personalized comedy format.</li>
+<li>Right Round fake aftermath: already covered by evidence/criminal-lore/s=
+taged-chaos family.</li>
+<li>Remember November / polar-bear future meme: specific lore/IP-dependent =
+and not sufficiently generalizable.</li>
+<li>Dark Owen traffic-light meme: rejected outright; tied to a real teenage=
+r=E2=80=99s death and inappropriate for the product.</li>
+</ul>
+<p>END REPORT<br>
+TOP 3 FORMATS TO TEMPLATE THIS HOUR</p>
+<ol>
+<li>Original Two-Shot Freestyle Booth / Pet vs Owner Mic Trade =E2=80=94 MA=
+KE TEMPLATE NOW</li>
+<li>Pet Police Sketch =E2=80=94 retained from prior scan</li>
+<li>Innocent Photo =E2=86=92 Criminal Lore =E2=80=94 retained from prior sc=
+an</li>
+</ol>
+<p>Easiest format to automate end-to-end:<br>
+Zero Lore / Maximum Damage remains easiest overall. Among new material, the=
+ Two-Shot Booth becomes highly automatable once its fixed scene exists beca=
+use input is only two identities + customer facts =E2=86=92 alternating dia=
+logue.</p>
+<p>Highest shareability potential:<br>
+Pet Police Sketch remains highest broadly. Two-Shot Booth may outperform fo=
+r owner/pet sharing because both recipient and giver become characters.</p>
+<p>One weird format nobody in personalized pet gifts appears to be using:<b=
+r>
+PET vs ITS NEMESIS RAP LEAGUE. Keep a persistent league table for each pet:=
+ Archie vs Vacuum I, Archie vs Squirrel II, Archie vs Postman III. Each riv=
+al gets a booth faceoff; comments determine the winner; the W/L record upda=
+tes on the pet=E2=80=99s collectible card and future videos. This combines =
+the persistent-lore system with a current two-character substitution mechan=
+ic instead of producing a disposable one-off video.</p>
+<p>Strategic implementation delta:<br>
+Build the TWO-SUBJECT SCENE primitive, not merely a rap template. Inputs =
+=3D subject A, subject B, relationship, 3 facts, conflict, winner. Outputs =
+can later skin the same alternating-dialogue timeline as freestyle booth, c=
+ourtroom, couples therapy, press conference, post-match interview or interr=
+ogation.</p>
+
+--000000000000f61ac6065bdcd0e3--

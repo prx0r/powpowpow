@@ -1,0 +1,366 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id J0LbD9yUEFUd
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 10:03:07 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=EsR8Zo7Q4qMvwt5QumXes5afUUVVjzSAuSvKttx9iO+q1qyujYCA+qeosUgst5mXBDyj+qO85
+	B9dXrLpwk7QafkL20JgoH7qI1rN/2c7T3FIVmocy/fTSC1oWespH+lJmMobFXpgHeBvlIHiiWky
+	tX+8BsJ0EhKcFlO3/b4r90DVDwospsZKVdw0rGTwMznkO6J1AjFBp1V1nQyg6BN5TH0c57W6epk
+	ZBQwu8VmhPfUjC50m4S1a7ZF3yHhTFD2XdhNZbTd3rUiXzJLnZvBBTQFYfysXaNwILSSy+ztyXc
+	jc8GPwW3WXhYQzVh5xkD+pd7WHc+zZ6/MhQHkfL9NNtQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789898587; x=1790503387; bh=QVB5NNaG
+	unw/E6+5zLRVpJz6eP0QmypVAmcKsR3Wj3o=; b=ZYFhkanXMObwSrY3/l1UuvXU2bMwRdQTGeC
+	+dZ97+vszBovaAjXf/+oIEX8hj5bIBYAP5Zi/MVP8uA3RBzSJ5HwkP5a/pgmzkk3yAilLUEuCJd
+	GnRP0X2duq0307x6BmapfGFvfjf3gcpyw/vN+xsRprPp/CF4j9iJ+K4g0TIIcDqx+rxTFxFDHdI
+	4dYVEaU1RcjeN0uG2mYhJdlIaa3w8TpfEx6WTv4GA30qFjTly1phO+qNW9GcDXywGHavDgVg6zC
+	Zl+At3A5o+WSwq8o4v2A3qWhpTIlBQ4cOnhyibBqHwbu/cFRRp64M4WamRpsiFoKPANR37uHBw2
+	VL0yU8Q==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=kCq9vJ0K;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=kCq9vJ0K;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 956f58d0204a3-66e4aac9321so1808685d50.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 03:03:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789898587; cv=none;
+        d=google.com; s=arc-20260327;
+        b=UEAb/aXlHvl2oXknYQ1MXU9+XMbBG/UnSDXBlMkIroKTirtGEUbGxcwpq+T9PLP9E/
+         uFgBXC8P57z3PragshcznRALrpNWWhaQv8khPboUOZ3/ptxZZqWwI8YQFjeYnMud6kkZ
+         Kdcqi3zEF0JPzyRbwdJJMWLwA8a+s6zNOE/17zYAo+An+eTkBjGuh7mwjtxOagAuLzXC
+         EaR7fE7JLz/cCfWMhhYQSYl/4vd12lf8qACBQsfYRG/XjyYxIQlyuue2ASQ6jPQgIw5y
+         9qXTl2RRq2XOwb/ZiIgvIYWZwL/fx9oRY7Q12LmG0ozLMtlRgKS5S6S1jqPGddUWC9iv
+         VCkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=QVB5NNaGunw/E6+5zLRVpJz6eP0QmypVAmcKsR3Wj3o=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=KdfBahJk/75bEj0KzIFXbSjf2ZMb8FIEpFG4yPwajnhqtFCepm2dvUBoPMjfnmajX8
+         IQJugwpKJjz29EelGszOgRW1+mv/pZhYgx0MwTJuvIJT0ztKcGLo1pSezR4a9zCy11Sa
+         G6PCsxDJFSAeW0E/C0KyAgCYXmtW4r9HFEk7I6lKhDAWDJWQjCxupZCO8M/GZIXQ1E0y
+         ReQK6B5rd5Be0+CeT0J8EjRgGVYbi2wip/ezY8X7vLsnQBzAypE4L8JjMwx3qoLOcC1U
+         YEYFIKVOqc3EhQAENvAgUc2UnimFVG4QPAqecJ5ztZ/bgRD45CCGS1sLbpBZ9gtlHY7o
+         dirQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789898587; x=1790503387; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=QVB5NNaGunw/E6+5zLRVpJz6eP0QmypVAmcKsR3Wj3o=;
+        b=kCq9vJ0KVN/+ngXdVcE/3x2jwD4EExQbfi3aX5A6+Y9gBu2AljnbafbWcff1KXn1/4
+         JwYU+pe0Umone9Bb3i7qGcABUW7b4fK1X5OIdItFUxgTo0q77AZDqqrrjEOtbPd5S4vH
+         u3UDHEXRhKNnARJJ3cGcqbmUmSHXQuLnjmc7EEmlQlgiA9+WpoFO1gq3CEDmD4hA1fO+
+         2j1wfQsAno2fdCtJOgGQPpHsRJRoPNI6qQmW63zMSQBNjLqWncBaU56Sb7GsLSnSFLyt
+         5SAczsatrv4vTSL2M7ud+q62wACNNwLUKn+PO5kzB0cqlm0lnqn467DWv9WgUDCqexSJ
+         3wqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789898587; x=1790503387;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=QVB5NNaGunw/E6+5zLRVpJz6eP0QmypVAmcKsR3Wj3o=;
+        b=LgsbI8lgarVsULV0FR4Cq45/Mxri9JUCOfLpkv8ZYCs3Qu4mkca2JL/DsNzBEqLu9y
+         HpwjseoR8r7ChN4HQ9hsJACSwMIHJvjSqc3a6GkBRS0t1uPz5gnMxiw30dZw5VQzy55M
+         mZhxTXWjASNS++63/ry77KmqnMxPuomzu+oGjPmXhn2QVMGoXbZjuKCQlyYU0hlleqS5
+         NGUkmTj7awSxU7+3m1HFMDL3dPScIemvJc6879S8GMIKcZcK2Ca1iXap2DWTiCjrU3Ps
+         9d1TCyfC4lzKad3/OrxmQz7Vat8q1Fw5TagV723HZB3UEabs0P6VQueHJYjgjEkVKnd7
+         rg7w==
+X-Gm-Message-State: AFuF++kdw0XPR217Zne5lvvHiyPJHrHkvbWYU8MHG3RuU16gL4HF/Mgq
+	Od+LkXA20zmFpON9dDccUfPUBXksATb7Wl3Pi58LLfeU8P4mniuaxwaGmkZQ9tkVkdTBDCjJHRM
+	XdKyP9FU4n7gjL6vb3llAIyROB69z4xnZHw==
+X-Gm-Gg: AYBFou3Q21yEX1u1kenIV7vLqC8oEDkcUKxe8rssTYqhMcnOE+1p4kHPGS/w/TMkvbo
+	nTADlC7cZdAnbzB2zS3F+kWQXb1xbjYftv2beCvsDSiEIyg3wuZRwYt8jwxVZzSaQqXDCR/4xky
+	OWVoSYpRzn4NMcKP9RC6CeHF+yNwyghk/2IOvOMb5mXizbWuWj0x01yiNpr9Dcr28VugSXylSeP
+	E3NhKw6VjclURTEO3DmMEvBUN4aXKfXya4oTOt0nU70g7PYr24OvtawzeWgAZvcMODslrSfwO5h
+	lseT+EnROLDreqCgjVt5KbB+23qb8yXxsKqo73hXTN3eB1YEEt24RD2maRdKc/UD3kTve/dEfZf
+	V3Z5YfgE5E/RRMG07iWWMlJn6H3xRFU7/tcB2AshqtPKCI1hfXnIxc7FWBYtiPPveOK/+
+X-Received: by 2002:a05:690e:1699:b0:671:1b4d:cc0d with SMTP id
+ 956f58d0204a3-6717fc64adamr2720949d50.17.1789898586934; Sun, 20 Sep 2026
+ 03:03:06 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 05:03:06 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 05:03:06 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 05:03:06 -0500
+X-Gm-Features: AcwNN1UW8OJ4AcmIrFX42Gc77hISSCglSGMEQt4VXkNssH_hklItf0u76Q4eZ88
+Message-ID: <CAPdrGemCEOGfd4bqbKxuEA=9yaWp-gYa+Cr2rv6QsPKx11F=mA@mail.gmail.com>
+Subject: =?UTF-8?Q?Garden_Probe_=E2=80=94_Ephemeral_Data_=E2=80=94_2026=2D09=2D20_17=3A02?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+EPHEMERAL DATA FOREST =E2=80=94 2026-09-20 17:02
+
+EXECUTIVE DELTA
+No new candidate clears PLANT this hour. The strongest genuinely new
+branch is UK public EV-chargepoint availability, but the hard
+plantability gate correctly blocks it: regulation requires all public
+CPOs to expose free machine-readable OCPI 2.2.1 reference +
+availability data, with EVSE status changes reflected within 30
+seconds, but discovery/onboarding is fragmented and at least one major
+operator (Pod) exposes OCPI discovery while requiring bilateral
+credentials for locations/status. This is WATCH until we can enumerate
+a compliant free endpoint set. The negative finding is useful: a legal
+open-data mandate does not equal an executable garden.
+
+The strongest surviving PLANT remains DfE apprenticeship advert state.
+Display Advert API v2 became available 8 Apr 2026, is public, free to
+self-register, exposes all live vacancies, supports stable vacancy
+reference lookup, and is rate-limited at 150 requests/5 minutes.
+Active adverts can close early or change; preserving
+first_seen/edit/last_seen/repost state is not supplied as a historical
+API. The second surviving temporal asset is NESO/DNO grid
+project-state history, but this is now better treated as part of the
+Constraint/Join forests than a standalone Ephemeral candidate.
+
+RANKED DASHBOARD
+1. DfE apprenticeship advert state =E2=80=94 4.31/5 =E2=80=94 PLANT
+2. UK public EV chargepoint live availability =E2=80=94 4.08/5 theoretical,
+but WATCH due endpoint/access fragmentation
+3. Grid connection project-state snapshots =E2=80=94 4.02/5 =E2=80=94 PLANT=
+/JOIN
+4. Street Manager raw roadworks state =E2=80=94 2.70/5 =E2=80=94 KILL stand=
+alone:
+commercial historical archives exist
+5. Find a Tender notice state =E2=80=94 2.65/5 =E2=80=94 KILL standalone:
+release/record history is preserved officially
+6. Planning application state =E2=80=94 2.55/5 =E2=80=94 WATCH: new nationa=
+l
+standards/platform are promising, but current planning-application
+dataset is stale/incomplete and history vendors already exist
+
+TOP DEEP DIVE 1 =E2=80=94 APPRENTICESHIP ADVERT STATE
+Source: https://api.apprenticeships.education.gov.uk/vacancies
+Docs: https://beta-find-and-use-an-api.education.gov.uk/api/display-advert-=
+api-2
+Signup: https://developer.apprenticeships.education.gov.uk/third-party-acco=
+unts/register
+Auth: Ocp-Apim-Subscription-Key plus X-Version: 2
+Rate limit: 150 requests / 5 minutes
+Rights/terms: DfE Display Advert API terms; source is public-sector
+information; preserve attribution/provenance.
+Cadence: poll vacancy list every 30=E2=80=9360 minutes initially; detail-fe=
+tch
+only new/changed vacancy references.
+Canonical key: vacancyReference.
+Useful disappearing state: live/closed status, closing date changes,
+salary/location/description edits, multi-location
+expansion/contraction, early closure, repost-like recurrence.
+Transformation: employer =C3=97 occupation/standard =C3=97 geography =C3=97=
+ advert
+lifetime =C3=97 edit/repost events -> recruitment pressure / hard-to-fill /
+training-response signals.
+One-year asset: vacancy lifecycle distributions by employer,
+occupation, standard and geography; edit/repost/early-close
+fingerprints; local apprenticeship demand response.
+Buyer: training providers, workforce planners, infrastructure/labour analys=
+ts.
+Counterevidence: third parties already cache active vacancies; generic
+vacancy search has no moat. Surviving moat is longitudinal state
+transitions joined to infrastructure/skills demand.
+
+PLANT NOW =E2=80=94 APPRENTICESHIPS
+First calls after free signup:
+GET https://api.apprenticeships.education.gov.uk/vacancies/vacancy?PageNumb=
+er=3D1&PageSize=3D10
+Headers: X-Version: 2; Ocp-Apim-Subscription-Key: <key>
+Then GET /vacancy/{vacancyReference} for each of the 10 returned references=
+.
+Raw: JSONL/Zstandard snapshots partitioned YYYY/MM/DD/HH.
+Normalized: vacancy_reference, employer, standard_lars_code, route,
+locations[], salary, posted_at, closing_at, first_seen, last_seen,
+payload_hash, status.
+Idempotency: vacancy_reference + payload_hash.
+First transformation: lifecycle event stream NEW / EDIT /
+LOCATION_CHANGE / CLOSING_DATE_CHANGE / DISAPPEARED / PROBABLE_REPOST.
+Day proof: ingest all current adverts, detail-fetch 100, verify stable
+IDs and hash-diff pipeline.
+Week proof: quantify edit rate, early closure, disappearance, repost
+candidates and location changes. Kill if state transitions are
+negligible or official backfill reconstructs them cheaply.
+Cost: =C2=A30 source cost.
+
+TOP DEEP DIVE 2 =E2=80=94 UK PUBLIC EV CHARGEPOINT AVAILABILITY
+Confirmed regulatory facts: Public Charge Point Regulations require
+location/EVSE/connector/tariff reference data plus availability data
+to be public, free, machine-readable, OCPI-based and open in line with
+OGL. Every EVSE status change must be reflected within 30 seconds.
+Required Location IDs are immutable within the CPO platform.
+Government explicitly says OZEV will not centralize the feed;
+operators publish it themselves.
+This is structurally ideal ephemeral data:
+AVAILABLE/CHARGING/RESERVED/OUTOFORDER state can change many times per
+day and a one-year archive could derive reliability, occupancy
+pressure, outage duration, queue proxies and charger/network quality.
+However: endpoint discovery is the blocker. Pod=E2=80=99s OCPI version
+endpoint is anonymously discoverable, but data modules return 401 and
+require bilateral OCPI credentials; no public self-serve onboarding is
+documented. This conflicts with the spirit/possibly implementation of
+the regulatory open-data requirement, but we do not assume legal
+noncompliance.
+Verdict: WATCH, not PLANT.
+Upgrade condition: identify at least 3 material UK CPOs with
+documented free location/status endpoints or a lawful free aggregator
+endpoint covering enough of the market.
+Potential transformation if unlocked: EVSE uptime, outage survival
+curves, peak occupancy, charger-site saturation, operator reliability,
+tariff-change response, local capacity scarcity.
+Likely buyers: fleets, site developers, local authorities, CPO
+benchmarking, grid/site intelligence.
+Counterevidence: Zapmap already aggregates broad UK charger data
+commercially; current public aggregation may already be available to
+incumbents. Our moat would require point-in-time status history, not
+current locations.
+
+TOP DEEP DIVE 3 =E2=80=94 PLANNING APPLICATION STATE
+Planning Data now documents >100 planning/housing datasets via a
+consistent API and bulk CSV/JSON/GeoJSON/Parquet. It is explicitly
+intended for PropTech reuse. But the current national
+planning-application dataset shows only 100,627 applications and its
+collector last ran/new data last found on 17 Sep 2025, so it is not
+currently a reliable live national ephemeral feed. Planning
+application open-data specifications are still being developed in
+2026, with community work continuing through Aug 2026 and next
+sessions scheduled Oct/Nov.
+Verdict: WATCH for the moment the standardized application feed
+becomes authoritative/live. That transition could be a t=3D0 garden
+event. Static planning enrichment is excluded because commercial
+historic-data providers already exist.
+
+EVIDENCE / COUNTEREVIDENCE
+CONFIRMED: DfE v2 live base URL, public eligibility, free
+self-registration, 150/5min rate limit, stable vacancy detail lookup.
+INFERRED: advert disappearance/edit/repost history is commercially
+useful when joined to training/project demand.
+UNKNOWN: completeness of official expired-vacancy history/backfill.
+CONFIRMED: UK EV CPOs are legally required to publish free
+machine-readable OCPI reference/availability data and reflect status
+changes within 30 seconds.
+CONFIRMED: Pod exposes OCPI discovery but protected modules require credent=
+ials.
+UNKNOWN: proportion of UK CPOs with genuinely frictionless public
+endpoints and whether a compliant free national aggregation route
+exists.
+CONFIRMED: Planning Data supports bulk/API access and PropTech reuse.
+COUNTEREVIDENCE: current planning-application dataset is
+stale/incomplete; static history is commercially available elsewhere.
+
+BUYER / WTP
+Apprenticeship state: buyer evidence is moderate, not yet strong
+enough to justify a standalone product. Treat as UKGraph
+labour-constraint input first.
+EV availability: buyer evidence is strong in category=E2=80=94government no=
+tes
+paid third-party availability data and commercial aggregators;
+fleets/local authorities/site planners use chargepoint availability.
+But without an executable free collector, WTP does not override
+plantability.
+Planning: commercial historic planning-data providers prove demand,
+but also weaken moat for static archives.
+
+RECONSTRUCTION TEST
+Apprenticeship adverts: current API returns live vacancies; unless an
+official complete version history exists, exact edit/disappearance
+trajectories are difficult to recreate later. PASS pending
+expired-history audit.
+EV availability: current state is inherently transient at <=3D30s
+status-change granularity. Historical uptime/occupancy cannot be
+reconstructed from current reference data. STRONG PASS theoretically,
+but access gate blocks PLANT.
+Planning applications: many records/history are available commercially
+and via LPAs. FAIL as generic archive; only future standardized
+transition/event history may survive.
+Find a Tender: official OCDS record/release history substantially
+preserves lifecycle. FAIL standalone ephemeral gate.
+Street Manager: commercial vendors advertise historical roadworks.
+FAIL standalone archive gate.
+
+EXCLUSION DELTA
+- raw Street Manager archive: KILL, historical products already exist.
+- generic Find a Tender snapshotting: KILL, official release/record history=
+.
+- generic Planning Data snapshots: KILL, bulk authoritative state +
+historic commercial providers; revisit only new application-event
+stream.
+- generic EV chargepoint locations: KILL, current location/reference
+aggregation is commoditized.
+- Pod OCPI status: WATCH, not plantable without credentials.
+
+SOURCE-YIELD LEDGER
+1. Regulatory machine-readable mandates: very high signal; EV
+availability surfaced a true ephemeral state class.
+2. API developer hubs: high signal; DfE gives executable access/rate limits=
+.
+3. National data-platform roadmaps: medium signal; useful for upcoming
+t=3D0 transitions, not immediate gardens.
+4. Generic open-data catalogues: low/medium; many
+static/reconstructable datasets.
+5. Commercial API discovery: high counterevidence; exposed the EV
+endpoint-fragmentation problem.
+
+NEXT-HOUR INFORMATION-GAIN QUEUE
+1. Enumerate the 20 largest UK CPOs and test only official
+public-data/OCPI routes; record anonymous/free/token/bilateral status.
+2. Search OPSS enforcement/public reporting for open-data compliance
+and endpoint-discovery guidance.
+3. Determine whether any free national OCPI aggregator is legally
+reusable for longitudinal status collection.
+4. Audit DfE expired vacancy behavior: query references after closure
+and search for official historical exports.
+5. Capture a t0 full apprenticeship vacancy snapshot once credentials
+are available.
+6. Search for newly mandated public dynamic-data regimes analogous to
+EV charging: parking occupancy, kerb/loading, building-energy, water,
+waste, rail/transport capacity.
+7. Monitor Planning Data application standard rollout for the first
+authoritative live application/event feed.
+
+MACHINE-READABLE APPENDIX
+{"run_date":"2026-09-20T17:02:00+07:00","candidates":[{"id":"dfe-apprentice=
+ship-advert-state","score":4.31,"decision":"PLANT","cost_monthly_gbp":0,"so=
+urce":"https://api.apprenticeships.education.gov.uk/vacancies","signup":"ht=
+tps://developer.apprenticeships.education.gov.uk/third-party-accounts/regis=
+ter","auth":"Ocp-Apim-Subscription-Key","version_header":"X-Version:
+2","rate_limit":"150 requests/5
+minutes","canonical_key":"vacancyReference","cadence":"30-60m list +
+event-driven details","next_probe":"expired-history/backfill
+audit"},{"id":"uk-evse-live-availability","score":4.08,"decision":"WATCH","=
+theoretical_time_moat":5,"cost_if_accessible":0,"required_standard":"OCPI
+2.2.1","required_status_latency":"<=3D30s after EVSE status
+change","blocker":"fragmented endpoint discovery/access; major
+operator example requires bilateral credentials","next_probe":"20-CPO
+endpoint/access
+audit"},{"id":"grid-project-state","score":4.02,"decision":"PLANT_JOIN","co=
+st_monthly_gbp":0,"note":"retain
+under Constraint/Join forest rather than duplicate
+collector"},{"id":"planning-application-state","score":2.55,"decision":"WAT=
+CH","blocker":"current
+national application dataset stale/incomplete; standardization still
+rolling out"}],"exclusions":["raw_street_manager_archive","generic_fts_snap=
+shotting","generic_planning_snapshots","generic_ev_chargepoint_locations"],=
+"highest_information_gain_next":"UK
+CPO OCPI endpoint/access census"}
+
+COLLECTION DECISION
+Keep apprenticeship lifecycle collection as the cleanest immediately
+plantable ephemeral feed. Do not deploy a UK-wide EV availability
+collector yet: the signal is superb, but the present-day acquisition
+route is not sufficiently verified. The next probe should focus almost
+entirely on converting the EV thesis from regulatory-theoretical to
+executable by producing a CPO-by-CPO endpoint/access registry.

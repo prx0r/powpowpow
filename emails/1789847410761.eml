@@ -1,0 +1,327 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id AwCBJ4cAuWB4
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 19:50:10 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=UneRcnLHqS4z+8MMaWMUbUwDfSjX0GLVvzQ6GTwSxYmt/NZPeaWM/6U4iitKZaM7aK9akA9Uq
+	h/+EAIztVptCjZ5p11WD2HE+P2FDCj2Rb4e56xAgHr/ThHEZw3JzQV/9jNzwQwoqnexeA42oOyZ
+	Twpxmoz2K42cTymbxXn4a697bv9phdE6IPdv3+Q+lG8+Mg9oBpHT/njY7xzHMSZRX1gtLsAY3XN
+	L0czXzvuYO9z1bO34Opj+fuV1M69fA8VubllvlHi9VMSRuTiAQ6bp/XX9Cos/bL/Gz6B8uQABDW
+	yenxE+mrC391o89X1NOsPH+uf7OUjA2Jjf18KlnkNnlw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789847410; x=1790452210; bh=7cPwIHn5
+	oefbyh7ij6gGICmhXcEIFeHp/bpLk2gwVh8=; b=Lar3JW2F8CLKqENVz24BhyLNtStncZD0hsu
+	UFfIDRodh17bBxHazIegc8P5OXKGuB6aMySDFmsuZMZtkqf5lP07+0ZBtqctM+qb9vsb2jRRYcQ
+	GuU5yCY2/1Pdi4MeGLdh6UvdW61zaGlzim4dbRtnu1jJK8HhCFyPEb9Up1OciI8BsIS4JVfepZz
+	HxpugsRCAaJLaMYBy/14pZMbFx8HvCFRASme8qqbAWLViUGkG8oiDc+PkFoBjTNdxYQYQv+F8f8
+	y0QKx7mqTA0FKbj4DXA7ZBaevgK0lG80FyeisMpjH5iUnl6Mht6M3vGNK49U3ffdXUrUkz34EOM
+	WPSsTnQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=pDEOcFMn;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=pDEOcFMn;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-895fd505824so14084147b3.1
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 12:50:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789847410; cv=none;
+        d=google.com; s=arc-20260327;
+        b=rSke033pUkAohSbi7AmDqFUmBSEvkFCAf53ZmNPlMFBUgspbXaNfKOMBeBSXr20lin
+         gXP9JTDbEOSJnXJMFR65iUbzpncRGlL6qgoU8DvTF1u8LbIE9n1frlU+LiqkigfFEemq
+         A9bxKJKG53fVpP/bDSGxnG4SC0d4L+WBWHdHdBjusUpMFmaqL2zsInmjikyURPV+WYUA
+         9wrHKs3kV5cUAtk9o8+rdy5fDXxvXU0gkl1EafFtPloqvHQsOCbV5YfA1bzHQGjsRJ7h
+         kleh9sG4OQRbU6YIOUK6wLWsCkkEkfzr9oXq0+Nh9PoodsKHhCW6qlY9skdDr8ERuVOR
+         HRzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=7cPwIHn5oefbyh7ij6gGICmhXcEIFeHp/bpLk2gwVh8=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=tAKqXmWtSaKOaUuISVlQgYK6dqrdrliPvit1DpVHISv+mfOdyvwPtrw6cM9U4cxHL7
+         s3XhvrPz3gNUubx1g8Br+ZPKVOnj4E+qkZkvk2tHiTIHSPh6Gd9bBoPXnnUY3o0ygZZP
+         /7hLJFWUFPugg67/tqOZzdyLquc9+RYGZBvUo5Dvv4yJhfV63jWf6MxthVub6g06tkIz
+         79eZL6RKs8+hF0iC9NYH7f9a/kncclciI3ELUgJM+Xq1qyBnR/r7YPOx42JoQAkUqJuN
+         BavaAJt8GRpBjhLzTsEWVrY+d0AL1E0fLdPERf6e+f2NmX5CLjLURZZW1KriBeoPdb0t
+         MHaA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789847410; x=1790452210; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=7cPwIHn5oefbyh7ij6gGICmhXcEIFeHp/bpLk2gwVh8=;
+        b=pDEOcFMnFD4z3l+kwgXEn3yMJLAR8R1jKe+GA+j+xoF3RkfH/MvbPCnJtqXW48G7jH
+         /E3KkQzuqoIOKMYvn6nvrRC9FapbeheD6yqjOE28SGaoolT806UJwn4hmDHF+DCW+TzY
+         4ge9yS76gEbDK5IAFh7DrXDDVGyxiyfKExQSb1CPxsRDMQPtqOLXZQSXHjWTquZvBO06
+         trGB1I47XcP6/kbZb8ubHP4bNDtidanYgZH7c3+CZjzb5YbU/6dBNRQYPWvkwLJykORf
+         CeKgcB2F+fZspKpqvMIsBJltBEFULAZn2fzKzbCH/pmhVkqhez4DggCuDgrEeb4Cl1L0
+         Dx4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789847410; x=1790452210;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7cPwIHn5oefbyh7ij6gGICmhXcEIFeHp/bpLk2gwVh8=;
+        b=z6Y0btLn+rPt5cnGRxIfp1Ps4UPaK96p5KCKMMm1DGnc4wdim8tfX8Jz/2x+yrC5mA
+         uD08k5Bt4ygpoHn5vkke2cVsuJwitTFIhh2FJOd+P/jzbfCLl5P5m1VWr+kCflQ82DsV
+         LTHpuUOtrxo/+fTFBh5vXG3pOHxS8Fr5FqCQYfDE9p2TKP17u2Y8MU4BCeNr6Icn0V16
+         cUkFqd7JR4X8wVZU1FMUIuX+/Fa1eO3SUWTi4WDNfh/wS1CqySHzTlNGpH9OZwDOWfzq
+         JLqjb6poXIK6RJT7XrcTGTOuvEUux3KYXYLbpZJFXuYGUX64bpI81efji2IjJreDY2ov
+         Ntxg==
+X-Gm-Message-State: AFuF++lOSkzq2Yh0fUyy4yhwPF8RQ7pwiFt34K70i65rHXFnN0AOaFhN
+	H9nIZAuiCvpttDm/t4e4R5JL4kCX5fmvQfP/yap7wWuxe/82MiwmoXxuXg9k1ygNSp9OL5xVNS9
+	S/JIUv8vNdbCAZTUXNwLZJiu59ZZlvr09NA==
+X-Gm-Gg: AYBFou1HQXqh0d/tpjJ2JMl8cx+LOzi7eRf63UOdu72rVp1fCpFLMdd4bxn1cLovP2w
+	qAtfd7nxlIKYyy3VsgzinDz5t+jHQAHxCrVW5pxqgbm+cYeVDBbj0UnPSKAWlJMKOS++ocORtw9
+	qYWLAd6o5BHlhMwxaVW0Pui4Y62raPdVNbxzFSsZdr0tj38oxXDqsx7kzMzFcJh81Ng+VAD1qDQ
+	n2rhJOvgk8oVmfNaZcKkgvnYz0m0ZlRU2dwtk0kxEkbabOMkyTuNFIasIE49mEls/axB9Z63NuM
+	hfBY9hwyFHD90TGBY6ESZL9YKh0zomoBOGqi0WDNZgqUJNmQgo3aLq2e1708wvqr0AY5cSPXKlt
+	8u770gGT0Q8/RH8DzjiyFcrBHZk7F9qIYrsiTwypMmXjcNbSrDlqjHvY/1wTGush6/G5aBZkuCh
+	QLZ8RY4A==
+X-Received: by 2002:a05:690c:d94:b0:89a:63bc:8c5 with SMTP id
+ 00721157ae682-89a63bc0b9amr7880667b3.79.1789847409807; Sat, 19 Sep 2026
+ 12:50:09 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 14:50:08 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 14:50:08 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 14:50:08 -0500
+X-Gm-Features: AcwNN1XMm4uSPSD_BdFSlGiV6pkgEITObFw88gAPWHN6PPKtgb62g2TJNjoyI5I
+Message-ID: <CAPdrGenrLid6YNkGdtC4piYDf905mVquQw7GufnSeZz-cfiXyg@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D20_02=3A49_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_1_strong_signal?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000010551f065bdb5351"
+
+--00000000000010551f065bdb5351
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+STATE
+Prior Sent state recovered through the 2026-09-20 01:45 report. Semantic
+duplicates were rejected unless new independent evidence materially
+strengthened a cluster.
+
+1 STRONG SIGNAL =E2=80=94 THE APPROVED DIGITAL PREVIEW MUST MATCH THE ACTUA=
+L
+PHYSICAL PRODUCT
+
+Platform/source family: personalized-pet product reviews (Dodowish verified
+customer reviews), independently reinforced by personalized-apparel reviews
+(Petfiestas) and Etsy digital pet-product feedback.
+Date: strongest current evidence Aug=E2=80=93Sep 2026.
+
+Customer language / evidence:
+=E2=80=A2 Dodowish, verified buyer, Sep 3 2026: =E2=80=9Cvery strange look =
+to the face, esp
+the eyes, that does not look like the preview rendering.=E2=80=9D
+=E2=80=A2 Dodowish, verified buyer, Aug 19 2026: buyer says the head/body o=
+n the
+received keychain did not match the image on the display card; they
+expected an actual depiction of that preview.
+=E2=80=A2 Petfiestas, Jun 18 2026: buyer says =E2=80=9CThe quality of the p=
+rint is also
+nothing like pictured.=E2=80=9D
+=E2=80=A2 Etsy pet-memorial buyer, Dec 22 2025: final personalized image wa=
+s
+=E2=80=9Cblurry and crooked.=E2=80=9D
+
+URLs:
+https://dodowish.com/products/dodowish-custom-3d-figure-keychain
+https://www.trustpilot.com/review/www.petfiestas.com
+https://www.etsy.com/listing/4325706288/personalized-pet-memorial-png-custo=
+m
+
+Wanted/problem: Buyers are not merely asking for a good digital likeness.
+They expect the approved representation to survive the transition into the
+delivered medium. A preview that looks right can actually increase
+disappointment if the manufactured/printed result changes face geometry,
+crop, placement, color or sharpness.
+
+Current workaround/product: sellers provide a digital/model preview before
+production, but production itself can introduce a second failure surface.
+
+Roast.pet implication: Treat PRINT PROOF as distinct from PET IDENTITY
+PROOF. The identity image/video can be approved first; once mapped onto the
+actual card/shirt/product, show a final production-representative
+mock/proof with exact crop, QR placement, text safe area and resolution
+checks. For initial QR cards, this can be automated and nearly free.
+
+Occasion/audience: personalized pet gifts broadly; particularly physical
+card/apparel/add-on buyers.
+
+Independent elsewhere: YES =E2=80=94 separate current personalized-pet/prod=
+uct
+vendors show the same preview/listing-to-final mismatch mechanism.
+Confidence: HIGH.
+Prototype: Add a final screen: =E2=80=9CTHIS IS WHAT WILL BE PRINTED=E2=80=
+=9D with exact
+card dimensions, crop and QR position. Run automated
+300-DPI/effective-resolution, face-crop and QR-scannability checks. Compare
+support/revision rates against orders receiving only the identity preview.
+Decision: BUILD/TEST.
+
+CLUSTER UPDATE
+This strengthens the existing exact-likeness / presentation /
+physical+digital bundle clusters but adds a distinct boundary: identity
+approval is not equivalent to production approval. Proposed pipeline:
+PHOTO =E2=86=92 PET IDENTITY PROOF =E2=86=92 TALKING PROOF =E2=86=92 CARD C=
+OMPOSITION =E2=86=92 FINAL PRINT
+PROOF =E2=86=92 PRODUCTION.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Exact individual-pet likeness with explicit approval/correction.
+   2. Preserve that identity in motion/talking animation.
+   3. Multi-pet support from separate source photos.
+   4. Personality-driven comedy rather than generic pet templates.
+   5. Production-representative physical proof so the delivered
+   card/product matches what was approved.
+
+STRONGEST UNMET NEED
+A personalized comedy product that remains recognizably the exact pet
+across photo =E2=86=92 stylized identity =E2=86=92 animation/voice =E2=86=
+=92 physical gift.
+
+EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW
+Add a reassuring line beside the physical-product CTA: =E2=80=9CYou approve=
+ the
+exact print layout before we make it.=E2=80=9D Then show the real card
+boundary/crop/QR rather than a generic lifestyle mockup.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM ACTUAL CUSTOMER LANGUAGE
+=E2=80=9CYour Dog Roasts Dad =E2=80=94 Personalized Talking Pet Birthday Vi=
+deo + QR Card =E2=80=94
+Approve Your Pet AND Final Card Before Printing.=E2=80=9D The approval prom=
+ise
+directly attacks an evidenced trust failure in personalized pet products.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not let a polished digital preview imply that the physical item is
+guaranteed to look identical unless the production pipeline is actually
+validated. Preview-first can backfire when print/manufacturing changes the
+output; buyers explicitly compare the received product against the
+approved/rendered representation.
+
+SEARCH NOTES
+Broad fresh searches covered pet-portrait reviews, Etsy pet products,
+multi-pet products, memorial products, talking-pet/voice terms,
+personalization/photo-quality complaints and independent
+personalized-product review sources. Most discoveries repeated
+already-established likeness, photo guidance, revision, multi-pet, speed
+and personality clusters and were rejected as semantic duplicates.
+
+--00000000000010551f065bdb5351
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>STATE<br>
+Prior Sent state recovered through the 2026-09-20 01:45 report. Semantic du=
+plicates were rejected unless new independent evidence materially strengthe=
+ned a cluster.</p>
+<p>1 STRONG SIGNAL =E2=80=94 THE APPROVED DIGITAL PREVIEW MUST MATCH THE AC=
+TUAL PHYSICAL PRODUCT</p>
+<p>Platform/source family: personalized-pet product reviews (Dodowish verif=
+ied customer reviews), independently reinforced by personalized-apparel rev=
+iews (Petfiestas) and Etsy digital pet-product feedback.<br>
+Date: strongest current evidence Aug=E2=80=93Sep 2026.</p>
+<p>Customer language / evidence:<br>
+=E2=80=A2 Dodowish, verified buyer, Sep 3 2026: =E2=80=9Cvery strange look =
+to the face, esp the eyes, that does not look like the preview rendering.=
+=E2=80=9D<br>
+=E2=80=A2 Dodowish, verified buyer, Aug 19 2026: buyer says the head/body o=
+n the received keychain did not match the image on the display card; they e=
+xpected an actual depiction of that preview.<br>
+=E2=80=A2 Petfiestas, Jun 18 2026: buyer says =E2=80=9CThe quality of the p=
+rint is also nothing like pictured.=E2=80=9D<br>
+=E2=80=A2 Etsy pet-memorial buyer, Dec 22 2025: final personalized image wa=
+s =E2=80=9Cblurry and crooked.=E2=80=9D</p>
+<p>URLs:<br>
+<a href=3D"https://dodowish.com/products/dodowish-custom-3d-figure-keychain=
+">https://dodowish.com/products/dodowish-custom-3d-figure-keychain</a><br>
+<a href=3D"https://www.trustpilot.com/review/www.petfiestas.com">https://ww=
+w.trustpilot.com/review/www.petfiestas.com</a><br>
+<a href=3D"https://www.etsy.com/listing/4325706288/personalized-pet-memoria=
+l-png-custom">https://www.etsy.com/listing/4325706288/personalized-pet-memo=
+rial-png-custom</a></p>
+<p>Wanted/problem: Buyers are not merely asking for a good digital likeness=
+. They expect the approved representation to survive the transition into th=
+e delivered medium. A preview that looks right can actually increase disapp=
+ointment if the manufactured/printed result changes face geometry, crop, pl=
+acement, color or sharpness.</p>
+<p>Current workaround/product: sellers provide a digital/model preview befo=
+re production, but production itself can introduce a second failure surface=
+.</p>
+<p>Roast.pet implication: Treat PRINT PROOF as distinct from PET IDENTITY P=
+ROOF. The identity image/video can be approved first; once mapped onto the =
+actual card/shirt/product, show a final production-representative mock/proo=
+f with exact crop, QR placement, text safe area and resolution checks. For =
+initial QR cards, this can be automated and nearly free.</p>
+<p>Occasion/audience: personalized pet gifts broadly; particularly physical=
+ card/apparel/add-on buyers.</p>
+<p>Independent elsewhere: YES =E2=80=94 separate current personalized-pet/p=
+roduct vendors show the same preview/listing-to-final mismatch mechanism.<b=
+r>
+Confidence: HIGH.<br>
+Prototype: Add a final screen: =E2=80=9CTHIS IS WHAT WILL BE PRINTED=E2=80=
+=9D with exact card dimensions, crop and QR position. Run automated 300-DPI=
+/effective-resolution, face-crop and QR-scannability checks. Compare suppor=
+t/revision rates against orders receiving only the identity preview.<br>
+Decision: BUILD/TEST.</p>
+<p>CLUSTER UPDATE<br>
+This strengthens the existing exact-likeness / presentation / physical+digi=
+tal bundle clusters but adds a distinct boundary: identity approval is not =
+equivalent to production approval. Proposed pipeline:<br>
+PHOTO =E2=86=92 PET IDENTITY PROOF =E2=86=92 TALKING PROOF =E2=86=92 CARD C=
+OMPOSITION =E2=86=92 FINAL PRINT PROOF =E2=86=92 PRODUCTION.</p>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE</p>
+<ol>
+<li>Exact individual-pet likeness with explicit approval/correction.</li>
+<li>Preserve that identity in motion/talking animation.</li>
+<li>Multi-pet support from separate source photos.</li>
+<li>Personality-driven comedy rather than generic pet templates.</li>
+<li>Production-representative physical proof so the delivered card/product =
+matches what was approved.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+A personalized comedy product that remains recognizably the exact pet acros=
+s photo =E2=86=92 stylized identity =E2=86=92 animation/voice =E2=86=92 phy=
+sical gift.</p>
+<p>EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW<br>
+Add a reassuring line beside the physical-product CTA: =E2=80=9CYou approve=
+ the exact print layout before we make it.=E2=80=9D Then show the real card=
+ boundary/crop/QR rather than a generic lifestyle mockup.</p>
+<p>BEST NEW ETSY LISTING/PRODUCT IDEA FROM ACTUAL CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Dog Roasts Dad =E2=80=94 Personalized Talking Pet Birthday Vi=
+deo + QR Card =E2=80=94 Approve Your Pet AND Final Card Before Printing.=E2=
+=80=9D The approval promise directly attacks an evidenced trust failure in =
+personalized pet products.</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not let a polished digital preview imply that the physical item is guara=
+nteed to look identical unless the production pipeline is actually validate=
+d. Preview-first can backfire when print/manufacturing changes the output; =
+buyers explicitly compare the received product against the approved/rendere=
+d representation.</p>
+<p>SEARCH NOTES<br>
+Broad fresh searches covered pet-portrait reviews, Etsy pet products, multi=
+-pet products, memorial products, talking-pet/voice terms, personalization/=
+photo-quality complaints and independent personalized-product review source=
+s. Most discoveries repeated already-established likeness, photo guidance, =
+revision, multi-pet, speed and personality clusters and were rejected as se=
+mantic duplicates.</p>
+
+--00000000000010551f065bdb5351--

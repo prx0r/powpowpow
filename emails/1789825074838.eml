@@ -1,0 +1,518 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 1lKk0I5qxxgf
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 13:37:54 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=MSEdWnB3/OKxxSh4TB8k9ZPBHm8EI++9sKMq1MkphvaSnDX/S8MlEZ96Djh5fw5iUJH6ORFm+
+	uWWSypKAETv6DoW0KNPtcPCWohe91s2O7gnStr9bbj7cW8ft5bszCdrP3XVZbrnao3uLI31sh5H
+	B9hNYvyssuJccEPrpgNqDr040gx5YKN8rgAIDbJaSQK/ynY7xeK5S3KMeU92fE3yRPj+9j4N9S0
+	IMae14p3seiZWrcL+Nchzb9A8tyEoYCfl9BUJrH9aCQj/XRZo8bYpkyJjQtXF8Rc+UG+9nV/c+2
+	lnWWggPUTLr/5kpJwO5AG2bB9QQubJu05w45vt2UdOew==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789825074; x=1790429874; bh=puJl3shl
+	CfazH1QL16FPaCHQg2HWE6fmzdm/aLiVBVk=; b=UMt77YsrChuO78ZJg8E218w3pAOgrIa4Y0A
+	myzhKHKgrhucrmccpyMygT3xWbVKp0X2Oa4jQQUCcoK6IBrsRLupO/moWY3fi1SlX+JCIKalbBF
+	4+HPPDYxop/rJNr4fhLfblWrdXmtkeCCK3e+aKbJX67kIAc+795+OLIVjx3P9crv4RdU3Ke7tXf
+	Zux39TN+YWAFb4h5fJuDGRId9WSfOX1dLImssP3nSAqk5hvYkaXrknDNP4S53Vm31hgLgXtxm06
+	3/85c2AW2r6D1SCppif7djxrhx1ynAQDHzchyNc9Bok7qvFBm2B1UzKFS3oVfU1XeqI+aPsxPdz
+	+TZHTtQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Mltraurw;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Mltraurw;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e56a1fe83so1486459d50.2
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 06:37:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789825074; cv=none;
+        d=google.com; s=arc-20260327;
+        b=gg4r6//tio+9nwPzws7dOnDcK3wkCdNFW8shUYFlAI2ijdioCjlgHXgPnDxTMO1GNH
+         TVWzgP12mOibxuA1oXu7spG55eHq1hv0QCAtVzsP0pmLmSERTFsX5ebvWrPueBDkSxUS
+         C2A36UdoKvtXmVsEkXeHK1/nZe+tu6sJXP7eqhmiT7Ol3iDfTiVi5ckJf9ZlZsr9k440
+         LxrwKG3erW/8ZInBom5wGMo2GQY/sHuE2qRqCOiz967RL4UubshILjHnFEZvtfXcYqGR
+         x2/Gdkex7wkFjoZkCuzE52yAYR1xk/mvGtZhKmQVUrF8TRpB0x0d3QBKaYSZ23aS+gI0
+         ajAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=puJl3shlCfazH1QL16FPaCHQg2HWE6fmzdm/aLiVBVk=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=EVBPSYJZSFmL6KyFERdi5/4zeimHKH8MRaC80YY6bPeoyhEY4c+XzJHLxiSkPTu22L
+         /Js2+/v5VdkQZdQT1eUzgTvBKgYRo58ykV2inRSTbauFnDGoZ8d49UsJBCH6TBYTrz/a
+         4d2Z3cnf/XELTl6tQ6gydSARVtVcLF59t5EXpGSqVYDZfjiAQvsBOR4MUI1HyVCBkcPn
+         qJsTIZRWwdnEXpa/E3dOyA/HSIcUkimSueIrY32xq/upJrRqm+IWwh12Cvz55Rx9znMf
+         huK34imYey5iMvarW3wjh4pvUITaCfH+HfXK0459YKZzyX7eqgZVQmOknmFAMfkw0CRV
+         PrrQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789825074; x=1790429874; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=puJl3shlCfazH1QL16FPaCHQg2HWE6fmzdm/aLiVBVk=;
+        b=MltraurwR9hSrJKMCogEsaUTaNNKxFjKsqcouo5/DjPcUwvzLmR2s7ZodLJc+WTtYX
+         WhNSOdFBTHusc/j4NzctSa/7pqUBXhiuYmj1ooLnkTKxA2wllvJi9bcD/OhLmNG6Zc4a
+         j5VWh/71FvXeqHZyLStZScJbkcAqs3OOPwtgzZhEa5JXHS+OeiQ6szI4xwVjGCXh+93h
+         rghZR+JmixGjJ8PtsOwCtYX8E/S/dj3MDXpwvlObggZSYE0NuXEDha6LeBjyKH9hoW/9
+         wePacrutxJM6H+cqyI0dFIHWpTlp2toe6C09I6wg/n/vNHoOamWj5+gicOf34j7pLtwS
+         9bag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789825074; x=1790429874;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=puJl3shlCfazH1QL16FPaCHQg2HWE6fmzdm/aLiVBVk=;
+        b=Hjdx5qdPS7uXWCVDmaZR2XkHjhX3oOhYXlxAs0c/uKyg9wwO3F3wl2E99OOeTAxS58
+         1Xqc8zINxT6Y1zE7qK8EPC+U7riU0vFq8CRimASsxKnwo1u1kT7OuWPcB8aig3UDwT5l
+         SvtpbkIRcuvEMoIlukfJSdd20ozh/NqzbAFzBHFce0aNPnKOCrGBbdGbRyAUR9RijxDV
+         4BINFJutaLlvzK1yTxr28P51GGDEbiNapdLT9qT+W6gJvmiMQ9iDwhw2oihrDBN1QwDG
+         Ywptc9eDn8qzkyht57XpLlLNbDX9eegCfjLDpiSflcM6haG1qskmbndPP6sw2DwOF3zQ
+         k69w==
+X-Gm-Message-State: AFuF++n4OSYComDGuv1ILWvOUrHn85b8sb2XDhyku/8HzfAbhHY8dH63
+	dfLyHPjLs7FmG1CbI1I2p09KTIqNHvj4DqOIxjJhFjhwxUb1Ob+w4KDHpAeMfkX3dU9lWbxSpp4
+	YaAn/nLJF3O1OIBJbPVqo/71J234ypdzBVQ==
+X-Gm-Gg: AYBFou23kBYUXI+PYFGwUBj7UGxLoKAhJQDOuUSx/HCkoqJC5AQx4vk93/jiCj8u0Hw
+	D8iMIMaMvk07elp5L6Pp6YSLQy61moyn3sB86ibGLD2IirktDw9J3v80aXNxJ4SEr5I/YpJABsU
+	SKmwL5xCtc4Cxhd/LcIav8ygtAmYwS7hX/HgMwkVgPOmJiulvbCIUX3i8y3i++A8KUibcArrWbm
+	sVA9U9ZPwgoC4L5Z4W1nvvYMWeT7R5t6G6KbgdePMbBBWj6LopxAnEPFAC0I8w0y3gZG9JVxM3H
+	+smmOlitf5VhW9BayDuPfgEf0TI7t4x56+vkYBaLohfIy8cEuO/2Ib5KUfG1S0n/1HDj0ZnGJT7
+	hFOosA7ztYy5yPOcG44imGaAciy8x0DbpQsjPLxWK9m+6CvsGZXDPTIpcKoU8KSy3iXN+eQYg
+X-Received: by 2002:a05:690e:1301:b0:672:9f72:7c0b with SMTP id
+ 956f58d0204a3-6729f727cc8mr321995d50.109.1789825073942; Sat, 19 Sep 2026
+ 06:37:53 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 08:37:53 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 08:37:53 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 08:37:53 -0500
+X-Gm-Features: AcwNN1VvNxpsskSbKRwX8FAagfqhmKf1jQ5QXJPLpjrxxOzV0gDCdck3XF97HHM
+Message-ID: <CAPdrGe=kGaVbfLsprV0HQrKprK4LrAks6ci5=JSZp9x7YFysCQ@mail.gmail.com>
+Subject: =?UTF-8?Q?FunnyLab=2Ecards_=E2=80=94_Muse_=2B_Jev_=2B_AI_Christmas_Coding_?=
+	=?UTF-8?Q?Addendum?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+FunnyLab.cards =E2=80=94 Coding Integration Addendum
+
+This updates the earlier plan. Keep the first build simple.
+
+CORE PRODUCT
+
+FunnyLab.cards is the AI/AGI card product.
+FunnyLab is the broader comedy/social brand.
+Muse or ChatGPT is the interface.
+Jev is the fast routing/ranking layer.
+A generative model writes candidate jokes and image briefs.
+Prodigi handles physical fulfilment.
+Etsy handles initial discovery and checkout.
+
+User experience:
+
+"Make James a dry Christmas card about his AGI obsession. Use my dog."
+
+Muse supplies only the relevant context summary.
+
+FunnyLab:
+1. generates several joke candidates;
+2. uses Jev to rank candidate + template + tone fit;
+3. renders a preview;
+4. returns product/shipping quote;
+5. waits for user approval;
+6. sends approved print assets to Prodigi.
+
+
+FIRST NICHE
+
+Do not launch as generic cards.
+
+Initial collection:
+AI / AGI comedy, especially Christmas.
+
+Positioning:
+"Funny cards for the AI age."
+
+Themes:
+- automation
+- robots
+- work and redundancy
+- future anxiety
+- AI relationships
+- pets reacting to AI
+- Christmas + AI
+
+
+HERO CARD
+
+Scene:
+Santa in a warm Christmas setting reading a printed notice.
+
+Notice:
+"Merry Christmas!
+Your role has been automated."
+
+Potential inside copy:
+"Please do not reply to this message. Seasonal decisions are final."
+
+Alternative:
+"Hope your festive period remains at least partially human."
+
+Personalized:
+"Merry Christmas, James.
+Your role has been automated."
+
+This is the benchmark visual/tone for the first collection.
+
+
+FIRST TEN AI CHRISTMAS TEMPLATE FAMILIES
+
+1. Santa automated
+"Merry Christmas! Your role has been automated."
+
+2. Santa vs robots / breaking news
+"BREAKING: 10 million robots taken offline in unexplained sleigh-based atta=
+ck."
+
+3. Elf redundancy notice
+"North Pole announces restructuring following agent deployment."
+
+4. Pet security failure
+"STRANGER ENTERED HOME VIA CHIMNEY.
+DOG ACCEPTED BISCUIT.
+INVESTIGATION CLOSED."
+
+5. Christmas performance review
+Turkey: adequate
+Walks: unacceptable
+Wrapping: embarrassing
+Guest selection: questionable
+
+6. Human vs pet
+Human: "Will Christmas still feel human after AGI?"
+Pet: "Turkey."
+
+7. Cat vs Christmas tree
+"Decorative structure destroyed 14 minutes after deployment."
+
+8. Santa reads owner search history
+Santa horrified, pet smug.
+
+9. AI Christmas card
+Human: "Will Christmas still feel human after AGI?"
+Pet: "You bought this card from an AI."
+
+10. Pet North Pole complaint
+"Requesting replacement owner. Current unit misses scheduled feeding window=
+s."
+
+
+TEMPLATE-FIRST ARCHITECTURE
+
+The unit of creation is a comedy template, not an Etsy SKU.
+
+One template should support:
+- physical card
+- digital card
+- shirt
+- social image
+- later motion/video
+
+Template schema:
+
+{
+  id,
+  family,
+  required_inputs,
+  optional_inputs,
+  text_slots,
+  image_slots,
+  humour_modes,
+  supported_products,
+  supported_occasions,
+  topical_tags,
+  print_layout,
+  digital_layout
+}
+
+
+HUMOUR MODES
+
+Support at least:
+- dry
+- absurd
+- deadpan
+- corporate
+- topical
+- sharper roast
+
+Do not merely rewrite one joke five times.
+Generate structurally different candidates.
+
+
+JEV ROLE
+
+Jev should not write the joke.
+
+Use it for typed decisions after candidate generation.
+
+Input state:
+{
+  humour_context,
+  recipient_summary,
+  occasion,
+  available_templates,
+  candidate_jokes,
+  topical_context,
+  product_type
+}
+
+Questions:
+- best_template
+- best_candidate
+- tone_fit
+- personal_fit
+- instant_clarity
+- genericness
+- topical_fit
+- whether more context is needed
+
+Rules:
+- high confidence: route automatically
+- low confidence: show multiple options
+- high genericness: regenerate
+- low instant clarity: regenerate
+
+Jev is the cheap routing/ranking layer.
+
+
+MUSE CONTEXT
+
+Accept a minimized context object such as:
+
+{
+  preferred_tones: ["dry","absurd"],
+  disliked_tones: ["sentimental"],
+  recurring_topics: ["AGI"],
+  relevant_in_jokes: [],
+  avoid_topics: [],
+  recipient_relevant_facts: []
+}
+
+Do not pass raw conversation history.
+Only use relevant user-provided or permitted context.
+
+
+MCP SURFACE
+
+Keep it small:
+
+funny.list_templates()
+
+funny.create_concepts({
+  recipient,
+  occasion,
+  context_summary,
+  humour_mode,
+  topical_context?,
+  photo?
+})
+
+funny.preview({
+  template_id,
+  copy,
+  photo?
+})
+
+funny.quote({
+  product,
+  destination
+})
+
+funny.order({
+  approved_preview_id,
+  destination,
+  shipping_option
+})
+
+funny.create_card({
+  recipient,
+  occasion,
+  context_summary,
+  humour_mode,
+  photo?,
+  topical_context?,
+  destination?
+})
+
+create_card flow:
+generate
+=E2=86=92 Jev rank
+=E2=86=92 template selection
+=E2=86=92 render preview
+=E2=86=92 quote
+=E2=86=92 return preview
+
+Do not place a paid order until explicit approval.
+
+
+STATIC RENDERING
+
+Prefer:
+Satori =E2=86=92 SVG
+resvg-js =E2=86=92 high-resolution PNG
+Sharp =E2=86=92 photo crop/composite/resize/print preparation
+
+Each card template should live as a version-controlled component.
+
+Example:
+
+<AutomatedSantaCard
+  recipient=3D"James"
+  headline=3D"Merry Christmas!"
+  body=3D"Your role has been automated."
+  humourMode=3D"dry"
+/>
+
+Use Creatomate later for animated/social versions.
+
+
+PRODUCT TIERS
+
+STATIC
+fixed joke
+
+PERSONALIZED
+name/photo/context substitution
+
+WILDCARD
+context-aware custom joke + template selection
+
+All use the same template library.
+
+
+FEEDBACK LOOP
+
+Store raw outcomes:
+
+template_id
+candidate_id
+tone
+topic
+occasion
+personalization_depth
+Jev outputs
+selected?
+rewrite requested?
+purchased?
+shared?
+social performance?
+
+Do not collapse this into one "funny score" initially.
+
+
+FUNNYLABS =E2=80=94 AFTER LAUNCH
+
+Do not let this block the store.
+
+Reuse useful /killella concepts:
+
+Comedian
+=E2=86=92 immutable ActVersion
+=E2=86=92 Appearance
+=E2=86=92 performance/reaction data
+=E2=86=92 next version
+
+Controlled experiments:
+
+A. same joke, different character
+B. same character, different joke structure
+C. same material, different delivery
+D. same template, different personalization depth
+E. same structure, topical vs evergreen
+
+Important thesis:
+humour depends on more than text.
+
+Eventually track:
+
+material
+=C3=97 speaker
+=C3=97 character appearance
+=C3=97 voice
+=C3=97 delivery
+=C3=97 timing
+=C3=97 context
+=C3=97 audience
+=C3=97 medium
+=E2=86=92 response
+
+We are not trying to solve humour in advance.
+We are building the content + commerce + measurement system so better
+humour models can be swapped in later.
+
+
+SOCIAL LOOP
+
+Winning social idea:
+=E2=86=92 static card
+=E2=86=92 personalized card
+=E2=86=92 shirt/digital version
+
+Winning commerce format:
+=E2=86=92 social sketch or recurring character bit
+
+FunnyLab becomes the social/comedy brand.
+FunnyLab.cards is the commercial card surface.
+
+
+Q4 BUILD ORDER
+
+1. Design 10 AI/AGI Christmas cards manually.
+2. Make the art excellent.
+3. Build static renderer.
+4. Put cards live on Etsy.
+5. Wire Prodigi.
+6. Add personalization.
+7. Expose MCP.
+8. Add Jev routing/ranking.
+9. Log feedback.
+10. Start FunnyLabs experiments after launch.
+
+SUCCESS CONDITION
+
+A user can say:
+
+"Make Jake a dry Christmas card about AGI replacing him. Use my dog."
+
+Without leaving Muse:
+- FunnyLab chooses a template
+- generates candidate copy
+- Jev ranks it
+- card is rendered
+- preview is shown
+- shipping is quoted
+- user approves
+- Prodigi fulfils
+
+CORE RULE
+
+Do not make the technology interesting before the jokes are interesting.
+
+The first real asset is:
+10 genuinely funny reusable AI/AGI card templates
++ strong personalization
++ reliable fulfilment
++ feedback on what people actually choose and buy.

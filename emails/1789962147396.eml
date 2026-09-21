@@ -1,0 +1,544 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id Jvj1d5JaAGjM
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 03:42:27 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=PTfTVvWxfGQt+fARy7DC1vUs0GTYtxNDJG+bgQbyPYuRL0M1+Gb7/d64XF0qrdc6TIaz47H3+
+	Mf48Q0yiurEuSuYB4Rir8pPcx0klYCsXN3FmaCIrqQGjh0dsGwk7AehdNyY40VEMy1WdVIh8PHq
+	4gmpubcphsaiWmyQ13bSuDOlKF/RM1k2kJgxmOusewI7k2yNTrxzHKp/6AFlgnmrvqwW9/s9MPJ
+	IJnJI3O8edHogtNWhY/yeumPp18fZZpPH28TeLPQ5wNXv7Ivax2PiR3GYC+7vROPLUCCpTr/U5R
+	dKOswPrtTVtZMfIDIW9PAuIwjruFfXwOhXFLvQboAaZg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789962147; x=1790566947; bh=LbJnDzMr
+	uilStFF2J3PA15xihWfnp96jAwYCXAhLUcE=; b=LbIpYxOiD9TqFZvW57Ldz5DBDRm+D2qP5o9
+	5SmGwx9Dakda4O9bdu9oW+lx0Ho/hwgU0mwl3YljCM93Ym6EHeaNUZoBqsvGK0gDe8EMwugLWVn
+	6J3oF1NykWehuWhYOYjxyvMz2JFSitp/VY7iYK8VAGPRxF6Ofb0agQ21GjSkw5WbwnLk7LWvwTF
+	DKVv78Qrs9qfMoIj5J3eUgTkv8IA5msmH7/J/TPU2SX5KwbBQwN7zZb9vtzoXzCMVb+hw+zM2yQ
+	aQmQGENYisVhzxjL/7AgzG+gmLpmRk24YFzYbB34Xp83XYZrTPUdOuP5wRkuqxyjFTV0QX5rgyz
+	TcNRtTw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qIMeNUyG;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qIMeNUyG;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 956f58d0204a3-66f943b286fso2095784d50.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 20:42:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789962147; cv=none;
+        d=google.com; s=arc-20260327;
+        b=fVXM9qOv3mwuofkMilp7OrcgBkb5W2RSya8hU2vXYwvadOKEgXxiES/ioOZXHAMl+x
+         4rPngry3qp+zrs3BWoGai43H0paKeTi42TCDAKW6laFBcDhmyveMGWyD4npkDih14ggX
+         RUCiYm1iPuZ9nurRJ0uHbZ0EEgcPkxhLLXyXKPSQGnubPMR/WWxuW+HvjEtn1oXXooug
+         AwGouO6M7aGl7HItq1ppd65qXtw/t3xxnlvHExGzyD+Fk40wQCQ9YFnQIxyY+a3gVA6o
+         zP7sYP1y1Fn/bETrudHKTnyoY0PpO4neYiXx0Tne7ftJ6n7ndMBUOzOaJSTQvrKpRzhy
+         gGsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=LbJnDzMruilStFF2J3PA15xihWfnp96jAwYCXAhLUcE=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=aYg41EP8Sm6BF+hkSjetZweFKiBrr7kM3YrMoF9+OcK1LUMk1c8KrwTvu2Hq0foDMn
+         WZsQj7uxU5MblL/p8a4vpQRj6DMBhLlg9xjoXFArbWiJvyLGVlMgc8NHoKE30rrHKuJV
+         LOwK+gulaLrymYAkjBFyhwBsGqIFAVzKUvKUeWNcCXQkF5FyeC84zgA55xeVIUEwxib5
+         JnNRwT6fdrZqz/qqyUSN197Mh+CuhcVJ5+Z9ak6HyLDT7IWRKaySg3aFchgxfh+/ILs7
+         0JJ2J95tGSXkk/RB1CKy+oZp3cHZTq0axRYAnPKr3K8JucQzXgqWxmBusNNsnjKKO/n2
+         xKjw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789962147; x=1790566947; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=LbJnDzMruilStFF2J3PA15xihWfnp96jAwYCXAhLUcE=;
+        b=qIMeNUyGjfziXw8DsYzRu4TsqH/CnpWd/f51W6RDWNzmTU+Bbmz03J+S0iJFcLGPjS
+         E9YMbKgn4KeASmyaL/cB/ZCAQ3iImd9ULNWsx9psi9qtwdR1ttks5gl1Qw9CwWSewtnM
+         tGWCczMXeM8NDiIwBOgv4LGePOMbSjL6iBQQq15nCvNqx8UKVMLSVUFHCKec5yH5J91T
+         hx2vRjO5U+Uj7LklKDqT314iD18fT5v0C3lBnugj/0XgxS9TVACJK8hywBV5O5gkdzjH
+         HxAG7z5BbD6AWW0pi5HlGdZ8/X0Zr6eMkrfqy6L4V4CTL5CjFUPAElS+/J03pvhqvdrn
+         1X+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789962147; x=1790566947;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=LbJnDzMruilStFF2J3PA15xihWfnp96jAwYCXAhLUcE=;
+        b=j3YNf0GPCDe5wrrn73NgI3C/5i5y8mMWk6VYqRocPNNzdLODKf5vkq4nP02nJdDmQ4
+         E6uo1M1MHKg4d+4ZsXL7gIlG8jMFQMRao9zy4JdJk4AdST6MtfvoZZhgsSbfB5ONQYk5
+         NDN5RdzWHNsIo9E1HPROGUa2bn7vKDrUfYVlQ0OuJcUvZIL0KTe/bqJ+2He96qNrmEVM
+         YUlxZAD2bZDckzyF1DkiHkGxh6Mm81IvzkCYTCKVAGa+2otu5hP7mUwkTYOzBlifRNXN
+         3YO3fp4Qww5mqjvTKHNqS28xJ0tlzrWX8ZCHVbqhOfUGp61xC4LivDXnhVQrZGGXXLxL
+         2VsQ==
+X-Gm-Message-State: AFuF++nEihwtKi31EXPvfjG5yd4GckKQNM3fC94o4YNxl0XkJc/jBIE9
+	LZ6XXNWWJ9F9sL0UVmWgAFCTKzBvleGJxbSg4hJYu88P6KFve/sYgckBgcwNj+oOKsQj57TnpTc
+	6TkunX/36pu7LwrcqMPPQV5eqxRu+u0OO5A==
+X-Gm-Gg: AYBFou3LSSiUFQxiJJCGZOMj9l0ZTYtbfRQjfHEenIkWQtDH1w/2hUmIov+RLs6+YHX
+	6dljo9iIQbvY6MVdDJXxJSeStE7DrUFpqgJu0u9QFgsfTj4j8ttAme56LeGEKFa/I3b6zcaepwU
+	0oB3P+QOhlx3xManxzrlXEBn937b7XrX9J8i0SKHXlxaiilvePeL9n4I+lK87kZJBI62Tk89KdU
+	EY1ZiTmhAdBNs6VW9uXwoq3AsCASiJP+HZr6X66zYwGQWogklfkL1fgPTYJSXf9gpumTxlb6WzE
+	+yhCuOQ5zA05shPtKhz/1RVZkl1GEqNnXYmKr0Ju80QVzipu/kROkvRhIFUfwIQOFeikBDItI+6
+	SBvvwkbjHVeFsV3ltkqMfpavaCXHjsnjJSTcRWRmU0In9uG516gGuJoM8CbATSiLKiuS6v/c=
+X-Received: by 2002:a05:690e:454e:10b0:671:2a71:63ed with SMTP id
+ 956f58d0204a3-6717fcb33edmr2016821d50.34.1789962146445; Sun, 20 Sep 2026
+ 20:42:26 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 22:42:25 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 22:42:25 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 22:42:25 -0500
+X-Gm-Features: AcwNN1XSLLvRUT5jk_TygAp-JP047q5GFpRihI97pqC1hiavO_L8CxIxDbjA69A
+Message-ID: <CAPdrGek90Qz+Q69rXXRqdoq3C_4dbKd4LAcaQxOwz4axGRfeVg@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Joins_=26_Outcomes_=E2=80=94_2026=2D09=2D21_10=3A41_?=
+	=?UTF-8?Q?ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS JOIN / OUTCOME PROBE =E2=80=94 21 Sep 2026 10:41 ICT
+
+EXECUTIVE DELTA
+
+Material delta: the heat-pump branch has a stronger identity spine
+than previously recognized because one MCS-certified installation is
+reused by TWO independent economic mechanisms: Boiler Upgrade Scheme
+(BUS) grant redemption and Clean Heat Market Mechanism (CHMM)
+manufacturer credits.
+
+Official CHMM guidance confirms the Environment Agency matches the MCS
+installation database into M-CHMM accounts; a qualifying standalone
+heat-pump installation creates one CHMM credit, while a hybrid creates
+half a credit. Separately, BUS redemption requires the installation to
+be MCS-compliant and Ofgem=E2=80=99s installer workflow ties
+voucher/redemption status to the installer account and installation.
+This creates a cross-regulatory receipt:
+
+PROPERTY =E2=86=92 INSTALLER =E2=86=92 MCS INSTALLATION =E2=86=92 PRODUCT/M=
+ANUFACTURER
+                         =E2=94=9C=E2=86=92 BUS GRANT / REDEMPTION
+                         =E2=94=94=E2=86=92 CHMM CREDIT / MANUFACTURER OBLI=
+GATION
+
+That is stronger than the previous installer=E2=86=92certificate join. It
+means MCS installation identity is the natural canonical event at
+which POW can connect property intervention, installer capability,
+equipment manufacturer, public subsidy and manufacturer compliance
+economics.
+
+Most important new transformation:
+
+PUBLIC_SUPPORT_LEVERAGE =3D BUS_grant_value / total_installed_cost
+
+and, with permitted manufacturer/installer records:
+
+INSTALLATION_ECONOMIC_STACK =3D customer_payment + BUS_grant + CHMM_credit_=
+value
+
+CHMM credit transfer financial terms are negotiated outside the
+government service, so actual credit price is not public by default.
+It must remain UNKNOWN unless acquired from a consenting
+participant/transaction receipt.
+
+RANKED JOINS
+
+1. MCS installation =E2=86=92 BUS outcome =E2=86=92 CHMM manufacturer credi=
+t =E2=80=94 5.00 =E2=80=94
+PARTNER PLANT =E2=80=94 PROMOTED
+2. Installer capability =E2=86=92 property design =E2=86=92 installation =
+=E2=86=92 actual
+performance =E2=80=94 4.99 =E2=80=94 PARTNER PLANT
+3. Grid project =E2=86=92 owner/company =E2=86=92 Gate =E2=86=92 planning =
+=E2=86=92 energisation =E2=80=94 4.98 =E2=80=94 PLANT
+4. Transformer =E2=86=92 CMZ =E2=86=92 flexibility dispatch =E2=86=92 physi=
+cal response =E2=80=94 4.98 =E2=80=94 PLANT
+5. Procurement OCID =E2=86=92 supplier/company =E2=86=92 payment/delivery o=
+utcome =E2=80=94 4.94 =E2=80=94 PLANT
+6. Model/MPN =E2=86=92 component/substitute =E2=86=92 repair =E2=86=92 resa=
+le/performance
+receipt =E2=80=94 4.91 =E2=80=94 PARTNER/PILOT
+7. USRN =E2=86=92 roadwork =E2=86=92 bus degradation/recovery =E2=80=94 4.7=
+0 =E2=80=94 PILOT
+
+IDENTITY GRAPH
+
+PROPERTY [UPRN preferred]
+  =E2=86=93
+INSTALLER BUSINESS [Companies House number]
+  =E2=86=93
+MCS INSTALLER/CERTIFICATION ID
+  =E2=86=93
+MCS INSTALLATION / CERTIFICATE
+  =E2=94=9C=E2=86=92 installed heat-pump product/model
+  =E2=94=82    =E2=86=93
+  =E2=94=82  manufacturer / licence holder
+  =E2=94=82    =E2=86=93
+  =E2=94=82  CHMM credit
+  =E2=94=82    =E2=86=93
+  =E2=94=82  transfer / surrender / compliance outcome
+  =E2=94=82
+  =E2=94=9C=E2=86=92 BUS installer account
+  =E2=94=82    =E2=86=93
+  =E2=94=82  voucher =E2=86=92 redemption =E2=86=92 grant paid
+  =E2=94=82
+  =E2=94=94=E2=86=92 PROPERTY OPERATING OUTCOME
+       smart-meter/tariff + weather + comfort + faults/service
+
+CONFIRMED: MCS installation is used as the certification basis for CHMM cre=
+dits.
+CONFIRMED: MCS is the sole approved CHMM certification scheme in Year 2.
+CONFIRMED: BUS is installer-led and requires MCS certification.
+CONFIRMED: BUS grant/redemption has observable aggregate state.
+UNKNOWN: public row-level access to MCS installation records.
+UNKNOWN: public mapping from a specific MCS certificate to a CHMM credit.
+UNKNOWN: CHMM transfer price.
+
+EXACT SOURCE STACK
+
+1. Ofgem BUS monthly scheme update
+https://www.ofgem.gov.uk/data/bus-monthly-scheme-update
+Access: public web/data; cost =C2=A30. Updated monthly. As of 9 Sep 2026:
+151,136 voucher applications received; 101,029 vouchers issued; 93,364
+redeemed; =C2=A3661.303m grants paid. Dynamic remaining 2026/27 budget
+=C2=A3199.563m. Use as aggregate reconciliation, not row-level identity.
+
+2. Ofgem BUS annual report + dataset
+https://www.ofgem.gov.uk/transparency-document/boiler-upgrade-scheme-annual=
+-report-april-2025-march-2026
+Access: public XLSX; cost =C2=A30. Scheme Year 4: =C2=A3233.1m grants suppo=
+rting
+31,104 installations; 1,789 active installers; 1,042 audited
+applications; initial compliance 93.1%; 367/876 closed investigations
+found non-compliant. This provides outcome/compliance priors.
+
+3. Ofgem BUS installer guidance
+https://www.ofgem.gov.uk/guidance/boiler-upgrade-scheme-guidance-installers
+Access: public; cost =C2=A30. Installer account is one per MCS
+accreditation; applications/redemptions are tracked through installer
+account. Current guidance V5.1 applies to relevant 2026 applications.
+
+4. GOV.UK / Environment Agency CHMM credits guidance
+https://www.gov.uk/guidance/clean-heat-market-mechanism-fossil-fuel-boiler-=
+sales-targets-and-credits
+Access: public guidance; cost =C2=A30. Confirms Environment Agency matches
+MCS installation data to M-CHMM accounts; one qualifying standalone
+installation creates one credit; transfers occur in M-CHMM but
+financial/contractual terms occur outside it.
+
+5. GOV.UK CHMM annual tasks / scheme rules
+https://www.gov.uk/guidance/clean-heat-market-mechanism-who-it-applies-to-a=
+nnual-tasks
+Access: public; cost =C2=A30. CHMM runs from 1 Apr 2025 to at least 2029
+and is administered by the Environment Agency.
+
+6. GOV.UK MCS device-registration guidance
+https://www.gov.uk/government/publications/register-energy-devices-in-homes=
+-or-small-businesses-guidance-for-device-owners-and-installation-contractor=
+s/register-energy-devices-in-homes-or-small-businesses-guidance-for-device-=
+owners-and-installation-contractors
+Access: public; cost =C2=A30. States MCS-certified contractors must
+register the energy device in the MCS Microgeneration Installation
+Database after installation. Useful confirmation that installed-device
+identity exists upstream.
+
+7. DESNZ heat-pump deployment statistics
+https://www.gov.uk/government/statistics/heat-pump-deployment-statistics-ju=
+ne-2026/heat-pump-deployment-statistics-june-2026-summary
+Access: public tables; cost =C2=A30. Since March 2026 methodology has
+expanded to cover all retrofit MCS installations, not only
+government-supported ones. This is a useful denominator/reconciliation
+layer.
+
+8. MCS Heat Load Calculator
+https://heatloadcalculator.mcscertified.com/register
+Access: restricted to MCS-certified contractors. Do not collect
+without permission. Realistic route: consenting installer exports its
+own design records.
+
+RIGHTS / PERMISSION
+
+Public Ofgem/GOV.UK statistical and guidance sources: public access;
+verify dataset-specific reuse notices at implementation.
+MCS MID / Heat Load Calculator: restricted/private operational data.
+PARTNER ONLY. No scraping or credential sharing.
+BUS installer account: private. PARTNER ONLY.
+M-CHMM participant account: private. PARTNER ONLY.
+Customer smart-meter/performance data: explicit first-party consent only.
+
+CANONICAL IDENTITY STRATEGY
+
+company_id =3D Companies House company number where resolved.
+installer_id =3D MCS certification/accreditation identifier, preserved verb=
+atim.
+property_id =3D UPRN where authoritative resolution is available;
+otherwise address-derived candidate with confidence.
+installation_id =3D MCS installation/certificate identifier where
+supplied by permitted source.
+product_id =3D MCS product identifier + manufacturer model string;
+retain original source text.
+manufacturer_id =3D Companies House/legal entity where resolvable;
+maintain licence-holder alias history.
+bus_id =3D BUS voucher/application/account identifiers only when
+supplied by consenting installer.
+chmm_id =3D participant/credit identifiers only when supplied by
+consenting manufacturer.
+
+Never merge certificate, voucher and credit IDs into one key. The MCS
+installation is the bridge; regulatory IDs remain source-native.
+
+TEMPORAL EVENT SCHEMA
+
+INSTALLER_CERTIFIED
+DESIGN_CREATED
+QUOTE_CREATED
+BUS_VOUCHER_APPLIED
+BUS_VOUCHER_ISSUED
+INSTALLATION_COMMISSIONED
+MCS_INSTALLATION_REGISTERED
+MCS_CERTIFICATE_ISSUED
+BUS_REDEMPTION_SUBMITTED
+BUS_GRANT_PAID
+CHMM_CREDIT_CREATED
+CHMM_CREDIT_TRANSFERRED
+CHMM_CREDIT_SURRENDERED
+FAULT_OCCURRED
+SERVICE_OCCURRED
+PERFORMANCE_OBSERVED
+
+Each event stores event_time, source_observed_at, pow_observed_at,
+source_id, entity IDs, confidence=3D{CONFIRMED|INFERRED|UNKNOWN},
+provenance, raw_hash.
+
+JOIN-QUALITY METRICS
+
+1. MCS=E2=86=92Company resolution coverage.
+2. MCS installation=E2=86=92UPRN resolution coverage.
+3. MCS product=E2=86=92manufacturer resolution coverage.
+4. MCS installation=E2=86=92BUS redemption coverage for consenting installe=
+r records.
+5. MCS installation=E2=86=92CHMM credit coverage for consenting manufacture=
+r records.
+6. Alias collision rate for installer/manufacturer names.
+7. Address-to-UPRN ambiguity rate.
+8. Source disagreement rate for commissioning/registration/redemption dates=
+.
+9. Outcome coverage =3D installations with =E2=89=A51 post-install performa=
+nce
+observation / installations.
+10. Regulatory-stack coverage =3D installations with both BUS and CHMM
+state / eligible installations.
+
+All fuzzy joins must preserve candidate set, score, method and
+provenance. CONFIRMED edges require an authoritative identifier or
+explicit first-party linkage.
+
+FIRST TRANSFORMATIONS
+
+A. RegulatoryStack(installation,t)
+BUS state =C3=97 CHMM state =C3=97 MCS certification state.
+
+B. TimeToGrant =3D BUS_GRANT_PAID - INSTALLATION_COMMISSIONED.
+
+C. TimeToCredit =3D CHMM_CREDIT_CREATED - MCS_INSTALLATION_REGISTERED,
+where partner data exposes timestamps.
+
+D. InstallerOutcomeRate =3D successful compliant installations /
+observed installations, with strong caveats against using aggregate
+enforcement data to score individual installers.
+
+E. ProductOutcome(model, property archetype, installer) =3D
+fault/service/performance outcomes after intervention.
+
+F. PublicSupportLeverage =3D BUS grant / installed price.
+
+G. Full economic stack, partner-only =3D customer net payment + grant +
+observed CHMM credit proceeds.
+
+OUTCOME ACQUISITION ROUTE
+
+Public layer now: installer/certification directories + BUS aggregate
+data + heat-pump deployment statistics + product eligibility/reference
+data + Companies House/property reference layers.
+
+Installer partnership: obtain no-PII export of MCS
+certificate/reference, commissioning date, product/model, postcode
+sector/UPRN where lawful, quote/invoice totals, BUS voucher/redemption
+state and design prediction. Installer already operates these
+workflows; POW should ingest exports rather than ask them to duplicate
+records.
+
+Manufacturer/CHMM partnership: obtain installation/credit mapping and
+actual transfer receipt where the participant chooses to share it.
+This is the only defensible route to real credit price; government
+explicitly says financial/contractual transfer terms happen outside
+M-CHMM.
+
+Customer consent: actual electricity consumption, tariff, indoor
+comfort and service/fault outcomes.
+
+This closes:
+PREDICTION =E2=86=92 DESIGN =E2=86=92 INSTALL =E2=86=92 CERTIFY =E2=86=92 S=
+UBSIDY/CREDIT =E2=86=92 OPERATE =E2=86=92
+FAULT/SERVICE =E2=86=92 ECONOMIC OUTCOME.
+
+PLANT NOW
+
+Plant public identity/reconciliation spine immediately; do not wait
+for private partners.
+
+Smallest test:
+- 100 MCS heat-pump installers.
+- Resolve =E2=89=A590% to Companies House with <2% audited false joins.
+- Resolve technology/certification scope for =E2=89=A599%.
+- Build current BUS aggregate reconciliation by geography/time where
+public tables permit.
+- Build product/manufacturer normalization against Ofgem/MCS product
+eligibility references.
+- Recruit/test 5 consenting installer exports.
+
+Partner export minimum fields:
+installer MCS ID; anonymised installation reference; commissioning
+date; MCS certificate/reference; postcode sector or UPRN if permission
+permits; product manufacturer/model; quoted gross price; BUS
+grant/voucher status; predicted heat load where available.
+
+Kill threshold for partner OutcomeGraph: if fewer than 3/5 installers
+can export the minimum record set without material manual
+reconstruction, postpone installer-outcome acquisition and retain the
+public capability garden.
+
+Do not kill raw identity/event storage while it remains cheap.
+
+RECONSTRUCTION TEST
+
+BUS monthly aggregates: backfillable =E2=86=92 JOIN/RECONCILIATION, not moa=
+t.
+Heat-pump deployment quarterly statistics: backfillable =E2=86=92 JOIN.
+Current installer certification: likely reconstructable imperfectly =E2=86=
+=92
+snapshot history has some value.
+Private quote/design/BUS workflow timestamps: not publicly
+reconstructable =E2=86=92 STRONG PASS with consent.
+CHMM credit transaction price: explicitly contracted outside
+government service =E2=86=92 STRONG PASS if partner supplies receipt.
+Actual installed-system performance/fault history: not reconstructable
+later unless someone collected it =E2=86=92 VERY STRONG PASS.
+Cross-regulatory MCS=E2=86=92BUS=E2=86=92CHMM=E2=86=92performance join: STR=
+ONG transformation
+moat even where individual regulatory facts can later be recovered.
+
+COUNTEREVIDENCE / FALSIFIERS
+
+1. MCS MID is not public. The central row-level join cannot be
+harvested merely because regulators use it.
+2. CHMM credits belong to manufacturers/credit holders, not
+installers/property owners. Do not imply the homeowner receives credit
+proceeds.
+3. CHMM credit transfer prices are not government-published
+transaction prices. Any shadow-price model without receipts is
+INFERRED.
+4. BUS participation is not all heat pumps. DESNZ=E2=80=99s newer deploymen=
+t
+series is a better total-retrofit reconciliation denominator.
+5. One MCS certificate proves certified installation, not good
+long-run physical performance.
+6. BUS audits/compliance investigations are scheme-level evidence and
+must not be transformed into installer rankings without row-level
+lawful evidence.
+7. Property performance is confounded by weather, tariff, occupant
+behavior, controls and later fabric changes.
+
+NEW CROSS-POW CONSEQUENCE
+
+The installation should be a first-class POW event, not merely an edge:
+
+POW_INSTALLATION =3D physical asset =C3=97 product capability =C3=97 instal=
+ler
+capability =C3=97 property constraint =C3=97 regulatory economics =C3=97 pl=
+ace =C3=97
+commissioning time.
+
+It is the point where CapabilityGraph, PropertyGraph, ProductGraph and
+PolicyGraph become the same object. The downstream OutcomeGraph then
+measures whether the intervention worked.
+
+NEXT-HOUR INFORMATION-GAIN QUEUE
+
+1. Determine exact public MCS installer-directory reuse terms and
+whether certification effective dates are exposed.
+2. Test 100 installer=E2=86=92Companies House joins and manually audit 20.
+3. Normalize Ofgem BUS Product Eligibility List to
+MCS/manufacturer/model identity and measure exact/alias match
+coverage.
+4. Determine what installation-level fields a typical MCS-certified
+installer can export from MID/BUS without customer PII.
+5. Find 5 heat-pump manufacturers/credit holders with CHMM
+participation and test whether installation=E2=86=92credit mapping can be
+exported under consent.
+6. Do not hunt a new domain until this cross-regulatory identity
+bridge either passes or fails.
+
+MACHINE-READABLE APPENDIX
+
+{
+  "probe":"POW_JOIN_OUTCOME",
+  "run_at":"2026-09-21T10:41:22+07:00",
+  "material_delta":true,
+  "promoted_join":{
+    "id":"MCS_INSTALLATION_BUS_CHMM_OUTCOME",
+    "score":5.0,
+    "status":"PARTNER_PLANT",
+    "canonical_bridge":"MCS_INSTALLATION_OR_CERTIFICATE_ID"
+  },
+  "confirmed":[
+    "MCS_INSTALLATION_DATA_FEEDS_CHMM_CREDIT_SYSTEM",
+    "ONE_QUALIFYING_STANDALONE_HP_INSTALLATION_CREATES_ONE_CHMM_CREDIT",
+    "MCS_IS_SOLE_CHMM_CERTIFICATION_SCHEME_YEAR2",
+    "BUS_IS_INSTALLER_LED_AND_MCS_DEPENDENT",
+    "BUS_MONTHLY_AGGREGATE_OUTCOMES_PUBLIC"
+  ],
+  "unknown":[
+    "PUBLIC_ROW_LEVEL_MCS_INSTALLATION_ACCESS",
+    "PUBLIC_INSTALLATION_TO_CHMM_CREDIT_MAPPING",
+    "CHMM_TRANSFER_PRICE",
+    "MCS_PUBLIC_CERTIFICATION_HISTORY_DEPTH"
+  ],
+  "transformations":[
+    "REGULATORY_STACK",
+    "TIME_TO_GRANT",
+    "TIME_TO_CREDIT",
+    "PUBLIC_SUPPORT_LEVERAGE",
+    "PRODUCT_OUTCOME",
+    "FULL_INSTALLATION_ECONOMIC_STACK_PARTNER_ONLY"
+  ],
+  "coverage_test":{
+    "installers":100,
+    "company_resolution_min":0.90,
+    "audited_false_join_max":0.02,
+    "partner_installers":5,
+    "partner_export_success_min":0.60
+  },
+  "next":[
+    "MCS_REUSE_TERMS_AND_HISTORY",
+    "100_INSTALLER_COMPANY_JOIN_TEST",
+    "BUS_PEL_PRODUCT_NORMALIZATION",
+    "INSTALLER_NO_PII_EXPORT_TEST",
+    "CHMM_PARTNER_EXPORT_TEST"
+  ]
+}
+
+SOURCE NOTES
+Ofgem BUS monthly update last updated 9 Sep 2026; Ofgem BUS Annual
+Report published 31 Jul 2026; DESNZ June-2026 heat-pump deployment
+release published Sep 2026; current GOV.UK/Environment Agency CHMM
+guidance accessed 21 Sep 2026.

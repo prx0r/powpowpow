@@ -1,0 +1,395 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id DfIjlnxWVWKB
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 04:42:19 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=YNx3rcLGQ8n7JH45O3TKicoesv8AK52AHm2t6h0CevbF0nnT9XeGWc9HJWV6d7FrsUsgiawT3
+	uMPXORznfIMEiZR5s2zHbMZXYkBjtIU0mriqjKGFN6YLv7sQHbw7XDf2iQUxQLioAuXJNZGy10j
+	eyOTzvULVRj5udHlJjdIqolaU5zWdmxy9lbd7GUmxr+kMFt7Ip1v4D14sOO0ZHGZA8sinmCRqgL
+	BFpjxAn74MvhpQDls0ht4xZp8qPBYt02cagYUp4Va0vjqos0FLBOzGWAXOShrNq0s8QnCwPWq0a
+	63OorDmBadAMZIXABvixGxl5OZfV4eaUL+KgceMQXrlA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789965739; x=1790570539; bh=Hn6l9+7d
+	qPsmUJV1zBCGZtWEweTWqbiPCxHQAtjDRFQ=; b=Jz4QnWf2qVpNUCtxqzMj2WsWEfkw9oR5eNC
+	EDS2uBhXRAIHzssrutcDog2/Xs5aSEJ/qWxRi0kh0G3eIOwSESueRArD3oh0rkl0Ko94jVuqpW7
+	KsE1a8rELKmQrH0UubFPgYl0Mmhlj1YaEDkAANqRrt5k1ppoKUy02RU7QCiY4hluAfAcE429cxY
+	FWOeZ0VblmOHKhwEwX5WL0Q4RnOT+IqoVxpMTyPR26AL8aoafDFpMqRD5Q38tc2xyIFWcUgYyDt
+	8/SGDUWXbkixQOsdhoZBstB8wBVTp6QWdbAXLSpkagx1PJrhXJsjezZ02ofWKwbjus2p9KbFH21
+	z6UZaNw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ShBFg+J8;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ShBFg+J8;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66fabb1a601so1943744d50.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 21:42:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789965739; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Pk5AMdKdnnygn28HW461+CDZUkxGqmvALr1jWIH4orc1lJKi6H+nOWNFdGbwZYE1cC
+         v0rGDrmgzmMdKSac6U2IrB4iEdM69eQ1HEuZ9H1xCkFSayEoNNcRq/rGYmeGEU2LQMGq
+         J8RQCv8BNIHSQBupPiXMk8NATE4ZW7oU21sJ4IR3p8G3JsWQ7l0ekcKAnl7f1ROwBb58
+         nmlqsqQ1hlXh8I8bu4kuA/f+g4XPoFzEBfraC/glJHkTTWzc0/rmxiTLnGLhXPFxbHOl
+         P8VmLYqCIHyU37P8gWQpxjzj3UJpUb24m+G7Xtx0s/88qNyySefAzX4ze1kasRfYTj+U
+         wP5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=Hn6l9+7dqPsmUJV1zBCGZtWEweTWqbiPCxHQAtjDRFQ=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=gi1mZYRXMzVAqf1IAtimvXNH2CIJdIY2MOH7UIpTjct94+bLX9FZgRkYUAAaHX48St
+         0wxUboYmR6owzoWaUc+e++kSd9vklF6nw+JGaNqLuks2yXkwsbLseOddQxXmSKybchoF
+         9r18q94ySoVjvk05zoHx6TbhB0I5Rr2kMZbNdNRAT519Ck+wuYfnJ9tVOI2lhj1xZUqb
+         3SVwoxNm3cakx5YIHe4+YcoRIxjwXxrSTTfFtqJlR00PhWGjcFnNsPRboHg3AHyUDuiu
+         Gn8Gr9HSSkmsOUTzz/OOT9RxtDu96t4Jc0RjyvpmItPC6hJatQm3qisyTUuFQFXP7jfS
+         zKRg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789965739; x=1790570539; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Hn6l9+7dqPsmUJV1zBCGZtWEweTWqbiPCxHQAtjDRFQ=;
+        b=ShBFg+J8p93+2bkWSrHWgfABgqLERzW2jIfjmbP/7Iw7dLYL/5EM207rEyDm9BxS10
+         f5Ll/qSM27lDcgfyDzNmSydb93sH+ZGNIFfv2my9BIi5xoBwfyqEOv9ZgmD+Nq2pj5LM
+         YGI7NCid01ncQ2SaGCK+HQ+SrZMv08RxxXAVZ4B7FusR/n1cRmv6RcwNoRnq5NO49G0E
+         J61nWQIyqIK/QewW+06cAMfuzE4/3+39Fz2nPVmRlcTuMOz288sDP8qXO3htbE0NoNjh
+         9DSdMtt/pvpIVZ9KB/BXcnjUJOsZ8xo6Dv6aPeo8aVG8V5hgZOTiEDszZw/sQsALLB16
+         mSAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789965739; x=1790570539;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Hn6l9+7dqPsmUJV1zBCGZtWEweTWqbiPCxHQAtjDRFQ=;
+        b=1uHjPqehycJJniEW0YAcwmksKqDVCXqWlgia5mrqu4La6sq6yfY0VUD9/n3DKlyPIv
+         dwliQQDxWd4Uy+hSmEReccEUIzSO1TMH/+DLLeTJpavrpH5iNDCXE3WgguAEzEXKSCA6
+         JtTWL3Y3vvRd1+yoxyHKBiadfKWFekjEVe8poKatVpRSExBSfn1cst/Cjjowyv0alDsh
+         tDJJ5YlAlCMnWUs6U+zSc8r12zS5WJ+5+fWo4IGeZeX+Pv/9tPqS0z65bQVzxzoFLSh1
+         zVEHWkAqaq7WYCA/eUC3EpV/D1lq4U8r3BdgbJ7onX5vRfsO80oHbEH5UqIoqkrAGwKZ
+         o2Kw==
+X-Gm-Message-State: AFuF++kzit5j0eQBfaTPnp6LWBfu1dpZhVKQn8yOoOO2KsMBaikAvidP
+	ok2fGVE0C5WtlIoeSWQYHS9m4Fr862IPDR6oqkHJafDkBpVyRB6VOWcB+4vnpRd/b4Bzi+Cficl
+	SFdULgsCWQONolQpGtLPmQvHdILbPWT8sgw==
+X-Gm-Gg: AYBFou17TGFQcx0GPZKdw3RQXpApmxIpb8ty2jEaEU2PiXeGZnkYnbTYbbLzcnUub3x
+	S5HDy+1teRpQ1bVxoZNrzhNrMjanHuffLj4caw3uFoqL6CBAmZzK7wUhMK4ZoqQzrUYrzMD941u
+	AnV3lm7iL9RrX1O/gzdVX9e2VEWB6C+JXvwL5M4ggj33u8NFDhQlz/s5gw/pAd9V5hXmCS+KjNw
+	nmjgd+NkyQIPgmt3HGXtV9+1v5TyewS6lHKfT72I9+DKneU2YqykO3RwsAGmUI+TMYEh+po+ZFo
+	SBp0W541a4/O1shQ7eTTmGSfb0LVJiwsFOJvtXSsiBonViLynetUaFYLOI2jjavqLznzL6tp4fx
+	Tl1fnAw6L+I/rujp3WkV1yxs7VumVAKHnqQ3Lzs82C//3zql1JnOulsMPoILXL3eTO5tMrDV7bw
+	==
+X-Received: by 2002:a53:ac92:0:b0:671:2d6e:b7ec with SMTP id
+ 956f58d0204a3-6717fb0c35emr2614615d50.0.1789965738531; Sun, 20 Sep 2026
+ 21:42:18 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 23:42:18 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 23:42:18 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 23:42:18 -0500
+X-Gm-Features: AclHuK-iK6kyr56A2cAF8EEm0iYT4P_QMZzIcPDpu8V155J-QxuIjXmBpyqklSo
+Message-ID: <CAPdrGe=mWO4Vph1ygvh1AUe+-RWbzeVXQ3aeUs26pd=hBP2O5A@mail.gmail.com>
+Subject: =?UTF-8?Q?POW_Probe_=E2=80=94_Joins_=26_Outcomes_=E2=80=94_2026=2D09=2D21_11=3A41_?=
+	=?UTF-8?Q?ICT?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS JOIN / OUTCOME PROBE =E2=80=94 2026-09-21 11:41 ICT
+
+EXECUTIVE DELTA
+
+Material delta: promote ROADWORK =E2=86=92 BUS OPERATIONAL OUTCOME to PLANT
+NOW. This is the cleanest fully-open causal OutcomeGraph found this
+run because both sides are official, event-rich and already share
+strong spatiotemporal structure.
+
+Street Manager exposes every utility/local-authority roadwork in
+England and includes event_reference, work_reference_number,
+permit_reference_number, coordinates, USRN, proposed/actual start/end,
+work status, traffic-management type, event_time, object_reference and
+version. Its current Event API additionally exposes GET
+/works/updates, POST /permits/search and notification
+subscribe/unsubscribe endpoints. The data is public/free under OGL,
+although an API account is required.
+
+BODS exposes timetable plus live SIRI-VM vehicle positions for local
+buses in England. The national vehicle feed can be requested as often
+as every 5 seconds; operators are expected to update vehicle locations
+every 10=E2=80=9330 seconds. BODS data is explicitly open for
+commercial/non-commercial reuse with attribution, with a free consumer
+account/API key.
+
+Therefore POW can build:
+ROADWORK(event_reference, USRN, geometry, traffic_management,
+actual_start/end, version)
+=E2=86=92 affected route/stop corridor
+=E2=86=92 BUS(vehicle_journey, scheduled progress, observed progress)
+=E2=86=92 delay / traversal-time / missing-service state
+=E2=86=92 roadwork end
+=E2=86=92 recovery curve.
+
+This is much stronger than a static roadworks graph. The proprietary
+object is the measured causal response of physical mobility to
+specific interventions.
+
+RANKED JOINS
+1. Roadwork/USRN =E2=86=92 BODS journey degradation/recovery =E2=80=94 5.00=
+ =E2=80=94 PLANT NOW
+2. MCS installation =E2=86=92 BUS =E2=86=92 CHMM =E2=86=92 consenting opera=
+ting outcome =E2=80=94 4.99
+=E2=80=94 PARTNER PLANT
+3. Grid project ID =E2=86=92 Gate/date/point =E2=86=92 planning/company =E2=
+=86=92 energisation
+=E2=80=94 4.97 =E2=80=94 PLANT
+4. Primary transformer =E2=86=92 rating =E2=86=92 5-min flow =E2=86=92 flex=
+ dispatch =E2=86=92
+physical response =E2=80=94 4.96 =E2=80=94 PLANT
+5. EVSE identity =E2=86=92 status/tariff =E2=86=92 property/site/grid/insta=
+ller =E2=86=92
+session/user outcome =E2=80=94 4.94 =E2=80=94 PLANT/PARTNER
+6. Vehicle/VIN =E2=86=92 MOT defect =E2=86=92 recall =E2=86=92 repair recei=
+pt =E2=86=92 subsequent MOT
+=E2=80=94 4.82 =E2=80=94 PILOT
+7. Model/MPN =E2=86=92 part/substitute =E2=86=92 fault =E2=86=92 repair =E2=
+=86=92 resale outcome =E2=80=94
+4.78 =E2=80=94 PARTNER/PILOT
+
+IDENTITY GRAPH =E2=80=94 ROADWORK OUTCOME
+
+StreetManager.event_reference [CONFIRMED]
+  =E2=94=9C=E2=94=80 work_reference_number [CONFIRMED]
+  =E2=94=9C=E2=94=80 permit_reference_number [CONFIRMED]
+  =E2=94=9C=E2=94=80 USRN [CONFIRMED]
+  =E2=94=9C=E2=94=80 geometry [CONFIRMED]
+  =E2=94=9C=E2=94=80 proposed_start/end [CONFIRMED]
+  =E2=94=9C=E2=94=80 actual_start/end [CONFIRMED]
+  =E2=94=9C=E2=94=80 traffic_management_type [CONFIRMED]
+  =E2=94=9C=E2=94=80 work_status [CONFIRMED]
+  =E2=94=9C=E2=94=80 object_reference + version [CONFIRMED]
+  =E2=86=93
+Affected road segment / corridor [INFERRED, spatial]
+  =E2=86=93
+NaPTAN stops + BODS scheduled journeys [CONFIRMED source identities]
+  =E2=86=93
+SIRI-VM monitored journey / vehicle state [CONFIRMED]
+  =E2=86=93
+Observed stop/traversal delay [TRANSFORMED]
+  =E2=86=93
+DEGRADATION / RECOVERY event [TRANSFORMED]
+
+The join from work geometry/USRN to bus corridor is INFERRED unless an
+authoritative route-to-USRN relation exists. Preserve geometry,
+distance, direction and matching method on every edge.
+
+EXACT SOURCE STACK
+
+1) DfT Street Manager roadworks API
+Official guidance: https://www.gov.uk/guidance/find-and-use-roadworks-data
+Sandbox OpenAPI:
+https://api.sandbox.manage-roadworks.service.gov.uk/v7/event/docs/
+Rights: OGL / public roadworks data.
+Auth: account registration required; registration asks for
+organisation/contact details and API endpoint.
+Relevant Event API operations confirmed in current Swagger: GET
+/works/updates; POST /permits/search; POST
+/api-notifications/subscribe; POST /api-notifications/unsubscribe; GET
+/api-notifications/subscriptions.
+Cadence: event-driven notification preferred + reconciliation poll.
+Canonical work key: event_reference/object_reference with version
+retained; never dedupe solely by USRN.
+
+2) DfT Bus Open Data Service
+Official access guidance: https://www.gov.uk/guidance/find-and-use-bus-open=
+-data
+Technical SIRI-VM guidance:
+https://www.gov.uk/government/publications/technical-guidance-publishing-lo=
+cation-data-using-the-bus-open-data-service-siri-vm/technical-guidance-siri=
+-vm
+Rights: open reuse, commercial/non-commercial, attribution required.
+Auth: free consumer registration/API key for API functionality.
+Cadence: source vehicle updates 10=E2=80=9330 sec; national consumer .zip m=
+ay
+be requested no more often than every 5 sec. POW should start at 30
+sec or slower for the coverage test.
+Format: SIRI-VM; GTFS-RT matched schedule/location is also available
+via BODS API.
+Canonical operator identity: National Operator Code. Preserve
+service/journey/vehicle identifiers exactly as supplied.
+
+JOIN-QUALITY METRICS
+
+WorkIdentityContinuity =3D % event/object references surviving updates
+without ambiguous remap.
+USRNCoverage =3D % works with usable USRN.
+RouteExposurePrecision =3D sampled fraction of inferred affected
+journeys that physically intersect work geometry.
+JourneyIdentityCoverage =3D % observed SIRI-VM journeys resolvable to
+timetable/service identity.
+ObservationCompleteness =3D expected vs received vehicle observations.
+TreatmentContamination =3D fraction of affected route-time windows with
+overlapping roadworks/incidents.
+CounterfactualCoverage =3D % treated journeys with usable
+same-route/same-time historical or matched-control baseline.
+OutcomeConfidence must combine identity confidence + spatial exposure
+confidence + telemetry completeness + counterfactual quality.
+
+FIRST TRANSFORMATIONS
+
+DelayDelta(work, journey, t) =3D ObservedJourneyTime - ExpectedJourneyTime.
+
+RoadworkImpact(work) =3D E[delay | exposed during work] - E[delay |
+matched untreated baseline].
+
+RecoveryHalfLife(work) =3D time after actual_end until route delay
+returns halfway from peak degradation to baseline.
+
+TrafficManagementImpact(type, road_class, place, time) =3D posterior
+distribution of delay induced by closure/lights/lane restriction/etc.
+
+The last transformation becomes an agent-action primitive: given a
+proposed work, forecast likely operational disruption and choose
+timing/traffic-management alternatives.
+
+OUTCOME ACQUISITION
+
+Public/open outcome route is unusually strong here: BODS live vehicle
+state supplies observed physical consequences without customer PII.
+Store only public operational vehicle/journey identifiers needed for
+transport analysis; do not infer driver identity.
+
+Later first-party outcome routes: consenting bus operators/local
+authorities can provide actual control interventions, cancellations,
+passenger impacts or internal cost. These are enrichment, not required
+to plant the base garden.
+
+PLANT NOW =E2=80=94 SMALLEST COVERAGE TEST
+
+Scope: one English urban authority, 24 hours.
+1. Register for Street Manager API access and BODS consumer access.
+2. Subscribe to Street Manager notifications if production entitlement
+supports it; otherwise reconcile /works/updates.
+3. Preserve raw work event versions append-only.
+4. Poll BODS at 30-second cadence only for routes/stops intersecting
+active work buffers where filtering permits; otherwise capture the
+documented central response at a conservative cadence.
+5. Build affected-corridor edges using USRN + geometry.
+6. Resolve BODS vehicle journeys to schedules.
+7. Calculate per-journey deviation before/during/after work.
+
+1-DAY GATES:
+- Street Manager stable work identity >=3D98%
+- USRN or usable geometry >=3D95%
+- BODS journey resolution >=3D90%
+- telemetry completeness >=3D90% in sampled treatment windows
+- at least 10 work =C3=97 journey exposure windows
+
+1-WEEK GATES:
+- >=3D100 treatment windows
+- >=3D70% have credible matched baseline
+- manually reviewed exposure precision >=3D90%
+- repeated works/traffic-management classes show measurable
+heterogeneous response
+
+KILL THRESHOLD:
+Kill the causal product if route exposure cannot exceed 80% precision
+or telemetry/baseline quality prevents stable effect estimates. Do NOT
+kill raw event/version preservation while acquisition remains cheap,
+because work-version history itself is useful and live bus telemetry
+is difficult to recreate at full resolution later.
+
+RECONSTRUCTION TEST
+Street Manager current/history: some history exists, but exact
+event/version chronology plus synchronized bus state is not guaranteed
+to remain cheaply reconstructable.
+BODS annual/historic punctuality: exists, but it is not equivalent to
+preserving the raw 10=E2=80=9330-second vehicle state aligned to a specific
+work intervention.
+Therefore the joined intervention tape PASSES the time-moat test even
+though each source individually has historical products.
+
+VEHICLE/MOT SECONDARY JOIN
+DVSA's current MOT History API endpoint is
+https://history.mot.api.gov.uk with registration and VIN lookups plus
+bulk download. It provides MOT tests and defects and is available to
+registered organisations/businesses/individuals after approval. This
+gives a strong longitudinal vehicle outcome key, especially VIN where
+available.
+Potential graph: VIN/registration =E2=86=92 MOT defect =E2=86=92 repair
+recommendation/receipt [partner] =E2=86=92 next MOT =E2=86=92
+recurrence/non-recurrence.
+The public MOT history is largely backfillable, so MOT itself is JOIN
+INFRASTRUCTURE, not the garden. The garden begins when POW records its
+own recommended intervention/part/repairer/cost and observes the next
+test/repair outcome.
+
+COUNTEREVIDENCE
+- Roadworks correlate with congestion and may not cause all observed
+delay; weather, incidents, school calendars and unrelated congestion
+must enter counterfactual matching.
+- USRN identifies a street, not necessarily the precise lane/direction
+traversed by a route; geometry is required.
+- BODS feed gaps can masquerade as operational degradation. Separate
+TELEMETRY_MISSING from SERVICE_MISSING.
+- Operators may divert buses around works; a route deviation is itself
+an outcome but breaks naive scheduled-corridor matching.
+- Existing commercial services already normalize Street Manager. POW's
+moat therefore cannot be roadwork normalization; it must be
+longitudinal causal outcome learning.
+
+NEXT-HOUR QUEUE
+1. Execute a BODS access/schema check and identify exact journey
+identifiers required for stable schedule=E2=86=94vehicle matching.
+2. Inspect Street Manager v7 production registration/resource guide
+for notification delivery semantics, retention and rate limits.
+3. Select one urban authority with dense works + buses and calculate
+expected 24h storage/request load.
+4. Define matched-control algorithm: same route/time-of-week =C2=B1 nearby
+untreated segment, weather/event controls later.
+5. Only after this, return to MCS installation outcomes and test five
+consenting-installer exports.
+
+MACHINE-READABLE APPENDIX
+{
+  "probe":"POW_JOIN_OUTCOME",
+  "run_at":"2026-09-21T11:41:24+07:00",
+  "material_delta":true,
+  "promoted_join":{
+    "id":"STREET_MANAGER_BODS_OUTCOME",
+    "score":5.0,
+    "status":"PLANT_NOW",
+    "intervention_id":"event_reference/object_reference+version",
+    "street_id":"USRN",
+    "outcome_source":"BODS_SIRI_VM",
+    "rights":"OPEN_WITH_ATTRIBUTION",
+    "pii_required":false
+  },
+  "confidence":{
+    "street_manager_fields":"CONFIRMED",
+    "street_manager_webhook_operations":"CONFIRMED",
+    "bods_live_frequency":"CONFIRMED",
+    "work_to_route_edge":"INFERRED",
+    "production_rate_limits":"UNKNOWN"
+  },
+  "transformations":["DelayDelta","RoadworkImpact","RecoveryHalfLife","Traf=
+ficManagementImpact"],
+  "kill_thresholds":{"route_exposure_precision":0.80,"journey_resolution":0=
+.90},
+  "collector_deployed":false
+}
+
+Sources: GOV.UK Street Manager roadworks guidance; Street Manager v7
+sandbox OpenAPI; GOV.UK BODS consumer guidance and SIRI-VM technical
+guidance; DVSA MOT History API catalogue/specification.

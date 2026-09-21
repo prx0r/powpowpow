@@ -1,0 +1,442 @@
+Received: from mail-yx2-x17.google.com (2607:f8b0:4864:41::17)
+        by cloudflare-email.net (cloudflare) id Dc3TjhgSedUD
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 03:50:49 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=Pn5O1SQcETB1SkLQSX735kFUJe1GP+n9mzl/3U7Qy5QocQuugl/jkXl6MYP1IpAqYjT63nVJf
+	3TQCRB+n9DsKxthIu+0ZuVmA0B7n6AGBkWcsF+zDz44BThlIjkia7DzB/PhLWqacPewAw6pKbzf
+	pqFQ2Kx5uwZ8xDSnUYXG9lHyyrRk+EeMzxKpm2L6M0vf95xmPMdXYAB8/XSN+s6A2kVZMBwoBCp
+	w7ZO0+K5+JGGhO3wXpLz/qELwKTNmYXFsd021UeYyhXVyjz4RXPimi59Y3gJ5Roj6rupIeIC0tI
+	Pu2lCpM3KCeFgKdYBK4GL1Kyz/yb3letzQPBlC3Yoijg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789789849; x=1790394649; bh=NuWfg5jJ
+	4nrBxVhVmewW+ccfknDbjgqV7S5YqU7QKQ4=; b=IOcbbs1jw09KZvhYG9dbUHXqqM3kiAyhDti
+	RevvvHnZNqRPkc+IfAJVdRxS0u6ePZ8+5CHB6kPu2PTw3Yk1B5xr4ixUiNyygzvczG48HM4A2OE
+	LhXeVXMDiLhxfYLF0M2GHGojyhmfiagVG0AF2VwQIbp+cMNymOUCYZY1EkHBU70GMAk2xmgb5oo
+	aImKBHxdTjjW2IksZbwuLYQkUNNswGSGjmuoXwYgDkr+x/dZmMTt6s+HTwwFg+8SRjAXgxP/Eys
+	+ndgIdqHmzG6Ov++jFqqSu4VURBzhvSDDX3h08UdFiBW3Zrk+yNwDUs9wDB+T/qEl7STze34NwH
+	9oKkktg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=d9IoJA8d;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x17.google.com) smtp.helo=mail-yx2-x17.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::17 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::17"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::17 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::17; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x17.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=d9IoJA8d;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x17.google.com) smtp.helo=mail-yx2-x17.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::17 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::17"
+Received: by mail-yx2-x17.google.com with SMTP id 956f58d0204a3-66e4ab19125so1450172d50.2
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 20:50:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789789849; cv=none;
+        d=google.com; s=arc-20260327;
+        b=BVEO+vxdU3xNNkRcPYs9fruGOu+iHPQgvMRrlUE5AZmtst11byKeWnnjCTLReCqvNv
+         KEu+LjP1YUKgpOM5lguf+P0RWynVZih7ib1T8k7uxKuv1/xF5bSuRgiOuN06e/4tvnxD
+         eiqjiXJiq/X/vOMHnlIzhOa6/1iv8BiTo47zSsJ1ikik1IWM+ROnxlPFwus1qkGvPs2M
+         0tlccgmxmOiyG6mkdHFpNkkZhc856j3yqLkt895XpLuDsrIhYvugZh3Q2wI5l0PRacBL
+         NSz6kVCPWT/nopnFlp7M0aITmGtbKpRsmG0T5Ypg8Y3TpNdvNGnsvzJBSnMjr2yExwKu
+         iH/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=NuWfg5jJ4nrBxVhVmewW+ccfknDbjgqV7S5YqU7QKQ4=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=iM8jcjSFMm0n0TuZI/wvKocdz3IQO1cxohNRxUGemTzueKLMAuW5bcAcVvtMx9Mwm9
+         swLYLQqdG82SM+WAjwZb6+qvR5aUS6krkxLJwmUE4mqeYnj2tGOPEuZSlHDAMPgIWkGY
+         SyAsyq8+iPv6gEGKELJZ6U9ywD4GYiXV8MRRfVWoYYh7ZEnCKJXBKGMn1xaD57kE6DZ5
+         +bvu7rdLeqcDlAhyrKPRCNd9N3bgUE534imTiTftZLrDxYiu4aVtJ/sOWx4n499YSArn
+         AiOpk9AdHyK7nywo/cet96XM56why7WH35mFH8RYfGCmFLE48g8IOY1RCbD5bMatUipm
+         Iwdg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789789849; x=1790394649; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=NuWfg5jJ4nrBxVhVmewW+ccfknDbjgqV7S5YqU7QKQ4=;
+        b=d9IoJA8duXq5CPAeW9zshrkMv/FGVWymuGI8j5LswwKZVKkANzBwPTo/4QCs9r6UzO
+         qqdHI/7XYWwi95IjCZRVars4dwdSXTN4hlWhGr4TSPAGY4ORDgi94jliTypqiZu9d75L
+         9/E2zHWCBJdRPavWHkZfSw0Wq0KEbXSat1lWY5YLnAJSvI67xn9BjjLwLVXJ/3cpx1TB
+         OxS/wg6Hg2lvkGQX4ziJA0BZaqovI6a4XjbTNd0sTdPxGLOM9dAiZXY9xA5TOqKqEINo
+         6ip+89UFq22p6vhhs+9eBRcw4AugDo9M3yCu3eQqymPkFXSLKcv2p71YszgiRIPQTtul
+         bSyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789789849; x=1790394649;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=NuWfg5jJ4nrBxVhVmewW+ccfknDbjgqV7S5YqU7QKQ4=;
+        b=zA2J0/soYUBAhF+7W+GIXsg8suqqL0BWMMQjq1S94C6vt7BX0BplSkE09QgcMzoanx
+         5uFuS6Y6tiI9Jo+vDm9QSZXh+7lOOq5dTd9DLZEX+Bn7v/a8Bgf5F6YoOxVynj7z89a4
+         U+3BlhEIACfozEGjsXKoHAg88c/12Wcg95EfLqlCMDRniSJG/SPMT5toXUPTVupdSs3E
+         rXPwiY9PTFva1Xxn+S7MMdxMWjb1TRo1PC4QPwS6N1SCGUW/2aU9e1zDSFhe5NcCLWaz
+         riugxf+xZAfM2X9kLz1EFcaWtxVq1Pa9hMuxAHh0EPJCjMPhshtAtTmtSz53k+BGFC1p
+         sphw==
+X-Gm-Message-State: AFuF++k8ubbO0TDQd5H9dCJ8HeQQcfXXnoSaztTNJD4YdxW5xNo6E4oi
+	UmVf1kvGbVH7pRz8yuxSj0sLUeeCeqf5nEWGwzMU8x3oi+QfuOsEpcbvxzUdoBEWLe0f9D7iJYy
+	ycRHoDx9cKrt2ye0Rx4jnrnsqb4gHusPMDA==
+X-Gm-Gg: AYBFou2ifxEgsBIb3Ltp6bvnteAbwEWicCLZYaizyvYQYCf5kwExM2WjeZ1+Xm6yXav
+	ntOvz8FEfuyIdHpbcRYlFcAmUz1jKrWLU4k884ycmYMg6d8SR2TyAqkCLgal6zHfK5EHRcUyeQF
+	BDxnMgm32Cf+yL2dSIgWOxpwHGxftWj7ljxkrJVzXxQq1ooyXYma0KiWr3Jk+/etIX13ezumT8u
+	f916v/fBj4tDKoaVGUTu89X0Rtv7dH2e0Tz+lB+Y75F7Bck3bEEi/T3cxz0OKQTxUJdQHsR7LtK
+	mowcAe7YdUd+CXszTbeuvaausY1zKRtF9YahwwzWnBXoewxunEA0+08Cpb3AkgApzvbAY86vrZV
+	6kd+TI3v6pVviBfK225pDg45unYLf+sCW5rioxeg1K/jMIHm+PnpooMHhXmYBYxvFCl+IPhTG
+X-Received: by 2002:a05:690e:118a:b0:66d:93e:f06b with SMTP id
+ 956f58d0204a3-6717fc90dfamr1353888d50.38.1789789849295; Fri, 18 Sep 2026
+ 20:50:49 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 22:50:48 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 22:50:48 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 22:50:48 -0500
+X-Gm-Features: AcwNN1VNxzTvpCYtFwAgDXJx4DfXZgTSSnRcMT58xGy1wBuhj3q_C4jpzIn-4G8
+Message-ID: <CAPdrGekhHX6cGFxq5kpJBkiO3Nd+nqGnwxEPCqUO3xf6jsKKKQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D19_10=3A50_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_2_strong_signals?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000309dc7065bcdec78"
+
+--000000000000309dc7065bcdec78
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+Prior Sent state recovered through the 09:45 report. Semantic duplicates
+rejected unless new independent evidence materially strengthens a cluster.
+
+2 MATERIAL SIGNALS
+
+   1.
+
+   MEMORIAL PET PERSONALISATION: PHOTO REPRODUCTION + RELIABLE ARRIVAL
+   MATTER TO THE RECIPIENT
+   Platform/source: Moonpig product reviews via Trustpilot
+   URL:
+   https://www.trustpilot.com/review/moonpig.com/product/pet-memorial-perso=
+nalised-photo-upload-card-in-loving-memory-card-6a0465ffdc49fee91866afb6
+   Customer language/evidence: Jan 19, 2026 verified buyer: =E2=80=9CMy fri=
+end
+   found this card a comfort and was very happy with the photo reproduction=
+.=E2=80=9D
+   Jan 9, 2026 verified buyer of the same memorial product says the first c=
+ard
+   =E2=80=9Cdid not arrive=E2=80=9D and the reorder delay was =E2=80=9Cnot =
+ideal at all.=E2=80=9D
+   Wanted/problem: A bereavement gift needs the actual pet reproduced
+   convincingly, but physical delivery failure is particularly damaging
+   because the occasion is immediate and emotionally time-sensitive.
+   Current workaround/product: Personalized Moonpig pet-memorial photo
+   card; reorder if delivery fails.
+   Roast.pet implication: If memorial is ever offered, make it a separate,
+   gentler mode rather than forcing roast comedy. Deliver the digital
+   memorial/reveal immediately while the optional physical card travels.
+   Preserve the uploaded pet photo/identity faithfully and make the browser
+   link permanent/recoverable.
+   Occasion/audience: Pet loss / sympathy; friend or family member of pet
+   owner.
+   Independent elsewhere: YES =E2=80=94 earlier state already contained
+   memorial/pet-lore evidence; Etsy currently also sells QR-linked pet
+   soundwave memorials and a Feb 12, 2025 buyer specifically praised help
+   creating a voiceprint after losing their pet:
+   https://www.etsy.com/listing/1305500296/personalized-pet-portrait-with-s=
+oundwave
+   Confidence: HIGH
+   Prototype/test: Do not build a full memorial SKU yet. Make one
+   landing/listing mock: =E2=80=9CA message from the pet you miss=E2=80=9D =
+using real photo +
+   optional original bark/voice clip + permanent QR/browser keepsake, with =
+NO
+   default roast language. Measure clicks separately from birthday comedy.
+   Decision: WATCH (strong need, but emotional positioning is distinct from
+   Roast.pet=E2=80=99s core comedy promise).
+   2.
+
+   PREVIEW ACCURACY IS ITSELF A CUSTOMER PROMISE =E2=80=94 WHAT ARRIVES SHO=
+ULD
+   MATCH WHAT THEY APPROVED
+   Platform/source: Moonpig product reviews via Trustpilot
+   URL:
+   https://www.trustpilot.com/review/moonpig.com/product/pawprints-on-your-=
+heart-photo-upload-card-6a050655dc49fee9187cf288
+   Customer language/evidence: Jan 22, 2026 verified buyer: =E2=80=9CPerfec=
+t
+   personalised card with photos of my choice. Arrived exactly as previewed=
+.
+   And right on time as promised.=E2=80=9D
+   Wanted/problem: The buyer values not merely having a preview, but the
+   delivered personalized object matching that preview and arriving when
+   promised.
+   Current workaround/product: Moonpig photo-upload card with pre-order
+   preview.
+   Roast.pet implication: Extend our existing proof-before-payment
+   architecture into a stronger invariant: the approved canonical pet
+   image/card frame is locked. Animation can add motion, but it must not
+   silently mutate markings, accessories, proportions, text, recipient name=
+,
+   or composition after approval. For physical fulfillment, generate from t=
+he
+   same locked asset the buyer approved.
+   Occasion/audience: General personalized card/gift; especially relevant
+   to deadline gifts.
+   Independent elsewhere: YES =E2=80=94 materially strengthens the establis=
+hed
+   likeness/proof cluster rather than creating a new cluster. Earlier custo=
+mer
+   evidence showed disappointment when talking-pet output diverged from
+   promotional/source appearance.
+   Confidence: HIGH
+   Prototype/test: Add an explicit approval screen: =E2=80=9CTHIS is the pe=
+t/card
+   we will use=E2=80=9D with YES, THAT=E2=80=99S THEM. Hash/version that ap=
+proved asset and
+   use it as the source for printable card, thumbnail and video. Test wheth=
+er
+   this reduces revision requests/refunds.
+   Decision: BUILD/TEST.
+
+REJECTED / NON-MATERIAL THIS RUN
+
+   - QR pet memorial listings demonstrate supply, but only one directly
+   useful buyer review was found; not enough evidence to claim broad custom=
+er
+   demand for QR itself.
+   - More physical-card late/non-delivery complaints were found, but they
+   are semantic duplicates of the already-strong instant-delivery/deadline
+   cluster.
+   - A Moonpig dog-card buyer saying they =E2=80=9Cused wrong photo=E2=80=
+=9D is interesting
+   but insufficient to infer a systematic ordering-flow problem.
+   - No strong fresh customer-language evidence found for sports-themed
+   roasts, colleague roasts, kid/adult roast modes, editable jokes, or AR.
+   These remain UNKNOWN/WATCH rather than invented demand.
+
+RECURRING CLUSTER STATE =E2=80=94 DIRECTIONAL
+VERY STRONG: exact recognizable likeness; deadline/instant digital
+fulfillment; proof/preview before commitment.
+STRONG: multi-pet/whole-pack support; separate source photos; pet-specific
+quirks/personality; simple revision reasons; reliable digital recovery;
+photo guidance; stable pet voice/character; recipient naming/relationship
+control.
+STRENGTHENED THIS RUN: approved-preview fidelity across final outputs;
+memorial as a distinct emotional mode.
+WATCH: physical + QR/browser video bundle; scheduled reveal;
+memorial-with-humor (humor specifically remains unproven).
+UNKNOWN: AR demand; sports roast; work-colleague roast; kid-safe vs adult
+roast modes as explicit buyer requests.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. =E2=80=9CMake it unmistakably MY pet=E2=80=9D =E2=80=94 markings, exp=
+ression, accessories and
+   identity preserved.
+   2. Preview/proof that becomes the locked source of truth for every final
+   asset.
+   3. Fast/instant digital delivery for deadline gifts, with redundant
+   recovery.
+   4. Multiple pets, including separate source photos and more than two
+   animals.
+   5. Recipient/pet personality controls: what the pet calls them, pet
+   quirks and stable voice character.
+
+STRONGEST UNMET NEED
+A personalized comedy gift where the buyer can verify the actual pet first
+and trust that the approved identity will survive card generation,
+animation and fulfillment unchanged.
+
+EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW
+Make =E2=80=9CYES, THAT=E2=80=99S THEM=E2=80=9D an explicit approval gate, =
+then tell the buyer:
+=E2=80=9CThis approved pet is locked =E2=80=94 we won=E2=80=99t change thei=
+r markings or identity
+in the final video/card.=E2=80=9D This turns preview into a concrete trust
+guarantee.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE
+=E2=80=9CYour Dog Roasts Them =E2=80=94 Preview Your Actual Pet First =E2=
+=80=94 Personalized
+Talking Birthday Video + Printable QR Card.=E2=80=9D The customer-evidenced=
+ promise
+is not =E2=80=98AI pet video=E2=80=99; it is that the final gift looks like=
+ the pet they
+approved and can arrive digitally in time.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not blend pet bereavement into the default comedy funnel. Current
+memorial buyers explicitly describe these cards as comforting/touching
+after loss. There is evidence for pet memorial personalization, but not yet
+for =E2=80=98memorial-with-humor.=E2=80=99 Treat that as a separate experim=
+ent rather than
+assuming roast mechanics transfer.
+
+Sources searched this run included current Moonpig/Trustpilot
+product-review surfaces, Etsy personalized pet/QR memorial listings and
+review surfaces, personalized pet portrait/proof products, and broader
+web/review searches. Strong signals were intentionally kept below the 10=E2=
+=80=9320
+target because most fresh results were duplicates or seller-side claims
+rather than independent customer language.
+
+--000000000000309dc7065bcdec78
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>Prior Sent state recovered through the 09:45 report. Semantic duplicates=
+ rejected unless new independent evidence materially strengthens a cluster.=
+</p>
+<p>2 MATERIAL SIGNALS</p>
+<ol>
+<li>
+<p>MEMORIAL PET PERSONALISATION: PHOTO REPRODUCTION + RELIABLE ARRIVAL MATT=
+ER TO THE RECIPIENT<br>
+Platform/source: Moonpig product reviews via Trustpilot<br>
+URL: <a href=3D"https://www.trustpilot.com/review/moonpig.com/product/pet-m=
+emorial-personalised-photo-upload-card-in-loving-memory-card-6a0465ffdc49fe=
+e91866afb6">https://www.trustpilot.com/review/moonpig.com/product/pet-memor=
+ial-personalised-photo-upload-card-in-loving-memory-card-6a0465ffdc49fee918=
+66afb6</a><br>
+Customer language/evidence: Jan 19, 2026 verified buyer: =E2=80=9CMy friend=
+ found this card a comfort and was very happy with the photo reproduction.=
+=E2=80=9D Jan 9, 2026 verified buyer of the same memorial product says the =
+first card =E2=80=9Cdid not arrive=E2=80=9D and the reorder delay was =E2=
+=80=9Cnot ideal at all.=E2=80=9D<br>
+Wanted/problem: A bereavement gift needs the actual pet reproduced convinci=
+ngly, but physical delivery failure is particularly damaging because the oc=
+casion is immediate and emotionally time-sensitive.<br>
+Current workaround/product: Personalized Moonpig pet-memorial photo card; r=
+eorder if delivery fails.<br>
+Roast.pet implication: If memorial is ever offered, make it a separate, gen=
+tler mode rather than forcing roast comedy. Deliver the digital memorial/re=
+veal immediately while the optional physical card travels. Preserve the upl=
+oaded pet photo/identity faithfully and make the browser link permanent/rec=
+overable.<br>
+Occasion/audience: Pet loss / sympathy; friend or family member of pet owne=
+r.<br>
+Independent elsewhere: YES =E2=80=94 earlier state already contained memori=
+al/pet-lore evidence; Etsy currently also sells QR-linked pet soundwave mem=
+orials and a Feb 12, 2025 buyer specifically praised help creating a voicep=
+rint after losing their pet: <a href=3D"https://www.etsy.com/listing/130550=
+0296/personalized-pet-portrait-with-soundwave">https://www.etsy.com/listing=
+/1305500296/personalized-pet-portrait-with-soundwave</a><br>
+Confidence: HIGH<br>
+Prototype/test: Do not build a full memorial SKU yet. Make one landing/list=
+ing mock: =E2=80=9CA message from the pet you miss=E2=80=9D using real phot=
+o + optional original bark/voice clip + permanent QR/browser keepsake, with=
+ NO default roast language. Measure clicks separately from birthday comedy.=
+<br>
+Decision: WATCH (strong need, but emotional positioning is distinct from Ro=
+ast.pet=E2=80=99s core comedy promise).</p>
+</li>
+<li>
+<p>PREVIEW ACCURACY IS ITSELF A CUSTOMER PROMISE =E2=80=94 WHAT ARRIVES SHO=
+ULD MATCH WHAT THEY APPROVED<br>
+Platform/source: Moonpig product reviews via Trustpilot<br>
+URL: <a href=3D"https://www.trustpilot.com/review/moonpig.com/product/pawpr=
+ints-on-your-heart-photo-upload-card-6a050655dc49fee9187cf288">https://www.=
+trustpilot.com/review/moonpig.com/product/pawprints-on-your-heart-photo-upl=
+oad-card-6a050655dc49fee9187cf288</a><br>
+Customer language/evidence: Jan 22, 2026 verified buyer: =E2=80=9CPerfect p=
+ersonalised card with photos of my choice. Arrived exactly as previewed. An=
+d right on time as promised.=E2=80=9D<br>
+Wanted/problem: The buyer values not merely having a preview, but the deliv=
+ered personalized object matching that preview and arriving when promised.<=
+br>
+Current workaround/product: Moonpig photo-upload card with pre-order previe=
+w.<br>
+Roast.pet implication: Extend our existing proof-before-payment architectur=
+e into a stronger invariant: the approved canonical pet image/card frame is=
+ locked. Animation can add motion, but it must not silently mutate markings=
+, accessories, proportions, text, recipient name, or composition after appr=
+oval. For physical fulfillment, generate from the same locked asset the buy=
+er approved.<br>
+Occasion/audience: General personalized card/gift; especially relevant to d=
+eadline gifts.<br>
+Independent elsewhere: YES =E2=80=94 materially strengthens the established=
+ likeness/proof cluster rather than creating a new cluster. Earlier custome=
+r evidence showed disappointment when talking-pet output diverged from prom=
+otional/source appearance.<br>
+Confidence: HIGH<br>
+Prototype/test: Add an explicit approval screen: =E2=80=9CTHIS is the pet/c=
+ard we will use=E2=80=9D with YES, THAT=E2=80=99S THEM. Hash/version that a=
+pproved asset and use it as the source for printable card, thumbnail and vi=
+deo. Test whether this reduces revision requests/refunds.<br>
+Decision: BUILD/TEST.</p>
+</li>
+</ol>
+<p>REJECTED / NON-MATERIAL THIS RUN</p>
+<ul>
+<li>QR pet memorial listings demonstrate supply, but only one directly usef=
+ul buyer review was found; not enough evidence to claim broad customer dema=
+nd for QR itself.</li>
+<li>More physical-card late/non-delivery complaints were found, but they ar=
+e semantic duplicates of the already-strong instant-delivery/deadline clust=
+er.</li>
+<li>A Moonpig dog-card buyer saying they =E2=80=9Cused wrong photo=E2=80=9D=
+ is interesting but insufficient to infer a systematic ordering-flow proble=
+m.</li>
+<li>No strong fresh customer-language evidence found for sports-themed roas=
+ts, colleague roasts, kid/adult roast modes, editable jokes, or AR. These r=
+emain UNKNOWN/WATCH rather than invented demand.</li>
+</ul>
+<p>RECURRING CLUSTER STATE =E2=80=94 DIRECTIONAL<br>
+VERY STRONG: exact recognizable likeness; deadline/instant digital fulfillm=
+ent; proof/preview before commitment.<br>
+STRONG: multi-pet/whole-pack support; separate source photos; pet-specific =
+quirks/personality; simple revision reasons; reliable digital recovery; pho=
+to guidance; stable pet voice/character; recipient naming/relationship cont=
+rol.<br>
+STRENGTHENED THIS RUN: approved-preview fidelity across final outputs; memo=
+rial as a distinct emotional mode.<br>
+WATCH: physical + QR/browser video bundle; scheduled reveal; memorial-with-=
+humor (humor specifically remains unproven).<br>
+UNKNOWN: AR demand; sports roast; work-colleague roast; kid-safe vs adult r=
+oast modes as explicit buyer requests.</p>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE</p>
+<ol>
+<li>=E2=80=9CMake it unmistakably MY pet=E2=80=9D =E2=80=94 markings, expre=
+ssion, accessories and identity preserved.</li>
+<li>Preview/proof that becomes the locked source of truth for every final a=
+sset.</li>
+<li>Fast/instant digital delivery for deadline gifts, with redundant recove=
+ry.</li>
+<li>Multiple pets, including separate source photos and more than two anima=
+ls.</li>
+<li>Recipient/pet personality controls: what the pet calls them, pet quirks=
+ and stable voice character.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+A personalized comedy gift where the buyer can verify the actual pet first =
+and trust that the approved identity will survive card generation, animatio=
+n and fulfillment unchanged.</p>
+<p>EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW<br>
+Make =E2=80=9CYES, THAT=E2=80=99S THEM=E2=80=9D an explicit approval gate, =
+then tell the buyer: =E2=80=9CThis approved pet is locked =E2=80=94 we won=
+=E2=80=99t change their markings or identity in the final video/card.=E2=80=
+=9D This turns preview into a concrete trust guarantee.</p>
+<p>BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Dog Roasts Them =E2=80=94 Preview Your Actual Pet First =E2=
+=80=94 Personalized Talking Birthday Video + Printable QR Card.=E2=80=9D Th=
+e customer-evidenced promise is not =E2=80=98AI pet video=E2=80=99; it is t=
+hat the final gift looks like the pet they approved and can arrive digitall=
+y in time.</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not blend pet bereavement into the default comedy funnel. Current memori=
+al buyers explicitly describe these cards as comforting/touching after loss=
+. There is evidence for pet memorial personalization, but not yet for =E2=
+=80=98memorial-with-humor.=E2=80=99 Treat that as a separate experiment rat=
+her than assuming roast mechanics transfer.</p>
+<p>Sources searched this run included current Moonpig/Trustpilot product-re=
+view surfaces, Etsy personalized pet/QR memorial listings and review surfac=
+es, personalized pet portrait/proof products, and broader web/review search=
+es. Strong signals were intentionally kept below the 10=E2=80=9320 target b=
+ecause most fresh results were duplicates or seller-side claims rather than=
+ independent customer language.</p>
+
+--000000000000309dc7065bcdec78--

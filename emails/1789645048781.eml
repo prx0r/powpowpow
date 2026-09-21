@@ -1,0 +1,453 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id Squa2xGL5mwv
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 11:37:28 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=QIqd/frqvH6Aa5XsKbOh4yIFZG6MfyxizpkxsYkuUSW3jaz3n7EjVht/ZI6aw1kTX+e8Y13un
+	QAupHNPdIfGRbowl0EwkaZoThX5KUIZeLB0gomJ7+qWUhZmJSq3uIKArT7+LtjDOCRkdYE/Re1q
+	UwFj6WNB+uwE6/OseZxO+tTY91J1fjjwdvOIsDHPH0koranL92qpn4uzWQ76USuXfc5Cho6I5uf
+	mnTGXULCYx4xwOmCVcUeYDC50MS9rwZZZQ1mBtOiCyDEo4s4gK6mUaPZxdpglsdkawg0uAlIddC
+	KXrI1KqEMh0gwYAI4VetIgjcT8dVYht8CF8K7UpZubaA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789645048; x=1790249848; bh=tMCKX8a0
+	h1fv6dSvq8a8T16oXwTotmAcPSZfzuGm5Qc=; b=J71uiig0x7vI4cQ8EGYqewOwT3eov5+VaKL
+	oLgUX/GctMqtLevl22ISlBYajg7TywlHpu4hBFDB01x0587wcvUbao+wOQX1lH/P5FMF+6hBbCG
+	Yi/GoovFEF3O8tnmxYSaATUxUJ5yfhA4swvMCIwURRddPhjvfn6Sbg5DFJK0HbVfPIgWoNkX7uc
+	BWclOOSujNr/X/Tc3MnRMRanZcEOzntXIAEfue5qogd1lwXlJZUQVqr5m7em1TyKdzshIGoANEy
+	XAHD5Yiv64fSUwJ5mkv0Ra/RDOWd8odD673r+jDMp383nkJvG4RBbqQwUJaRCiQ5DfoUkHkxL0q
+	uqYI9/w==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AyukUuAO;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AyukUuAO;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-895353e9051so3885697b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 04:37:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789645048; cv=none;
+        d=google.com; s=arc-20260327;
+        b=hqu9DrxJtx1gM6DMf1+d7IcpV9fauRQ8zfRh66MglUTHyuuD1tW3qUMKB4H0sZUxZb
+         zyBTXIYDc6xIi1gHACfZPnDe6329BMnoJhB0NfyzZ3/fa4LsopA6U1MmDv7PN4+PWwyp
+         U7P3XGhbYsfkJYWWBrxc3Zmu8oPYLXUNYE2oXYGtTZxSh0c0attOt2RFOouUWbEkEJDu
+         A0mBai9T5WR0KL0E0OLSJg2PrKhnHwsFn9B8jo6JCO11set818itqfiwTQLt9mWxaZ4m
+         xY4gbTLSyb4/0asJumRhcCcUBm0CMjuxwbQ8NfaaSz+ZbNBWFJw126Rg5bd9QLN6/IcV
+         xJHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=tMCKX8a0h1fv6dSvq8a8T16oXwTotmAcPSZfzuGm5Qc=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=b9PYHov5zTFS0OQNTRyA5ryG0h1MTrNOYtHG3Ps26z64jWuQd9f4UfW+StuBXaeCqc
+         RkabuNWlkOYinoQ81Buwo+8hSD7VipvVqrh29/g7xtnb+W2JH/xL17x2iwzPwIT3Z/mT
+         8dSnLRP5IHZal/xFxk9D5Scp2F3VyCOCynJpWTNZQr4SVkQnayNnLpnC9yY8zCis2eoy
+         0WywJnm6PBqWxn/jDII25cNai3A8CcY7JcO5MvQUCG8M9xe7iB0C47ows6LVvMGCo1er
+         w4e7rx5HMhlM8vUFwkuU/3Pm6IQboFtNjFGRBQQQe+Xv/mmL8KFoKIQBjKto8o2TJ/vB
+         N17w==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789645048; x=1790249848; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=tMCKX8a0h1fv6dSvq8a8T16oXwTotmAcPSZfzuGm5Qc=;
+        b=AyukUuAOdeJM6eChLNv945eJ4wX/1L90vVdRudtiyZwEOY6ePo+rDCbaw6LOMncIr9
+         WWIchQdqyQa43HmbdNjmBcA9Z9Do31U4M2KBZ05YP3tI1pTTZ4R38DWVWzr7d2wF8pQG
+         SDzNEc3g98RyCS/8aklQUs/2qYoDb3GiMDUDN6bakqMfhM/ZbEsyBK7Z+CGJsASptTG+
+         dLGWQjVecILv6fffwSKLtwb0W6YlssVws80f4bPfELds/Cjul+GIYD09J9V4Rb6gM9jS
+         nXyioHM/2brdbECkTn/r+D7AgH07BxTYXot10VDXrFv6pplJu0Rko4cGdvfXrpVzgX6h
+         tNyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789645048; x=1790249848;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=tMCKX8a0h1fv6dSvq8a8T16oXwTotmAcPSZfzuGm5Qc=;
+        b=WyWoD3s2na13KUxknYZmi4mQAzVg8Y2KrbZiOpb2//y4bVV0+tgHg8dDE7dyrUuhxn
+         5fXCzEkeupIzTPt5NXZOpnmiSdI/jW7jmRdwazjBy0qU6u72vPfVeXEzAeVaeE1rUjNq
+         vtpway3OBLyw3hMsiEHdwWHdaUqKnxOtplZJHbokFdoDSyt5ZLjY7nMKrTyfx3nQNb70
+         +FWM68FYIdtrjwsi7TSoYaTW1g5E46nINcL4NZzSKVWG07cqieYrPLDgxcEzEunIDmxs
+         /AbpEPlSSbmXnJdCPhpk8xzutuGG6pimW0isvlsFETo5Jqe2xW3+2nZ7rgHkRFmc/c7W
+         vYnQ==
+X-Gm-Message-State: AFuF++mJ8eV+j8hIFzPLrAy+L7Q5gP515uIRDsnruuSDJCEjXbA3Cpf3
+	LVK97n8CQOcplufFHG20OQKmgiTDee29HQK2w6UFFGpDTVl3j8fkn4gvHqNvlQopGIZkpqoT39h
+	lif5lY58wZlyHys5680Ut8Fs7RgOBKwlceQ==
+X-Gm-Gg: AYBFou0u8FyS4xArfbizwPYQcEB485N7DZFz53ns1haAKYvyeGuufw/w7zxjaXhhlYd
+	Rdb7qg+/iIqzg2CSFfpOjS4Q1cI5RBKYpNnu/vuEYjLBOaowOX0m53yERxHky8ojaL5BdVvez+N
+	HE8Perndycvj5QwjGVIwSze/WUiGfst+ykGtHqNTJ9jjNi6m6/2lVTfJQ7oao3LJAO+jMY5MiOm
+	3emLIGRqVia1CLbIuNNUQuc1d4jUz/z0aLmsdXIRGP444FQJSZs3+uPv78yDWng7jJXoyXdzLvk
+	vMZpvbWdSMEF+ANXlBWYTFOSpCtv6lueWjQ78hBiDfqNwN/gxCU/VYUp+C0aqfupVQx0Q4a1cE0
+	5urCDMHm/8HR1NklHE6Bh/03C36QuQGsDXCjmpN1hjF7zgWJzAKj9T5rZsOreyXo2iuby3Q==
+X-Received: by 2002:a05:690c:c354:b0:882:b4b2:c49 with SMTP id
+ 00721157ae682-8922499fc31mr23066827b3.18.1789645047924; Thu, 17 Sep 2026
+ 04:37:27 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 06:37:27 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 06:37:27 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 06:37:27 -0500
+X-Gm-Features: AcwNN1XlMPiL8tEaSiXImxwkUjpHI8VD7LWQiXV90JOuYrPk28nyXKEHbDAjEsU
+Message-ID: <CAPdrGem+iXv4Fe_xvGsLTwp1iJ0T0yymxcoDUdh7+EuMm8L+Mw@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Attack_Chains_=E2=80=94_2026=2D09=2D17_18=3A36_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_2_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000005b0c7f065bac3578"
+
+--0000000000005b0c7f065bac3578
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Attack Chains =E2=80=94 defensive synthesis
+
+1 NEW ATTACK CHAINS
+
+AC-2026-NPM-CLOUD-PIVOT =E2=80=94 ACTIVE/RECENT. Fingerprint: typosquatted =
+npm
+package -> lifecycle-hook execution -> host/CI credential harvest ->
+cloud/Vault/npm authority -> downstream supply-chain pivot. CONFIRMED:
+Microsoft documented 14 malicious npm packages using install-time execution
+to harvest AWS credentials, HashiCorp Vault tokens, GitHub Actions/CI
+secrets and npm publish tokens; the publish tokens enable follow-on
+supply-chain pivots. UNKNOWN: public evidence does not establish a specific
+successful downstream victim compromise from those stolen tokens. Trust
+boundaries: registry->developer/CI; CI identity->cloud/Vault; package
+consumer->package publisher. Detection: new lifecycle hooks, unexpected
+Bun/runtime downloads, IMDS/ECS credential access from package-install
+processes, registry-token access during install, outbound traffic from
+package-manager child processes. Containment: disable install scripts where
+feasible, ephemeral CI credentials, workload identity rather than static
+cloud keys, registry publishing with short-lived/provenance-bound authority=
+.
+
+AC-2026-TRIVY-RESIDUAL-AUTHORITY =E2=80=94 RECENT. Fingerprint: privileged =
+CI
+workflow flaw -> PAT theft -> repository authority -> incomplete credential
+rotation/residual service-account authority -> force-moved trusted
+tags/release pipeline -> downstream CI execution -> secret harvesting.
+CONFIRMED: public reporting on the Trivy incidents documents an initial
+pull_request_target-related PAT compromise, repository takeover,
+incomplete/non-atomic rotation leaving residual access, later authenticated
+tag manipulation, release propagation and credential-stealing payloads in
+CI. CONFIRMED downstream execution capability; UNKNOWN at this evidence
+tier whether any particular downstream organization suffered a further
+cloud/service compromise. This chain is especially important because the
+second incident depends on authority surviving remediation rather than a
+new exploit. Detection: privileged PR-target workflows, tag target changes,
+release commits absent normal review ancestry, service-account use after
+rotation events, secret reads/network egress from security-tool steps.
+Containment: atomic credential invalidation across human/bot/service
+identities; immutable SHA pins; protected release tags; separate release
+signing authority; post-incident inventory of all delegated credentials.
+
+2 MATERIAL CHAIN UPDATES
+No prior Attack Chains state was found in Gmail Sent, so no canonical
+prior-chain delta could be safely asserted. Latest Scanner state was
+recovered; Incident Intake and Repo Forensics reports were not present in
+Sent search, so this run does not invent cross-agent incident IDs.
+
+3 TOP RECURRING SECOND-ORDER MECHANISMS
+A. Package install execution -> broad developer/CI secret surface ->
+package/cloud authority.
+B. CI/repository credential -> trusted tag/release mutation -> downstream
+execution.
+C. Incomplete remediation -> residual bot/service authority -> second
+compromise without a new entry exploit.
+D. Security/developer tooling as a privileged execution surface: tools
+naturally run where secrets and release authority coexist.
+
+4 STAGE/EDGE GRAPHS
+AC-2026-NPM-CLOUD-PIVOT: registry package [CONFIRMED] -> lifecycle
+execution [CONFIRMED] -> AWS/Vault/CI/npm credential access [CONFIRMED] ->
+cloud/registry authority [CONFIRMED capability] -> downstream malicious
+publish [CONFIRMED capability; successful external victim pivot UNKNOWN].
+Persistence UNKNOWN.
+AC-2026-TRIVY-RESIDUAL-AUTHORITY: pull_request_target weakness [CONFIRMED]
+-> PAT theft [CONFIRMED] -> repo control [CONFIRMED] -> incomplete
+rotation/residual authority [CONFIRMED] -> trusted tags/releases modified
+[CONFIRMED] -> downstream CI execution [CONFIRMED] -> secret
+collection/exfil capability [CONFIRMED] -> further victim-side privileged
+action [UNKNOWN].
+
+5 UNKNOWN LINKS WORTH RESOLVING
+Highest information gain: whether public primary evidence confirms actual
+downstream cloud/registry actions after credential theft; exact residual
+credential class used in the second Trivy compromise; whether any Scanner
+objects map to these canonical mechanisms; whether current agent-tool
+incidents demonstrate persistence through memory/session rather than
+conventional CI/package state.
+
+6 DEFENSIVE CHOKEPOINTS + DETECTION PRIMITIVES
+Authority boundaries are the choke point: package install should not
+inherit release/cloud authority; PR evaluation should not inherit
+repository secrets; release identities should be separate from build
+identities; rotation must enumerate human, bot, app, deploy-key, registry
+and cloud credentials as one revocation transaction. Useful primitives:
+process-tree telemetry for package-manager hooks; IMDS/Vault/secret-store
+access by unexpected build children; tag-ref mutation alerts; release
+provenance mismatch; outbound egress from security-tool steps;
+service-account activity after incident revocation timestamp.
+
+7 SAFE LAB REPRODUCTION QUEUE
+LAB-1: disposable npm registry/package with a benign preinstall script
+reading only fake environment variables; verify CI alerts on secret-access
+pattern and network-deny policy. LAB-2: disposable GitHub repo with dummy
+token and protected/unprotected tags; simulate token rotation and verify
+every bot/app/deploy credential is invalidated. LAB-3: fake release
+pipeline with immutable SHA pinning versus mutable tag; demonstrate
+detection of tag retargeting without external targets. No real credentials,
+wallets or third-party infrastructure.
+
+8 CROSS-CASE CLUSTERS
+CLUSTER-CI-AUTHORITY-CASCADE: Trivy + npm cloud-secret campaigns share the
+transition developer/CI execution -> credential material -> broader
+authority. CLUSTER-RESIDUAL-AUTHORITY: Trivy uniquely supplies strong
+public evidence that incomplete credential rotation can bridge incident 1
+to incident 2. CLUSTER-REGISTRY-PROPAGATION: npm publish-token theft
+establishes a mechanism for consumer->maintainer->consumer propagation,
+while specific downstream success remains case-dependent.
+
+9 MACHINE-READABLE JSONL DELTA
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-NPM-CLOUD-PIVOT=E2=80=
+=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CACTIVE=E2=80=9D,=E2=80=9Caliases=E2=
+=80=9D:[=E2=80=9Ctyposquat
+cloud/CI credential harvester=E2=80=9D],=E2=80=9Cfingerprint=E2=80=9D:=E2=
+=80=9Cregistry package>install
+hook>CI/developer credentials>cloud/Vault/npm authority>downstream
+pivot=E2=80=9D,=E2=80=9Cconfirmed=E2=80=9D:5,=E2=80=9Cinferred=E2=80=9D:0,=
+=E2=80=9Cunknown=E2=80=9D:2,=E2=80=9Caffected_stacks=E2=80=9D:[=E2=80=9Cnpm=
+=E2=80=9D,=E2=80=9CGitHub
+Actions=E2=80=9D,=E2=80=9CAWS=E2=80=9D,=E2=80=9CHashiCorp
+Vault=E2=80=9D],=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cregistry-to-ho=
+st=E2=80=9D,=E2=80=9Chost-to-cloud=E2=80=9D,=E2=80=9Cconsumer-to-publisher=
+=E2=80=9D],=E2=80=9Cpersistence=E2=80=9D:=E2=80=9CUNKNOWN=E2=80=9D,=E2=80=
+=9Cpropagation=E2=80=9D:=E2=80=9Cnpm
+publish-token capability confirmed; realized downstream victim propagation
+UNKNOWN=E2=80=9D,=E2=80=9Cdetection=E2=80=9D:[=E2=80=9Cinstall-hook process=
+ tree=E2=80=9D,=E2=80=9CIMDS/Vault access during
+install=E2=80=9D,=E2=80=9Cregistry-token reads=E2=80=9D,=E2=80=9Cunexpected=
+ install
+egress=E2=80=9D],=E2=80=9Ccontainment=E2=80=9D:[=E2=80=9Cephemeral credenti=
+als=E2=80=9D,=E2=80=9Cworkload
+identity=E2=80=9D,=E2=80=9Crestrict install scripts=E2=80=9D,=E2=80=9Cprove=
+nance-bound
+publishing=E2=80=9D],=E2=80=9Cfalsifier=E2=80=9D:=E2=80=9Cprimary evidence =
+shows packages could not access
+claimed credentials or publish authority=E2=80=9D}
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-TRIVY-RESIDUAL-AUTHORIT=
+Y=E2=80=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT=E2=80=9D,=E2=80=9Calias=
+es=E2=80=9D:[=E2=80=9CTrivy
+two-stage residual credential cascade=E2=80=9D],=E2=80=9Cfingerprint=E2=80=
+=9D:=E2=80=9Cprivileged PR
+workflow>PAT>repo authority>incomplete rotation>residual service
+authority>tag/release poisoning>downstream CI secret
+access=E2=80=9D,=E2=80=9Cconfirmed=E2=80=9D:8,=E2=80=9Cinferred=E2=80=9D:0,=
+=E2=80=9Cunknown=E2=80=9D:2,=E2=80=9Caffected_stacks=E2=80=9D:[=E2=80=9CGit=
+Hub
+Actions=E2=80=9D,=E2=80=9CTrivy=E2=80=9D,=E2=80=9CGitHub Releases=E2=80=9D,=
+=E2=80=9Ccontainer
+registries=E2=80=9D],=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cfork-to-p=
+rivileged-CI=E2=80=9D,=E2=80=9CCI-to-repository=E2=80=9D,=E2=80=9Crepositor=
+y-to-release=E2=80=9D,=E2=80=9Crelease-to-downstream-CI=E2=80=9D],=E2=80=9C=
+persistence=E2=80=9D:=E2=80=9Cresidual
+delegated credential/service authority=E2=80=9D,=E2=80=9Cpropagation=E2=80=
+=9D:=E2=80=9Ctrusted release/tag
+distribution confirmed=E2=80=9D,=E2=80=9Cdetection=E2=80=9D:[=E2=80=9Cpull_=
+request_target secret
+exposure=E2=80=9D,=E2=80=9Ctag retargeting=E2=80=9D,=E2=80=9Crelease ancest=
+ry mismatch=E2=80=9D,=E2=80=9Cpost-rotation
+service-account use=E2=80=9D],=E2=80=9Ccontainment=E2=80=9D:[=E2=80=9Catomi=
+c revocation=E2=80=9D,=E2=80=9Cprotected
+immutable tags=E2=80=9D,=E2=80=9CSHA pinning=E2=80=9D,=E2=80=9Cseparate rel=
+ease
+signer=E2=80=9D],=E2=80=9Cfalsifier=E2=80=9D:=E2=80=9Cprimary incident evid=
+ence disproves residual
+credential continuity between incidents=E2=80=9D}
+
+10 NEXT-HOUR RESEARCH QUEUE
+
+   1. Primary Aqua/Socket/Wiz material to resolve the exact residual
+   credential and downstream consequence boundary.
+   2. Microsoft npm campaign follow-up for evidence of realized npm-token
+   propagation rather than capability only.
+   3. Agent-specific cases where tool output crosses into persistent
+   memory/session and later privileged tool execution; require empirical
+   incident or paper evidence.
+   4. Latest Scanner objects that expose new authority transitions rather
+   than duplicate package/CI chains.
+
+Public sources used: Microsoft Security Blog, 28 May 2026, typosquatted npm
+cloud/CI credential campaign; Ars Technica / Aqua/Socket/Wiz reporting on
+Trivy March 2026; Snyk Trivy analysis. No private identities, secrets or
+unlabelled wallet tracing used.
+
+--0000000000005b0c7f065bac3578
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Privately Attack Chains =E2=80=94 defensive synthesis</p>
+<p>1 NEW ATTACK CHAINS</p>
+<p>AC-2026-NPM-CLOUD-PIVOT =E2=80=94 ACTIVE/RECENT. Fingerprint: typosquatt=
+ed npm package -&gt; lifecycle-hook execution -&gt; host/CI credential harv=
+est -&gt; cloud/Vault/npm authority -&gt; downstream supply-chain pivot. CO=
+NFIRMED: Microsoft documented 14 malicious npm packages using install-time =
+execution to harvest AWS credentials, HashiCorp Vault tokens, GitHub Action=
+s/CI secrets and npm publish tokens; the publish tokens enable follow-on su=
+pply-chain pivots. UNKNOWN: public evidence does not establish a specific s=
+uccessful downstream victim compromise from those stolen tokens. Trust boun=
+daries: registry-&gt;developer/CI; CI identity-&gt;cloud/Vault; package con=
+sumer-&gt;package publisher. Detection: new lifecycle hooks, unexpected Bun=
+/runtime downloads, IMDS/ECS credential access from package-install process=
+es, registry-token access during install, outbound traffic from package-man=
+ager child processes. Containment: disable install scripts where feasible, =
+ephemeral CI credentials, workload identity rather than static cloud keys, =
+registry publishing with short-lived/provenance-bound authority.</p>
+<p>AC-2026-TRIVY-RESIDUAL-AUTHORITY =E2=80=94 RECENT. Fingerprint: privileg=
+ed CI workflow flaw -&gt; PAT theft -&gt; repository authority -&gt; incomp=
+lete credential rotation/residual service-account authority -&gt; force-mov=
+ed trusted tags/release pipeline -&gt; downstream CI execution -&gt; secret=
+ harvesting. CONFIRMED: public reporting on the Trivy incidents documents a=
+n initial pull_request_target-related PAT compromise, repository takeover, =
+incomplete/non-atomic rotation leaving residual access, later authenticated=
+ tag manipulation, release propagation and credential-stealing payloads in =
+CI. CONFIRMED downstream execution capability; UNKNOWN at this evidence tie=
+r whether any particular downstream organization suffered a further cloud/s=
+ervice compromise. This chain is especially important because the second in=
+cident depends on authority surviving remediation rather than a new exploit=
+. Detection: privileged PR-target workflows, tag target changes, release co=
+mmits absent normal review ancestry, service-account use after rotation eve=
+nts, secret reads/network egress from security-tool steps. Containment: ato=
+mic credential invalidation across human/bot/service identities; immutable =
+SHA pins; protected release tags; separate release signing authority; post-=
+incident inventory of all delegated credentials.</p>
+<p>2 MATERIAL CHAIN UPDATES<br>
+No prior Attack Chains state was found in Gmail Sent, so no canonical prior=
+-chain delta could be safely asserted. Latest Scanner state was recovered; =
+Incident Intake and Repo Forensics reports were not present in Sent search,=
+ so this run does not invent cross-agent incident IDs.</p>
+<p>3 TOP RECURRING SECOND-ORDER MECHANISMS<br>
+A. Package install execution -&gt; broad developer/CI secret surface -&gt; =
+package/cloud authority.<br>
+B. CI/repository credential -&gt; trusted tag/release mutation -&gt; downst=
+ream execution.<br>
+C. Incomplete remediation -&gt; residual bot/service authority -&gt; second=
+ compromise without a new entry exploit.<br>
+D. Security/developer tooling as a privileged execution surface: tools natu=
+rally run where secrets and release authority coexist.</p>
+<p>4 STAGE/EDGE GRAPHS<br>
+AC-2026-NPM-CLOUD-PIVOT: registry package [CONFIRMED] -&gt; lifecycle execu=
+tion [CONFIRMED] -&gt; AWS/Vault/CI/npm credential access [CONFIRMED] -&gt;=
+ cloud/registry authority [CONFIRMED capability] -&gt; downstream malicious=
+ publish [CONFIRMED capability; successful external victim pivot UNKNOWN]. =
+Persistence UNKNOWN.<br>
+AC-2026-TRIVY-RESIDUAL-AUTHORITY: pull_request_target weakness [CONFIRMED] =
+-&gt; PAT theft [CONFIRMED] -&gt; repo control [CONFIRMED] -&gt; incomplete=
+ rotation/residual authority [CONFIRMED] -&gt; trusted tags/releases modifi=
+ed [CONFIRMED] -&gt; downstream CI execution [CONFIRMED] -&gt; secret colle=
+ction/exfil capability [CONFIRMED] -&gt; further victim-side privileged act=
+ion [UNKNOWN].</p>
+<p>5 UNKNOWN LINKS WORTH RESOLVING<br>
+Highest information gain: whether public primary evidence confirms actual d=
+ownstream cloud/registry actions after credential theft; exact residual cre=
+dential class used in the second Trivy compromise; whether any Scanner obje=
+cts map to these canonical mechanisms; whether current agent-tool incidents=
+ demonstrate persistence through memory/session rather than conventional CI=
+/package state.</p>
+<p>6 DEFENSIVE CHOKEPOINTS + DETECTION PRIMITIVES<br>
+Authority boundaries are the choke point: package install should not inheri=
+t release/cloud authority; PR evaluation should not inherit repository secr=
+ets; release identities should be separate from build identities; rotation =
+must enumerate human, bot, app, deploy-key, registry and cloud credentials =
+as one revocation transaction. Useful primitives: process-tree telemetry fo=
+r package-manager hooks; IMDS/Vault/secret-store access by unexpected build=
+ children; tag-ref mutation alerts; release provenance mismatch; outbound e=
+gress from security-tool steps; service-account activity after incident rev=
+ocation timestamp.</p>
+<p>7 SAFE LAB REPRODUCTION QUEUE<br>
+LAB-1: disposable npm registry/package with a benign preinstall script read=
+ing only fake environment variables; verify CI alerts on secret-access patt=
+ern and network-deny policy. LAB-2: disposable GitHub repo with dummy token=
+ and protected/unprotected tags; simulate token rotation and verify every b=
+ot/app/deploy credential is invalidated. LAB-3: fake release pipeline with =
+immutable SHA pinning versus mutable tag; demonstrate detection of tag reta=
+rgeting without external targets. No real credentials, wallets or third-par=
+ty infrastructure.</p>
+<p>8 CROSS-CASE CLUSTERS<br>
+CLUSTER-CI-AUTHORITY-CASCADE: Trivy + npm cloud-secret campaigns share the =
+transition developer/CI execution -&gt; credential material -&gt; broader a=
+uthority. CLUSTER-RESIDUAL-AUTHORITY: Trivy uniquely supplies strong public=
+ evidence that incomplete credential rotation can bridge incident 1 to inci=
+dent 2. CLUSTER-REGISTRY-PROPAGATION: npm publish-token theft establishes a=
+ mechanism for consumer-&gt;maintainer-&gt;consumer propagation, while spec=
+ific downstream success remains case-dependent.</p>
+<p>9 MACHINE-READABLE JSONL DELTA<br>
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-NPM-CLOUD-PIVOT=E2=80=
+=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CACTIVE=E2=80=9D,=E2=80=9Caliases=E2=
+=80=9D:[=E2=80=9Ctyposquat cloud/CI credential harvester=E2=80=9D],=E2=80=
+=9Cfingerprint=E2=80=9D:=E2=80=9Cregistry package&gt;install hook&gt;CI/dev=
+eloper credentials&gt;cloud/Vault/npm authority&gt;downstream pivot=E2=80=
+=9D,=E2=80=9Cconfirmed=E2=80=9D:5,=E2=80=9Cinferred=E2=80=9D:0,=E2=80=9Cunk=
+nown=E2=80=9D:2,=E2=80=9Caffected_stacks=E2=80=9D:[=E2=80=9Cnpm=E2=80=9D,=
+=E2=80=9CGitHub Actions=E2=80=9D,=E2=80=9CAWS=E2=80=9D,=E2=80=9CHashiCorp V=
+ault=E2=80=9D],=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cregistry-to-hos=
+t=E2=80=9D,=E2=80=9Chost-to-cloud=E2=80=9D,=E2=80=9Cconsumer-to-publisher=
+=E2=80=9D],=E2=80=9Cpersistence=E2=80=9D:=E2=80=9CUNKNOWN=E2=80=9D,=E2=80=
+=9Cpropagation=E2=80=9D:=E2=80=9Cnpm publish-token capability confirmed; re=
+alized downstream victim propagation UNKNOWN=E2=80=9D,=E2=80=9Cdetection=E2=
+=80=9D:[=E2=80=9Cinstall-hook process tree=E2=80=9D,=E2=80=9CIMDS/Vault acc=
+ess during install=E2=80=9D,=E2=80=9Cregistry-token reads=E2=80=9D,=E2=80=
+=9Cunexpected install egress=E2=80=9D],=E2=80=9Ccontainment=E2=80=9D:[=E2=
+=80=9Cephemeral credentials=E2=80=9D,=E2=80=9Cworkload identity=E2=80=9D,=
+=E2=80=9Crestrict install scripts=E2=80=9D,=E2=80=9Cprovenance-bound publis=
+hing=E2=80=9D],=E2=80=9Cfalsifier=E2=80=9D:=E2=80=9Cprimary evidence shows =
+packages could not access claimed credentials or publish authority=E2=80=9D=
+}<br>
+{=E2=80=9Cattack_chain_id=E2=80=9D:=E2=80=9CAC-2026-TRIVY-RESIDUAL-AUTHORIT=
+Y=E2=80=9D,=E2=80=9Cstatus=E2=80=9D:=E2=80=9CRECENT=E2=80=9D,=E2=80=9Calias=
+es=E2=80=9D:[=E2=80=9CTrivy two-stage residual credential cascade=E2=80=9D]=
+,=E2=80=9Cfingerprint=E2=80=9D:=E2=80=9Cprivileged PR workflow&gt;PAT&gt;re=
+po authority&gt;incomplete rotation&gt;residual service authority&gt;tag/re=
+lease poisoning&gt;downstream CI secret access=E2=80=9D,=E2=80=9Cconfirmed=
+=E2=80=9D:8,=E2=80=9Cinferred=E2=80=9D:0,=E2=80=9Cunknown=E2=80=9D:2,=E2=80=
+=9Caffected_stacks=E2=80=9D:[=E2=80=9CGitHub Actions=E2=80=9D,=E2=80=9CTriv=
+y=E2=80=9D,=E2=80=9CGitHub Releases=E2=80=9D,=E2=80=9Ccontainer registries=
+=E2=80=9D],=E2=80=9Ctrust_boundaries=E2=80=9D:[=E2=80=9Cfork-to-privileged-=
+CI=E2=80=9D,=E2=80=9CCI-to-repository=E2=80=9D,=E2=80=9Crepository-to-relea=
+se=E2=80=9D,=E2=80=9Crelease-to-downstream-CI=E2=80=9D],=E2=80=9Cpersistenc=
+e=E2=80=9D:=E2=80=9Cresidual delegated credential/service authority=E2=80=
+=9D,=E2=80=9Cpropagation=E2=80=9D:=E2=80=9Ctrusted release/tag distribution=
+ confirmed=E2=80=9D,=E2=80=9Cdetection=E2=80=9D:[=E2=80=9Cpull_request_targ=
+et secret exposure=E2=80=9D,=E2=80=9Ctag retargeting=E2=80=9D,=E2=80=9Crele=
+ase ancestry mismatch=E2=80=9D,=E2=80=9Cpost-rotation service-account use=
+=E2=80=9D],=E2=80=9Ccontainment=E2=80=9D:[=E2=80=9Catomic revocation=E2=80=
+=9D,=E2=80=9Cprotected immutable tags=E2=80=9D,=E2=80=9CSHA pinning=E2=80=
+=9D,=E2=80=9Cseparate release signer=E2=80=9D],=E2=80=9Cfalsifier=E2=80=9D:=
+=E2=80=9Cprimary incident evidence disproves residual credential continuity=
+ between incidents=E2=80=9D}</p>
+<p>10 NEXT-HOUR RESEARCH QUEUE</p>
+<ol>
+<li>Primary Aqua/Socket/Wiz material to resolve the exact residual credenti=
+al and downstream consequence boundary.</li>
+<li>Microsoft npm campaign follow-up for evidence of realized npm-token pro=
+pagation rather than capability only.</li>
+<li>Agent-specific cases where tool output crosses into persistent memory/s=
+ession and later privileged tool execution; require empirical incident or p=
+aper evidence.</li>
+<li>Latest Scanner objects that expose new authority transitions rather tha=
+n duplicate package/CI chains.</li>
+</ol>
+<p>Public sources used: Microsoft Security Blog, 28 May 2026, typosquatted =
+npm cloud/CI credential campaign; Ars Technica / Aqua/Socket/Wiz reporting =
+on Trivy March 2026; Snyk Trivy analysis. No private identities, secrets or=
+ unlabelled wallet tracing used.</p>
+
+--0000000000005b0c7f065bac3578--

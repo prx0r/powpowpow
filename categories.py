@@ -1,3 +1,4 @@
+import os
 """
 PowPowPow Tier 1 Categories
 Hard mining/hardware assets only.

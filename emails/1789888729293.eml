@@ -1,0 +1,633 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id LbR9wyhwmIZY
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:18:49 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=E8S8N8Be45I47opXM4whHd8CRzd9h3WTmA5DH2T05fb7FllH19Ia9dUwnWVKrTgfafBRxdtvw
+	Ci0StleNwMCpQ9Agr7yPNTh3DpQQ+JEQeO2e1kte/pXEJDNQ6qIX5gWYK3T5mZ+aulDRZS+1qKP
+	NGsbNTxjwKNBA4a0jSVpGYMSKr866XPgdjcZ3mTexioszcb2b0ylBUn3s8CK+qYvgGEbcxmw+WC
+	YSyrP88GnXYUsnYIxb+AhVNHKsRzC2fmpTII71EseGs7eKPsO8i0NrUsFdHpVBY6vNUMINIAFo0
+	Szz9t/NAyfJVnGDeb4RNvcR4VdmMfRj31ZZvMYIYa/UA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888729; x=1790493529; bh=cufWGY/8
+	hywcJoJEFJVvP9M9cTi1SHakZ36/CN6PQTo=; b=PiXiAnKBm0cSpS9T3jLpUy1C9fyU4crgEcH
+	NBSuV3qVrGsuiMi7TZmYHLwZbI4lOBjlKjS/5QNLPyLH8NrWz2jBDx8ecgnNivWUmOW3ooap5U/
+	m6BLm4UnDs2Px48cFE2aj7psMBB2Ena0hes5BsV6TlRAjMEokaPWrv+b4+rWeofBPW9TlYJxfw6
+	/32v3r44p+1Y4Y/0qw8YQMH3ipV6UFQmDH9bI7cH1IKX6NM41HFiQyFPxf6W7mjqCzJcQPdbdV8
+	pvApxkcZMsi/dbYfokcPE1xgTGJ/WhMUZEbU7h2aFaOq1++QhiqK+8tiVE/q1J81KZK/jc+HxFS
+	GXsavtg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=sfwTJFNZ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=sfwTJFNZ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4aac92dbso1746399d50.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:18:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888729; cv=none;
+        d=google.com; s=arc-20260327;
+        b=q0dd/gFgXSFV0EmTSD9P6E752o2+HS4JkL+u+m8+RC477cyFDcaAONR9Aq2jqwsij7
+         AXXYvZs66OW+AzHwfflhmap6lPAucKjaaxiFcgidm7FcT0MQjaF4zXaaNex8BCuSm9V5
+         0MJB4weC+Hen3CXwysOjQNw+jm5LKHMlLzbzOyq/KE6lOfcYug+NGIUZaHgNB/vJDYza
+         xP4O8MaCqJ8N+gLx0r77nDQIpmha/fYEwtI3udHrp0Ja5JoKjiPY2bOTO4oYSVNzOuZf
+         gNZCLQrdOxO/z657Q//ksvl5+rVQeWAxHlpc/ZmyMGE05rcT0q84rJbWNii0YuGFooDQ
+         ncPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=cufWGY/8hywcJoJEFJVvP9M9cTi1SHakZ36/CN6PQTo=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=LW+quzXl3Sc5zjaSL80B+aIDKof+y1TXvVFuDlIQmZC8XqSafcW7LiqUePPb5D30yv
+         k/PIkqvQ9Qcl5WKWf4r023KvzfR2mc3br8+HDHQlj0USTW1XbVCA6VUTj+AigMuJa7qw
+         WRjG0r36uhxC3FMn7YJn0DwwuQzWb8k+H5+S29xVN012Dg8nsUhnLjJyTZkaTEXnxGQz
+         1q/shvTnzoZ1LW5E5x14Ry1WSrEHwvTCi92YKtjW83VrkAerhFMuHt/BnRGQOuYCJR0C
+         chx6PsqH9IAbQRIZ10EUgL6E0jG6PwMZja4MRpjFz+ijUiFlFCUKE7aVwgHG+4JmM0tR
+         Zbjg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888729; x=1790493529; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=cufWGY/8hywcJoJEFJVvP9M9cTi1SHakZ36/CN6PQTo=;
+        b=sfwTJFNZdIeV4Vkm7SjycodE6qLheNxqzG1DsZSwr4wJ3EirM3+WkSVPhSshW9lhsA
+         pOvRzoVVOzhfo9HBg1bd1ie8WZylM3yM7pVlyJsIkv3hO4Fb/I+zE3xtlygLdLp0hV7z
+         9+at8j1/9UkLootR8gi9eVQbHF/qKo41qxmgwkxgTj8FOrBVkupaU1zoqBsh4OMXoIB7
+         Dop71hdUFIYFBmAjqq4uEFRnknxWXTxYzn/2JN7MIs8CNQL52LQLlVhEyOQ98YreAsP9
+         X5GOees1mSzd/QfvDIsp62uqu4htgcxfG38s7A4BHPe1uuoJi8241EnxZ68X7nqp9WRd
+         IbyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888729; x=1790493529;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=cufWGY/8hywcJoJEFJVvP9M9cTi1SHakZ36/CN6PQTo=;
+        b=2UmfJ6MLjc/DApNhjrvYwJVle0OY88rQtsDScnxQdeXJ5zhoc6wJX1K4TiZYQzYump
+         xBf3IH5+91Y9urvUqStVA5DZWvXv5OmnFaZ2KGcyTBRrELpLmHOmbrOMGA63dKd3xSpD
+         LPlmPHHUal7grB/cXjP5sASSXuPmAPEeOQcsmeq9y59CKztdsMHOB1w9A+yVTMUmMa/L
+         q/GyuOE6FfFLl70f9iSIpPAtaTVx0csM5bYAi8N941P0n4L3Wr9fnLmuOclaweXAoxcd
+         pWJ3o4Kal4N9wagwQAUPxu6gkKcNZrE7/d7L26E39SQUSiKWbNNx1XUy2RaptiN+bAUs
+         Ea3w==
+X-Gm-Message-State: AFuF++m1/2ipYdejmeIYk7HfXv24NvD7FN06Sb1rpWKjyUQw7VYHM/7I
+	GBHwT0xDN6qhIwQ3YEvHHLTZVcerL+wGZvTEZltOonRTokerfbcz7GfQcvv7/UIBwpJjCkXC9m6
+	ec7gcMxgy4pZvd0rqJ944NoEN8rv4mx2MYQ==
+X-Gm-Gg: AYBFou0yOo7jZBp81C1JPjW2t6hLOWr5Vx8Fmpbwbqav4th3oTIrl6gma0ws3nf4oEP
+	RmXJf4ObrHkfb3GYeVFpVxvpvXT5pS2jMRPRQH7EXPVoP2ryeVbprad1EegYzmtMnbIVGRPcgaE
+	F0d3XxRbReU3ccTv5YFpESspCoC70taHeltIjmd3AWr6wwKG0IfPwkrKWPGfdvQExhce0b44j3e
+	YSLI/XqyHu5G5mvxLm/v6jhKPL4UHrbBw0TIrP03roNXPl8UIoiknPcwq+yExl+fGnWbtTdgSq3
+	cTZiVIid6sxkIw0xjX1J+TKAynoeBZ/5xQD5eH8K10I9+B9/VA4uLeRCE11DX0s/SEaq3Ostmue
+	s7zCb+L9O/BXPQPtRn5OsA7orT9ZftjiW8rO0K8eHiwX7GBQdfZSNDFHrVa2+oC9jSOeAd4UeX/
+	lCvk7A5cc=
+X-Received: by 2002:a53:b115:0:b0:671:7d6:ffee with SMTP id
+ 956f58d0204a3-6717fdf9252mr1660391d50.86.1789888728320; Sun, 20 Sep 2026
+ 00:18:48 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:18:47 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:18:47 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:18:47 -0500
+X-Gm-Features: AcwNN1X79YHy0AortxERqEZDFAOGbmrfqDTJLr3XzS50OEBwYFVW1hM_3P58stE
+Message-ID: <CAPdrGe=NnwSdV-PH8a8nuhdX0+e19ExaJf5LjeL8Dzk5qMvYHQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D17_20=3A49_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_25_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Scanner =E2=80=94 Edge Report
+
+1. RUN STATE / COVERAGE
+
+Recovered the cumulative scanner chain from Gmail Sent first. Latest
+persisted run: 2026-09-17 19:50 =E2=80=94 27 new/0 changed. Prior registry =
+was
+treated as an exclusion set, not a stopping condition. This pass
+traversed GitHub-first nearest-neighbour branches around Monid/tool
+routing, durable agent harnesses, RSI/JEV-adjacent control, MCP/agent
+offensive research, runtime/memory defence, and autonomous video.
+Search expanded through current GitHub pages plus 30=E2=80=93365d adjacency
+where needed. Exact Gmail checks confirmed several top objects were
+not present in prior scanner mail; known InjecMEM was explicitly
+rejected as duplicate.
+
+2. NEW OBJECT DASHBOARD =E2=80=94 25 UNSEEN OBJECTS
+
+A. Agent framework / Monid-like / control plane
+
+- Clear Ideas Agent Runtime =E2=80=94
+https://github.com/clearideas/agent-runtime =E2=80=94 provider-neutral
+manifest-first runtime with deterministic dependency-aware graph
+execution, checkpoints, approvals, remote compute, sandbox adapters
+and host-controlled credentials/tools. Closest seed: Goose/pi + QP.
+BUILD PROBE.
+
+- Smart MCP Proxy / mcpproxy =E2=80=94 https://github.com/Dumbris/mcpproxy =
+=E2=80=94
+semantic tool retrieval with DYNAMIC registration or CALL_TOOL mode;
+SQLite/Faiss persistent indexing. Closest seed: Monid. SANDBOX.
+
+- Dynamic Discovery MCP =E2=80=94
+https://github.com/brandonburrus/dynamic-discovery-mcp =E2=80=94 collapses =
+N
+upstream tools into discover_tool/use_tool and can defer entire MCP
+catalogs until needed. Closest seed: Monid. SANDBOX.
+
+- OmniMCP =E2=80=94 https://github.com/milkymap/omnimcp =E2=80=94 semantic =
+router +
+lazy schema loading + content offloading across MCP ecosystems.
+Closest seed: Monid. BUILD PROBE.
+
+- AgentDispatch MCP =E2=80=94 https://github.com/agent-dispatch/mcp-server =
+=E2=80=94
+lead agents spawn/monitor/resume durable cloud subagents with A2A
+interaction and cancellation. Closest seed: long-running pi/Goose.
+WATCH/SANDBOX.
+
+- Agent Harness =E2=80=94 https://github.com/madebywild/agent-harness =E2=
+=80=94 one
+canonical source for prompts, skills, MCP, subagents and hooks
+rendered to Codex/Claude/Copilot/Cursor. Closest seed: portable
+harness/control plane. ADOPT/SANDBOX.
+
+- dynamic-mcp =E2=80=94 https://github.com/mcpland/dynamic-mcp =E2=80=94 ru=
+ntime
+creation/update/deletion of MCP tools with Docker/Node sandboxes,
+registry backends, concurrency guards and JWT. Closest seed: mutable
+Monid/tool surface. BUILD PROBE because temporal trust drift is
+first-class here.
+
+- ARCP / Agent Runtime Control Protocol =E2=80=94
+https://github.com/agentruntimecontrolprotocol =E2=80=94 draft
+transport-agnostic protocol for long-running jobs, resumable streams,
+capability-bounded leases and delegation. Closest seed: QP authority +
+durable agents. WATCH/CONTENT.
+
+- Whip =E2=80=94 https://github.com/context-labs/whip =E2=80=94 Go coding-a=
+gent
+harness, live model catalog routing, MCP, background subagents, one
+binary, optimized for open models. 136 stars observed in current
+GitHub result. Closest seed: pi. SANDBOX.
+
+- Zenith =E2=80=94 https://github.com/Intelligent-Internet/zenith =E2=80=94
+continuous-improvement harness turning Claude Code/Codex/Hermes into
+multi-agent mission orchestrators via MCP/ACP. 305 stars / 45 forks
+observed. Closest seed: Dream-RSI + long-horizon harness. SANDBOX.
+
+B. JEV / decision / self-improvement
+
+- recursive-self-improvement =E2=80=94
+https://github.com/whatdhack/recursive-self-improvement =E2=80=94 concrete
+hackathon loop: meta/feedback agent -> Qwen target agent -> Tensara
+eval -> failure-derived training data -> LoRA -> repeat. Closest seed:
+Dream-RSI. SANDBOX.
+
+- mcpproxy semantic retrieval controller =E2=80=94 counted above as one
+canonical object, but JEV-adjacent mechanism: state/query -> bounded
+top-k tool set rather than dumping all tools. Use as a comparison
+point for a learned JEV tool-selection head.
+
+- OmniMCP semantic_router =E2=80=94 counted above; similarly JEV-adjacent
+because a compact routing decision determines which capability schemas
+enter context. Strong candidate for replacing embedding-only routing
+with a bounded decision model.
+
+No duplicate object count is added for #12/#13; discovery budget
+transferred to agent-runtime and security neighbours.
+
+C. Attacker frontier / red-team research
+
+- AgentSploit =E2=80=94 https://github.com/agentsploit/agentsploit =E2=80=
+=94
+Burp/Metasploit-style authorized security framework purpose-built for
+agents and MCP, with bundled fixtures and reproducible attack
+workflows. SANDBOX / CONTENT NOW.
+
+- AgentHound =E2=80=94 https://github.com/adithyan-ak/agenthound =E2=80=94
+BloodHound-style graph of agentic attack paths across MCP, A2A,
+gateways, inference, vector stores, MLOps and agent clients. SANDBOX;
+strategically interesting because it treats the estate as one
+authority graph.
+
+- PoisonRecall =E2=80=94 https://github.com/Krishita17/PoisonRecall =E2=80=
+=94
+persistent-memory poisoning taxonomy/toolkit/defences with provenance
+and multi-agent contagion direction. SANDBOX.
+
+- NYIT MCP Security =E2=80=94 https://github.com/nyit-vancouver/mcp-securit=
+y =E2=80=94
+2026 reproducibility repo: STRIDE/DREAD threat model, 57 threats,
+empirical tool-poisoning evaluation across seven MCP clients. SANDBOX
+/ benchmark source.
+
+- MCP Sentinel Research =E2=80=94
+https://github.com/piyerx/MCP-Sentinel-Research =E2=80=94 reproducible lab
+with eight metadata-based poisoning vectors plus zero-trust sanitizing
+gateway. SANDBOX.
+
+Known InjecMEM and MCParasite were rediscovered but rejected as
+registry duplicates.
+
+D. Defender frontier
+
+- Trentina =E2=80=94 https://github.com/crunchtools/mcp-trentina =E2=80=94 =
+MCP gateway
+that quarantines web/tool content, separates per-agent profiles,
+centralizes auth and audits agent-to-agent/tool traffic. BUILD PROBE.
+
+- dent8 =E2=80=94 https://github.com/xyzzylabs/dent8 =E2=80=94 memory firew=
+all using
+append-only fact events with provenance, authority, freshness and
+replay instead of newest-write-wins. Closest seed: QP state firewall.
+ADOPT/SANDBOX.
+
+- AgentShield =E2=80=94 https://github.com/AdityaBelhekar/AgentShield =E2=
+=80=94
+runtime security layer covering injection, goal drift, tool abuse,
+memory poisoning, inter-agent injection, provenance and audit-chain
+errors; includes red-team/certification workflow. SANDBOX.
+
+- A-MemGuard =E2=80=94 https://github.com/TangciuYueng/AMemGuard =E2=80=94 =
+ICML 2026
+proactive memory defence, experimentally based on AgentPoison
+environment. SANDBOX / PAPER-TO-CODE.
+
+- Agent Threat Matrix =E2=80=94
+https://github.com/opena2a-standards/agent-threat-matrix =E2=80=94 9 tactic=
+s /
+61 agent-layer techniques with evidence tiers, detections, controls
+and reproducible lab scenarios for 60/61. ADOPT AS TAXONOMY INPUT.
+
+E. Autonomous video / media
+
+- LLM Video Maker =E2=80=94 https://github.com/GoldLegendW80/llm-video-make=
+r =E2=80=94
+installable skill for Claude Code/Cursor/Codex/Windsurf;
+prompt/topic/codebase -> script/design/assets/TTS/captions/music ->
+deterministic HTML/GSAP MP4; resumable intermediate artifacts. ADOPT
+NOW / BAKEOFF.
+
+- Video Content Agent =E2=80=94
+https://github.com/sailorworks/video-content-agent =E2=80=94 topic ->
+cross-platform trend research -> script + human review -> ElevenLabs
+-> HeyGen -> finished vertical video. SANDBOX.
+
+- ClipForge =E2=80=94 https://github.com/alhazacod/clipforge =E2=80=94 scri=
+pt ->
+Kokoro TTS -> gameplay/background assembly -> karaoke subtitles ->
+16:9 + 9:16 outputs; batch-friendly and cheap/local-oriented. SANDBOX.
+
+- Crayotter =E2=80=94 https://github.com/idwts/Crayotter =E2=80=94 multimod=
+al
+long-form editing agent with planning/reasoning/execution phases,
+trace replay, multi-source ingest, resource-aware DAG scheduling and
+checkpoint/resume. SANDBOX.
+
+- UGC Video Skill =E2=80=94 https://github.com/Jarad-z/ugc-video-skill =E2=
+=80=94
+Claude skill with a multi-vendor renderer across
+Seedance/Kling/Veo/Sora/Hailuo using official APIs. ADOPT/SANDBOX as
+model-router layer.
+
+- YT Videos Agent =E2=80=94 https://github.com/FassihShah/YT-Videos-Agent =
+=E2=80=94
+LangGraph pipeline: YouTube trends -> Gemini -> Veo 3 -> approval ->
+metadata -> YouTube upload -> checkpoint/log. SANDBOX.
+
+- ShortsGenerator =E2=80=94 https://github.com/leamsigc/ShortsGenerator =E2=
+=80=94
+local-first Shorts pipeline with free/Gemini script generation,
+Pexels, local Supertonic/KittenTTS, subtitle templates and social
+scheduling. SANDBOX.
+
+- video-agent-skills =E2=80=94 https://github.com/dunctk/video-agent-skills=
+ =E2=80=94
+watches generated video, critiques/compares/reverse-prompts it,
+explicitly enabling Ralph-style iterative improvement loops for video
+production. BUILD PROBE; this is the most interesting media-control
+primitive this run.
+
+- agamm/video-agent =E2=80=94 https://github.com/agamm/video-agent =E2=80=
+=94 Claude
+Code watches raw footage, transcribes, writes reasoned cut list,
+renders with ffmpeg, then re-watches its own output. Mostly local;
+generative VFX optional. ADOPT/SANDBOX.
+
+Dashboard contains 25+ unique new objects; lower-ranked media objects
+beyond the target are retained because the lane is currently
+high-yield.
+
+3. TOP 5 DEEP DIVES
+
+1) Clear Ideas Agent Runtime
+
+Why it matters: manifest-first portability plus deterministic graph
+scheduling, checkpointing and host-owned authority is unusually
+aligned with QP. The agent definition can remain portable while the
+host retains credentials, tool authorization, compute, sandbox and
+telemetry. That gives Privately a natural enforcement seam.
+
+6m inference: niche but useful reference runtime. 18m:
+manifest/contract portability becomes common across harnesses. 36m:
+security policy attaches to portable agent manifests rather than
+provider-specific config.
+
+Small experiment: express one existing QP task as a manifest,
+interrupt it at approval, resume in another process, then verify
+evidence/authority invariants.
+
+Falsifier: manifest abstraction leaks so much provider/runtime detail
+that policy cannot remain portable.
+
+2) dynamic-mcp
+
+Why it matters: tools themselves become mutable runtime objects. This
+turns TEMPORAL_TRUST_DRIFT from an abstract threat into a concrete
+control-plane property.
+
+Experiment: benign tool starts with read-only schema; mutate
+metadata/implementation after approval; verify a Privately proxy
+notices hash/schema/capability drift and revokes prior grant.
+
+Falsifier: ecosystem converges on immutable signed tool packages and
+dynamic mutation stays niche.
+
+3) dent8
+
+Why it matters: closest implementation yet to the state-firewall
+thesis: provenance + authority + freshness + replayable append-only
+facts.
+
+Experiment: compare newest-write-wins memory against dent8 under
+benign conflicting-source updates and stale-value resurrection.
+
+Falsifier: arbitration overhead or false quarantines make persistent
+memory unusable.
+
+4) AgentHound
+
+Why it matters: graph reasoning over authority paths may be more
+useful than isolated prompt-injection scanners. Privately=E2=80=99s eventua=
+l
+security product can model principal -> harness -> tool -> credential
+-> account -> downstream effect as a graph and search for toxic
+authority paths.
+
+Experiment: model a synthetic agent stack with fake credentials/tools
+and compare static QP policy findings against graph-derived attack
+paths.
+
+Falsifier: graph requires so much privileged inventory that real
+deployments cannot maintain it.
+
+5) video-agent-skills
+
+Why it matters: autonomous media becomes an optimization loop, not a
+one-shot generator. Generator -> watcher/critic -> edit -> watcher is
+directly analogous to RSI/evaluator loops.
+
+Experiment: same 45-second Privately explainer generated with and
+without critique loop; blind score hook clarity, factuality, pacing
+and retention proxy.
+
+Falsifier: critique cycles increase cost/time without measurable output gai=
+n.
+
+4. AGENT FRAMEWORK / MONID-LIKE FRONTIER
+
+Best unseen ranking this run: Clear Ideas Agent Runtime > mcpproxy >
+Dynamic Discovery MCP > OmniMCP > AgentDispatch > Agent Harness >
+dynamic-mcp > ARCP > Whip > Zenith.
+
+Key convergence: tool abundance is forcing meta-tools, semantic
+routing and lazy schemas. The security object is therefore shifting
+from tool to router decision + discovered schema + mutable provider +
+execution authority.
+
+5. JEV / DECISION / SELF-IMPROVEMENT FRONTIER
+
+The strongest genuinely new self-improvement implementation is
+recursive-self-improvement. More interestingly, mcpproxy/OmniMCP
+expose an immediate JEV application: replace embedding/BM25 top-k tool
+retrieval with a tiny bounded decision head over allowed tools, then
+place QP authority checks after selection and before execution.
+
+Proposed architecture:
+
+state/task -> tiny decision head -> bounded candidate tools -> QP
+authority/evidence -> execute -> outcome -> trajectory dataset.
+
+6. ATTACKER FRONTIER
+
+AgentSploit, AgentHound, PoisonRecall, NYIT MCP Security and MCP
+Sentinel form a useful spectrum: active red-team harness ->
+attack-path graph -> memory poisoning -> client benchmark ->
+metadata-poisoning lab. This is more useful for Privately than another
+generic prompt-injection list.
+
+7. DEFENDER FRONTIER
+
+Trentina, dent8, AgentShield, A-MemGuard and Agent Threat Matrix map
+closely onto five layers: ingress quarantine, persistent-state
+arbitration, runtime action blocking, research-grade memory defence,
+and taxonomy/detection coverage.
+
+8. AUTONOMOUS VIDEO / MEDIA FRONTIER
+
+Best practical stack to test now:
+
+scanner report -> llm-video-maker OR video-content-agent -> UGC Video
+Skill for generated shots -> video-agent-skills critique ->
+agamm/video-agent/local ffmpeg revision -> publish.
+
+Cheap path: ShortsGenerator/ClipForge + local TTS/stock footage.
+Quality path: Veo/Seedance/Kling via UGC Video Skill. Iterative path:
+video-agent-skills.
+
+9. COMMERCIAL SHOCK DERIVATIVES
+
+The strongest derivative pattern is no longer a single commercial
+model release; it is multi-provider skills that abstract
+Veo/Seedance/Kling/Sora/Hailuo behind one agent workflow. That means
+video-model switching costs are collapsing, increasing the value of
+orchestration, evaluation and proprietary research inputs.
+
+10. WEIRD ALPHA
+
+- ARCP: capability-bounded leases as a protocol primitive for
+long-running agent delegation.
+
+- video-agent-skills: Ralph/self-improvement loops applied directly to
+generated media.
+
+- AgentHound: BloodHound-like authority graph for agent estates.
+
+11. ATTACK LOGBOOK DELTAS
+
+New canonical mechanisms:
+
+- MEMORY_SINGLE_INTERACTION_POISONING neighbourhood expanded by
+PoisonRecall; InjecMEM itself already known and not recounted.
+
+- AGENT_AUTHORITY_PATH_CHAINING =E2=80=94 graph-based composition of
+individually exposed agent/MCP/A2A/gateway resources into higher-order
+attack paths (AgentHound).
+
+- MUTABLE_RUNTIME_TOOL_DRIFT =E2=80=94 dynamic tool control planes create
+post-approval schema/implementation drift risk (dynamic-mcp; defensive
+test class).
+
+- TOOL_METADATA_POISONING_LAB =E2=80=94 MCP Sentinel/NYIT provide reproduci=
+ble
+benign lab fixtures for metadata trust-boundary testing.
+
+12. PRIVATELY LAB =E2=80=94 TOP 5
+
+- JEV Tool Router Bakeoff =E2=80=94 embeddings/BM25 vs tiny bounded decisio=
+n
+head vs LLM selection; metric =3D correct allowed-tool choice, tokens,
+latency, unauthorized-selection rate.
+
+- Temporal Tool Drift Probe =E2=80=94 approve dynamic-mcp tool v1, mutate
+benign schema/metadata, test automatic grant invalidation.
+
+- Memory Firewall Bakeoff =E2=80=94 dent8 vs A-MemGuard concepts vs QP stat=
+e
+firewall under stale/conflicting/low-authority writes.
+
+- Authority Graph Prototype =E2=80=94 synthetic AgentHound-like graph mappe=
+d
+to QP principal/grant/effect objects.
+
+- Autonomous Media RSI =E2=80=94 llm-video-maker + video-agent-skills
+iterative critique vs one-shot baseline.
+
+13. BUILD / PROBE OPPORTUNITIES
+
+- privately-tool-drift: fingerprint tool
+metadata/schema/implementation/provider at grant time and invalidate
+authority on meaningful drift.
+
+- privately-authority-graph: graph
+principal/delegation/tool/credential/payment/effect edges and search
+for toxic paths.
+
+- privately-memory-admission: provenance/authority/freshness/evidence
+gate before persistent write.
+
+- privately-decision-head: bounded tool/action selector feeding QP
+rather than free-form action generation.
+
+14. CONTENT OPPORTUNITIES
+
+- =E2=80=9CYour MCP tool changed after you approved it=E2=80=9D =E2=80=94 d=
+ynamic tool drift demo.
+
+- =E2=80=9CCan a 10K-ish decision head replace an LLM for security decision=
+s?=E2=80=9D
+=E2=80=94 JEV/router experiment.
+
+- =E2=80=9CBloodHound for AI agents=E2=80=9D =E2=80=94 authority-path visua=
+lization using a
+synthetic lab.
+
+- =E2=80=9CWe made an AI video agent critique and remake its own video=E2=
+=80=9D =E2=80=94
+media RSI experiment.
+
+- =E2=80=9CPersistent memory needs a firewall=E2=80=9D =E2=80=94 dent8/A-Me=
+mGuard/QP comparison.
+
+15. TOP 5 THINGS TO TRY NOW
+
+- llm-video-maker + video-agent-skills.
+
+- Clear Ideas Agent Runtime approval/resume semantics.
+
+- dynamic-mcp temporal drift test.
+
+- dent8 memory arbitration.
+
+- AgentHound-style synthetic authority graph.
+
+16. WATCHLIST
+
+- dynamic-mcp: runtime tool mutation + security controls.
+
+- ARCP: whether capability-bounded leases gain implementers.
+
+- Zenith: continuous-improvement harness adoption.
+
+- AgentSploit/AgentHound: whether they become real red-team primitives
+vs demo-heavy frameworks.
+
+- video-agent-skills: whether iterative media critique develops
+measurable evals.
+
+17. SOURCE-YIELD / GRAPH-TRAVERSAL LEDGER
+
+Highest-yield branches this run:
+
+- dynamic tool discovery / MCP router -> mcpproxy, Dynamic Discovery
+MCP, OmniMCP, mcp-ts, gateway-registry.
+
+- agent harness / durable runtime -> Clear Ideas, AgentDispatch, Agent
+Harness, ARCP, Whip, Zenith.
+
+- MCP attack framework / memory poisoning -> AgentSploit, AgentHound,
+PoisonRecall, NYIT MCP Security, MCP Sentinel.
+
+- video agent / Remotion / Veo / Shorts -> llm-video-maker,
+video-content-agent, ClipForge, Crayotter, UGC Video Skill, YT Videos
+Agent, ShortsGenerator, video-agent-skills, agamm/video-agent.
+
+Lower-yield: exact small decision model vocabulary. Next run should
+traverse learned routing, VLA/action-policy heads, robotics/game
+action models, and authors/citations around Jevlike/TinyRouter rather
+than relying on the phrase JEV.
+
+18. MASTER FRONTIER INDEX =E2=80=94 DELTA
+
+Add the 25+ objects above. Preserve all earlier
+Monid/Jevlike/TinyRouter/RSIAgent/ProjectMemory/MCParasite/mguard/OpenMonta=
+ge/OpenX
+Flow/etc entries as existing registry members, not new.
+
+19. MACHINE-READABLE RUN_STATE JSON
+
+{
+"run_local":"2026-09-17T20:49:00+07:00",
+"registry_delta_count":25,
+"material_update_count":0,
+"duplicate_rejections":["InjecMEM","MCParasite","RSIAgent","mguard","ReelPi=
+lot"],
+"top_new":["clearideas/agent-runtime","mcpland/dynamic-mcp","xyzzylabs/dent=
+8","adithyan-ak/agenthound","dunctk/video-agent-skills"],
+"next_search_branches":["Jevlike authors/citations","TinyRouter
+adjacent learned routers","VLA policy heads","game action
+models","dynamic MCP mutation security","media critique/eval loops"],
+"experiment_queue":["jev_tool_router_bakeoff","temporal_tool_drift","memory=
+_firewall_bakeoff","authority_graph","media_rsi_loop"]
+}
+
+NON-OBVIOUS EDGE / SEESAW CONSEQUENCE
+
+As capability catalogs become dynamically discoverable and tools
+become mutable runtime objects, the stable security primitive cannot
+be the tool name. Authority has to bind to a versioned capability
+claim: principal + purpose + exact capability/schema/provider + data
+scope + budget + temporal fingerprint + expected effect. Dynamic
+discovery increases capability abundance; the scarce object becomes a
+continuously valid grant.

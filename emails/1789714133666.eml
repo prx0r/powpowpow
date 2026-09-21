@@ -1,0 +1,416 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id AmckX1w2WOmJ
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 06:48:53 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=D78ZVaHTl1HDcUd1/s2HxIJjr+kuRH5IscRyuZ6pF6oqzTFXVxRX40VFgOpWVih7LoqQgXpcD
+	cQXNpA4cQtJsjLYBIhWvWFUoukAtK6wegPXQsI9YLfqMzKkqZ3v0Kr09MmxIG/p3ECom9W+HSXw
+	C0sG7gMIGj8ceOr8ue7Ln4dTA8fOHGV2XpKrfRpeUHq8PXst8yCWzA1P9FGV7U1QZEsNG3wlDL5
+	R5w8+CVSWNSh5sVKKZJBZ6ht2bhNaRuqJtErlJGueEUtye2sJxPfw8Nrl4rgnDjKuDpQ07OFotY
+	lIOPLwpfcK4S11BuKxgW8+NObRes0ZrW/lKTCArNtpSw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789714133; x=1790318933; bh=U4t2KQGk
+	Tdas5mBxtqA+K552I4jvd/KXcDCkRC1vac4=; b=NKNrmzLXMKOHDQ9ZVpw6aoTtVycfiHEGV7x
+	sgUFV3QPGF4xr5EiwnknrUfoUt7kWPTTg0lLZDxKT8E8UJWf63MMifc2TBimANO3Qf1LwI8pwAe
+	WzBb4qsbDyVcJcUFsuX8DIO1vejMm2BDn3vGbBWixaaxy24hiLgSIum2VQI6F64g3saHUvN7vtu
+	S0Zi+gRKlaxXCC1VgoJGXcrpaH3SYJ//ODxzXdO/eWjDku+WJcB9zIUngxEKjfegiiuIvV9yitb
+	pVbveg+YHx1khQW8xzCLKxhM68RXun8sEyJ1RHi60noo82DIEr27EkxFKTkGPgbZBZ2wmqYyBRk
+	mTSoIQw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=loJ3EpUN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=loJ3EpUN;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-895eaf31683so3056847b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 23:48:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789714133; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ihjNKdZgA+SiKEw1DKTXYDUpNrS8Lm8x1ydcP3t4WiudXMhn0FkxzfzujcvIYWg0A3
+         +Pfnj4NOxnAQiwYuKzHKWuBCtziKRbDUKZcGFIUXJIB/KiO9ptBgPNa5TM7lCh+0BMYj
+         YpZsGaNOLH7Zeh1wj09eCfvDGtzHlsBqI5mWjEd7EHx4rYsGc/biktrLXenBSlhe8W3Z
+         PX0o6hB93+Aw9bem7WTlX/ys6nkqcY/ovKvGqZXlOuhGDEFSras4FHDT6BEcuyLgC/j7
+         M0LaNW+GBo8uSK5oALzOdoJiPbyaVTAHm0zUGML7BKEDNzS5zi0aSRyOiZxfhVHs15xh
+         cJ9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=U4t2KQGkTdas5mBxtqA+K552I4jvd/KXcDCkRC1vac4=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=sQW5xlf6dc5Px3ZBUzO8ct958tDQ1ALj/Eejrr0uewM2DONrCkfLEKOE9KS10i1SOl
+         e3yWdGo7r3rLlEKTObwi+R+WAiZbosa36ImIynMiiAyEtcicYoQ2CM7v5bTXxv8+Z7x6
+         vrJ0JjXcm9/DCWvWer5ikHkVkgq7+dJW21uYOROLH2iElj4mt/3moetsJUaIMzoz9Rtq
+         2HR6et19M9QS5xIuG90/5L0hn+jbkcuz8Ws5ZL1ZvCxs0ioBD6bDEKaQuwZ4qaKtKZ3P
+         hli9M5pvOZbMzWwizYe9v9wBmwMhDQjCm6W76z+Qi4Jj0aI3AHqrAOXA6v3qQhQszNcI
+         l3fQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789714133; x=1790318933; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=U4t2KQGkTdas5mBxtqA+K552I4jvd/KXcDCkRC1vac4=;
+        b=loJ3EpUN782TnamRoGGoZHSlXzm+0PpqLqowdtiJpjsZzDuPioEYrYRDUtQiJ4PaRh
+         WcWHk5Sbmq9UdVyrhYJNSCC+eV0OVkKT+1ExR1J+5gp6Cw9RdJIeoF1IpUpnK5qHJdvu
+         xOWYXnQbRKorNKFdeytbhFiV9HWglNLLbR/tcKbKmftPSjvQ2esgsZGUT54cp+1YznEv
+         r3YsYqzXvFcQtfJKKwUbhzXKPxVpjWqVhnmIgBKc5iTOuMvKoSG0Y0v06sT4bf/diMyT
+         iDFztJlOV6w4RxkKBrJQ2h9UFWYuBPeSCD1bB2zyYUKkOhfGX8pLnE5h9eNvt6cAf9lY
+         mxRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789714133; x=1790318933;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=U4t2KQGkTdas5mBxtqA+K552I4jvd/KXcDCkRC1vac4=;
+        b=bbF2gozVwHCzon9TH4w6SnLLovIOsnhQI7Rka+mOdp6VcTrETdnGU5hETMobe14ujx
+         BlEywaOnIMux1GRJwNjDouAP7gJRmS/gLZq6REN5pSAQlHz85pMH5l/OjCeXFKAMCjsJ
+         iY8RgiMS+TZ3cnfJlxQVwJ9pk99Wxe72EjTB3ov7WgKHI+2wlTCQK1CMrKdap/36/aKS
+         qdP9Rqp4oPsnVGYdn+LITuZZgvVwfaIkCg1PWwIVGwxEPb7TkC5rkmZdZI+XzONPHPoJ
+         mX6JWRXrjqplaj41b5TU0Z9aEd/cY3OAJeNsOxwjUDk53n9zbpUWE8bTgu7mvXukZfh0
+         Hc+Q==
+X-Gm-Message-State: AFuF++ndAB52iYkzyUwsT9PgMeqW+gJD16XyW0FJusq2craQKq2ogl0c
+	Bj/zqMMJWhSK0VQQ9HzwYkOu1qdGt0N7O2GRtn5wG0DcESDqJ6bAFQ/0juB6V4FzIFynHXHIYwO
+	lE0xi24Hs6B23aOeNNRcX8UCr7yBlG2oaug==
+X-Gm-Gg: AYBFou0p72NvadFENUuA/EFwvHWIv686z2GJJBAIlqVnvqyfjzq5shVys5x7O2zLZk7
+	v1mcbe+YBIGU9o5RUOmmPA5ovOOuESMZM6cW0pal6CS304hbXh4a+QxomapHsPjwhjpTZH2ItT3
+	RSPLoCT029z27jtfDilJxzBhp+OpmtjbllWebmFVOpHlHv4SnNEPficpRPVy2lET/P96RsvlG1M
+	THxVe0lNWEP4VFUMy4fIKAFVSPL+HFE2o6Qnnfm+kq2AZSgshJt8MXhlg1Sl9uwutb+FJ/8FuCC
+	VsP4cOA7Oil0BVeggF0Vpa0yWTmMWQNmUvRiE87RyNbD9/sqPGIeIOSLvdZVuWwtvDRsDdfa6W4
+	N6kGz2kj7tZ8KHwBszbn4cIcxvy1ZwSwj2fRGW0/QM8Q/JbwBlaP2uZj8Knu8yiTwMqlLsJE=
+X-Received: by 2002:a05:690e:d57:b0:670:fdf6:dfb6 with SMTP id
+ 956f58d0204a3-6717fcb2948mr422037d50.21.1789714132806; Thu, 17 Sep 2026
+ 23:48:52 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 01:48:52 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 01:48:52 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 01:48:52 -0500
+X-Gm-Features: AcwNN1X20UsfNI2cYm7tzPyuh-svdtGFJ3VoBR_E0wTOPwKqJSeed5XGOx4AL8c
+Message-ID: <CAPdrGe=5TyA5gUpD2pUafgPo13nc9xJ9UUPxjFLeU4fbrLT-Mg@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D18_13=3A48_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_3_strong_signals?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000022aee7065bbc4b17"
+
+--00000000000022aee7065bbc4b17
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Personalisation Gold =E2=80=94 customer-signal delta
+
+Prior state: 10-signal baseline + 4 material reinforcements at 12:48.
+Semantic repeats rejected unless independent evidence materially
+strengthens a cluster.
+1) Buyers already purchase =E2=80=9Ccard from the dog=E2=80=9D humour =E2=
+=80=94 MEDIUM =E2=80=94 BUILD/TEST
+
+*Evidence:* Etsy listing, *Funny Dog Birthday Card From Pet, Happie Burfday
+Hooman Card* (published Aug 2026): positioned explicitly as a birthday card
+from the pet to the owner, with =E2=80=9CHappie Burfday to mi favorit hooma=
+n=E2=80=9D and
+dog-mum/dog-dad recipient use cases.
+Source:
+https://www.etsy.com/listing/4478270699/funny-dog-birthday-card-from-pet-ha=
+ppie
+
+*Wanted/problem:* The pet should be the apparent speaker, not merely
+decoration on a generic personalized card.
+*Current workaround:* static novelty card using generic dog voice/=E2=80=9C=
+hooman=E2=80=9D
+language.
+*Roast.pet implication:* make PET-AS-SPEAKER the canonical framing: =E2=80=
+=9CYour
+dog roasts Mum/Dad/James for their birthday.=E2=80=9D The generated video i=
+s an
+extension of an already legible card convention.
+*Occasion:* birthdays; dog mum/dad; partner/friend.
+*Independent support:* yes, previous QR/video-pet greeting evidence
+supports pet-originated digital messages, but this is stronger evidence for
+the *voice/perspective* mechanism.
+*Prototype:* Etsy thumbnail: exact uploaded pet at comedy podium + =E2=80=
+=9CA
+birthday roast FROM YOUR DOG=E2=80=9D + recipient name. A/B against =E2=80=
+=9CAI pet roast
+card.=E2=80=9D
+2) Multi-pet + proof are being productized together =E2=80=94 MEDIUM =E2=80=
+=94 BUILD/TEST
+
+*Evidence:* Etsy custom embroidered pet-shirt listing (published Aug 2026)
+advertises =E2=80=9CFREE DESIGN PROOF INCLUDED=E2=80=9D and =E2=80=9CUP TO =
+2 PETS AVAILABLE,=E2=80=9D
+alongside photo-based customization.
+Source:
+https://www.etsy.com/listing/4547171917/custom-embroidered-pet-t-shirt-from
+
+*Wanted/problem:* personalization products need to accommodate households
+with more than one pet while reducing anxiety about the final result.
+*Current workaround:* sellers explicitly add a two-pet option and a proof
+stage.
+*Roast.pet implication:* one/two-pet selector should be first-class rather
+than a special request; two pets can perform a duo roast. Pair this with
+the already-strong likeness-confirmation/proof cluster.
+*Occasion:* pet-parent gifts, birthdays, holidays.
+*Independent support:* multi-pet is a separate seller-side signal here;
+proof/revision need is independently supported by prior customer complaints
+about inaccurate portraits.
+*Prototype:* duplicate the launch listing with a =E2=80=9CTWO PETS ROAST YO=
+U=E2=80=9D
+variant and measure CTR/conversion versus one-pet listing. Show both pets
+on the canonical podium card.
+3) No-app QR reveal is becoming a repeated greeting-card interaction
+convention =E2=80=94 HIGH =E2=80=94 BUILD/TEST
+
+*Evidence:* Three independent Etsy sellers now expose closely related
+mechanics. SOFTERRA says QR video opens =E2=80=9Cinstantly =E2=80=94 no app=
+s, no
+downloads=E2=80=9D; JenWinnettArt sells physical animal-art cards where rec=
+ipients
+scan to watch/listen and explicitly says =E2=80=9CNo app needed=E2=80=9D; P=
+aperPunStudio
+sells a funny cat birthday card whose rear QR can reveal a personalized
+video.
+Sources:
+https://www.etsy.com/listing/4438192563/interactive-digital-greeting-cards-=
+qr
+https://www.etsy.com/uk/listing/4462326322/qr-code-greeting-card-with-video=
+-message
+https://www.etsy.com/listing/1793700072/funny-cat-birthday-card-with-qr-cod=
+e
+
+*Wanted/problem:* physical cards cannot contain the richer personal
+message; recipients should not need to install software.
+*Current workaround:* QR =E2=86=92 hosted personal video/audio.
+*Roast.pet implication:* QR =E2=86=92 browser roast should be the dependabl=
+e
+product primitive. AR can enhance the reveal after scan but should not be
+required to receive the joke.
+*Occasion:* birthdays and broad greeting-card occasions.
+*Independent support:* very strong; materially reinforces the prior
+physical+video/QR cluster across independent sellers.
+*Prototype:* print the QR directly into the physical card/artwork. Scan
+opens roast.pet/r/ immediately; optional =E2=80=9COpen AR camera=E2=80=9D b=
+utton after the
+video begins.
+Cluster state
+
+   - Exact likeness / identity-bearing traits: VERY STRONG; unchanged this
+   hour.
+   - Preview/revision assurance: STRONG; strengthened indirectly by another
+   seller explicitly bundling a free design proof.
+   - Multi-pet: MEDIUM; strengthened by explicit two-pet product
+   configuration.
+   - Pet-as-speaker / recipient-specific humour: MEDIUM=E2=86=92STRONG; sta=
+tic
+   =E2=80=9Cfrom the dog=E2=80=9D birthday products make the Roast.pet fram=
+ing highly legible.
+   - Instant/last-minute delivery: STRONG; unchanged this hour.
+   - Physical + video: STRONG; strengthened.
+   - QR/no-app browser reveal: STRONG=E2=86=92VERY STRONG; now repeated acr=
+oss
+   several independent greeting/pet-adjacent Etsy products.
+   - AR specifically: LOW/UNKNOWN customer demand. Still no comparable
+   customer-language evidence requiring AR rather than QR/browser video.
+   - Editable joke / roast intensity: UNKNOWN; no strong new independent
+   customer evidence this run.
+   - Kid-safe vs adult roast modes: UNKNOWN.
+   - Memorial-with-humour: UNKNOWN. Memorial + audio/QR exists, but
+   evidence does not establish demand for humour in bereavement.
+   - Sports/work-colleague roast: UNKNOWN.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Recognizable pet likeness with identity-trait confirmation/proof.
+   2. Pet-as-speaker: the card/video is explicitly FROM the buyer=E2=80=99s=
+ pet and
+   addressed to a named recipient.
+   3. QR =E2=86=92 instant no-app browser video bundled with the physical o=
+bject.
+   4. One-pet / two-pet selection, including a duo-roast format.
+   5. Fast digital-first delivery with physical product as an
+   optional/bundled follow-on.
+
+*Strongest unmet need:* combine *recognizably my pet* with *actually funny
+and specifically about the recipient*. Existing evidence is strong for
+accurate pet personalization and separately strong for generic =E2=80=9Cfro=
+m the
+dog=E2=80=9D humour; the combination is the gap Roast.pet should test.
+
+*Easiest conversion-lift ordering change:* add explicit 1 pet / 2 pets
+selection and a visible we confirm your pet=E2=80=99s distinctive traits be=
+fore
+finalising reassurance next to photo upload.
+
+*Best Etsy listing idea from customer/product language:* *=E2=80=9CPersonal=
+ised
+Birthday Roast FROM YOUR DOG =E2=80=94 Funny Pet Card + QR Video =E2=80=94 =
+Your Actual Dog
+Roasts Mum/Dad/Partner.=E2=80=9D* Thumbnail should communicate pet-as-speak=
+er,
+recipient name and QR-video reveal without requiring buyers to understand
+AR.
+
+*Important negative signal:* AR remains weakly evidenced. Multiple sellers
+independently converge on ordinary camera QR =E2=86=92 no-app video/audio. =
+Do not
+add AR friction to the core reveal until an A/B test demonstrates
+incremental delight/conversion.
+
+--00000000000022aee7065bbc4b17
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Personalisation Gold =E2=80=94 customer-signal delta
+<p>Prior state: 10-signal baseline + 4 material reinforcements at 12:48. Se=
+mantic repeats rejected unless independent evidence materially strengthens =
+a cluster.</p>
+
+1) Buyers already purchase =E2=80=9Ccard from the dog=E2=80=9D humour =E2=
+=80=94 MEDIUM =E2=80=94 BUILD/TEST
+<p><strong>Evidence:</strong> Etsy listing, <em>Funny Dog Birthday Card Fro=
+m Pet, Happie Burfday Hooman Card</em> (published Aug 2026): positioned exp=
+licitly as a birthday card from the pet to the owner, with =E2=80=9CHappie =
+Burfday to mi favorit hooman=E2=80=9D and dog-mum/dog-dad recipient use cas=
+es.<br>
+Source: <a href=3D"https://www.etsy.com/listing/4478270699/funny-dog-birthd=
+ay-card-from-pet-happie">https://www.etsy.com/listing/4478270699/funny-dog-=
+birthday-card-from-pet-happie</a></p>
+<p><strong>Wanted/problem:</strong> The pet should be the apparent speaker,=
+ not merely decoration on a generic personalized card.<br>
+<strong>Current workaround:</strong> static novelty card using generic dog =
+voice/=E2=80=9Chooman=E2=80=9D language.<br>
+<strong>Roast.pet implication:</strong> make PET-AS-SPEAKER the canonical f=
+raming: =E2=80=9CYour dog roasts Mum/Dad/James for their birthday.=E2=80=9D=
+ The generated video is an extension of an already legible card convention.=
+<br>
+<strong>Occasion:</strong> birthdays; dog mum/dad; partner/friend.<br>
+<strong>Independent support:</strong> yes, previous QR/video-pet greeting e=
+vidence supports pet-originated digital messages, but this is stronger evid=
+ence for the <em>voice/perspective</em> mechanism.<br>
+<strong>Prototype:</strong> Etsy thumbnail: exact uploaded pet at comedy po=
+dium + =E2=80=9CA birthday roast FROM YOUR DOG=E2=80=9D + recipient name. A=
+/B against =E2=80=9CAI pet roast card.=E2=80=9D</p>
+
+2) Multi-pet + proof are being productized together =E2=80=94 MEDIUM =E2=80=
+=94 BUILD/TEST
+<p><strong>Evidence:</strong> Etsy custom embroidered pet-shirt listing (pu=
+blished Aug 2026) advertises =E2=80=9CFREE DESIGN PROOF INCLUDED=E2=80=9D a=
+nd =E2=80=9CUP TO 2 PETS AVAILABLE,=E2=80=9D alongside photo-based customiz=
+ation.<br>
+Source: <a href=3D"https://www.etsy.com/listing/4547171917/custom-embroider=
+ed-pet-t-shirt-from">https://www.etsy.com/listing/4547171917/custom-embroid=
+ered-pet-t-shirt-from</a></p>
+<p><strong>Wanted/problem:</strong> personalization products need to accomm=
+odate households with more than one pet while reducing anxiety about the fi=
+nal result.<br>
+<strong>Current workaround:</strong> sellers explicitly add a two-pet optio=
+n and a proof stage.<br>
+<strong>Roast.pet implication:</strong> one/two-pet selector should be firs=
+t-class rather than a special request; two pets can perform a duo roast. Pa=
+ir this with the already-strong likeness-confirmation/proof cluster.<br>
+<strong>Occasion:</strong> pet-parent gifts, birthdays, holidays.<br>
+<strong>Independent support:</strong> multi-pet is a separate seller-side s=
+ignal here; proof/revision need is independently supported by prior custome=
+r complaints about inaccurate portraits.<br>
+<strong>Prototype:</strong> duplicate the launch listing with a =E2=80=9CTW=
+O PETS ROAST YOU=E2=80=9D variant and measure CTR/conversion versus one-pet=
+ listing. Show both pets on the canonical podium card.</p>
+
+3) No-app QR reveal is becoming a repeated greeting-card interaction conven=
+tion =E2=80=94 HIGH =E2=80=94 BUILD/TEST
+<p><strong>Evidence:</strong> Three independent Etsy sellers now expose clo=
+sely related mechanics. SOFTERRA says QR video opens =E2=80=9Cinstantly =E2=
+=80=94 no apps, no downloads=E2=80=9D; JenWinnettArt sells physical animal-=
+art cards where recipients scan to watch/listen and explicitly says =E2=80=
+=9CNo app needed=E2=80=9D; PaperPunStudio sells a funny cat birthday card w=
+hose rear QR can reveal a personalized video.<br>
+Sources:<br>
+<a href=3D"https://www.etsy.com/listing/4438192563/interactive-digital-gree=
+ting-cards-qr">https://www.etsy.com/listing/4438192563/interactive-digital-=
+greeting-cards-qr</a><br>
+<a href=3D"https://www.etsy.com/uk/listing/4462326322/qr-code-greeting-card=
+-with-video-message">https://www.etsy.com/uk/listing/4462326322/qr-code-gre=
+eting-card-with-video-message</a><br>
+<a href=3D"https://www.etsy.com/listing/1793700072/funny-cat-birthday-card-=
+with-qr-code">https://www.etsy.com/listing/1793700072/funny-cat-birthday-ca=
+rd-with-qr-code</a></p>
+<p><strong>Wanted/problem:</strong> physical cards cannot contain the riche=
+r personal message; recipients should not need to install software.<br>
+<strong>Current workaround:</strong> QR =E2=86=92 hosted personal video/aud=
+io.<br>
+<strong>Roast.pet implication:</strong> QR =E2=86=92 browser roast should b=
+e the dependable product primitive. AR can enhance the reveal after scan bu=
+t should not be required to receive the joke.<br>
+<strong>Occasion:</strong> birthdays and broad greeting-card occasions.<br>
+<strong>Independent support:</strong> very strong; materially reinforces th=
+e prior physical+video/QR cluster across independent sellers.<br>
+<strong>Prototype:</strong> print the QR directly into the physical card/ar=
+twork. Scan opens roast.pet/r/ immediately; optional =E2=80=9COpen AR camer=
+a=E2=80=9D button after the video begins.</p>
+
+Cluster state
+<ul>
+<li>Exact likeness / identity-bearing traits: VERY STRONG; unchanged this h=
+our.</li>
+<li>Preview/revision assurance: STRONG; strengthened indirectly by another =
+seller explicitly bundling a free design proof.</li>
+<li>Multi-pet: MEDIUM; strengthened by explicit two-pet product configurati=
+on.</li>
+<li>Pet-as-speaker / recipient-specific humour: MEDIUM=E2=86=92STRONG; stat=
+ic =E2=80=9Cfrom the dog=E2=80=9D birthday products make the Roast.pet fram=
+ing highly legible.</li>
+<li>Instant/last-minute delivery: STRONG; unchanged this hour.</li>
+<li>Physical + video: STRONG; strengthened.</li>
+<li>QR/no-app browser reveal: STRONG=E2=86=92VERY STRONG; now repeated acro=
+ss several independent greeting/pet-adjacent Etsy products.</li>
+<li>AR specifically: LOW/UNKNOWN customer demand. Still no comparable custo=
+mer-language evidence requiring AR rather than QR/browser video.</li>
+<li>Editable joke / roast intensity: UNKNOWN; no strong new independent cus=
+tomer evidence this run.</li>
+<li>Kid-safe vs adult roast modes: UNKNOWN.</li>
+<li>Memorial-with-humour: UNKNOWN. Memorial + audio/QR exists, but evidence=
+ does not establish demand for humour in bereavement.</li>
+<li>Sports/work-colleague roast: UNKNOWN.</li>
+</ul>
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+<ol>
+<li>Recognizable pet likeness with identity-trait confirmation/proof.</li>
+<li>Pet-as-speaker: the card/video is explicitly FROM the buyer=E2=80=99s p=
+et and addressed to a named recipient.</li>
+<li>QR =E2=86=92 instant no-app browser video bundled with the physical obj=
+ect.</li>
+<li>One-pet / two-pet selection, including a duo-roast format.</li>
+<li>Fast digital-first delivery with physical product as an optional/bundle=
+d follow-on.</li>
+</ol>
+<p><strong>Strongest unmet need:</strong> combine <em>recognizably my pet</=
+em> with <em>actually funny and specifically about the recipient</em>. Exis=
+ting evidence is strong for accurate pet personalization and separately str=
+ong for generic =E2=80=9Cfrom the dog=E2=80=9D humour; the combination is t=
+he gap Roast.pet should test.</p>
+<p><strong>Easiest conversion-lift ordering change:</strong> add explicit <=
+code>1 pet / 2 pets</code> selection and a visible <code>we confirm your pe=
+t=E2=80=99s distinctive traits before finalising</code> reassurance next to=
+ photo upload.</p>
+<p><strong>Best Etsy listing idea from customer/product language:</strong> =
+<strong>=E2=80=9CPersonalised Birthday Roast FROM YOUR DOG =E2=80=94 Funny =
+Pet Card + QR Video =E2=80=94 Your Actual Dog Roasts Mum/Dad/Partner.=E2=80=
+=9D</strong> Thumbnail should communicate pet-as-speaker, recipient name an=
+d QR-video reveal without requiring buyers to understand AR.</p>
+<p><strong>Important negative signal:</strong> AR remains weakly evidenced.=
+ Multiple sellers independently converge on ordinary camera QR =E2=86=92 no=
+-app video/audio. Do not add AR friction to the core reveal until an A/B te=
+st demonstrates incremental delight/conversion.</p>
+
+--00000000000022aee7065bbc4b17--

@@ -1,0 +1,929 @@
+Received: from mail-yx2-x16.google.com (2607:f8b0:4864:41::16)
+        by cloudflare-email.net (cloudflare) id pDkarpbsZ56Q
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 15:44:51 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=JIl+vnKvym3yEAmx9CAeCMO7heLo1UiYPEub8Y8lt1pZema5rnkGhjjyrhNseFEGAtkztn8HT
+	LY4U71M7XtpYF5G5sziosSFhbEO2WuTjlsPGECvdiTuD/8Fb+eVU/4psU9Mhd+ydxa0I9pS08t1
+	0yFQ9pU3LXOJaLNtOYXrUOE5cEwWqg9i62y5kaKka423C2owILmVer+OSv45GLZKsEDrcki9AWw
+	SHQBV3SQ0obLkEkS8MaxZjRJ0IQwxIXso87bhBNi1ABE4qy/ZvCY3Cioxbbe2bGCmpvQg3ZgeqU
+	OCUx8JwwJkWEHMOIupckMXzI/uO7reTd1FYa2VmHWGqg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:References:In-Reply-To:from:reply-to:cc:resent-date
+	:resent-from:resent-to:resent-cc:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789919092; x=1790523892; bh=gndU8WsI
+	TW4uYSX5qF5C6H+iCMrWKj0PhM3UKzfbtro=; b=ICcXxMNzzRP8o55LT7bEP3E2ahQkk8JE1HA
+	kb+76VpnQ+hsyE5TeYJUqUTwwnm+45D5XqdE0WsR+lb1F+xFV4+cmyIDWHJMmHddmrHgF2+kbYW
+	4WYRfYIQnvqdwoZtuHDUnp8aZqn5Ov2sjeNCafbzCPlEuHeH7EBgXZiHiaTq3iHgJLXxNRFmLD+
+	hoJtVI+brLYEue2aMI0WsY1/2rA4eoyE9VL6Fkdg9Axo2CLQ7AsUyq3+ApbHJmHGF7sykk7O5Sc
+	Go4l2aB01WmIscRDMUB9OEbjPtkf8tsGXBnX4qlHi5hBlgs/gXMwMtJSPA/lG8d4XS9S85zf3f/
+	Xnr041g==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=OeKBDt6U;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x16.google.com) smtp.helo=mail-yx2-x16.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::16"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::16; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x16.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=OeKBDt6U;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x16.google.com) smtp.helo=mail-yx2-x16.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::16 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::16"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x16.google.com with SMTP id 956f58d0204a3-66e4aac92dbso1877715d50.2
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 08:44:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789919091; cv=none;
+        d=google.com; s=arc-20260327;
+        b=OVZgYmr1bbRA0sbcEKlogRyoHEDwHVQJIbQu1zGfwcg1+cBsCfNYoKblHDORrSNrdc
+         U0O7iNK4cAhl7+WXAIxuTO29te2m5NEM83/90i64Y5YPlU8DdXJ4FkEqaunkMNn58nV3
+         m5fj5oWces8U4NsW5Wu8RkDhZ7wOKK8d2OjDc6JEHSRCg4y5vXuWHTvs+x3eGzayR2Wg
+         4RTkFn5ap8uCblqbnRxmGlsC+4yi03dqI7VCZAETyzfuZhW39yd4FmQ13Fbigvs7waU6
+         5gwgQQOq4KJIXK1KvmzUDremUlzdxLaimR0Zu3NJeYYIMhoaU/S8dm7ti4a/CPuoKjvz
+         +VTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:references:in-reply-to
+         :dkim-signature;
+        bh=gndU8WsITW4uYSX5qF5C6H+iCMrWKj0PhM3UKzfbtro=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=BG3ReQDsnFxc9yrFc5hRFUxPoTbbP3mjlW61Cbt4sYFdmh0hdAvNIFt54vuVApsNx2
+         LQsioJRAI/RgKrR/c1dzzvTtvHUoWiJzx2GDRG56w0/QhsQL62+LcBR4dNfmH0ionydr
+         KikeCH38OwZJ7IRmihV4pqbhSkes90dlbZ30RDpZUmSJ2Asulbs8yMy1sbB3p/f6+nPO
+         t/UWxdmocPqBjRZpXIel/d0bxQ/CQBnbC9FXFzLKYvMcLXkqN61wyzYn9BwDjhyav3e8
+         EhUrJjllac+Umkf72UzAzDREyPFpuo5g0zS0L831b7q0vBBsaeD1PbhyqLL/YiPmnfkT
+         C4NA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789919091; x=1790523891; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=gndU8WsITW4uYSX5qF5C6H+iCMrWKj0PhM3UKzfbtro=;
+        b=OeKBDt6UD3bZB3BiLRU3MdWS5Ne/eZJi+3Ahj0LkQxyjC5b6ZN7cTYglWIuKeqiSw3
+         jpu0XOJkqoMcbVPpsutBrBZiRLcOW+wUXHIkHuIZOFkTgAJ11q91RuITc52LKYZZ0Yhj
+         UP54CV4y3crDfATzPaLdo94qvXunQK5PT3H7YeJU9VuHobRmvT7HpdjhLfwT0hmXSdOA
+         nts4f6JTQWDUSElysgyw9GhQhWVvQBhsPZIZAg7P5SU8hn68X7GdJ5mfmH01+dGnwpUp
+         KUm5clupSaQvL7TQTQivFvCx057MAly59FrGXBisol0RegDnxsSD/n63LPI7albMRyTF
+         LG2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789919091; x=1790523891;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=gndU8WsITW4uYSX5qF5C6H+iCMrWKj0PhM3UKzfbtro=;
+        b=dg/gyThbD51HAhtlpi87jURTG8leCksO0AJaNNhZLfBQRnLRPGdxqR6zJOmiKA+vSh
+         /W1gsto5MReXRDCGUqG9k3xbGLFWZSzngHm9f8S3420LV06mXhroppsqDb66gwxTVE1y
+         RJNpaRoZHhsOWgwzBkx/Z4aA2irVJ2aAWlmcm+KCrGfyp6dI7P2Pmv53Z7qDIKhYvgc2
+         p7AXy7zr7LoiGTY6XyKXsYroIqoHVa4oTqQVS835JRjdHI/O27fz7d/GcmtuwoDh86mh
+         mRIGJC8iBQRVwKThNF5ofmyqMIDrW61vCSOIhGzG3D+vhJ50msWf9cB+lr+jrFqHKPUl
+         WA2Q==
+X-Gm-Message-State: AFuF++kqfr6el6VYPdxYp0v37qbld4vj/tImxKjgi7Op9kDNVikNqIJJ
+	KB6d9VJMHi1FIT5f0LsU8Wmb6SrQtZTZQZIe2Qvob3huoxb4D69U9LHoa8RmdUuBKoCjbspwWE2
+	WCTi9tIvPBXL+mvTkrF+1z3xiforJlPd5ZA==
+X-Gm-Gg: AYBFou0v3VoFq7PPLgzkAUFEyopR3gRbmi+WLUezl6K5SXs0EUkYwz35oFj1Gr1Rjjo
+	gqpzwfQOMe9A+EUZ1PErtw9dvdx+QNGPa2GAt28PWlOOIuwOYsplmWeHVf2YqEDbWIN9exitpOo
+	+lr6F/UKJ107LZUEwix6Qx54lnloARZ+0W3RmG51DqVTt5oSELvCmnQOXRJ8eCsMxQyu9ejVBwR
+	T26nhj3Bx9kAc9qH/FusVxpyVmgdXODAzQI8P1c6htLVCT+M8X3tiGBoeYo3q+kq/TW6ZE8WB+m
+	UVDac2BG7W+5SP1fGdbyMc+hH6n3bfKxiQKBAf9+KocySb9feBoHmiPCP+DsL5SAIPhGZImU3Xu
+	39k1917yGfwITeiqMBMuK8/M75A6NOoxGYOxVtflUVdO4k/DOMCA37tbEEpZJlCsocugowYt7
+X-Received: by 2002:a05:690e:c45:b0:66f:c1be:a647 with SMTP id
+ 956f58d0204a3-6717fd8edccmr2843286d50.57.1789919091568; Sun, 20 Sep 2026
+ 08:44:51 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 10:44:51 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 10:44:51 -0500
+In-Reply-To: <CAPdrGen6VejF0h1+GURks=8kyQTaACipDNOLjpwpt9UJf7+-9Q@mail.gmail.com>
+References: <CAPdrGen6VejF0h1+GURks=8kyQTaACipDNOLjpwpt9UJf7+-9Q@mail.gmail.com>
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 10:44:51 -0500
+X-Gm-Features: AcwNN1Wp1epNpyHqBeuhWzpxeRZujKCQ_PoczeH247_twALP39F8Hfdf-iIl2Lk
+Message-ID: <CAPdrGenQ3j_VQvvUr3gy9GUpxBvk9qrCn+EaHCe62+ROqo15Fg@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_POW=2ESYSTEMS_=E2=80=94_Focus_Decision_=2B_Industrial_Exe?=
+	=?UTF-8?Q?cution_Memo?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000a131fa065bec03eb"
+
+--000000000000a131fa065bec03eb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Syncing the remaining POW working material from this conversation to
+Intelligent Others so the project inbox has the complete current guidance.
+
+
+---------- Forwarded message ---------
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 10:43:49 -0500
+Subject: POW.SYSTEMS =E2=80=94 Focus Decision + Industrial Execution Memo
+To: tradesprior@gmail.com
+
+POW.SYSTEMS =E2=80=94 Focus Decision & Execution Memo Decision
+
+POW is the one.
+
+UKGraph has effectively resolved into POW=E2=80=99s contextual infrastructu=
+re
+rather than remaining a competing project.
+
+The relationship is:
+
+UKGraph
+
+   -
+
+   geography
+   -
+
+   legislation
+   -
+
+   companies
+   -
+
+   planning
+   -
+
+   procurement
+   -
+
+   skills
+   -
+
+   local constraints
+   =E2=86=93 contextualises
+
+POW.SYSTEMS
+
+   -
+
+   physical assets
+   -
+
+   parts
+   -
+
+   markets
+   -
+
+   repairs
+   -
+
+   power
+   -
+
+   compute
+   -
+
+   EV
+   =E2=86=93
+
+actions + outcomes
+
+This is substantially cleaner.
+Core wedge: Markets =C3=97 Parts =C3=97 Repairs
+
+The strongest first product loop is:
+
+BROKEN / USED MARKET
+=E2=86=93
+exact asset identity
+=E2=86=93
+likely fault
+=E2=86=93
+component / MPN
+=E2=86=93
+live stock + lead time + price
+=E2=86=93
+repair procedure
+=E2=86=93
+skill/tool requirement
+=E2=86=93
+working market value
+=E2=86=93
+liquidity
+=E2=86=93
+EXPECTED REPAIR VALUE
+=E2=86=93
+actual repair
+=E2=86=93
+actual sale/outcome
+
+This is close to the ideal data-garden loop:
+
+   - ephemeral market state
+   - component scarcity
+   - fault priors
+   - repair procedure
+   - user capability
+   - economic decision
+   - action
+   - realised outcome
+
+It also naturally pulls the rest of POW inward:
+
+   - component shortages become constraints
+   - tariffs alter parts economics
+   - apprenticeships expose repair-skill scarcity
+   - geography changes supplier/service availability
+   - OPSS recalls change safe-resale status
+   - MOT creates vehicle repair cohorts
+   - EV creates charger/inverter/service opportunities
+   - robotics can eventually execute repair/fabrication
+
+What =E2=80=9Cdone enough to move on=E2=80=9D means
+
+Do not try to finish POW.
+
+The goal is to turn it into an industrial autonomous organism and then
+leave it growing.
+
+POW is ready to run unattended when:
+
+   - R2 raw lake exists and is structured
+   - collectors preserve provenance/licensing/schema metadata
+   - missed runs and schema drift are detected
+   - highest-irreversibility feeds collect continuously
+   - parts + market + repair identity can join
+   - at least one useful repair-economics transformation runs automatically
+   - every derived table can be rebuilt from raw
+   - adding a new source does not require redesigning architecture
+   - PowPowPow can use the same kernel
+   - a boring operational dashboard shows:
+      - HEALTHY
+      - LATE
+      - FAILED
+      - SCHEMA_CHANGED
+
+Once that works, stop polishing infrastructure.
+
+Let it compound.
+Industrial data culture
+
+The obsessive cleanliness is appropriate because the database itself is the
+core asset.
+
+Prefer 12 impeccable feeds to 70 sketchy collectors.
+
+Standing rules:
+
+NO SILENT FAILURE
+NO UNVERSIONED SCHEMA
+NO DATA WITHOUT PROVENANCE
+NO INFERRED JOIN WITHOUT CONFIDENCE
+NO TRANSFORMATION WITHOUT VERSION
+NO LOST RAW OBSERVATION
+NO UNKNOWN COLLECTION GAP
+
+Everything should be replayable.
+
+Every source should be auditable.
+
+Every identity join should preserve evidence.
+
+Every transformation should know exactly which data/version created it.
+Parallel build lanes
+
+Do not personally work linearly through 30 datasets.
+
+Run four lanes in parallel.
+LANE A =E2=80=94 PLATFORM
+
+Build:
+
+   - R2
+   - collector SDK
+   - source registry
+   - source health
+   - collection-run ledger
+   - Parquet compaction
+   - generic events
+   - replay
+   - schema drift detection
+
+This lane enables everything else.
+LANE B =E2=80=94 MARKETS
+
+Collect/normalize:
+
+   - used
+   - broken
+   - working
+   - new
+   - active listings
+   - price changes
+   - inventory
+   - listing lifetime
+   - relisting
+   - liquidity proxies where justified
+
+Goal:
+
+Build the economic surface needed to answer:
+
+=E2=80=9CWhat is this physical object worth in each state?=E2=80=9D
+LANE C =E2=80=94 PARTS + REPAIR
+
+Collect/normalize:
+
+   - Mouser
+   - DigiKey
+   - part identity
+   - manufacturer part numbers
+   - substitutes/supersessions
+   - stock
+   - lead time
+   - price
+   - lifecycle/EOL
+   - Open Repair
+   - iFixit where licensing permits
+   - OPSS recalls
+   - fault =E2=86=92 intervention =E2=86=92 outcome evidence
+
+Goal:
+
+Build:
+
+asset
+=E2=86=92 fault
+=E2=86=92 part
+=E2=86=92 repair procedure
+=E2=86=92 repairability
+=E2=86=92 expected cost
+=E2=86=92 expected success
+LANE D =E2=80=94 CONTEXT
+
+Use UKGraph infrastructure for:
+
+   - geography
+   - legislation
+   - Companies House
+   - installer/certification data
+   - skills
+   - apprenticeships
+   - training providers
+   - property
+   - grid
+   - grants
+   - planning
+   - procurement
+
+This enriches the repair/market engine without blocking it.
+Priority order
+
+   1. Preserve irreversible state.
+   2. Resolve identity.
+   3. Compute repair economics.
+   4. Get real-world outcomes.
+   5. Expand domains.
+
+Everything else is subordinate.
+Why POW gets most attention now
+
+The decisive asymmetry is time.
+
+FunnyLab code can be written later.
+
+UK Boring workflows can be written later.
+
+Yesterday=E2=80=99s:
+
+   - component inventory
+   - marketplace listings
+   - lead times
+   - charger availability
+   - grid outages
+   - apprenticeship state
+   - compute economics
+
+cannot necessarily be observed later.
+
+So near-term attention should be heavily concentrated on POW.
+
+Conceptually:
+
+POW =E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=
+=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=
+=E2=96=88
+FunnyLab =E2=96=88=E2=96=88
+UK Boring =E2=96=88
+
+Not because FunnyLab or UK Boring are weak.
+
+Because POW loses historical value every day it is not collecting.
+FunnyLab / roast.pet
+
+Do not abandon it.
+
+Christmas is a real expiring window.
+
+But only lock the minimum seasonal commerce skeleton:
+
+photo
+=E2=86=92 normalize
+=E2=86=92 card
+=E2=86=92 preview
+=E2=86=92 personalisation
+=E2=86=92 fulfilment
+
+Then park it while POW becomes industrial.
+
+There is little value in prematurely overbuilding generated-media
+infrastructure while that stack is improving so quickly.
+UK Boring
+
+UK Boring can wait more comfortably because POW is building much of its
+substrate anyway.
+
+UK Boring:
+Muse understands the person
++
+we understand obscure/live UK reality
+
+the agent can solve boring British problems
+
+POW is already accumulating:
+
+   - geography
+   - legislation
+   - skills
+   - companies
+   - installers
+   - grants
+   - planning
+   - procurement
+   - physical services
+
+So UK Boring can later become a consumer workflow surface over the same
+infrastructure.
+
+POW =3D physical-economic world model
+
+UK Boring =3D UK consumer/action workflow layer
+
+They are no longer fully separate investments.
+POW also becomes the gardening factory
+
+Once the collector/event/provenance/health architecture is clean, future
+gardens become cheap.
+
+A new garden can often be:
+
+source.yaml
+collector
+normalizer
+transformation
+
+The infrastructure remains common.
+
+That means the week spent on POW is not merely a week spent on one product.
+
+It is a week building the industrial machinery for every future data garden=
+.
+The target end state
+
+You wake up.
+
+POW has collected all night.
+
+Raw history is intact.
+
+Health checks are green.
+
+Parts changed.
+
+Markets changed.
+
+Grid changed.
+
+Compute changed.
+
+Repair opportunities changed.
+
+Transformations reran.
+
+New opportunities appeared.
+
+Content candidates appeared.
+
+You did nothing.
+
+That is the point where the garden is actually alive.
+
+Then shift attention to the next time-constrained project while POW keeps
+compounding in the background.
+Standing principle
+
+Do not try to comprehend all of POW at once.
+
+Build one industrial layer at a time:
+
+capture
+=E2=86=92 provenance
+=E2=86=92 identity
+=E2=86=92 transformation
+=E2=86=92 action
+=E2=86=92 outcome
+
+And keep the first commercial/intelligence loop centred on:
+
+*markets =C3=97 parts =C3=97 repairs*
+
+--000000000000a131fa065bec03eb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Syncing the remaining POW working material from this conversation to Int=
+elligent Others so the project inbox has the complete current guidance.</p>
+<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">--=
+-------- Forwarded message ---------<br>From: Prior Trades &lt;<a href=3D"m=
+ailto:tradesprior@gmail.com">tradesprior@gmail.com</a>&gt;<br>Date: Sun, 20=
+ Sep 2026 10:43:49 -0500<br>Subject: POW.SYSTEMS =E2=80=94 Focus Decision +=
+ Industrial Execution Memo<br>To: <a href=3D"mailto:tradesprior@gmail.com">=
+tradesprior@gmail.com</a></div><br>POW.SYSTEMS =E2=80=94 Focus Decision &am=
+p; Execution Memo
+
+Decision
+<p>POW is the one.</p>
+<p>UKGraph has effectively resolved into POW=E2=80=99s contextual infrastru=
+cture rather than remaining a competing project.</p>
+<p>The relationship is:</p>
+<p>UKGraph</p>
+<ul>
+<li>
+<p>geography</p>
+</li>
+<li>
+<p>legislation</p>
+</li>
+<li>
+<p>companies</p>
+</li>
+<li>
+<p>planning</p>
+</li>
+<li>
+<p>procurement</p>
+</li>
+<li>
+<p>skills</p>
+</li>
+<li>
+<p>local constraints</p>
+
+<code>  =E2=86=93 contextualises
+</code>
+</li>
+</ul>
+<p>POW.SYSTEMS</p>
+<ul>
+<li>
+<p>physical assets</p>
+</li>
+<li>
+<p>parts</p>
+</li>
+<li>
+<p>markets</p>
+</li>
+<li>
+<p>repairs</p>
+</li>
+<li>
+<p>power</p>
+</li>
+<li>
+<p>compute</p>
+</li>
+<li>
+<p>EV</p>
+
+<code>  =E2=86=93
+</code>
+</li>
+</ul>
+<p>actions + outcomes</p>
+<p>This is substantially cleaner.</p>
+
+
+
+Core wedge: Markets =C3=97 Parts =C3=97 Repairs
+<p>The strongest first product loop is:</p>
+<p>BROKEN / USED MARKET<br>
+=E2=86=93<br>
+exact asset identity<br>
+=E2=86=93<br>
+likely fault<br>
+=E2=86=93<br>
+component / MPN<br>
+=E2=86=93<br>
+live stock + lead time + price<br>
+=E2=86=93<br>
+repair procedure<br>
+=E2=86=93<br>
+skill/tool requirement<br>
+=E2=86=93<br>
+working market value<br>
+=E2=86=93<br>
+liquidity<br>
+=E2=86=93<br>
+EXPECTED REPAIR VALUE<br>
+=E2=86=93<br>
+actual repair<br>
+=E2=86=93<br>
+actual sale/outcome</p>
+<p>This is close to the ideal data-garden loop:</p>
+<ul>
+<li>ephemeral market state</li>
+<li>component scarcity</li>
+<li>fault priors</li>
+<li>repair procedure</li>
+<li>user capability</li>
+<li>economic decision</li>
+<li>action</li>
+<li>realised outcome</li>
+</ul>
+<p>It also naturally pulls the rest of POW inward:</p>
+<ul>
+<li>component shortages become constraints</li>
+<li>tariffs alter parts economics</li>
+<li>apprenticeships expose repair-skill scarcity</li>
+<li>geography changes supplier/service availability</li>
+<li>OPSS recalls change safe-resale status</li>
+<li>MOT creates vehicle repair cohorts</li>
+<li>EV creates charger/inverter/service opportunities</li>
+<li>robotics can eventually execute repair/fabrication</li>
+</ul>
+
+
+
+What =E2=80=9Cdone enough to move on=E2=80=9D means
+<p>Do not try to finish POW.</p>
+<p>The goal is to turn it into an industrial autonomous organism and then l=
+eave it growing.</p>
+<p>POW is ready to run unattended when:</p>
+<ul>
+<li>R2 raw lake exists and is structured</li>
+<li>collectors preserve provenance/licensing/schema metadata</li>
+<li>missed runs and schema drift are detected</li>
+<li>highest-irreversibility feeds collect continuously</li>
+<li>parts + market + repair identity can join</li>
+<li>at least one useful repair-economics transformation runs automatically<=
+/li>
+<li>every derived table can be rebuilt from raw</li>
+<li>adding a new source does not require redesigning architecture</li>
+<li>PowPowPow can use the same kernel</li>
+<li>a boring operational dashboard shows:
+<ul>
+<li>HEALTHY</li>
+<li>LATE</li>
+<li>FAILED</li>
+<li>SCHEMA_CHANGED</li>
+</ul>
+</li>
+</ul>
+<p>Once that works, stop polishing infrastructure.</p>
+<p>Let it compound.</p>
+
+
+
+Industrial data culture
+<p>The obsessive cleanliness is appropriate because the database itself is =
+the core asset.</p>
+<p>Prefer 12 impeccable feeds to 70 sketchy collectors.</p>
+<p>Standing rules:</p>
+<p>NO SILENT FAILURE<br>
+NO UNVERSIONED SCHEMA<br>
+NO DATA WITHOUT PROVENANCE<br>
+NO INFERRED JOIN WITHOUT CONFIDENCE<br>
+NO TRANSFORMATION WITHOUT VERSION<br>
+NO LOST RAW OBSERVATION<br>
+NO UNKNOWN COLLECTION GAP</p>
+<p>Everything should be replayable.</p>
+<p>Every source should be auditable.</p>
+<p>Every identity join should preserve evidence.</p>
+<p>Every transformation should know exactly which data/version created it.<=
+/p>
+
+
+
+Parallel build lanes
+<p>Do not personally work linearly through 30 datasets.</p>
+<p>Run four lanes in parallel.</p>
+
+LANE A =E2=80=94 PLATFORM
+<p>Build:</p>
+<ul>
+<li>R2</li>
+<li>collector SDK</li>
+<li>source registry</li>
+<li>source health</li>
+<li>collection-run ledger</li>
+<li>Parquet compaction</li>
+<li>generic events</li>
+<li>replay</li>
+<li>schema drift detection</li>
+</ul>
+<p>This lane enables everything else.</p>
+
+LANE B =E2=80=94 MARKETS
+<p>Collect/normalize:</p>
+<ul>
+<li>used</li>
+<li>broken</li>
+<li>working</li>
+<li>new</li>
+<li>active listings</li>
+<li>price changes</li>
+<li>inventory</li>
+<li>listing lifetime</li>
+<li>relisting</li>
+<li>liquidity proxies where justified</li>
+</ul>
+<p>Goal:</p>
+<p>Build the economic surface needed to answer:</p>
+<p>=E2=80=9CWhat is this physical object worth in each state?=E2=80=9D</p>
+
+LANE C =E2=80=94 PARTS + REPAIR
+<p>Collect/normalize:</p>
+<ul>
+<li>Mouser</li>
+<li>DigiKey</li>
+<li>part identity</li>
+<li>manufacturer part numbers</li>
+<li>substitutes/supersessions</li>
+<li>stock</li>
+<li>lead time</li>
+<li>price</li>
+<li>lifecycle/EOL</li>
+<li>Open Repair</li>
+<li>iFixit where licensing permits</li>
+<li>OPSS recalls</li>
+<li>fault =E2=86=92 intervention =E2=86=92 outcome evidence</li>
+</ul>
+<p>Goal:</p>
+<p>Build:</p>
+<p>asset<br>
+=E2=86=92 fault<br>
+=E2=86=92 part<br>
+=E2=86=92 repair procedure<br>
+=E2=86=92 repairability<br>
+=E2=86=92 expected cost<br>
+=E2=86=92 expected success</p>
+
+LANE D =E2=80=94 CONTEXT
+<p>Use UKGraph infrastructure for:</p>
+<ul>
+<li>geography</li>
+<li>legislation</li>
+<li>Companies House</li>
+<li>installer/certification data</li>
+<li>skills</li>
+<li>apprenticeships</li>
+<li>training providers</li>
+<li>property</li>
+<li>grid</li>
+<li>grants</li>
+<li>planning</li>
+<li>procurement</li>
+</ul>
+<p>This enriches the repair/market engine without blocking it.</p>
+
+
+
+Priority order
+<ol>
+<li>Preserve irreversible state.</li>
+<li>Resolve identity.</li>
+<li>Compute repair economics.</li>
+<li>Get real-world outcomes.</li>
+<li>Expand domains.</li>
+</ol>
+<p>Everything else is subordinate.</p>
+
+
+
+Why POW gets most attention now
+<p>The decisive asymmetry is time.</p>
+<p>FunnyLab code can be written later.</p>
+<p>UK Boring workflows can be written later.</p>
+<p>Yesterday=E2=80=99s:</p>
+<ul>
+<li>component inventory</li>
+<li>marketplace listings</li>
+<li>lead times</li>
+<li>charger availability</li>
+<li>grid outages</li>
+<li>apprenticeship state</li>
+<li>compute economics</li>
+</ul>
+<p>cannot necessarily be observed later.</p>
+<p>So near-term attention should be heavily concentrated on POW.</p>
+<p>Conceptually:</p>
+<p>POW                =E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=
+=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=E2=96=88=
+=E2=96=88=E2=96=88=E2=96=88<br>
+FunnyLab           =E2=96=88=E2=96=88<br>
+UK Boring          =E2=96=88</p>
+<p>Not because FunnyLab or UK Boring are weak.</p>
+<p>Because POW loses historical value every day it is not collecting.</p>
+
+
+
+FunnyLab / roast.pet
+<p>Do not abandon it.</p>
+<p>Christmas is a real expiring window.</p>
+<p>But only lock the minimum seasonal commerce skeleton:</p>
+<p>photo<br>
+=E2=86=92 normalize<br>
+=E2=86=92 card<br>
+=E2=86=92 preview<br>
+=E2=86=92 personalisation<br>
+=E2=86=92 fulfilment</p>
+<p>Then park it while POW becomes industrial.</p>
+<p>There is little value in prematurely overbuilding generated-media infras=
+tructure while that stack is improving so quickly.</p>
+
+
+
+UK Boring
+<p>UK Boring can wait more comfortably because POW is building much of its =
+substrate anyway.</p>
+<p>UK Boring:</p>
+
+Muse understands the person<br>
++<br>
+we understand obscure/live UK reality
+<p>the agent can solve boring British problems</p>
+<p>POW is already accumulating:</p>
+<ul>
+<li>geography</li>
+<li>legislation</li>
+<li>skills</li>
+<li>companies</li>
+<li>installers</li>
+<li>grants</li>
+<li>planning</li>
+<li>procurement</li>
+<li>physical services</li>
+</ul>
+<p>So UK Boring can later become a consumer workflow surface over the same =
+infrastructure.</p>
+<p>POW =3D physical-economic world model</p>
+<p>UK Boring =3D UK consumer/action workflow layer</p>
+<p>They are no longer fully separate investments.</p>
+
+
+
+POW also becomes the gardening factory
+<p>Once the collector/event/provenance/health architecture is clean, future=
+ gardens become cheap.</p>
+<p>A new garden can often be:</p>
+<p>source.yaml<br>
+collector<br>
+normalizer<br>
+transformation</p>
+<p>The infrastructure remains common.</p>
+<p>That means the week spent on POW is not merely a week spent on one produ=
+ct.</p>
+<p>It is a week building the industrial machinery for every future data gar=
+den.</p>
+
+
+
+The target end state
+<p>You wake up.</p>
+<p>POW has collected all night.</p>
+<p>Raw history is intact.</p>
+<p>Health checks are green.</p>
+<p>Parts changed.</p>
+<p>Markets changed.</p>
+<p>Grid changed.</p>
+<p>Compute changed.</p>
+<p>Repair opportunities changed.</p>
+<p>Transformations reran.</p>
+<p>New opportunities appeared.</p>
+<p>Content candidates appeared.</p>
+<p>You did nothing.</p>
+<p>That is the point where the garden is actually alive.</p>
+<p>Then shift attention to the next time-constrained project while POW keep=
+s compounding in the background.</p>
+
+
+
+Standing principle
+<p>Do not try to comprehend all of POW at once.</p>
+<p>Build one industrial layer at a time:</p>
+<p>capture<br>
+=E2=86=92 provenance<br>
+=E2=86=92 identity<br>
+=E2=86=92 transformation<br>
+=E2=86=92 action<br>
+=E2=86=92 outcome</p>
+<p>And keep the first commercial/intelligence loop centred on:</p>
+<p><strong>markets =C3=97 parts =C3=97 repairs</strong></p></div>
+
+--000000000000a131fa065bec03eb--

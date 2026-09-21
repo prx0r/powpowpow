@@ -10,10 +10,11 @@ import sys
 from datetime import datetime
 import pandas as pd
 
-sys.path.insert(0, '/home/box/powpowpow')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
 
-CHAINS_DIR = '/home/box/powpowpow/chains'
-EXPORT_DIR = '/home/box/powpowpow/exports'
+CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
+EXPORT_DIR = os.path.join(BASE_DIR, 'exports')
 os.makedirs(EXPORT_DIR, exist_ok=True)
 
 def load_json(filename):
@@ -24,21 +25,55 @@ def load_json(filename):
     return {}
 
 def export_ohlcv():
-    """Export OHLCV data for all coins."""
+    """Export OHLCV data for all coins.
+
+    Legacy SafeTrade tracked dir (old /home/box machine) is checked first
+    via SAFETRADE_TRACKED_DIR env; otherwise exports daily mid_ohlc derived
+    from our own warehouse daily_state table.
+    """
     print("[EXPORT] OHLCV data...")
-    
-    safetrade_dir = '/home/box/safetrade/tracked'
+
+    safetrade_dir = os.environ.get('SAFETRADE_TRACKED_DIR', '')
     exported = []
-    
+
     for coin in ['QUBIC', 'PRL', 'NOCK', 'XEL', 'XTM']:
-        ohlcv_path = os.path.join(safetrade_dir, f'{coin}_1d_ohlcv.csv')
-        if os.path.exists(ohlcv_path):
+        ohlcv_path = os.path.join(safetrade_dir, f'{coin}_1d_ohlcv.csv') if safetrade_dir else ''
+        if ohlcv_path and os.path.exists(ohlcv_path):
             df = pd.read_csv(ohlcv_path)
             output_path = os.path.join(EXPORT_DIR, f'{coin}_ohlcv.csv')
             df.to_csv(output_path, index=False)
             exported.append(coin)
-            print(f"  ✓ {coin}: {len(df)} rows")
-    
+            print(f"  ✓ {coin}: {len(df)} rows (safetrade tracked)")
+            continue
+        # Fallback: our own daily_state mid OHLC across venues
+        rows = []
+        for chain in ('venue', 'safetrade'):
+            table_dir = os.path.join(BASE_DIR, 'warehouse', 'normalized', 'daily_state', f'chain={chain}')
+            if not os.path.isdir(table_dir):
+                continue
+            for date_dir in sorted(os.listdir(table_dir)):
+                for hf in sorted(os.listdir(os.path.join(table_dir, date_dir))):
+                    if not hf.endswith('.jsonl'):
+                        continue
+                    with open(os.path.join(table_dir, date_dir, hf)) as fh:
+                        for line in fh:
+                            try:
+                                r = json.loads(line)
+                            except json.JSONDecodeError:
+                                continue
+                            if (r.get('symbol') or '').upper() == coin and r.get('mid_close'):
+                                rows.append({'date': r.get('date'), 'venue': r.get('venue'),
+                                             'open': r.get('mid_open'), 'high': r.get('mid_high'),
+                                             'low': r.get('mid_low'), 'close': r.get('mid_close'),
+                                             'volume': r.get('trade_notional_sum')})
+        if rows:
+            output_path = os.path.join(EXPORT_DIR, f'{coin}_ohlcv.csv')
+            pd.DataFrame(rows).to_csv(output_path, index=False)
+            exported.append(coin)
+            print(f"  ✓ {coin}: {len(rows)} rows (warehouse daily_state)")
+        else:
+            print(f"  - {coin}: no source data (set SAFETRADE_TRACKED_DIR or run venue_l2)")
+
     return exported
 
 def export_factors():

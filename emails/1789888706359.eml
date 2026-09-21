@@ -1,0 +1,446 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id f6MAD7tJs01s
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:18:26 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=JxThnqDb3r39FlwFG2QkjEMGpm4pWqrVROvAyl+0ifJ+IQ1ezFBdmj/9ZDljqFQJru167jHMC
+	Z5T4Zn0FF7hFFaUX4h6KbDd87obL9dI1DTp6NhVrjb8l4b8uOb7FUCeSpfZsy4sANzo9oi0kB87
+	9ch8kwOm+nY6m4+qCyBPEB8pw3Hipr9cDrUVehwGGgJyXWO/+BPVF0qBLfbpmmj6quXvqqU3m65
+	es7xBscMO1iTT165v8U+I3YlG9Y66WbnnGPtsZ6LEaajG+9w6eduRIBXC0gmbZ+eaWAxuz7mx8D
+	6eSyr4fFeAhyBlV3J3YOjXIXntGpVboD7lBZOhGdLmMA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888706; x=1790493506; bh=7ahT3vDt
+	HN3lP8J6zjUAw9uEUfEfJ1Ue8e4hnGu9VWs=; b=cwBoU1vZoZ6mmUg53h4EKJvTXNnig0KqQGd
+	ff7PWZ6y6A0+fq5fiNC2wtU1xVonf/2gUF1XYkUYl+YQw2b1r0XCBSQBSE2E7HpmKXXRlwljKvV
+	pQxPz91GaGBwYbMHAc/0XP7Pzo32CKJYbzPhbNe5BQ3YbZELMZ98MVM0vDuGbEbApM/FwnN5QjJ
+	sn0jsTMS3LDDpd3PgOrvoEmVVd3W1co1BTf4I+OuVg60Icjj0xB6h+sMeq38oUAcZXe/mld9kTK
+	67IUppaQ9B0w7FS/Z51J/v/hkF2E8rSuYxk3vnxxLYsgitwUEgBFbLq+KZ71rEEZsDuNTZk9YZ6
+	UygtSRQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=rjyXOUnF;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=rjyXOUnF;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4ab222dfso1849288d50.0
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:18:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888706; cv=none;
+        d=google.com; s=arc-20260327;
+        b=MFDyCTsvow390nU7brbXXohXiYBC7eVHrzYyv7/3gLDVA76owrIXM0tmBUCw1gQ1I2
+         IJoYwaBgvLvuvhPBIfN2Oao/u9NeoXQuxw9aZRrUAke5L4imNXRGitdb5tVnFkx1Fgl6
+         hTP9Kvssfxi5sOzDEnpWcjjFMtaBnUwFPQ5wGOlEbewzN9nEteuaVlM0qzGoHo2lsCIn
+         631HVqwziFJvrKRTScAkwGH8gwch1hU3C2oJweWAnK/Q6/8z9DAy9iZMF1B6WFfcTyeb
+         9KTlRJi6BFbeIjsmy4+UcPq3Lp1L58DGQs0y7iP8DTES/d6y97tjQ65qQiNhmRR/cNdi
+         HEAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=7ahT3vDtHN3lP8J6zjUAw9uEUfEfJ1Ue8e4hnGu9VWs=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=NoGog26B43hoG80AOwl38v10TCdFZI4vtsaJyVzVlCzYMYve4wC+CE9ka77nBjFKwq
+         ozTW7mSeAXauzQFEbd22mDonyr3jJQwZhheOmdqWyx56v5Iaoa68NHvWrxHItf7uvPA1
+         JoQfnPcrMaIHR5o8AW547JZX6U6SjsH8T43UMKebI63TApuXg+9/KbGGk8cCNlRpJO5Y
+         G+VM7iCBofIstcBqpeIdan8lJN3y4DzW/He5TcS36NVnWc4MIc6UHIcFVp0qNX/cKjGs
+         wa8c0794OkcGaw+B0I4Di+pUtr97fth/w++PnhMzIUmh/LdYfjJFNkiRV2Ldh0/0nHNu
+         NJjQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888706; x=1790493506; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=7ahT3vDtHN3lP8J6zjUAw9uEUfEfJ1Ue8e4hnGu9VWs=;
+        b=rjyXOUnFM3h3rSioBDIjgvtftoLd/ZTgLqmB71hsWPfpvBe4T+eb5nuaIE0TfNbcJs
+         7V03BdULcmHoYK6R1Zs8IoE9rOgveZLfAsv5tjEGZO1H4aEvFmbzPzCxROQf5NT+3EBG
+         LNhV0aH0n5aTgN/Yn8WsJQG/od4JfIO04w8Na5wEjvJr7LqD44X5DFWH7hfaBiCzOu6U
+         CVm38imcMQ4sTmA/X0xCn9kGfQH2K3yw+v/DIeRazq9hzj1omGlX+oVnJpWanOdppYwT
+         vGLAboYWbhMHcV2cPh08fDXXqMEE5kJfIHOTAPcYPvtdXajobEdJEerb1+lKGTbUEW/d
+         8JFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888706; x=1790493506;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=7ahT3vDtHN3lP8J6zjUAw9uEUfEfJ1Ue8e4hnGu9VWs=;
+        b=kRL4FhQq45f0y7UjEzw7nbnol1THBBo3iPbLHTLYdNJgNm6g7eLwB77vQN7HpWoasM
+         U6bUPjyfhQm2+bwSCD+8uePyL12yDFVXwL6NMrQ89kko3rr8EOL23CrF4q6V5LCrELe9
+         yNFm7Ij/GlI1RVzwOQ4XHHMwhX6szL12XRYAwlUDBJ+E8wS7k1mr/UWyizYDv/JYUTJz
+         6qZQby1pL3DoJboHDN1vLTBZkAZ+jZ8tgftXc1K46dy/lXvvuoqiIBZBhK2PO25XjVxA
+         myJQ8nCsUnr6p8npE1NH7KNz3hsUa1hYcCjkH6ySUr8wLT3DHjpa605gBd+2irgkinvj
+         48dg==
+X-Gm-Message-State: AFuF++mu4WBN77VwwO+oHNWaD/ubwCFPGQqFI9ObG6GdWMN9jwATnaJm
+	7zcft0PLfEOpwYm/xHymueNV3U+pR3bUqUlM6DJc+J+qIBgcvDwBKpGcocPFLp5QQThULCiNL+s
+	mTjqZN/qCKf2E/ybTGgxn3igj7SSxMlwK+w==
+X-Gm-Gg: AYBFou2JCkfI+NY3jDmuyCyyIVVJlLl4eMZQP1f8OXvg6dD9F6eP/06JFGDYEg2bEaC
+	AQHHX3irB8KzlnXZbv/kWM4uMB+72MDR74tRVnvDZ2fGDUPEeCeX64J9OcFzBdbLtPPnQZH6UdR
+	R/ohi6ZihT0jnJNAjrEKwsiF1lRTRQBUcRlZ3rr2l7Erk+7v6zo5OWfn2Ffsi/tTLNJum1vO5kp
+	zzskImORNXFJujGUhoGNsffclGbSIgyAKafaxQyYPWbxILmfLON1ikZAViz1ei+LixUGUO+oOLN
+	ozZQz7YsOql7EOKu8Sa7t2vcbAEDzsZwZTVammSNnDoJqHo/T5UIYQFiYz+Hx4yU2+IdyRpuQSA
+	bIUskNLneCxRw6Cdi2ANbMDMFwIFEuZAtG7Gdmg8JEsAcMz+FiZQA/FUJftmvC2W6rltNkxiaYA
+	==
+X-Received: by 2002:a05:690e:1502:b0:671:7b7f:abbb with SMTP id
+ 956f58d0204a3-6717fd908ccmr1825321d50.59.1789888705510; Sun, 20 Sep 2026
+ 00:18:25 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:18:25 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:18:25 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:18:25 -0500
+X-Gm-Features: AcwNN1UeHH4Ci0VCXQa3T8RUqqG54siIxfp3AmejT_-SSUq34dH5swPDas9DuRM
+Message-ID: <CAPdrGemg8VOQ7he-7pgY7KYp5n1DiYrZ8L9jnr_kgP72Dq0=iw@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D18_01=3A52_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_20_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+PRIVATELY SCANNER =E2=80=94 EDGE REPORT
+
+1 RUN STATE / COVERAGE
+Recovered cumulative state from Gmail Sent before discovery. Latest
+persisted run: 2026-09-18 00:52 =E2=80=94 22 new/0 changed. Prior objects w=
+ere
+treated as exclusion set. This pass traversed GitHub-first agent
+runtimes, dynamic MCP, self-evolution/routing, agent-security/memory,
+autonomous-media, robotics/control, plus recent arXiv. Recency
+searched through 30d and widened toward 90d where useful. Search
+results were semantically deduped against the recovered registry.
+
+2 NEW OBJECT DASHBOARD =E2=80=94 20 NEW CANONICAL OBJECTS
+
+AGENT / CONTROL
+1. mcpagent =E2=80=94 https://github.com/manishiitg/mcpagent =E2=80=94 Go p=
+roduction
+agent runtime combining MCP, code execution, frontier/open/CLI-native
+providers, parallel tools and structured output. Closest seed:
+Goose/Pi. DECISION: SANDBOX.
+2. SwarmClaw =E2=80=94 https://github.com/swarmclawai/swarmclaw =E2=80=94 s=
+elf-hosted
+swarm runtime with memory, delegation, schedules, MCP registry browser
+and local gateway. Closest: Goose + Monid. SANDBOX.
+3. Aiden =E2=80=94 https://github.com/taracodlabs/aiden =E2=80=94 durable c=
+omputer
+agent with job cards, evidence-required subagents, trust dial,
+approval-gated MCP, browser guardrails, budgets and artifact
+provenance. Closest: Pi/Privately. ADOPT/SANDBOX.
+4. KlaatCode =E2=80=94 https://github.com/KlaatAI/klaatcode =E2=80=94 termi=
+nal coding
+agent with smart model routing, MCP OAuth, checkpoints and before_tool
+hooks capable of blocking execution. Closest: Pi + QP. SANDBOX.
+5. Mnemosyne =E2=80=94 https://github.com/mnemosyne-oss/mnemosyne =E2=80=94=
+ zero-cloud
+SQLite universal memory layer across Hermes, Pi, OpenClaw, Codex,
+Cursor and MCP. Closest: ProjectMemory/privacy. SANDBOX.
+6. dynamic-mcp =E2=80=94 https://github.com/mcpland/dynamic-mcp =E2=80=94 r=
+untime
+create/update/delete/enable tools with Docker/Node isolation,
+lifecycle control and optimistic concurrency. Closest: Monid. BUILD
+PROBE.
+
+JEV / DECISION / SELF-EVOLUTION
+7. vLLM Semantic Router / Themis =E2=80=94
+https://github.com/vllm-project/semantic-router =E2=80=94 programmable
+Mixture-of-Models router where request signals/projections feed
+explicit decisions/algorithms; privacy/safety/location can be
+executable routing dimensions. Closest: JEV. SANDBOX.
+8. Reliable Self-Evolving Agents map =E2=80=94
+https://github.com/wkqdzkd/Awesome-Reliable-Self-Evolving-Agents =E2=80=94
+Sep-11 survey/repo providing a fresh graph of reliable self-evolution
+mechanisms and papers. Closest: Dream-RSI. WATCH + mine graph.
+9. LLaVA-VLA =E2=80=94 https://github.com/OpenHelix-Team/LLaVA-VLA =E2=80=
+=94
+minimalist vision-language-action architecture with a 0.5B variant and
+explicit action expert; useful bounded-action/control-head reference.
+Closest: JEV embodied-control branch. WATCH/SANDBOX.
+
+ATTACKER FRONTIER
+10. PMPA =E2=80=94 https://arxiv.org/abs/2609.13889 =E2=80=94 Sep-12 persis=
+tent-memory
+poisoning against harness agents; external benign-looking sources
+become cross-session malicious state. Evaluated on OpenClaw and Claude
+Code; reported cross-session ASR is substantial. Closest:
+ProjectMemory. BUILD BENIGN PROBE.
+11. Utility Under Attack =E2=80=94 https://arxiv.org/abs/2608.21230 =E2=80=
+=94 shows
+only 1.2% poisoned LongMemEval content can collapse accuracy and that
+content screening/provenance weighting has structural limits; proposes
+bounded retrieval occupancy. Closest: ProjectMemory. BUILD PROBE.
+12. Authorization Architectures for Tool-Using AI Agents =E2=80=94
+https://arxiv.org/abs/2609.15906 =E2=80=94 Sep-14 review identifies princip=
+al
+hierarchy, multi-hop delegation, runtime PEPs and aggregation bounds
+as unresolved. Closest: Privately/QP. CONTENT + architecture input.
+13. MCP-ITP =E2=80=94 https://arxiv.org/abs/2601.07395 =E2=80=94 automated =
+adaptive
+implicit tool poisoning where malicious metadata causes invocation of
+a legitimate high-privilege tool without invoking the poisoned tool
+itself. Closest: MCParasite. LAB ONLY / BENIGN REPRO.
+
+DEFENDER FRONTIER
+14. Vault MCP Firewall =E2=80=94 https://github.com/vaultmcp/vault =E2=80=
+=94 inline
+tool-response firewall with deterministic decoder, heuristics,
+embedding and LLM layers. Closest: Privately tool-output containment.
+SANDBOX.
+15. mcpm runtime guard =E2=80=94 https://github.com/getmcpm/cli =E2=80=94 i=
+nstall-time
+plus live MCP guard; pins tool definitions against rug-pulls and scans
+live traffic for injection/exfiltration. Closest: Privately gateway.
+SANDBOX.
+16. MemSentry =E2=80=94 https://arxiv.org/abs/2609.08747 =E2=80=94 determin=
+istic
+Accept/Review/Quarantine memory-write framework using source trust,
+semantic risk, dependency-DAG attack radius, access risk and signed
+security-state delta. Closest: QP + ProjectMemory. BUILD PROBE.
+17. ClawGuard =E2=80=94 https://github.com/Claw-Guard/ClawGuard =E2=80=94 t=
+ask-derived
+user-confirmed rules enforced at every tool-call boundary across
+web/local, MCP and skill injection channels. Closest: QP. BAKEOFF.
+
+AUTONOMOUS MEDIA
+18. Code2MP4 =E2=80=94 https://github.com/code2mp4/code2mp4 =E2=80=94 agent=
+-native
+brief=E2=86=92script=E2=86=92storyboard=E2=86=92editable source=E2=86=92rev=
+iew=E2=86=92deterministic MP4
+workflow for coding agents. Closest: OpenX Flow. SANDBOX.
+19. html-video =E2=80=94 https://github.com/nexu-io/html-video =E2=80=94 lo=
+cal
+HTML/CSS/data=E2=86=92MP4 for coding agents with templates and optional
+soundtrack; no per-render fees. Closest: OpenMontage/OpenX.
+ADOPT/SANDBOX.
+20. video-shotcraft =E2=80=94
+https://github.com/Vincentwei1021/video-shotcraft =E2=80=94 Claude/Codex
+motion-design skill with 150+ shot recipes, hundreds of motion
+previews, Remotion, real page captures and sound design; related
+talkcraft locks motion to narration. Closest: Higgsfield skills.
+SANDBOX.
+
+ADDITIONAL HIGH-RANKED MEDIA NEIGHBOURS FOR NEXT REGISTRY PASS
+- llm-video-maker =E2=80=94 https://github.com/GoldLegendW80/llm-video-make=
+r =E2=80=94
+one prompt=E2=86=92script/design/voice/captions/music/MP4, installable agen=
+t
+skills, editable intermediate state.
+- script-to-video-production-agent =E2=80=94
+https://github.com/jackterror/script-to-video-production-agent =E2=80=94
+narration-locked scenes, reviewable visual direction, provider queues,
+resumable state, approval-aware paid generation.
+- Pilipili AutoVideo =E2=80=94 https://github.com/XucroYuri/AutoVideo =E2=
+=80=94 local
+one-sentence=E2=86=92script=E2=86=92keyframes=E2=86=92TTS=E2=86=92video=E2=
+=86=92FFmpeg=E2=86=92subtitles plus CapCut
+draft.
+- Agentino script-to-video =E2=80=94
+https://github.com/agentino-os/agentino-pipeline-script-to-video =E2=80=94
+composable storyboard/image/TTS/slideshow/caption skill chain.
+- HeyGen Skills =E2=80=94 https://github.com/heygen-com/skills =E2=80=94
+agent-installable avatar/video production skills using HeyGen's v3
+Video Agent pipeline.
+
+3 TOP 5 DEEP DIVES
+
+A. dynamic-mcp =E2=80=94 The important capability delta is mutable tool
+topology. An agent/operator can create or alter tools while the
+session is alive. Privately cannot authorize merely against tool
+name/schema at task start. It needs capability fingerprints plus a
+=CE=94capability event whenever definitions or implementation versions
+change. 6m inference: dynamic registries become normal. 18m: agents
+synthesize composite tools routinely. 36m: capability graph changes
+continuously. Experiment: approve a harmless tool, mutate its
+reachable effect in isolated Docker, verify QP invalidates the prior
+grant before invocation. Falsifier: tool lifecycle can be fully
+constrained upstream without runtime authority recomputation.
+
+B. Aiden =E2=80=94 Particularly close to a practical Privately control plan=
+e:
+evidence-required subagents, trust levels, spend approvals,
+approval-gated MCP, redacted/untrusted outputs, budgets, browser
+guardrails, artifacts/provenance and durable recovery already coexist.
+Rather than copy the full runtime, extract its control-surface
+patterns. Experiment: compare Aiden's approval/tool policy to QP
+grants over identical benign browser+MCP tasks. Falsifier: its
+controls are mostly UX rather than enforceable boundaries.
+
+C. MemSentry =E2=80=94 Most interesting memory defence because it does not
+reduce memory admission to prompt-injection classification. The signed
+security-state delta and dependency-DAG attack radius resemble
+QP-style consequence reasoning. Experiment: translate 50 memory writes
+into QP propositions and compare Accept/Review/Quarantine
+disagreements. Falsifier: semantic classifier dominates results and
+structural features add little.
+
+D. PMPA =E2=80=94 Demonstrates that harness memory is a delayed execution
+channel. The relevant boundary is untrusted observation=E2=86=92persistent
+state, not merely observation=E2=86=92immediate tool call. Privately should
+assign provenance and authority to memory writes and reevaluate at
+retrieval. Experiment only with synthetic documents and isolated
+throwaway agents; measure cross-session influence and whether
+write-time QP catches it. Falsifier: modern harnesses default to
+non-persistent or confirmation-gated memory writes.
+
+E. Code2MP4/html-video/video-shotcraft cluster =E2=80=94 Agent media is
+converging on code-like deterministic editable intermediate
+representations rather than opaque one-shot generation. This is
+excellent for Privately content because the agent can critique/edit
+exact scenes cheaply without regenerating expensive video. Experiment:
+one scanner finding=E2=86=9260s explainer across Code2MP4, html-video and
+video-shotcraft; compare total cost, human edits, render time and
+retention-oriented editability.
+
+4 AGENT FRAMEWORK / MONID-LIKE FRONTIER
+Rank: dynamic-mcp > Aiden > mcpagent > SwarmClaw > KlaatCode >
+Mnemosyne. Strongest mechanism change is live capability mutation;
+strongest practical control-plane reference is Aiden.
+
+5 JEV / DECISION / SELF-IMPROVEMENT
+Rank: vLLM Semantic Router/Themis > LLaVA-VLA action expert > Reliable
+Self-Evolving Agents graph. Themis is the closest new operational JEV
+neighbour because signals become explicit inspectable decisions and
+algorithm selection rather than free-form generative routing.
+
+6 ATTACKER FRONTIER
+Rank: PMPA > Utility Under Attack > MCP-ITP > Authorization-bypass
+implications from the new authorization review. Canonical
+attack-logbook deltas: persistent
+external-source=E2=86=92memory=E2=86=92future-action; factual memory poison=
+ing that
+evades content screening; implicit poisoned-tool metadata=E2=86=92legitimat=
+e
+privileged tool; multi-hop delegation/aggregation authorization
+bypass.
+
+7 DEFENDER FRONTIER
+Rank: MemSentry > ClawGuard > mcpm > Vault. Key split: memory-write
+structural reasoning vs deterministic tool-call boundary enforcement
+vs MCP traffic mediation vs tool-output classification.
+
+8 AUTONOMOUS VIDEO / MEDIA
+Top current unseen/adjacent set: Code2MP4, html-video,
+video-shotcraft, llm-video-maker, script-to-video-production-agent,
+Pilipili AutoVideo, Agentino pipeline, HeyGen skills. The useful
+direction is deterministic editable scene source + agent skill +
+cheap/local render, using generative video only where it materially
+improves a shot.
+
+9 COMMERCIAL SHOCK DERIVATIVES
+No commercial announcement outranked the OSS derivatives in this pass.
+The more actionable trend is vendors publishing installable agent
+skills (HeyGen) and coding agents becoming media orchestration hosts.
+
+10 WEIRD ALPHA
+- LLaVA-VLA: action expert / compact embodied control as JEV neighbour.
+- claude-blender =E2=80=94 https://github.com/minihellboy/claude-blender =
+=E2=80=94 MCP
+v2 Blender control with visual self-critique, checkpoints, local
+text/image-to-3D and animation rendering. Potential autonomous
+diagram/3D explainer primitive.
+- AIPOCH Open-Science =E2=80=94 https://github.com/aipoch/open-science =E2=
+=80=94
+local-first scientific agent workbench with immutable provenance,
+notebooks, specialist delegation, review gates and portable research
+packages; interesting substrate for Privately's experimental lab.
+
+11 ATTACK LOGBOOK DELTAS
+ATK-PMPA: external benign source=E2=86=92agent observation=E2=86=92persiste=
+nt memory
+write=E2=86=92cross-session retrieval=E2=86=92malicious action/privacy leak=
+age. Status
+RECENT.
+ATK-FACTMEM: false assertion=E2=86=92memory admission=E2=86=92future retrie=
+val/utility
+collapse; content-only screen fails. Status RECENT.
+ATK-ITP: poisoned MCP metadata=E2=86=92context influence=E2=86=92legitimate
+high-authority tool invocation; poisoned tool need never execute.
+Status RECENT/LAB.
+
+12 PRIVATELY LAB =E2=80=94 TOP EXPERIMENTS
+EXP-01 Dynamic Capability Delta: mutate a sandboxed dynamic-mcp tool
+after grant; success =3D QP detects =CE=94reachable authority and invalidat=
+es
+before call.
+EXP-02 Memory Admission Bakeoff: MemSentry vs QP vs simple injection
+classifier on synthetic benign/adversarial writes; metric =3D
+security-state harmful-write recall at fixed benign review rate.
+EXP-03 Cross-Session PMPA: synthetic poisoned document into throwaway
+harness memory; success =3D measure write/retrieval/action chain and
+intercept at earliest deterministic boundary.
+EXP-04 Media Bakeoff: same 60s Privately finding through
+Code2MP4/html-video/video-shotcraft; metric =3D $/finished minute,
+render latency, human corrections, editable-scene fraction.
+EXP-05 Authorization Aggregation: three individually permitted
+low-risk tools whose composition enables a higher-risk effect; success
+=3D graph detects emergent authority before composition executes.
+
+13 BUILD / PROBE OPPORTUNITIES
+Highest value: capability-delta monitor; memory-write
+security-state-delta probe; composition/aggregation authority graph;
+signed external-mediator receipts; deterministic tool-output taint
+boundary.
+
+14 CONTENT OPPORTUNITIES
+Best technical video: =E2=80=9CYour AI Agent Changed Its Own Tools After Yo=
+u
+Approved It.=E2=80=9D Best attack page: persistent memory poisoning as dela=
+yed
+execution. Best OSS benchmark: QP vs MemSentry/ClawGuard/mcpm on one
+normalized benign harness. Best visual: capability graph before/after
+dynamic tool installation.
+
+15 TOP 5 THINGS TO TRY NOW
+1 dynamic-mcp capability mutation lab.
+2 MemSentry structural memory-admission comparison.
+3 Code2MP4/html-video/video-shotcraft media bakeoff.
+4 Aiden control-plane teardown.
+5 vLLM Semantic Router decision-policy experiment.
+
+16 WATCHLIST
+PMPA code/reproductions; MemSentry implementation; dynamic-mcp
+adoption/integrations; vLLM Semantic Router decision plugins;
+Code2MP4/video-shotcraft velocity.
+
+17 SOURCE-YIELD / GRAPH LEDGER
+Highest yield: GitHub dynamic MCP/runtime; GitHub agent security;
+GitHub agent-native media; arXiv September memory security. Medium:
+self-evolution/router. Lower this pass: generic commercial release
+search. Adjacency searches around dynamic tools and agent-native video
+yielded more useful unseen objects than generic 'AI agent' queries.
+Next run should descend authors/orgs/topics from dynamic-mcp, Aiden,
+MemSentry/PMPA citations and Code2MP4/video-shotcraft.
+
+18 MASTER FRONTIER INDEX DELTA
+mcpagent | SwarmClaw | Aiden | KlaatCode | Mnemosyne | dynamic-mcp |
+vLLM Semantic Router/Themis | Reliable Self-Evolving Agents |
+LLaVA-VLA | PMPA | Utility Under Attack | Authorization Architectures
+for Tool-Using AI Agents | MCP-ITP | Vault MCP | mcpm | MemSentry |
+ClawGuard | Code2MP4 | html-video | video-shotcraft.
+
+19 MACHINE-READABLE RUN_STATE JSON
+{"run_local":"2026-09-18T01:52:00+07:00","new_count":20,"changed_count":0,"=
+registry_delta":["mcpagent","SwarmClaw","Aiden","KlaatCode","Mnemosyne","dy=
+namic-mcp","vLLM
+Semantic Router/Themis","Reliable Self-Evolving
+Agents","LLaVA-VLA","PMPA","Utility Under Attack","Authorization
+Architectures for Tool-Using AI Agents","MCP-ITP","Vault
+MCP","mcpm","MemSentry","ClawGuard","Code2MP4","html-video","video-shotcraf=
+t"],"attack_logbook_delta":["ATK-PMPA","ATK-FACTMEM","ATK-ITP"],"watchlist"=
+:["PMPA
+code","MemSentry code","dynamic-mcp","vLLM Semantic
+Router","Code2MP4","video-shotcraft"],"experiment_queue_delta":["EXP-01
+dynamic capability delta","EXP-02 memory admission bakeoff","EXP-03
+cross-session PMPA","EXP-04 media bakeoff","EXP-05 authorization
+aggregation"],"highest_edge":"authorization must bind to a
+continuously changing reachable-capability graph, including persistent
+memory and dynamically created tools"}

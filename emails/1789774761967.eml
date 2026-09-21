@@ -1,0 +1,440 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id Wnf5DpJDLFmj
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 23:39:21 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=XJwZtooZE5+ej8pnK0MUVoZ8GVbYO6WEv7obtVZ7UQyYYqwFpKiBL5tJynMKknA4ekE467STV
+	WyY+GoIcsbTxam77wd3/il7DSs34G4euzjrc78uphXu6rvKmHYnAii3uMz5IBcKFsh5nr2IpIRh
+	0LuEeOxl3swZ4By2uYeXmLiOmLh2FrbO5zGjPa19WkQZGjPh5MS+s7a2adpW4zqgkZXjNKndqbB
+	Qfo7zsVx3kbn/3vQouurHGiLqLVWC2yc8sSDBdR2Pvx9EoOuONsgSEYtVg5SXqdQoZqD9q0pQTD
+	+Jo4KMP/7lTVBunPnrDFP4qIVB/O0ZL+emazYYzJMTIA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789774761; x=1790379561; bh=lrmgOLPe
+	GUDDTFoixAnYQGkbjvz+tGnPVcsPtqVj41c=; b=OdpReazdyfR5toZGHokMYrSMEZMwRWl99rK
+	Oo690++jQk0hVxiHycBSoQWbl2Sryf2ybRtiWNsokYFT70yQbMTObqrb3GTNF+ABsZvkj8JqI0c
+	U0N2VWQbAAtyBx20gKoF79Tn1VjzCZevZhlByxGNh9gfuIfl1rgyiep5BEMzuQtROYvYpHpM46a
+	uWwD3nIPT6dwafFw45WvX6SkvDszhxQzwwe1Giu4Lr0HYr1Nm66nycRBB0+2EpFU1LJHkTHOIsG
+	wbZHAd0/GkKQCSXPSKCdw8j/7MhQle2EgHkst06qD+q++8w8gUaze3x70XOiqAhs55TyfJSF9zb
+	GF43FFQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=F7pHU5Nx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=F7pHU5Nx;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d43ac8d1dso9529707b3.3
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 16:39:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789774761; cv=none;
+        d=google.com; s=arc-20260327;
+        b=HHHRg19rTJMNdeiLq+DNI2j3fDBTCodS53/9ft5cUIDN2rzOOp9OYoeyim6m2uzPzv
+         MRvoJZtLjJtnk7V6pnKgqDLCZg+M0QNM3KKlZRuX0oE1uvAPsnII+lbY3x8oIRWUwnxS
+         t8z8o1g4HcY5/+8KztWNLnFLrPRs6vcAVGeAJI1YfEGSa63b68hWC9irzJ+2Fn7CIjVM
+         Mtn5JHpLRlCENdcX+l7LHKH7fDCcPLRV0xFGWsiNpK5KDQ7Xo45ObXRHbb+KgVk+sjJP
+         elkd/6y7xMbibumXKtMznI/I6wmBVtCJeZFjScgCRPCuwnbEPoq8Z/qjssWvHJ/ZPocA
+         ccng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=lrmgOLPeGUDDTFoixAnYQGkbjvz+tGnPVcsPtqVj41c=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=oXjpAc3IWZc8nQFKJw1PdKkWncVST8ZTQFT7ifkBNUHogiYdiHpPRO9vWd5pxLOEaE
+         r+pCGAa2qhZ4qtQTtGFePggDVsYDAq/DS+VDO31qFB/zucfXcOywLtyG/2W8Ldqj6waB
+         hL1zAY7gKYnugTthcbKDqMS1iNApeWmEfaoQ2h8cJuUflvDJA6KNkxTfY92SD11ayc19
+         ZzFyeiweUXoBpDjsW1+DklQMFAGycK5SWCbhJ+xzFF1t2oU4Ok4xmUXbkOX9mB+0F8zS
+         00inPJIDqVHYSXSOoDucQ97YkuRApeNElmCrtwkLkYMUfh/p9pXJ1F4gYBIGwtg8EvU7
+         7lDQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789774761; x=1790379561; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=lrmgOLPeGUDDTFoixAnYQGkbjvz+tGnPVcsPtqVj41c=;
+        b=F7pHU5Nxwm75tatZhYNdAig5QjDFJYd7Nnjm1vP3TEcqf/5sJdwP0xkxu1yC7ELqj6
+         ceHQxlIGswe+Z/DbXQ8kuegaAulj68EofEVnU9EnnYBokIkVtcIJczuLpbHYFEHXmfcZ
+         whhECBpR1+KOy5waC+qecmL9Aq35WPlF2S/oLtukTgg8MujT+6OZpabqvlsFW2bANYLT
+         6eH4fDYoXzH60eXtC9K9YkRLK+U5FxcRkBnbcBobL6SRgcggryRjJ2Op6AkJ5jHL5EsT
+         hTY0VZgWh62XccXulixVw6rhpqOCuXyyfAbgk/eXY2pQdguBnKtCp4F1u6kcwlxONyH5
+         BMGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789774761; x=1790379561;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=lrmgOLPeGUDDTFoixAnYQGkbjvz+tGnPVcsPtqVj41c=;
+        b=T2NmPLCLWnzLRfOiRMpBnYtSYW8aG5rqFUlcgkTMPYTS96/KVPkekBvMy1dyYr7T4K
+         fbWMkVW5XKvFid1Cr79HosFCPl3NNlxlTEPSHRjmEA1HaLfQAIlEGS72yif9krk4DBUF
+         qWhG7RArFCncwNYzk+4CW6DDIyDpY7Qmdj9UrehkSWMbKMgzk7/fLotv/sTxOOpJMwIT
+         DYo3rF4AMWUMw2XA7FLX1F9U5Gt18QFcxxCte9zXFOdJyzDYiPk60UJN2CwHAoLPVhFf
+         Hv8dF7s/wBpkbfVsFiBI9aLzfiwUxW1csTo0v+AQR+toug0VSUdAHgCK2sOdBZAEs5dk
+         Y1Og==
+X-Gm-Message-State: AFuF++k3+nTWEeeoZr0mNW9LhwfPZ5a/sYvfxcGWE+i59LvSClOXxGN6
+	nG0NZhr4udtDcAIGqnzhJu66Qj3i43vPi8GRck5Y8IDzCXta76J7WyW/ioaEXvif1DDGniGFUbC
+	jNSOtAYSUAB7sAWg+lxoYAvGbCUdZP+D6YQ==
+X-Gm-Gg: AYBFou0CxjXwVaM2iHcjvXO35lQL2B3yU4EViRXWW4jY0KwmmzJjUNW5hdcOZexkda1
+	aD6FyYrL/8YoAhuokBRQgU/KFLtTZo1kPeDvrnK83Z47JgPrMeoHKHUH1QHlyjABWVzRmu9zPCO
+	ER2JCx9iaLhZ/ZMoLtngcPvHsZ6qqoRPHOXvwNyLVJsDqkJD8NXKFogHkKJLwlZnu2C6GAUev3h
+	fMGAhF2UCqh/0qwILwew5h6bM4etrcjMLaAe9p12j2XCnjxGW6Tzm9h0YLmu5ooYvRmuWOEMRW2
+	WnmaZEjo+jk+3iEhlZ/uBdVu/XxfkPTXafMy3wTWzmleCnrohUqgCeydWX7wOAxWpqlzOU0n/0P
+	uNh4q2StcJvvSWeOwgZ1jbEiKRaDXJectlPWewKtb04bkA0b6HAzOAX5kYyAEuR/H/7QCAKY=
+X-Received: by 2002:a05:690c:385:b0:873:5c0f:289 with SMTP id
+ 00721157ae682-89736f23ce9mr14343977b3.51.1789774760839; Fri, 18 Sep 2026
+ 16:39:20 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 18:39:20 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 18 Sep 2026 18:39:20 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 18 Sep 2026 18:39:20 -0500
+X-Gm-Features: AcwNN1Wlwi3I8upw_0DWQyR354H1W83mduzCR6KjPi_myrSSkAcu-9Lns-GOLuk
+Message-ID: <CAPdrGekfbqP_2+192G_VXOgaRp-OUC9WM43iF0GEq6qz3VtfMQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Viral_Formats_=E2=80=94_2026=2D09=2D19_06=3A38_Asia=2FPh?=
+	=?UTF-8?Q?nom=5FPenh_=E2=80=94_8_strong_formats?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET VIRAL FORMAT SCANNER =E2=80=94 MATERIAL FORMAT DELTA
+
+STATE
+Checked prior SENT `Roast.pet Viral Formats =E2=80=94` reports through
+2026-09-19 05:37 and excluded semantic repeats. Fresh evidence checked
+across current TikTok/Reels trend trackers, meme-format reporting,
+sports/gaming mechanics and short-form creator analysis. This run only
+accepts mechanisms with a materially new reusable implementation
+angle.
+
+1) PET DIAGRAM =E2=86=92 PROOF
+Current evidence/source: Lightreel=E2=80=99s Sep 12 TikTok report identifie=
+s
+=E2=80=9Cdiagram-to-proof compilations=E2=80=9D as a reusable format: make =
+a visual
+claim, then beat-sync a montage as evidence; the creator was already
+producing variants.
+https://lightreel.ai/blogs/whats-trending-on-tiktok
+Why viewers watch: the first-frame diagram gives an instantly
+understandable proposition, then viewers stay to see whether the
+evidence proves it.
+Core mechanic: state an absurd visual rule, then prosecute it with
+increasingly convincing photos.
+Pet protagonist: =E2=80=9CScientific positions adopted by Milo when he hear=
+s
+the cheese drawer=E2=80=9D =E2=86=92 diagram of 4 poses =E2=86=92 actual cu=
+stomer photos
+matching each pose.
+Best use: social clip, birthday card QR, mini poster.
+15=E2=80=9345 sec template: 0=E2=80=932s diagram/title; 2=E2=80=935s Rule #=
+1; 5=E2=80=9318s 3=E2=80=935
+beat-synced evidence photos; 18=E2=80=9325s final impossible-looking proof;
+25=E2=80=9330s verdict stamp =E2=80=9CPEER REVIEWED.=E2=80=9D
+Hook: =E2=80=9CA scientific guide to Archie=E2=80=99s sleeping positions.=
+=E2=80=9D
+Assets: 3=E2=80=936 customer photos, simple silhouette/diagram generator,
+arrows/labels, beat-sync editor.
+Complexity: LOW.
+Novelty: materially different from Bad Science Lab: the diagram is the
+hook and customer photos are the proof payload.
+VERDICT: MAKE TEMPLATE NOW.
+
+2) PET LOW-EXPECTATION =E2=86=92 HERO REVEAL
+Current evidence/source: MarketerNews Sep 18 lists the =E2=80=9CBass
+Persuades=E2=80=9D setup/reveal mechanic as RISING (momentum 85): deliberat=
+ely
+dull setup, then snap to a reveal on the beat.
+https://marketernews.co/
+Why viewers watch: expectation compression makes even a modest reveal
+feel disproportionately satisfying/funny.
+Core mechanic: insult/minimize the protagonist first, then reveal an
+absurdly cinematic version.
+Pet protagonist: =E2=80=9CIt=E2=80=99s literally just Dave=E2=80=99s old pu=
+g=E2=80=9D =E2=86=92 beat =E2=86=92 Dave=E2=80=99s
+pug enters like a heavyweight champion / emperor / final boss.
+Best use: birthday reveal, card QR, social clip, framed print upsell.
+15=E2=80=9345 sec template: 0=E2=80=934s intentionally bad phone photo + di=
+smissive
+caption; 4=E2=80=936s pause; 6=E2=80=9315s beat reveal into premium generat=
+ed hero
+shot; 15=E2=80=9325s 3 ridiculous titles/stats; 25=E2=80=9330s snap back to=
+ original
+derpy photo.
+Hook: =E2=80=9CIt=E2=80=99s just a dog. Why did you make me watch this?=E2=
+=80=9D
+Assets: one bad photo, one clean pet cutout, 2=E2=80=933 cinematic
+environments, title-card motion pack.
+Complexity: MEDIUM.
+Novelty: unlike Glow-Up, nothing actually changes about the pet; the
+joke is status inflation through presentation.
+VERDICT: MAKE TEMPLATE NOW.
+
+3) PET FANTASY DRAFT WAR ROOM
+Current evidence/source: a multigenerational fantasy-football draft
+ritual went viral on TikTok this month at nearly 2M views,
+illustrating the entertainment value of formal draft ceremony and
+participant investment.
+https://people.com/friends-fantasy-football-league-becomes-a-family-traditi=
+on-exclusive-12114475
+Why viewers watch: drafts manufacture suspense and status from
+arbitrary rankings; everyone immediately understands =E2=80=9Cwho gets
+picked?=E2=80=9D
+Core mechanic: treat ordinary candidates as elite draft prospects with
+scouting reports, trades and a dramatic selection.
+Pet protagonist: family members draft pets for absurd jobs: =E2=80=9CWith t=
+he
+first pick in the 2026 Household Draft, Mum selects Archie =E2=80=94 Kitche=
+n
+Security.=E2=80=9D His scouting report immediately exposes that he steals
+food.
+Best use: family birthday, multi-pet household, collectible card, social cl=
+ip.
+15=E2=80=9345 sec template: 0=E2=80=933s =E2=80=9C2026 FAMILY PET DRAFT=E2=
+=80=9D; 3=E2=80=938s three prospect
+cards; 8=E2=80=9314s commissioner announces pick; 14=E2=80=9324s scouting m=
+ontage
+(strengths/weaknesses/combine stats); 24=E2=80=9332s owner reaction; 32=E2=
+=80=9338s
+analyst: =E2=80=9Cterrible fit.=E2=80=9D
+Hook: =E2=80=9CWith the first overall pick, the Prior family selects=E2=80=
+=A6=E2=80=9D
+Assets: draft board, pet prospect card, podium/commissioner VO,
+ticker, 3=E2=80=935 stat fields.
+Complexity: MEDIUM.
+Novelty: distinct from trading-card reveal and sports commentary
+because selection uncertainty is the engine.
+VERDICT: MAKE TEMPLATE NOW.
+
+4) PET INTENT VS 3AM REALITY
+Current evidence/source: VidAI=E2=80=99s Sep 14=E2=80=9320 tracker lists =
+=E2=80=9CMe: I=E2=80=99m
+going to bed early. Also me:=E2=80=9D at 94% viral and explicitly recommend=
+s
+split-screen intent vs 3AM reality; it also flags relatable chaos as a
+current trend direction.
+https://vidai.help/content_creator/trending/tiktok/trending-catch_phrases-t=
+iktok-sep-14-sep-20-2026
+Why viewers watch: immediate self-recognition plus contradiction; the
+structure needs almost no exposition.
+Core mechanic: respectable stated intention versus photographic
+evidence of actual behavior.
+Pet protagonist: =E2=80=9CArchie: I=E2=80=99ll behave while you=E2=80=99re =
+out=E2=80=9D / =E2=80=9CAlso Archie
+11 minutes later:=E2=80=9D =E2=86=92 bin explosion.
+Best use: fastest social clip, card insert, meme image, T-shirt front/back.
+15=E2=80=9345 sec template: 0=E2=80=933s clean portrait + respectable promi=
+se; 3=E2=80=935s
+=E2=80=9CALSO ARCHIE:=E2=80=9D card; 5=E2=80=9318s three escalating receipt=
+s; 18=E2=80=9323s innocent
+final portrait; 23=E2=80=9327s =E2=80=9Cwould do it again.=E2=80=9D
+Hook: =E2=80=9C[PET]: I can be trusted alone for 20 minutes.=E2=80=9D
+Assets: one flattering portrait + 2=E2=80=934 incriminating photos,
+split-screen/text template.
+Complexity: LOW.
+Novelty: overlaps contradiction comedy but is a stronger deterministic
+two-state template; use only when source photos create a sharp binary.
+VERDICT: TEST.
+
+5) PET FAMILIAR RITUAL =E2=86=92 IMPOSSIBLE OUTCOME
+Current evidence/source: Lightreel=E2=80=99s Sep 12 report says absurdity i=
+s
+working particularly well inside familiar rituals, citing a fictional
+iPhone unboxing where viewers recognize the procedure before the
+impossible prop appears.
+https://lightreel.ai/blogs/whats-trending-on-tiktok
+Why viewers watch: the ritual tells the viewer exactly what should
+happen, so the violation lands without explanation.
+Core mechanic: reproduce a culturally familiar procedure perfectly,
+then substitute the pet where the expected object/result should be.
+Pet protagonist: luxury tech unboxing =E2=86=92 tissue paper =E2=86=92 Arch=
+ie sitting
+in the box; restaurant cloche =E2=86=92 Archie; estate-agent house tour =E2=
+=86=92 =E2=80=9Cand
+this room belongs to the landlord=E2=80=9D =E2=86=92 Archie.
+Best use: birthday gift reveal, product packaging, social clip.
+15=E2=80=9345 sec template: 0=E2=80=937s dead-serious ritual setup; 7=E2=80=
+=9312s anticipation
+closeups; 12=E2=80=9315s reveal pet in impossible role; 15=E2=80=9325s cont=
+inue the
+ritual without acknowledging absurdity; 25=E2=80=9330s specification card.
+Hook: =E2=80=9CWe finally got the 2027 model.=E2=80=9D
+Assets: 4=E2=80=936 generic original ritual scenes, pet cutout, product/spe=
+c
+card generator.
+Complexity: MEDIUM.
+Novelty: unlike Fake Advert, the humor depends on preserving a known
+procedure rather than pitching the pet.
+VERDICT: MAKE TEMPLATE NOW.
+
+6) PET NPC IN SOMEONE ELSE=E2=80=99S STORY
+Current evidence/source: current Sep TikTok hashtag analysis calls POV
+a major storytelling machine (952.8M views / 124,637 videos in its
+dataset) and explicitly suggests =E2=80=9Cyou=E2=80=99re the NPC in someone=
+ else=E2=80=99s
+story=E2=80=9D as a comedy angle.
+https://discotok.com/en/blog/top-tiktok-hashtags-in-indonesia-september-202=
+6-20260905
+Why viewers watch: background behavior becomes funnier when reframed
+as a scripted game loop viewers recognize.
+Core mechanic: the protagonist has 3 fixed lines/actions and repeats
+them regardless of what the human player does.
+Pet protagonist: approach Archie =E2=86=92 [A] PET [B] OFFER SOCK [C] ASK T=
+O
+MOVE; every branch eventually returns =E2=80=9CArchie stares at fridge.=E2=
+=80=9D
+Best use: Pog.pet interactive QR, social clip, gamer gift, collectible card=
+.
+15=E2=80=9345 sec template: 0=E2=80=934s game HUD + =E2=80=9CApproach Archi=
+e=E2=80=9D; 4=E2=80=9310s choose
+dialogue option; 10=E2=80=9317s pet response; 17=E2=80=9325s second branch;=
+ 25=E2=80=9332s
+hidden option unlocked from private lore; 32=E2=80=9338s loop/reset.
+Hook: =E2=80=9CPOV: you found the household=E2=80=99s least useful NPC.=E2=
+=80=9D
+Assets: dialogue HUD, 3 behavioral rules, 3 pet reaction states, UI sounds.
+Complexity: MEDIUM for video; HIGH for interactive version.
+Novelty: improves the earlier generic NPC Dialogue Tree by making the
+pet deliberately a background NPC inside the OWNER=E2=80=99S story and
+exploiting repeated canned behavior; only worth re-reporting because
+the implementation angle is substantially cleaner.
+VERDICT: TEST.
+
+7) PET GEN-Z MARKETING INTERN
+Current evidence/source: Gelato=E2=80=99s September 2026 TikTok roundup
+identifies the =E2=80=9Cwe let our Gen Z marketing intern edit the video=E2=
+=80=9D
+format: mock ads with slang, abrupt cuts and deliberately excessive
+trend-native editing.
+https://www.gelato.com/blog/tiktok-trends-right-now
+Why viewers watch: professional brand grammar gets vandalized by
+hyper-online editing; every cut can contain a new joke.
+Core mechanic: present a normal product/person, then let an
+incompetent hyper-online =E2=80=9Cmarketer=E2=80=9D over-package it.
+Pet protagonist: =E2=80=9CWe let Archie market himself for adoption=E2=80=
+=9D =E2=86=92 hard
+zooms, =E2=80=9CCEO=E2=80=9D, =E2=80=9Cbro is NOT house trained=E2=80=9D, f=
+ake 5-star badge,
+inexplicable graph, pet interrupts its own CTA.
+Best use: social clip, adoption anniversary, birthday, Roast.pet house
+ad format.
+15=E2=80=9345 sec template: 0=E2=80=933s sober =E2=80=9CMeet Archie=E2=80=
+=9D; 3=E2=80=9318s 6=E2=80=9310 abrupt
+micro-cuts with contradictory slang labels; 18=E2=80=9325s fake testimonial=
+;
+25=E2=80=9330s CTA destroyed by pet lore; 30=E2=80=9333s logo sting.
+Hook: =E2=80=9CWe let the dog write his own marketing campaign.=E2=80=9D
+Assets: caption animation library, zoom/SFX pack, pet facts, fake badges/gr=
+aphs.
+Complexity: LOW=E2=80=93MEDIUM.
+Novelty: new meta-format: Roast.pet can market the customer=E2=80=99s pet
+while simultaneously parodying the medium carrying the ad.
+VERDICT: TEST.
+
+8) PET FICTIONAL POLITICAL PARTY / MANIFESTO
+Current evidence/source: the Cockroach Janta Party meme spread across
+Instagram Reels/X/meme pages by inviting people into a fictional
+political party and assigning leadership eligibility based on
+ridiculous skills.
+https://www.indiatimes.com/trending/cockroach-janta-party-memes-take-over-i=
+nstagram-as-gen-z-turns-political-frustration-into-chaotic-internet-comedy-=
+/articleshow/131216450.html
+Why viewers watch: a formal institution gives endless ordinary flaws
+new titles, offices and factional drama.
+Core mechanic: turn bad habits into campaign promises and
+qualifications for office.
+Pet protagonist: =E2=80=9CARCHIE FOR HOUSEHOLD PRESIDENT =E2=80=94 More chi=
+cken. Fewer
+vacuums. Sofa sovereignty.=E2=80=9D Cabinet: owner =3D unpaid staff; cat =
+=3D
+opposition leader.
+Best use: poster/T-shirt, election-style birthday card, social clip,
+multi-pet household series.
+15=E2=80=9345 sec template: 0=E2=80=934s campaign poster; 4=E2=80=9312s thr=
+ee manifesto
+promises; 12=E2=80=9320s attack ad using real incident photo; 20=E2=80=9327=
+s polling
+graphic; 27=E2=80=9334s victory speech; 34=E2=80=9338s corruption scandal s=
+ting.
+Hook: =E2=80=9CA vote for Archie is a vote against the vacuum.=E2=80=9D
+Assets: campaign-poster system, podium, poll graphics, manifesto
+generator, optional household opponent photos.
+Complexity: LOW=E2=80=93MEDIUM.
+Novelty: Micro-Nation created a government/world; this is specifically
+competitive election/campaign grammar, attack ads and manifesto
+comedy. Strong enough as a separate mechanism.
+VERDICT: TEST.
+
+TOP 3 FORMATS TO TEMPLATE THIS HOUR
+1. PET DIAGRAM =E2=86=92 PROOF =E2=80=94 lowest production burden while pri=
+vate photos
+make the punchline customer-specific.
+2. PET FANTASY DRAFT WAR ROOM =E2=80=94 strongest physical/digital collecti=
+ble
+crossover and naturally supports multiple pets/family members.
+3. PET FAMILIAR RITUAL =E2=86=92 IMPOSSIBLE OUTCOME =E2=80=94 broadest reus=
+able
+generator: unboxing, restaurant reveal, property tour, graduation,
+medical scan, award handoff.
+
+EASIEST TO AUTOMATE END-TO-END
+PET DIAGRAM =E2=86=92 PROOF. Inputs can be only pet name + 4 photos + one
+behavioral trait; vision can classify poses/expressions, LLM writes
+the rule labels, deterministic motion template assembles the clip.
+
+HIGHEST SHAREABILITY POTENTIAL
+PET FANTASY DRAFT WAR ROOM. It creates explicit family rankings and
+invites arguments (=E2=80=9Cyou drafted Archie over Luna?=E2=80=9D), which =
+gives
+recipients a reason to send it privately. This aligns with 2026
+Instagram ranking emphasis on private Sends over simple Likes:
+https://sproutsocial.com/insights/instagram-algorithm/
+
+ONE WEIRD FORMAT PERSONALIZED PET GIFTS APPEAR NOT TO BE USING
+PET DIAGRAM =E2=86=92 PROOF as a physical =E2=80=9Cscientific field guide.=
+=E2=80=9D Print a
+pseudo-academic plate of the pet=E2=80=99s canonical poses/behaviors on a c=
+ard
+or poster; scanning each diagram opens the corresponding
+real/photo-generated evidence clip. This makes the physical object a
+comedy index into the pet=E2=80=99s private lore rather than merely another
+portrait.
+
+PRODUCT/ONBOARDING DELTA
+Add `canonical_pose`, `respectable_claim`, `contradicting_photo`,
+`draft_role`, `draft_strength`, `draft_weakness`, `household_rival`,
+and `familiar_ritual`. Most importantly, ask: =E2=80=9CUpload 3 photos that
+prove something weird they always do.=E2=80=9D That single prompt directly
+feeds Diagram=E2=86=92Proof, Intent-vs-Reality, Draft scouting, NPC behavio=
+r
+and campaign attack ads.
+
+SOURCES CHECKED
+Lightreel Sep 12 TikTok weekly report:
+https://lightreel.ai/blogs/whats-trending-on-tiktok
+MarketerNews Sep 18 daily trends: https://marketernews.co/
+VidAI Sep 14=E2=80=9320 TikTok catchphrases:
+https://vidai.help/content_creator/trending/tiktok/trending-catch_phrases-t=
+iktok-sep-14-sep-20-2026
+Gelato September TikTok roundup:
+https://www.gelato.com/blog/tiktok-trends-right-now
+DiscoTok September format analysis:
+https://discotok.com/en/blog/top-tiktok-hashtags-in-indonesia-september-202=
+6-20260905
+People fantasy-draft viral TikTok report:
+https://people.com/friends-fantasy-football-league-becomes-a-family-traditi=
+on-exclusive-12114475
+Indiatimes fictional-party meme report:
+https://www.indiatimes.com/trending/cockroach-janta-party-memes-take-over-i=
+nstagram-as-gen-z-turns-political-frustration-into-chaotic-internet-comedy-=
+/articleshow/131216450.html
+Sprout Social 2026 Instagram ranking analysis:
+https://sproutsocial.com/insights/instagram-algorithm/

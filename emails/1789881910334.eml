@@ -1,0 +1,573 @@
+Received: from mail-yx2-x0e.google.com (2607:f8b0:4864:41::e)
+        by cloudflare-email.net (cloudflare) id i7Dj84HNNJgW
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 05:25:09 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=OtWd09jPzeVL4E0rQfn4E3YW/dRiSpGN+IAGK78jmga+DPS9YWbw6PvzwblwtSA8HlVtWrow/
+	9LRAdLVO31NR+Tcup29wVWtj/OBSScH4Z2Et5gg3jw8qPOE5txvcpkk3ixUd2pWVDUZB7in7WzS
+	81wSSBy8koEFKweKtVWZCvlyYt2o5saumnRixnriXkXWyi6gxjE1vpnArHZ2R5HCRAF8G33iVhp
+	rHBb/WWzLNNm0RrbfnT2dJiikLnsLOqNnynyXhsRr5Nda5xmx2z5dwHe22rlIyn6SgDs6aao3fH
+	ZfUL+S4gFDSqDtdyW/aDLOTfrD+rlhCDEFV4wCGnE8eg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789881910; x=1790486710; bh=1n57cb1x
+	ACYanN6G2ilTGtRAlIgWGOXsJjKz731PUrs=; b=DRs/SxT0IvsFGhVy0QL866Vd2UZvXr32Nfo
+	MFnG1h+u/DHH7qvIl9ngeB54gUil26nE0BeQ/7pE9pdu805JxEu2l5M4vKizWoUDdBYpZf2qUAW
+	Cex3tpR4acVYjF7KU62wFj77w8n54BveZvwF2wB8fR5+GMCovMFkzsQXJW3/iMfbT6Idf6fD1ZT
+	5qIm1iL/eWM6ctw19iKlhwWgtJIalrWdhWAgQZ64bWdGej3J6VdqvRtnYsrwDg67PiolIOAZAAC
+	cEPqo9hv1BpX5cCpx23YqsWkcZfyc9oNPk4dxLsOKkmeCWQI3kZkrlPdj8UE5GEFqtACpBFj7wQ
+	Tb/K9OA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=JBfUYc3z;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::e; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0e.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=JBfUYc3z;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0e.google.com) smtp.helo=mail-yx2-x0e.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::e as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::e"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0e.google.com with SMTP id 00721157ae682-895fd505832so13885687b3.3
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 22:25:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789881909; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ITWrQW2mw7x0FpVJUgxTy8lA93hpZ1kRrL7wL26xc2nc2TlEKH6t63ouchum85AE8+
+         FqaH6lYNqT9ADPFDSPVC+GUCcKrc5tk+keoolwpT0FpQQmX5niF3wFAXXB6Dy0n//sVB
+         1G5r3uuYyp87slRMccu175WvdU34FtVc+u0iaEAhl7XAUJjTo13I/RnHu9UYuFGrD688
+         KeUd0Q8EYTQXntQsFqlT62F6Wzm9ec+0Woo/MSU7WkYuxmy2LXJRx45qTB3VZ6OvYmA5
+         ySIH89d4QFT2ToGY1dHBns93xkvJDfkiORtqDKTFzXGuVnnYskkPfkGFIklgz3GrRqI6
+         klPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=1n57cb1xACYanN6G2ilTGtRAlIgWGOXsJjKz731PUrs=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=UyBmosn1J2oM7u2TZXvNVMZlnQ/s+qc8Es29XhHKdLqjeJT2t/6BZGQFbkZu6QGVyv
+         FDQ1oHVlAJsKDalc/rIoZ5ObY/F7SdEPCE4qjw82yOoyikOQwfd+Ky4TmMlK6mBJ1xK0
+         al/5O6CGWFcd4m/KzoR10HUr8nYXKwkVOcllKoP5jdJRUOBsBSGuEuECUl/wdU93qsxJ
+         T/nbSI1/8ynuX15H4k4B2rsuAfxebs6DnACSHNVUBlnVLOb1MRgIldqhrZmJrEtIituF
+         QXwtV43ZstpNaSogzH41xWkwxfHS7NEkiDwId+OsKnu8xaSLyboymhgGECALqxBAgakE
+         y9gg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789881909; x=1790486709; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=1n57cb1xACYanN6G2ilTGtRAlIgWGOXsJjKz731PUrs=;
+        b=JBfUYc3z9qwpqhgr+psAejiAx4NBq5OSy6VLpE7R9f4RnmfzOpzoVOdYvd321VcFfc
+         ZwzfV2HtZivliLU4TD3KVBFLa/HhQTfcA3+8ikNkxQyOP6XDkn7IeoGJQlGj5EL1mq3p
+         7G/yos3dHIFt0SfGW7b/jP2Zcp9vIUpxqOONrFjS2DEg1pZUyGhXepsqFU2cW6UOjTkK
+         mqbybgB+LjaOx7Ekw9IebZF6XnwkQhOT9LlgY2H1PnQaXoMf4gcEjsqjr4Ns7TgDYNAb
+         HUffLt6uRqRb5+Gn8oyz3zQax29EAUXgkW/Jkq3qdEpHMGz5VwGLMLGhQ0JdY8JIbKrL
+         Y0MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789881909; x=1790486709;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=1n57cb1xACYanN6G2ilTGtRAlIgWGOXsJjKz731PUrs=;
+        b=NPn3Lr/u3koRfinbg+cJWsIKuvGjM2sm/dZkutnrLCK2z6bqwbORvFvNi252XY0f4F
+         lIxv+ZT6pYfD6kYbIXZHmmkLUy0xZp6XQXFM4TzOPUtoBH/gw0SoKIbZ6Q8uD7FsTwcl
+         +FvqbpUKjHXdb8VAGxdntOdzc7EGRQeOBZ103lkt+hGpiCWy3Hat0PwlZ5dRi0uDSNNQ
+         rZ8ddCG7FkyErVeu1SzGHkhUPPDwAXfJKCGW04chlxhmUM2LLmymESjz0q6cI9haAl/T
+         EtwYYrGUTigpJk57brl1PiRkGmsD3txeyi+OfgH7O21Emc0OXumRr9PyaOg9r9FRp1fX
+         2l6A==
+X-Gm-Message-State: AFuF++ljRguTSwLAksRMx2vMZfuYP5eDgeWq4AJIlw5iKbs65We8qXtq
+	GpgompxFb3LtIKRF0v/qaFhbr3qeLf06xkh4UmvL5NbxXLI3EVXn4C7O6PITS6o4EzqksDGGgfg
+	bXBPtFbZPxly0OPYXS2sWec19OAm4PBuDzA==
+X-Gm-Gg: AYBFou2gywEum03p/U/Q+ZtqOMqtn8Qzmlc0OqUDPaDC2MyXYNjTGi/vuYHeXBssqQg
+	ytyQ8RsiLPpzaHBlPcZMpsDw2FtRz+1VriQSmUItmony1w+oCM5KbRPVo20z1FnLW9nwaF+ZOy3
+	6DIp2z1AYHDLtxMYAYjQpazC0ehbyEuRcaW40Ji3XcO6PQQfcUtgAhvFLvMYlSQZoNvES2pz37b
+	kE6j9TT6DUSIhnEvqkOjp8Z9rmz0dcyLamjcOU6Cgyv7XcU9vx4y++aadzsDrxShKZDIFwxdM9S
+	cWEu7u36aD/oGTvlhtIdYxMHfgfo0GtXSxBIeaWvB58gqRh4ZhQpMDTaxCOLkzGHwnI9GrzzIJe
+	AAqrAdATpGSv7XhOybc+YfQJyFzcEx60s21N3nQHfMG+VCIkW0wTdlqhJhbzGRXs71LfVTFw=
+X-Received: by 2002:a05:690c:a7d8:b0:873:5bb2:6bff with SMTP id
+ 00721157ae682-89734cb7f31mr18265617b3.41.1789881909210; Sat, 19 Sep 2026
+ 22:25:09 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 00:25:08 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 00:25:08 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 00:25:08 -0500
+X-Gm-Features: AcwNN1UTo1hHdhBsvuaI4JDRzKx8cOqA28rDaMWWpRmBINd3QoHy0TuRmZX3fcI
+Message-ID: <CAPdrGe=oRDG19Vr6TPYVXO-jw3+Kz8QytsLRhm7pLO_rP-z1rg@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D20_12=3A2?=
+	=?UTF-8?Q?4_Asia=2FPhnom=5FPenh_=E2=80=94_4_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="0000000000006371f4065be35bf6"
+
+--0000000000006371f4065be35bf6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 4 useful new finds
+
+This pass screened 25+ plausible projects/results across GitHub, Hugging
+Face, pet re-identification, browser-native video, POD mockups, Etsy
+tooling and adjacent technical projects. Prior Roast.pet scanner
+discoveries were excluded. Four survived the no-padding bar.
+1) Open Noodle Gallery Pet Recognition =E2=80=94 REUSE NOW / FORK THE MODEL
+
+URL: https://opennoodle.de/features/pet-recognition/ and
+https://github.com/open-noodle/gallery
+Creator: Open Noodle
+Activity: v5.6.0 release candidate published September 5, 2026; Gallery
+repo currently ~374 stars.
+License: Pet recognition weights Apache-2.0; Gallery application AGPL-3.0.
+
+This is the strongest find of the run. Open Noodle has just released three
+pet re-identification models specifically for distinguishing individual
+dogs and cats. They are frozen DINOv2 backbones plus a trained linear
+projection producing a 512-dimensional normalized embedding. Crucially, the
+weights are openly published under Apache-2.0 and the complete
+training/evaluation/ONNX-export pipeline is committed.
+
+Training data is commercially much cleaner than several earlier
+pet-identity finds: Dogs-World provides 313,688 photos of 126,550
+individual dogs under CC0; Cat Individual Images provides 13,536 photos
+under CC BY. DogFaceNet is held out entirely for evaluation. The split is
+by identity, not image.
+
+Published unseen-identity Top-1 results:
+
+   - small (~89 MB, DINOv2-S): dogs 0.535, cats 0.913
+   - base (~348 MB, DINOv2-B): dogs 0.612, cats 0.916
+   - large (~1.2 GB, DINOv2-L): dogs 0.672, cats 0.915
+
+The authors also publish the less flattering full-split result after
+discovering an earlier sampled evaluation was optimistic. This is unusually
+good evidence hygiene.
+
+Roast.pet step solved: a commercially usable candidate for the pet-identity
+embedding in our identity firewall. Instead of inventing/training an
+embedding now, canonical customer photos can be embedded once and every
+generated reaction compared by cosine distance.
+
+Install/API route: use the published open-noodle pet-recognition weights /
+ONNX path from Gallery rather than adopting the AGPL application.
+Dependencies/hardware: DINOv2 backbone; model size determines compute.
+Small is the obvious first benchmark.
+Evidence: full held-out identity evaluation; open weights; production
+integration in Gallery; RF-DETR pet detection underneath reportedly raised
+species recall from 84.8% to 98.1%.
+Code/work replaced: potentially weeks of pet metric-learning/data
+sourcing/evaluation work and removes the licensing uncertainty around
+DogFLW/PetFace-derived production models.
+Integration difficulty: MEDIUM.
+Maintenance risk: LOW-MEDIUM; pin weights and embedding version because
+embedding spaces are incompatible across model changes.
+Exact experiment: 30 customer-style pets =C3=97 3 source photos; generate 5
+acceptable transformations and 5 deliberate identity-drift transformations
+each. Compare small/base embeddings against our geometry and nose-biometric
+candidates. Measure ROC/AUC and choose an ACCEPT / REVIEW / REJECT
+threshold. Also test whether multi-photo centroid enrollment materially
+improves dog accuracy.
+Verdict: REUSE NOW / FORK MODEL PIPELINE.
+2) LocalCut Studio =E2=80=94 COPY/REUSE THE BROWSER MEDIA ENGINE
+
+URL: https://github.com/shenghaoc/localcut
+Creator: shenghaoc
+Activity: 163 commits; crawled current September 20, 2026; 1 star / 0 forks=
+.
+License: MIT.
+
+This is exactly the weird-builder profile we want: essentially no
+popularity, but an enormous amount of solved browser-media plumbing.
+LocalCut is a complete browser-native NLE using WebCodecs, WebGPU, workers,
+SharedArrayBuffer and Mediabunny. It supports multi-track
+video/audio/images, titles, captions, transforms, keyframes, effects, audio
+mixing, H.264/MP4, VP9/WebM and AV1/WebM export, IndexedDB/OPFS persistence
+and offline PWA operation.
+
+The important part is engineering maturity rather than editor UI: 2,504
+passing Node tests across 225 files plus real-browser and Playwright
+testing; explicit capability tiers; runtime codec/GPU probes; deterministic
+VideoFrame cleanup; worker-owned decode/encode/pixel work; and graceful
+Canvas2D/WebCodecs fallbacks.
+
+Roast.pet step solved: almost every ugly browser-native composition/export
+detail behind interactive roast preview and local rendering.
+Install/demo route: clone repo, install with its documented package
+tooling, run dev; live deployment is linked from README.
+Dependencies/hardware: modern browser; best path requires WebGPU +
+WebCodecs + OffscreenCanvas + SharedArrayBuffer/cross-origin isolation.
+Reduced WebCodecs/Canvas paths exist.
+Evidence: live deployment, 163 commits, extensive tests and explicit
+supported/experimental boundaries.
+Code/work replaced: potentially thousands of lines of WebCodecs/WebGPU
+worker, muxing, capability-detection, project-storage and caption/export
+infrastructure.
+Integration difficulty: MEDIUM if extracting engine pieces; HIGH if
+adopting editor wholesale.
+Maintenance risk: MEDIUM. Desktop-first; mobile Safari is not the target
+full-performance path.
+Exact experiment: reproduce one canonical 15-second Roast.pet clip using
+only LocalCut primitives: background, canonical pet PNG/animation, TTS,
+captions, sting, title card. Export 9:16 H.264 and WebM in Chrome on a weak
+laptop. Record render time, memory and exact unsupported features. Do not
+integrate UI.
+Verdict: COPY ENGINE MECHANISMS / BENCHMARK NOW.
+3) Velocut =E2=80=94 WATCH / COPY THE AGENT-EDITING PROTOCOL
+
+URL: https://github.com/open-ribbi/velocut
+Creator: Ribbi / open-ribbi
+Activity: release 0.0.2 current; ~450 stars; active 2026 project.
+License: MIT; bundled third-party assets retain their own licenses.
+
+Velocut overlaps LocalCut as a browser renderer/editor, but its unique
+Roast.pet value is different: humans and agents modify the exact same
+project through a typed JSON command protocol with revision checks,
+branching history and undo. It exposes separate provider, protocol,
+timeline/core, render, scene, runtime, MCP and CLI packages. It also
+persists asynchronous video-generation jobs and lets generated candidates
+be previewed/adopted into timeline slots without resubmitting after reload.
+
+Roast.pet step solved: the internal representation for agent-directed roast
+assembly and generation experiments. Instead of hard-coding =E2=80=98make a=
+ roast
+video=E2=80=99 as a monolithic function, a roast can be a versioned documen=
+t
+receiving deterministic commands from workers/agents.
+Install: npx @velocut/cli@0.0.2 studio; SDK packages are independently
+installable.
+Dependencies/hardware: Node 22.6+; full editor currently Chrome/Edge with
+WebGPU/WebCodecs. Safari/Firefox unsupported for full editor.
+Evidence: release packages, SDKs, CI across Rust/TS engines and editor
+journeys, documented durable provider-job lifecycle.
+Code/work replaced: command protocol, undo/history, stale-write rejection,
+provider-job lifecycle, project persistence and agent editing bridge.
+Integration difficulty: MEDIUM-HIGH if adopted; LOW to copy protocol ideas.
+Maintenance risk: MEDIUM-HIGH because 0.0.x and fast-moving.
+Exact experiment: represent one Roast.pet performance.json + media assets
+as a Velocut project and have an agent make three changes (=E2=80=98move pu=
+nchline
+400 ms earlier=E2=80=99, =E2=80=98make caption larger=E2=80=99, =E2=80=98re=
+place reaction clip=E2=80=99) through
+commands. Confirm history, deterministic replay and stale-edit rejection.
+Verdict: WATCH / COPY MECHANISM, not a production dependency yet.
+4) automated_mockups =E2=80=94 REUSE NOW FOR SIMPLE POD LISTING IMAGES
+
+URL: https://github.com/CTDave001/automated_mockups
+Creator: CTDave001
+Activity: 29 commits, 73 stars, 19 forks.
+License: MIT.
+
+This small Python package does one boring thing well: batch overlays every
+design onto every product template. Instead of requiring PSD smart objects,
+templates contain a colored placeholder region; the tool detects its
+position/size/rotation once, stores parameters, and then generates all
+combinations in parallel. It supports PNG/JPEG/WebP, nine alignments,
+rotation, CLI and Python API.
+
+Roast.pet step solved: deterministic listing mockups for simple
+card/poster/T-shirt scenes where photorealistic deformation is unnecessary.
+This is a better default than introducing Photoshop automation.
+Install: pip install mockup-generator or clone/install editable.
+Dependencies: Python 3.8+, NumPy, Pillow, scikit-image, OpenCV. CPU.
+Evidence: packaged CLI/API, tests/examples, 73 stars and 19 forks.
+Code/work replaced: template-coordinate tooling, batch loops, image
+compositing and parallelization.
+Integration difficulty: LOW.
+Maintenance risk: LOW.
+Exact experiment: prepare 5 Roast.pet templates (card front, framed card,
+tee front, poster, social listing shot), mark print regions, and run 20
+fake pet designs through all five. Compare generated output against current
+manual mockups for placement accuracy and total runtime.
+Verdict: REUSE NOW for deterministic simple mockups; keep AI lifestyle
+mockups separate.
+Important adjacency: Etsy listing video API trap
+
+A current September 5, 2026 technical report notes that Etsy=E2=80=99s UI n=
+ow
+allows two listing videos, while the public v3 write endpoint still behaves
+as a one-video path. Separately, Etsy=E2=80=99s own GitHub discussion docum=
+ents
+that a video_id already attached to one listing cannot reliably be reused
+on another despite documentation suggesting otherwise. For Roast.pet,
+assume every listing owns its uploaded video and automate one API video per
+listing; treat any second video as a manual/UI-only enhancement until API
+parity changes.
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+
+   1. A pet identity embedding from scratch before benchmarking Open
+   Noodle=E2=80=99s Apache-2.0 DINOv2 pet models.
+   2. Browser codec/GPU capability detection, worker decode/encode and mux
+   plumbing =E2=80=94 LocalCut has already accumulated this pain.
+   3. Generic timeline command/history/undo infrastructure for agent video
+   editing =E2=80=94 Velocut already demonstrates a typed protocol.
+   4. Simple POD mockup placement/batch generation =E2=80=94 automated_mock=
+ups
+   already packages it.
+   5. Etsy logic that assumes listing videos are reusable assets or that
+   the API matches the two-video UI.
+
+Most surprising hobby project
+
+LocalCut. One GitHub star hides 163 commits, 2,500+ tests, WebGPU/WebCodecs
+composition, captions, export, workers, browser capability tiers and
+offline project storage. This is precisely the kind of repo the scanner is
+intended to uncover.
+Fastest integration win
+
+Open Noodle pet-recognition-small. Download the Apache-2.0 weight, embed a
+small canonical/generated pet benchmark and determine in one experiment
+whether it becomes the first layer of Roast.pet=E2=80=99s identity firewall=
+. It
+directly attacks one of our genuinely proprietary-risk problems rather than
+another UI convenience.
+Repo/author worth following
+
+Open Noodle / Gallery. They are actively training and publishing
+pet-specific identity models with clean(er) open-data provenance, full
+evaluation and ONNX export. That is unusually aligned with Roast.pet, and
+the September 2026 release is fresh enough that further pet-CV improvements
+are plausible.
+Architectural implication
+
+The identity firewall can now become much more concrete:
+
+canonical photos =E2=86=92 Open Noodle 512-D embedding centroid + pet geome=
+try +
+optional nose biometric =E2=86=92 generated reaction =E2=86=92 same measure=
+ments =E2=86=92 weighted
+ACCEPT / REVIEW / REJECT.
+
+If the open model works, Roast.pet does not need to become a
+pet-recognition research lab. Our accumulating moat becomes the production
+dataset of which generated transformations humans accepted/rejected for a
+specific real pet, while the underlying embedding model remains replaceable=
+.
+
+--0000000000006371f4065be35bf6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Roast.pet Weird Builder Projects =E2=80=94 4 useful new finds
+<p>This pass screened 25+ plausible projects/results across GitHub, Hugging=
+ Face, pet re-identification, browser-native video, POD mockups, Etsy tooli=
+ng and adjacent technical projects. Prior Roast.pet scanner discoveries wer=
+e excluded. Four survived the no-padding bar.</p>
+
+1) Open Noodle Gallery Pet Recognition =E2=80=94 REUSE NOW / FORK THE MODEL
+<p>URL: <a href=3D"https://opennoodle.de/features/pet-recognition/">https:/=
+/opennoodle.de/features/pet-recognition/</a> and <a href=3D"https://github.=
+com/open-noodle/gallery">https://github.com/open-noodle/gallery</a><br>
+Creator: Open Noodle<br>
+Activity: v5.6.0 release candidate published September 5, 2026; Gallery rep=
+o currently ~374 stars.<br>
+License: Pet recognition weights Apache-2.0; Gallery application AGPL-3.0.<=
+/p>
+<p>This is the strongest find of the run. Open Noodle has just released thr=
+ee pet re-identification models specifically for distinguishing individual =
+dogs and cats. They are frozen DINOv2 backbones plus a trained linear proje=
+ction producing a 512-dimensional normalized embedding. Crucially, the weig=
+hts are openly published under Apache-2.0 and the complete training/evaluat=
+ion/ONNX-export pipeline is committed.</p>
+<p>Training data is commercially much cleaner than several earlier pet-iden=
+tity finds: Dogs-World provides 313,688 photos of 126,550 individual dogs u=
+nder CC0; Cat Individual Images provides 13,536 photos under CC BY. DogFace=
+Net is held out entirely for evaluation. The split is by identity, not imag=
+e.</p>
+<p>Published unseen-identity Top-1 results:</p>
+<ul>
+<li>small (~89 MB, DINOv2-S): dogs 0.535, cats 0.913</li>
+<li>base (~348 MB, DINOv2-B): dogs 0.612, cats 0.916</li>
+<li>large (~1.2 GB, DINOv2-L): dogs 0.672, cats 0.915</li>
+</ul>
+<p>The authors also publish the less flattering full-split result after dis=
+covering an earlier sampled evaluation was optimistic. This is unusually go=
+od evidence hygiene.</p>
+<p>Roast.pet step solved: a commercially usable candidate for the pet-ident=
+ity embedding in our identity firewall. Instead of inventing/training an em=
+bedding now, canonical customer photos can be embedded once and every gener=
+ated reaction compared by cosine distance.</p>
+<p>Install/API route: use the published open-noodle pet-recognition weights=
+ / ONNX path from Gallery rather than adopting the AGPL application.<br>
+Dependencies/hardware: DINOv2 backbone; model size determines compute. Smal=
+l is the obvious first benchmark.<br>
+Evidence: full held-out identity evaluation; open weights; production integ=
+ration in Gallery; RF-DETR pet detection underneath reportedly raised speci=
+es recall from 84.8% to 98.1%.<br>
+Code/work replaced: potentially weeks of pet metric-learning/data sourcing/=
+evaluation work and removes the licensing uncertainty around DogFLW/PetFace=
+-derived production models.<br>
+Integration difficulty: MEDIUM.<br>
+Maintenance risk: LOW-MEDIUM; pin weights and embedding version because emb=
+edding spaces are incompatible across model changes.<br>
+Exact experiment: 30 customer-style pets =C3=97 3 source photos; generate 5=
+ acceptable transformations and 5 deliberate identity-drift transformations=
+ each. Compare small/base embeddings against our geometry and nose-biometri=
+c candidates. Measure ROC/AUC and choose an ACCEPT / REVIEW / REJECT thresh=
+old. Also test whether multi-photo centroid enrollment materially improves =
+dog accuracy.<br>
+Verdict: REUSE NOW / FORK MODEL PIPELINE.</p>
+
+2) LocalCut Studio =E2=80=94 COPY/REUSE THE BROWSER MEDIA ENGINE
+<p>URL: <a href=3D"https://github.com/shenghaoc/localcut">https://github.co=
+m/shenghaoc/localcut</a><br>
+Creator: shenghaoc<br>
+Activity: 163 commits; crawled current September 20, 2026; 1 star / 0 forks=
+.<br>
+License: MIT.</p>
+<p>This is exactly the weird-builder profile we want: essentially no popula=
+rity, but an enormous amount of solved browser-media plumbing. LocalCut is =
+a complete browser-native NLE using WebCodecs, WebGPU, workers, SharedArray=
+Buffer and Mediabunny. It supports multi-track video/audio/images, titles, =
+captions, transforms, keyframes, effects, audio mixing, H.264/MP4, VP9/WebM=
+ and AV1/WebM export, IndexedDB/OPFS persistence and offline PWA operation.=
+</p>
+<p>The important part is engineering maturity rather than editor UI: 2,504 =
+passing Node tests across 225 files plus real-browser and Playwright testin=
+g; explicit capability tiers; runtime codec/GPU probes; deterministic Video=
+Frame cleanup; worker-owned decode/encode/pixel work; and graceful Canvas2D=
+/WebCodecs fallbacks.</p>
+<p>Roast.pet step solved: almost every ugly browser-native composition/expo=
+rt detail behind interactive roast preview and local rendering.<br>
+Install/demo route: clone repo, install with its documented package tooling=
+, run dev; live deployment is linked from README.<br>
+Dependencies/hardware: modern browser; best path requires WebGPU + WebCodec=
+s + OffscreenCanvas + SharedArrayBuffer/cross-origin isolation. Reduced Web=
+Codecs/Canvas paths exist.<br>
+Evidence: live deployment, 163 commits, extensive tests and explicit suppor=
+ted/experimental boundaries.<br>
+Code/work replaced: potentially thousands of lines of WebCodecs/WebGPU work=
+er, muxing, capability-detection, project-storage and caption/export infras=
+tructure.<br>
+Integration difficulty: MEDIUM if extracting engine pieces; HIGH if adoptin=
+g editor wholesale.<br>
+Maintenance risk: MEDIUM. Desktop-first; mobile Safari is not the target fu=
+ll-performance path.<br>
+Exact experiment: reproduce one canonical 15-second Roast.pet clip using on=
+ly LocalCut primitives: background, canonical pet PNG/animation, TTS, capti=
+ons, sting, title card. Export 9:16 H.264 and WebM in Chrome on a weak lapt=
+op. Record render time, memory and exact unsupported features. Do not integ=
+rate UI.<br>
+Verdict: COPY ENGINE MECHANISMS / BENCHMARK NOW.</p>
+
+3) Velocut =E2=80=94 WATCH / COPY THE AGENT-EDITING PROTOCOL
+<p>URL: <a href=3D"https://github.com/open-ribbi/velocut">https://github.co=
+m/open-ribbi/velocut</a><br>
+Creator: Ribbi / open-ribbi<br>
+Activity: release 0.0.2 current; ~450 stars; active 2026 project.<br>
+License: MIT; bundled third-party assets retain their own licenses.</p>
+<p>Velocut overlaps LocalCut as a browser renderer/editor, but its unique R=
+oast.pet value is different: humans and agents modify the exact same projec=
+t through a typed JSON command protocol with revision checks, branching his=
+tory and undo. It exposes separate provider, protocol, timeline/core, rende=
+r, scene, runtime, MCP and CLI packages. It also persists asynchronous vide=
+o-generation jobs and lets generated candidates be previewed/adopted into t=
+imeline slots without resubmitting after reload.</p>
+<p>Roast.pet step solved: the internal representation for agent-directed ro=
+ast assembly and generation experiments. Instead of hard-coding =E2=80=98ma=
+ke a roast video=E2=80=99 as a monolithic function, a roast can be a versio=
+ned document receiving deterministic commands from workers/agents.<br>
+Install: <code>npx @velocut/cli@0.0.2 studio</code>; SDK packages are indep=
+endently installable.<br>
+Dependencies/hardware: Node 22.6+; full editor currently Chrome/Edge with W=
+ebGPU/WebCodecs. Safari/Firefox unsupported for full editor.<br>
+Evidence: release packages, SDKs, CI across Rust/TS engines and editor jour=
+neys, documented durable provider-job lifecycle.<br>
+Code/work replaced: command protocol, undo/history, stale-write rejection, =
+provider-job lifecycle, project persistence and agent editing bridge.<br>
+Integration difficulty: MEDIUM-HIGH if adopted; LOW to copy protocol ideas.=
+<br>
+Maintenance risk: MEDIUM-HIGH because 0.0.x and fast-moving.<br>
+Exact experiment: represent one Roast.pet <code>performance.json</code> + m=
+edia assets as a Velocut project and have an agent make three changes (=E2=
+=80=98move punchline 400 ms earlier=E2=80=99, =E2=80=98make caption larger=
+=E2=80=99, =E2=80=98replace reaction clip=E2=80=99) through commands. Confi=
+rm history, deterministic replay and stale-edit rejection.<br>
+Verdict: WATCH / COPY MECHANISM, not a production dependency yet.</p>
+
+4) automated_mockups =E2=80=94 REUSE NOW FOR SIMPLE POD LISTING IMAGES
+<p>URL: <a href=3D"https://github.com/CTDave001/automated_mockups">https://=
+github.com/CTDave001/automated_mockups</a><br>
+Creator: CTDave001<br>
+Activity: 29 commits, 73 stars, 19 forks.<br>
+License: MIT.</p>
+<p>This small Python package does one boring thing well: batch overlays eve=
+ry design onto every product template. Instead of requiring PSD smart objec=
+ts, templates contain a colored placeholder region; the tool detects its po=
+sition/size/rotation once, stores parameters, and then generates all combin=
+ations in parallel. It supports PNG/JPEG/WebP, nine alignments, rotation, C=
+LI and Python API.</p>
+<p>Roast.pet step solved: deterministic listing mockups for simple card/pos=
+ter/T-shirt scenes where photorealistic deformation is unnecessary. This is=
+ a better default than introducing Photoshop automation.<br>
+Install: <code>pip install mockup-generator</code> or clone/install editabl=
+e.<br>
+Dependencies: Python 3.8+, NumPy, Pillow, scikit-image, OpenCV. CPU.<br>
+Evidence: packaged CLI/API, tests/examples, 73 stars and 19 forks.<br>
+Code/work replaced: template-coordinate tooling, batch loops, image composi=
+ting and parallelization.<br>
+Integration difficulty: LOW.<br>
+Maintenance risk: LOW.<br>
+Exact experiment: prepare 5 Roast.pet templates (card front, framed card, t=
+ee front, poster, social listing shot), mark print regions, and run 20 fake=
+ pet designs through all five. Compare generated output against current man=
+ual mockups for placement accuracy and total runtime.<br>
+Verdict: REUSE NOW for deterministic simple mockups; keep AI lifestyle mock=
+ups separate.</p>
+
+Important adjacency: Etsy listing video API trap
+<p>A current September 5, 2026 technical report notes that Etsy=E2=80=99s U=
+I now allows two listing videos, while the public v3 write endpoint still b=
+ehaves as a one-video path. Separately, Etsy=E2=80=99s own GitHub discussio=
+n documents that a video_id already attached to one listing cannot reliably=
+ be reused on another despite documentation suggesting otherwise. For Roast=
+.pet, assume every listing owns its uploaded video and automate one API vid=
+eo per listing; treat any second video as a manual/UI-only enhancement unti=
+l API parity changes.</p>
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+<ol>
+<li>A pet identity embedding from scratch before benchmarking Open Noodle=
+=E2=80=99s Apache-2.0 DINOv2 pet models.</li>
+<li>Browser codec/GPU capability detection, worker decode/encode and mux pl=
+umbing =E2=80=94 LocalCut has already accumulated this pain.</li>
+<li>Generic timeline command/history/undo infrastructure for agent video ed=
+iting =E2=80=94 Velocut already demonstrates a typed protocol.</li>
+<li>Simple POD mockup placement/batch generation =E2=80=94 automated_mockup=
+s already packages it.</li>
+<li>Etsy logic that assumes listing videos are reusable assets or that the =
+API matches the two-video UI.</li>
+</ol>
+
+Most surprising hobby project
+<p>LocalCut. One GitHub star hides 163 commits, 2,500+ tests, WebGPU/WebCod=
+ecs composition, captions, export, workers, browser capability tiers and of=
+fline project storage. This is precisely the kind of repo the scanner is in=
+tended to uncover.</p>
+
+Fastest integration win
+<p>Open Noodle pet-recognition-small. Download the Apache-2.0 weight, embed=
+ a small canonical/generated pet benchmark and determine in one experiment =
+whether it becomes the first layer of Roast.pet=E2=80=99s identity firewall=
+. It directly attacks one of our genuinely proprietary-risk problems rather=
+ than another UI convenience.</p>
+
+Repo/author worth following
+<p>Open Noodle / Gallery. They are actively training and publishing pet-spe=
+cific identity models with clean(er) open-data provenance, full evaluation =
+and ONNX export. That is unusually aligned with Roast.pet, and the Septembe=
+r 2026 release is fresh enough that further pet-CV improvements are plausib=
+le.</p>
+
+Architectural implication
+<p>The identity firewall can now become much more concrete:</p>
+<p>canonical photos =E2=86=92 Open Noodle 512-D embedding centroid + pet ge=
+ometry + optional nose biometric =E2=86=92 generated reaction =E2=86=92 sam=
+e measurements =E2=86=92 weighted ACCEPT / REVIEW / REJECT.</p>
+<p>If the open model works, Roast.pet does not need to become a pet-recogni=
+tion research lab. Our accumulating moat becomes the production dataset of =
+which generated transformations humans accepted/rejected for a specific rea=
+l pet, while the underlying embedding model remains replaceable.</p>
+
+--0000000000006371f4065be35bf6--

@@ -1,0 +1,1055 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id AxHR3WzHuf5e
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 07:19:12 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=VsAfF4jRUKtrcMNHf6aE7Ll9B06ifa97/2uMwrpXI266kBm3uz7UZ5AEuPZ6GQoyK41Vgo+Xb
+	QxyQ/9StzOdvmM04LqRmUKmSkOrdAoZoAIGMQKqR36S3+HeUDz6dkJQ4VK0WgDnlKgoqjBmF9Sm
+	k9qAupiphjwlxOBH4MU3u47TyQqTV/m8a+EcJKW22aUTrrtgQG5ZRkRXp7Ig5cjVRBO2vsWrLfb
+	d+gvxypJ0TMuw638D86urzpPAUN/bJ5AFkNYJhPqynJhLzdL65R0gIHFvau792f8O30Y3D8QeTc
+	kTjsQNliAScJu/qGlg//aOlms81kYSYQHV3AHrECRwKg==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789888752; x=1790493552; bh=0LV9sIZW
+	9Ky0Z1aFiUQ4GOQQdaVIBpqnyqs8X19qHt8=; b=hSnNzbE5KBubgZbD9lCbpR8mFEKQGeeae0M
+	xWzAp1lsdnW2VQp4Wx11+QYAThs6jECpLTXg+7emd/ZVqvb1Mvrg1scRW9DHcAqmm0QQNDkGDXS
+	YzROcdxImZHw81aMVm7+y+1Ne5lU2AjkwIzeFsCdAloewx5/ZajTijVtDEZ1wycxfUgETgp/BK2
+	9iB7kBLzwhIGdOi1UIQ0+Yv3MNMH9DVdqWX5aDyz4ojLwJjH5dLJKIGTTXA61tiYP8Gt8k1zE2s
+	tYL0iZjWr0O8DKoYRSnI5JJiHalVhqssWvLjDnoMMYNnT2VcwhwvMhfuGW4f7VLfEA9ySxWOoqv
+	4njEIpA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=P27D1ZEF;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=P27D1ZEF;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4ab19127so2085200d50.1
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 00:19:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789888752; cv=none;
+        d=google.com; s=arc-20260327;
+        b=CNkYNkgarZyhdm70wROq9/9h1IV4XjMKLKV+uyVI5uWUKN1+mtWXa/lat/ZtrArV8k
+         IqIfSrA1rshj90eWNC5mDgvQhZ1IQXKjWcNTixRNZw8d5RSvFX0rxjWPklde3kWwusnz
+         HJmnJVZd0EjGpLuM6F+45fc1ts4/cTEk9oWWy9bkuN3zut/TS5PFhueIM4pOPiiJwDKe
+         McjUJk63ibFdg62T06286CCAfsDw54/uRWDQO3dpHQlBAO82lH0esc/K6OM17ABNWrfr
+         bE7Wi3TPqQKn2RtZ3SIR7yXdcqj0P74HnAmIRhXNRmUbzvxqUTNiMaqrxGj73IJyADYz
+         G05w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=0LV9sIZW9Ky0Z1aFiUQ4GOQQdaVIBpqnyqs8X19qHt8=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=E02WE1wImXw5Q4f2tVvSEmQ2pOB6slihHWhSFFCN0elp7269ckahWLJAg0XTpdC8Gk
+         +B6EFqEDrAtjTypQjegsSw/I/NiN2SpFuTULWzv9JuNK3G2/op5gRNRdVTsZeoAVL0az
+         KIrigRMSK5JlLRHtHnI1rxE+QOeNXwQ6VOKcZ/1PbAXM3SfwCY61n+yMFVSNmcmtAe8T
+         37ZA/Kh4BzrpOwYgahVFedxD8Mf7DlT6HPF0eibVnGSlnvLtqWTVS6LhOrjT+nJ6zE4i
+         /1kw7bf0LiLHKpV+4Jrbz3il9B6nUzlo3q74RI6qwPg/mNtR7EAjeV/3CSTnihGPgon0
+         KYRg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789888752; x=1790493552; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=0LV9sIZW9Ky0Z1aFiUQ4GOQQdaVIBpqnyqs8X19qHt8=;
+        b=P27D1ZEFkA2GoKa7rr0lY98wii81cttrMhgadGP9Fl6OOqTnnd6aFdaA5ylwvzxK+I
+         e7ZAXVShHzY5ibvtTUAaCaNNf5NUBh61fa5Frn+pNRwyDNrlqMvSyY0vCiGT9RwHAXFR
+         MorMhLhcFbARdyBnhzbD4/O9XsJ0z6o38RGz4nr1CBJzNk26UrgVr1vaM2K6n8ljLfZ0
+         7UXOnHGZ0Rjl3MasU7ssSpSS5KXAbPW+igjqlM7KaWwRP5/EqeCwcV8PkfKS3wBKTrOJ
+         NguqskBvjZE8D6OyRUUSX+A8SrjySObjoX3fN5qf//dni6kizQjIIW5UY0HtijSg4bmT
+         10ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789888752; x=1790493552;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=0LV9sIZW9Ky0Z1aFiUQ4GOQQdaVIBpqnyqs8X19qHt8=;
+        b=H/Q0fsMkZ49+6HrqF8+sBxq/IBntCfM29lCHLnGT7kk2aydbjTg9JBc7G2Cwph9UlV
+         6C96JSw7D2peZmKtYSNqZ+AHQ4oikHWS/pjDpYQudfKp2Yv/tPF6sxDgjWKvu2hlSBsr
+         Dvez0YQFjjv3mLeMlDDFQFZHLOr9G/3SjBWv+QOBQSL0/d+Vqk2zQ3w6faS3mcD1VDHX
+         jE2d8c81Emrn0XhYWQF4gu2UmI2LSugRIoNkjr6lwTV+pskCK/4pp5dyixXoxIJUcyQd
+         rNad1jiM9j1xNuZDDSwuOSK8A+iWnozqnD4U44yVl1fshTtY5JBKEgcDs4yKMRt+18Zj
+         t1+Q==
+X-Gm-Message-State: AFuF++n9+m21Ss8otO9xB8zYDKuYNfKYUnD32rpJvMkUxilihH6UILNE
+	U+OOZ6X1iFc0L5mfUR9H/YNdYEc0BcJWv9AFOZWXzdh8EwmZWuPEUXRF0ZmAiyfU39vgFBfuRO4
+	x4qiGdpCyYMT04awoywLrUDkEjRbYOffdYw==
+X-Gm-Gg: AYBFou3P5zdTWu4+gfa2JltnGMRbDIRlBVAORn8fTVEVVK5eELV7o1Z3re16Pksxuas
+	HjmyOCMd1KhsYof+t7peVXjcFm3+HDhwvWae/QA6UrM23GzLpjWvEJXajeSFrK+4al895xQFvas
+	dDi/iVZZ4ypLdwbMLoUivmcOlQ3itf6vhWjiw8nPiVDsJNkGO5jWDEQudrF+mNrRXJSlHHFMYen
+	Vb300rKb64TLOFU3qR+1fQHD548OdSdMK1+mNfCRIm0zL8Pe6nVCaFEYNsCC1jQq2fqmdSwuUsd
+	rh5f46BHdGgpKDFSzvJTncFYA9sOvu5QRb4LrbQTwZsBC29BTqhV3EPVde/i5cdsbDVlLSX1aDW
+	NvK8WnbtGpyAaUmBxQP8nsLPVTVdkLuB+MQhdsTwzjKW7CEAU2Jj47bLAPSP+5Cqh8hFwSKnp
+X-Received: by 2002:a05:690e:1181:b0:671:70d2:527b with SMTP id
+ 956f58d0204a3-6717fd6a661mr2161300d50.62.1789888751467; Sun, 20 Sep 2026
+ 00:19:11 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:19:11 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 02:19:11 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 02:19:11 -0500
+X-Gm-Features: AcwNN1VjSivoPHhoX3d7b9wFrO0TJF8b7W_P3Xw_RZYnKVWZxILOkVq_qorLdbE
+Message-ID: <CAPdrGenb=2fiWoqyx91o3kx9syBohU6Qnp8nfn_b7ArJ-ubkhQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Privately_Scanner_=E2=80=94_2026=2D09=2D17_16=3A09_Asia=2FPhnom=5FPe?=
+	=?UTF-8?Q?nh_=E2=80=94_5_new=2F0_changed?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Privately Scanner =E2=80=94 Edge Report
+
+1. RUN STATE / COVERAGE AUDIT
+
+Recovered prior scanner state from Sent mail. Registry before this
+run: 18 canonical frontier objects. Prior known objects include Monid,
+RSIAgent/Dream-RSI, MemSentry, Google Home MCP, Hoop, AI Security
+Gateway, Higgsfield Skills, Open AI UGC, OpenShorts, and the current
+attack-chain classes already captured by earlier runs.
+
+Search windows used this run: today/24h -> 3d -> 7d -> 14d/30d where
+needed. Source families searched: GitHub new/active agent repos,
+coding-agent velocity trackers, arXiv agent/security papers, primary
+security research, MCP security research, commercial agent
+announcements, current attack reporting, and agent-facing media/video
+repos.
+
+Results:
+
+- 5 new canonical objects promoted
+
+- 0 existing objects materially changed enough for a full rewrite
+
+- Several known objects revalidated but deduped: MemSentry, RSIAgent,
+Google Home MCP, Higgsfield/OpenShorts/Open AI UGC, OpenAI
+misalignment disclosure framework.
+
+- Mature/static or low-signal objects rejected: microsoft/policy-mcp
+is only 3 stars and was last pushed Jan 2026; useful pattern, not
+frontier. OpenClip-App/agent-skills is technically useful but
+currently only 1 star and last pushed Aug 7, so WATCH rather than
+canonical promotion.
+
+- Generic =E2=80=9Cnew agent framework=E2=80=9D searches remained noisy; Gi=
+tHub
+velocity + direct repo/API checks were much higher yield.
+
+2. EXECUTIVE EDGE MAP
+
+-
+
+Deadbugz is the strongest attacker-frontier addition this run. It is
+not another paper about theoretical MCP poisoning: Adversa AI
+describes an active campaign that submitted malicious MCP servers
+through public GitHub PRs, behaved innocently for the first two calls,
+then changed returned tool metadata on the third call to direct agents
+toward SSH keys, AWS credentials, shell history and Kubernetes
+configuration. This is exactly the delayed clean->malicious behaviour
+ProjectMemory-style defences need to catch.
+
+-
+
+PhantomRaven is a fresh supply-chain case with an AI-specific twist.
+CrowdStrike reports a financially motivated bug-bounty actor
+distributing an npm information stealer through dependency-confusion
+attacks and assesses with high confidence that the malware was
+LLM-generated. The important frontier signal is not =E2=80=9CAI writes
+malware=E2=80=9D; it is that commodity actors can now cheaply generate and
+iterate supply-chain malware inside workflows that overlap exactly
+with autonomous coding agents.
+
+-
+
+Tencent AI-Infra-Guard has become one of the most interesting current
+open defender stacks. Live GitHub state at observation: 6,403 stars /
+593 forks, pushed 2026-09-17 08:35 UTC. Its Sep/Aug releases now
+include agent scan, skills scan, MCP scan, AI infrastructure scanning,
+API/model poisoning detection, multi-turn attacks, skill-bytecode
+bypass checks, web-exfiltration detection, RCE prevention and large
+component/CVE coverage. This is much closer to a modern agent-security
+workbench than classic jailbreak-only scanners.
+
+-
+
+earendil-works/pi is a major current agent-framework adoption signal.
+Live GitHub: 106,501 stars / 13,410 forks, pushed today. An
+independent coding-agent tracker records pi as the current top 7-day
+mover at roughly +2,642 stars in its latest snapshot. It is a unified
+LLM API + agent loop + TUI + coding-agent CLI rather than an
+application-specific wrapper. Even if it is not newly created, its
+velocity says serious builder attention is moving here now.
+
+-
+
+OpenAI Agents API remains a major platform shock that was not yet
+represented as its own registry object. Public beta launched Sep 10.
+It exposes the managed Codex harness: long-running cloud agents, tool
+use, subagents, persistent working environments, OpenAI-hosted
+sandboxes or user infrastructure. The security importance is that
+long-lived autonomous execution is becoming an API primitive rather
+than bespoke infrastructure.
+
+-
+
+The attacker/defender frontier is converging on temporal behaviour.
+Deadbugz waits. ProjectMemory waits. Persistent memory attacks wait.
+AI Security Gateway accumulates session risk. Hoop watches live
+command streams. MemSentry gates durable writes. The emerging control
+problem is no longer =E2=80=9Cis this prompt/tool safe at review time?=E2=
+=80=9D but
+=E2=80=9Cdoes this system remain within policy as state and behaviour evolv=
+e
+over time?=E2=80=9D
+
+-
+
+Media frontier produced no high-confidence breakout worth pretending
+is the next Higgsfield this run. OpenClip=E2=80=99s agent skills are useful
+operationally, and SuperCMO/Prizmad-style agent skills show the same
+direction, but current GitHub adoption is too small or insufficiently
+validated. Existing Higgsfield/Open AI UGC/OpenShorts remain stronger
+immediate candidates.
+
+3. AGENT FRAMEWORK / OSS FRONTIER
+
+NEW =E2=80=94 earendil-works/pi
+
+Primary repo: https://github.com/earendil-works/pi
+
+Live GitHub observation:
+
+- stars: 106,501
+
+- forks: 13,410
+
+- latest push: 2026-09-17 08:41 UTC
+
+- language: TypeScript
+
+- license: MIT
+
+- description: unified LLM API, agent loop, TUI, coding-agent CLI
+
+Why technically interesting:
+
+Pi is not merely another IDE extension. It packages the lower-level
+agent harness itself: provider abstraction, agent loop, terminal
+interface and coding-agent surface. The immediate edge signal is
+adoption velocity rather than novelty of any single component.
+
+Adoption signal:
+
+A current coding-agent tracker recorded pi as its top 7-day mover at
+approximately +2.6k stars. Treat that delta as tracker evidence, while
+canonical live count comes from GitHub API.
+
+6m inference: likely entrenched as one of the major open coding-agent
+harnesses if velocity persists.
+
+18m inference: could become a substrate others embed rather than a
+standalone coding tool only.
+
+36m inference: either absorbed into larger ecosystems or survives as a
+stable open harness/API abstraction.
+
+Security/control implication:
+
+The more generic the harness, the more valuable it becomes as a
+controlled testbed for Privately: package installation, shell actions,
+tool calls, credentials, browser use and subagents can all be
+exercised in one environment.
+
+Decision: ADOPT/SANDBOX.
+
+Smallest experiment:
+
+Run a benign dependency-install + tool-call corpus through pi with
+full action logging and compare how easy it is to interpose a
+Privately/QP authority gate versus OpenCode/Codex.
+
+Falsifier:
+
+If pi=E2=80=99s architecture gives no cleaner interception surface or
+meaningful portability advantage over existing harnesses, keep it as a
+watch object only.
+
+NO OTHER NEW GENERAL FRAMEWORK CLEARED THE BAR
+
+Current framework search still contains large amounts of SEO/listicle
+noise. Next run should bias even harder toward:
+
+- repositories created in the last 7-30 days;
+
+- top 7-day movers rather than absolute stars;
+
+- code linked directly from Sep 2026 papers;
+
+- newly released skills/plugin ecosystems around existing harnesses.
+
+4. PAPER -> FUTURE AGENT FRONTIER
+
+No new paper beat the already-known RSIAgent/MemSentry bar strongly
+enough for promotion this hour.
+
+Revalidated current relevant papers:
+
+- RSIAgent =E2=80=94 autonomous exploration + recursive self-improvement
+through reusable causal memory.
+
+- MemSentry =E2=80=94 deterministic Accept/Review/Quarantine gate for
+persistent memory writes.
+
+- InjecMEM =E2=80=94 single-interaction memory injection that later steers
+topic-conditioned outputs.
+
+- AI-Infra-Guard paper =E2=80=94 multi-layer red teaming across
+infra/protocol/agent/model surfaces.
+
+The important delta this run is that AI-Infra-Guard=E2=80=99s codebase has
+evolved materially beyond the paper abstraction, so it is promoted
+under defender frontier rather than as a new paper.
+
+5. COMMERCIAL CAPABILITY SHOCKS -> OSS/PRIVATE IMPLEMENTATIONS
+
+NEW =E2=80=94 OpenAI Agents API
+
+Primary source: https://openai.com/index/introducing-the-agents-api/
+
+Launch date: 2026-09-10
+
+What changed:
+
+Developers can invoke the same managed agent harness lineage used by
+Codex/ChatGPT Work through an API. OpenAI explicitly describes
+long-running sessions, efficient tool use, subagent coordination,
+files/code/intermediate state, and choice of OpenAI-hosted sandboxes,
+external sandbox partners or user infrastructure.
+
+Why different:
+
+Long-running autonomous execution used to require assembling the
+harness, environment, context persistence, tool lifecycle and subagent
+coordination yourself. A major model provider is now commoditizing
+that entire control plane.
+
+6m inference: rapid uptake for coding/research/ops workflows.
+
+18m inference: long-lived agent execution becomes a standard cloud
+primitive analogous to serverless job execution.
+
+36m inference: custom harness differentiation shifts upward toward
+proprietary tools, data, policy, authority and verification.
+
+Security implication:
+
+If harness reliability becomes a platform feature, Privately should
+not compete on generic orchestration. The edge moves toward
+cross-provider security testing, authority/effect gating,
+persistent-state controls, and independent observability.
+
+Decision: ADOPT AS REFERENCE PLATFORM / BUILD PROBES AROUND IT.
+
+Smallest experiment:
+
+Run the same benign action corpus through OpenAI Agents API and one
+open harness (pi or OpenCode) and compare traces, controllable
+authority boundaries, sandbox options and intervention surfaces.
+
+6. ATTACKER FRONTIER
+
+NEW =E2=80=94 Deadbugz
+
+Primary source:
+https://adversa.ai/blog/top-mcp-security-resources-september-2026/
+
+Secondary technical summary:
+https://theagentlab.site/blog/2026-09-09-deadbugz-mcp-supply-chain-attack/
+
+Status: ACTIVE/RECENT campaign per Adversa AI=E2=80=99s September digest.
+
+Mechanism:
+
+- malicious MCP server introduced through public GitHub pull requests;
+
+- outwardly benign tools for text formatting/summarization;
+
+- initial calls behave as expected;
+
+- after exactly three tool calls, returned metadata changes;
+
+- new instructions attempt to cause the consuming agent to search for
+SSH keys, AWS credentials, shell history and Kubernetes config while
+hiding the behaviour.
+
+Reported distribution behaviour:
+
+Adversa says one account submitted 23 PRs across unrelated
+AI/developer-tool projects in 74 minutes.
+
+Why technically different:
+
+This explicitly defeats one-time review. The malicious state is
+temporal and server-controlled. Tool metadata at approval time is not
+equivalent to tool metadata at execution time.
+
+Trust boundary crossed:
+
+remote MCP server -> agent instruction context -> local
+developer/cloud credential surface.
+
+Defender implication:
+
+Fingerprint tool metadata and schemas over time; re-evaluate tool
+outputs and definitions on reconnect/call; do not grant ambient
+filesystem/credential access merely because a server passed initial
+review.
+
+Privately decision: BUILD PROBE + CONTENT NOW.
+
+Safe lab experiment:
+
+Create a benign mock MCP server that returns harmless static metadata
+for N calls and then changes one description to request access to a
+fake secret file in an isolated fixture. Compare whether candidate
+gateways detect metadata drift and/or block the resulting action.
+
+Falsifier:
+
+If mainstream current clients/gateways already continuously
+hash/revalidate metadata and enforce file/credential scope by default,
+this specific wedge is mostly absorbed.
+
+NEW =E2=80=94 PhantomRaven
+
+Primary source:
+https://www.crowdstrike.com/en-us/blog/phantomraven-llm-generated-informati=
+on-stealer-for-bug-bounty-hunting/
+
+Published: 2026-09-15
+
+Status: RECENT real-world supply-chain campaign.
+
+CrowdStrike reports:
+
+- JavaScript information stealer distributed through npm;
+
+- threat actor operated as a bug bounty hunter;
+
+- dependency-confusion technique used malicious npm packages;
+
+- CrowdStrike assesses with high confidence that the malware was
+LLM-generated based on code/comment/token-analysis evidence.
+
+Why this matters for Privately:
+
+The mechanism itself is conventional supply-chain compromise, but the
+economics have changed: malware authoring and variant generation are
+cheaper, and the exact same npm/dependency surface is increasingly
+manipulated automatically by coding agents.
+
+Five-year implication:
+
+Attack generation becomes abundant; provenance, package trust, release
+integrity and containment become scarcer.
+
+Decision: CONTENT NOW + BENIGN DEPENDENCY-TRUST TEST.
+
+Safe experiment:
+
+Provide coding agents a fake package choice where one fixture has
+deliberately suspicious provenance metadata but no malicious code.
+Measure whether the agent checks ownership, version history,
+registry/source consistency and lockfile changes before installation.
+
+7. DEFENDER FRONTIER
+
+NEW =E2=80=94 Tencent/AI-Infra-Guard
+
+Repo: https://github.com/Tencent/AI-Infra-Guard
+
+Live GitHub observation at this run:
+
+- 6,403 stars
+
+- 593 forks
+
+- pushed 2026-09-17 08:35 UTC
+
+- Apache-2.0
+
+- Python
+
+Recent evolution:
+
+- v4.6.1 (Sep 10): expanded model fingerprint coverage; MCP scan
+reliability improvements; preserve findings through context
+compaction; surface connection failures.
+
+- v4.6.0 (Aug 26): black-box LLM API
+poisoning/model-substitution/backdoor auditing; Agent-Scan
+mutation-engine refactor; 146 AI components and 2,000+ CVE rules.
+
+- v4.5.2 (Aug 17): skill bytecode-bypass detection, charset-smuggling
+defence, RCE prevention via tool whitelisting; SkillJack research.
+
+- v4.5.1 (Jul 30): multi-turn jailbreak operators, web-exfiltration
+detection, expanded agent scan.
+
+Why this clears the bar despite being older than 2026:
+
+The current code/release trajectory is exactly the =E2=80=9Cnew evolution
+beyond Garak=E2=80=9D criterion. It spans skills, MCP, agents, model/API
+poisoning and underlying infra rather than just prompt/jailbreak
+fuzzing.
+
+Static vs adaptive:
+
+Mixed. It includes deterministic vuln/rule coverage plus
+agentic/dynamic scanners and mutation engines. It is not merely a
+static signature scanner.
+
+Tool outputs hostile?: partially through MCP/skill scanning and
+dynamic agent tests; needs direct bakeoff against delayed malicious
+output like Deadbugz.
+
+Persistence/memory?: not obviously first-class in the same way as
+MemSentry; likely gap.
+
+Cross-agent propagation?: not obviously first-class; likely gap.
+
+Lab suitability: strong; Docker/self-hosted deployment documented.
+
+Decision: ADOPT/SANDBOX AS BASELINE DEFENDER.
+
+High-EVI test:
+
+Deadbugz-style delayed metadata mutation fixture + persistent-memory
+poisoning fixture + benign skill-smuggling fixture. Compare what AIG
+catches versus Hoop/AI Security Gateway and a minimal QP gate.
+
+REJECTED =E2=80=94 microsoft/policy-mcp
+
+Mechanism is conceptually aligned: YAML policy controls for
+filesystem, network, env vars and Docker capabilities. But direct
+GitHub API shows only 3 stars / 1 fork and last push Jan 13, 2026.
+Useful reference, not current edge.
+
+8. CURRENT THREAT REALITY
+
+Highest-priority current classes this run:
+
+-
+
+Delayed MCP supply-chain mutation =E2=80=94 Deadbugz
+
+Current lesson: review-at-install is insufficient when remote tool
+metadata can mutate after trust is established.
+
+-
+
+Package/dependency supply-chain attacks with cheap AI-assisted malware
+=E2=80=94 PhantomRaven
+
+Current lesson: coding agents increasingly automate the exact
+dependency surface attackers abuse.
+
+-
+
+Shai-Hulud / Mini Shai-Hulud class
+
+No new mechanism this hour; remains a canonical reference for
+self-propagating release/credential compromise. Deduped rather than
+rewritten.
+
+-
+
+Criminal targeting of the AI supply chain itself
+
+Anthropic=E2=80=99s Sep threat report describes stolen AI API keys/session
+tokens as direct criminal objectives, fake AI service/harness
+installers used as credential harvesters, attacks on LiteLLM
+implementations, and repeated attempts against dozens of AI companies.
+This is already represented as a broader credential/supply-chain class
+and is not promoted as a new chain this run.
+
+9. ATTACK LOGBOOK DELTAS
+
+ATTACK-NEW-01 =E2=80=94 DELAYED_MCP_METADATA_MUTATION
+
+Aliases: Deadbugz class
+
+Status: ACTIVE/RECENT
+
+Target: MCP-consuming coding/developer agents
+
+Precondition: user/team trusts and installs server
+
+Entry: malicious/compromised MCP distribution via PR/package
+
+Persistence: remote server retains control of later metadata
+
+Propagation: distribution through repositories/integrations
+
+Boundary: remote tool metadata -> privileged local agent actions
+
+Attacker gain: attempted discovery of developer/cloud credentials
+
+Detection: compare metadata/schema hashes over time; runtime behaviour
+monitoring
+
+Defence gap: one-time approval and static manifests
+
+Benign lab test: delayed description mutation requesting fake fixture secre=
+t
+
+ATTACK-NEW-02 =E2=80=94 AI_ASSISTED_DEPENDENCY_CONFUSION_STEALER
+
+Aliases: PhantomRaven class
+
+Status: RECENT
+
+Target: npm/developer environments
+
+Entry: dependency confusion / malicious package
+
+Boundary: package trust -> local execution -> credential/data collection
+
+Novel economic factor: LLM-assisted malware authoring lowers skill/time cos=
+t
+
+Defence gap: automated dependency selection without provenance checks
+
+Benign lab test: tainted-but-safe dependency fixture and provenance scoring
+
+10. AUTONOMOUS VIDEO / MEDIA FRONTIER
+
+No repo this hour clearly displaced existing Higgsfield/Open AI
+UGC/OpenShorts candidates.
+
+WATCH =E2=80=94 OpenClip agent skills
+
+Repo: https://github.com/OpenClip-App/agent-skills
+
+Docs: https://openclip.app/docs/developers/agent-discovery/
+
+Capability:
+
+Agent-facing video editor with MCP + skills for ranked clipping,
+captions, transcription, conversion, thumbnails, background removal,
+repurposing and UGC. Docs advertise compatibility across Claude Code,
+Codex, Cursor and many Agent Skills-compatible agents; full MCP
+exposes 31 tools.
+
+Why not promoted:
+
+Direct GitHub API currently shows only 1 star / 0 forks, created Aug 7
+and last pushed Aug 7. The product surface is useful, but repo
+adoption does not currently show breakout behaviour.
+
+Decision: WATCH/TEST ONLY if current media bakeoff needs a
+post-generation editor.
+
+WATCH =E2=80=94 SuperCMO Skills / Prizmad Skills
+
+Both show the same emerging pattern: media capability exposed as small
+Agent Skills/MCP packages that let a general coding agent become a
+marketing/video agent. Interesting architectural direction,
+insufficient verified adoption for registry promotion this hour.
+
+11. PRIVATELY LAB =E2=80=94 TOP EXPERIMENTS
+
+LAB-MCP-004 =E2=80=94 Delayed tool-metadata mutation benchmark
+
+Hypothesis: mainstream agent-security gateways still over-trust
+install-time MCP metadata.
+
+Setup: benign local MCP server; static metadata for first N calls;
+later metadata requests a fake secret fixture.
+
+Compare: AI-Infra-Guard, Hoop, AI Security Gateway, minimal QP authority ga=
+te.
+
+Metric: detection/block/escalation, latency, false positives, evidence
+generated.
+
+Artifact: canonical delayed_tool_mutation benchmark.
+
+Content-worthy: yes.
+
+LAB-SUPPLY-005 =E2=80=94 Coding-agent dependency trust benchmark
+
+Hypothesis: coding agents optimize for package usefulness more than
+provenance integrity.
+
+Setup: local fake registry/fixture with safe packages and controlled
+provenance anomalies.
+
+Metric: whether agent notices owner/version/source/lockfile anomalies
+before install.
+
+Artifact: dependency-trust probe.
+
+Content-worthy: yes, especially PhantomRaven/Shai-Hulud framing.
+
+LAB-AIG-006 =E2=80=94 Modern defender bakeoff
+
+Hypothesis: AI-Infra-Guard catches more contemporary agent surfaces
+than older LLM red-team tools but still has gaps at persistent state
+and delayed remote behaviour.
+
+Corpus: delayed MCP mutation, skill smuggling fixture, persistent
+memory poison fixture, benign web-exfil fixture.
+
+Artifact: defender capability matrix and QP gap map.
+
+LAB-HARNESS-007 =E2=80=94 pi vs OpenAI Agents API interception surface
+
+Hypothesis: open/local harnesses expose more useful security hooks
+while managed agents provide stronger sandbox defaults.
+
+Metric: trace completeness, tool interception, state persistence
+controls, human gates, sandbox boundaries, portability.
+
+12. BUILD / PROBE OPPORTUNITIES
+
+-
+
+tool_drift_probe =E2=80=94 snapshot and compare MCP tool
+names/descriptions/schemas across calls/reconnects; alert on semantic
+or structural drift.
+
+-
+
+dependency_trust_probe =E2=80=94 before agent-initiated install, inspect
+provenance, owner, package age, version anomaly, source consistency
+and lockfile delta; return ALLOW/REVIEW.
+
+-
+
+agent_surface_benchmark =E2=80=94 common benign adversarial corpus that can=
+ be
+run against AIG, Hoop, AI Security Gateway, future defenders and
+Privately/QP.
+
+Do not build a full gateway until these bakeoffs reveal an uncovered
+control point.
+
+13. CONTENT ENGINE OPPORTUNITIES
+
+Best immediate article/video:
+
+=E2=80=9CThe MCP server that waits until the third call: why install-time
+security review is already obsolete.=E2=80=9D
+
+Original angle: reproduce the mechanism benignly and compare defenders.
+
+Second:
+
+=E2=80=9CAI is making package malware cheaper: what PhantomRaven means for
+autonomous coding agents.=E2=80=9D
+
+Original angle: dependency-trust benchmark, not malware analysis.
+
+Third:
+
+=E2=80=9CGarak is not the frontier anymore: testing Tencent AI-Infra-Guard
+against modern agent attacks.=E2=80=9D
+
+Original angle: empirical bakeoff against memory, skills and delayed
+MCP behaviour.
+
+Media pipeline recommendation remains: Higgsfield Skills for
+generation/assembly exploration; OpenShorts/Open AI UGC for
+open/self-hostable alternatives; OpenClip only as a lightweight
+editing/MCP candidate if its actual output is strong.
+
+14. WEIRD ALPHA / PEOPLE
+
+No individual account clears the concrete-work bar this run beyond the
+teams attached to promoted repos/research. Do not manufacture
+influencer recommendations.
+
+15. TOP 3 THINGS TO TRY NOW
+
+- Tencent AI-Infra-Guard =E2=80=94 strongest current open defender addition=
+;
+install in isolated lab.
+
+- earendil-works/pi =E2=80=94 current high-velocity open agent harness; ass=
+ess
+interception surface and why builders are moving to it.
+
+- OpenAI Agents API =E2=80=94 reference implementation for where managed
+long-running agents are heading; compare against pi/OpenCode rather
+than rebuilding orchestration.
+
+16. TOP 3 ATTACK/DEFENCE THINGS TO UNDERSTAND NOW
+
+- Delayed remote tool mutation =E2=80=94 Deadbugz/ProjectMemory-style
+time-dependent trust failure.
+
+- Coding-agent x software-supply-chain collision =E2=80=94
+PhantomRaven/Shai-Hulud class meets autonomous dependency/CI
+execution.
+
+- Multi-layer defender architecture =E2=80=94 model/jailbreak scanning is
+becoming only one layer; skills, MCP, infrastructure, API integrity,
+session behaviour and persistent state need distinct detectors.
+
+17. TOP 3 WATCHLIST ITEMS
+
+- AI-Infra-Guard release velocity =E2=80=94 next meaningful expansion into
+persistent memory/cross-agent propagation would be strategically
+important.
+
+- pi adoption velocity =E2=80=94 determine whether current 7-day growth is
+durable and which downstream projects embed it.
+
+- Agent-native media skills ecosystem =E2=80=94
+Higgsfield/OpenClip/SuperCMO/Prizmad-style skills may converge into a
+common autonomous media layer; wait for adoption signal rather than
+choosing on demos alone.
+
+18. ONE NON-OBVIOUS EDGE / SEESAW CONSEQUENCE
+
+As generic agent harnesses become standardized and managed (OpenAI
+Agents API) while open harnesses become extremely popular
+(pi/OpenCode/etc.), the harness itself becomes less of the scarce
+asset. The differentiating/security edge migrates to the dynamic
+boundary between an agent and changing external capabilities: package
+provenance, mutable tools, persistent memory, delegated authority, and
+action evidence.
+
+Deadbugz makes this visible: a tool can be legitimate at approval time
+and malicious later. That same temporal pattern can exist in skills,
+packages, remote APIs, memory and subagents. A Privately probe that
+measures behavioural drift after trust is granted may be more durable
+than another static MCP scanner.
+
+19. ARCHITECTURE / ROADMAP CHANGE
+
+Small but meaningful update:
+
+Add TEMPORAL_TRUST_DRIFT as a first-class Privately/QP test dimension
+alongside STATE_TRANSITION and AUTHORITY_TRANSITION.
+
+Canonical question:
+
+Did the capability, metadata, behaviour, principal, dependency or
+scope materially change after it was approved?
+
+Do not yet build a platform around this. First run LAB-MCP-004 across
+existing defenders.
+
+20. MASTER FRONTIER INDEX =E2=80=94 DELTA
+
+Registry before: 18
+
+Registry after: 23
+
+NEW-19 =E2=80=94 Deadbugz =E2=80=94 attacker campaign =E2=80=94 first seen =
+scanner 2026-09-17
+=E2=80=94 BUILD PROBE/CONTENT =E2=80=94 delayed MCP metadata mutation after=
+ initial
+benign calls.
+
+NEW-20 =E2=80=94 PhantomRaven =E2=80=94 attacker campaign =E2=80=94 CrowdSt=
+rike Sep 15 =E2=80=94
+CONTENT/BUILD PROBE =E2=80=94 LLM-assisted npm information stealer via
+dependency confusion.
+
+NEW-21 =E2=80=94 Tencent/AI-Infra-Guard =E2=80=94 defender repo =E2=80=94 l=
+ive 6,403=E2=98=85 / 593
+forks, pushed Sep 17 =E2=80=94 ADOPT/SANDBOX =E2=80=94 full-stack modern
+agent/MCP/skill/API/infra red teaming.
+
+NEW-22 =E2=80=94 earendil-works/pi =E2=80=94 agent framework =E2=80=94 live=
+ 106,501=E2=98=85 / 13,410
+forks, pushed Sep 17 =E2=80=94 ADOPT/SANDBOX =E2=80=94 high-velocity open a=
+gent
+toolkit/harness.
+
+NEW-23 =E2=80=94 OpenAI Agents API =E2=80=94 commercial platform primitive =
+=E2=80=94 launched
+Sep 10 =E2=80=94 REFERENCE/ADOPT =E2=80=94 managed long-running Codex harne=
+ss +
+subagents + sandboxes.
+
+WATCH =E2=80=94 OpenClip-App/agent-skills =E2=80=94 media =E2=80=94 live 1=
+=E2=98=85 / 0 forks =E2=80=94 useful
+MCP/skills surface but no breakout evidence.
+
+REJECT =E2=80=94 microsoft/policy-mcp =E2=80=94 defender policy spec =E2=80=
+=94 live 3=E2=98=85 / 1
+fork, last push Jan 13 =E2=80=94 not current frontier.
+
+21. ATTACK LOGBOOK INDEX =E2=80=94 DELTA
+
+ATTACK-NEW-01 =E2=80=94 DELAYED_MCP_METADATA_MUTATION =E2=80=94 Deadbugz =
+=E2=80=94 ACTIVE/RECENT.
+
+ATTACK-NEW-02 =E2=80=94 AI_ASSISTED_DEPENDENCY_CONFUSION_STEALER =E2=80=94
+PhantomRaven =E2=80=94 RECENT.
+
+Existing chains retained: Shai-Hulud-class supply-chain worm; context
+worm/cross-agent propagation; persistent memory poisoning;
+malicious/delayed tool-output; unauthorized credential/action classes.
+
+22. WATCHLIST / NEXT RECHECK QUEUE
+
+- Deadbugz: 3-6h for new IOCs/affected repos/defender responses.
+
+- PhantomRaven: 6-12h for package-removal/secondary vendor confirmation.
+
+- AI-Infra-Guard: 3-6h for release/activity changes and inspect
+relevant dynamic scanner modules.
+
+- pi: 6-12h live star snapshot to establish actual velocity from our
+own observations.
+
+- OpenAI Agents API: 12-24h for OSS adapters/security research and
+sandbox/trace details.
+
+- OpenClip media skills: 24h unless adoption signal emerges.
+
+23. SOURCE-YIELD LEDGER
+
+HIGH:
+
+- primary security research (Adversa, CrowdStrike)
+
+- direct GitHub API metadata
+
+- GitHub current framework velocity trackers
+
+- direct commercial lab announcements
+
+MEDIUM:
+
+- arXiv security/agent searches; most top results already in registry
+
+- GitHub topic/trending surfaces for media skills
+
+LOW:
+
+- broad web queries for =E2=80=9Cnew AI agent framework=E2=80=9D; too much =
+SEO/listicle noise
+
+Next query variants:
+
+- GitHub created:>2026-09-10 agent-runtime / agent-security /
+mcp-security / skill-security / video-agent
+
+- direct author/repo search for fresh arXiv papers
+
+- GitHub release streams for top defender repos
+
+- package/security vendors reporting agent-specific supply-chain incidents
+
+- agent-skills repos with >50 stars and <30d age
+
+24. MACHINE-READABLE RUN_STATE JSON
+
+{
+"run_at": "2026-09-17T16:09:04+07:00",
+"registry_size_before": 18,
+"registry_size_after": 23,
+"registry_delta": {
+"new": [
+"deadbugz",
+"phantomraven",
+"tencent_ai_infra_guard",
+"earendil_works_pi",
+"openai_agents_api"
+],
+"changed": []
+},
+"attack_logbook_delta": [
+"delayed_mcp_metadata_mutation",
+"ai_assisted_dependency_confusion_stealer"
+],
+"metric_observations": [
+{
+"id": "tencent_ai_infra_guard",
+"stars": 6403,
+"forks": 593,
+"pushed_at": "2026-09-17T08:35:34Z",
+"source_class": "LIVE_PRIMARY",
+"source": "GitHub API"
+},
+{
+"id": "earendil_works_pi",
+"stars": 106501,
+"forks": 13410,
+"pushed_at": "2026-09-17T08:41:40Z",
+"source_class": "LIVE_PRIMARY",
+"source": "GitHub API"
+},
+{
+"id": "openclip_agent_skills",
+"stars": 1,
+"forks": 0,
+"pushed_at": "2026-08-07T10:44:23Z",
+"source_class": "LIVE_PRIMARY",
+"source": "GitHub API"
+},
+{
+"id": "microsoft_policy_mcp",
+"stars": 3,
+"forks": 1,
+"pushed_at": "2026-01-13T07:47:59Z",
+"source_class": "LIVE_PRIMARY",
+"source": "GitHub API"
+}
+],
+"stale_snapshot_conflicts": [],
+"semantic_duplicates_rejected": [
+"memsentry_rewrite",
+"rsiagent_rewrite",
+"google_home_mcp_rewrite",
+"shai_hulud_rewrite",
+"generic_mcp_poisoning_rewrites"
+],
+"watchlist": [
+"deadbugz",
+"phantomraven",
+"tencent_ai_infra_guard",
+"earendil_works_pi",
+"openai_agents_api",
+"openclip_agent_skills"
+],
+"experiment_queue_delta": [
+"LAB-MCP-004",
+"LAB-SUPPLY-005",
+"LAB-AIG-006",
+"LAB-HARNESS-007"
+],
+"source_family_yield": {
+"primary_security_research": "HIGH",
+"github_live_metadata": "HIGH",
+"github_velocity_trackers": "HIGH",
+"commercial_lab_announcements": "HIGH",
+"arxiv_agent_security": "MEDIUM",
+"media_agent_skills": "MEDIUM",
+"generic_agent_web_search": "LOW"
+},
+"next_recheck_queue": {
+"deadbugz": "3-6h",
+"phantomraven": "6-12h",
+"tencent_ai_infra_guard": "3-6h",
+"earendil_works_pi": "6-12h",
+"openai_agents_api": "12-24h",
+"openclip_agent_skills": "24h"
+}
+}
+
+END REPORT

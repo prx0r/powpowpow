@@ -1,0 +1,335 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id n0wO5UeFyrLd
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 19:25:36 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=YqDGuH8IJ9AWEDL29YMQGqy3pEPCZENf99OCQx8GX/87lUSA855l6V4a5wp60+R69LntvlGaD
+	/bvJf/GbYIQGatcguxuAHgFkgKYaO4vSBwJocJ6ejZxbG9v73jg0gkIVAhAxqi8YKaVuj/q+0KZ
+	rDawF4+V4+3uEpQ4rjfbjQ+3q1DS0c3uA7v6NTpAKr0mk4NoZ70oBJwuAHxGrw5BsfxxZx5z5ZU
+	pNuWWr0J0e88Bh4DLw6AZlB19i1/DBPMoNcdFUn/gUbwHvFQPwTWdKL8fHGRT+p5+ve3TFupZLL
+	2Tf7JKtZFr8xZlmJB3wY6uGVC35qsy8tjsYoANrqJVjA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789845936; x=1790450736; bh=Qqa+lDxx
+	QaG2dHSRYbWLJXi96u/p7POcD5g0eeFmxqE=; b=R/tZ0LgxvvCwJRVocEPhLyuNgmj1DALacmn
+	u49/ZoeoeSFEXFRi41WRDBHNvw/Av6AVyoSzSIw4VUwqNxSs4az//1OYhg/mPAzdTbdDA2n/CGP
+	GLTM0DTuOa3akhPpZeLkmEkSSbTkv4++ORPwctTpsqlx12y21cgy5h6IpOYuQitcRfIHlDmF6cJ
+	fdHmiJP36Kq2uy01mDsXkLyw0f8IFN7K2XWFjPttSMIgPG4OEHsRTEimMkJOMWaYw18oPJS4Jh8
+	LEVxHK/GLx4tO5cqJCY3/vCG5vKFmzvQE+KB8pRbUkHKtN0h31S6669CAbwlRblEW5vBVAmEign
+	TYWDYEA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=DZOYwdSu;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=DZOYwdSu;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4aaf2ecfso1493616d50.1
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 12:25:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789845936; cv=none;
+        d=google.com; s=arc-20260327;
+        b=a/lCawrfjnsTe4bPM09LogGAcNzzLeRnxmFeZzVj8IuGRV2R/b2oZskcGn+OxM4YRg
+         Rt/djlIk8EuTODQ5Oo/dPlicqMf4+3ePWDRZl97y/eaQIxwz/xh1Ge4ryuSnw4Fqo+rN
+         7MIJM57d1r+O/R9OzQrxJ4phJqRNPezV8xxqQen22rfbme2nbdYgjEnRK/Fw1fTPKgju
+         bOl6oVpUSPmS8vO+5Gm7fDjZe6UrjceTX2RXi8gNAM1eENV2vcYgaQpVDhhxaw3mEUya
+         3SgZKpHlj5OxIYJJ77Ic46ubejP3TzSiDAFcOMFlhIYFMdW9FftqVd2cuPuTiuS/cdGF
+         87nA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=Qqa+lDxxQaG2dHSRYbWLJXi96u/p7POcD5g0eeFmxqE=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=EZtrMmFXLlwC8KzWf0LRs6amBExmcHfcRtsFyYbCPcN7zRgrMvVYJYUTYYauYJW8cb
+         Zg5kG8fuL9Kkc2Asu+PjIrC5oplLn11ITS4XZYKM4Ra3F08X83UXdWNf5OJXyKP9aTj3
+         VeUBAVQ5VYJBOXeWAQp0aGgK25jxNeT0UwT2fjN+3288v98UJib3EaRDQR8pOVEFmLzr
+         dPoYdS5i2fFJ15Y7YZlgXkUa+cdOtmnFcp2TCbFcupPUXmWRcEzKDqZmUA2AGhvsv4Hl
+         CyvwZPtiUyUp15hQfzc1clgBSmWNy9Qb7lJMRZ02xvlLDIRxh4wvPzydsWEw0TL5SkHi
+         NkYA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789845936; x=1790450736; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Qqa+lDxxQaG2dHSRYbWLJXi96u/p7POcD5g0eeFmxqE=;
+        b=DZOYwdSuOwyiAEOFk2Bkssx8qpJnj9O1Ov4DOX5dMTL/Ks3ekYodi1fvdg9GY1USrg
+         OiXo+HpqMMU43lPM63YzGLzpQ2LA8KjJst1gfGwdhauis+VQyNvgdQdtSkrZUm7HGvFI
+         Lri3NegG3UBLYfBYE7FfJ+xVPSZwLoyoajbfkJMiX61RQL6E6iXKdfIdZrHtCAH64BLt
+         uIkIC5rxNnz4TMlPk/+4afqSht65Rz1aC/48o2FKQunPXqScukD5oAYvpvn4LSxsQEC/
+         SegZJpYrs+rwNfF6CwKVj0cMmVhc5L/jSq7koZu0ogzny/esEHmgLaXR1nSS7EWpx5HK
+         sDiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789845936; x=1790450736;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Qqa+lDxxQaG2dHSRYbWLJXi96u/p7POcD5g0eeFmxqE=;
+        b=sQCQ6qVC1bi3eKsWlrh+4R1QVXknu2IPCFr7Oe3mwOy3ZW7BOgjnAwYnZX116goNIt
+         0V7HA9sHHtwSvmkxRfaSgI1wDLvQlZlM5Yv3YStDFFv19fD73NeksEdfhpeWwZcZYGKT
+         oFZIYyPHrEME4H4e8uz8eMCY0eSsTLyI7bMPOXRKlh+npiALbacDAiLF6XgnEgedGqfh
+         dXWvrF4JlUcKHvMXaE2XktCmfnCDxJtblUVtAgxzcNtm/f8V9/YyiCO384dX46r9hqf8
+         xbuYcJzlHaceGhqdWhr8qqcYmOgmSBQIzeoKLWAhphFPN7jLlkN8a/hmlEyVq/O9qyBZ
+         +xzA==
+X-Gm-Message-State: AFuF++lj6l0kP93hQPtaO6Rq2Q3uaHfYaBOY//v8yeybJDyLwE0ryhEL
+	a0JhbjT5HC4TJa7zEMn2BXIZ/2hHymsX+v+BqIF9WBaiCqqv9kMwDZRt3k/312DT+u2jKlRC4W6
+	r53N9I2oYiJ+nsCrtC8ZoWqqQDcZ/bqoVCg==
+X-Gm-Gg: AYBFou1f05cKNsd+FifxfDLSRvOsRTeACI7eG1MY3syhuJXz+AYLMQNZt7tBS48cZN5
+	FqL7tPsYspDIiZ+kwdfKUjGLyQcUUUs5YhbUZTJYmYyt9OZjBW+7bjN/AqRVfe2bHcZu9502YsS
+	1G1v7aYcTOo74WlPJnZSRYuivrrKW7GMLw164RcFDI3qeCocELSs9UENFChqhQaGnFPAjkDTt3j
+	Wg+06EevcTjZPpsI6Gp6fCYz55EBzlNMSbCe8uX0oxEPmeQwXbJJc98eaaOm3XsZcJ4kXyR0CD/
+	KeFdwnSi6b8rQ8mhywUx4KZ5SpRZx6VWxELXXnpnaP+5HEflBGhn9o2q6jxKiiV+Fb2LIBHTJsj
+	mfoPsbmRdvJJ6pquUEJ8aaul3dKIoci/efPm753FT0dABieEqeMCMvRw0wZ8YSgSBlxBWPpoNDQ
+	==
+X-Received: by 2002:a05:690e:b8c:b0:671:3aae:2509 with SMTP id
+ 956f58d0204a3-6717fc66f8dmr2126145d50.12.1789845935417; Sat, 19 Sep 2026
+ 12:25:35 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 14:25:35 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 14:25:35 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 14:25:35 -0500
+X-Gm-Features: AcwNN1XfUYP-2YOOkaMf_d28wpBe1gTGa_8VCLhsDn8dzNf9ZCk_KKSzdRC69D8
+Message-ID: <CAPdrGe=j7W6BA04pR+SvJYP8+rj5co8R_FwBUv3WqWy2fjG78w@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Weird_Builder_Projects_=E2=80=94_2026=2D09=2D20_02=3A2?=
+	=?UTF-8?Q?4_Asia=2FPhnom=5FPenh_=E2=80=94_6_useful_projects?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET WEIRD BUILDER PROJECTS =E2=80=94 2026-09-20 02:24 Asia/Phnom_Penh
+
+Screened 25+ plausible projects/results across GitHub, Reddit
+technical communities, pet CV/landmarks, browser rendering,
+transparent video, identity QA, WebAR and POD tooling. Six survived
+after excluding prior-run discoveries.
+
+1) Personalab =E2=80=94 simonamador/personalab
+URL: https://github.com/simonamador/personalab
+Activity: 2 commits in current indexed repo; current project surfaced Sep 2=
+026.
+License: MIT.
+Solves: the missing identity-QA orchestration layer. It evaluates
+every generated identity against an anchor, separates identity from
+visual quality, logs drift, and drives deterministic
+ACCEPT/RETRY/REJECT decisions. It already has provider adapters,
+concurrency/rate limiting, prompt-patch retries and per-frame video
+identity evaluation.
+Install: Python >=3D3.10; pip install -e .; optional InsightFace/ONNX
+evaluation extras.
+Dependencies/hardware: numpy/OpenCV/Pydantic; optional InsightFace +
+ONNX Runtime; evaluation is CPU-capable (~200 ms/image reported).
+Generation uses Gemini/OpenAI/Runware/Replicate/Runway adapters.
+Evidence: repo reports measured same-person ArcFace similarity
+0.49=E2=80=930.75, ~200 ms identity evaluation, 278 unit tests, video tempo=
+ral
+identity metrics, explicit retry/drift logs.
+Roast.pet value: do NOT use its human ArcFace scorer directly for
+pets. Reuse the architecture and replace IdentityEvaluator with an
+animal embedding + pet landmark scorer. This could replace most of our
+planned generation retry controller, QA metrics logging, provider
+routing and longitudinal identity-drift code.
+Difficulty: MEDIUM.
+Maintenance risk: LOW-MEDIUM; architecture is generic, current repo is
+very young.
+Experiment: fork the evaluator interface; implement
+PetIdentityEvaluator with (a) pet embedding similarity, (b)
+eye/nose/mouth/ear geometry, (c) coat-color histogram/local patches.
+Run 100 accepted/rejected generated pet states and test whether
+composite score predicts human PASS/FAIL.
+Verdict: FORK / COPY ARCHITECTURE.
+
+2) snapml-quadruped-pose =E2=80=94 EstevanSL / Sausage Labs
+URL: https://github.com/EstevanSL/snapml-quadruped-pose
+Activity: 33 commits; publicly shared Aug/Sep 2026 and verified in
+Lens Studio 5.23.1.
+License: Apache-2.0 code + pose weights; AP-10K annotations CC BY 4.0;
+bundled Snap detector has separate Snap terms. Upstream AP-10K
+commercial-license wording has a documented discrepancy, so confirm
+before commercial shipping.
+Solves: tiny real-time 17-joint animal pose tracking across 54
+quadruped species. 3.26M parameters, 3.36 MB shipped.
+Install/demo: import AnimalTracker.lspkg into Lens Studio; for ML path
+export/run ONNX model. Repo includes deterministic conformance test
+against ONNX Runtime.
+Dependencies/hardware: Lens Studio for Lens runtime; Python 3.10/3.11
++ CUDA for training. Inference is designed on-device.
+Evidence: measured 0.6289 AP on AP-10K val; 0.4324 at 64 px subject
+detail; DARK subpixel decode + One Euro smoothing; verified Lens
+Studio preview.
+Roast.pet value: this is far smaller than the ViTPose/AP10K stacks
+previously found and gives a concrete recipe for cheap on-device pet
+pose. Useful for reaction-pose extraction, future live pet AR, and
+motion QA.
+Difficulty: MEDIUM.
+Maintenance risk: MEDIUM due to Snap detector/license boundary; pose
+code itself is cleanly isolated.
+Experiment: run 20 dog/cat clips through its ONNX pose model outside
+Lens Studio, export 17-point tracks, and compare pose stability/CPU
+latency with the earlier ViTPose route. If adequate, use it as the
+cheap pose extractor.
+Verdict: BENCHMARK NOW / FORK MODEL PIPELINE.
+
+3) rt-alpha-video =E2=80=94 Rethink-JS/alpha-video-cli
+URL: https://github.com/Rethink-JS/alpha-video-cli
+Activity: current v1.2.0; 1 star, 0 forks. Companion web helper had 10
+commits and was updated Dec 3 2025.
+License: MIT.
+Solves: transparent pet animation delivery. Folder of RGBA PNG frames
+-> VP9-alpha WebM + HEVC-alpha MOV + ready-to-paste runtime HTML that
+chooses the correct format for Safari/iOS vs other browsers. It also
+verifies alpha, detects frame naming patterns and prints compression
+stats.
+Install: npx @rethink-js/alpha-video-cli --input ./frames --fps 50.
+Dependencies/hardware: Node >=3D16 + FFmpeg; HEVC-alpha path is
+macOS/VideoToolbox specific.
+Evidence: stable 1.0 then 1.1/1.2 changelog; browser helper previews
+sequence and verifies transparency before encoding.
+Roast.pet value: we should not ship PNG sequences for animated
+transparent pets and should not hand-write Safari/WebM fallback logic.
+Difficulty: LOW.
+Maintenance risk: LOW; tiny FFmpeg wrapper.
+Experiment: encode one 5-second approved transparent pet loop from PNG
+frames. Compare PNG-sequence bytes/load time vs WebM+HEVC and test
+iPhone Safari + Android Chrome.
+Verdict: REUSE NOW as packaging CLI.
+
+4) VidAPI =E2=80=94 moshehbenavraham/vidapi
+URL: https://github.com/moshehbenavraham/vidapi
+Activity: current indexed repo, 6 stars / 2 forks; active
+documentation covers current production stack.
+License: MIT.
+Solves: if Roast.pet needs a render service, almost all boring server
+plumbing already exists: JSON composition schema, FastAPI, async
+queue, Redis, SQLite/Postgres, S3/MinIO, webhooks, reusable templates,
+captions, posters, TikTok/Reels/Shorts presets, FFmpeg/Editly/HTML
+render adapters.
+Install: docker compose up --build; smoke-test script included.
+Dependencies/hardware: Docker;
+FastAPI/ARQ/Redis/FFmpeg/Editly/HyperFrames; no special GPU needed for
+deterministic composition.
+Evidence: documented end-to-end smoke test, validated Pydantic
+composition schema, render artifacts, sidecar/burn-in captions, poster
+metadata, production storage path.
+Roast.pet value: if Kamishibai/LeClap stays as renderer, VidAPI can be
+the job-service shell around it. Do not build render
+queues/webhooks/storage/status APIs ourselves.
+Difficulty: MEDIUM.
+Maintenance risk: MEDIUM; larger dependency surface than our V0 needs.
+Experiment: add a single Roast renderer adapter that accepts
+pet-package + performance.json, render 20 concurrent fake orders,
+kill/restart a worker mid-batch and verify artifacts/status recover
+correctly.
+Verdict: COPY SERVICE SHELL / WATCH; don't adopt until asynchronous
+server rendering is actually needed.
+
+5) Frederic =E2=80=94 zylamarek/frederic
+URL: https://github.com/zylamarek/frederic
+Activity: 53 commits; older project, not a current frontier model.
+License: MIT.
+Solves: tiny cat-face geometry: ROI plus five landmarks =E2=80=94 both eyes=
+,
+mouth, both ears =E2=80=94 using MobileNetV2-based models.
+Install: clone + Keras/Pillow; supplied install scripts/conda
+environment; pretrained models download on first prediction.
+Dependencies/hardware: Keras; CPU possible, GPU optional.
+Evidence: author reports average landmark-axis error 2.07 px / 1.6% of
+cat-face size and explains training/augmentation/model architecture.
+Roast.pet value: the exact five points are sufficient for
+deterministic mouth placement, eye overlays, head scale/roll and
+ear-relative geometry. Old model quality may be enough because our
+source image is a single clean customer portrait.
+Difficulty: LOW-MEDIUM.
+Maintenance risk: HIGH as a direct dependency because Keras stack is
+old; LOW as a geometry baseline.
+Experiment: 50 customer-style cat photos; measure mouth-center/eye/ear
+errors and compare with VLM/manual landmarks. If adequate,
+export/modernize to ONNX rather than preserving old environment.
+Verdict: COPY MECHANISM / BENCHMARK, not production dependency.
+
+6) PetFace / PetFaceClone =E2=80=94 animal identity scorer research baselin=
+e
+URL: https://github.com/SciShaman/PetFaceClone
+Project: https://dahlian00.github.io/PetFacePage/
+Activity: official code released Jul 2024; face alignment added Oct 7
+2024; 21 commits in surfaced clone.
+License/usage: IMPORTANT =E2=80=94 dataset, code and pretrained models are
+explicitly NON-COMMERCIAL RESEARCH ONLY. Do not ship them in
+Roast.pet.
+Solves: proves animal identity embeddings are practical. PetFace
+covers 257,484 individual animals across 13 families/319 breeds;
+ArcFace was the strongest benchmark. Code includes cat
+verification/re-ID, pretrained weights and face alignment from pet
+keypoints.
+Dependencies/hardware: PyTorch/CUDA stack for training/evaluation.
+Evidence: ECCV oral work; verification/re-identification evaluation
+scripts; PetFace reports jointly trained animal model separates
+same/different identities better than generic CLIP/MegaDescriptor
+baselines.
+Roast.pet value: this answers the conceptual question behind
+Personalab adaptation: identity embeddings can work on pets. But
+commercial restrictions mean use only as a research benchmark/design
+reference, then source/train a commercially usable scorer.
+Difficulty: HIGH if retraining a commercial model; LOW for research benchma=
+rk.
+Maintenance risk: HIGH for production due to license restriction.
+Experiment: research-only offline test on 20 pets with multiple real
+photos + generated states. Compare PetFace embedding similarity
+against CLIP/DINO and human identity judgments. Use results only to
+decide what kind of commercial scorer to build/source.
+Verdict: WATCH / RESEARCH ONLY / DO NOT SHIP.
+
+TOP 5 THINGS WE SHOULD NOT BUILD OURSELVES
+1. Identity QA orchestration, retry policy, drift logs and provider
+throttling =E2=80=94 adapt Personalab's architecture.
+2. A heavyweight quadruped pose stack before testing the 3.36 MB
+SnapML/AP-10K model.
+3. Transparent-animation browser codec handling =E2=80=94 rt-alpha-video
+already packages WebM + Safari HEVC fallback.
+4. Render-job queues/webhooks/artifact storage if/when we need a
+render service =E2=80=94 VidAPI already supplies the shell.
+5. Pet identity scoring from first principles =E2=80=94 existing PetFace
+research proves the embedding approach; source a commercially usable
+equivalent rather than inventing the metric blindly.
+
+MOST SURPRISING HOBBY PROJECT
+snapml-quadruped-pose. It was posted to r/Spectacles in Aug/Sep 2026
+as a community project, yet ships a 3.36 MB, 3.26M-parameter 17-joint
+animal tracker with measured AP, training scripts, ONNX export, a Lens
+prefab and deterministic conformance testing. This is exactly the
+tiny-specialist-project profile the scanner is targeting.
+
+FASTEST INTEGRATION WIN
+rt-alpha-video. Feed one existing transparent pet PNG sequence to a
+one-line npx command and test the generated WebM/HEVC pair on iPhone
+Safari and Android Chrome. If it works, transparent pet delivery is
+solved rather than becoming another Roast.pet subsystem.
+
+ONE REPO/AUTHOR WORTH FOLLOWING
+EstevanSL / Sausage Labs. Their stated focus is computer vision for
+dogs, and they released quadruped pose infrastructure because they
+needed it internally. That is unusually aligned with Roast.pet's
+future need for cheap pet-specific geometry and tracking.
+
+ARCHITECTURE UPDATE
+The strongest combination from this run is Personalab's generic
+IdentityEvaluator protocol + a future commercially usable pet
+embedding + cheap pet landmarks. That gives Roast.pet a real identity
+firewall:
+
+canonical pet -> generate candidate state -> pet embedding similarity
++ landmark geometry + visual-quality checks -> ACCEPT / targeted RETRY
+/ REJECT -> immutable pet package.
+
+That is stronger than generic vision-model QA because identity becomes
+measurable, logged and comparable across providers over time.

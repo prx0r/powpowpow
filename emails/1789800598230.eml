@@ -1,0 +1,350 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id hMN4wOi07tmY
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 06:49:57 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=EI7WaYWBGisVULpQ4G3kt/aq4LHTlDPPQ8jrU0cgk4p3uUGY7Lp+md3OwpA98csWMbpUfXuTc
+	lGJ4r4Wt8ZhQbfhSYM4bOV1gUtwRS5OHWtdIyZ2TwR32DXHsnIyiysvG5sJsLMks0ECCgg2LHv7
+	FxxZ28hc5mB3dClcBBGqSuJRPKQE8ll/MTx6gVZDW6SBBPq+ZSJ2Z0to9Cq4sKtaFS2lpOj60Cf
+	KP33se7CrLSEnlW9hNLYjvD0OAh7EuPVu0z4TWHyO8p92K7yF/Tido0NnGynZw13bQtlVZ2B4k3
+	kL1Mb38MZgG1MC0kFGFFfvoVs5QdOf8zImhYq9E6mRuA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789800598; x=1790405398; bh=2rpnQKyH
+	8JLbEi0QGxWB0rdHpBRV2AkSzIOGom4l5go=; b=RRYO/AOPGOFjHBExhb+QznRmLRyVLdEBhoD
+	SuenCw3cktQSiPMAIfKVJigcOlt19tYp5oGnWNyt0g0kQkPGxiwec8Doz/QmQeUY9oaih+rUVPQ
+	ca8JLjX2yLmSF4ttRd3Cn963zvw7RiOi6TMecfcf2T6llTv4up1DNRrq2/MNlPzq7UI71sxiLBf
+	evY1QpXM8yBu8ONkVGvFReoC6qmJ96sfzYuLOxXZ9ZSLp+s0A3AA08cnSXMTl7SQ+GAoBh6CVKm
+	JPmx88xkinFRrL8v/MlYqHXgfgIi8RWMXLREYHNbDcl+jtpn+niGsi5XqC6MrIlP4SWv6oQMEUb
+	ufs4j5Q==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YC0R3kC4;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YC0R3kC4;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66fb93aee5eso1487543d50.1
+        for <agents@intelligentothers.xyz>; Fri, 18 Sep 2026 23:49:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789800597; cv=none;
+        d=google.com; s=arc-20260327;
+        b=mIxbKIjYcd9zx83hiYuGUptGjRzt4JVF+uDCItffXZ2uTMu8QA9lVD08LDKhuMHE0s
+         TTCnEmP6/0rPGVYz2OZ1uAPPZjv34Y1nOE4vLc4NBRRZf38M8noGr4KH9iKpX/nO2jd2
+         jhWwtc40MPiG3vEsq1p5+h+c//73yITq2pCFkES8d/VLobJ6MginesbMHWgfumg2T98J
+         88yRYq2QAQ6pyBQUKhhh+/AeJ3RmEIVyNMMb3n5TgGRJiS5/a+cqPbF3Ah8UwnnySw4Y
+         wFUGgMYFVX8CnGY+Ye6S6/bnVjPEuRohgcYpONhC6NvsHHBFFmf7kVMI60rJHmQTp2Dn
+         oKTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=2rpnQKyH8JLbEi0QGxWB0rdHpBRV2AkSzIOGom4l5go=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=A24mRD4lr6W5Xhkpbbis0YPmRoPvyhR7wauIHMo/7kpmgaU12J2izwKiVprX8l4yQN
+         12S0qRxtjelMCC48s3zALAO9TPwEFMQiQApPndoeqNQ6Ip6btYL8NhFOpMfahEgnPSfz
+         Cpgm5aYcMxsSyGZjWTe7zx4tc+OciZHOQ6wQqJqkExxlXz/zATi8OwrWD8W9TeMJejDv
+         g9lx9NImBpGpThJFOGMNmFmY+uo1zMmPFoACkHssfv2qrEfEH6KsKKorEwe7lcSC1YZd
+         +StlWMH27LEuotOEmu086WHIgKTucun/9jqi2/zgGUghnAnQ9WSwr3CTxAYntZZNlUYC
+         txkA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789800597; x=1790405397; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=2rpnQKyH8JLbEi0QGxWB0rdHpBRV2AkSzIOGom4l5go=;
+        b=YC0R3kC4AqMiIxwVzeLXD3KnAFZBRySKUqhD7sdU6v7eTsYGvpnEYD2Y7bLUteiqcc
+         AIHNcUB8kHZDtTBjPWgnCUJ2CpbfoikxrUYdTX4Vs3dEV+IvONJTqvGzhkR2+HazIit2
+         1mq3kAoDg5V4dDUkt0+ntxUq+/eQs/3EJE0UUt1NpjuaP3HjH+ShMdRlEiNBY/+EC0gI
+         HV0I7PEE55XwxiLBs0nv/Aply+Frc8UdlgZl9I1Gqya+jjYUwpnwNG4vXIhgOlQa/gva
+         41w/ymGjkla2ceZRLb0xMvn0OR0NhbFzolIBiEND4c52Jyqu/mle2wOnPfT2kmtbzwok
+         sOJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789800597; x=1790405397;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=2rpnQKyH8JLbEi0QGxWB0rdHpBRV2AkSzIOGom4l5go=;
+        b=iQRUP7y122JPFrSJNckWkONLYhiBk0m+nksIzl39bugu9XDSc90FAWBaUOtXuiY8eg
+         ixHDJWyaY18eK5Jt3LEQOBv7vn3/5rp8XOqg5RhY/7fDuJNMELHIhHNdQjnxe7cGd85J
+         Zchcfkd1qzLDlQWac/A5ZmyV0MbmY4Wa8/bCQGaIpmk53bmNXumYLjwpWcksOBNcxo5N
+         6CDOi/8wFZHGSlbLpHp7ao7PKNL4jt0k6FftHGV5Z3uYciS73d93qbnIWnN3+KzI0daA
+         f2JrGhrIb+vTBkbzuV1iVnuRtJq/f+zKdWtSjOnOmltdHo9HI5xNKHfRXe9thHA0b+QW
+         lFjw==
+X-Gm-Message-State: AFuF++mH6PmaElrEbrIivGtPOUR+T//aHM9BjRfVcLyq+ZRkS1DAfY9w
+	dsnJ2P8WD80ohZ1rmlMeUMIgAirZiggdvYLG8Y8nlFX5pvfYfbw0l2rD+hXxpQZkSaLyHAhJKdN
+	WUwkkBLnm3HgNmeLzO7LLpjSSjsXSsCx9kA==
+X-Gm-Gg: AYBFou34hrkS/kHjj4nLJKStZ+RE6GNUup6KSmrMHwi+xbn/T47ib4ZEZJsUI7Z0IVs
+	z1uwRHm+30MiURZeoQW/W2o7UMiYZt4IiqIKG+LA1OGEKFBAfHnWAO4HTon417BlXKDVCjq8p9Z
+	WIAd6yGUk+MpsMscLbOCQpuu3OKejElax5wQiFTxh5cSiKPTLppl0m/OAwGp4h/C3I9aPibXIg6
+	6cCZNOmz7jKUkqv2WoCnwXdO1J6E2/u2C4xwPud/QGloShShWoXZX5Sn3JNccBHkTA+xSpnk3Jl
+	GV8/7MyqmCLvwr9Wx5Ce3e61OXrP/e27ZPX7opRYbdpg+g6izmZHGjmCDPUNoLB8IywMsr7u9K1
+	HBC0R7jv0myejTwlnqk4mM/hT4kwuMVeCDj6zijVis2n3j5jz1GroGQndJwTK+6reB2/Vm0Y=
+X-Received: by 2002:a05:690e:4893:20b0:66f:c1be:3181 with SMTP id
+ 956f58d0204a3-6717fe095b8mr1077650d50.88.1789800597419; Fri, 18 Sep 2026
+ 23:49:57 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 01:49:57 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 01:49:57 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 01:49:57 -0500
+X-Gm-Features: AcwNN1WxM7LmhHkHulw90qeiLgbVlJdTqSKMh5az7DUDFgmFKqBqRGn2gqAOkB8
+Message-ID: <CAPdrGen0BJKYnkbvU3mPmuwqU_p6KYfj9vLLBYZgRA-0sQrYig@mail.gmail.com>
+Subject: =?UTF-8?Q?Roast=2Epet_Personalisation_Gold_=E2=80=94_2026=2D09=2D19_13=3A49_?=
+	=?UTF-8?Q?Asia=2FPhnom=5FPenh_=E2=80=94_1_strong_signal?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000d3f973065bd06c27"
+
+--000000000000d3f973065bd06c27
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA
+
+Prior Sent state recovered through the 12:48 report. Semantic duplicates
+rejected unless new independent evidence materially strengthens a cluster.
+
+1 STRONG SIGNAL
+
+AI / PROCESS TRANSPARENCY IS PART OF TRUST =E2=80=94 BUILD/TEST =E2=80=94 M=
+EDIUM-HIGH
+
+Source: https://www.reddit.com/r/EtsyCommunity/comments/1nktgor
+Platform: Reddit / Etsy customer discussion
+Date: Sep 23, 2025
+Customer paraphrase: a buyer of a custom pet portrait said they became
+suspicious because the seller supplied a proof extremely quickly and could
+make edits within seconds; combined with unexplained shipping-origin
+discrepancies, the experience felt =E2=80=9Ca bit off.=E2=80=9D Another com=
+menter
+characterized the underlying mismatch as bait-and-switch when the received
+portrait did not match the reference/advertised capability.
+
+Wanted/problem: buyers do not only need a preview; they need confidence
+that the preview, production method and final product are truthful. In an
+AI-heavy personalized category, suspiciously opaque production can reduce
+trust even when speed is objectively good.
+
+Current workaround/product: buyers inspect proofs, shipping details and
+final output themselves, then dispute/refund if the result appears
+misrepresented.
+
+Roast.pet implication: do NOT pretend the roast is hand-made or conceal AI.
+Make the mechanism legible: =E2=80=9CAI-assisted, built from your pet=E2=80=
+=99s approved
+identity; you approve the likeness before the final roast.=E2=80=9D Show ex=
+actly
+what is locked after approval and what AI will still generate. For physical
+goods, state who prints/ships them and give truthful ETA/origin information=
+.
+
+Occasion/audience: personalized pet gifts; especially Etsy buyers wary of
+AI-generated custom products.
+
+Independent elsewhere: YES, but as a distinct trust mechanism. Prior state
+strongly supports proof-before-commitment and preview fidelity; this
+evidence adds that a fast proof can itself become suspicious when the
+process is opaque. It therefore strengthens transparency rather than merely
+adding another preview signal.
+
+Prototype/test: on Etsy images/order page, A/B test opaque =E2=80=9Ccustom =
+designed
+for you=E2=80=9D language versus explicit =E2=80=9CAI-assisted pet roast =
+=E2=80=94 you approve your
+pet first.=E2=80=9D Add a tiny three-step visual: PHOTO =E2=86=92 APPROVE T=
+HEIR LIKENESS =E2=86=92
+WE GENERATE THE ROAST. Track checkout conversion, messages asking =E2=80=9C=
+is this
+AI?=E2=80=9D, refund/revision rate and review sentiment.
+
+RECURRING CLUSTER STATE =E2=80=94 directional counts from accepted independ=
+ent
+evidence across reports (counts are evidence instances, not market
+prevalence):
+=E2=80=A2 Exact likeness / identity fidelity: VERY STRONG, 10+.
+=E2=80=A2 Preview / proof / revisions before commitment: VERY STRONG, 7+.
+=E2=80=A2 Deadline certainty / instant digital / fulfillment reliability: V=
+ERY
+STRONG, 8+.
+=E2=80=A2 Multi-pet / separate photos / whole household: STRONG, 6+.
+=E2=80=A2 Pet personality / quirks / recipient-specific context: STRONG, 5+=
+.
+=E2=80=A2 Photo guidance: STRONG.
+=E2=80=A2 Physical + QR/video bundle: MODERATE-STRONG.
+=E2=80=A2 AI/process transparency: MODERATE, materially strengthened this r=
+un.
+=E2=80=A2 Stable pet voice / authentic audio: MODERATE.
+=E2=80=A2 Editable jokes / genuinely funnier output: plausible, but direct
+customer-language evidence remains weaker than likeness/delivery.
+=E2=80=A2 Memorial: strong for faithful sentimental remembrance;
+memorial-with-humor UNKNOWN.
+=E2=80=A2 AR specifically: UNKNOWN.
+=E2=80=A2 Sports roast / colleague roast / kid-vs-adult modes: UNKNOWN /
+insufficient direct evidence.
+
+TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE
+
+   1. Exact individual likeness that survives every downstream
+   transformation.
+   2. Preview before commitment + buyer approval lock.
+   3. Deadline certainty with instant digital fallback and explicit
+   physical ETA.
+   4. Multi-pet composition from separate photos.
+   5. Personality-rich personalization: quirks, expression/accessories,
+   recipient context and optional authentic pet audio.
+
+STRONGEST UNMET NEED
+A funny personalized product that is unmistakably THEIR pet while also
+being trustworthy: what the buyer approves must be what appears in the
+final card/video.
+
+EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW
+Add one explicit trust line directly beneath the upload: =E2=80=9CAI-assist=
+ed.
+Preview your pet first. Nothing is charged/finalized until you know it
+looks like THEM.=E2=80=9D Then show PHOTO =E2=86=92 APPROVE =E2=86=92 ROAST=
+. This combines
+established preview demand with the new transparency signal.
+
+BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE
+=E2=80=9CYour Dog Roasts Them =E2=80=94 Preview Their Likeness First =E2=80=
+=94 Personalized Talking
+Pet Birthday Video + Printable QR Card =E2=80=94 Instant Digital Gift.=E2=
+=80=9D Put
+=E2=80=9CAI-assisted + buyer-approved likeness=E2=80=9D in the listing rath=
+er than
+disguising the production method.
+
+IMPORTANT NEGATIVE SIGNAL
+Do not imitate Etsy sellers who make AI personalization look handmade or
+mysterious. Surprisingly fast generation is not automatically a positive if
+it makes the buyer suspect a bait-and-switch. Roast.pet should sell the
+outcome and approval guarantee, not fake craftsmanship.
+
+SEARCH NOTE
+Fresh scanning covered current talking-pet app reviews, Etsy/custom-pet
+results, personalized card products, multi-pet/photo-combination products,
+QR/video mechanics and recent pet-gift sources. Most findings repeated
+established clusters and were rejected. No credible new direct customer
+demand surfaced this run for AR, sports roasts, colleague roasts, kid/adult
+modes or memorial comedy.
+
+--000000000000d3f973065bd06c27
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>ROAST.PET PERSONALISATION GOLD =E2=80=94 CUSTOMER-SIGNAL DELTA</p>
+<p>Prior Sent state recovered through the 12:48 report. Semantic duplicates=
+ rejected unless new independent evidence materially strengthens a cluster.=
+</p>
+<p>1 STRONG SIGNAL</p>
+<p>AI / PROCESS TRANSPARENCY IS PART OF TRUST =E2=80=94 BUILD/TEST =E2=80=
+=94 MEDIUM-HIGH</p>
+<p>Source: <a href=3D"https://www.reddit.com/r/EtsyCommunity/comments/1nktg=
+or">https://www.reddit.com/r/EtsyCommunity/comments/1nktgor</a><br>
+Platform: Reddit / Etsy customer discussion<br>
+Date: Sep 23, 2025<br>
+Customer paraphrase: a buyer of a custom pet portrait said they became susp=
+icious because the seller supplied a proof extremely quickly and could make=
+ edits within seconds; combined with unexplained shipping-origin discrepanc=
+ies, the experience felt =E2=80=9Ca bit off.=E2=80=9D Another commenter cha=
+racterized the underlying mismatch as bait-and-switch when the received por=
+trait did not match the reference/advertised capability.</p>
+<p>Wanted/problem: buyers do not only need a preview; they need confidence =
+that the preview, production method and final product are truthful. In an A=
+I-heavy personalized category, suspiciously opaque production can reduce tr=
+ust even when speed is objectively good.</p>
+<p>Current workaround/product: buyers inspect proofs, shipping details and =
+final output themselves, then dispute/refund if the result appears misrepre=
+sented.</p>
+<p>Roast.pet implication: do NOT pretend the roast is hand-made or conceal =
+AI. Make the mechanism legible: =E2=80=9CAI-assisted, built from your pet=
+=E2=80=99s approved identity; you approve the likeness before the final roa=
+st.=E2=80=9D Show exactly what is locked after approval and what AI will st=
+ill generate. For physical goods, state who prints/ships them and give trut=
+hful ETA/origin information.</p>
+<p>Occasion/audience: personalized pet gifts; especially Etsy buyers wary o=
+f AI-generated custom products.</p>
+<p>Independent elsewhere: YES, but as a distinct trust mechanism. Prior sta=
+te strongly supports proof-before-commitment and preview fidelity; this evi=
+dence adds that a fast proof can itself become suspicious when the process =
+is opaque. It therefore strengthens transparency rather than merely adding =
+another preview signal.</p>
+<p>Prototype/test: on Etsy images/order page, A/B test opaque =E2=80=9Ccust=
+om designed for you=E2=80=9D language versus explicit =E2=80=9CAI-assisted =
+pet roast =E2=80=94 you approve your pet first.=E2=80=9D Add a tiny three-s=
+tep visual: PHOTO =E2=86=92 APPROVE THEIR LIKENESS =E2=86=92 WE GENERATE TH=
+E ROAST. Track checkout conversion, messages asking =E2=80=9Cis this AI?=E2=
+=80=9D, refund/revision rate and review sentiment.</p>
+<p>RECURRING CLUSTER STATE =E2=80=94 directional counts from accepted indep=
+endent evidence across reports (counts are evidence instances, not market p=
+revalence):<br>
+=E2=80=A2 Exact likeness / identity fidelity: VERY STRONG, 10+.<br>
+=E2=80=A2 Preview / proof / revisions before commitment: VERY STRONG, 7+.<b=
+r>
+=E2=80=A2 Deadline certainty / instant digital / fulfillment reliability: V=
+ERY STRONG, 8+.<br>
+=E2=80=A2 Multi-pet / separate photos / whole household: STRONG, 6+.<br>
+=E2=80=A2 Pet personality / quirks / recipient-specific context: STRONG, 5+=
+.<br>
+=E2=80=A2 Photo guidance: STRONG.<br>
+=E2=80=A2 Physical + QR/video bundle: MODERATE-STRONG.<br>
+=E2=80=A2 AI/process transparency: MODERATE, materially strengthened this r=
+un.<br>
+=E2=80=A2 Stable pet voice / authentic audio: MODERATE.<br>
+=E2=80=A2 Editable jokes / genuinely funnier output: plausible, but direct =
+customer-language evidence remains weaker than likeness/delivery.<br>
+=E2=80=A2 Memorial: strong for faithful sentimental remembrance; memorial-w=
+ith-humor UNKNOWN.<br>
+=E2=80=A2 AR specifically: UNKNOWN.<br>
+=E2=80=A2 Sports roast / colleague roast / kid-vs-adult modes: UNKNOWN / in=
+sufficient direct evidence.</p>
+<p>TOP 5 CUSTOMER REQUESTS TO PRODUCTIZE</p>
+<ol>
+<li>Exact individual likeness that survives every downstream transformation=
+.</li>
+<li>Preview before commitment + buyer approval lock.</li>
+<li>Deadline certainty with instant digital fallback and explicit physical =
+ETA.</li>
+<li>Multi-pet composition from separate photos.</li>
+<li>Personality-rich personalization: quirks, expression/accessories, recip=
+ient context and optional authentic pet audio.</li>
+</ol>
+<p>STRONGEST UNMET NEED<br>
+A funny personalized product that is unmistakably THEIR pet while also bein=
+g trustworthy: what the buyer approves must be what appears in the final ca=
+rd/video.</p>
+<p>EASIEST CONVERSION-LIFT CHANGE TO ORDERING FLOW<br>
+Add one explicit trust line directly beneath the upload: =E2=80=9CAI-assist=
+ed. Preview your pet first. Nothing is charged/finalized until you know it =
+looks like THEM.=E2=80=9D Then show PHOTO =E2=86=92 APPROVE =E2=86=92 ROAST=
+. This combines established preview demand with the new transparency signal=
+.</p>
+<p>BEST NEW ETSY LISTING/PRODUCT IDEA FROM CUSTOMER LANGUAGE<br>
+=E2=80=9CYour Dog Roasts Them =E2=80=94 Preview Their Likeness First =E2=80=
+=94 Personalized Talking Pet Birthday Video + Printable QR Card =E2=80=94 I=
+nstant Digital Gift.=E2=80=9D Put =E2=80=9CAI-assisted + buyer-approved lik=
+eness=E2=80=9D in the listing rather than disguising the production method.=
+</p>
+<p>IMPORTANT NEGATIVE SIGNAL<br>
+Do not imitate Etsy sellers who make AI personalization look handmade or my=
+sterious. Surprisingly fast generation is not automatically a positive if i=
+t makes the buyer suspect a bait-and-switch. Roast.pet should sell the outc=
+ome and approval guarantee, not fake craftsmanship.</p>
+<p>SEARCH NOTE<br>
+Fresh scanning covered current talking-pet app reviews, Etsy/custom-pet res=
+ults, personalized card products, multi-pet/photo-combination products, QR/=
+video mechanics and recent pet-gift sources. Most findings repeated establi=
+shed clusters and were rejected. No credible new direct customer demand sur=
+faced this run for AR, sports roasts, colleague roasts, kid/adult modes or =
+memorial comedy.</p>
+
+--000000000000d3f973065bd06c27--

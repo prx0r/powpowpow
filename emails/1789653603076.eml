@@ -1,0 +1,668 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id lUKabTcTEzu1
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 14:00:02 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=hAhQN1fOZ1z3sakhpvNv7MuBi4g205ORoMueN4HvXD0q5sYO5UFTdAYpz1A8xcWemfkA7oLHj
+	xDBxHAxMtDtLvLHqwvOS7mT+cCAg+06qUYIl0e6rSs+QXtyxnkPZZVr90e7GxjTU2jaDb3HdNn+
+	6TX644i5+JL6P/wBO600LGcnLV9zYNqcrMQ+YHTqYGEF//iQmm4MU710eA+V/reYe4BJvQyZkWR
+	iuy9VbuKNWwP0GlX5KimzPHh+PLo+kDl+aZPJFih6v0nFZ/AN1lmjKLs1+X8PR4YlNC8czbvWTI
+	f0Rcv4MzD09UJHybrysaePKWh5DOISb5W5j+YlMnbwRQ==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789653602; x=1790258402; bh=a9BA03ft
+	6QnmN4waiYkne2hfrr6DZBwdfkBiYTs5wZY=; b=LLdTMAV7ruWghLfapjT5nVx6BtmpmuBAAM7
+	EPeM+N45DSEUR2EtaW+I+0/7CyPPh/39J7qjyOq9uS/2s+PXbZDueUg62A5/MQRHF5XhZ9z8+Ms
+	3QW21oTVc+w/53DPpnRgLjC/RMSQgwT72/wlmtfyIgdTx6KMhCRdskp1RHl4+5oNgzf8r0+wZ5f
+	iVs+glUsBSxxLcOslqhy6O3g6WhLhi+G5VLnmuLr3JzvleMjFkLSkDXlw9QAowQxzy8sPftXLNI
+	OVjdd4ckdtdmF/rIwMyb70/eFjNK6ifUed81B08H3EZcoxZ2NZPfOUxwcGQ+6A1oPRzPpQqzVlB
+	f8Cvt9A==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=gzzNICpY;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=gzzNICpY;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 00721157ae682-85d43ac8d1fso5852327b3.0
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 07:00:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789653602; cv=none;
+        d=google.com; s=arc-20260327;
+        b=JaL0Pzo5xmCkF3gneH2Kkgkhy2pYsIf/QFu5RRYJw9uYt1I+iKF3A7FG5tfaKqik4f
+         bTSg1ZV9mX+Igag1FBz5DVnSAY+SoQNDU2MHoZZE/voi0Iu5WwStJ8+ra3+d+pMlAt9M
+         k7o+2j0USCXLsD1g3Z04eF2U03lV3KVfiLE3gUWu0TQQPg+mK+mRhwNJ2K3wZTW4G11I
+         ZWwFHCWLUhqRnTRBAfwjUODriwbsN+LQUAd+D4CpChRLKc7RNk0nVBgnr805eJXOX3jR
+         H98C/dlu0iOccZAXr6/l2SslY4vB+5yeEx+b705aJqsUboTMobIoyLy3MK8wjYYt7SZX
+         3rLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=a9BA03ft6QnmN4waiYkne2hfrr6DZBwdfkBiYTs5wZY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=oJ3TGfM+3eSMG2rHZUs1MHBRhLT2vppfh9pmCZ1XNPELELJ/5Rvb+jPtkb5zpfPnEX
+         3xr5QVpwKj93dlqFz3QU+g8tXetIVGUeJn/F9KenS7Jjkb0XSdFCj4/EP0/7SoAKOHFz
+         KTrU2iTmp5UcoLk3O4Xs9jzjgnPL0W7ba6AYsSfc2S28hFIpkRFzPwhRz4uLiPIQ1R/G
+         fjnAYrtRpYNI98uLqNKpEU2qR1sRw2xggHfsLl0J+2ee1LenqL++ytFmCJRTnYo/POgS
+         fpoh4oQy03g8lCtKh8qhszxmA2uffv3xRVu52Jf/lDy5gyTT9h2z8ldJX3pQoVMKl1RD
+         mzOw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789653602; x=1790258402; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=a9BA03ft6QnmN4waiYkne2hfrr6DZBwdfkBiYTs5wZY=;
+        b=gzzNICpYpQQ2pVhvZg4X71Ni3rCySlig1mnejQ9B+U5yisSE4jrNAcUx7kUBNzoNiy
+         gAz+3p/SlkVKzvGQ1VZeCTGp8ewB8EkC0A2RU4nJK4PMUE0okEf/SMuHSd5CM9l0H3aP
+         prd+Idy9z/ooQbaq1Yo4aN1tS0q9lkMiS31Uk2OqT+xOG19lSAcHJhFuYw78je9te8Uy
+         HpOVh+atpyPnutxxRL4CRU83xULt1tK9ErEgdXggW+pfawEyqqQsZGTjk2r4hyfrELnA
+         lchjH9UY7oJktYKcdWgMHfCnqd0o6q+0yVgVZK5uUQBwiSZUT2+s5l1VB57r2fMnzGIw
+         4R3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789653602; x=1790258402;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=a9BA03ft6QnmN4waiYkne2hfrr6DZBwdfkBiYTs5wZY=;
+        b=WjdEJmDhZh8cC/sflA0b4uxI59dJsHBOIuZ+pcOHBrjcAmLgKsRXW/HczaSE0MY25K
+         7gftp1lazH6uBVqS1UMp+P2vTEYt+ETW2nWKyzflMhzDvCMM5WDRYcmwdfAM+avxJVb/
+         59H6Ve8/g35f+GUcGo9nt782DKBSRyHKwN94pKZhjjksf5kVpTqkCNWSCxejpZOsWsj1
+         FTJaAiv/9OnkCqwPubT4Ozep6BlpW0aWJvcbMHJbzZWxBy2QSeaEFTd6Ta3vWox5/Rup
+         Rqha3sjXCGcC5h7yXRidZriN4Y/3XXv1pcHdqmZKgQ3CZWCfePWzHiRNjqFP7QoMRpV6
+         VhFQ==
+X-Gm-Message-State: AFuF++kwNmgrE8JFmIKauVGW0L3B3qNcFNS7whPWq4rOZleXwA0r41g5
+	MYttuiFie/u7nXNEC6/nr7+QzFBkB0Ghv0XZu1euEAtx6EWuMyHpYdEf3phQ92AVOIpyv9b8+Wh
+	ZAx0nnovowHuy4/h6uSx5SOn/allhaeklgg==
+X-Gm-Gg: AYBFou2jiKwfYap8qU75l/4i6YKqHBQspBNGBKMGU5DjqbH3zo5pBhzxpJKagK2remt
+	dO5vX7jAfQOwfBTPN+pvxK4rFoVxdARcTMrWQZLahTu7RB6r0qB0280N0muX4yrQKMnrIho+J4X
+	/eC73a4SnyplI4+hhG3SOH6ZuHthtlcMLFayRUHDexf5WOMZEMUVpUTh7piK61P42e1YjP1dtYr
+	NlyHvE5KwW2LoitBgiN39Ig4DqTkFS7rv4qdhv7vQ/jucaNKm8zc9LpfFyBM/nmjXcauwuoZgjA
+	ij7W4lSms4tXJ+zaHedMtAyJgFT7ldolHpyulmeocdlCMvu8ZmvzunZMT7h8KPGdwF5wte8Zqkt
+	tZ4yXVqVNH1eICA66Oj5kGUFVCNe07MbXCvxnsJjDLz/W691MGXcpOl03yF1hjWLoMm+AdvmQ
+X-Received: by 2002:a05:690c:c4e3:b0:866:4769:d5d5 with SMTP id
+ 00721157ae682-89220c4cc27mr20129587b3.4.1789653601754; Thu, 17 Sep 2026
+ 07:00:01 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 09:00:00 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 09:00:00 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 09:00:00 -0500
+X-Gm-Features: AcwNN1WqYwQQF5n9eOlyn-kXMxoCYnzTaf0vp4GHleVB5g0ojn_7EJJgI0_6gMo
+Message-ID: <CAPdrGemgo+8ZE2i0nVdHhzqtAr4R4=UjjbS9ULB4c=e3Np1jGw@mail.gmail.com>
+Subject: =?UTF-8?B?Y21haWwgUVAgcm9vdC1vZi10cnVzdCByZWJ1aWxkIOKAlCBjb250aW51YXRpb24gwqcxMQ==?=
+	=?UTF-8?B?4oCTMTg=?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000034231c065bae336f"
+
+--00000000000034231c065bae336f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+11. Exact cmail ProofSpecs
+
+Implement these first. These are the root proofs from which setup.social
+can safely expand.
+P1 =E2=80=94 domain_available(provider, domain)
+
+Claim: exact registrar/provider currently reports exact domain D as
+registrable under requested product/tier.
+
+Evidence: authenticated registrar availability read; exact domain;
+provider/account context; price/currency/tier if returned; observation
+timestamp.
+
+TRUE: provider explicitly reports exact D available/registrable and
+evidence is fresh.
+FALSE: provider explicitly reports exact D taken/not registrable.
+UNKNOWN: timeout, auth error, malformed/ambiguous response, unsupported
+TLD, rate limit, missing credentials.
+
+DNS NXDOMAIN is never sufficient for TRUE.
+P2 =E2=80=94 domain_owned(provider, account, domain)
+
+Claim: D is an owned/managed registration in expected registrar account A.
+
+Evidence: authenticated post-effect registrar list/read; exact domain;
+expected account; provider registration ID/state.
+
+TRUE: readback returns D in A with acceptable active/registered state.
+FALSE: authoritative readback decisively contradicts ownership under frozen
+semantics.
+UNKNOWN: API unavailable, auth failure, eventual consistency, ambiguous
+state.
+
+Purchase requires signed one-shot authority bound to exact purchase
+payload. Provider POST success alone does not settle domain_owned.
+P3 =E2=80=94 dns_configured(domain, expected_config)
+
+Claim: authoritative DNS for D matches frozen expected config C.
+
+Evidence: provider config readback + independent authoritative DNS queries
++ expected record-set hash.
+
+TRUE only when all required records exactly match.
+FALSE only when authoritative answers decisively contradict after
+propagation policy permits a decision.
+UNKNOWN during propagation, SERVFAIL, timeout, provider outage, etc.
+
+Do not conflate DNS configuration with ownership.
+P4 =E2=80=94 email_route_configured(address, worker)
+
+Claim: exact address A is covered by an enabled routing rule whose action
+targets expected worker W.
+
+Evidence: authenticated Cloudflare routing-rule readback including matcher,
+enabled state, action target.
+
+TRUE only if matcher + enabled + exact worker action all match.
+
+Current shell verification is insufficient if it only proves routing exists=
+.
+P5 =E2=80=94 email_receives(address)
+
+Canonical inbound-mail proof.
+
+Claim: exact A can receive a fresh externally-originated message through
+the production route and expose it to cmail.
+
+Evidence requirements:
+
+   1. dns_configured and email_route_configured are TRUE.
+   2. QP generates cryptographically random nonce N.
+   3. Independent sender sends N to exact A.
+   4. cmail receives/indexes message.
+   5. Probe queries exact mailbox A, never global token search.
+   6. Evidence binds A, N, sender, provider/raw message ID, timestamps and
+   raw-message hash.
+
+TRUE: N is observed in exact mailbox A within frozen timing/freshness
+bounds.
+FALSE: only a decisive bounded negative defined by ProofSpec, e.g.
+authenticated terminal bounce if the spec accepts that as falsifying.
+UNKNOWN: timeout without decisive negative, sender failure, probe failure,
+outage, ambiguity.
+
+Infrastructure-only checks can establish CONFIGURED/DEGRADED, not
+email_receives=3DTRUE.
+P6 =E2=80=94 phone_owned(provider, account, number)
+
+Claim: exact phone N is provisioned in expected provider account A and
+acceptable active state.
+
+Evidence: authenticated Telnyx read/list after purchase; exact number;
+resource ID; account identity; status.
+
+TRUE only from provider readback. A string beginning with =E2=80=98+=E2=80=
+=99 proves
+nothing.
+
+Purchase authority must bind exact number/provider/connection ID/max cost.
+P7 =E2=80=94 sms_receives(number)
+
+Claim: exact N receives fresh inbound SMS through production webhook/store
+path.
+
+Evidence: QP nonce; independent sender to target N; provider inbound event
+ID; durable store readback keyed to exact destination number.
+
+TRUE when nonce observed for exact N within timeout.
+
+Do not use process-local in-memory maps as canonical evidence.
+P8 =E2=80=94 handle_available(platform, handle)
+
+Claim: at T, supported platform-specific probe indicates H is
+unassigned/available under frozen semantics.
+
+TRUE: fresh admissible evidence says available.
+FALSE: admissible evidence says taken.
+UNKNOWN: captcha, rate limit, wall, no signal, ambiguous response, probe
+error.
+
+This is never ownership.
+P9 =E2=80=94 account_owned(platform, account_id)
+
+Claim: controlled credential principal authenticates as exact platform
+account ID.
+
+Preferred evidence: authenticated provider me/account endpoint returning
+exact ID plus credential/principal binding hash.
+
+TRUE only when authenticated provider evidence binds controlled credential
+to exact account ID.
+
+Signup UI completion alone is not proof.
+P10 =E2=80=94 handle_bound(platform, account_id, handle)
+
+Claim: owned account ID is currently bound to exact handle H.
+
+Prerequisite: account_owned(platform, account_id)=3DTRUE.
+
+Evidence: authenticated account profile readback plus public profile
+reconciliation where useful.
+
+TRUE only when exact account ID and exact handle reconcile.
+
+This replaces current broken available OR owned semantics.
+P11 =E2=80=94 oauth_authorized(provider, principal, scope_set)
+
+Claim: controlled principal has an active authorization containing at least
+exact required scope set S.
+
+Evidence: provider token introspection or authenticated test calls;
+credential stays secret; evidence stores credential reference/hash,
+normalized scopes, expiry/revocation info if available.
+
+TRUE only when provider evidence proves required scopes.
+
+Consent-page success text alone is not proof.
+P12 =E2=80=94 can_post(platform, account_id)
+
+Claim: current controlled authorization for account ID permits the frozen
+write-operation class.
+
+Preferred proof:
+
+   - account_owned=3DTRUE
+   - oauth_authorized(required write scopes)=3DTRUE
+   - provider permission/readback endpoint where available
+   - optional harmless/private canary only if necessary
+
+Any write canary is consequential and requires authority. Do not post
+publicly merely to prove capability.
+P13 =E2=80=94 email_send_accepted / email_delivered
+
+Split these.
+
+email_send_accepted(message): provider/SENDER accepted exact payload and
+returned canonical provider ID.
+
+email_delivered(message): independent downstream
+receipt/bounce/controlled-inbox readback proves delivery according to
+frozen semantics.
+
+message_id plus not failed does not prove delivery.
+
+Sending requires signed exact-payload authority.
+12. Replace GRANT graph with typed edges
+
+Use:
+REQUIRES | DERIVES | ENABLES | AUTHORIZES | EFFECTS | VERIFIES
+
+Examples:
+domain_owned(D) ENABLES configure_dns(D)
+email_receives(A) ENABLES signup(platform,A)
+signed Grant AUTHORIZES cf.domain.register(payload_hash)
+provider effect EFFECTS candidate world transition
+readback evidence VERIFIES target claim
+
+Facts make work eligible. Grants authorize effects. Never merge them.
+13. Runtime enforcement
+
+Create one QP effect gateway, e.g.
+await qp.effects.execute({ proposal, required_claims, grant_id, adapter,
+readback_probe, target_proofspec, });
+
+Direct consequential provider functions become private adapters and must
+not be reachable from raw MCP dispatch:
+
+   - cfRegisterDomain
+   - cfWireEmail
+   - telnyxPurchaseNumber
+   - email.send
+   - social/account mutation
+   - OAuth write/credential changes
+   - posting
+
+MCP creates proposals or submits authority. QP decides whether execution is
+permitted.
+14. Fix authentication/authority first
+
+Current /mcp must not trust caller-supplied actor or default owner/admin.
+
+Required:
+
+   1. Authenticate every non-public request with real
+   credential/session/token.
+   2. Derive principal server-side.
+   3. Remove default owner authority.
+   4. Split public read-only tools from private tools.
+   5. Money/send/DNS/account writes require authenticated principal + valid
+   signed QP grant.
+   6. Rate-limit and audit rejected identity/grant attempts.
+   7. Rotate consequential secrets if exposed behind unauthenticated routes=
+.
+
+15. Persistence
+
+Implement real QP tables, not doc-only schema:
+qp_contracts(contract_root PK, spec_id, canonical_json, created_at)
+qp_claims(claim_id PK, contract_root, canonical_json, created_at)
+qp_evidence(evidence_id PK, claim_id, class, observed_at,
+independence_group, metadata_json, blob_hash) qp_grants(grant_id PK,
+issuer, subject, action, payload_hash, constraints_json, issued_at,
+expires_at, nonce, max_uses, uses, signature, status)
+qp_receipts(receipt_hash PK, claim_id, contract_root, state_before_root,
+state_after_root, actuality, evidence_root, gates_root, authority_id,
+prev_receipt_hash, settled_at, signer, signature, canonical_json)
+qp_events(seq PK, event_hash UNIQUE, prev_event_hash, type, object_hash,
+canonical_json, created_at)
+
+Large/raw evidence goes to content-addressed blob storage; D1 stores
+immutable metadata/hashes.
+16. Tasks/missions become projections
+
+Task completion may record worker progress, not world truth.
+
+BAD:
+task.status=3Ddone -> downstream unlocked
+
+GOOD:
+settled claim domain_owned(D)=3DTRUE under required ContractRoot ->
+downstream eligible
+
+Mission completion must be a query over required settled claims, not task
+booleans.
+17. Target JSON is plan/config, never proof law
+
+targets/*.json may describe desired target, dependencies, adapters, docs,
+cost hints, escalation.
+
+It may not define trusted semantics by inventing gate strings.
+
+Reference immutable registered ProofSpecs:
+proofspec:account_owned:youtube@sha256:=E2=80=A6
+proofspec:handle_bound:youtube@sha256:=E2=80=A6
+
+Unknown roots fail closed. Validate JSON against runtime schema.
+18. Explicit current fixes
+
+   1. Fix capacity.ts if (!null) return null;.
+   2. Delete verifier semantics where available proves ownership.
+   3. Delete phone verifier where any +number proves ownership.
+   4. Split email accepted vs delivered.
+   5. Separate domain ownership from DNS/email configuration.
+   6. Infrastructure checks must not call themselves CERTIFIED without
+   roundtrip.
+   7. Routing proof must bind matcher + enabled + exact worker.
+   8. Email roundtrip must query exact mailbox.
+   9. Move SMS evidence to durable storage.
+   10. Force MCP through QP.
+   11. Implement the QP D1 schema for real.
+   12. Implement independent replay.
+   13. Add adversarial tests for QP.
+   14. Pin exact commit/tree/program hashes, never branch names.
+
+--00000000000034231c065bae336f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+11. Exact cmail ProofSpecs
+<p>Implement these first. These are the root proofs from which setup.social=
+ can safely expand.</p>
+
+P1 =E2=80=94 domain_available(provider, domain)
+<p>Claim: exact registrar/provider currently reports exact domain D as regi=
+strable under requested product/tier.</p>
+<p>Evidence: authenticated registrar availability read; exact domain; provi=
+der/account context; price/currency/tier if returned; observation timestamp=
+.</p>
+<p>TRUE: provider explicitly reports exact D available/registrable and evid=
+ence is fresh.<br>
+FALSE: provider explicitly reports exact D taken/not registrable.<br>
+UNKNOWN: timeout, auth error, malformed/ambiguous response, unsupported TLD=
+, rate limit, missing credentials.</p>
+<p>DNS NXDOMAIN is never sufficient for TRUE.</p>
+
+P2 =E2=80=94 domain_owned(provider, account, domain)
+<p>Claim: D is an owned/managed registration in expected registrar account =
+A.</p>
+<p>Evidence: authenticated post-effect registrar list/read; exact domain; e=
+xpected account; provider registration ID/state.</p>
+<p>TRUE: readback returns D in A with acceptable active/registered state.<b=
+r>
+FALSE: authoritative readback decisively contradicts ownership under frozen=
+ semantics.<br>
+UNKNOWN: API unavailable, auth failure, eventual consistency, ambiguous sta=
+te.</p>
+<p>Purchase requires signed one-shot authority bound to exact purchase payl=
+oad. Provider POST success alone does not settle domain_owned.</p>
+
+P3 =E2=80=94 dns_configured(domain, expected_config)
+<p>Claim: authoritative DNS for D matches frozen expected config C.</p>
+<p>Evidence: provider config readback + independent authoritative DNS queri=
+es + expected record-set hash.</p>
+<p>TRUE only when all required records exactly match.<br>
+FALSE only when authoritative answers decisively contradict after propagati=
+on policy permits a decision.<br>
+UNKNOWN during propagation, SERVFAIL, timeout, provider outage, etc.</p>
+<p>Do not conflate DNS configuration with ownership.</p>
+
+P4 =E2=80=94 email_route_configured(address, worker)
+<p>Claim: exact address A is covered by an enabled routing rule whose actio=
+n targets expected worker W.</p>
+<p>Evidence: authenticated Cloudflare routing-rule readback including match=
+er, enabled state, action target.</p>
+<p>TRUE only if matcher + enabled + exact worker action all match.</p>
+<p>Current shell verification is insufficient if it only proves routing exi=
+sts.</p>
+
+P5 =E2=80=94 email_receives(address)
+<p>Canonical inbound-mail proof.</p>
+<p>Claim: exact A can receive a fresh externally-originated message through=
+ the production route and expose it to cmail.</p>
+<p>Evidence requirements:</p>
+<ol>
+<li>dns_configured and email_route_configured are TRUE.</li>
+<li>QP generates cryptographically random nonce N.</li>
+<li>Independent sender sends N to exact A.</li>
+<li>cmail receives/indexes message.</li>
+<li>Probe queries exact mailbox A, never global token search.</li>
+<li>Evidence binds A, N, sender, provider/raw message ID, timestamps and ra=
+w-message hash.</li>
+</ol>
+<p>TRUE: N is observed in exact mailbox A within frozen timing/freshness bo=
+unds.<br>
+FALSE: only a decisive bounded negative defined by ProofSpec, e.g. authenti=
+cated terminal bounce if the spec accepts that as falsifying.<br>
+UNKNOWN: timeout without decisive negative, sender failure, probe failure, =
+outage, ambiguity.</p>
+<p>Infrastructure-only checks can establish CONFIGURED/DEGRADED, not email_=
+receives=3DTRUE.</p>
+
+P6 =E2=80=94 phone_owned(provider, account, number)
+<p>Claim: exact phone N is provisioned in expected provider account A and a=
+cceptable active state.</p>
+<p>Evidence: authenticated Telnyx read/list after purchase; exact number; r=
+esource ID; account identity; status.</p>
+<p>TRUE only from provider readback. A string beginning with =E2=80=98+=E2=
+=80=99 proves nothing.</p>
+<p>Purchase authority must bind exact number/provider/connection ID/max cos=
+t.</p>
+
+P7 =E2=80=94 sms_receives(number)
+<p>Claim: exact N receives fresh inbound SMS through production webhook/sto=
+re path.</p>
+<p>Evidence: QP nonce; independent sender to target N; provider inbound eve=
+nt ID; durable store readback keyed to exact destination number.</p>
+<p>TRUE when nonce observed for exact N within timeout.</p>
+<p>Do not use process-local in-memory maps as canonical evidence.</p>
+
+P8 =E2=80=94 handle_available(platform, handle)
+<p>Claim: at T, supported platform-specific probe indicates H is unassigned=
+/available under frozen semantics.</p>
+<p>TRUE: fresh admissible evidence says available.<br>
+FALSE: admissible evidence says taken.<br>
+UNKNOWN: captcha, rate limit, wall, no signal, ambiguous response, probe er=
+ror.</p>
+<p>This is never ownership.</p>
+
+P9 =E2=80=94 account_owned(platform, account_id)
+<p>Claim: controlled credential principal authenticates as exact platform a=
+ccount ID.</p>
+<p>Preferred evidence: authenticated provider me/account endpoint returning=
+ exact ID plus credential/principal binding hash.</p>
+<p>TRUE only when authenticated provider evidence binds controlled credenti=
+al to exact account ID.</p>
+<p>Signup UI completion alone is not proof.</p>
+
+P10 =E2=80=94 handle_bound(platform, account_id, handle)
+<p>Claim: owned account ID is currently bound to exact handle H.</p>
+<p>Prerequisite: account_owned(platform, account_id)=3DTRUE.</p>
+<p>Evidence: authenticated account profile readback plus public profile rec=
+onciliation where useful.</p>
+<p>TRUE only when exact account ID and exact handle reconcile.</p>
+<p>This replaces current broken available OR owned semantics.</p>
+
+P11 =E2=80=94 oauth_authorized(provider, principal, scope_set)
+<p>Claim: controlled principal has an active authorization containing at le=
+ast exact required scope set S.</p>
+<p>Evidence: provider token introspection or authenticated test calls; cred=
+ential stays secret; evidence stores credential reference/hash, normalized =
+scopes, expiry/revocation info if available.</p>
+<p>TRUE only when provider evidence proves required scopes.</p>
+<p>Consent-page success text alone is not proof.</p>
+
+P12 =E2=80=94 can_post(platform, account_id)
+<p>Claim: current controlled authorization for account ID permits the froze=
+n write-operation class.</p>
+<p>Preferred proof:</p>
+<ul>
+<li>account_owned=3DTRUE</li>
+<li>oauth_authorized(required write scopes)=3DTRUE</li>
+<li>provider permission/readback endpoint where available</li>
+<li>optional harmless/private canary only if necessary</li>
+</ul>
+<p>Any write canary is consequential and requires authority. Do not post pu=
+blicly merely to prove capability.</p>
+
+P13 =E2=80=94 email_send_accepted / email_delivered
+<p>Split these.</p>
+<p>email_send_accepted(message): provider/SENDER accepted exact payload and=
+ returned canonical provider ID.</p>
+<p>email_delivered(message): independent downstream receipt/bounce/controll=
+ed-inbox readback proves delivery according to frozen semantics.</p>
+<p>message_id plus not failed does not prove delivery.</p>
+<p>Sending requires signed exact-payload authority.</p>
+
+12. Replace GRANT graph with typed edges
+<p>Use:<br>
+REQUIRES | DERIVES | ENABLES | AUTHORIZES | EFFECTS | VERIFIES</p>
+<p>Examples:<br>
+domain_owned(D) ENABLES configure_dns(D)<br>
+email_receives(A) ENABLES signup(platform,A)<br>
+signed Grant AUTHORIZES cf.domain.register(payload_hash)<br>
+provider effect EFFECTS candidate world transition<br>
+readback evidence VERIFIES target claim</p>
+<p>Facts make work eligible. Grants authorize effects. Never merge them.</p=
+>
+
+13. Runtime enforcement
+<p>Create one QP effect gateway, e.g.</p>
+
+<code>await qp.effects.execute({
+  proposal,
+  required_claims,
+  grant_id,
+  adapter,
+  readback_probe,
+  target_proofspec,
+});
+</code>
+<p>Direct consequential provider functions become private adapters and must=
+ not be reachable from raw MCP dispatch:</p>
+<ul>
+<li>cfRegisterDomain</li>
+<li>cfWireEmail</li>
+<li>telnyxPurchaseNumber</li>
+<li>email.send</li>
+<li>social/account mutation</li>
+<li>OAuth write/credential changes</li>
+<li>posting</li>
+</ul>
+<p>MCP creates proposals or submits authority. QP decides whether execution=
+ is permitted.</p>
+
+14. Fix authentication/authority first
+<p>Current /mcp must not trust caller-supplied actor or default owner/admin=
+.</p>
+<p>Required:</p>
+<ol>
+<li>Authenticate every non-public request with real credential/session/toke=
+n.</li>
+<li>Derive principal server-side.</li>
+<li>Remove default owner authority.</li>
+<li>Split public read-only tools from private tools.</li>
+<li>Money/send/DNS/account writes require authenticated principal + valid s=
+igned QP grant.</li>
+<li>Rate-limit and audit rejected identity/grant attempts.</li>
+<li>Rotate consequential secrets if exposed behind unauthenticated routes.<=
+/li>
+</ol>
+
+15. Persistence
+<p>Implement real QP tables, not doc-only schema:</p>
+
+<code>qp_contracts(contract_root PK, spec_id, canonical_json, created_at)
+qp_claims(claim_id PK, contract_root, canonical_json, created_at)
+qp_evidence(evidence_id PK, claim_id, class, observed_at, independence_grou=
+p, metadata_json, blob_hash)
+qp_grants(grant_id PK, issuer, subject, action, payload_hash, constraints_j=
+son, issued_at, expires_at, nonce, max_uses, uses, signature, status)
+qp_receipts(receipt_hash PK, claim_id, contract_root, state_before_root, st=
+ate_after_root, actuality, evidence_root, gates_root, authority_id, prev_re=
+ceipt_hash, settled_at, signer, signature, canonical_json)
+qp_events(seq PK, event_hash UNIQUE, prev_event_hash, type, object_hash, ca=
+nonical_json, created_at)
+</code>
+<p>Large/raw evidence goes to content-addressed blob storage; D1 stores imm=
+utable metadata/hashes.</p>
+
+16. Tasks/missions become projections
+<p>Task completion may record worker progress, not world truth.</p>
+<p>BAD:<br>
+task.status=3Ddone -&gt; downstream unlocked</p>
+<p>GOOD:<br>
+settled claim domain_owned(D)=3DTRUE under required ContractRoot -&gt; down=
+stream eligible</p>
+<p>Mission completion must be a query over required settled claims, not tas=
+k booleans.</p>
+
+17. Target JSON is plan/config, never proof law
+<p>targets/*.json may describe desired target, dependencies, adapters, docs=
+, cost hints, escalation.</p>
+<p>It may not define trusted semantics by inventing gate strings.</p>
+<p>Reference immutable registered ProofSpecs:<br>
+proofspec:account_owned:youtube@sha256:=E2=80=A6<br>
+proofspec:handle_bound:youtube@sha256:=E2=80=A6</p>
+<p>Unknown roots fail closed. Validate JSON against runtime schema.</p>
+
+18. Explicit current fixes
+<ol>
+<li>Fix capacity.ts <code>if (!null) return null;</code>.</li>
+<li>Delete verifier semantics where <code>available</code> proves ownership=
+.</li>
+<li>Delete phone verifier where any +number proves ownership.</li>
+<li>Split email accepted vs delivered.</li>
+<li>Separate domain ownership from DNS/email configuration.</li>
+<li>Infrastructure checks must not call themselves CERTIFIED without roundt=
+rip.</li>
+<li>Routing proof must bind matcher + enabled + exact worker.</li>
+<li>Email roundtrip must query exact mailbox.</li>
+<li>Move SMS evidence to durable storage.</li>
+<li>Force MCP through QP.</li>
+<li>Implement the QP D1 schema for real.</li>
+<li>Implement independent replay.</li>
+<li>Add adversarial tests for QP.</li>
+<li>Pin exact commit/tree/program hashes, never branch names.</li>
+</ol>
+
+--00000000000034231c065bae336f--

@@ -1,0 +1,723 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id cBRaa1VG7MvI
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 20:17:15 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=PaW3QoLDPlydyLhfJsrRF15ibssuJaq6EVR4gApoY+gnO+0Tx+E6m1q++uViiZZPcZ3NoLZmK
+	Ix5OGJEvOGZhSVqUqQ+lLUtnHnuirXGZV6zVtqGsyqFYHBmvnxqw/JMQ8S5di8IS4pAJ05AnSzm
+	n4RPEskX62+7gyNg4yhMSEcvXu1SjlZno4918kwG28PatCSHdb4NTc8CK0ubD42gcVaC3yLa9tK
+	RzRKV/bSaC+yyUS1ebJfbbkaPgA4ELnHsn0Jw0X2pPh9qv08Vp80lstQ/9I/5opKNT9W2h/ZWfa
+	IPv66q2QrEJ6rPLRFW55dcQbRtaNvSd8r/FLvvYd15QA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789676235; x=1790281035; bh=f9sWHgJP
+	v8Fu96sI2rvXxhBonMdZcq4VV6wLtinCkTA=; b=D35coq1eMJP7XPq4KNXHHfrWAJNZ0V0OREu
+	I+t02BpVJEdvj6sLdWJ4fkM25DVAaoup6zKMt481xtnxuD5NqTtCKAXvoYi3/XyoUFetb3+ribt
+	pUhZHba6vZMDcTkSSFZmeb5vC25GOEWb8A/yrfNtZyZK71kxPos8qsYhjpXMNHRA/BafjA2gpQa
+	EgGhfxRl8Zkk1ba6KgsnVHn1oQvcTpgqjx7Qf3doGLLSqF991SeE5az8K5/nbFHCS1yAcTlYv+P
+	fuVW6PoL5NJhNmWKKk3PzvC4hMXCY8VnwCSkKo3OQs0sBq0bCh6WsocV8tfhRbJ+GaqSvEECZRF
+	PY3BoXQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YziQU0vk;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YziQU0vk;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66f943b286fso97294d50.2
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 13:17:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789676235; cv=none;
+        d=google.com; s=arc-20260327;
+        b=lXRrfl5N9jgLIv/Ay6LsZZvysH1lI/Zgkwczt1mwFAcW+/EskWtPNqhgv4B8VhYpSb
+         H87FGLUoPVVXmqodZVFOgjEssy78ztPLoY3eOe8qXm0VYuqYM5gjouPSrLYlUdSqQ1BU
+         sfiWO/dWpElLMXG5yEv2vNvfOPZvCDVvuX3YubAZkxyzrLT8FgKFK+rgEoFyI7bsV+8y
+         4xm+8nQcC0fcu1gYa5a4hN1eAhDfQycpmU7OKJL9KZFhlx+17LqgOUpk6mvv5U98SDT8
+         GIU8FDodWniLVRROeRCIXQfMUlTs0LPULEZuqipQ61ywrIz/U9LbQ0PIhnjPZgj1BKOI
+         R0NQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=f9sWHgJPv8Fu96sI2rvXxhBonMdZcq4VV6wLtinCkTA=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=r77nOSP4GKaQcmiZ4YvtNdy3XQNTvovWR1rkcUIixMkT91n6KbgiMXlagsnpA14T5K
+         b4699i+oBfaPGYJzh29qIDbqctfzWlc475+e0xt3l+haRPcXI4jXandaldTlNYU1j3iI
+         oJWyiBNyLVy1us/9+55d800KEBznnpETc+ADffKwudSo5Gz0wNljc94o0RlNNBLT1C1i
+         Ie8M+cbwi20gTR0VIyIX0cdzmxFLb2V8VNFdWH0vURGUlKPxlRXzGKSrUDWqKj0nxRf0
+         qEElJZQLVOc4T7bGE1igsRFeRxXHMqGNCzy/VOlBBmQoiviGfTLc8Al2uBYHZc+Lwve1
+         N4fw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789676235; x=1790281035; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=f9sWHgJPv8Fu96sI2rvXxhBonMdZcq4VV6wLtinCkTA=;
+        b=YziQU0vk3aFCZol9Kpu27EhVn4Vvi4gTUbqguOv/XdM5jtXZm7G3/NF9tgVjPWs+R0
+         oMEs/enBNo/eNDiTr7IpALfW6FRdWyPa8um+g4FN8efDV7SU1N1gras0V0+eKv+RzEkq
+         elJ8dY1pTq/VwUoFt0dq7oBogSO7cjdpdQbjptL3xlSOjrRz4zHJzhO9ld/Xf97xREjP
+         U1k+mEwbws1QX1V/kQR3G0rd1e+gAmJbTlS6jzXBpsYB4vwXwEq3ZWzLJJjK4/3pNG0+
+         dfrwVjK9R/bCLu5siNXrpTzDlWKSvDRgsEjUEfsu/yPImW/gJQvCLp4FRKxerL8VLNhI
+         pRiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789676235; x=1790281035;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=f9sWHgJPv8Fu96sI2rvXxhBonMdZcq4VV6wLtinCkTA=;
+        b=qeqP4+kjsGEoghyUMo2WvPQcP2SIo5oKx5mdEFyJ8ozsdB8X8ngsfipJ8C1hpZFogl
+         lzZYGAxTrlBGdgRZM5ZUwzvcJRxPwX6uT42nfbKUHzfWB1C4NDHA8b/yIz0p0isFNWhU
+         JAqT5Jjglb5b/RkWp6Fbp/dZT99hnFn1TvM6AUHgv1O2JT20VSm4m38e5xg5H1MLoe8H
+         PA946Zmslc+03cZ0Ix1iNQDp+RCRopv7q7wZA9Rh/PIHCmTl7RArfdDLeUdKBl0meejA
+         1/mG3q+HRmsizJMta4gka7fp7hCeSohcVWOyMkYkXtskhrh93jc0U7eeaM1ZQBhiO5Nx
+         jcLg==
+X-Gm-Message-State: AFuF++me20lesrZxHAx+v2fGB1uxLrRI8u9sH68Fv7BQvQY12R8fcC90
+	F876NE4nU5l/+EpwV4TrYR1h2M8NU6KUj6NXW8CQhKm5Uq2aB7RxAEwHbtX22cF/WVGfQ25eSqJ
+	ddX1GwzIXnXvsz6h9AB9OeY8zdAqgQOHq3w==
+X-Gm-Gg: AYBFou2IwU5vfJJSd+qnWn4H2TzLFz/5oVlZWcSSqr2SLnBBqfYYHEovul9H4fdBg3r
+	C+/ViXNBu1wejRaVExiIMgOGHWU4u32K1ga5H0jKFsZ1X7Mt4Gm5dqutfnXvHI1C7VcZW2KhnzF
+	I+yWGMqqxORRwChmvjlPF22d4h+7B7vfILX0srt7lzBMj7fMiQqKWw1gH/m6p41n+DT12W1c+3Z
+	nPUFcjY2VVgaBaYL8SzROpsAnPiDZ01yIKFWK+vvciAgm/mrOYmEVb5GWUiWd9+VGYZlVLrhz02
+	O19kNIoq6W5FjiZPtdZQBQ3DyZ8ODVryONPQ5TKIIwV/BBGsHWx977jGs1MtAcE/KuqwQzWxrcz
+	sLuxNWnRUeXH3oXGg2RqhS4qzLaHuhdaqTIPo8etXN8gXuyysps5dInlI1C8g8XPV9e8f28ev
+X-Received: by 2002:a05:690e:b81:b0:671:1586:1fed with SMTP id
+ 956f58d0204a3-6717fc67446mr88327d50.9.1789676234361; Thu, 17 Sep 2026
+ 13:17:14 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 15:17:12 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 15:17:12 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 15:17:12 -0500
+X-Gm-Features: AcwNN1XaIDlqQiWDwVb8u9ZEwheDQHsznyxcx6drJNdNd1oAsr9mVtybHUy_RAo
+Message-ID: <CAPdrGemCo8DrPV720JyX5B5TM66zzrB6iuJDzppA8JOmMYZ3zA@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_peer_review_4=2F5_=E2=80=94_make_Tor=2C_SimpleX=2C_phone=2C_?=
+	=?UTF-8?Q?Vault_=2B_dstack_real?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000365074065bb378a1"
+
+--000000000000365074065bb378a1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This phase fixes the external-world/privacy boundary. Current adapters have
+good interfaces but many self-reported/placeholder paths that can
+accidentally become QP truth.
+
+REVIEWED HEAD: 4146b360b607f4c6c99ad8def61313f38282cf31.
+
+   1. SIMPLEX: MOVE FROM MOCK/CLI GUESS TO VERIFIED UPSTREAM INTEGRATION
+   Current src/messaging/simplex.ts:
+
+
+   - live mode shells out to assumed CLI commands
+   - inbound startListener() is explicitly a placeholder
+   - MCP does not actually call the adapter
+   - collector_program_hash is sha256("simplex-adapter-v1"), not a content
+   hash
+
+Use upstream stable:
+https://github.com/simplex-chat/simplex-chat
+
+Prefer the supported local API/WebSocket/service interface if available in
+the checked-out upstream version; otherwise pin exact CLI version and test
+actual commands against it. Do not rely on comments as API docs.
+
+Required live fixture:
+
+   - boot isolated SimpleX profile
+   - create contact/address
+   - second isolated profile sends cryptorandom nonce
+   - pmail receives nonce
+   - pmail sends second nonce back
+   - independent second profile observes it
+   - evidence records exact adapter bundle hash + upstream version +
+   raw/normalized hashes
+
+Claims are separate:
+
+   - simplex_address_created
+   - simplex_receives(address)
+   - simplex_sends(address)
+   - simplex_roundtrip(address)
+
+Timeout/process crash =3D> UNKNOWN, not FALSE.
+
+   1. TOR: CURRENT CODE MUST NEVER RETURN TRUE
+   src/core/tor.ts currently returns fake hostnames and verifyReachability(=
+)
+   returns reachable=3Dtrue without a network request.
+
+Change API so DEV placeholder has explicit status:
+{ state: "UNCONFIGURED"|"STARTING"|"READY"|"FAILED", hostname?: string }
+
+No privacyClass: ANON_CORE until route policy and actual onion service
+evidence exist.
+
+Implement real Tor v3 onion lifecycle:
+
+   - dedicated data directory permissions
+   - HiddenServiceDir / local port mapping (or supported control API)
+   - wait for actual hostname file
+   - validate .onion hostname format
+   - test connection through Tor SOCKS, not direct localhost
+   - ideally use a second independent probe for external reachability
+   - process supervision + restart behavior
+   - no client IP logging at app proxy
+
+Evidence for onion_service_reachable must include actual request/response
+observation. =E2=80=9CTor process started=E2=80=9D is not the same claim as=
+ =E2=80=9Conion endpoint
+reachable.=E2=80=9D
+
+   1. PHONE PROVIDER SELECTOR IS CURRENTLY WRONG
+   selectBridge() currently only filters by privacy class. It ignores:
+
+
+   - requested capabilities
+   - paymentRail
+   - country
+   - max price
+
+Implement all constraints. No provider enters candidate set unless
+known/observed capability matches. UNKNOWN does not satisfy true
+requirement.
+
+Rank only after hard filtering.
+
+Suggested hard filter order:
+
+   1.
+
+   provider status allowed by caller (VALIDATED only by default for
+   consequential use)
+   2.
+
+   max privacy class
+   3.
+
+   payment rail
+   4.
+
+   country
+   5.
+
+   required capability values
+   6.
+
+   max price/renewal constraints
+   7.
+
+   operational health/freshness
+   8.
+
+   PROVIDER DOCUMENTATION IS NOT RUNTIME TRUTH
+   Both PikaSim and SilentLink describeIdentitySurface() currently
+   construct evidence whose hash is a hash of a label string such as
+   pikasim-docs-v1 / silentlink-bulk-api-v1, not a hash of the fetched
+   source content.
+
+Fix:
+
+   - provider marketing/docs produce ProviderClaimEvidence
+   - fetch exact source bytes/structured response
+   - hash content
+   - record retrieved_at + locator + response hash
+   - never convert doc claim directly into VALIDATED capability
+
+IdentitySurface should distinguish:
+source: "PROVIDER_CLAIM" | "PMail_LIVE_OBSERVATION" |
+"REGULATORY_REQUIREMENT" | "INDEPENDENT_TEST" confidence/status: "CLAIMED"
+| "OBSERVED" | "VALIDATED" | "STALE" | "CONTRADICTED"
+
+   1. SILENTLINK CURRENT FALSE CERTAINTY
+   listProducts() hardcodes sms_in=3Dtrue, data=3Dtrue, renewable=3Dtrue; q=
+uote()
+   hardcodes ANON_CORE; capabilities() hardcodes confirmed booleans;
+   readback() defaults missing sms_enabled/data_enabled to true.
+
+Until empirical test passes:
+
+   - use UNKNOWN for unobserved capability
+   - do not default absent response fields to true
+   - quote/privacy class should be derived from current evidence-backed
+   IdentitySurface
+   - catch/network error =3D> UNKNOWN observation, NOT exists=3Dfalse
+   - never expose raw phone number in public receipt; commit/hash it
+
+
+   1. PIKASIM CURRENT ISSUES
+
+
+   - authority argument to provision() is ignored
+   - walletUrl unused
+   - same provider performs effect and readback; do not label this strong
+   independent evidence
+   - catch in readback returns exists=3Dfalse instead of UNKNOWN
+   - claim_id in emitted evidence is empty
+   - adapter/version hashes are label hashes, not bundle hashes
+
+Effect gateway should validate authority before invoking provider adapter.
+Provider adapter should not be responsible for policy.
+
+For provision truth separate:
+
+   - provider accepted purchase
+   - resource exists in authenticated provider state
+   - number assigned
+   - actual inbound SMS works (independent external challenge)
+   - actual outbound SMS works (independent receiving endpoint)
+   - voice inbound/outbound each independently tested
+   - renewal tested separately
+
+A full-phone provider is VALIDATED only after these live probes.
+
+   1. PHONE CAPABILITY TEST HARNESS
+   Build tests/live/phone-acceptance.ts behind explicit env flag and tiny
+   spending cap.
+
+For a candidate number:
+ONBOARDING capture requested fields without supplying prohibited identity
+record whether email/phone/legal ID/account required PAYMENT quote exact
+product pay using allowed rail under hard cap record XMR/provider evidence
+privately RESOURCE read provider state bind number/resource ID privately
+SMS_IN independent sender -> nonce -> candidate number -> observe exact
+nonce SMS_OUT candidate -> nonce -> independent receiver -> observe exact
+nonce VOICE_IN independent caller -> challenge/DTMF/audio nonce if
+supported VOICE_OUT candidate calls independent receiver -> challenge
+RENEWAL observe lease/expiry then execute bounded renewal in separate test
+
+Every result TRUE/FALSE/UNKNOWN. Do not infer unsupported directions from
+product name.
+
+   1. AGENT VAULT: USE ACTUAL PROXY BOUNDARY
+   Upstream:
+   https://github.com/Infisical/agent-vault
+
+Current AgentVault.injectCredential() calls imagined endpoints and then
+returns original Request. Do not turn this into =E2=80=9Creturn request wit=
+h secret
+headers=E2=80=9D because that re-exposes the credential to the agent proces=
+s.
+
+Target boundary:
+agent/pmail constructs credential-free request intent -> vault/proxy
+validates service/host/path/scope -> vault injects credential internally ->
+vault sends upstream request -> sanitized upstream response returned
+
+Separate process/network namespace where practical.
+Strict deny unknown hosts in production.
+Protect against:
+
+   - DNS rebinding
+   - redirects to unapproved hosts
+   - IP literal / metadata endpoints
+   - subdomain suffix tricks (evilgoogle.com)
+   - alternate ports/schemes
+   - URL userinfo/confused parsing
+
+Store only credential_ref/version/fingerprint in PMail evidence.
+
+   1. DSTACK: BIND RUN SIGNER TO REAL TDX ATTESTATION
+   Upstream:
+
+
+   - https://github.com/Dstack-TEE/dstack
+   - https://github.com/Dstack-TEE/dstack-examples
+
+Do not assume /attest + /verify HTTP endpoints.
+Read the actual SDK/example for the pinned version.
+
+Target:
+
+   - inside TEE derive ephemeral run signing key
+   - compute report_data =3D H(run_pubkey || workload_root || policy_root |=
+|
+   verifier_root) with documented domain separation
+   - request TDX quote through real dstack mechanism
+   - receipt includes attestation commitment and run pubkey
+   - verifier checks quote chain/TCB + expected measurements + report_data
+   binding
+   - run signature is accepted only if pubkey is attested
+
+Do not call same untrusted runtime /verify and accept its boolean.
+
+LocalAttestor must emit assurance: DEVELOPMENT_ONLY and production QP
+policy MUST reject it for runtime_attested claim.
+
+   1. PRIVACY CLASS ENGINE NEEDS REAL DEPENDENCY TRAITS
+   Current evaluator only enforces a few hard-coded strings (legal_identity=
+,
+   phone, email, card_payment) even though policies mention things like
+   google_oauth/pstn_kyc.
+
+Replace free-form forbid strings with typed traits:
+type PrivacyTrait =3D | "LEGAL_IDENTITY" | "PERSONAL_EMAIL" |
+"PERSONAL_PHONE" | "CARD_PAYMENT" | "BANK_PAYMENT" | "GOOGLE_OAUTH" |
+"PSTN_KYC" | "CLEARNET_SOURCE_IP" | "PERSISTENT_CROSS_RUN_ID" | ...;
+
+Each dependency surface declares traits with evidence.
+Policy evaluator compares typed traits; unknown trait/schema fails closed.
+
+Privacy class must be DERIVED from signed dependency/disclosure manifest,
+never provider adapter hardcode.
+
+   1. PUBLIC vs PRIVATE EVIDENCE
+   Phone number, IMSI/ICCID, SimpleX addresses, XMR destinations, raw
+   messages, tokens and provider order IDs should be private by default.
+   Public receipt gets commitments.
+   Authorized debugging/audit can selectively reveal evidence + Merkle
+   proof.
+
+DEFINITION OF DONE
+
+   - real bidirectional SimpleX nonce roundtrip
+   - real onion hostname and Tor SOCKS reachability test
+   - no fake .onion / unconditional reachability code on prod path
+   - selector actually filters capabilities/payment/country/privacy
+   - network errors =3D> UNKNOWN
+   - no provider marketing claim automatically becomes validated fact
+   - one provider live acceptance report generated from actual probes
+   - Agent Vault actual upstream proxy used, no raw secret returned to agen=
+t
+   - dstack adapter based on real pinned SDK/API, local attestor rejected
+   in prod policy
+   - public receipt contains no phone number/XMR address/message
+   plaintext/secret
+
+Do not add SMTP/social integrations before these gates pass.
+
+--000000000000365074065bb378a1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>This phase fixes the external-world/privacy boundary. Current adapters h=
+ave good interfaces but many self-reported/placeholder paths that can accid=
+entally become QP truth.</p>
+<p>REVIEWED HEAD: <code>4146b360b607f4c6c99ad8def61313f38282cf31</code>.</p=
+>
+<ol>
+<li>SIMPLEX: MOVE FROM MOCK/CLI GUESS TO VERIFIED UPSTREAM INTEGRATION<br>
+Current <code>src/messaging/simplex.ts</code>:</li>
+</ol>
+<ul>
+<li>live mode shells out to assumed CLI commands</li>
+<li>inbound <code>startListener()</code> is explicitly a placeholder</li>
+<li>MCP does not actually call the adapter</li>
+<li>collector_program_hash is <code>sha256(&quot;simplex-adapter-v1&quot;)<=
+/code>, not a content hash</li>
+</ul>
+<p>Use upstream stable:<br>
+<a href=3D"https://github.com/simplex-chat/simplex-chat">https://github.com=
+/simplex-chat/simplex-chat</a></p>
+<p>Prefer the supported local API/WebSocket/service interface if available =
+in the checked-out upstream version; otherwise pin exact CLI version and te=
+st actual commands against it. Do not rely on comments as API docs.</p>
+<p>Required live fixture:</p>
+<ul>
+<li>boot isolated SimpleX profile</li>
+<li>create contact/address</li>
+<li>second isolated profile sends cryptorandom nonce</li>
+<li>pmail receives nonce</li>
+<li>pmail sends second nonce back</li>
+<li>independent second profile observes it</li>
+<li>evidence records exact adapter bundle hash + upstream version + raw/nor=
+malized hashes</li>
+</ul>
+<p>Claims are separate:</p>
+<ul>
+<li>simplex_address_created</li>
+<li>simplex_receives(address)</li>
+<li>simplex_sends(address)</li>
+<li>simplex_roundtrip(address)</li>
+</ul>
+<p>Timeout/process crash =3D&gt; UNKNOWN, not FALSE.</p>
+<ol>
+<li>TOR: CURRENT CODE MUST NEVER RETURN TRUE<br>
+<code>src/core/tor.ts</code> currently returns fake hostnames and <code>ver=
+ifyReachability()</code> returns reachable=3Dtrue without a network request=
+.</li>
+</ol>
+<p>Change API so DEV placeholder has explicit status:</p>
+
+<code>{ state: &quot;UNCONFIGURED&quot;|&quot;STARTING&quot;|&quot;READY&qu=
+ot;|&quot;FAILED&quot;, hostname?: string }
+</code>
+<p>No <code>privacyClass: ANON_CORE</code> until route policy and actual on=
+ion service evidence exist.</p>
+<p>Implement real Tor v3 onion lifecycle:</p>
+<ul>
+<li>dedicated data directory permissions</li>
+<li>HiddenServiceDir / local port mapping (or supported control API)</li>
+<li>wait for actual hostname file</li>
+<li>validate <code>.onion</code> hostname format</li>
+<li>test connection through Tor SOCKS, not direct localhost</li>
+<li>ideally use a second independent probe for external reachability</li>
+<li>process supervision + restart behavior</li>
+<li>no client IP logging at app proxy</li>
+</ul>
+<p>Evidence for <code>onion_service_reachable</code> must include actual re=
+quest/response observation. =E2=80=9CTor process started=E2=80=9D is not th=
+e same claim as =E2=80=9Conion endpoint reachable.=E2=80=9D</p>
+<ol>
+<li>PHONE PROVIDER SELECTOR IS CURRENTLY WRONG<br>
+<code>selectBridge()</code> currently only filters by privacy class. It ign=
+ores:</li>
+</ol>
+<ul>
+<li>requested capabilities</li>
+<li>paymentRail</li>
+<li>country</li>
+<li>max price</li>
+</ul>
+<p>Implement all constraints. No provider enters candidate set unless known=
+/observed capability matches. <code>UNKNOWN</code> does not satisfy <code>t=
+rue</code> requirement.</p>
+<p>Rank only after hard filtering.</p>
+<p>Suggested hard filter order:</p>
+<ol>
+<li>
+<p>provider status allowed by caller (<code>VALIDATED</code> only by defaul=
+t for consequential use)</p>
+</li>
+<li>
+<p>max privacy class</p>
+</li>
+<li>
+<p>payment rail</p>
+</li>
+<li>
+<p>country</p>
+</li>
+<li>
+<p>required capability values</p>
+</li>
+<li>
+<p>max price/renewal constraints</p>
+</li>
+<li>
+<p>operational health/freshness</p>
+</li>
+<li>
+<p>PROVIDER DOCUMENTATION IS NOT RUNTIME TRUTH<br>
+Both PikaSim and SilentLink <code>describeIdentitySurface()</code> currentl=
+y construct evidence whose <code>hash</code> is a hash of a label string su=
+ch as <code>pikasim-docs-v1</code> / <code>silentlink-bulk-api-v1</code>, n=
+ot a hash of the fetched source content.</p>
+</li>
+</ol>
+<p>Fix:</p>
+<ul>
+<li>provider marketing/docs produce <code>ProviderClaimEvidence</code></li>
+<li>fetch exact source bytes/structured response</li>
+<li>hash content</li>
+<li>record retrieved_at + locator + response hash</li>
+<li>never convert doc claim directly into VALIDATED capability</li>
+</ul>
+<p>IdentitySurface should distinguish:</p>
+
+<code>source: &quot;PROVIDER_CLAIM&quot; | &quot;PMail_LIVE_OBSERVATION&quo=
+t; | &quot;REGULATORY_REQUIREMENT&quot; | &quot;INDEPENDENT_TEST&quot;
+confidence/status: &quot;CLAIMED&quot; | &quot;OBSERVED&quot; | &quot;VALID=
+ATED&quot; | &quot;STALE&quot; | &quot;CONTRADICTED&quot;
+</code>
+<ol>
+<li>SILENTLINK CURRENT FALSE CERTAINTY<br>
+<code>listProducts()</code> hardcodes sms_in=3Dtrue, data=3Dtrue, renewable=
+=3Dtrue; <code>quote()</code> hardcodes ANON_CORE; <code>capabilities()</co=
+de> hardcodes confirmed booleans; <code>readback()</code> defaults missing =
+<code>sms_enabled</code>/<code>data_enabled</code> to true.</li>
+</ol>
+<p>Until empirical test passes:</p>
+<ul>
+<li>use UNKNOWN for unobserved capability</li>
+<li>do not default absent response fields to true</li>
+<li>quote/privacy class should be derived from current evidence-backed Iden=
+titySurface</li>
+<li>catch/network error =3D&gt; UNKNOWN observation, NOT exists=3Dfalse</li=
+>
+<li>never expose raw phone number in public receipt; commit/hash it</li>
+</ul>
+<ol>
+<li>PIKASIM CURRENT ISSUES</li>
+</ol>
+<ul>
+<li><code>authority</code> argument to provision() is ignored</li>
+<li>walletUrl unused</li>
+<li>same provider performs effect and readback; do not label this strong in=
+dependent evidence</li>
+<li>catch in readback returns exists=3Dfalse instead of UNKNOWN</li>
+<li>claim_id in emitted evidence is empty</li>
+<li>adapter/version hashes are label hashes, not bundle hashes</li>
+</ul>
+<p>Effect gateway should validate authority before invoking provider adapte=
+r. Provider adapter should not be responsible for policy.</p>
+<p>For provision truth separate:</p>
+<ul>
+<li>provider accepted purchase</li>
+<li>resource exists in authenticated provider state</li>
+<li>number assigned</li>
+<li>actual inbound SMS works (independent external challenge)</li>
+<li>actual outbound SMS works (independent receiving endpoint)</li>
+<li>voice inbound/outbound each independently tested</li>
+<li>renewal tested separately</li>
+</ul>
+<p>A full-phone provider is VALIDATED only after these live probes.</p>
+<ol>
+<li>PHONE CAPABILITY TEST HARNESS<br>
+Build <code>tests/live/phone-acceptance.ts</code> behind explicit env flag =
+and tiny spending cap.</li>
+</ol>
+<p>For a candidate number:</p>
+
+<code>ONBOARDING
+capture requested fields without supplying prohibited identity
+record whether email/phone/legal ID/account required
+
+PAYMENT
+quote exact product
+pay using allowed rail under hard cap
+record XMR/provider evidence privately
+
+RESOURCE
+read provider state
+bind number/resource ID privately
+
+SMS_IN
+independent sender -&gt; nonce -&gt; candidate number -&gt; observe exact n=
+once
+
+SMS_OUT
+candidate -&gt; nonce -&gt; independent receiver -&gt; observe exact nonce
+
+VOICE_IN
+independent caller -&gt; challenge/DTMF/audio nonce if supported
+
+VOICE_OUT
+candidate calls independent receiver -&gt; challenge
+
+RENEWAL
+observe lease/expiry then execute bounded renewal in separate test
+</code>
+<p>Every result TRUE/FALSE/UNKNOWN. Do not infer unsupported directions fro=
+m product name.</p>
+<ol>
+<li>AGENT VAULT: USE ACTUAL PROXY BOUNDARY<br>
+Upstream:<br>
+<a href=3D"https://github.com/Infisical/agent-vault">https://github.com/Inf=
+isical/agent-vault</a></li>
+</ol>
+<p>Current <code>AgentVault.injectCredential()</code> calls imagined endpoi=
+nts and then returns original Request. Do not turn this into =E2=80=9Cretur=
+n request with secret headers=E2=80=9D because that re-exposes the credenti=
+al to the agent process.</p>
+<p>Target boundary:</p>
+
+<code>agent/pmail constructs credential-free request intent
+    -&gt; vault/proxy validates service/host/path/scope
+    -&gt; vault injects credential internally
+    -&gt; vault sends upstream request
+    -&gt; sanitized upstream response returned
+</code>
+<p>Separate process/network namespace where practical.<br>
+Strict deny unknown hosts in production.<br>
+Protect against:</p>
+<ul>
+<li>DNS rebinding</li>
+<li>redirects to unapproved hosts</li>
+<li>IP literal / metadata endpoints</li>
+<li>subdomain suffix tricks (<code><a href=3D"http://evilgoogle.com">evilgo=
+ogle.com</a></code>)</li>
+<li>alternate ports/schemes</li>
+<li>URL userinfo/confused parsing</li>
+</ul>
+<p>Store only credential_ref/version/fingerprint in PMail evidence.</p>
+<ol>
+<li>DSTACK: BIND RUN SIGNER TO REAL TDX ATTESTATION<br>
+Upstream:</li>
+</ol>
+<ul>
+<li><a href=3D"https://github.com/Dstack-TEE/dstack">https://github.com/Dst=
+ack-TEE/dstack</a></li>
+<li><a href=3D"https://github.com/Dstack-TEE/dstack-examples">https://githu=
+b.com/Dstack-TEE/dstack-examples</a></li>
+</ul>
+<p>Do not assume <code>/attest</code> + <code>/verify</code> HTTP endpoints=
+.<br>
+Read the actual SDK/example for the pinned version.</p>
+<p>Target:</p>
+<ul>
+<li>inside TEE derive ephemeral run signing key</li>
+<li>compute <code>report_data =3D H(run_pubkey || workload_root || policy_r=
+oot || verifier_root)</code> with documented domain separation</li>
+<li>request TDX quote through real dstack mechanism</li>
+<li>receipt includes attestation commitment and run pubkey</li>
+<li>verifier checks quote chain/TCB + expected measurements + report_data b=
+inding</li>
+<li>run signature is accepted only if pubkey is attested</li>
+</ul>
+<p>Do not call same untrusted runtime <code>/verify</code> and accept its b=
+oolean.</p>
+<p><code>LocalAttestor</code> must emit <code>assurance: DEVELOPMENT_ONLY</=
+code> and production QP policy MUST reject it for runtime_attested claim.</=
+p>
+<ol>
+<li>PRIVACY CLASS ENGINE NEEDS REAL DEPENDENCY TRAITS<br>
+Current evaluator only enforces a few hard-coded strings (<code>legal_ident=
+ity</code>, <code>phone</code>, <code>email</code>, <code>card_payment</cod=
+e>) even though policies mention things like google_oauth/pstn_kyc.</li>
+</ol>
+<p>Replace free-form forbid strings with typed traits:</p>
+
+<code>type PrivacyTrait =3D
+ | &quot;LEGAL_IDENTITY&quot;
+ | &quot;PERSONAL_EMAIL&quot;
+ | &quot;PERSONAL_PHONE&quot;
+ | &quot;CARD_PAYMENT&quot;
+ | &quot;BANK_PAYMENT&quot;
+ | &quot;GOOGLE_OAUTH&quot;
+ | &quot;PSTN_KYC&quot;
+ | &quot;CLEARNET_SOURCE_IP&quot;
+ | &quot;PERSISTENT_CROSS_RUN_ID&quot;
+ | ...;
+</code>
+<p>Each dependency surface declares traits with evidence.<br>
+Policy evaluator compares typed traits; unknown trait/schema fails closed.<=
+/p>
+<p>Privacy class must be DERIVED from signed dependency/disclosure manifest=
+, never provider adapter hardcode.</p>
+<ol>
+<li>PUBLIC vs PRIVATE EVIDENCE<br>
+Phone number, IMSI/ICCID, SimpleX addresses, XMR destinations, raw messages=
+, tokens and provider order IDs should be private by default.<br>
+Public receipt gets commitments.<br>
+Authorized debugging/audit can selectively reveal evidence + Merkle proof.<=
+/li>
+</ol>
+<p>DEFINITION OF DONE</p>
+<ul>
+<li>real bidirectional SimpleX nonce roundtrip</li>
+<li>real onion hostname and Tor SOCKS reachability test</li>
+<li>no fake <code>.onion</code> / unconditional reachability code on prod p=
+ath</li>
+<li>selector actually filters capabilities/payment/country/privacy</li>
+<li>network errors =3D&gt; UNKNOWN</li>
+<li>no provider marketing claim automatically becomes validated fact</li>
+<li>one provider live acceptance report generated from actual probes</li>
+<li>Agent Vault actual upstream proxy used, no raw secret returned to agent=
+</li>
+<li>dstack adapter based on real pinned SDK/API, local attestor rejected in=
+ prod policy</li>
+<li>public receipt contains no phone number/XMR address/message plaintext/s=
+ecret</li>
+</ul>
+<p>Do not add SMTP/social integrations before these gates pass.</p>
+
+--000000000000365074065bb378a1--

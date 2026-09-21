@@ -1,0 +1,375 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id 2sc9iJmrtqYD
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 22:07:43 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=XBHz8wfipfz0mOime9c5t9WtZR4NPalGah/oA0JB/4H3Q0cDD9SKfnTsdwgC9JWi7438spjfM
+	U1TOgurEuSlI5ir7APPePPPfwdV2EP61CqhqUvR6oYlI+WrcQY2PCgim4wugJojEyxiAWENYcD4
+	YOAWvUH+uvg5gH6f6oz1/PhILbaMzFsKmggn5+MX/H2/JTjH7gIk7vbNHmPBMUvQUFZVYjIkhk8
+	de2NpKGpS03Xe/ABH3F5G4T1Ro8/OZWa7JQZzMsTvFunM1HFVg6y9LJ+hRhAxInJtgrZCm/uNgO
+	+74kYqDb5g67zZjQNz9a6SIwJNj7PPQnpnfo6VU6MnlA==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789682863; x=1790287663; bh=w71WUBxR
+	BN5TQebXnb2oNMkkGRbc14yRE6P58BwBkm4=; b=Majphcv6jb1ejnCzjqvGE2RWv/o/sLl10vF
+	CSPguyAO453FvSEEEkJ+IqVe7pYiHAKJ+4R3BfHSpY43n6ILUjTY2cZOmubEn0swps+T8Mxlhvi
+	fvDphaSehebXZrPJa1arnN58/iPQ2ftXapizFdGAo3/zmPIVSnuDG5aXqFXJLK0mYjKmD+Ebguh
+	2Xb/Re4YZCdQeJAyWp6cCFQ/qCAqsSOUKSIEDJcYSNxmze8TVCE9JxCBzx0IHbVOIPH9WyX4huL
+	PcQhxEgPfO8lXk7udxML80foS7I2e9ZrDAvwQmZdl5CQlToeScaFxIPPRdzCBttkGaQ+RDukMkc
+	I1U0pDg==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=nQCch5zr;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=nQCch5zr;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-67109935888so181643d50.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 15:07:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789682863; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Uov9sBICA/+ATBDZ1hthXkMfZ8+HCKEQ6Qsx9jjTBY1oj73VqfNHtikR4hgYuqDEvx
+         XrqlxVDK3/Vggfk55+2gyQNdSrAXH1LnxEKtebY4kRRpkZYeJKqd765eYK6MgTUVEvMv
+         LxYAvyvx+U9DFnrpmJq5wH4nADuprUQJyY1lrtm5+HDmDeQtU4GLLJhwTnk2hJ9o+Cgw
+         s0t645GjV+lU3Z3NiBs+RBPeVDlE9zU1qhEU9jgFK+ZFCYfrwOoq2LOjX3N492oeOUvJ
+         PIGuplS2E8ChctALIx3k5pBk7GJG0R4eMN8y/UTye3l4ZFIAIvGOEd90EntaeEIz9fkh
+         Asig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=w71WUBxRBN5TQebXnb2oNMkkGRbc14yRE6P58BwBkm4=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=VGbwot1Yx+Gf+Diful9TgLTOZbVpz1CZ/0EhoQLuKGmh+gN4cCp6O472yBtLeAbBHf
+         h2kp09Rln3xtVNx1RkR1xZ/YP/77BgemLiKOwNTT+v/OkA87xhimZwBgjqaKu4KeFPG2
+         Gv71ldkDHgTwWQV7URFqxMN4wG12BMX0IPof4vY5b68z5jxQecCYeXBj1YwEWVu6gYAO
+         L2AbXn2mWUDxPe00uljYhRE8X3FiyMBPBAvQRkGQTbOQCC67iO8PQ19UyQXHYIQGva56
+         Ffg5opFKRbE5lNa7oKxs/C68vSdheEYSSIPG3RARvRAIAMrtWu/5tJ06H5g2iCYMbReN
+         mHUQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789682863; x=1790287663; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=w71WUBxRBN5TQebXnb2oNMkkGRbc14yRE6P58BwBkm4=;
+        b=nQCch5zr7Wllfixjmr2PJw/rM9/MNFfibG3TaDsHydbmV3l+JcRkCtyJoTGA7v+oLv
+         SRNfp1L9QRDx9WMG9tK0EKcHWGPx3ndiNje+C9F1rkCRm/dKuADuEHSx5vMLvfpA8ZZL
+         ypH6c96qE4RwTorOGVyRu2ST4UEL3p1KOF8nt9WKG0k6z/Foh3iuaBWGx/RL3gjd69Wc
+         TPbKhAupo6iz2T24XvtkJfz7f7wtbyaFSpf2GSd5laN58dRfCSuYkJQ/Pag3fyCa8SIz
+         w8bd9Zp18M3IWYi87Z3tZICl3yiajwN93OVW7Nn15hiQzyUOW7DK3pKQXoPya6hMnj9K
+         GZIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789682863; x=1790287663;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=w71WUBxRBN5TQebXnb2oNMkkGRbc14yRE6P58BwBkm4=;
+        b=jNl2qhFThBbKO+s9V0KboRuZuX9li0vsgH5ZOAFp7cXHXhEMTU9VICEKJuFQNuu2aL
+         jpj/G6MG+xK2jnKcIg8Ni9+HrG16lg5eBrVw8nT3xeDZZyvDWhv3mfVGK34zkXk5ZGNi
+         sdMNSCgt0QkT9uMyQX6sDu/vL/P/FTHqKbjGTOCewgBtsy8PwL+ggW7RzIL+t7xZWTZV
+         AsnyDU+WgH7aaDSBi3MIIKmb99TQIO/GnzC6n3QVyo1Tt53naAij2//o/L3DOwOosCNF
+         z1ipIosZXZR1ujRCMnOQHteO8S8HxWpFDPnN+MKe9frywuiW+msJTrOxJQINhE1axD3G
+         pjfw==
+X-Gm-Message-State: AFuF++nXq7QEBmM3/O0WHb8ExQOnVeaZhBOpdwA1Mloi3vkjpnYyziph
+	dZHjR6v38Fdvrw0OzmG6e4wlLSWHWUutY44J3OQvygmyLXvF8AH2L0UGvqxSOGsw8qZc8qTi4Gy
+	oI6h58pLQpvzBh0oOPrgs7bDk+1AgfGDTHQ==
+X-Gm-Gg: AYBFou3g6B+CMHC13KncrU5qi7OuewQqeXOaO2rXI9SDKsbDfWAVdrjCcPVCxlVnUma
+	2xT5QLQfhu/RxADpeDuvd2Ty12d926YMFoKxw1iJVb7zMAaZHKNLOr58fxuX7mRNzV68zPy3P48
+	xOxS/cQB4k9trKSUPKRVbJaDXjwPSVhcdipVwoUZQJfS/ANdrggyHNnireXQopitmutQt9pI11f
+	8z5GQxqyiH+1LFoL9SxgRo/S24e+GoFNPtgStNjy8ZzNLXCx5GoP7FpS/9HTRJJA2LrkgcD7CFj
+	rCXBkgGsYtH7f6IHUJbApsVBL91Zm6UgZ98IGIO2BSo+AaaJgiszlRIGy5tmjWVFUSROwSxDsj1
+	+JBJ1RbnGYTYhjPB6rqNTACImooYHGYbIIrX4l6i0NHUw/8VI2ea3uy2xsX+2o9Bx0tOUdJDw
+X-Received: by 2002:a05:690e:1c0e:b0:671:70d2:527a with SMTP id
+ 956f58d0204a3-6717fd6bb46mr144714d50.61.1789682863046; Thu, 17 Sep 2026
+ 15:07:43 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 17:07:42 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 17:07:42 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 17:07:42 -0500
+X-Gm-Features: AcwNN1X3J6j9nPoPGqXSQ9jNOU8Kbx7_VperFE7tZUBCQ8T2xeaPGFZAlTGPa7s
+Message-ID: <CAPdrGemR1bgn2WyK0mf42ERn14wc9qbzw_TzPx=d3fxR3k44CA@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_production_peer_review_6=2F6_=E2=80=94_real_SimpleX=2FTo?=
+	=?UTF-8?Q?r=2FVault=2Fdstack=2Fphone_=2B_exact_production_sequence?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+RUNTIME / NETWORK / COMMUNICATION PRODUCTION REVIEW
+
+A. SimpleX: replace guessed shell commands with official WebSocket bot API.
+
+Official docs:
+https://github.com/simplex-chat/simplex-chat/blob/stable/bots/README.md
+Current stable release family inspected: v6.5.
+
+SimpleX explicitly documents:
+  simplex-chat -p 5225
+as a localhost WebSocket server.
+Bot process sends JSON:
+  {"corrId":"...","cmd":"<CLI/API command>"}
+and receives correlated command responses + asynchronous events.
+It documents NewChatItems and API send commands and has an official
+TypeScript SDK.
+
+Current src/messaging/simplex-live.ts has guessed CLI commands and:
+- listenerProcess=3Dtrue placeholder
+- runRoundtripTest returns passed:true / received:true placeholder
+- useTor config not applied
+- =E2=80=9CprogramHash=E2=80=9D derived from cli path, not binary/source ar=
+tifact.
+
+DELETE the fake roundtrip.
+Production adapter:
+- launch pinned SimpleX binary/service as separate process/container
+- verify release checksum/build provenance
+- WS bound to localhost/private Unix/network namespace ONLY; official
+docs warn WS has no auth/encryption
+- use official TS bot SDK/API or generated API types
+- correlation map + event parser
+- two isolated SimpleX profiles for E2E
+- outbound attempt is not delivery truth
+- inbound proof requires exact nonce in NewChatItems on second profile
+- pin SimpleX binary digest/version into evidence.
+
+Integration test:
+profile A -> profile B random nonce, B observes exact bytes; reverse B
+-> A; restart both, persistent address still works when requested.
+No mock can satisfy production capability.
+
+B. Tor: use real Tor daemon sidecar, not application simulation.
+
+Official Tor onion-service setup:
+https://community.torproject.org/onion-services/setup/
+
+Production design:
+- C Tor daemon sidecar/process (mature path)
+- PMail HTTP service binds Unix socket or loopback only
+- torrc:
+  HiddenServiceDir <mounted secret volume>
+  HiddenServicePort 80 unix:<pmail socket>
+- read actual generated hostname file
+- hidden-service keys stored on protected persistent volume
+- independent reachability probe through SOCKS5 hostname resolution
+- no local function may return reachable=3Dtrue without network request
+- no public clearnet listen socket in ANON_CORE
+- outbound traffic policies separately enforced; onion ingress alone
+does not anonymize provider egress.
+
+Do NOT switch production to Arti blindly.
+Current Arti docs say onion/proxy support exists, but
+capability/limitations still state Arti is not currently recommended
+for production. Revisit when its support posture changes.
+
+Validate full v3 address through Tor-produced hostname, not only regex shap=
+e.
+
+C. Agent Vault: current pmail client targets invented/obsolete endpoints.
+
+Current pmail calls:
+  POST /session
+  POST /inject
+  POST /ref
+and returns the original Request after imagined injection.
+That is NOT actual Agent Vault behavior.
+
+Real upstream:
+https://github.com/Infisical/agent-vault
+Current release researched: v0.39.1.
+Current API/SDK has:
+- POST /v1/sessions for scoped session tokens
+- HTTPS_PROXY/HTTP_PROXY transparent MITM credential broker
+- service rules / host+path scoping
+- unmatched_host_policy=3Ddeny
+- TypeScript SDK now present
+- SQLite and Postgres backends
+- non-cooperative container isolation option.
+
+Do not implement credential injection ourselves.
+Deploy real Agent Vault separate trust zone.
+Run agent process via:
+  agent-vault vault run ...
+or use its official TS SDK/session + proxy configuration.
+Production:
+- unmatched_host_policy=3Ddeny
+- only required hosts/paths
+- container/non-cooperative egress isolation where possible
+- management API inaccessible to agent network except required data plane
+- disable telemetry:
+  AGENT_VAULT_TELEMETRY=3Dfalse
+  and installer AGENT_VAULT_NO_TELEMETRY=3D1 if installer used
+- pin signed v0.39.1 artifact/container digest and verify cosign/checksums
+- configure request-log retention appropriate to Privately privacy model.
+
+Acceptance:
+agent can call authorized test API using dummy placeholder through
+proxy; upstream sees real credential; planner memory/stdout/env never
+contains credential; unrelated host gets 403; SSRF metadata endpoint
+blocked.
+
+D. dstack: current /health /attest /verify HTTP assumptions are not
+the real API.
+
+Upstream:
+https://github.com/Dstack-TEE/dstack
+JS SDK:
+  npm install @phala/dstack-sdk
+Current release family researched:
+- JS SDK v0.5.8
+- verifier v0.5.11
+- dstack is now evolving toward v1 APIs; pin exact SDK/runtime
+compatibility matrix.
+
+Apps communicate over:
+  /var/run/dstack.sock
+
+Current supported pattern:
+  const client =3D new DstackClient()
+  const info =3D await client.info()
+  const att =3D await client.attest(reportData) / getQuote depending pinned=
+ API
+  const key =3D await client.getKey(path)
+
+Prefer versioned Attest evidence for cross-platform verification where
+available rather than raw GetQuote alone.
+Verifier must independently validate:
+- hardware quote/signature
+- event-log/RTMR replay
+- expected OS image/compose/config measurement
+- TCB policy
+- nonce/freshness
+- report_data binding
+- production debug/devtools/insecure flags rejected.
+
+Bind run key:
+report_data =3D SHA256(
+  "pmail-run-v1" ||
+  run_public_key ||
+  policy_root ||
+  proofspec_registry_root ||
+  disclosure_policy_root ||
+  nonce
+)
+Receipt signed by run key + attestation proving that key/policy binding.
+
+Important frontier finding:
+arXiv:2605.03213 says multi-hop compound attestation remains an open
+challenge. Therefore model AttestationGraph per hop; never make one
+dstack quote cover external Monid/SimpleX/phone/XMR providers.
+
+E. Phone harness: current PASS logic is invalid.
+
+Current runAcceptanceTests implements only:
+- provider.describeIdentitySurface()
+- quote()
+then buildResult can PASS because at least one TRUE and no implemented UNKN=
+OWNs.
+Provision/SMS/voice/renewal are comments.
+This can =E2=80=9Cvalidate=E2=80=9D a provider without owning a number.
+
+Rewrite harness around explicit REQUIRED TEST PLAN.
+
+For a requested product:
+required =3D [
+ onboarding_observed,
+ payment_rail_observed,
+ provision_resource,
+ authenticated_readback,
+ sms_in nonce if claimed/required,
+ sms_out nonce if claimed/required,
+ voice_in challenge if claimed/required,
+ voice_out challenge if claimed/required,
+ lease_expiry_observed,
+ renewal if renewable claimed
+]
+
+Rules:
+- unimplemented required test =3D> UNKNOWN
+- provider self-description never proves onboarding
+- quote cost is not cost_incurred; spend only after actual payment
+- independent=3Dfalse cannot satisfy a capability requiring independent
+verification
+- transport/provider outage =3D> UNKNOWN, not capability FALSE
+- overall PASS only if EVERY required test is TRUE
+- FALSE for capability when a controlled test conclusively demonstrates fai=
+lure
+- VALIDATED requires PASS + freshness window + persisted immutable receipt =
+set
+- STALE automatically after validation TTL
+- documentation only =3D> CLAIMED
+- real partial test =3D> OBSERVED
+
+Never bypass KYC or falsify identity. If live onboarding demands legal
+ID, classify IDENTITY_BRIDGED and stop ANON_CORE test.
+
+F. Exact commit sequence from here
+
+P0.0 fix package/lock + CI green
+P0.1 remove custom JCS/receipts; integrate @obsigna/sdk-ts
+P0.2 Replay V3 + compiled real ProofSpecs
+P0.3 SQLite transactional store + concurrency/restart tests
+P0.4 correct MoneroPay/wallet-rpc integration on stagenet
+P0.5 official SimpleX WS adapter + two-profile live test
+P0.6 real Tor daemon sidecar + independent onion reachability
+P0.7 Tessera + one witness, then second witness/quorum
+P0.8 real Agent Vault v0.39.1 proxy integration
+P0.9 real dstack SDK/attestation path
+P0.10 complete phone harness; run paid tests only manually/approved
+P1 derived cryptographic reputation over witnessed run receipts
+P2 reproduce zk-MCP paper before any ZK feature
+
+NO dashboard/product polish until the canonical anonymous vertical succeeds=
+.
+
+Canonical production demo:
+Tor .onion
+-> no signup
+-> real Monero invoice/subaddress
+-> confirmed XMR
+-> atomic capability mint
+-> real SimpleX identity
+-> exact two-way nonce roundtrip
+-> QP semantic TRUE
+-> real Obsigna receipt
+-> opaque commitment in Tessera
+-> witnessed inclusion proof
+-> offline verifier PASS
+-> restart all app processes
+-> verify same historical proof again
+
+Then optional:
+-> provision one no-ID lawful phone product under explicit human spend gran=
+t
+-> independent SMS test
+-> receipt privacy class reflects provider surface.
+
+Final definition of production-level:
+- current HEAD GitHub CI green
+- no production bootstrap references mock/placeholder/dev-only implementati=
+on
+- no hand-written crypto where vetted upstream exists
+- all keys/trust anchors externally configured
+- all state-changing actions transactional + crash-recoverable
+- raw secrets inaccessible to planner
+- all privacy claims derived from observed/signed evidence, not docs
+- all provider failures distinguish FALSE vs UNKNOWN
+- receipts verify offline
+- history inclusion + witness quorum verify offline
+- sensitive evidence is not public
+- exact run can be reproduced/replayed from persisted artifacts
+- README status generated from these gates, not manually declared.
+
+Do not send another =E2=80=9Cphases complete=E2=80=9D commit. Send one comm=
+it/PR per
+gate above with the exact live transcript/receipt that proves it.

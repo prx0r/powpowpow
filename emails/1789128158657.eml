@@ -1,0 +1,568 @@
+Received: from mail-qk2-x10.google.com (2607:f8b0:4864:34::10)
+        by cloudflare-email.net (cloudflare) id 2EbfCNGCaEKR
+        for <agents@intelligentothers.xyz>; Fri, 11 Sep 2026 12:02:38 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=Rr/dV2oMyqlSvoid4TkAqaJv4e6gAYfkoc/0t34sI0c50tXotIUD2r79j4ytl8tlXsbixFxY8
+	7+8PW2i4JnlqL2ByEF2b1AequseY/0K2sW/HQAzyybpuBMnamcUdM1VZrDDg+Ll/m/SgbWqTTRl
+	F5GpS6dK3ZYe2eKwK6v0VQSptxGoob7EH/Ym8lmP2riq6gEvDdoDyzouwvOFvKAgIHL3KSkznqE
+	oPzFGvWfgeg1PSmiC5porMoSF8Iecc2B0tb9RTjn18y9u5fJxdbBAOlp+kOysy5rLThspM6AN98
+	XTU3CZD8DxT+KP/ZN/wUSCV6gKCKJ0r6EdLbxnmpL+Ww==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:References:In-Reply-To:from:reply-to:cc:resent-date
+	:resent-from:resent-to:resent-cc:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789128158; x=1789732958; bh=cuCqc/tU
+	zLqe6p9Ip+g9rkQvsjp7HPAWSxqq+PNyUaY=; b=ET6ypvixNiKsFbyB0NnWH/UborPhUy9SdUw
+	M791Hh9nawcgW+YvDmonMB5T3+NpaVLMhGQkCaK4kCYzwgBtpSAkPnQ3dzqa4bfaKBSg5mHc2gH
+	aT725i9huPf46E57OOZqKVN30fyXaosbUC6Iphjyz0F3NeS4VGRG032V1Y3paGZBqaOSdqyVR2J
+	X+tP6ghD6dKnUt06rIkqBvkKM3kRJyYMOBSCUgPXF19cDL6F5wsOlGPS7JYzsF0Te64AQ+mIuKe
+	yZh/hD6WreKdXOOZv8KK0dqJWMgJa/btzfZkJZ0ktd6chHHOEqtzRn9G8/fPd/seSagUdku0w3H
+	HZOA/GA==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=hXXR5csJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-qk2-x10.google.com) smtp.helo=mail-qk2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:34::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:34::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:34::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:34::10; envelope-from="tradesprior@gmail.com"; helo=mail-qk2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=hXXR5csJ;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-qk2-x10.google.com) smtp.helo=mail-qk2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:34::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:34::10"
+X-CF-SpamH-Score: 0
+Received: by mail-qk2-x10.google.com with SMTP id d75a77b69052e-52fb766bfd3so9517981cf.0
+        for <agents@intelligentothers.xyz>; Fri, 11 Sep 2026 05:02:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789128157; cv=none;
+        d=google.com; s=arc-20260327;
+        b=TLAS8BH/oNhF7nDLBblcouuPDZfSEEUv3EbHrHJ2ieakQWeLcDKvfuxLhBoBtDPkFD
+         PWGTOHmHL/7cn6tvdaXEndA2IYzJ9AiWCqrbzlazeJiCwzQ7LrpuE1v6ceyWRWJWalof
+         4ShuMlNGUN73wLzka4Bqs+B1nI+APXen4fmhW/kNMgaYVRDYvGM9a2NT/l033uXuOo90
+         TVaQvsSUvuWyieRzToubAAdP0gfcZWyaASrxt+AknVTkEW2YHz+vPwEJAv/wd5k5DQy9
+         CcV8maJyST1qL4hHjTaCnhB0ojvh7WGk7QVrQOCCIV7VMzREyvPb5lM+H6T2sG5DTas6
+         J57g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:references:in-reply-to
+         :dkim-signature;
+        bh=cuCqc/tUzLqe6p9Ip+g9rkQvsjp7HPAWSxqq+PNyUaY=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=CaP0szya7K746MEQN+/YMA7aaJDOVwczC8q1K10Y0HFmITm5EFldpGXzIa9mkrSPIM
+         EnoqLhVYIn+rihowqn924CLOSPpPqo45Zyas/N9mQGb1iPS+v8pewgheLcUceOKqQiaQ
+         MR2ooeBoIpuno9Solel+KVaYm6sMTpm+wsUgBJOWIMYDmLf3MXk5BnL3pAv9beYwp7sH
+         gZs1NrDWPnLl4PFkMnhot14G2F1NcdrNVQ7IhTjc3PjDjShR1rC63QaxtwkllEF++VBC
+         gHToCcysde2SShTVlKj1d8TGI5MGN+4tKH+RYjdAeSnwENNet7rb56Bc4E2SBuN1vX7P
+         Gnjg==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789128157; x=1789732957; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=cuCqc/tUzLqe6p9Ip+g9rkQvsjp7HPAWSxqq+PNyUaY=;
+        b=hXXR5csJCNLcpgfuHNzOF2rJwygJF0p5RHmNoRBbEJRNcoxpQnNaQ1NCmIaoCn9NL2
+         ErxMtSvTfXnNtbRWgNIojjl4SMbS8KnKw6tVPHGMPLCgtJRT7tcRAS91C0Ga3i4apxOY
+         NHhjgnE1JBh1hdkibhtM+82pzXFi91SqXAMAhOn0eR/yTrxKy657UiCNixcr1sKZz87N
+         WHXf+dG4JSMxG1N8DqeJ9t/iILp6ubaDhgNozNTDRljjJJ3IL/zu1Wn6A/fOC0qsHTlO
+         JxYlTHDOunX6nII/2V2b2cUEp4SNq7Z3NyaPqZzK6RR+53zWn75boZw58w1MjivebPMY
+         V6uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1789128157; x=1789732957;
+        h=content-type:to:subject:message-id:date:from:mime-version
+         :references:in-reply-to:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=cuCqc/tUzLqe6p9Ip+g9rkQvsjp7HPAWSxqq+PNyUaY=;
+        b=FMrh4ruNb6nQADkGNcpXcJ1tnKtaaLGyAifBqlT1qYtTQDOrYLYksquRxTpZOYzlA1
+         0jknZiRFxcdUoBE382zyIQyBJ+7RR5ri1yQMz929PgD5eL5GKMu9Mw+T0mvhBUHNOnGZ
+         RPl2GP07h2xYYXjmPuseLfN32sCQJhS3EeUfycVy4W8m2JjncHSNPTOuCUGcekR8/37/
+         qV6v5CCjGC6w8h4jWnkQqKuUBn/4z+fpY8QzPZFlNlwk96K7f8oF79d48r20ttREIcxp
+         urQmrdjttST6HuAc0KUTW+3FXJaoJB95K9yZKjMcVt0D8irNRXMXhGcK75gpxh9m+Rqq
+         KO3w==
+X-Gm-Message-State: AFuF++nmiTybwCXsaYjt0xW9Z4xff4xEjiFOtZD22elzoy20SgI6NuFL
+	p74Mw3mhibHJH0i2BMo5XCunEZi+6InWxOKDqD9pQuXU+KHsDmJ0SzDcN286mjl9S2LWSZUZsjV
+	PzqL/i0c8DiUiQnBFaChhOiLPfoOIMKoTMHW3
+X-Gm-Gg: AYBFou3lRzbXru6XSp2/j7y/lnVsAp50Pkx9NBSqSb57jFfzQ9lPVSBmsU5CwZ3fJSv
+	5BTp9hCTMZRa904d0Okqme0VDgoQ6GzjZJkbkLfK04qM3qXvRFWunmWytGFSROzStTlYitUHod3
+	CBlnSs4dzd4c+JYRgEuq0Odx0eWcRmtsUGx8qjlHBxHMSrCwvLFcV/PBMrV6857yCeNtdkjPwSE
+	S/6t9P7A1x41mdNaYEiZyeBCBClKDq0E7Gl0pTI1XJ/9pnK7GaGEiZXlZX26JSFVCLe6tCyOPQl
+	vxv3XleBPlrsMrZGwi7CHDF5HIo5vKY8iW4cR+Cc5czx0SF/c/ChBetJftCbzp6UxbryFXIg+9N
+	sLxU4L6ZR9hXaLDv8rxvw9lgUzGcgA7zOq7wXpKeS6BMkvJ6as5d8NBDnN8dbq2FxRUt4KO7JJK
+	OdiCLTrSU=
+X-Received: by 2002:a05:690e:4547:20b0:66c:c215:ef75 with SMTP id
+ 956f58d0204a3-671245af67fmr1244223d50.19.1789126562613; Fri, 11 Sep 2026
+ 04:36:02 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 11 Sep 2026 06:36:01 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Fri, 11 Sep 2026 06:36:01 -0500
+In-Reply-To: <CAPdrGenR6YT_J1sZW_+kXamcJRP=ZqDM8110ooJE7BwR4S5fQg@mail.gmail.com>
+References: <CAPdrGenR6YT_J1sZW_+kXamcJRP=ZqDM8110ooJE7BwR4S5fQg@mail.gmail.com>
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Fri, 11 Sep 2026 06:36:01 -0500
+X-Gm-Features: AcwNN1Uxr0bxqudFi1VqnI9V8UH9_r2Ph8vH12e-tzTs3Nnda0rfdRPXMU6G2oA
+Message-ID: <CAPdrGekiX_HOn6nG5J-VReoasGcDWR7xx9KehGiAuH2Dk_aR8g@mail.gmail.com>
+Subject: =?UTF-8?Q?Fwd=3A_Post=2DAGI_Alpha_Hunt_=E2=80=94_InP=2C_Capacity_Rights=2C_G?=
+	=?UTF-8?Q?as_Turbines_=26_Glass_TGV?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="000000000000390de0065b337d2c"
+
+--000000000000390de0065b337d2c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+---------- Forwarded message ---------
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 10 Sep 2026 00:36:05 -0500
+Subject: Post-AGI Alpha Hunt =E2=80=94 InP, Capacity Rights, Gas Turbines &=
+ Glass
+TGV
+To: tradesprior@gmail.com
+
+Post-AGI Alpha Hunt =E2=80=94 new rabbit holes 1) InP epiwafer capacity may=
+ be the
+hidden bottleneck underneath AI optics
+
+This is stronger than the generic =E2=80=9Cphotonics wins=E2=80=9D thesis. =
+On 7 Sep 2026,
+IQE reported >40% YoY H1 revenue growth and said it is converting existing
+tooling in H2 specifically to raise *Indium Phosphide (InP)* capacity for
+significant AI/datacentre demand. IQE also signed a multi-year InP epiwafer
+agreement with Tower Semiconductor for 200G/lane and future 400G/lane
+optical platforms. Coherent=E2=80=99s 2026 roadmap spans InP lasers, EMLs,
+photodiodes and CPO, and Nvidia committed $2B plus multibillion-dollar
+purchase commitments/capacity rights to Coherent.
+
+*Alpha hypothesis:* the visible bottleneck is =E2=80=9Coptics=E2=80=9D; the=
+ less visible
+upstream control point is *epitaxy / InP wafer capacity and qualification*.
+If 1.6T/3.2T optics ramp faster than expected, owning qualified InP supply
+may have more convexity than the already-crowded transceiver names.
+
+*Candidate exposure:* IQE (AIM: IQE) is unusually small relative to the
+importance of the layer. H1 2026 revenue was =C2=A364.6m, adjusted EBITDA =
+=C2=A36.0m,
+and net cash =C2=A330.2m. Coherent is a much larger, diversified cross-worl=
+d
+exposure.
+
+*Falsifiers:* silicon photonics/VCSEL/QD-laser architectures reduce InP
+intensity faster than optical demand grows; rapid epi capacity conversion
+eliminates scarcity; IQE fails customer qualification or converts demand
+into low-margin volume.
+
+Sources:
+https://www.iqep.com/media/press-releases/2026/2026-interim-results/ ;
+https://www.iqep.com/media/press-releases/2026/iqe-and-tower-semiconductor-=
+announce-multi-year-inp-epiwafer-supply-agreement/
+;
+https://www.coherent.com/news/press-releases/nvidia-and-coherent-announce-s=
+trategic-partnership
+2) =E2=80=9CCapacity reservation rights=E2=80=9D should become a first-clas=
+s asset in the
+kernel
+
+The recurring pattern across AI infrastructure is no longer simple
+ownership of hardware. Nvidia=E2=80=99s Coherent deal explicitly includes *=
+future
+access and capacity rights*. Data-centre developers are reserving grid
+positions, turbine slots and equipment years in advance. Reuters reported
+this week that creditors are becoming stricter about AI-infrastructure
+projects, increasingly requiring permits and leases before funding; delays
+from electricity access, supply chains and local opposition are becoming
+credit variables.
+
+*New kernel variable:*
+DeliverableCapacity =3D AnnouncedCapacity =C3=97 P(site control) =C3=97 P(p=
+ower) =C3=97
+P(equipment slot) =C3=97 P(permitting) =C3=97 P(financing)
+
+Then value the *rights* to each scarce slot. Two developers with identical
+announced MW can have radically different real option value.
+
+*Alpha implication:* company disclosures about queue positions, deposits,
+site control, long-lead purchase agreements and reservation contracts can
+be scraped and scored before headline capacity numbers are discounted by
+the market.
+
+*Falsifier:* reservation markets become liquid/transferable and fully
+priced, or supply expands fast enough that slot scarcity disappears.
+
+Source: Reuters, 8 Sep 2026:
+https://www.reuters.com/commentary/breakingviews/ai-construction-crunch-wid=
+ens-credit-fault-lines-2026-09-08/
+3) AI power bottleneck is migrating from the grid to rotating metal
+
+A less-obvious second derivative of grid scarcity is *onsite generation*.
+As developers try to bypass multi-year interconnection queues, gas turbines
+themselves become scarce. Current industry reporting points to multi-year
+turbine backlogs. Even more interesting: Reuters reported on 9 Sep that
+Howmet is seeing additional turbine-component demand from AI-powered data
+centres while struggling with the scale of capital expansion needed to
+satisfy aerospace + turbine demand.
+
+This creates a cross-world node: *precision castings / superalloy turbine
+components* benefit from both aviation and incremental onsite power
+generation. GE Aerospace=E2=80=99s $12B acquisition of CPP to secure castin=
+g
+capacity is powerful revealed-preference evidence that these manufacturing
+processes are genuinely difficult to scale.
+
+*Candidate exposure:* Howmet Aerospace is not obscure or cheap, but the
+underlying rabbit hole is smaller
+casting/forging/superalloy/process-equipment suppliers that sit beneath
+both aerospace and power turbines.
+
+*Falsifiers:* data centres pivot decisively to batteries/fuel
+cells/nuclear/grid power; turbine OEM capacity ramps faster than component
+supply; AI datacentre developers reject gas for permitting/emissions
+reasons.
+
+Sources:
+https://www.reuters.com/legal/transactional/howmet-ceo-fine-with-ge-aerospa=
+ce-deal-working-meet-demand-engine-parts-2026-09-09/
+;
+https://www.reuters.com/business/aerospace-defense/ge-aerospace-bets-black-=
+art-casting-secure-jet-engine-supply-2026-09-09/
+4) Glass-core packaging: thickness/warpage may create an equipment
+transition before glass becomes mainstream
+
+Today, 10 Sep 2026, Philoptics (161580.KQ) showed 2.0mm-thick, 510=C3=97515=
+mm
+glass substrates with claimed zero-defect TGV machining and said several
+overseas customers had completed technical validation. The reason thicker
+glass is becoming relevant is itself causal: AI packages are getting
+physically larger as more GPUs/HBM are integrated, which worsens warpage;
+thicker glass increases stiffness.
+
+*Alpha chain:*
+larger AI package =E2=86=92 warpage problem =E2=86=92 thicker glass cores =
+=E2=86=92 harder TGV
+drilling =E2=86=92 premium on laser process/yield =E2=86=92 equipment winne=
+rs
+
+This is a good example of a *third-order bottleneck*: not =E2=80=9Cglass
+substrates,=E2=80=9D but *reliable high-aspect-ratio TGV processing on
+thicker/larger panels*.
+
+*Candidates:* Philoptics, LPKF, EO Technics; monitor actual production-tool
+orders rather than demos. This could become highly convex if glass-core
+adoption crosses from pilot to volume.
+
+*Falsifiers:* organic substrates improve enough; glass adoption slips
+beyond 2028; multiple laser vendors commoditize drilling; customer
+validation never becomes production orders.
+
+Sources:
+https://en.sedaily.com/finance/2026/09/10/philoptics-shows-zero-defect-glas=
+s-drilling-on-2mm
+; https://view.asiae.co.kr/en/article/2026090710053387061
+5) Autonomous science may create a *coordination bottleneck*, not just an
+instrument bottleneck
+
+A July 2026 arXiv paper explicitly frames the *validation bottleneck* in
+self-driving labs and attacks two constraints: too many experimental rounds
+and high cost per experiment. Another March 2026 paper shows mobile robot
+chemists can lose throughput simply waiting for humans to access shared
+instruments.
+
+This suggests a deeper scarcity migration:
+AI hypothesis abundance =E2=86=92 instrument scarcity =E2=86=92 lab schedul=
+ing/robot
+logistics scarcity =E2=86=92 orchestration layer
+
+So the winner may not only be Thermo Fisher/Bruker/Tecan-type instrument
+vendors. There may be a new software/control market for *lab-wide
+schedulers that price instrument time, route samples and decide
+high-resolution vs surrogate measurements*.
+
+This is analogous to GPU cluster schedulers, but for atoms.
+
+*Tradable angle today:* instrument vendors with open automation APIs and
+robot-compatible workflows may gain share because autonomous labs optimize
+around interoperability. The really convex exposure may still be
+private/too early.
+
+*Falsifier:* labs remain bespoke enough that orchestration never
+standardizes, or vendors vertically integrate the scheduler into their own
+ecosystems.
+
+Sources: https://arxiv.org/abs/2607.04508 ; https://arxiv.org/abs/2603.0842=
+0
+; https://arxiv.org/abs/2604.03286
+6) Strategic-complementarity feedback can create adoption avalanches
+
+The August 2026 revision of the NBER =E2=80=9CInnovation Race=E2=80=9D expe=
+riment is more
+important than it first looked. ~3,000 firms systematically underestimated
+competitors=E2=80=99 AI/robotics adoption. When informed, firms revised bel=
+iefs and
+increased intended robotics adoption; a 1 percentage point increase in
+expected competitor adoption raised intended robotics adoption by 0.732 pp.
+
+That means AI adoption can be *self-exciting*:
+competitor adoption =E2=86=92 belief update =E2=86=92 own adoption =E2=86=
+=92 competitor belief
+update =E2=86=92 =E2=80=A6
+
+This is an endogenous threshold mechanism. Once observed adoption crosses a
+visibility threshold, capex can accelerate much faster than smooth
+diffusion curves predict.
+
+*Alpha signal:* monitor not just adoption itself, but *visibility of
+adoption*: earnings-call mentions of competitor automation, trade-show
+deployments, job postings, factory tours, public robot deployments. The
+market may model unit demand smoothly while real demand jumps after
+competitive panic.
+
+*Potential beneficiaries:* robotics component suppliers with bottleneck
+capacity; industrial automation; machine vision; precision
+reducers/encoders/force-torque sensors.
+
+*Falsifier:* intentions fail to become orders, ROI remains poor, or
+component architectures commoditize.
+
+Source: https://www.nber.org/papers/w34532
+Highest-priority additions to the kernel from this run
+
+   1. *Capacity-rights graph:* equipment slots, queue position, permits,
+   site control, deposits, reservation contracts.
+   2. *Deliverable-vs-announced capacity score:* discount every MW/fab/tool
+   pipeline by implementation probability.
+   3. *Upstream qualification bottleneck detector:* look for phrases like
+   =E2=80=9Ccapacity conversion,=E2=80=9D =E2=80=9Ccustomer qualification,=
+=E2=80=9D =E2=80=9Callocation,=E2=80=9D =E2=80=9Clong-term
+   supply agreement,=E2=80=9D especially in tiny upstream suppliers.
+   4. *Bottleneck derivative:* when current bottleneck is relieved,
+   automatically walk one edge downstream/upstream to find what breaks next=
+.
+   5. *Adoption avalanche model:* make competitor-visible adoption increase
+   the hazard rate of industry-wide adoption rather than keeping diffusion
+   exogenous.
+
+Current best rabbit hole from this run
+
+*IQE / InP epitaxy* is the one I would investigate next. It has the desired
+shape: a small public company, an upstream layer that multiple optical
+architectures need, direct fresh evidence of >40% revenue growth and
+capacity conversion, multi-year customer agreements, and a potential shift
+from niche compound-semiconductor supplier to constrained AI-infrastructure
+input. It is not yet enough to call it a buy: we need current valuation,
+customer concentration, real InP capacity share, incremental gross margin,
+capex required per wafer, competitor capacity (Coherent/II-VI ecosystem,
+Sumitomo, AXT etc.), and architecture substitution risk.
+
+--000000000000390de0065b337d2c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">----------=
+ Forwarded message ---------<br>From: Prior Trades &lt;<a href=3D"mailto:tr=
+adesprior@gmail.com">tradesprior@gmail.com</a>&gt;<br>Date: Thu, 10 Sep 202=
+6 00:36:05 -0500<br>Subject: Post-AGI Alpha Hunt =E2=80=94 InP, Capacity Ri=
+ghts, Gas Turbines &amp; Glass TGV<br>To: <a href=3D"mailto:tradesprior@gma=
+il.com">tradesprior@gmail.com</a></div><br>Post-AGI Alpha Hunt =E2=80=94 ne=
+w rabbit holes
+
+1) InP epiwafer capacity may be the hidden bottleneck underneath AI optics
+<p>This is stronger than the generic =E2=80=9Cphotonics wins=E2=80=9D thesi=
+s. On 7 Sep 2026, IQE reported &gt;40% YoY H1 revenue growth and said it is=
+ converting existing tooling in H2 specifically to raise <strong>Indium Pho=
+sphide (InP)</strong> capacity for significant AI/datacentre demand. IQE al=
+so signed a multi-year InP epiwafer agreement with Tower Semiconductor for =
+200G/lane and future 400G/lane optical platforms. Coherent=E2=80=99s 2026 r=
+oadmap spans InP lasers, EMLs, photodiodes and CPO, and Nvidia committed $2=
+B plus multibillion-dollar purchase commitments/capacity rights to Coherent=
+.</p>
+<p><strong>Alpha hypothesis:</strong> the visible bottleneck is =E2=80=9Cop=
+tics=E2=80=9D; the less visible upstream control point is <strong>epitaxy /=
+ InP wafer capacity and qualification</strong>. If 1.6T/3.2T optics ramp fa=
+ster than expected, owning qualified InP supply may have more convexity tha=
+n the already-crowded transceiver names.</p>
+<p><strong>Candidate exposure:</strong> IQE (AIM: IQE) is unusually small r=
+elative to the importance of the layer. H1 2026 revenue was =C2=A364.6m, ad=
+justed EBITDA =C2=A36.0m, and net cash =C2=A330.2m. Coherent is a much larg=
+er, diversified cross-world exposure.</p>
+<p><strong>Falsifiers:</strong> silicon photonics/VCSEL/QD-laser architectu=
+res reduce InP intensity faster than optical demand grows; rapid epi capaci=
+ty conversion eliminates scarcity; IQE fails customer qualification or conv=
+erts demand into low-margin volume.</p>
+<p>Sources: <a href=3D"https://www.iqep.com/media/press-releases/2026/2026-=
+interim-results/">https://www.iqep.com/media/press-releases/2026/2026-inter=
+im-results/</a> ; <a href=3D"https://www.iqep.com/media/press-releases/2026=
+/iqe-and-tower-semiconductor-announce-multi-year-inp-epiwafer-supply-agreem=
+ent/">https://www.iqep.com/media/press-releases/2026/iqe-and-tower-semicond=
+uctor-announce-multi-year-inp-epiwafer-supply-agreement/</a> ; <a href=3D"h=
+ttps://www.coherent.com/news/press-releases/nvidia-and-coherent-announce-st=
+rategic-partnership">https://www.coherent.com/news/press-releases/nvidia-an=
+d-coherent-announce-strategic-partnership</a></p>
+
+2) =E2=80=9CCapacity reservation rights=E2=80=9D should become a first-clas=
+s asset in the kernel
+<p>The recurring pattern across AI infrastructure is no longer simple owner=
+ship of hardware. Nvidia=E2=80=99s Coherent deal explicitly includes <stron=
+g>future access and capacity rights</strong>. Data-centre developers are re=
+serving grid positions, turbine slots and equipment years in advance. Reute=
+rs reported this week that creditors are becoming stricter about AI-infrast=
+ructure projects, increasingly requiring permits and leases before funding;=
+ delays from electricity access, supply chains and local opposition are bec=
+oming credit variables.</p>
+<p><strong>New kernel variable:</strong><br>
+<code>DeliverableCapacity =3D AnnouncedCapacity =C3=97 P(site control) =C3=
+=97 P(power) =C3=97 P(equipment slot) =C3=97 P(permitting) =C3=97 P(financi=
+ng)</code></p>
+<p>Then value the <em>rights</em> to each scarce slot. Two developers with =
+identical announced MW can have radically different real option value.</p>
+<p><strong>Alpha implication:</strong> company disclosures about queue posi=
+tions, deposits, site control, long-lead purchase agreements and reservatio=
+n contracts can be scraped and scored before headline capacity numbers are =
+discounted by the market.</p>
+<p><strong>Falsifier:</strong> reservation markets become liquid/transferab=
+le and fully priced, or supply expands fast enough that slot scarcity disap=
+pears.</p>
+<p>Source: Reuters, 8 Sep 2026: <a href=3D"https://www.reuters.com/commenta=
+ry/breakingviews/ai-construction-crunch-widens-credit-fault-lines-2026-09-0=
+8/">https://www.reuters.com/commentary/breakingviews/ai-construction-crunch=
+-widens-credit-fault-lines-2026-09-08/</a></p>
+
+3) AI power bottleneck is migrating from the grid to rotating metal
+<p>A less-obvious second derivative of grid scarcity is <strong>onsite gene=
+ration</strong>. As developers try to bypass multi-year interconnection que=
+ues, gas turbines themselves become scarce. Current industry reporting poin=
+ts to multi-year turbine backlogs. Even more interesting: Reuters reported =
+on 9 Sep that Howmet is seeing additional turbine-component demand from AI-=
+powered data centres while struggling with the scale of capital expansion n=
+eeded to satisfy aerospace + turbine demand.</p>
+<p>This creates a cross-world node: <strong>precision castings / superalloy=
+ turbine components</strong> benefit from both aviation and incremental ons=
+ite power generation. GE Aerospace=E2=80=99s $12B acquisition of CPP to sec=
+ure casting capacity is powerful revealed-preference evidence that these ma=
+nufacturing processes are genuinely difficult to scale.</p>
+<p><strong>Candidate exposure:</strong> Howmet Aerospace is not obscure or =
+cheap, but the underlying rabbit hole is smaller casting/forging/superalloy=
+/process-equipment suppliers that sit beneath both aerospace and power turb=
+ines.</p>
+<p><strong>Falsifiers:</strong> data centres pivot decisively to batteries/=
+fuel cells/nuclear/grid power; turbine OEM capacity ramps faster than compo=
+nent supply; AI datacentre developers reject gas for permitting/emissions r=
+easons.</p>
+<p>Sources: <a href=3D"https://www.reuters.com/legal/transactional/howmet-c=
+eo-fine-with-ge-aerospace-deal-working-meet-demand-engine-parts-2026-09-09/=
+">https://www.reuters.com/legal/transactional/howmet-ceo-fine-with-ge-aeros=
+pace-deal-working-meet-demand-engine-parts-2026-09-09/</a> ; <a href=3D"htt=
+ps://www.reuters.com/business/aerospace-defense/ge-aerospace-bets-black-art=
+-casting-secure-jet-engine-supply-2026-09-09/">https://www.reuters.com/busi=
+ness/aerospace-defense/ge-aerospace-bets-black-art-casting-secure-jet-engin=
+e-supply-2026-09-09/</a></p>
+
+4) Glass-core packaging: thickness/warpage may create an equipment transiti=
+on before glass becomes mainstream
+<p>Today, 10 Sep 2026, Philoptics (161580.KQ) showed 2.0mm-thick, 510=C3=97=
+515mm glass substrates with claimed zero-defect TGV machining and said seve=
+ral overseas customers had completed technical validation. The reason thick=
+er glass is becoming relevant is itself causal: AI packages are getting phy=
+sically larger as more GPUs/HBM are integrated, which worsens warpage; thic=
+ker glass increases stiffness.</p>
+<p><strong>Alpha chain:</strong><br>
+<code>larger AI package =E2=86=92 warpage problem =E2=86=92 thicker glass c=
+ores =E2=86=92 harder TGV drilling =E2=86=92 premium on laser process/yield=
+ =E2=86=92 equipment winners</code></p>
+<p>This is a good example of a <em>third-order bottleneck</em>: not =E2=80=
+=9Cglass substrates,=E2=80=9D but <strong>reliable high-aspect-ratio TGV pr=
+ocessing on thicker/larger panels</strong>.</p>
+<p><strong>Candidates:</strong> Philoptics, LPKF, EO Technics; monitor actu=
+al production-tool orders rather than demos. This could become highly conve=
+x if glass-core adoption crosses from pilot to volume.</p>
+<p><strong>Falsifiers:</strong> organic substrates improve enough; glass ad=
+option slips beyond 2028; multiple laser vendors commoditize drilling; cust=
+omer validation never becomes production orders.</p>
+<p>Sources: <a href=3D"https://en.sedaily.com/finance/2026/09/10/philoptics=
+-shows-zero-defect-glass-drilling-on-2mm">https://en.sedaily.com/finance/20=
+26/09/10/philoptics-shows-zero-defect-glass-drilling-on-2mm</a> ; <a href=
+=3D"https://view.asiae.co.kr/en/article/2026090710053387061">https://view.a=
+siae.co.kr/en/article/2026090710053387061</a></p>
+
+5) Autonomous science may create a <em>coordination bottleneck</em>, not ju=
+st an instrument bottleneck
+<p>A July 2026 arXiv paper explicitly frames the <strong>validation bottlen=
+eck</strong> in self-driving labs and attacks two constraints: too many exp=
+erimental rounds and high cost per experiment. Another March 2026 paper sho=
+ws mobile robot chemists can lose throughput simply waiting for humans to a=
+ccess shared instruments.</p>
+<p>This suggests a deeper scarcity migration:<br>
+<code>AI hypothesis abundance =E2=86=92 instrument scarcity =E2=86=92 lab s=
+cheduling/robot logistics scarcity =E2=86=92 orchestration layer</code></p>
+<p>So the winner may not only be Thermo Fisher/Bruker/Tecan-type instrument=
+ vendors. There may be a new software/control market for <strong>lab-wide s=
+chedulers that price instrument time, route samples and decide high-resolut=
+ion vs surrogate measurements</strong>.</p>
+<p>This is analogous to GPU cluster schedulers, but for atoms.</p>
+<p><strong>Tradable angle today:</strong> instrument vendors with open auto=
+mation APIs and robot-compatible workflows may gain share because autonomou=
+s labs optimize around interoperability. The really convex exposure may sti=
+ll be private/too early.</p>
+<p><strong>Falsifier:</strong> labs remain bespoke enough that orchestratio=
+n never standardizes, or vendors vertically integrate the scheduler into th=
+eir own ecosystems.</p>
+<p>Sources: <a href=3D"https://arxiv.org/abs/2607.04508">https://arxiv.org/=
+abs/2607.04508</a> ; <a href=3D"https://arxiv.org/abs/2603.08420">https://a=
+rxiv.org/abs/2603.08420</a> ; <a href=3D"https://arxiv.org/abs/2604.03286">=
+https://arxiv.org/abs/2604.03286</a></p>
+
+6) Strategic-complementarity feedback can create adoption avalanches
+<p>The August 2026 revision of the NBER =E2=80=9CInnovation Race=E2=80=9D e=
+xperiment is more important than it first looked. ~3,000 firms systematical=
+ly underestimated competitors=E2=80=99 AI/robotics adoption. When informed,=
+ firms revised beliefs and increased intended robotics adoption; a 1 percen=
+tage point increase in expected competitor adoption raised intended robotic=
+s adoption by 0.732 pp.</p>
+<p>That means AI adoption can be <strong>self-exciting</strong>:<br>
+<code>competitor adoption =E2=86=92 belief update =E2=86=92 own adoption =
+=E2=86=92 competitor belief update =E2=86=92 =E2=80=A6</code></p>
+<p>This is an endogenous threshold mechanism. Once observed adoption crosse=
+s a visibility threshold, capex can accelerate much faster than smooth diff=
+usion curves predict.</p>
+<p><strong>Alpha signal:</strong> monitor not just adoption itself, but <st=
+rong>visibility of adoption</strong>: earnings-call mentions of competitor =
+automation, trade-show deployments, job postings, factory tours, public rob=
+ot deployments. The market may model unit demand smoothly while real demand=
+ jumps after competitive panic.</p>
+<p><strong>Potential beneficiaries:</strong> robotics component suppliers w=
+ith bottleneck capacity; industrial automation; machine vision; precision r=
+educers/encoders/force-torque sensors.</p>
+<p><strong>Falsifier:</strong> intentions fail to become orders, ROI remain=
+s poor, or component architectures commoditize.</p>
+<p>Source: <a href=3D"https://www.nber.org/papers/w34532">https://www.nber.=
+org/papers/w34532</a></p>
+
+Highest-priority additions to the kernel from this run
+<ol>
+<li><strong>Capacity-rights graph:</strong> equipment slots, queue position=
+, permits, site control, deposits, reservation contracts.</li>
+<li><strong>Deliverable-vs-announced capacity score:</strong> discount ever=
+y MW/fab/tool pipeline by implementation probability.</li>
+<li><strong>Upstream qualification bottleneck detector:</strong> look for p=
+hrases like =E2=80=9Ccapacity conversion,=E2=80=9D =E2=80=9Ccustomer qualif=
+ication,=E2=80=9D =E2=80=9Callocation,=E2=80=9D =E2=80=9Clong-term supply a=
+greement,=E2=80=9D especially in tiny upstream suppliers.</li>
+<li><strong>Bottleneck derivative:</strong> when current bottleneck is reli=
+eved, automatically walk one edge downstream/upstream to find what breaks n=
+ext.</li>
+<li><strong>Adoption avalanche model:</strong> make competitor-visible adop=
+tion increase the hazard rate of industry-wide adoption rather than keeping=
+ diffusion exogenous.</li>
+</ol>
+
+Current best rabbit hole from this run
+<p><strong>IQE / InP epitaxy</strong> is the one I would investigate next. =
+It has the desired shape: a small public company, an upstream layer that mu=
+ltiple optical architectures need, direct fresh evidence of &gt;40% revenue=
+ growth and capacity conversion, multi-year customer agreements, and a pote=
+ntial shift from niche compound-semiconductor supplier to constrained AI-in=
+frastructure input. It is not yet enough to call it a buy: we need current =
+valuation, customer concentration, real InP capacity share, incremental gro=
+ss margin, capex required per wafer, competitor capacity (Coherent/II-VI ec=
+osystem, Sumitomo, AXT etc.), and architecture substitution risk.</p></div>
+
+--000000000000390de0065b337d2c--

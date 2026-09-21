@@ -1,0 +1,432 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id 5JPIUIu7NLxd
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 18:07:00 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=IFYjRLmNwqzHbRjKgs0GKT1rov3QzMg8hg5qRqELH+8coDINgPd3Mt/TdGiWxqtpoik5fDWDi
+	914lXyExJrlcZzhabHieJXat0BAikAJm8suM3DDoL/VBYRS9dLx/lrY2vUyV/StmY/Mlm9wLxeo
+	OA2eIwpkpAcRXJwSNEhvNddGuTbBJnPpaqK36AJ2LMPOAVLIV3XrfIMqQzzaB02lCPPe++VAxJ4
+	0fX/hXQYXG+vo/ww2QFh2dZhXQdcZiwLrJ7qN230ZNHwXdl1lG3mY93GU7+m+NyLS70b0D902GX
+	nydTgjSIGws+0YehChuDIDMLdvhFCsuxoKiNKmui42bw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789668421; x=1790273221; bh=fyTccxND
+	dKroJxe3LPVlfB/b4FTPawsDPKyYoXoVasI=; b=g7A5GSVZpUuAXt0trR/Gi7ih9ZjKd5OqTdq
+	UjXAF8cmk0ewwP3q51tBW3+R+rVkouyO/APSoYbT2gg4MXASrUJv+zfjrgjcet2hZv73Ddj4fUI
+	qMNP0cHR49IcScBL7BxOFgpDdekvSg7twwla5zYPaeA0kBkECXV+KF+uDSI7Ozgutb8FApKEfon
+	W1hAbiJAioD9xfDmzK//N+78lLilGGG9b6WSXRknuHsTPC0qPniqYvEWhtLBYwXs+tYcJD2dBuI
+	3w2ekH0Vv91cE3wnrpGNiS2rhjvjsQ/YjP40AeYXHROioiO/QuC+fAtnPFrVk68z1W/zElA8woZ
+	MEwXUWQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=s7kJyD5A;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=s7kJyD5A;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 00721157ae682-85d43db0c17so10963577b3.3
+        for <agents@intelligentothers.xyz>; Thu, 17 Sep 2026 11:07:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789668420; cv=none;
+        d=google.com; s=arc-20260327;
+        b=pCJ5VJurBfPo+xs86+6+1qyzsZcEHtonbD4pKEvtb2CtELmuMpW6pnigUe3iLzPPDD
+         e5TlFJX1zN/V+GLKIgeqcTH180u5hevmoBdzLPlqeKJbEW8145e7c82IDDNSYQDKtSpl
+         QZ8ZJ7gwpWQXTWOY4qo14Xh+6e0bQiR+0XfzJKYdGM/PhEbHReJ354mtzVq+0/FQjmqO
+         020/kPTc9huiYHo4SgjD2atoCluDaPqnloO+TZEIW+oKMK/5+FegmDiZ4fCfDWV5PDDP
+         DLzs35tu9a6QMMKSxf7MVrqH0CGBAemblRts0Sf+4vwhPWIpEjftVCfLfQCoDqC4KGYp
+         0mng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=fyTccxNDdKroJxe3LPVlfB/b4FTPawsDPKyYoXoVasI=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=bQcXbajhX3/OY2+SjsyBUFh21PrHAnp8pB2lAm9oPMK+vNXxRtsCYYOm4SRSK+iC64
+         EIVMXdRJ/cPrzA4WXOxv57DnwgQ3clPyFitqUQygssrcMLU2EnqVBByL9Ff9/dObksbc
+         DT2QHLFfsuNqVfid/j75+RnA7DHNtCA32UT7IlsO6gx9t/fCwNMsPiiVhGxK/3rwvN8O
+         JLZLyyUwzzph/ztM2OHWGGNNakGJ/fYSgPo+z7IOCMjaF4y6TeVCem3hm0DZEuBladMg
+         zKuk6e0VPV+XngKgpd5FFUhKEjMtK5itcfhb4QdSv4ynJ7lPzRjuvugQ1A8PnTXOkYfI
+         LpWA==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789668420; x=1790273220; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=fyTccxNDdKroJxe3LPVlfB/b4FTPawsDPKyYoXoVasI=;
+        b=s7kJyD5AeqkympBjYM/LsSjrDRtzdhhEL1ZxlCCQluRZqPq1DJoc7HhZZo/RIdXZ/h
+         AzIZvXamst49BG4xIa6dtWQ/WznTKR1fXX328fWd2pYMdUf8MHqHDj4byuMVw8xS312x
+         aM1BYOBZc1I+RYwNz9XXdiVzvZMTmZIbcpyNCL3WLACDrRQRgVr+cdceIb+Nkf+a4d4r
+         4uln454JUwk2X5R/LnrDzsqNYog234jIMIlFTSVbrk1ZlhN6HE53KE7vlRrb3S+XYwB3
+         m3hjbeBKDxyHjgoxEkQ3hExBAIYRgg2mWzsDXuDtSJkH3R3dPU9Cm4qfnAjR8x8xXOoO
+         WoWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789668420; x=1790273220;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=fyTccxNDdKroJxe3LPVlfB/b4FTPawsDPKyYoXoVasI=;
+        b=jbBPpodENif0bsHCKbEn9RerPZ0NUqbfjx/eByovqQG+o665A9stlEvNKEEDYAvXVE
+         Aj6lnhl1BKh+75SlrBppJZHjDydeTjSeqltGSRvtwxnHZM3Q44duUA/c/r4fk5nLaOPr
+         bbjZyQMZJc3Uo0Om2CEU0rkUADPlZDVUJ/oEh+Q99NPqZktaAQtcQfrr7/YvL/OYJM/N
+         Q1MRpQi47M/q7ME5cE8b3n2zUTFXkAXOQPeJJ66TkhWZKJaIpYHl3CJW6xnd5mAPTau6
+         Kw33rXNDIPQNzIbiWXzpwEXrOgFOMOQngky1zquyZupHBV/BEHpBXoE1AIRr1a8ijLSx
+         OlaQ==
+X-Gm-Message-State: AFuF++kE0bQTpKuysuAxjtjBa0y54VT4ZggIbIMH09+DyCerCDEhZh+g
+	+Fj0KZVCBbPEYjCjE7RWGUbbdFIJwftJ2/r1EMQmowvKaxdCBQuGnr/Eee53jZwGoPoejpH3g99
+	Z5R+ldMimFnDaAs5WJ6UBxUocwJVU8rl1fw==
+X-Gm-Gg: AYBFou3nBaqF9Qf/yXdV1eALkPQXOA9CehPLasNlTJ5ggTEgg5tUXIINvyz5oi7lt69
+	nPSpCb8wlLnW6hV8sqg7NpCzPCYvuvATq+SmqDSEoE0OzpU3g4ffTsHa9MHpkdttLVJuCFpFUhQ
+	CezzoUYQjqMonXCCJ8t/LkNm6CbN8Y9mcwI6jrcqtrAmr03agWF9XXObCaaDm7UFxdqORNiUqL0
+	ExHy3zWTH2xzLrXiD6wPOXZjUkoKckRmTRUEssZuJ6VFZkpICQfZQ6z/DqPlKw2AhmYNDcR8iXF
+	x4l8BVf8J8adb1H6yUXtkDnG6aubkyv9t6GI1K7pWOwJ42nSHurDoVN9JAT2Qalo1u2YHu3iCD9
+	I7TqHJ/pvjmxVK9ZFYV/VJpAKTNUxJGhLJ1o/P3S5b24vdyQ8h0sUVvUnrR7DAt808Pz0qfqt
+X-Received: by 2002:a05:690c:c1c4:b0:890:f416:7a19 with SMTP id
+ 00721157ae682-89227a60af9mr17937457b3.42.1789668420348; Thu, 17 Sep 2026
+ 11:07:00 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 13:06:58 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Thu, 17 Sep 2026 13:06:58 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Thu, 17 Sep 2026 13:06:58 -0500
+X-Gm-Features: AcwNN1VityFu1NuYU984_yZ6LVhh3_O7djzu31aQ9I-kH786dYUPTKwEDvQjybk
+Message-ID: <CAPdrGekeYMuwucGgKK+pb5Ez3PMJ0eR4GOcpP+GuUfmGewhKLQ@mail.gmail.com>
+Subject: =?UTF-8?Q?pmail_build_1=2F5_=E2=80=94_constitution=2C_repo_bootstrap=2C_th?=
+	=?UTF-8?Q?reat_model?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000075ef3e065bb1a64c"
+
+--00000000000075ef3e065bb1a64c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Build a new repo: prx0r/pmail.
+
+DO NOT attach/import the old local ZIP. Create the repo cleanly and
+reconstruct from these instructions plus selected code copied from cmail
+only where explicitly permitted.
+
+Reference cmail source state:
+
+   - repo: https://github.com/prx0r/cmail
+   - branch: master
+   - exact source SHA to inspect first:
+   dcb4b3b8ae61c7495d88b88ab49350d74afd52cf
+   - do not copy older proof/receipt systems wholesale.
+
+PMail thesis
+
+PMail is the anonymous-communications/runtime primitive for privately.win.
+
+The core product requirement is:
+
+=E2=80=9CA useful agent service can be accessed, funded, operated and audit=
+ed
+without PMail requiring a person=E2=80=99s conventional identity.=E2=80=9D
+
+Core stack:
+
+   - pseudonymous operator key/capability, not account/email/password
+   - Tor/.onion first-party interface
+   - SimpleX as private messaging ingress/egress
+   - XMR as payment/accounting primitive
+   - private/isolated agent runtime
+   - QP for exact claims + privacy invariants + outcome verification
+   - optional telecom/email bridges that are explicitly classified as
+   privacy degradations
+
+Do NOT promise impossible universal untraceability. PMail itself must
+collect no conventional identity in ANON_CORE mode. External providers may
+see metadata. Model that explicitly.
+
+Non-goal / hard rule:
+
+   - do not bypass KYC, forge identity, or automate evasion of provider
+   compliance.
+   - if a provider requires ID, classify it IDENTITY_BRIDGED and it cannot
+   satisfy an ANON_CORE policy.
+
+Create these top-level areas:
+pmail/ README.md SECURITY.md THREAT-MODEL.md ARCHITECTURE.md UPSTREAM.md
+src/ core/ identity/ privacy/ payments/ messaging/ bridges/ phone/ email/
+qp/ mcp/ proofspecs/ fixtures/ tests/ docs/ providers/ operations/
+research/ Identity model
+
+Never make email/phone the identity root.
+
+Use three separate concepts:
+Person =3D deliberately absent from ANON_CORE Operator =3D pseudonymous pub=
+lic
+key / capability holder Agent =3D workload/runtime identity, ideally attest=
+ed
+
+A PMail operator should be representable by a generated Ed25519 keypair or
+random bearer capability. No name/email/phone required.
+Privacy classes
+
+Implement this as a first-class type immediately:
+type PrivacyClass =3D | "ANON_CORE" | "PSEUDONYMOUS_BRIDGE" |
+"IDENTITY_BRIDGED";
+
+Add:
+interface IdentitySurface { provider: string; legal_identity_required:
+boolean; account_required: boolean; email_required: boolean;
+phone_required: boolean; payment_rails: string[]; data_disclosed: string[];
+network_metadata: string[]; retention_claims?: string[]; evidence:
+SourceRef[]; }
+
+Derive operation privacy class from all dependencies. Privacy may only stay
+equal or degrade as dependencies are introduced.
+
+Invariant:
+ANON_CORE + ANON_CORE -> ANON_CORE ANON_CORE + PSEUDONYMOUS_BRIDGE ->
+PSEUDONYMOUS_BRIDGE anything + IDENTITY_BRIDGED -> IDENTITY_BRIDGED
+
+A policy may state:
+{ "max_privacy_class": "ANON_CORE", "forbid": ["legal_identity",
+"card_payment", "google_oauth", "pstn_kyc"] }
+
+Then the resolver MUST refuse a route whose dependency surface violates
+that policy. Never silently fall back to Telnyx/Stripe/Google/etc.
+Canonical anonymous lifecycle Tor/.onion or SimpleX -> anonymous session ->
+fresh XMR invoice/subaddress -> payment observed -> capability minted ->
+private agent execution -> QP verified result -> minimal receipt
+
+No required:
+
+   - name
+   - email
+   - phone
+   - Google login
+   - Stripe customer
+   - card
+   - billing account
+
+Threat model
+
+Explicitly model these observers separately:
+
+   1. public recipient / counterparty
+   2. PMail application
+   3. PMail infrastructure operator
+   4. VPS/cloud operator
+   5. ISP / local network
+   6. bridge provider (telecom/email)
+   7. payment observer
+   8. GitHub/development identity
+
+ANON_CORE target:
+
+   - PMail does not collect conventional identity.
+   - payment path is XMR.
+   - service endpoint can be onion-only.
+   - operator identity is a key/capability.
+   - application logs contain no unnecessary IP/PII.
+   - secrets never enter agent context.
+   - external bridges are optional.
+
+GitHub is development infrastructure and NOT evidence that deployed PMail
+is anonymous. Do not blur developer identity and operator/customer identity=
+.
+
+First README line:
+
+PMail is a Tor-first, XMR-funded communications layer for pseudonymous
+agents, with explicit proofs of where privacy holds and where external
+bridges weaken it.
+
+Important: build the smallest vertical first. Do not build a giant platform
+before the lifecycle works end-to-end.
+
+Part 2 gives exact upstream repos and the clone/adopt rules.
+
+--00000000000075ef3e065bb1a64c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Build a new repo: <code>prx0r/pmail</code>.</p>
+<p>DO NOT attach/import the old local ZIP. Create the repo cleanly and reco=
+nstruct from these instructions plus selected code copied from cmail only w=
+here explicitly permitted.</p>
+<p>Reference cmail source state:</p>
+<ul>
+<li>repo: <a href=3D"https://github.com/prx0r/cmail">https://github.com/prx=
+0r/cmail</a></li>
+<li>branch: master</li>
+<li>exact source SHA to inspect first: <code>dcb4b3b8ae61c7495d88b88ab49350=
+d74afd52cf</code></li>
+<li>do not copy older proof/receipt systems wholesale.</li>
+</ul>
+
+PMail thesis
+<p>PMail is the anonymous-communications/runtime primitive for privately.wi=
+n.</p>
+<p>The core product requirement is:</p>
+<p>=E2=80=9CA useful agent service can be accessed, funded, operated and au=
+dited without PMail requiring a person=E2=80=99s conventional identity.=E2=
+=80=9D</p>
+<p>Core stack:</p>
+<ul>
+<li>pseudonymous operator key/capability, not account/email/password</li>
+<li>Tor/.onion first-party interface</li>
+<li>SimpleX as private messaging ingress/egress</li>
+<li>XMR as payment/accounting primitive</li>
+<li>private/isolated agent runtime</li>
+<li>QP for exact claims + privacy invariants + outcome verification</li>
+<li>optional telecom/email bridges that are explicitly classified as privac=
+y degradations</li>
+</ul>
+<p>Do NOT promise impossible universal untraceability. PMail itself must co=
+llect no conventional identity in ANON_CORE mode. External providers may se=
+e metadata. Model that explicitly.</p>
+<p>Non-goal / hard rule:</p>
+<ul>
+<li>do not bypass KYC, forge identity, or automate evasion of provider comp=
+liance.</li>
+<li>if a provider requires ID, classify it <code>IDENTITY_BRIDGED</code> an=
+d it cannot satisfy an ANON_CORE policy.</li>
+</ul>
+<p>Create these top-level areas:</p>
+
+<code>pmail/
+  README.md
+  SECURITY.md
+  THREAT-MODEL.md
+  ARCHITECTURE.md
+  UPSTREAM.md
+  src/
+    core/
+    identity/
+    privacy/
+    payments/
+    messaging/
+    bridges/
+      phone/
+      email/
+    qp/
+    mcp/
+  proofspecs/
+  fixtures/
+  tests/
+  docs/
+    providers/
+    operations/
+  research/
+</code>
+
+Identity model
+<p>Never make email/phone the identity root.</p>
+<p>Use three separate concepts:</p>
+
+<code>Person       =3D deliberately absent from ANON_CORE
+Operator     =3D pseudonymous public key / capability holder
+Agent        =3D workload/runtime identity, ideally attested
+</code>
+<p>A PMail operator should be representable by a generated Ed25519 keypair =
+or random bearer capability. No name/email/phone required.</p>
+
+Privacy classes
+<p>Implement this as a first-class type immediately:</p>
+
+<code>type PrivacyClass =3D
+  | &quot;ANON_CORE&quot;
+  | &quot;PSEUDONYMOUS_BRIDGE&quot;
+  | &quot;IDENTITY_BRIDGED&quot;;
+</code>
+<p>Add:</p>
+
+<code>interface IdentitySurface {
+  provider: string;
+  legal_identity_required: boolean;
+  account_required: boolean;
+  email_required: boolean;
+  phone_required: boolean;
+  payment_rails: string[];
+  data_disclosed: string[];
+  network_metadata: string[];
+  retention_claims?: string[];
+  evidence: SourceRef[];
+}
+</code>
+<p>Derive operation privacy class from all dependencies. Privacy may only s=
+tay equal or degrade as dependencies are introduced.</p>
+<p>Invariant:</p>
+
+<code>ANON_CORE + ANON_CORE                 -&gt; ANON_CORE
+ANON_CORE + PSEUDONYMOUS_BRIDGE      -&gt; PSEUDONYMOUS_BRIDGE
+anything + IDENTITY_BRIDGED           -&gt; IDENTITY_BRIDGED
+</code>
+<p>A policy may state:</p>
+
+<code>{
+  &quot;max_privacy_class&quot;: &quot;ANON_CORE&quot;,
+  &quot;forbid&quot;: [&quot;legal_identity&quot;, &quot;card_payment&quot;=
+, &quot;google_oauth&quot;, &quot;pstn_kyc&quot;]
+}
+</code>
+<p>Then the resolver MUST refuse a route whose dependency surface violates =
+that policy. Never silently fall back to Telnyx/Stripe/Google/etc.</p>
+
+Canonical anonymous lifecycle
+
+<code>Tor/.onion or SimpleX
+      -&gt; anonymous session
+      -&gt; fresh XMR invoice/subaddress
+      -&gt; payment observed
+      -&gt; capability minted
+      -&gt; private agent execution
+      -&gt; QP verified result
+      -&gt; minimal receipt
+</code>
+<p>No required:</p>
+<ul>
+<li>name</li>
+<li>email</li>
+<li>phone</li>
+<li>Google login</li>
+<li>Stripe customer</li>
+<li>card</li>
+<li>billing account</li>
+</ul>
+
+Threat model
+<p>Explicitly model these observers separately:</p>
+<ol>
+<li>public recipient / counterparty</li>
+<li>PMail application</li>
+<li>PMail infrastructure operator</li>
+<li>VPS/cloud operator</li>
+<li>ISP / local network</li>
+<li>bridge provider (telecom/email)</li>
+<li>payment observer</li>
+<li>GitHub/development identity</li>
+</ol>
+<p>ANON_CORE target:</p>
+<ul>
+<li>PMail does not collect conventional identity.</li>
+<li>payment path is XMR.</li>
+<li>service endpoint can be onion-only.</li>
+<li>operator identity is a key/capability.</li>
+<li>application logs contain no unnecessary IP/PII.</li>
+<li>secrets never enter agent context.</li>
+<li>external bridges are optional.</li>
+</ul>
+<p>GitHub is development infrastructure and NOT evidence that deployed PMai=
+l is anonymous. Do not blur developer identity and operator/customer identi=
+ty.</p>
+<p>First README line:</p>
+<p><code>PMail is a Tor-first, XMR-funded communications layer for pseudony=
+mous agents, with explicit proofs of where privacy holds and where external=
+ bridges weaken it.</code></p>
+<p>Important: build the smallest vertical first. Do not build a giant platf=
+orm before the lifecycle works end-to-end.</p>
+<p>Part 2 gives exact upstream repos and the clone/adopt rules.</p>
+
+--00000000000075ef3e065bb1a64c--

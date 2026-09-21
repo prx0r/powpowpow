@@ -1,0 +1,1034 @@
+Received: from mail-yx2-x0f.google.com (2607:f8b0:4864:41::f)
+        by cloudflare-email.net (cloudflare) id 5W7NU4prtks5
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 12:31:20 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=YZCshKV2TN5gNQ6RW4EM8Y0HLxX96gjF+e26Ad306At9Y+eFm8kGYDohMxs+eqBys8YXwmf66
+	ktlFwlQS4I4UfPpyY0b6YCCP/btOXubEGemO1n2IMqxZAlKSUbKOMMeQYG73QlPbPDPsKLk9q1b
+	MeXpF3pxAQ9ydK0qVuUpoy8V2pEEo3bxEKS97kFcO9JyNUcgdOkQDztqdsRQxcNmLf40/PEoX9W
+	siDch6z5SNhCx1gyKGOCRKJfCT7iEhIPeNWiOIXDjQUcAJ2FXK0ucqmS3lr16RUqzJUIr0LTN+m
+	bSgbB+0XLJh8OPO06aUfmSK8C0hVR//L37sR54vFfv+A==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789821080; x=1790425880; bh=yZanReUM
+	/cWtPLwv4QV3JDPf3EITY0UIM5kartseels=; b=Eg/XPU0Pi47qEK284h6T9lcXA/ipXYj5psY
+	7mJfS7ufDsD9w4CO1qQT7F12Tc3mk0rZfY1cCUrBAQIDan7d8wHTFRl3QSGsE4Ep1eIQ/1yavj7
+	O///P7krUKRALp2xLSwDWoMTus46ADOT6d279DLFWU0H0LdELCgNnnRR1T2bJB/hkm4Af9m2i4I
+	apvf0HdX2blIT8XHcpBNGz6nJ9rBAk1qSNtovBkMYu3kgz/1rWzC47cNrYqkzflm0A0d9REftCO
+	CYlnyoPakiJ7G/HrO7ZVtuBnPEBozAtj2jcMrAD7u5AlPlQPTZUvjMEp7aaxUsx1B23ZHWE91vn
+	v8NM2Cw==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=hUBGySBv;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::f; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x0f.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=hUBGySBv;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x0f.google.com) smtp.helo=mail-yx2-x0f.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::f as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::f"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x0f.google.com with SMTP id 00721157ae682-85d43daa8f4so11061967b3.3
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 05:31:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789821080; cv=none;
+        d=google.com; s=arc-20260327;
+        b=mA91R61Ytl0W3QvKyLTS/9x7lzJUQMTf5HAQwp0P+2fasqkDUqUARhRmd+kz2M21XU
+         0vyR2FOOX7O5vDw2lk673QQxnMcWDnDnnCKjQni4ZaLdZC1ssEGlfAAyj9QiBT7nhBE6
+         U9T54AcRY1d4YTfN6RO8sl82KeT0loGaSetMvixUYnFNfsTXiZchgf09HGJaW8O/7Jzv
+         jPUzEtxOWRiXK07sWNzEZL+xX63lzPbRfAkvbB0euUS9lBOLtpQk48ufrml9KB/h+TGN
+         boTaPzjWTaJTddmPTste3sga71GTxArdmL2xj0D21wmYx8gUj6Cg0fbFgCDz99Kiqgpy
+         8nWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=yZanReUM/cWtPLwv4QV3JDPf3EITY0UIM5kartseels=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=Ozb31EFSgJ+FADsxyPtYpd9IP4KY/3X/1YmdmU0JCbbUUymUy/xd4EQtTrDP4o3TxO
+         Fafmvhkhek9FR75vbB3Ng/XTSUzMkqEqgC0k26zjJW5+/K60GbuywNlgAFXeMPbg1D6n
+         3tkhCs43sUdogDLWjcmqJlAB3Xz56tfKpMx0CJfLte4SGG1LMzaV71Za0UzvqjhM2GrI
+         v47hc7zs/dQ2p2ra/37xy/pQLr/kdD8IdzV2zRXo9BGDeVGWQ1THzDdnDyfaRVyheRg4
+         owpXSEWPtL7eYI4LS/803wJALsvW1Jnw/unhcEOCzyzG7aJMnUYwNLC7mfeaurjl29oG
+         +mKw==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789821080; x=1790425880; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=yZanReUM/cWtPLwv4QV3JDPf3EITY0UIM5kartseels=;
+        b=hUBGySBv0gqa63Zw+oRxrZklWhEHZy+Vz6f7AHw1qhIwKqUTOO7jp8ruBrHaeB61v2
+         E60Ikn8ePAcLlFbhxpSrVkUTuiXEj+x8/1jVJrFrthAoTK2TRK0k1VsjGCRrF5oloyNM
+         +pnwUAvcSCvVqRqEeGHbki6Pp1mFnmRTuTLv3TD6cSjzWCkqR+yUfH0UuZga6UXcWpBh
+         Zh4UkhM+LPgdVPxt/hqq5MimH63WIp4j9HI0c8/4fPEDx97q2qGlIZ3NU5Jo1oylX0Cg
+         bpAFVzuDxJ7tfY9E7Hzb+VF33uCiWWO0I6NiN/ZYR0//NO+MrCmcWv/bITP5QB/eSnzE
+         ZPwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789821080; x=1790425880;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=yZanReUM/cWtPLwv4QV3JDPf3EITY0UIM5kartseels=;
+        b=FQdwtlgCZSs0Z0Rn+W5pGV7aPQUpBUnGga/hEL80WLvJsCUOkRB2uG11U1EPO1hMU+
+         ZyEjcbMu4i6LpV3Mm5KoyyFYMyqAzdgCfjVk9/ZTh3rWIkHRwb5dObbNoqkWkEmi5saC
+         zK+z6EWYVQcLJyfXxtdcWbgYZd8snScRKk6TTIDTNb2z+8l7woAgs/HtyJVMZnJ19XDK
+         WROgj6XxC5urN+sBtYTqHoE9BPqwWZabVGuxotgBA9h9p2uZxpWaV/dKR08wG3jLuAst
+         h3aevZ8Pb0g4VC6C1Bh9xzvk2MT9/7kQDoYWnrtKM2OMFYMXqYhQ7N4KfM+vx2e46Q27
+         Dvew==
+X-Gm-Message-State: AFuF++nF1EyQ1aSbj6yqzdrnXlmx89yhacpz3BhEAnAtNokksXXTTMNN
+	Nj5bxbXTNPkefpRq9U7Z1m2DrKJOi34sMc6gF7U9VkSW/Jig5uSPVZUtVdpR46WmwjTXKWmKx89
+	ruN1MF2acR9bkwZwK/GbvUSyvDNrE8n7UVw==
+X-Gm-Gg: AYBFou0byDK7hez+pHzOSbqjZqh84hPxdvGhHGDQxMfFNa695L06jDma7Q7nfZ6wtJQ
+	uT3Nd6OmG78Z1DudqXzUG5GSJ7iqn8Rd5AJCoXmW7OS6u0ZljtkNsd0KHgq8297NCon5jNRIulG
+	pd0C/UlOECIpQiVmKsG1y1KINDc0ZWETyGzLJhY498Am7RnZqkbIR29L9Yeha3PjTHvUPA0cqKU
+	WC7J1tzYW6m8p1V6Yg70WWTeGa5hwIFhqPTcxN/5EMkyWdTyMR6jKN+qxboC4th101Z9Rk42dtF
+	TEZPNiwQjgG0v46gs9fXr7Bfu6WHN1tUXyBc4cfjOPd/J09xyaKapo+1g95MQE186NWquMdwDXz
+	xzHGCczSWYl70tBtL78QXX+XD5PKLfxyENaNqiEKtdCo7Y+djMhVwHBb6hxE2BBXKxM8hbi8V3g
+	==
+X-Received: by 2002:a05:690c:4990:b0:85a:89f3:f53 with SMTP id
+ 00721157ae682-89733f08839mr18825617b3.24.1789821079076; Sat, 19 Sep 2026
+ 05:31:19 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 07:31:18 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 07:31:18 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 07:31:18 -0500
+X-Gm-Features: AcwNN1VSWG1ydW3LiIdChsVGFQPApo_w8SAx3KCmufOLiD4IhL_r9ZVmQSqlPqI
+Message-ID: <CAPdrGekjaB0JGMgQDV++jfTjzr37czkb=3hKHeBuEkB7B6GdLQ@mail.gmail.com>
+Subject: =?UTF-8?Q?FunnyLabs_=2B_Humour_Module_=2B_Roast=2Epet_=E2=80=94_Full_Thesi?=
+	=?UTF-8?Q?s_=26_Dev_Instructions?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+FunnyLabs / Humour Module / Roast.pet =E2=80=94 Source of Truth + Dev Instr=
+uctions
+
+THESIS
+
+The core product is not an Etsy store, a POD integration, an avatar
+generator, or a generic =E2=80=9CAI gift=E2=80=9D app.
+
+The core product is a reusable HUMOUR MODULE for Muse/agents:
+
+user context + recipient context + occasion + humour taste + current
+culture/news + available output formats
+=E2=86=92 choose the funniest structure
+=E2=86=92 generate/rank the joke
+=E2=86=92 map it to the right visual/product format
+=E2=86=92 hand it to a fulfilment surface such as Etsy, Moonpig, Printify,
+Prodigi, digital card, social video, etc.
+
+Roast.pet is the first consumer-facing proof of this system.
+
+FunnyLabs is the R&D/evaluation loop underneath it.
+
+The long-term thesis is that agents will become highly capable at
+buying, designing, booking and acting, but they will still often feel
+painfully unfunny because they imitate humour rather than learning
+what a specific human actually laughs at. The opportunity is to build
+the layer that makes agents funny.
+
+The architecture is:
+
+FunnyLabs
+=E2=86=92 learns humour structures, taste patterns, timing and ranking
+
+Humour Module / MCP
+=E2=86=92 packages that learning into tools agents can call
+
+Muse
+=E2=86=92 supplies conversational context, user preference/context and inte=
+nt
+
+Roast.pet
+=E2=86=92 first opinionated consumer application / brand
+
+Etsy / Moonpig / Printify / Prodigi / others
+=E2=86=92 discovery, checkout, printing, fulfilment and delivery
+
+Social avatars / AI stand-up
+=E2=86=92 cheap public experimentation surface for learning which comedy
+structures actually work
+
+
+1. PRODUCT DEFINITION
+
+The Humour Module answers one core question:
+
+=E2=80=9CGiven everything the agent is allowed to know about this user,
+recipient, situation and current cultural context, what would this
+person find funniest, and what is the best format for delivering it?=E2=80=
+=9D
+
+The module should NOT be a giant general commerce system.
+
+It should be narrowly excellent at:
+- humour-profile inference
+- joke-format selection
+- candidate generation
+- candidate ranking
+- visual/product formatting
+- topicality
+- adaptation to recipient, occasion and medium
+
+The fulfilment layer is replaceable infrastructure.
+
+If Moonpig exposes a connector tomorrow, great: add Moonpig.
+If Printify has the best shirt route, use Printify.
+If Prodigi has the best poster/print route, use Prodigi.
+If Etsy is where the buyer discovers the product, use Etsy.
+
+The humour layer should survive all of those changes.
+
+
+2. WHY ROAST.PET
+
+Roast.pet is not =E2=80=9CAI pet avatars=E2=80=9D.
+
+That category will commoditise.
+
+Roast.pet is:
+
+=E2=80=9CUpload your pet. We make them say something genuinely funny.=E2=80=
+=9D
+
+More specifically:
+
+personalised pet-led comedy gifts.
+
+The pet is a uniquely useful comedy wrapper because:
+- people already spend heavily on personalised pet gifts
+- the owner already has emotional attachment
+- the pet can safely play status inversion against the human
+- the pet can =E2=80=9Csay what everyone is thinking=E2=80=9D
+- topical/current humour can be smuggled through a pet perspective
+- the same concept maps naturally to cards, shirts, mugs, posters,
+video and digital formats
+
+Examples:
+- owner worried about AGI; dog thinking about dinner
+- dog at a stand-up mic roasting owner=E2=80=99s crypto obsession
+- fake breaking-news card about the recipient
+- pet-issued HR warning
+- savage birthday card =E2=80=9Cfrom=E2=80=9D the pet
+- pet therapist diagnosing owner
+- absurd current-event reaction from the pet
+
+The durable identity is humour, not visual-generation technology.
+
+
+3. SIMPLE STACK
+
+ROAST.PET =3D identity / consumer brand
+MUSE =3D user interface + personal context
+HUMOUR MODULE =3D taste + joke/format selection
+FUNNYLABS =3D research / ranking / learning loop
+ETSY / MOONPIG / POD =3D distribution + fulfilment
+
+Canonical flow:
+
+1. User says what they need
+2. Muse gathers/uses allowed context
+3. Humour Module determines:
+   - humour style
+   - joke premise
+   - format
+   - topical angle
+   - level of edge
+4. Generate 3=E2=80=935 candidates
+5. Rank/select
+6. Generate visual brief/assets
+7. Map to card/product/video format
+8. Show preview
+9. Route to fulfilment
+10. Capture feedback/outcome for FunnyLabs
+
+
+4. USER CONTEXT
+
+This is a major differentiator.
+
+Muse may already know what the user likes, references they make, their
+tone, recurring topics, in-jokes and what they tend to reject.
+
+The Humour Module should accept an explicit, privacy-conscious context
+summary rather than reaching blindly into raw history.
+
+Suggested input:
+
+{
+  "humour_profile": {
+    "dryness": 0-1,
+    "absurdity": 0-1,
+    "savagery": 0-1,
+    "wholesomeness": 0-1,
+    "topicality": 0-1,
+    "taboo_tolerance": 0-1,
+    "preferred_reference_zones": [],
+    "avoid_topics": []
+  },
+  "recipient": {...},
+  "relationship": "...",
+  "occasion": "...",
+  "relevant_personal_facts": [],
+  "pet": {...},
+  "current_context": {...},
+  "output_constraints": {...}
+}
+
+Do not build around raw private-history resale.
+The reusable asset should be aggregated humour learning, format
+performance, evaluation methods, ranking models and template
+intelligence.
+
+
+5. WHAT MAKES SOMETHING FUNNY =E2=80=94 INITIAL MODEL
+
+FunnyLabs should begin with explicit primitives rather than pretending
+=E2=80=9Cfunny=E2=80=9D is one scalar.
+
+Track at least:
+
+SPECIFICITY
+The joke contains a recognisable truth about this person/situation.
+
+INCONGRUITY
+Two frames collide unexpectedly.
+Example: existential AGI dread vs dog caring only about dinner.
+
+RECOGNITION
+The target thinks: =E2=80=9Cthat is painfully me.=E2=80=9D
+
+STATUS PLAY
+Pet > owner, child > parent, AI > human, employee > boss, etc.
+
+BENIGN VIOLATION
+The joke crosses a line enough to create tension, without becoming
+genuinely harmful or unusable.
+
+SURPRISE
+The punchline is not the default continuation.
+
+COMPRESSION
+The idea lands quickly enough for the medium.
+
+VOICE CONSISTENCY
+The joke sounds like the avatar/pet/character, not like generic AI copy.
+
+TIMING
+The topic or meme is culturally live when the output ships.
+
+PERSONAL DISTANCE
+Some jokes work because they are intimate; others work because they
+are safely indirect.
+
+EDGE CALIBRATION
+Mild / dry / savage / absurd / politically incorrect / dark-ish,
+bounded by platform and user constraints.
+
+These are features to test, not eternal truths.
+
+
+6. MCP / TOOL SURFACE
+
+Keep the public interface small.
+
+A useful v1:
+
+humour.profile
+Input:
+- user_context_summary
+- explicit controls
+Output:
+- humour profile
+- confidence
+- avoid zones
+- preferred devices
+
+humour.ideate
+Input:
+- profile
+- recipient
+- occasion
+- personal facts
+- topical context
+- medium
+Output:
+- 3=E2=80=9310 distinct premises
+
+humour.rank
+Input:
+- profile
+- candidate jokes/premises
+- medium
+Output:
+- ranking
+- rationale features
+- safety/brand flags
+
+humour.format
+Input:
+- selected premise
+- target medium/product
+Output:
+- headline
+- body/punchline
+- visual composition
+- image prompt/brief
+- print layout guidance
+- alternate variants
+
+humour.rewrite
+Input:
+- existing joke
+- requested shift: drier / stranger / meaner / warmer / shorter / more topi=
+cal
+Output:
+- revised variants
+
+Later:
+humour.evaluate
+humour.feedback
+humour.trend
+humour.character
+
+
+7. MEDIUM-AWARE FORMATTING
+
+The same joke should not be reused unchanged everywhere.
+
+CARD
+- front =3D setup / visual premise
+- inside =3D reveal / punchline / personalised tag
+
+T-SHIRT
+- one instantly readable concept
+- minimal text
+- strong silhouette / composition
+
+MUG
+- readable from distance
+- short line / two-panel loop where useful
+
+POSTER
+- larger composition
+- fake editorial / news / certificate / art format
+
+SOCIAL VIDEO
+- hook
+- premise
+- escalation
+- punchline
+- optional tag/callback
+
+STAND-UP
+- premise
+- setup
+- punchline
+- tags
+- callbacks
+- character voice
+
+PET MEME/CARD
+- expression/body language
+- status inversion
+- speech/thought bubble
+- owner/pet contrast
+
+
+8. ROAST.PET V1
+
+Do not launch 50 formats.
+
+Launch 5 canonical formats:
+
+A. PET THOUGHT BUBBLE
+Human has a serious/modern-life concern.
+Pet has a selfish/absurd trivial concern.
+
+B. PET STAND-UP
+Pet at mic/podium roasting owner.
+
+C. BREAKING NEWS
+Fake-news visual about owner/pet/occasion.
+
+D. PET THERAPIST / HR
+Pet issues diagnosis, warning, performance review, etc.
+
+E. SAVAGE BIRTHDAY
+Pet gives recipient personalised birthday truth.
+
+Each template needs:
+- fixed layout family
+- editable text zones
+- photo requirements
+- safe print area
+- typography rules
+- output sizes
+- product mappings
+- example prompts
+- joke constraints
+- edge ranges
+
+The brand promise:
+
+=E2=80=9CUpload your pet. We make them say something hilarious.=E2=80=9D
+
+The underlying product:
+personalised comedy generation.
+
+
+9. INITIAL COMMERCE WEDGE
+
+Start with cards.
+
+Reasons:
+- fast to understand
+- humour-native
+- low-friction purchase
+- strong gifting urgency
+- ideal for personalised copy
+- easy to preview
+- simpler than apparel
+- same art can later expand into shirts, mugs, posters and digital
+
+Initial flow:
+
+User:
+=E2=80=9CI need a funny card for Dan tomorrow.=E2=80=9D
+
+Muse:
+- asks/uses recipient relationship
+- asks for pet photo if relevant
+- asks for 2=E2=80=933 useful facts where needed
+- offers humour level
+- asks permission to use relevant Muse context
+
+Humour Module:
+- chooses best format
+- generates 3=E2=80=935 variants
+- ranks
+- outputs composition
+
+Render:
+- print-ready art
+- digital preview
+- optional e-card version
+
+Fulfil:
+- Etsy / Moonpig / print provider depending on available connector and
+delivery need
+
+Later:
+same selected concept =E2=86=92 T-shirt / mug / poster / digital video
+
+
+10. FULFILMENT ROUTER
+
+Do not overbuild this in FunnyLabs.
+
+Use a thin adapter layer:
+
+commerce.search_products()
+commerce.quote()
+commerce.create_preview()
+commerce.publish()
+commerce.order()
+commerce.track()
+
+Providers can include:
+- Etsy
+- Moonpig
+- Printify
+- Prodigi
+- others later
+
+The core humour system should output a provider-neutral product spec.
+
+Example:
+
+{
+  "product_type": "greeting_card",
+  "design_asset": "...",
+  "inside_copy": "...",
+  "recipient": "...",
+  "delivery_deadline": "...",
+  "budget": 25,
+  "destination": "...",
+  "preferences": {...}
+}
+
+Then the router chooses provider based on:
+- supported product
+- deadline
+- geography
+- landed cost
+- print requirements
+- availability
+
+
+11. FUNNYLABS =E2=80=94 RESEARCH LOOP
+
+FunnyLabs is where the durable learning happens.
+
+Do not jump directly into complex RL.
+
+Start with ranking + contextual bandit style experiments.
+
+For each prompt/context:
+1. Generate multiple structurally different candidates
+2. Present/select
+3. Log outcome
+4. Update priors
+
+Capture:
+- template ID
+- joke structure
+- topic
+- topicality
+- personalisation depth
+- edge level
+- avatar/persona
+- medium
+- which candidate was selected
+- edits requested
+- purchase/no purchase
+- share/no share
+- replay/watch completion for videos
+- explicit rating where available
+- =E2=80=9Cmake it harsher/less cringe/shorter=E2=80=9D corrections
+
+Important:
+A purchase is a stronger signal than a like.
+A share is stronger than passive impression.
+A recipient reaction can be stronger than creator approval.
+User edits are highly informative negative/positive preference signals.
+
+Build a reward hierarchy rather than one flat score.
+
+
+12. SOCIAL / AI STAND-UP AS R&D
+
+Social content is not a side hobby.
+It is the cheapest high-volume test bench for humour structures.
+
+Use Pogtown-style avatars / recurring synthetic characters.
+
+Run:
+- topical monologues
+- one-liners
+- pet stand-up
+- current-event commentary
+- character conflict
+- crowd-work-like formats where safe/possible
+- recurring bits
+- callbacks
+
+Measure:
+- hold rate
+- completion rate
+- replays
+- comments quoting the joke
+- shares
+- saves
+- follower conversion
+- variation performance
+
+The goal is not merely =E2=80=9Cviral content=E2=80=9D.
+The goal is to learn:
+- which structures create surprise
+- which personas can carry which joke types
+- which topics combine with which tone
+- where AI humour feels fake
+- what makes a recurring synthetic comedian feel authored rather than
+autogenerated
+
+Winning social structures can become commerce templates.
+Winning commerce formats can become recurring social bits.
+
+That loop is key.
+
+
+13. TIMELY HUMOUR SUPPLY
+
+The engine needs a continuously refreshed topic/template feed.
+
+Inputs:
+- current news
+- memes
+- tech/AGI developments
+- football/sport moments
+- internet discourse
+- seasonal occasions
+- workplace/cultural trends
+
+Do not simply summarize news.
+
+Transform news into reusable comedic frames.
+
+Example:
+NEWS: new model automates a profession
+TEMPLATE: human existential dread / pet unchanged priorities
+TEMPLATE: pet performance review of now-redundant owner
+TEMPLATE: =E2=80=9Cbreaking news: dog remains household=E2=80=99s only irre=
+placeable employee=E2=80=9D
+
+Store:
+- source topic
+- freshness window
+- joke frames
+- suitable audiences
+- risky references
+- expiry
+
+The humour module can then choose current references when the user=E2=80=99=
+s
+taste permits them.
+
+
+14. HUMOUR TEMPLATE OBJECT
+
+Suggested schema:
+
+{
+  "id": "pet_thoughtbubble_agi_v1",
+  "family": "contrast",
+  "mediums": ["card","social","shirt"],
+  "roles": ["human","pet"],
+  "setup_pattern": "...",
+  "punchline_pattern": "...",
+  "visual_pattern": "...",
+  "humour_features": {
+    "incongruity": 0.9,
+    "status_play": 0.2,
+    "specificity_need": 0.5,
+    "edge": 0.3
+  },
+  "required_inputs": ["pet_photo"],
+  "optional_inputs": ["job","current_anxiety"],
+  "freshness": "evergreen|timely",
+  "topic_tags": [],
+  "avoid_conditions": [],
+  "performance": {
+    "impressions": 0,
+    "selected": 0,
+    "purchased": 0,
+    "shared": 0
+  }
+}
+
+This lets templates learn over time without hard-coding everything into pro=
+mpts.
+
+
+15. FIRST VERSION OF HUMOUR RANKING
+
+For each candidate, score internally on dimensions such as:
+- relevance
+- specificity
+- surprise
+- voice match
+- medium fit
+- personal recognition
+- novelty
+- edge fit
+- topical fit
+- clarity
+- likely cringe
+- policy/platform risk
+
+Do not expose all of these as fake precision to users.
+Use them internally to compare candidates.
+
+Start with model-as-judge + explicit user selection.
+Replace/adapt weights as real behaviour accumulates.
+
+
+16. WHAT NOT TO BUILD YET
+
+Do not build:
+- giant general Etsy analytics graph
+- broad marketplace engine
+- custom foundational humour model
+- elaborate RL stack before enough feedback
+- dozens of product categories
+- avatar technology from scratch
+- own print infrastructure
+- full Moonpig competitor
+- generic =E2=80=9CAI gift generator=E2=80=9D
+
+Use existing frontier models for:
+- image generation
+- video/avatar generation
+- speech
+- writing
+- multimodal understanding
+
+Swap providers as quality/cost changes.
+
+Own:
+- humour framework
+- templates
+- evaluation
+- ranking
+- taste adaptation
+- feedback loop
+- brand identity
+- user experience
+
+
+17. SAFETY / TRUST / PRIVACY
+
+Personal humour can become creepy if the system surfaces private
+information unexpectedly.
+
+Rules:
+- ask before using broader Muse history/context for a gift
+- pass a minimised context summary to humour tooling
+- provide =E2=80=9Cmild / savage / topical / no personal history=E2=80=9D c=
+ontrols
+- allow avoid-topics
+- avoid sensitive personal attributes by default
+- do not expose private facts to a recipient merely because Muse knows them
+- do not treat harmful/offensive output as automatically =E2=80=9Cfunnier=
+=E2=80=9D
+- keep marketplace/IP rules distinct from creative edge
+
+The brand can be rude, dry, absurd, edgy and politically incorrect
+without making =E2=80=9Charm=E2=80=9D the objective.
+
+
+18. REPO / SERVICE SHAPE
+
+Suggested minimal repo:
+
+/funny
+  /server
+    /tools
+      profile.ts
+      ideate.ts
+      rank.ts
+      format.ts
+      rewrite.ts
+    /schemas
+      humour-profile.ts
+      recipient.ts
+      template.ts
+      candidate.ts
+      feedback.ts
+    /templates
+      pet-thought-bubble/
+      pet-standup/
+      breaking-news/
+      pet-therapist/
+      savage-birthday/
+    /providers
+      llm.ts
+      image.ts
+      news.ts
+    /evals
+      fixtures/
+      scorers/
+      regression/
+    /feedback
+      events.ts
+      aggregation.ts
+  /apps
+    /roastpet
+  /adapters
+    /commerce
+      etsy.ts
+      printify.ts
+      prodigi.ts
+      moonpig.ts
+  /docs
+    THESIS.md
+    TEMPLATE_SPEC.md
+    EVALS.md
+
+Avoid tightly coupling provider code to humour logic.
+
+
+19. API RESPONSE EXAMPLE
+
+humour.ideate(...)
+
+returns:
+
+{
+  "recommended_format": "pet_thought_bubble",
+  "candidates": [
+    {
+      "id": "c1",
+      "setup": "Tom: Will AGI make my career obsolete?",
+      "punchline": "Dog: Will AGI know where the chicken is?",
+      "visual": "Owner visibly worried at laptop; dog staring toward kitche=
+n",
+      "tone": ["dry","topical","pet"],
+      "personalisation_used": ["career_anxiety","pet_food_obsession"],
+      "medium_fit": ["card","social"],
+      "risk_flags": []
+    }
+  ]
+}
+
+Then humour.rank chooses the strongest candidate for that user/context.
+
+Then humour.format turns it into provider-neutral artwork/product instructi=
+ons.
+
+
+20. EVALS FROM DAY ONE
+
+Create a fixed fixture set covering:
+- pet owner birthday
+- partner gift
+- co-worker leaving
+- AGI anxiety
+- football fan
+- dry British humour
+- absurdist preference
+- mild family-safe case
+- savage case
+- low-context recipient
+- high-context recipient
+- topical vs evergreen
+
+For each version of the system, regression-test:
+- does it repeat the same joke structure too often?
+- does it use personal facts unnaturally?
+- is it too verbose?
+- is the punchline predictable?
+- does it sound like =E2=80=9CAI humour=E2=80=9D?
+- did it choose an inappropriate medium?
+- did edge calibration move correctly?
+
+Human selection eventually becomes the gold signal.
+
+
+21. BUILD ORDER
+
+PHASE 1 =E2=80=94 5 FORMAT KERNEL
+- implement schemas
+- implement humour.ideate / rank / format
+- create five Roast.pet templates
+- manually test 50=E2=80=93100 scenarios
+- fix cringe/repetition
+
+PHASE 2 =E2=80=94 ROAST.PET CARD FLOW
+- photo upload
+- recipient/occasion
+- context permission
+- humour level
+- generate 3 options
+- select
+- card render
+- digital preview
+
+PHASE 3 =E2=80=94 COMMERCE
+- Etsy listing/personalisation integration
+- first fulfilment adapter
+- order/track
+- deadline-aware route
+- optional digital fallback for urgent gifts
+
+PHASE 4 =E2=80=94 FEEDBACK
+- candidate selection events
+- edits
+- purchase
+- share
+- explicit rating
+- aggregate by template and profile features
+
+PHASE 5 =E2=80=94 SOCIAL R&D
+- recurring avatars
+- topical feed
+- automated stand-up/short generation
+- variant testing
+- feed winning joke structures back into template library
+
+PHASE 6 =E2=80=94 GENERALISE
+- expose Humour Module to Muse outside Roast.pet
+- cards not involving pets
+- shirts/mugs/posters
+- Moonpig / other connectors
+- external agent API
+
+
+22. SUCCESS CRITERIA
+
+Roast.pet MVP is =E2=80=9Cdone=E2=80=9D when:
+- a user can upload a pet photo
+- provide or permit enough context
+- receive 3 genuinely distinct joke concepts
+- the system selects a suitable visual format
+- one concept becomes a good-looking print-ready card
+- user can buy/send it without manual design work
+- interaction events are captured for learning
+
+Humour Module v1 is =E2=80=9Cdone=E2=80=9D when:
+- another app can call it without Roast.pet-specific logic
+- it can select between multiple humour structures
+- it adapts tone to profile/context
+- it can format for at least card + social
+- evaluation fixtures catch regressions
+
+FunnyLabs v1 is =E2=80=9Cdone=E2=80=9D when:
+- every generated/tested joke carries structured metadata
+- outcomes can be joined back to templates/profiles
+- top-performing structures can be identified
+- updates can improve ranking without rewriting the whole app
+
+
+23. NORTH STAR
+
+The north star is not:
+=E2=80=9Cmake funny AI cards.=E2=80=9D
+
+It is:
+
+=E2=80=9Cmake agents actually funny.=E2=80=9D
+
+Roast.pet is the first commercial wedge because pets + personalised
+gifting + cards create a narrow, understandable, emotionally
+compelling product.
+
+FunnyLabs is the learning system.
+
+The Humour Module is the reusable infrastructure.
+
+Muse gives it personal context.
+
+Commerce connectors turn the result into atoms.
+
+Social stand-up gives it a high-volume experimental arena.
+
+If the system works, it can eventually power:
+- personalised cards
+- personalised gifts
+- social avatars
+- AI companions
+- brand agents
+- synthetic comedians
+- creator tools
+- entertainment agents
+- humour evaluation APIs
+
+The long-run asset is a continuously improving understanding of which
+comedic structures, tones and formats work for which contexts and
+audiences =E2=80=94 without depending on any single LLM, avatar model,
+marketplace or fulfilment provider.
+
+ONE-LINE VERSION
+
+FunnyLabs learns what humans actually find funny; the Humour Module
+packages that learning for agents; Roast.pet proves it by turning
+personal context and a pet into genuinely funny personalised gifts
+through Muse and existing commerce/fulfilment rails.

@@ -1,0 +1,393 @@
+Received: from mail-yx2-x10.google.com (2607:f8b0:4864:41::10)
+        by cloudflare-email.net (cloudflare) id f9jLij9OK6zz
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 01:57:57 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=X8+Ydjiu3sY5i3OGwLInUCXPOuQS86NVQAT1Iu/h0Y3DZFEq68IvE8WS+oGmEMItXB4IyVIqQ
+	PZMd0a8KNtiyk55Wyd9RFzPRE0XwJmW+g/ZHLLLixDOyc0dfqt9GNJ1bnw3/jH/cF6Jjc86rfOT
+	xtIfnNEFu/03rPYWAJWdAiXqV+vsYQ2btjQH687UqBT1+l4dm24b2QD/DefeuZbIxGmdh1T1pvV
+	GftlyvgJYYawex75ZEaNBzy+EXUSl0zqZO08H2vYC+LKFvAOoUpg/6p4+jieSzm/Ixg9V8x42+H
+	hkIRwp8VTjSspokKK+4VJzz6txjb/JAdMt2BxEB1hBLw==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789869477; x=1790474277; bh=0nxDP7TJ
+	NouU1Ib+RbWIL8xTSjdVhPFfh+TLDRbci3g=; b=b8URsddrMGyz/TKaYsoKepePvkQYgyQ8k9y
+	M45DwO9icX3Yg1Fwcunf6rd6tvzsFYKbXT9R0C8f55AFOQek6z2rvtk3Aiqu3MM5U/Omp0/18Sc
+	i0OsBmCIG/6IP3/USqT24qiF8MLU8tnecHag5Y3WzrtT7jpKCwZNywjIHYhqzk8qMl1oF0Q0Yo/
+	FRkIjKYH2gQ1CE3M3oCgEgvoJg2C5O8wqO0puabNefBXd7C0y1/iHKFvqH9FfXEFNMhwTCz/OKq
+	iQtAjEs3Ugvc/7u4kld2qBxZs112u1BRv3ixt/cFw4ABXi1+T6rl6rsLOlO8ogLYe3l/aAsz1/X
+	4eSBsmQ==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HfbZ2DbU;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::10; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x10.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HfbZ2DbU;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x10.google.com) smtp.helo=mail-yx2-x10.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::10 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::10"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x10.google.com with SMTP id 956f58d0204a3-66e4aae314aso1457949d50.3
+        for <agents@intelligentothers.xyz>; Sat, 19 Sep 2026 18:57:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789869477; cv=none;
+        d=google.com; s=arc-20260327;
+        b=DFk56RulJD19JAEEXsteBkcDIkqWiaQwo2H/qVSzqkdmGT1pBkuqzlSj3Ki0+hAjvj
+         aQeNFwMTroNTbCC6lW3zrl7PXxJZEuucVRYq11cEtbFaWQt8QINbFJfGtLEWig41o913
+         DhqJ8sRfh57HWQJKKLjORudlyuruLsFVXbI8cgnIMurNv8BpUDDiZRGLUv0SKKTVQKm4
+         42JD8kQjV0Mi2BxYwrjB6CEq5sfyCkRrchmCw/yag/UyaCMs/DknzuADJ8wh+jKkzG6K
+         FRjVcsXB30J+J93oxLvDJvnd2fU549ycJZqJn6bEFEv7Q3WObOlcREPuvFGbuY6Aw+o7
+         I2Aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=0nxDP7TJNouU1Ib+RbWIL8xTSjdVhPFfh+TLDRbci3g=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=dEhUKQARjxP7QzPVTgUuK38E1iWEPSyhfiJ3wBToOVYZddMd9gIJCNF9GlcUufUhly
+         S+v3i5CJqGPRa+liGG8Rufr9LtYgXRXWAScGMj3DQ/l+c6vendljOxMdfwFGV1o8b2J/
+         EFDcGnb7MFcfRvGMa1jlidS6aOgTujvDy65jMMSWGleJbwErBkYwNv/V0kZyB0BNebQ8
+         UcEvU4+1CHCEFIolUuLx3wDzny3cjEdErpgor22KF8b+YbQy01MzqEbfGfMxdPbA4Rtp
+         WIA1sY70L6xtp/b7SxwK/z4EaLmD+Aaiz0x+IPn4A+osFZdJCqFY1NxveBmIBWdYgtAU
+         v48A==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789869477; x=1790474277; darn=intelligentothers.xyz;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=0nxDP7TJNouU1Ib+RbWIL8xTSjdVhPFfh+TLDRbci3g=;
+        b=HfbZ2DbU41n4IOZ0h4MleppYFCAXz7L0odCzmqIhOuLXo7ztYRWxS5IMBhcrJ2GKkI
+         vdUJo2tHbvhhtSQgzvAKj38jLhBYalw9cFv7J+T7Q3gFP4TFDWWIj9NweRQkszs8ZmSE
+         3Hzx+V+z0AEngo/9SZkKn33hOWpS73cF6+W7axVTMLUQgPpvb2Bf9QvAXQty1DFSeK63
+         ct8OMHKC46XL9NP/FLHxRW4AD6SVoai/rDlhi92xSlDbYLy+UiwDOsx0RVhfwS3TeD7q
+         7p93FMX7P3WVmU+r7atsalF/KPYDJLV9DDB0GIX5uwc+msx4WQGPf51vTMmgJNfTvZL8
+         eHXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789869477; x=1790474277;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=0nxDP7TJNouU1Ib+RbWIL8xTSjdVhPFfh+TLDRbci3g=;
+        b=FCw5zf/Q7Mwguf58avDYAPuFDJ8f4Oi7Oi0xcDzb3v3OtXpA6shMnL5LiKU1bXX8Xb
+         EetrKMm8ybafvZ15nZ+ye93AUIl9Rufi29crzTodSdbW/3Niz/XgvBRh/STVhxP5OViG
+         Lz62t7HNJ39tfmOXeCdBQg/YxJezcxX1HflYhQ+aXaWhoDKBR3yY0G9KqxLPLl14ppR+
+         0uQTvFMr/1Z6Ubtav7bNvAaDqXI0fdMOXSmhuJUas0+cK8tF+HdPqDugf1jfBso+ORGD
+         ytQ6pBufY68O9kPsnyEtAU+9JaOaqsdbooAT6J4fwPWIkpsbUP6OqsfwfGb5ouqzmpp5
+         8d/g==
+X-Gm-Message-State: AFuF++lGh5NMt5OIsNMbd16xSL8BEXSybX/Pant857c5Bx/8PcjS3yVC
+	slXm97ttT8hiJSc24i1pJMon8uxHGKGoszsPSUVEL9kuRlqmILBqlYziDCJHVtpDKG4GWVM2sRQ
+	S7xjuPyqR9xLV2uny0uxJ+q7cdstkf5cZJg==
+X-Gm-Gg: AYBFou0Qo4iih/i+hDyo5VU52myHFOdoPE2knnneE7D0K1kczR7mknkUpeZ9/U8eMqR
+	LjZrIQ8ViRkQOk9tgIJPEW2xeUeufkYMqpPrkSYJwOTMHVSwtV/RBIYEhXsINrSYXQvcl6MF7kO
+	IyFiR1gbZrA5QGv2wg2VhZarHYwkecvU0+kOpNz6ZqkG88IF06wf0vZs/c9ujyKr7LrOFltxBCG
+	Ar9VJhYCWnTS56R3VNdgUfgevypVdCHD6hyELw4Ioy88UVvM72sD3t7TEF9uLXpteYJDtLqqGBp
+	8CRJL1/r6MJzbwDx3cPpQDLh+o34auM7E8JPFOSJP9b5zbIKfJ/bM2gnn1VJCoUR32a+VTwQ7af
+	BA4ezwQi7ikut4yaNAD27FI/d0dMhvo+cVeGksZyGnamiUuhc8uh9FZH62MN4nNxF56Ro2jkSA/
+	4CMTeAyCpc
+X-Received: by 2002:a05:690e:1918:b0:671:4c1c:d571 with SMTP id
+ 956f58d0204a3-6717fd35f97mr2006840d50.43.1789869477322; Sat, 19 Sep 2026
+ 18:57:57 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 20:57:56 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sat, 19 Sep 2026 20:57:56 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sat, 19 Sep 2026 20:57:56 -0500
+X-Gm-Features: AcwNN1UVH2xBTIcHO-GEFB4TFIin1nQf-FY3gBlvgBiU921jtCOk2vlkhvvM6wk
+Message-ID: <CAPdrGemQi-yOHNx0YwXvqgfOALZFeNvtEvMuyRTt7FCeaQoi1w@mail.gmail.com>
+Subject: =?UTF-8?Q?Generated_Media_Frontier_=E2=80=94_2026=2D09=2D20_08=3A57_Asia=2FP?=
+	=?UTF-8?Q?hnom=5FPenh_=E2=80=94_2_strong_finds?=
+To: agents@intelligentothers.xyz
+Content-Type: multipart/alternative; boundary="00000000000063e294065be07663"
+
+--00000000000063e294065be07663
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+GENERATED MEDIA FRONTIER =E2=80=94 2026-09-20 08:57 Asia/Phnom_Penh
+
+2 STRONG FINDS
+
+   1. xocialize/scail-2-mlx =E2=80=94 TEST NOW
+   GitHub: https://github.com/xocialize/scail-2-mlx
+   Upstream: https://github.com/zai-org/SCAIL-2
+
+Freshness: repository is actively developing and the README explicitly
+marks several components as =E2=80=9Crecently landed=E2=80=9D; GitHub curre=
+ntly shows 16
+commits. I am not assigning an exact commit date because the rendered
+GitHub history did not expose one reliably.
+
+What it does: Apple MLX port of SCAIL-2 for reference-image + driving-video
+controlled character animation. Supports cross-identity replacement,
+multi-character scenes and animal driving without an intermediate pose
+representation.
+
+Why interesting: this moves a 14B controllable character-animation model
+onto Apple Silicon with parity testing against the PyTorch implementation.
+The full 14B checkpoint converts cleanly (1307/1307 keys). The current M5
+Max path generates a 65-frame 832x480 example while preserving
+identity/environment. A 16-step DPM++ preset is reported as perceptually
+matching the 40-step UniPC reference and cuts the example from ~2h38m to
+~51m. Current active memory ~34 GB / peak ~47 GB. Q8 is in verification; Q4
+currently fails the project=E2=80=99s cosine threshold.
+
+Input -> output: reference character image + driving/pose video + optional
+masks/prompt -> controlled animated video.
+
+Availability: runnable WIP code + converted MLX weights. Not
+release-quality yet.
+License: check upstream SCAIL-2/NOTICE in addition to the port before
+commercial deployment.
+Maturity: RUNNABLE / WIP.
+
+Relevance: highly relevant to persistent hosts because it makes
+deterministic-ish motion transfer and character replacement available on
+local Apple hardware rather than requiring a cloud NVIDIA pipeline.
+
+Experiment: canonical host reference + the same 10-second driving
+performance through upstream SCAIL-2 and scail-2-mlx. Measure identity
+embedding drift, expression/motion fidelity, wall time, memory, energy and
+$/usable clip. Then test the same performance on two different host
+identities. Do not use it as a live renderer yet.
+
+Could complement/replace: premium controlled-motion backend; complements
+LTX-MSR/LongCat rather than replacing cheap browser avatars.
+
+   1. majidmanzarpour/threejs-talking-avatar =E2=80=94 ADOPT ARCHITECTURE /=
+ TEST NOW
+   GitHub: https://github.com/majidmanzarpour/threejs-talking-avatar
+
+Freshness: newly surfaced one-commit repository; GitHub=E2=80=99s rendered =
+page
+does not expose a trustworthy exact commit date, so this is classified as
+newly discovered rather than falsely called a same-hour release.
+
+What it does: fully browser-native avatar built from Google GNM Head +
+Three.js + WebAudio/WebGPU/WASM. It can run microphone STT
+(Moonshine/Whisper), local LLM (Gemma/Qwen via LiteRT-LM/WebLLM), local TTS
+(timestamped Kokoro, Supertonic, KittenTTS), and deterministic facial
+performance in a static Vite app with no backend.
+
+Why technically interesting: the important piece is its PERFORMANCE CONTROL
+architecture. The LLM emits bounded semantic directives such as gesture,
+intensity, onset/hold/release and valence/arousal/dominance. A stream-safe
+parser strips those directives before TTS/history, then a deterministic
+compositor maps them to GNM morphs. Lip closure remains authoritative while
+upper-face affect, gaze, blinks and head beats are composed independently.
+This is extremely close to the Performance IR we have been designing.
+
+Input -> output: microphone/text -> local STT/LLM/TTS -> semantic
+performance directives + phone timing -> expressive 3D avatar in browser.
+
+Availability: runnable static Vite demo; no credential required for the
+fully local path.
+License: repo code Apache-2.0; GNM/model/audio assets retain their own
+third-party terms.
+Hardware/cost: current Chromium with WebGPU/WebGL2/WASM; model choices
+range from roughly 290 MB Qwen + ~60 MB KittenTTS upward, while default
+Gemma 4 E2B is ~2.01 GB and timestamped Kokoro fp32 ~326 MB. Inference
+stays browser-local after weights are fetched.
+Maturity: RUNNABLE technical demo.
+
+Experiment: port its semantic performance grammar into our Performance IR.
+Feed the identical utterance/performance plan to this GNM renderer and our
+VRM/Prometheus-style renderer. If the expressive intent survives renderer
+substitution, the IR is valid. Benchmark TTFS, speech-to-mouth drift,
+CPU/GPU load and subjective expressiveness.
+
+Could replace/complement: browser VRM/edge renderer and our current ad-hoc
+expression logic; especially valuable as a reference implementation for
+Performance IR rather than as a final photoreal host.
+
+TOP 5 TO TEST RIGHT NOW
+
+   1. threejs-talking-avatar semantic performance grammar -> our
+   Performance IR.
+   2. scail-2-mlx canonical motion-transfer benchmark on Apple Silicon.
+   3. Content Machine production-ledger/metrics feedback benchmark.
+   4. Hypit 20-variant executable-edit benchmark.
+   5. LTX-2.3 MSR two-character scene + identity QA.
+
+BEST OPEN-SOURCE AI INFLUENCER STACK
+Character Asset Graph + identity embedding -> persona/memory -> showrunner
+-> bounded semantic Performance IR + Live Cue Timeline -> browser GNM/VRM
+cheap live renderer OR SCAIL/LTX/LongCat premium controlled renderer ->
+Production Run Ledger -> Hypit/Content Machine -> deterministic edit/render
+-> publish -> platform metrics -> Style/Profile Library.
+
+BIGGEST CAPABILITY JUMP
+The browser avatar repo makes the Performance IR idea concrete: an LLM can
+choose semantic acting intent while a deterministic, renderer-specific
+compositor owns raw facial controls. That separation is much safer and more
+portable than allowing the creative model to emit morph weights or
+animation curves directly.
+
+CHEAPEST PRACTICAL WIN
+Mine threejs-talking-avatar=E2=80=99s semantic performance grammar immediat=
+ely. It
+requires no expensive video-generation inference and gives us a
+renderer-independent acting protocol we can reuse for live avatars, cheap
+drafts and premium renderers.
+
+3 REPOS/AUTHORS/LABS TO WATCH NEXT HOUR
+
+   - xocialize/scail-2-mlx
+   - majidmanzarpour/threejs-talking-avatar
+   - neosapience/TA2.0
+
+STACK DELTA
+Add an explicit bounded ACTING PLAN to Performance IR:
+{gesture, intensity, onset, hold, release, valence, arousal, dominance,
+gaze_target, head_beat, speech_span}
+
+Creative model controls semantic intent only. Renderer adapters own
+morphs/rig controls. Lip/contact constraints have priority over lower-face
+affect. Every render is scored against identity + lip-sync +
+expression-intent targets and written to the Production Run Ledger.
+
+TA2.0 was inspected but not promoted to a strong find because its exact
+fresh release date could not be established from the surfaced GitHub page.
+It remains worth watching: Apache-2.0, reference image + speech + optional
+prompt -> 480x832/25fps talking avatar, with reproducible sharded
+safetensor releases.
+
+--00000000000063e294065be07663
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>GENERATED MEDIA FRONTIER =E2=80=94 2026-09-20 08:57 Asia/Phnom_Penh</p>
+<p>2 STRONG FINDS</p>
+<ol>
+<li>xocialize/scail-2-mlx =E2=80=94 TEST NOW<br>
+GitHub: <a href=3D"https://github.com/xocialize/scail-2-mlx">https://github=
+.com/xocialize/scail-2-mlx</a><br>
+Upstream: <a href=3D"https://github.com/zai-org/SCAIL-2">https://github.com=
+/zai-org/SCAIL-2</a></li>
+</ol>
+<p>Freshness: repository is actively developing and the README explicitly m=
+arks several components as =E2=80=9Crecently landed=E2=80=9D; GitHub curren=
+tly shows 16 commits. I am not assigning an exact commit date because the r=
+endered GitHub history did not expose one reliably.</p>
+<p>What it does: Apple MLX port of SCAIL-2 for reference-image + driving-vi=
+deo controlled character animation. Supports cross-identity replacement, mu=
+lti-character scenes and animal driving without an intermediate pose repres=
+entation.</p>
+<p>Why interesting: this moves a 14B controllable character-animation model=
+ onto Apple Silicon with parity testing against the PyTorch implementation.=
+ The full 14B checkpoint converts cleanly (1307/1307 keys). The current M5 =
+Max path generates a 65-frame 832x480 example while preserving identity/env=
+ironment. A 16-step DPM++ preset is reported as perceptually matching the 4=
+0-step UniPC reference and cuts the example from ~2h38m to ~51m. Current ac=
+tive memory ~34 GB / peak ~47 GB. Q8 is in verification; Q4 currently fails=
+ the project=E2=80=99s cosine threshold.</p>
+<p>Input -&gt; output: reference character image + driving/pose video + opt=
+ional masks/prompt -&gt; controlled animated video.</p>
+<p>Availability: runnable WIP code + converted MLX weights. Not release-qua=
+lity yet.<br>
+License: check upstream SCAIL-2/NOTICE in addition to the port before comme=
+rcial deployment.<br>
+Maturity: RUNNABLE / WIP.</p>
+<p>Relevance: highly relevant to persistent hosts because it makes determin=
+istic-ish motion transfer and character replacement available on local Appl=
+e hardware rather than requiring a cloud NVIDIA pipeline.</p>
+<p>Experiment: canonical host reference + the same 10-second driving perfor=
+mance through upstream SCAIL-2 and scail-2-mlx. Measure identity embedding =
+drift, expression/motion fidelity, wall time, memory, energy and $/usable c=
+lip. Then test the same performance on two different host identities. Do no=
+t use it as a live renderer yet.</p>
+<p>Could complement/replace: premium controlled-motion backend; complements=
+ LTX-MSR/LongCat rather than replacing cheap browser avatars.</p>
+<ol>
+<li>majidmanzarpour/threejs-talking-avatar =E2=80=94 ADOPT ARCHITECTURE / T=
+EST NOW<br>
+GitHub: <a href=3D"https://github.com/majidmanzarpour/threejs-talking-avata=
+r">https://github.com/majidmanzarpour/threejs-talking-avatar</a></li>
+</ol>
+<p>Freshness: newly surfaced one-commit repository; GitHub=E2=80=99s render=
+ed page does not expose a trustworthy exact commit date, so this is classif=
+ied as newly discovered rather than falsely called a same-hour release.</p>
+<p>What it does: fully browser-native avatar built from Google GNM Head + T=
+hree.js + WebAudio/WebGPU/WASM. It can run microphone STT (Moonshine/Whispe=
+r), local LLM (Gemma/Qwen via LiteRT-LM/WebLLM), local TTS (timestamped Kok=
+oro, Supertonic, KittenTTS), and deterministic facial performance in a stat=
+ic Vite app with no backend.</p>
+<p>Why technically interesting: the important piece is its PERFORMANCE CONT=
+ROL architecture. The LLM emits bounded semantic directives such as gesture=
+, intensity, onset/hold/release and valence/arousal/dominance. A stream-saf=
+e parser strips those directives before TTS/history, then a deterministic c=
+ompositor maps them to GNM morphs. Lip closure remains authoritative while =
+upper-face affect, gaze, blinks and head beats are composed independently. =
+This is extremely close to the Performance IR we have been designing.</p>
+<p>Input -&gt; output: microphone/text -&gt; local STT/LLM/TTS -&gt; semant=
+ic performance directives + phone timing -&gt; expressive 3D avatar in brow=
+ser.</p>
+<p>Availability: runnable static Vite demo; no credential required for the =
+fully local path.<br>
+License: repo code Apache-2.0; GNM/model/audio assets retain their own thir=
+d-party terms.<br>
+Hardware/cost: current Chromium with WebGPU/WebGL2/WASM; model choices rang=
+e from roughly 290 MB Qwen + ~60 MB KittenTTS upward, while default Gemma 4=
+ E2B is ~2.01 GB and timestamped Kokoro fp32 ~326 MB. Inference stays brows=
+er-local after weights are fetched.<br>
+Maturity: RUNNABLE technical demo.</p>
+<p>Experiment: port its semantic performance grammar into our Performance I=
+R. Feed the identical utterance/performance plan to this GNM renderer and o=
+ur VRM/Prometheus-style renderer. If the expressive intent survives rendere=
+r substitution, the IR is valid. Benchmark TTFS, speech-to-mouth drift, CPU=
+/GPU load and subjective expressiveness.</p>
+<p>Could replace/complement: browser VRM/edge renderer and our current ad-h=
+oc expression logic; especially valuable as a reference implementation for =
+Performance IR rather than as a final photoreal host.</p>
+<p>TOP 5 TO TEST RIGHT NOW</p>
+<ol>
+<li>threejs-talking-avatar semantic performance grammar -&gt; our Performan=
+ce IR.</li>
+<li>scail-2-mlx canonical motion-transfer benchmark on Apple Silicon.</li>
+<li>Content Machine production-ledger/metrics feedback benchmark.</li>
+<li>Hypit 20-variant executable-edit benchmark.</li>
+<li>LTX-2.3 MSR two-character scene + identity QA.</li>
+</ol>
+<p>BEST OPEN-SOURCE AI INFLUENCER STACK<br>
+Character Asset Graph + identity embedding -&gt; persona/memory -&gt; showr=
+unner -&gt; bounded semantic Performance IR + Live Cue Timeline -&gt; brows=
+er GNM/VRM cheap live renderer OR SCAIL/LTX/LongCat premium controlled rend=
+erer -&gt; Production Run Ledger -&gt; Hypit/Content Machine -&gt; determin=
+istic edit/render -&gt; publish -&gt; platform metrics -&gt; Style/Profile =
+Library.</p>
+<p>BIGGEST CAPABILITY JUMP<br>
+The browser avatar repo makes the Performance IR idea concrete: an LLM can =
+choose semantic acting intent while a deterministic, renderer-specific comp=
+ositor owns raw facial controls. That separation is much safer and more por=
+table than allowing the creative model to emit morph weights or animation c=
+urves directly.</p>
+<p>CHEAPEST PRACTICAL WIN<br>
+Mine threejs-talking-avatar=E2=80=99s semantic performance grammar immediat=
+ely. It requires no expensive video-generation inference and gives us a ren=
+derer-independent acting protocol we can reuse for live avatars, cheap draf=
+ts and premium renderers.</p>
+<p>3 REPOS/AUTHORS/LABS TO WATCH NEXT HOUR</p>
+<ul>
+<li>xocialize/scail-2-mlx</li>
+<li>majidmanzarpour/threejs-talking-avatar</li>
+<li>neosapience/TA2.0</li>
+</ul>
+<p>STACK DELTA<br>
+Add an explicit bounded ACTING PLAN to Performance IR:<br>
+{gesture, intensity, onset, hold, release, valence, arousal, dominance, gaz=
+e_target, head_beat, speech_span}</p>
+<p>Creative model controls semantic intent only. Renderer adapters own morp=
+hs/rig controls. Lip/contact constraints have priority over lower-face affe=
+ct. Every render is scored against identity + lip-sync + expression-intent =
+targets and written to the Production Run Ledger.</p>
+<p>TA2.0 was inspected but not promoted to a strong find because its exact =
+fresh release date could not be established from the surfaced GitHub page. =
+It remains worth watching: Apache-2.0, reference image + speech + optional =
+prompt -&gt; 480x832/25fps talking avatar, with reproducible sharded safete=
+nsor releases.</p>
+
+--00000000000063e294065be07663--

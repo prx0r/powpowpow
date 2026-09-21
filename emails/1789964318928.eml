@@ -1,0 +1,313 @@
+Received: from mail-yx2-x11.google.com (2607:f8b0:4864:41::11)
+        by cloudflare-email.net (cloudflare) id pU6Ft82RiQal
+        for <agents@intelligentothers.xyz>; Mon, 21 Sep 2026 04:18:38 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; cv=pass;
+	b=QR6tvnoq3yctgajTIXF5fkG0MoMmLDN9iLUJQjSINaG8TUVh7Z3lZyH64pwMR+lQB5Tr6oBRu
+	NVlnHT3vaKRZdtDdIEop+bDCOoD6V9hVUFi2umMNKRfwBLWp0QTi2nt3oydU1eBC/ZQqqKLIWCd
+	U2D33zF/BOu0LBKkHJiM0EiLhMrNpdDWCqhh5ogyj4r2wO/L6OiIoVo0+DKivWx7p/6Z6hD7R5i
+	7yWjmDSjDqWFKUo1uGhRhi7WJzyOdVzJOKZdpS0tEhbUE1fsZDfHM+aew6y3RAzmdS8avQzx9Ep
+	KBdgrw8elUqdB6DPkF+whXiDkWS+7QOaYkFoF2239Q0Q==;
+ARC-Message-Signature: i=2; a=rsa-sha256; s=cf2024-1; d=cloudflare-email.net; c=relaxed/relaxed;
+	h=To:Subject:Date:From:from:reply-to:cc:resent-date:resent-from:resent-to
+	:resent-cc:in-reply-to:references:list-id:list-help:list-subscribe
+	:list-post:list-owner:list-archive; t=1789964318; x=1790569118; bh=Gw/hrmJ/
+	6ple63xso9/iYSqe7XHypQG3AVJpUXnm9P0=; b=H9pFiZeNkD1TUMtJllk1xHaAVh2d9GTGCT8
+	PL8Hv1i+o5CUfvr/2ZnAGqRmKt+UD7zIz5nxKgwdq454NJqQiGxTmy2himzLlTO4kf6+vpVNOjV
+	L2oZZTRodzuL8tPJivwLY9lphHHrAavg/8dkpe4qKqjTmxQtqpGC+KZfxvOqXxd4FfoBtPmGp8D
+	HPpa6iHj5dSVbGI3olmx24ixQVjcK7nfp+pZXL2v5jVqBQx9ldSKdycTxtoXYVwVt/JHyv4b4q5
+	4IEGKonlDsMUHkzeWk+8Swq+OQBOz67jgKl79qO4202IkPkXcRh7B1u4eTijgP7f0vKNLjj4Gzu
+	IF4fj2Q==;
+ARC-Authentication-Results: i=2; mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=TG80CvXk;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+Received-SPF: pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender)
+	receiver=mx.cloudflare.net; client-ip=2607:f8b0:4864:41::11; envelope-from="tradesprior@gmail.com"; helo=mail-yx2-x11.google.com;
+Authentication-Results: mx.cloudflare.net;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=TG80CvXk;
+	dmarc=pass header.from=gmail.com policy.dmarc=none;
+	spf=none (mx.cloudflare.net: no SPF records found for postmaster@mail-yx2-x11.google.com) smtp.helo=mail-yx2-x11.google.com;
+	spf=pass (mx.cloudflare.net: domain of tradesprior@gmail.com designates 2607:f8b0:4864:41::11 as permitted sender) smtp.mailfrom=tradesprior@gmail.com;
+	arc=pass smtp.remote-ip="2607:f8b0:4864:41::11"
+X-CF-SpamH-Score: 0
+Received: by mail-yx2-x11.google.com with SMTP id 956f58d0204a3-66e4aac9321so2164753d50.3
+        for <agents@intelligentothers.xyz>; Sun, 20 Sep 2026 21:18:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789964318; cv=none;
+        d=google.com; s=arc-20260327;
+        b=cYzEYQiC5K/DpVGH1MuJ9F8jJ0Q/t0HaknOBk6iGFjqFRu0gfu9kBc2SoaTWHjBfRN
+         DexWLgq4li46+31uwTUBxDYtahuDF6xn3u3pMO1DlkzcFOcf0CFI/n9Thmce8hGuAXBk
+         9/tG/Yta4UKFOkVwwgGrVZKWJIN82jkbqXBcea79pJ5iDDmwpmAHR939Z+XjTdITgOq4
+         V02M+rJaD5S6kotUfTKQ02moNYwOnqWfhHyuZrE5wVdCyyQxDJXqX9YaKJElUK1ulLYo
+         ZE5XHuQl+17oucsfvZZEBTWWLn/T1N5AcNEEqEXgLvewN4hJq4Dhn+ZSYeNkQXLCfKnz
+         65Fw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :mime-version:dkim-signature;
+        bh=Gw/hrmJ/6ple63xso9/iYSqe7XHypQG3AVJpUXnm9P0=;
+        fh=QOk8h/NZqfVrj7/t3nz62oHuhXIcEehO8qzRd6EmoZ0=;
+        b=NTQB2O5/Fk3mvU7jUuA+BkEaVWh1hcQv43oZsldqi+VUQJ3dzrqApHVgxLCZQ7zibw
+         j6JkbhVMpmaJOrSl3sYBDL5vmVMqnJbI1eNoiJKKHw+5kG5Kbc1G83IqLpaOABCYLRKJ
+         JgIPnkOPncOX6B2nPr0g7fkhvsYdzE0qiXWm6OKXyVIVFdJbT110SUBfJ5cZBXiaK/ZS
+         KMx7ozZVVB4H6DmsaW8kSNktKMAdAOmqS63l46TM2jUvEVVLNtEz6H3ExKa8U9GmM/1b
+         pCPpzIDPGFBIqw7PZi2sOxhDR22ydac3jT4iYMtlo7/gl5HFcV7UHIxtaMgtA2G9GCKq
+         yfsQ==;
+        darn=intelligentothers.xyz
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1789964318; x=1790569118; darn=intelligentothers.xyz;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Gw/hrmJ/6ple63xso9/iYSqe7XHypQG3AVJpUXnm9P0=;
+        b=TG80CvXkNkRmnvWTrhR4t5RCojX3k+ooc92NqhOhhpKJQIrkTKU2g4jM//rZAviBR+
+         OqOxCZAlZNxno/+/peOdLVBsoecdQfxAQrdRpOtkfQl59ZS17bFU7BKDW1r7JdJnG5tU
+         upd9J3xLVS2HuDwcpQRaSV5UA9IsBdLF6b+AXRzNH436LpfYwv86USaVRE1B6ECaqKXR
+         x3EUcqvbUPWKx/p7Rs320T8ugtfeqXhAHHX1ukn+pZVSioPUrYiRJaGTEZMxrxMZnj9Q
+         GjM+I3BkZWa72TL1yspinszSN28CNcYjS40BPkpISD6GZiN36U103ffUUSwBVUBBaUNA
+         6xFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1789964318; x=1790569118;
+        h=content-transfer-encoding:content-type:to:subject:message-id:date
+         :from:mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=Gw/hrmJ/6ple63xso9/iYSqe7XHypQG3AVJpUXnm9P0=;
+        b=2S/pQkrRQzi48ulC9hEBiQhXaFM6GL666FAfxk2o+BQX7hIwDQqr8KWka0HS3GSGq6
+         U65Gdo2Uy3OHKx20BgLWv6fiSuCHNb1MoPJA/I5gMp/vIRQdr/56fHQJ8vmP89VjlIrF
+         +egapnjzQQUYJ5PuKvvf0xnDI5XMBrxMNiXzuEzED9bKrmWT9eGL6Bl4j6/YuOJO23+Y
+         l/4MXoceajA9gYvtWSY+YxVYOjMFGmfn3Ou4Z/sMuA43N+4jYsUdwjF8MAjoDDuDZQsN
+         D1745oS2hhDsSgH8PQsYLSAEUGLt6FOyhlqEwsPRthY5PnwuLFVKrDzV7KpgaUhBqJI/
+         EetA==
+X-Gm-Message-State: AFuF++m/7d5yEMH4K0q9hepKxnUj297VoZGZbNKP8vCjaYiAvzc2tb4n
+	wIWuYV6HpuI+z67L/zx1iQ9wbU//Fa/bUEIdO4EYiu/BsA9ggbNay1Pj0Biw/+0WmvvE+IjIhws
+	D2IyFqiUpsAZZtK9lcIFNYi/WH5wha45U4Q==
+X-Gm-Gg: AYBFou1qSMEpXRJ2oOA/U5J/M4DgnvN3TpvRSUW7aHVB09W/BIIwGv3d5ea2GXwsmd2
+	FON7MuHZurtS57LTQVgxrjBPGA/nRd8tdGkeosp92wni1/S9DCwadeBAvs7WuB2MpLxoZQDd4OW
+	ZurdH38q69w2XppOsdtYQB1me18I7qBTs3V0qiynZsmfwK/r+nfq3suI3LSfzTZQmx9fNSeGp76
+	PQcZd9DgF/DbAAYQj/MM/vGf+LuYwflSenaFbNZ3UyNcXTFkjxsYbeRBazwjB0UR/b58HPVMyhp
+	PDN7imafD+aWtECuE537u6VR7mSqFoldjoDFsTk7puvDI36lwAH7ywUOy4JNdxFrTVPkxJ3i/Nk
+	5uCh+TLIF8cTodIN+4Yj0M+duzoy03CbZPi2pDUlbJDyfzB6tkj+B6OFiXBrJm1IiRLFXZzmJ
+X-Received: by 2002:a05:690e:b86:b0:66c:e3b9:f696 with SMTP id
+ 956f58d0204a3-6717fd8de3emr2864843d50.48.1789964318065; Sun, 20 Sep 2026
+ 21:18:38 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 23:18:37 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Sun, 20 Sep 2026 23:18:37 -0500
+MIME-Version: 1.0
+From: Prior Trades <tradesprior@gmail.com>
+Date: Sun, 20 Sep 2026 23:18:37 -0500
+X-Gm-Features: AclHuK9qhLqkl2ExhqmsW3VbNo4p5LP7KUO6YBeuJ-OG9uqTWD2tVrXoqRj0so0
+Message-ID: <CAPdrGe=yhtBdbmviFekpR7=HUrKBY0xvWJJEtK6=94ixy44Tkg@mail.gmail.com>
+Subject: =?UTF-8?B?UE9XIFByb2JlIOKAlCBDb25zdHJhaW50cyDigJQgMjAyNi0wOS0yMSAxMToxOCBJQ1Q=?=
+To: agents@intelligentothers.xyz
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+POW.SYSTEMS CONSTRAINT / SEESAW PROBE =E2=80=94 21 Sep 2026 11:18 ICT
+
+EXECUTIVE DELTA
+The strongest new information this run is not a new constraint but a
+timing window in the grid-connection Seesaw. NESO confirms Gate 2
+Phase 1 transmission offers were scheduled to finish by mid-September
+2026, while Phase 1 distribution offers continue to mid-November;
+Phase 2 transmission runs early September 2026=E2=80=93mid-January 2027 and
+Phase 2 distribution mid-October 2026=E2=80=93mid-March 2027. The queue
+remains >738 GW versus 200=E2=80=93225 GW of clean generation required by
+2030. This creates an unusually clean transition tape now: project
+Gate/status/date/point changes can be observed while the reform is
+actively reallocating scarce connection capacity.
+
+RANKED CONSTRAINTS
+1. Grid connection allocation / Gate transition =E2=80=94 5.00 =E2=80=94 PL=
+ANT HARD =E2=80=94 CONFIRMED.
+2. Local distribution constraint =C3=97 flex response =C3=97 physical flow =
+=E2=80=94
+4.99 =E2=80=94 PLANT HARD =E2=80=94 CONFIRMED/INFERRED.
+3. Transformer/cable manufacturing capacity =E2=80=94 4.92 =E2=80=94 PLANT =
+=E2=80=94
+CONFIRMED, but slower observation cadence.
+4. Heat-pump demand =E2=86=92 transaction-capable installer capacity =E2=80=
+=94 4.83 =E2=80=94
+PLANT/PILOT =E2=80=94 demand CONFIRMED, local capacity constraint UNKNOWN.
+5. EV charger deployment =E2=86=92 authorised installer/equipment/grid
+constraint =E2=80=94 4.68 =E2=80=94 PILOT =E2=80=94 policy economics CONFIR=
+MED, binding labour
+constraint UNKNOWN.
+6. Generic green-trades shortage =E2=80=94 KILL until transaction/outcome
+evidence supports it.
+
+SEESAW 1 =E2=80=94 GRID CONNECTIONS
+Demand driver: electrification + generation/storage development.
+Constraint: scarce network connection capacity. Observable proxies:
+exact project ID, Gate 1/2, connection date, connection point,
+capacity, queue entry/exit. Shadow-price proxy: project delay /
+connection-date displacement; explicit =C2=A3 shadow price remains UNKNOWN.
+Supply response: network reinforcement + queue attrition/reallocation.
+Expected lag: years physically, but allocation state is changing now.
+Geography: connection point / DNO / transmission region.
+
+Current state: NESO says the connections queue exceeds 738 GW, against
+200=E2=80=93225 GW clean generation capacity required by 2030. Gate 2 proje=
+cts
+secure confirmed connection date, point and queue position; Gate 1
+does not. Phase 1 transmission offer window has just reached its
+scheduled end; distribution Phase 1 remains live. This is a strong
+transition window.
+
+POW Constraint State: intensity HIGH; shadow-price observability
+MEDIUM; supply-response velocity currently HIGH in administrative
+allocation but LOW in physical build; expected physical relaxation
+MULTI-YEAR; hotspot should be resolved by project/connection point,
+not guessed regionally.
+
+Agent actions: flag projects whose Gate/date/point improves or
+deteriorates; identify sites where nominal headroom and actual project
+progression disagree; route developers toward viable alternative
+configurations/sites.
+
+Falsifier: if Gate 2 projects fail to progress after receiving
+improved queue positions, connection allocation was not the binding
+downstream constraint; the bottleneck migrated to planning, finance,
+equipment or construction.
+
+SEESAW 2 =E2=80=94 NETWORK EQUIPMENT
+Ofgem=E2=80=99s March 2026 supply-chain evidence remains unusually strong:
+transformer prices ~+75% since 2021; cable prices ~+100%; HVDC cable
+lead times often exceed five years. UK network-manufacturing turnover
+is >25% higher and employment >50% higher since 2023. This is textbook
+Constraint =E2=86=92 Shadow Price =E2=86=92 Capital Allocation =E2=86=92 Su=
+pply Response.
+
+POW state: intensity HIGH; shadow price HIGH/observable periodically;
+supply response CONFIRMED; relaxation time YEARS. Weakness: cadence.
+Do not over-rank this garden until POW obtains repeatable
+distributor/manufacturer lead-time or procurement-award state.
+
+Falsifier: sustained falling prices/lead times while network build remains =
+high.
+
+SEESAW 3 =E2=80=94 HEAT-PUMP CAPABILITY
+The Heat Training Grant was updated 8 Sep 2026 and still offers up to
+=C2=A3500 toward eligible training; courses usually take at least three
+days and are intended to cover skills needed to install under a
+competent-person scheme. This is observable supply response. Demand
+remains policy-supported through BUS, but the next September BUS
+statistical release is not until 29 Oct 2026.
+
+Do not infer an installer shortage merely from grant demand. The
+useful POW constraint is transaction-capable local supply: MCS/scheme
+capability =C3=97 geography =C3=97 observed installations/jobs =C3=97 first=
+-job
+activation.
+
+POW state: demand intensity HIGH; installer constraint UNKNOWN
+locally; shadow-price proxy =3D quote/lead-time/job economics, currently
+weak publicly; supply-response velocity measurable via certification
+changes/training; relaxation UNKNOWN.
+
+SEESAW 4 =E2=80=94 EV INSTALLATION
+OZEV=E2=80=99s 25 Feb 2026 grant changes increased eligible chargepoint
+support to as much as =C2=A3500. Workplace Charging Scheme support covers
+up to 75% of purchase/installation, capped at =C2=A3500/socket and 40
+sockets. Only OZEV-authorised installers can claim, and eligible
+equipment is required. This creates a clean eligibility graph: site =E2=86=
+=92
+grant =E2=86=92 eligible charger =E2=86=92 authorised installer =E2=86=92 i=
+nstallation.
+
+But installer scarcity itself remains UNKNOWN. Plant
+authorisation-state history and join it to installations/quotes rather
+than narrating a shortage.
+
+EXACT SOURCE STACK
+- NESO Connections Reform / timeline: official NESO pages; public;
+event/periodic; canonical key =3D exact case-sensitive project ID where
+available; =C2=A30.
+- Ofgem Growing GB electricity network supply chains, Mar 2026:
+official evidence; public; periodic; equipment constraint baseline;
+=C2=A30.
+- GOV.UK Heat Training Grant: official guidance, updated 8 Sep 2026;
+public; change/event cadence; provider/course identity; =C2=A30.
+- GOV.UK OZEV grants + authorised-installer guidance: official;
+public; scheme/equipment/installer eligibility state; =C2=A30.
+- POW=E2=80=99s existing NGED branch: CMZ/primary identity =C3=97 requireme=
+nt =C3=97
+dispatch =C3=97 5-min flow; rights/access specifics remain as established
+in Live State probe and unresolved exact executable resource details
+must not be invented.
+
+PLANT NOW
+A. CONNECTION_TRANSITION_TAPE
+Canonical: source_project_id_exact. Snapshot each official
+project/register state; event-diff Gate, MW, connection date, point,
+owner, disappearance/reappearance. Preserve raw hash + observed_at +
+effective_at. First transform: QueueAttrition and
+GateTransitionVelocity. Reconstruction test: current register is
+backfillable; exact mutation sequence may not be. Keep snapshots.
+
+B. CAPABILITY_SUPPLY_TAPE
+Canonical: scheme certification ID + resolved Companies House number.
+Diff MCS/OZEV capability state by technology/place/time. Join to
+public demand and consenting transaction outcomes. First transform:
+TransactionCapableSupply(place, technology, t).
+
+C. CONSTRAINT_CAUSAL_JOIN
+For each grid zone/project: expected structural scarcity =E2=86=92 near-ter=
+m
+requirement/queue change =E2=86=92 intervention/allocation =E2=86=92 physic=
+al/project
+outcome. This is the moat, not source mirroring.
+
+COUNTERFACTUALS / KILL TESTS
+- Grid: improved Gate/date without subsequent progress =3D> bottleneck migr=
+ated.
+- Equipment: lead times/prices fall while demand persists =3D> scarcity rel=
+axing.
+- Heat pumps: demand rises but installation conversion remains timely
+and quote lead times stable =3D> kill installer-shortage story.
+- EV: authorised-installer supply grows faster than installations and
+prices/lead times do not rise =3D> kill labour bottleneck.
+- Generic skills: training/certification growth without first-job
+activation =3D> qualification supply is not equivalent to economic
+capability.
+
+GEOGRAPHIC HOTSPOTS
+Do not publish regional hotspot claims from national aggregates. Grid
+should resolve to connection point/CMZ/primary. Installer constraints
+should resolve to service geography + actual transaction demand. Any
+county-level claim before those joins is INFERRED/LOW CONFIDENCE.
+
+NEXT-HOUR QUEUE
+1. Diff the newest NESO connection/project state against the previous
+snapshot and quantify Gate/date/capacity transitions now that Phase 1
+transmission has crossed its scheduled milestone.
+2. Resolve whether project-level Gate 2 offer outcomes are exposed
+with stable IDs sufficient for a longitudinal tape.
+3. Join 20 changed projects to planning state and owner/company
+identity; test whether Gate improvement predicts planning/procurement
+progression.
+4. For heat pumps, build local TransactionCapableSupply rather than
+search more shortage commentary.
+5. Keep equipment lead-time research subordinate until a repeatable
+high-cadence source is found.
+
+MACHINE-READABLE APPENDIX
+{"probe":"POW_CONSTRAINT_SEESAW","run_date":"2026-09-21T11:18:00+07:00","ma=
+terial_delta":true,"primary_delta":"GATE2_PHASE1_TRANSMISSION_MILESTONE","c=
+onstraints":[{"id":"GRID_CONNECTION_ALLOCATION","score":5.0,"status":"PLANT=
+_HARD","constraint":"CONFIRMED","shadow_price":"INFERRED_MEDIUM","relaxatio=
+n":"MULTI_YEAR"},{"id":"LOCAL_GRID_FLEX_PHYSICAL","score":4.99,"status":"PL=
+ANT_HARD","constraint":"CONFIRMED_INFERRED"},{"id":"NETWORK_EQUIPMENT","sco=
+re":4.92,"status":"PLANT","constraint":"CONFIRMED","lead_time":"YEARS"},{"i=
+d":"HEAT_PUMP_TRANSACTION_CAPACITY","score":4.83,"status":"PILOT","local_co=
+nstraint":"UNKNOWN"},{"id":"EV_INSTALLATION_CAPACITY","score":4.68,"status"=
+:"PILOT","installer_constraint":"UNKNOWN"}],"kill":["GENERIC_GREEN_TRADES_S=
+HORTAGE"],"next":["DIFF_NESO_PROJECT_STATE","TEST_STABLE_GATE_IDS","JOIN_20=
+_PROJECTS_TO_PLANNING","BUILD_LOCAL_TRANSACTION_CAPABLE_SUPPLY"]}
+
+Sources: NESO Connections Reform/About + Timeline; Ofgem Growing Great
+Britain=E2=80=99s electricity network supply chains (Mar 2026); GOV.UK Heat
+Training Grant (updated 8 Sep 2026); GOV.UK OZEV grant/installer
+guidance (Feb 2026).
