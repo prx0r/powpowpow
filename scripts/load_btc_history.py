@@ -39,11 +39,16 @@ CHARTS = {
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--timespan', default='2years',
+                    help='blockchain.info timespan (e.g. 1year, 2years)')
+    args = ap.parse_args()
     total = 0
     for chart, (field, unit) in CHARTS.items():
         data = fetch_json(
             f'https://api.blockchain.info/charts/{chart}'
-            '?timespan=1year&format=json',
+            f'?timespan={args.timespan}&format=json',
             source_id='blockchaininfo-charts', chain_id='btc')
         values = (data or {}).get('values', []) if isinstance(data, dict) else []
         n = 0

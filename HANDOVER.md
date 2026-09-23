@@ -78,8 +78,9 @@ Scripts:
 - compact_stream.py: Parquet compactor 25-30x
 - trim_jsonl.py: 7-day hot window
 - tardis_drip.py: monthly free-tier Tardis
-- load_cg_history.py: CoinGecko 365d price (XMR/QUBIC/BTC loaded)
-- load_btc_history.py: 1yr BTC chain history via blockchain.info charts (hashrate/difficulty/revenue/fees, no key)
+- load_cg_history.py: CoinGecko 365d price (free tier caps at 365d — error 10012, verified)
+- load_closes_2y.py: 2yr gap-fill (Kraken XMR/BTC OHLC, Gate QUBIC candles; pre-CG dates only, seams disclosed)
+- load_btc_history.py: 2yr BTC chain history via blockchain.info charts --timespan (10 series, 8006 rows, no key)
 - backfill_btc_trades.py: BTC trade-flow history via Binance Vision daily aggTrades (hourly flow_bars; monthly zips stall on this egress, daily works)
 - btc_context.py: M0 baseline — rolling BTC betas, residuals, security spend, content hooks
 - btc_mining_backtest.py: BTC mining features vs 7d/30d forwards (in-sample, no recommendation)
