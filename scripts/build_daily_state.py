@@ -34,7 +34,16 @@ from datetime import datetime, timezone
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import row_date, store_normalized  # noqa: E402
+try:
+    from core import row_date, store_normalized  # noqa: E402
+except (ImportError, AttributeError):
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location('_core_py',
+            os.path.join(BASE_DIR, 'core.py'))
+    _core = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_core)
+    row_date = _core.row_date
+    store_normalized = _core.store_normalized
 
 CALCULATION_VERSION = "daily-state-v1"
 

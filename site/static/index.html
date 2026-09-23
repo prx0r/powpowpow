@@ -10,6 +10,11 @@
 body{font:13px/1.5 Arial,sans-serif;background:var(--bg);color:#111;height:100vh;overflow:hidden;display:flex;flex-direction:column}
 .titlebar{height:30px;background:#111;color:#fff;display:flex;align-items:center;padding:0 14px;font:700 11px/1 Arial;letter-spacing:1px}
 .titlebar .r{margin-left:auto;font-weight:400;color:#aaa;display:flex;gap:12px}
+.ticker{height:24px;background:#000;display:flex;align-items:center;padding:0 14px;gap:18px;overflow:hidden;border-bottom:1px solid #333;font:700 10px ui-monospace,monospace;flex-shrink:0}
+.ticker .ti{display:flex;gap:6px;align-items:center;white-space:nowrap}
+.ticker .ts{color:#888;font-weight:400}
+.ticker .tv{color:#fff}
+.ticker .tu{color:#666;font-weight:400;font-size:9px}
 .body{flex:1;display:flex;overflow:hidden}
 .rail{width:48px;background:#111;display:flex;flex-direction:column;padding-top:4px;flex-shrink:0}
 .rail .i{width:48px;padding:10px 0;text-align:center;cursor:pointer;color:#666;font:900 9px/1 Arial;border-left:4px solid transparent}
@@ -61,6 +66,7 @@ pre{white-space:pre-wrap;font-size:11.5px;border:2px solid #111;padding:10px;bac
 </head>
 <body>
 <div class="titlebar"><span>POWPOWPOW</span><span class="r"><span id="clk"></span><span id="health">…</span></span></div>
+<div class="ticker" id="ticker"></div>
 <div class="body">
 <div class="rail" id="rail"></div>
 <div class="sb"><div class="sb-h" id="sht">SCREENER</div><div class="sb-c" id="sbc"></div></div>
@@ -156,6 +162,7 @@ async function coinBody(sym){
       h+=stat('P2POOL',ax2.network.p2pool?ax2.network.p2pool.miners.toLocaleString()+' miners':'—','');
       h+=stat('FEE RATE',ax2.network.fee_per_kb?(ax2.network.fee_per_kb/1e12)+' XMR/kB':'—','what transactors pay');
       h+=stat('365D POS',ax2.price_position_365d.percentile+'th',ax2.price_position_365d.range);
+      h+=stat('SECURITY',ax2.emission&&ax2.emission.daily_emission_usd?'$'+Math.round(ax2.emission.daily_emission_usd).toLocaleString()+'/day':'—','USD securing network');
     }
     h+=`</div><h2>PRICE 365D</h2><canvas class="g" id="g-px"></canvas>`;
     ed.innerHTML=h;
@@ -185,24 +192,69 @@ async function coinBody(sym){
     bars('g-fl',Object.entries(fl));
   }
   if(S==='Mining'){
-    h+=`<div class="grid">`;
-    h+=stat('NET SUPPLY',ax2.emission?((ax2.emission.daily_emission||0)/1e9).toFixed(1)+'B QU/day':'—','what reaches market after burn');
-    h+=stat('EMISSION USD',ax2.emission.daily_emission_usd?'$'+Math.round(ax2.emission.daily_emission_usd).toLocaleString():'—','at current price');
-    h+=stat('COMPUTOR EARNINGS',ax2.computor_economics?(ax2.computor_economics.reward_per_computor/1e9).toFixed(2)+'B QU':'—','per epoch per computor');
-    h+=`</div><h2>COMPUTOR ECONOMICS</h2>`;
-    h+=`<table><tr><th>METRIC</th><th>VALUE</th></tr>`;
-    h+=`<tr><td>Gross per epoch</td><td>1,000,000,000,000 QU</td></tr>`;
-    h+=`<tr><td>Burn rate</td><td>${((net.burn_rate||0)*100).toFixed(2)}%</td></tr>`;
-    h+=`<tr><td>Net per epoch</td><td>${(ax2.computor_economics.net_per_epoch/1e9).toFixed(2)}B QU</td></tr>`;
-    h+=`<tr><td>Computors</td><td>${net.computors}</td></tr>`;
-    h+=`<tr><td>Net per computor/epoch</td><td>${(ax2.computor_economics.reward_per_computor/1e9).toFixed(2)}B QU</td></tr>`;
-    h+=`<tr><td>Net per computor/day</td><td>${(ax2.computor_economics.reward_per_computor_per_day/1e9).toFixed(2)}B QU</td></tr>`;
-    h+=`<tr><td>DOGE mining tasks</td><td>${net.doge_tasks}</td></tr>`;
-    h+=`</table><h2>SUPPLY PROJECTION (52 weeks)</h2><canvas class="g" id="g-sup"></canvas>`;
-    h+=`<h2>PRICE 365D DISTRIBUTION</h2>`;
-    const pr=ax2.price_range_365d||{};h+=`<div class="grid">${stat('LOW',$(pr.low),'('+pr.low_date+')')}${stat('HIGH',$(pr.high),'('+pr.high_date+')')}${stat('NOW',$(pr.current),'')}</div>`;
-    ed.innerHTML=h;
-    line('g-sup',(ax2.supply_curve||[]).map(r=>[r.week+'w',(r.net/1e12)]),'net trillions');
+    if(sym==='XMR'){
+      const xf=await G('/api/xmr_full').catch(()=>({}));
+      const em=xf.emission||{};const pp=xf.price_position||{};const p2=xf.p2pool||{};
+      const net=xf.network||{};const bm=xf.miner_benchmarks||[];
+      const hr=net.hashrate||(ax2.network||{}).hashrate;
+      const sec_usd=em.daily_emission_usd||0;
+      h+=`<div class="grid">`;
+      h+=stat('EMISSION','432 XMR/day','0.6/block × 720, forever');
+      h+=stat('SECURITY SPEND',sec_usd?'$'+Math.round(sec_usd).toLocaleString()+"/day":'—','USD value securing the network');
+      h+=stat('HASHRATE',hr?(hr/1e9).toFixed(1)+' GH/s':'—','network total');
+      h+=stat('P2POOL',p2.miners?p2.miners.toLocaleString()+' miners':'—',p2.hashrate?(p2.hashrate/1e9).toFixed(1)+' GH/s':'decentralization');
+      h+=stat('FEE RATE',net.fee_per_kb?(net.fee_per_kb/1e12)+' XMR/kB':'—','what transactors pay');
+      h+=stat('HASHPRICE',hr&&sec_usd?'$'+(sec_usd/hr/365*1e12).toPrecision(3)+'/TH/day':'—','revenue per terahash');
+      h+=stat('365D',pp.percentile!=null?pp.percentile+'th percentile':'—',pp.range||'');
+      h+=`</div>`;
+      h+=`<h2>HARDWARE PROFITABILITY (electricity $0.09/kWh)</h2>`;
+      h+=`<table><tr><th>HARDWARE</th><th>HASHRATE</th><th>POWER</th><th>REVENUE/DAY</th><th>ELECTRICITY</th><th>NET/DAY</th><th>PAYBACK</th></tr>`;
+      const hw=[
+        {name:'Ryzen 9 7950X',hr:'22.0 KH/s',w:170,xmr:0.00006},
+        {name:'Ryzen 7 7700X',hr:'14.5 KH/s',w:120,xmr:0.00006},
+        {name:'EPYC 7763',hr:'33.0 KH/s',w:225,xmr:0.00006},
+        {name:'i9-13900K',hr:'12.8 KH/s',w:150,xmr:0.00006},
+        {name:'Xeon E5-2680 v4',hr:'5.2 KH/s',w:120,xmr:0.00006},
+      ];
+      const xmrPrice=(pp.current||0);
+      hw.forEach(h=>{
+        const coins=parseFloat(h.hr)*h.xmr;
+        const rev=coins*xmrPrice;
+        const elec=(h.w/1000)*24*0.09;
+        const net2=rev-elec;
+        const payback=net2>0?(600/(net2*365)).toFixed(1):'never';
+        h+=`<tr><td><b>${h.name}</b></td><td>${h.hr}</td><td>${h.w}W</td><td>${$(rev)}</td><td>${$(elec)}</td><td>${net2>=0?$(net2):'-'+$(Math.abs(net2))}</td><td>${payback}y</td></tr>`;
+      });
+      h+=`</table>`;
+      h+=`<h2>SECURITY SPEND VS PRICE</h2><canvas class="g" id="g-xmr-sec"></canvas>`;
+      h+=`<h2>EMISSION BURDEN</h2>`;
+      const burden=net.daily_emission_usd&&xf.analytics?((xf.analytics.emission||{}).daily_emission_usd||0):0;
+      h+=`<div class="box">Daily emission: 432 XMR = $${Math.round(burden).toLocaleString()} at current price.<br>This is the structural sell pressure that miners produce. Absorption = volume / emission.</div>`;
+      ed.innerHTML=h;
+      if(xf.closes&&xf.closes.length>5){
+        const secSeries=xf.closes.map(c=>{const emUsd=432*c.close;return[c.date,emUsd];});
+        line('g-xmr-sec',secSeries,'$'+Math.round(secSeries[secSeries.length-1][1]).toLocaleString()+'/day');
+      }
+    }else{
+      h+=`<div class="grid">`;
+      h+=stat('NET SUPPLY',ax2.emission?((ax2.emission.daily_emission||0)/1e9).toFixed(1)+'B QU/day':'—','what reaches market after burn');
+      h+=stat('EMISSION USD',ax2.emission.daily_emission_usd?'$'+Math.round(ax2.emission.daily_emission_usd).toLocaleString():'—','at current price');
+      h+=stat('COMPUTOR EARNINGS',ax2.computor_economics?(ax2.computor_economics.reward_per_computor/1e9).toFixed(2)+'B QU':'—','per epoch per computor');
+      h+=`</div><h2>COMPUTOR ECONOMICS</h2>`;
+      h+=`<table><tr><th>METRIC</th><th>VALUE</th></tr>`;
+      h+=`<tr><td>Gross per epoch</td><td>1,000,000,000,000 QU</td></tr>`;
+      h+=`<tr><td>Burn rate</td><td>${((net.burn_rate||0)*100).toFixed(2)}%</td></tr>`;
+      h+=`<tr><td>Net per epoch</td><td>${(ax2.computor_economics.net_per_epoch/1e9).toFixed(2)}B QU</td></tr>`;
+      h+=`<tr><td>Computors</td><td>${net.computors}</td></tr>`;
+      h+=`<tr><td>Net per computor/epoch</td><td>${(ax2.computor_economics.reward_per_computor/1e9).toFixed(2)}B QU</td></tr>`;
+      h+=`<tr><td>Net per computor/day</td><td>${(ax2.computor_economics.reward_per_computor_per_day/1e9).toFixed(2)}B QU</td></tr>`;
+      h+=`<tr><td>DOGE mining tasks</td><td>${net.doge_tasks}</td></tr>`;
+      h+=`</table><h2>SUPPLY PROJECTION (52 weeks)</h2><canvas class="g" id="g-sup"></canvas>`;
+      h+=`<h2>PRICE 365D DISTRIBUTION</h2>`;
+      const pr=ax2.price_range_365d||{};h+=`<div class="grid">${stat('LOW',$(pr.low),'('+pr.low_date+')')}${stat('HIGH',$(pr.high),'('+pr.high_date+')')}${stat('NOW',$(pr.current),'')}</div>`;
+      ed.innerHTML=h;
+      line('g-sup',(ax2.supply_curve||[]).map(r=>[r.week+'w',(r.net/1e12)]),'net trillions');
+    }
   }
   if(S==='Signals'){
     (sg.signals||[]).slice(0,12).forEach(g=>{h+=`<div class="box"><b>${g.signal}</b> <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span></div>`;});
@@ -232,6 +284,27 @@ document.addEventListener('mousemove',e=>{if(!d)return;p.style.width=Math.max(20
 document.addEventListener('mouseup',()=>d=false);})();
 G('/api/health').then(h=>document.getElementById('health').textContent=h.ok?'● LIVE':'down').catch(()=>document.getElementById('health').textContent='off');
 home();bot('ops');autoRefreshBot();
+
+/* Live ticker — polls /api/live every 5s */
+const TICKER_SYMBOLS=['xmrusdt','qubicusdt','prlusdt','nockusdt','kasusdt'];
+let _lastTicker={};
+async function refreshTicker(){
+  try{
+    const d=await G('/api/live');_lastTicker=d.live||{};
+    const el=document.getElementById('ticker');if(!el)return;
+    el.innerHTML=TICKER_SYMBOLS.map(s=>{
+      const t=(d.live||{})[s];if(!t)return'';
+      const sym=t.symbol||s.replace('usdt','').toUpperCase();
+      const price=t.mid!=null?'$'+Number(t.mid).toFixed(t.mid<1?6:2):'—';
+      const spread=t.spread_bps!=null?t.spread_bps.toFixed(1)+'bp':'';
+      const vol=t.buy_notional&&t.sell_notional?('$'+Math.round(t.buy_notional+t.sell_notional).toLocaleString()):'';
+      const ago=t.updated?Math.round((Date.now()-new Date(t.updated).getTime())/1000):null;
+      const age=ago!=null?(ago<60?ago+'s':Math.round(ago/60)+'m'):'';
+      return`<div class="ti"><span class="ts">${sym}</span><span class="tv">${price}</span><span class="tu">${spread} ${vol} ${age}</span></div>`;
+    }).join('');
+  }catch(e){}
+}
+refreshTicker();setInterval(refreshTicker,5000);
 </script>
 </body>
 </html>

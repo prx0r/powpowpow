@@ -27,6 +27,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 sys.path.insert(0, '/home/ubuntu/qpbot')  # pi harness (same as qpbot dash)
 
+# Fix core/ package shadowing core.py
+try:
+    from core import utcnow as _utcnow  # noqa: F401
+except (ImportError, AttributeError):
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location('_core_py', os.path.join(ROOT, 'core.py'))
+    _core = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_core)
+    import sys as _sys
+    _sys.modules['core'] = _core
+
 TOKEN = os.environ.get('POW_SITE_TOKEN', secrets.token_urlsafe(24))
 PORT = int(os.environ.get('POW_SITE_PORT', '8795'))
 STATIC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
@@ -360,14 +371,14 @@ class Handler(BaseHTTPRequestHandler):
             import subprocess as _sp
             ops = {'heartbeats': {}, 'services': {}}
             for name in ('venue_l2_heartbeat.json', 'venue_ws_heartbeat.json',
-                         'chain_state_heartbeat.json'):
+                         'chain_state_heartbeat.json', 'safetrade_l2_heartbeat.json'):
                 try:
                     ops['heartbeats'][name] = json.load(open(os.path.join(
                         ROOT, 'warehouse', name)))
                 except OSError:
                     pass
             for svc in ('pow-venue-l2', 'pow-venue-ws', 'pow-chain-state',
-                        'pow-pearld', 'pow-site'):
+                        'pow-safetrade-l2', 'pow-pearld', 'pow-site'):
                 try:
                     r = _sp.run(['systemctl', '--user', 'is-active', svc + '.service'],
                                 capture_output=True, text=True, timeout=5)
@@ -392,6 +403,64 @@ class Handler(BaseHTTPRequestHandler):
             return self._send({'symbol': sym, 'network': net,
                                'fundamentals': fund,
                                'snapshots': len(snaps)})
+        if u.path == '/api/live':
+            live = {}
+            for sym_full in ('xmrusdt', 'qubicusdt', 'prlusdt', 'nockusdt',
+                             'kasusdt', 'xelusdt', 'xtmusdt', 'xmrbtc'):
+                rows = [r for r in _rows('daily_state')
+                        if (r.get('symbol') or '').lower() == sym_full]
+                if not rows:
+                    rows = [r for r in _rows('daily_state')
+                            if (r.get('symbol') or '').lower().startswith(sym_full.replace('usdt', '').replace('btc', ''))]
+                rows.sort(key=lambda r: r.get('observed_at', ''), reverse=True)
+                if rows:
+                    r = rows[0]
+                    live[sym_full] = {
+                        'symbol': sym_full.replace('usdt', '').replace('btc', '').upper(),
+                        'mid': r.get('mid_close'),
+                        'spread_bps': r.get('spread_bps_median'),
+                        'bid_depth': r.get('bid_notional_20_mean'),
+                        'buy_notional': r.get('trade_buy_notional'),
+                        'sell_notional': r.get('trade_sell_notional'),
+                        'n_trades': r.get('n_trades'),
+                        'venue': r.get('venue'),
+                        'updated': r.get('observed_at'),
+                    }
+            hb = {}
+            for name in ('safetrade_l2_heartbeat.json', 'venue_l2_heartbeat.json'):
+                try:
+                    hb[name] = json.load(open(os.path.join(
+                        ROOT, 'warehouse', name)))
+                except OSError:
+                    pass
+            return self._send({'live': live, 'heartbeats': hb})
+        if u.path == '/api/xmr_full':
+            try:
+                ax = json.load(open(os.path.join(
+                    ROOT, 'warehouse', 'xmr_analytics.json')))
+            except (OSError, ValueError):
+                ax = {}
+            net_state = {}
+            try:
+                net_state = json.load(open(os.path.join(
+                    ROOT, 'chains', 'network_state.json'))).get('XMR', {})
+            except OSError:
+                pass
+            closes = []
+            for r in _rows('price_history'):
+                if (r.get('symbol') or '').upper() == 'XMR' and r.get('close_usd'):
+                    closes.append({'date': r['date'], 'close': r['close_usd'],
+                                   'volume': r.get('volume_usd')})
+            closes.sort(key=lambda x: x['date'])
+            return self._send({
+                'analytics': ax,
+                'network': net_state,
+                'closes': closes[-90:],
+                'miner_benchmarks': ax.get('miner_cost_benchmark', []),
+                'emission': ax.get('emission', {}),
+                'price_position': ax.get('price_position_365d', {}),
+                'p2pool': ax.get('network', {}).get('p2pool', {}),
+            })
         return self._send({'error': 'not found'}, code=404)
 
     def do_POST(self):
