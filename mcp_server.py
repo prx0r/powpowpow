@@ -26,7 +26,8 @@ mcp = FastMCP("powpowpow")
 
 def _rows(table):
     rows = []
-    for chain in ('venue', 'safetrade'):
+    for chain in ('venue', 'safetrade', 'xmr', 'qubic', 'prl', 'kas', 'nock',
+                  'btc', 'akt'):
         for f in glob.glob(os.path.join(
                 BASE_DIR, 'warehouse', 'normalized', table,
                 f'chain={chain}', 'date=*', 'hour=*.jsonl')):

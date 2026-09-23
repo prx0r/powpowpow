@@ -17,7 +17,7 @@ Live, continuously-collecting compute economics garden. Every derived number lin
 
 ## Site
 
-Localhost :8795, token-gated (token in `~/.config/powpowpow/site.env`). Public pow.moltwork.com NOT exposed — tunnel missing, see BLOCKERS.md #1. Black/white/grey only, chunky borders, monospace numbers, no opinions. Style guide in site/STYLE.md. Left rail for HOME + coins + CHAT. Each coin: subtabs Overview/Epoch/Mining/Flow/Signals. Live ticker polls `/api/live` every 5s. XMR Mining tab shows security spend, $/MH/day hashprice, hardware profitability, security-spend chart. Chat through Pi harness with garden context. Bottom panel auto-refreshes ops every 60s.
+Localhost :8795, token-gated (token in `~/.config/powpowpow/site.env`). Public pow.moltwork.com NOT exposed — tunnel missing, see BLOCKERS.md #1. Black/white/grey only, chunky borders, monospace numbers, no opinions. Style guide in site/STYLE.md. Left rail for HOME + BTC + coins + CHAT. Each coin: subtabs Overview/Epoch/Mining/Flow/Signals. BTC tab: Overview (security spend, EH/s, difficulty, height, fees), Epoch (halving countdown + subsidy schedule), Flow (fee market — no venue listing), Mining (security/hashrate/difficulty charts + garden-computed hashprice), Signals (baseline role: XMR/QUBIC hooks). Live ticker polls `/api/live` every 5s. XMR Mining tab shows security spend, $/MH/day hashprice, hardware profitability, security-spend chart. Chat through Pi harness with garden context. Bottom panel auto-refreshes ops every 60s.
 
 ## API + MCP (what powops can query)
 

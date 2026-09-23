@@ -72,7 +72,7 @@ def _rows(table):
                         rows.append(json.loads(line))
                     except ValueError:
                         continue
-    for sym in ('xmr', 'qubic', 'prl', 'kas', 'nock'):
+    for sym in ('xmr', 'qubic', 'prl', 'kas', 'nock', 'btc', 'akt'):
         for f in glob.glob(os.path.join(
                 ROOT, 'warehouse', 'normalized', table,
                 f'chain={sym}', 'date=*', 'hour=*.jsonl')):
@@ -171,7 +171,8 @@ def _analysis(symbol):
             key=lambda x: x[0] or '')
         diffs = sorted(
             ((r.get('observed_at', '')[:10], r.get('difficulty')) for r in _rows('chain_snapshot')
-             if r.get('difficulty') and float(r['difficulty']) > 1e6),
+             if (r.get('network_id') or '') == 'xmr'
+             and r.get('difficulty') and float(r['difficulty']) > 1e6),
             key=lambda x: x[0])
         a = out['analysis']
         if len(prices) >= 31:
@@ -440,6 +441,25 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError):
                 ctx = {'error': 'no btc context (run scripts/btc_context.py)'}
             return self._send(ctx)
+        if u.path == '/api/btc_series':
+            by_date = {}
+            for r in _rows('chain_snapshot'):
+                has_btc_field = any(r.get(k) is not None for k in (
+                    'network_hashrate_ths', 'difficulty', 'miners_revenue_usd',
+                    'fees_usd_day', 'price_usd', 'height'))
+                if not has_btc_field:
+                    continue
+                d = (r.get('event_time') or '')[:10] or (r.get('observed_at') or '')[:10]
+                if not d:
+                    continue
+                a = by_date.setdefault(d, {})
+                for k in ('network_hashrate_ths', 'difficulty',
+                          'miners_revenue_usd', 'fees_usd_day',
+                          'price_usd', 'height', 'next_retarget'):
+                    if r.get(k) is not None and (k not in a or r.get('source_role') == 'history-backfill'):
+                        a[k] = r[k]
+            series = [{'date': d, **v} for d, v in sorted(by_date.items())]
+            return self._send({'series': series})
         if u.path == '/api/opportunity':
             hw, date = arg('hardware').upper(), arg('date')
             rows = _rows('opportunity_snapshot')

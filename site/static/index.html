@@ -86,7 +86,7 @@ pre{white-space:pre-wrap;font-size:11.5px;border:2px solid #111;padding:10px;bac
 const T=new URLSearchParams(location.search).get('token')||'';
 const G=(p)=>fetch(p+'?token='+encodeURIComponent(T)).then(r=>r.json());
 const P=(p,b)=>fetch(p+'?token='+encodeURIComponent(T),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
-const CORE=[['HOME','home'],['QUBIC','Qubic'],['XMR','Monero'],['PRL','Pearl'],['KAS','Kaspa'],['NOCK','Nock'],['XEL','Xelis']];
+const CORE=[['HOME','home'],['BTC','Bitcoin'],['QUBIC','Qubic'],['XMR','Monero'],['PRL','Pearl'],['KAS','Kaspa'],['NOCK','Nock'],['XEL','Xelis']];
 let V='home',S='Overview';
 setInterval(()=>{const e=document.getElementById('clk');if(e)e.textContent=new Date().toISOString().slice(11,19)+'Z'},1000);
 const rail=document.getElementById('rail');
@@ -164,9 +164,53 @@ async function coinBody(sym){
       h+=stat('365D POS',ax2.price_position_365d.percentile+'th',ax2.price_position_365d.range);
       h+=stat('SECURITY',ax2.emission&&ax2.emission.daily_emission_usd?'$'+Math.round(ax2.emission.daily_emission_usd).toLocaleString()+'/day':'—','USD securing network');
     }
+    if(sym==='BTC'){
+      const bc=await G('/api/btc').catch(()=>({}));
+      const bs=await G('/api/btc_series').catch(()=>({series:[]}));
+      const last=(bs.series||[]).filter(r=>r.network_hashrate_ths).pop()||{};
+      const hrTHS=last.network_hashrate_ths||net.network_hashrate||0;
+      const sec=450*((bc.btc_price)||0);
+      h+=stat('PRICE',bc.btc_price?$(bc.btc_price):$(card.price_usd),'CoinGecko close');
+      h+=stat('SECURITY SPEND',sec?'$'+Math.round(sec).toLocaleString()+'/day':'—','450 BTC/day × price + fees');
+      h+=stat('HASHRATE',hrTHS?(hrTHS/1e6).toFixed(0)+' EH/s':'—','network total');
+      h+=stat('DIFFICULTY',net.difficulty?(net.difficulty/1e12).toFixed(2)+'T':'—',net.next_retarget?('retarget @ '+net.next_retarget):'');
+      h+=stat('HEIGHT',net.height?net.height.toLocaleString():'—','tip cross-checked');
+      h+=stat('FEES/DAY',last.fees_usd_day?'$'+Math.round(last.fees_usd_day).toLocaleString():'—','miner fee revenue');
+      h+=stat('MINER REVENUE',last.miners_revenue_usd?'$'+Math.round(last.miners_revenue_usd).toLocaleString()+'/day':'—','subsidy + fees');
+      h+=`</div><h2>PRICE 365D</h2><canvas class="g" id="g-px"></canvas>`;
+      h+=`<h2>HASHRATE (EH/s)</h2><canvas class="g" id="g-btc-hr"></canvas>`;
+      ed.innerHTML=h;
+      const ph=await G(`/api/history?symbol=${sym}`);
+      const closes=(ph.closes||[]).map(r=>[r.date,r.close]);
+      line('g-px',closes,'last $'+(((ph.closes||[]).pop()||{}).close??'—'));
+      line('g-btc-hr',(bs.series||[]).filter(r=>r.network_hashrate_ths).map(r=>[r.date,r.network_hashrate_ths/1e6]),'EH/s');
+      return;
+    }
     h+=`</div><h2>PRICE 365D</h2><canvas class="g" id="g-px"></canvas>`;
     ed.innerHTML=h;
     const ph=await G(`/api/history?symbol=${sym}`);line('g-px',(ph.closes||[]).map(r=>[r.date,r.close]),'last $'+(((ph.closes||[]).pop()||{}).close??'—'));
+  }
+  if(S==='Epoch'&&sym==='BTC'){
+    const height=net.height||0;
+    const epoch=Math.floor(height/210000);
+    const nextHalving=(epoch+1)*210000;
+    const remaining=nextHalving-height;
+    const etaDays=remaining*10/60/24;
+    const eta=new Date(Date.now()+etaDays*864e5).toISOString().slice(0,10);
+    const subsidy=50/Math.pow(2,epoch);
+    h+=`<div class="grid">`;
+    h+=stat('HEIGHT',height?height.toLocaleString():'—','tip cross-checked');
+    h+=stat('SUBSIDY',subsidy+' BTC/block',`epoch ${epoch} (halving ${epoch} of 33)`);
+    h+=stat('NEXT HALVING','block '+nextHalving.toLocaleString(),`${remaining.toLocaleString()} blocks (~${Math.round(etaDays)}d, ~${eta})`);
+    h+=stat('EMISSION','450 BTC/day','3.125 × ~144 blocks');
+    h+=`</div><h2>SUBSIDY SCHEDULE</h2>`;
+    h+=`<table><tr><th>EPOCH</th><th>BLOCKS</th><th>SUBSIDY</th><th>STATUS</th></tr>`;
+    [[0,0,50],[1,210000,25],[2,420000,12.5],[3,630000,6.25],[4,840000,3.125],[5,1050000,1.5625],[6,1260000,0.78125]].forEach(e=>{
+      const st=e[0]<epoch?'done':(e[0]===epoch?'current':'future');
+      h+=`<tr><td>${e[0]}</td><td>${e[1].toLocaleString()} → ${(e[1]+209999).toLocaleString()}</td><td>${e[2]} BTC</td><td>${st}</td></tr>`;});
+    h+=`</table><div class="box">2140: subsidy reaches zero. Security must come from fees alone — watch FEES/DAY vs SECURITY SPEND on the Mining tab.</div>`;
+    ed.innerHTML=h;
+    return;
   }
   if(S==='Epoch'&&sym==='QUBIC'){
     h+=`<div class="grid">`;
@@ -182,6 +226,21 @@ async function coinBody(sym){
     line('g-ep',(ax2.epoch_returns||[]).map(r=>[r.from,r.return_pct]),'7d return %');
   }
   if(S==='Flow'){
+    if(sym==='BTC'){
+      const bs=await G('/api/btc_series').catch(()=>({series:[]}));
+      const last=(bs.series||[]).pop()||{};
+      h+=`<div class="grid">`;
+      h+=stat('FEES/DAY',last.fees_usd_day?'$'+Math.round(last.fees_usd_day).toLocaleString():'—','miner fee revenue');
+      h+=stat('MINER REVENUE',last.miners_revenue_usd?'$'+Math.round(last.miners_revenue_usd).toLocaleString()+'/day':'—','subsidy + fees');
+      h+=stat('FEE SHARE',last.miners_revenue_usd&&last.fees_usd_day?(last.fees_usd_day/last.miners_revenue_usd*100).toFixed(1)+'%':'—','fees as share of revenue — the 2140 question');
+      h+=`</div><div class="box">BTC has no venue listing in the garden — its "flow" is the fee market, not an order book. Miner-exchange flows are visible on-chain, not on SafeTrade.</div>`;
+      h+=`<h2>FEES/DAY (USD)</h2><canvas class="g" id="g-btc-fee"></canvas>`;
+      h+=`<h2>MINER REVENUE/DAY (USD)</h2><canvas class="g" id="g-btc-rev"></canvas>`;
+      ed.innerHTML=h;
+      line('g-btc-fee',(bs.series||[]).filter(r=>r.fees_usd_day).map(r=>[r.date,r.fees_usd_day]),'fees $/day');
+      line('g-btc-rev',(bs.series||[]).filter(r=>r.miners_revenue_usd).map(r=>[r.date,r.miners_revenue_usd]),'revenue $/day');
+      return;
+    }
     const sts=(st.states||[]).slice(-10);
     h+=`<table><tr><th>VENUE</th><th>DATE</th><th>MID</th><th>SPREAD</th><th>TRADES</th><th>BUY $</th><th>SELL $</th></tr>`;
     sts.forEach(t=>h+=`<tr><td>${t.venue}</td><td>${t.date}</td><td>${t.mid_close??'—'}</td><td>${t.spread_bps_median??'—'}</td><td>${t.n_trades}</td><td>${Math.round(t.trade_buy_notional||0)}</td><td>${Math.round(t.trade_sell_notional||0)}</td></tr>`);
@@ -192,6 +251,32 @@ async function coinBody(sym){
     bars('g-fl',Object.entries(fl));
   }
   if(S==='Mining'){
+    if(sym==='BTC'){
+      const bs=await G('/api/btc_series').catch(()=>({series:[]}));
+      const S0=(bs.series||[]);
+      const last=S0.filter(r=>r.network_hashrate_ths).pop()||{};
+      const hrTHS=last.network_hashrate_ths||0;
+      const rev=last.miners_revenue_usd||0;
+      const hpPH=hrTHS&&rev?(rev/(hrTHS/1e3)):null;
+      h+=`<div class="grid">`;
+      h+=stat('EMISSION','450 BTC/day','3.125/block × ~144, halvings to 2140');
+      h+=stat('SECURITY SPEND',rev?'$'+Math.round(rev).toLocaleString()+'/day':'—','subsidy + fees');
+      h+=stat('HASHRATE',hrTHS?(hrTHS/1e6).toFixed(0)+' EH/s':'—','network total');
+      h+=stat('HASHPRICE',hpPH?'$'+hpPH.toFixed(2)+'/PH/day':'—','revenue per petahash (Luxor index)');
+      h+=stat('DIFFICULTY',last.difficulty?(last.difficulty/1e12).toFixed(2)+'T':'—','auto-retarget ~2016 blocks');
+      h+=`</div>`;
+      h+=`<h2>SECURITY SPEND/DAY (USD)</h2><canvas class="g" id="g-btc-sec"></canvas>`;
+      h+=`<h2>HASHRATE (EH/s)</h2><canvas class="g" id="g-btc-hr"></canvas>`;
+      h+=`<h2>DIFFICULTY</h2><canvas class="g" id="g-btc-diff"></canvas>`;
+      h+=`<div class="box">BTC is the M0 baseline: every other asset's beta is measured against it. Hashprice here is computed from garden data (revenue ÷ hashrate), not quoted from Luxor.</div>`;
+      ed.innerHTML=h;
+      const ph=await G(`/api/history?symbol=BTC`);
+      const px={};(ph.closes||[]).forEach(r=>px[r.date]=r.close);
+      line('g-btc-sec',S0.filter(r=>r.miners_revenue_usd).map(r=>[r.date,r.miners_revenue_usd]),'revenue $/day');
+      line('g-btc-hr',S0.filter(r=>r.network_hashrate_ths).map(r=>[r.date,r.network_hashrate_ths/1e6]),'EH/s');
+      line('g-btc-diff',S0.filter(r=>r.difficulty).map(r=>[r.date,r.difficulty/1e12]),'difficulty T');
+      return;
+    }
     if(sym==='XMR'){
       const xf=await G('/api/xmr_full').catch(()=>({}));
       const em=xf.emission||{};const pp=xf.price_position||{};const p2=xf.p2pool||{};
@@ -257,6 +342,14 @@ async function coinBody(sym){
     }
   }
   if(S==='Signals'){
+    if(sym==='BTC'){
+      const bc=await G('/api/btc').catch(()=>({assets:{}}));
+      h+=`<div class="box">BTC carries no garden signals — it <b>is</b> the baseline. Every other asset's beta is measured against it. Residuals below are the moves Seesaw must explain.</div>`;
+      Object.entries(bc.assets||{}).forEach(([a,v])=>{
+        if(v.hook)h+=`<div class="box"><b>${a}</b> beta30=${v.beta_30d??'—'} beta90=${v.beta_90d??'—'}<br><span class="dim">${v.hook}</span></div>`;});
+      ed.innerHTML=h;
+      return;
+    }
     (sg.signals||[]).slice(0,12).forEach(g=>{h+=`<div class="box"><b>${g.signal}</b> <span class="dim">${g.version} · ${g.date}</span><br><span class="dim">${(g.drivers||[]).join(' · ')}</span></div>`;});
     if(!(sg.signals||[]).length)h+=`<div class="box">No signals — unmeasured inputs stay missing here.</div>`;
     ed.innerHTML=h;}
