@@ -270,5 +270,23 @@ def get_opportunity(hardware: str = "", date: str = "") -> dict:
     return {'snapshots': rows[-30:]}
 
 
+@mcp.tool()
+def recommend_homelab(electricity: float = 0.10) -> dict:
+    """Detect THIS machine's hardware and join to the opportunity set:
+    inventory with provenance, matched archetypes, ranked routes,
+    best_action and prediction hashes. Read-only; no execution.
+    The XMRBot-flow entry point: detect -> query -> (policy/grant/execute
+    live outside the garden)."""
+    try:
+        import homelab as _hl
+    except Exception as e:
+        return {'error': f'homelab adapter unavailable: {str(e)[:100]}'}
+    try:
+        inv = _hl.inventory(electricity=electricity)
+        return _hl.recommend(inv, electricity=electricity)
+    except Exception as e:
+        return {'error': str(e)[:200]}
+
+
 if __name__ == '__main__':
     mcp.run()

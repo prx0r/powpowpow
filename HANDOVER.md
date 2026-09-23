@@ -22,7 +22,7 @@ Localhost :8795, token-gated (token in `~/.config/powpowpow/site.env`). Public p
 ## API + MCP (what powops can query)
 
 REST (token-gated): `/api/health /api/live /api/signals /api/factors /api/state /api/state_series /api/history /api/cards /api/cards_history /api/chain /api/analysis /api/analytics /api/xmr_full /api/opportunity /api/epoch_series /api/brief /api/page /api/ops`, POST `/api/chat`.
-MCP stdio (11 tools, via `opencode.json` → `mcp_server.py`): get_asset_state, get_signals, get_factors, compare_compute_routes, get_miner_pressure, get_brief, get_price_history, get_health, get_live, get_xmr_full, get_opportunity. NOTE: MCP is stdio — do NOT run under systemd (`pow-mcp.service` disabled on purpose).
+MCP stdio (12 tools, via `opencode.json` → `mcp_server.py`): get_asset_state, get_signals, get_factors, compare_compute_routes, get_miner_pressure, get_brief, get_price_history, get_health, get_live, get_xmr_full, get_opportunity, recommend_homelab. NOTE: MCP is stdio — do NOT run under systemd (`pow-mcp.service` disabled on purpose).
 
 ## Quick commands
 
@@ -41,6 +41,7 @@ MCP tools: /home/box/powpowpow/.venv/bin/python -c "import sys; sys.path.insert(
 ## File structure (what matters)
 
 - core.py: THE transport layer (auto-archiving fetch_json, store_normalized, FetchResult lineage)
+- homelab.py: local hardware adapter — detect (CPU/GPU/RAM/disk with provenance) + match archetypes + recommend from opportunity log. Read-only, stdlib-only.
 - warehouse.py / v1_pipeline.py: compat shims over core
 - v1_registry.py: RUNTIME TRUTH (8 systems)
 - registry.py: candidate pool (16+ systems, research universe)
@@ -72,6 +73,8 @@ Scripts:
 - load_cg_history.py: CoinGecko 365d price
 - collect_releases.py: GitHub releases + commits
 - powdaily.py: daily brief generator
+- homelab.py: detect this machine + recommend from opportunity set (XMRBot-flow entry, read-only)
+- r2_upload.py: Cloudflare R2 off-box backup with AWS SigV4
 
 Warehouse (NOT in git): raw/venue/, normalized/, parquet/, analytics JSONs
 
