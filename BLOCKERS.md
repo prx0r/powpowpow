@@ -1,95 +1,93 @@
 # Blockers — what's not wired up and why
 
-> Updated 2026-09-23. Everything below is a known issue with a clear path.
+> Updated 2026-09-23 16:20 +07. Everything below is a known issue with a clear path.
+> Focus is XMR + QUBIC only. Everything else is parked, not deleted.
 
-## 1. `core/` package shadows `core.py` — FIXED
+## FIXED today
 
-**Was:** `core/__init__.py` didn't re-export from `core.py`, so `from core import utcnow` silently fell back to `None` in every collector.
+- `core/` shadowing `core.py` → `core/__init__.py` re-exports. All imports work.
+- SafeTrade was Cloudflare bot-detection (not geo-block). Browser UA + `ssl=ssl_ctx` fixed. `pow-safetrade-l2` running, 25 streams.
+- `pow-site` now systemd-managed with stable token (`~/.config/powpowpow/site.env`). Was manual with random token.
+- R2 secrets moved out of unit file into `~/.config/powpowpow/r2.env` (600).
+- `pow-mcp.service` disabled — MCP is stdio via `opencode.json`, not a daemon. Running it under systemd was wrong (exit 0 loop).
+- Factors rebuilt (24 symbols, fresh 2026-09-23). Was stale 2026-09-21.
+- XMR + QUBIC price history loaded (366 closes each). Analytics refreshed.
+- Frontend: live ticker (`/api/live` every 5s), XMR Mining tab (security spend, $/MH/day hashprice, hardware table with per-model costs).
 
-**Fix:** `core/__init__.py` now loads `core.py` via importlib and merges exports. All imports work.
+## 1. Dashboard not publicly exposed — tunnel missing
 
-**Status:** Fixed. All collectors, scripts, and site server import correctly.
+**What:** Site listens on 127.0.0.1:8795. `~/.cloudflared/config.yml` only routes `agentcom.org` → :8793. No `pow.moltwork.com` ingress, no cloudflared process running.
 
-## 2. Price history not collected — BLOCKED on CoinGecko
+**Why:** HANDOVER claims pow.moltwork.com is live, but the tunnel was never configured on this box.
 
-**What:** `price_history` table is empty. No 365d closes for any coin.
+**Unblocks:** powops / anyone off-box querying the dashboard + API.
 
-**Why:** `scripts/load_cg_history.py` needs to run but CoinGecko free tier has rate limits. Need to run once with backoff.
+**Fix:** Add ingress `- hostname: pow.moltwork.com, service: http://127.0.0.1:8795`, create `cloudflared` systemd unit, verify DNS routes to this tunnel. Needs Cloudflare dashboard check (outside this box).
 
-**Unblocks:** XMR 365d price position, emission valuation, analytics completeness.
+## 2. Price history: only XMR + QUBIC — PRL/KAS/etc parked
 
-**Fix:** Run `python3 scripts/load_cg_history.py --coins XMR,QUBIC,PRL` with retry logic.
+**What:** `price_history` has XMR + QUBIC (366d). No PRL, KAS, NOCK, XEL, XTM.
 
-## 3. Chain snapshots thin — collector just started
+**Why:** User focus is XMR + QUBIC. CoinGecko rate limits make bulk backfill slow.
 
-**What:** `chain_snapshot` table has limited XMR data (hashrate, difficulty, p2pool).
+**Unblocks:** Full 8-coin signals, cross-asset burden z-scores.
 
-**Why:** `pow-chain-state` was just restarted. Needs 24h+ to build meaningful history.
+**Fix:** Run `load_cg_history.py --coins PRL,KAS,...` when expanding beyond XMR/QUBIC. Opportunity cost: skip for now.
 
-**Unblocks:** Difficulty-price correlation, hashrate trends, p2pool metrics.
+## 3. Chain snapshots thin — needs time
 
-**Fix:** Time. Collector is running.
+**What:** `chain_snapshot` has hours of XMR/QUBIC/KAS/AKT/NOCK, not days.
 
-## 4. Derived signals thin — needs more daily_state history
+**Why:** `pow-chain-state` restarted today. Difficulty-price correlation needs multi-day history.
 
-**What:** Only 7 flow_pressure signals, no miner_pressure or required_flow.
+**Fix:** Time. Collector running every 5min.
 
-**Why:** `miner_pressure` needs 4+ markets with emission data. `required_flow` needs emission + flow. Only 1 day of STATE exists.
+## 4. Signals partial — needs more STATE days
 
-**Unblocks:** Full signal board, cross-asset comparisons.
+**What:** flow_pressure + required_flow live (10 signals). miner_pressure refuses on thin cross-section.
 
-**Fix:** Time. Daily STATE builds at 00:30 UTC. After 3-4 days, all signals activate.
+**Why:** Only 1 day of STATE. Burden z-scores need 4+ markets with emission + depth.
 
-## 5. QUBIC epoch/computors — service created, timer armed
+**Fix:** Time. Daily STATE at 00:30 UTC. After 3–4 days all signals activate.
 
-**What:** `pow-qubic-epoch` and `pow-qubic-computors` timers created.
+## 5. One-shot collectors parked (not wired, by design)
 
-**Status:** First run pending (next :10 and :00). Will populate QUBIC epoch data.
+**Status:** `akt, clore, flux, gnk, kas, nock, nos, pha, prl, qrl, quan, qubic, tao, theta, tig, tsc, la, mcm, external, compute_benchmark, coinex, gate, xmr_collector` are one-shot/legacy.
 
-## 6. SafeTrade l2 archival — geo-blocked from this VPS
+**Why parked:**
+- `chain_state.py` supersedes kas/nock/akt/qubic/xmr chain polling.
+- `venue_l2.py` supersedes coinex/gate L2.
+- `xmr_collector.py`, `qubic_collector.py`, `prl_collector.py` are Phase-1 one-shots; chain_state + epoch engine replace them.
+- TAO/THETA/TIG/PHA/QRL/LA/MCM/FLUX/QUAN/TSC/GNK/NOS/CLORE have no venue-of-truth or no reachable endpoint from here.
 
-**What:** `collectors/l2_archival.py` ready but SafeTrade REST+WS return 403 from this box.
+**Rule:** Don't wire a collector unless it feeds a named transformation. XMR + QUBIC only until signals have scars.
 
-**Why:** IP-level geo-block (Canada). Code is complete and replay-verified.
+## 6. pearld sync — paused
 
-**Unblocks:** SafeTrade L2 depth+trades for PRL, QUBIC, XMR on venue-of-truth.
+**What:** PRL pool→miner→exchange graph needs own pearld node. Paused during disk triage.
 
-**Fix:** Run from unblocked machine + rsync warehouse back, or proxy.
+**Fix:** Resync (~2h) → extract flows → drop chain bytes. Only when expanding beyond XMR/QUBIC.
 
-## 7. pearld sync — paused during disk triage
+## 7. AKT/NOS/CLORE rental demand — endpoints unreachable
 
-**What:** PRL chain data not available. Pearld full node resyncing.
+**What:** DNS/SSL failures from this VPS.
 
-**Why:** Disk space management. Data extractable once synced.
+**Fix:** Proxy or unblocked egress. Parked (not XMR/QUBIC).
 
-**Unblocks:** PRL pool→miner→exchange flow graph.
+## 8. powdaily.py — not automated
 
-## 8. AKT/NOS/CLORE rental demand — endpoints unreachable
+**What:** Brief generator exists, no timer, `briefs/` empty. `/api/brief` + MCP `get_brief` return errors.
 
-**What:** No rental market data for compute marketplace coins.
+**Fix:** Add `pow-daily-brief.timer` (after `pow-daily-state`). 15 min work. Queued.
 
-**Why:** DNS/SSL failures from this VPS.
+## 9. Local cleanup policy — missing
 
-**Unblocks:** Rental demand half of compute efficiency metrics.
+**What:** R2 upload works (verified 10/10), but nothing deletes local raw after confirmed upload. Warehouse 275MB today; SafeTrade grows it ~1GB/day raw.
 
-## 9. MCP server — verified but not deployed
+**Fix:** Script that lists R2 keys, deletes local raw older than N days only if present remotely. Queued behind powdaily timer.
 
-**What:** `mcp_server.py` has 6 tools, verified end-to-end.
+## 10. Site auth — token only
 
-**Why:** Not wired to systemd. No agent querying it yet.
+**What:** Single shared token, no per-user, no rate limit, no audit.
 
-**Unblocks:** Any Claude/ChatGPT/Goose agent can reason over garden data.
-
-## 10. Site auth — token only, no per-user
-
-**What:** Token-gated, no rate limiting, no audit.
-
-**Why:** MVP. Acceptable for now.
-
-## 11. powdaily.py — not automated
-
-**What:** Daily brief generator exists but no cron/timer.
-
-**Why:** Not wired yet.
-
-**Fix:** Add timer similar to pow-daily-state.
+**Why:** MVP. Token now stable + 600-perms env file. Acceptable until off-box exposure (blocker 1) lands.

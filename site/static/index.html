@@ -195,41 +195,41 @@ async function coinBody(sym){
     if(sym==='XMR'){
       const xf=await G('/api/xmr_full').catch(()=>({}));
       const em=xf.emission||{};const pp=xf.price_position||{};const p2=xf.p2pool||{};
-      const net=xf.network||{};const bm=xf.miner_benchmarks||[];
-      const hr=net.hashrate||(ax2.network||{}).hashrate;
+      const net=xf.network||{};const axnet=(ax2.network||{});
+      const hr=net.network_hashrate||net.hashrate||axnet.hashrate||axnet.network_hashrate||0;
       const sec_usd=em.daily_emission_usd||0;
+      const hpMH=hr&&sec_usd?(sec_usd/(hr/1e6)):null;
       h+=`<div class="grid">`;
       h+=stat('EMISSION','432 XMR/day','0.6/block × 720, forever');
       h+=stat('SECURITY SPEND',sec_usd?'$'+Math.round(sec_usd).toLocaleString()+"/day":'—','USD value securing the network');
       h+=stat('HASHRATE',hr?(hr/1e9).toFixed(1)+' GH/s':'—','network total');
       h+=stat('P2POOL',p2.miners?p2.miners.toLocaleString()+' miners':'—',p2.hashrate?(p2.hashrate/1e9).toFixed(1)+' GH/s':'decentralization');
       h+=stat('FEE RATE',net.fee_per_kb?(net.fee_per_kb/1e12)+' XMR/kB':'—','what transactors pay');
-      h+=stat('HASHPRICE',hr&&sec_usd?'$'+(sec_usd/hr/365*1e12).toPrecision(3)+'/TH/day':'—','revenue per terahash');
+      h+=stat('HASHPRICE',hpMH?'$'+hpMH.toFixed(2)+'/MH/day':'—','revenue per megahash');
       h+=stat('365D',pp.percentile!=null?pp.percentile+'th percentile':'—',pp.range||'');
       h+=`</div>`;
       h+=`<h2>HARDWARE PROFITABILITY (electricity $0.09/kWh)</h2>`;
       h+=`<table><tr><th>HARDWARE</th><th>HASHRATE</th><th>POWER</th><th>REVENUE/DAY</th><th>ELECTRICITY</th><th>NET/DAY</th><th>PAYBACK</th></tr>`;
       const hw=[
-        {name:'Ryzen 9 7950X',hr:'22.0 KH/s',w:170,xmr:0.00006},
-        {name:'Ryzen 7 7700X',hr:'14.5 KH/s',w:120,xmr:0.00006},
-        {name:'EPYC 7763',hr:'33.0 KH/s',w:225,xmr:0.00006},
-        {name:'i9-13900K',hr:'12.8 KH/s',w:150,xmr:0.00006},
-        {name:'Xeon E5-2680 v4',hr:'5.2 KH/s',w:120,xmr:0.00006},
+        {name:'Ryzen 9 7950X',hr:'22.0 KH/s',khs:22.0,w:170,cost:600,xmr:0.00006},
+        {name:'Ryzen 7 7700X',hr:'14.5 KH/s',khs:14.5,w:120,cost:400,xmr:0.00006},
+        {name:'EPYC 7763',hr:'33.0 KH/s',khs:33.0,w:225,cost:4000,xmr:0.00006},
+        {name:'i9-13900K',hr:'12.8 KH/s',khs:12.8,w:150,cost:550,xmr:0.00006},
+        {name:'Xeon E5-2680 v4',hr:'5.2 KH/s',khs:5.2,w:120,cost:150,xmr:0.00006},
       ];
-      const xmrPrice=(pp.current||0);
+      const xmrPrice=(pp.current||card.price_usd||0);
       hw.forEach(h=>{
-        const coins=parseFloat(h.hr)*h.xmr;
+        const coins=h.khs*h.xmr;
         const rev=coins*xmrPrice;
         const elec=(h.w/1000)*24*0.09;
         const net2=rev-elec;
-        const payback=net2>0?(600/(net2*365)).toFixed(1):'never';
+        const payback=net2>0?(h.cost/(net2*365)).toFixed(1):'never';
         h+=`<tr><td><b>${h.name}</b></td><td>${h.hr}</td><td>${h.w}W</td><td>${$(rev)}</td><td>${$(elec)}</td><td>${net2>=0?$(net2):'-'+$(Math.abs(net2))}</td><td>${payback}y</td></tr>`;
       });
       h+=`</table>`;
       h+=`<h2>SECURITY SPEND VS PRICE</h2><canvas class="g" id="g-xmr-sec"></canvas>`;
       h+=`<h2>EMISSION BURDEN</h2>`;
-      const burden=net.daily_emission_usd&&xf.analytics?((xf.analytics.emission||{}).daily_emission_usd||0):0;
-      h+=`<div class="box">Daily emission: 432 XMR = $${Math.round(burden).toLocaleString()} at current price.<br>This is the structural sell pressure that miners produce. Absorption = volume / emission.</div>`;
+      h+=`<div class="box">Daily emission: 432 XMR = $${Math.round(sec_usd).toLocaleString()} at current price.<br>This is the structural sell pressure that miners produce. Absorption = volume / emission.</div>`;
       ed.innerHTML=h;
       if(xf.closes&&xf.closes.length>5){
         const secSeries=xf.closes.map(c=>{const emUsd=432*c.close;return[c.date,emUsd];});

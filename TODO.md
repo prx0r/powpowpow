@@ -14,13 +14,9 @@
 > (data dir cleared during disk triage, resync ~2h). Monthly tardis
 > drip timer armed. Release/commit history: 213+240 rows, 12 repos.
 >
-> PROGRESS 14:30 UTC: XMR stack (localmonero + xmrchain fees/mempool +
-> p2pool miners/hashrate) and Qubic demand totals (2.015B txns via
-> analytics) wired into chain poller. KAS supply-delta FIXED to rate
-> form (was 5-min-delta bug); AKT supply sampling live. emission.py
-> schedules for CLORE/FLUX/NOS/TAO/NOCK. required_flow_v1 live
-> (9 signals; QUBIC bullish 0.91 coverage 1.15, XMR bearish 0.00).
-> MCP stdio server verified end-to-end (6 tools, live tables).
+> PROGRESS 2026-09-23 16:20 +07: SafeTrade UNBLOCKED (was Cloudflare bot-detection, not geo). `pow-safetrade-l2` running (25 streams). `core/` shadowing fixed. `pow-site` systemd-managed with stable token. R2 upload verified 10/10 (`powpowpow-warehouse`, secrets in 600 env file). XMR+QUBIC price history loaded (366d). Analytics refreshed (XMR $247k/day, QUBIC $12k/day, 4.78x burden). 31 market-states, 10 signals. Factors rebuilt (24 symbols). MCP 10 tools (added get_live + get_xmr_full). Dashboard ticker live. Tunnel still missing — see BLOCKERS.md.
+>
+> FOCUS: XMR + QUBIC only. All other one-shot collectors parked (BLOCKERS.md #5).
 >
 > SITE 16:10 UTC: consumer fork live at pow.moltwork.com (token gate,
 > loopback :8795, systemd). Coverage-gated display (QUBIC/XMR/PRL/KAS/
@@ -37,8 +33,8 @@
 > JSONL 7d (`trim_jsonl.py`, never drops uncompacted) → Parquet
 > forever (DuckDB-queryable) → derived tables forever (KBs). Chain
 > bytes (pearld) = extract-and-release, never hoarded. Off-box:
-> rclone ready at /usr/bin/rclone — needs B2/R2 remote (user
-> creates account; ~$0/mo at our scale, 10GB free covers year one).
+> R2 bucket `powpowpow-warehouse` via `scripts/r2_upload.py` (verified
+> 10/10, daily `pow-r2-upload.timer`, secrets in 600 env file).
 > Tardis seeds judged low-value going forward: our own ticks from
 > now are the moat; monthly drip continues (cheap) but no more
 > bulk backfill spend.
@@ -68,9 +64,9 @@
   rewritten but not yet unit-ized.
 - [x] README points at `v1_registry.py` 8-system truth; `registry.py` is
   the labeled candidate pool.
-- [ ] Migrate remaining ~15 one-shot chain collectors to `core.fetch_json`.
+- [ ] Migrate remaining ~15 one-shot chain collectors to `core.fetch_json`. PARKED — focus XMR+QUBIC (BLOCKERS.md #5). Do not wire unless it feeds a named transformation.
 - [ ] Unit-ize full `daemon.py` (chain collectors + api + safetrade-l2)
-  under systemd once SafeTrade egress exists.
+  under systemd. PARTIAL: venue/chain/safetrade/site each have units; full-plant daemon.py still not unit-ized.
 
 ## 3. Fundamental signals — v1 live
 

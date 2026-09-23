@@ -204,5 +204,54 @@ def get_health() -> dict:
                      'parquet/ holds Jul-Aug-Sep firsts; venue daemons live'}
 
 
+@mcp.tool()
+def get_live() -> dict:
+    """Live venue mids from latest daily STATE + collector heartbeats.
+    Same source the dashboard ticker polls every 5s."""
+    live = {}
+    for sym_full in ('xmrusdt', 'qubicusdt', 'prlusdt', 'nockusdt',
+                     'kasusdt', 'xelusdt', 'xtmusdt', 'xmrbtc'):
+        rows = [r for r in _rows('daily_state')
+                if (r.get('symbol') or '').lower() == sym_full]
+        rows.sort(key=lambda r: r.get('observed_at', ''), reverse=True)
+        if rows:
+            r = rows[0]
+            live[sym_full] = {
+                'symbol': sym_full.replace('usdt', '').replace('btc', '').upper(),
+                'mid': r.get('mid_close'),
+                'spread_bps': r.get('spread_bps_median'),
+                'bid_depth': r.get('bid_notional_20_mean'),
+                'venue': r.get('venue'),
+                'updated': r.get('observed_at'),
+            }
+    return {'live': live,
+            'as_of': datetime.now(timezone.utc).isoformat()}
+
+
+@mcp.tool()
+def get_xmr_full() -> dict:
+    """Full XMR bundle: emission, 365d position, miner benchmarks,
+    p2pool, network telemetry, 90d closes. The golden-child view."""
+    try:
+        ax = json.load(open(os.path.join(
+            BASE_DIR, 'warehouse', 'xmr_analytics.json')))
+    except (OSError, ValueError):
+        ax = {}
+    try:
+        net = json.load(open(os.path.join(
+            BASE_DIR, 'chains', 'network_state.json'))).get('XMR', {})
+    except OSError:
+        net = {}
+    closes = [{'date': r.get('date'), 'close': r.get('close_usd')}
+              for r in _rows('price_history')
+              if (r.get('symbol') or '').upper() == 'XMR' and r.get('close_usd')]
+    closes.sort(key=lambda x: x['date'])
+    return {'emission': ax.get('emission', {}),
+            'price_position': ax.get('price_position_365d', {}),
+            'miner_benchmarks': ax.get('miner_cost_benchmark', []),
+            'p2pool': ax.get('network', {}).get('p2pool', {}),
+            'network': net, 'closes': closes[-90:]}
+
+
 if __name__ == '__main__':
     mcp.run()

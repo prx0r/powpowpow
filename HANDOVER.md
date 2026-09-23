@@ -11,24 +11,32 @@ Live, continuously-collecting compute economics garden. Every derived number lin
 - pow-qubic-epoch: epoch engine every 10min (burn schedule, net emission)
 - pow-qubic-computors: computor set + Doge tasks every hour
 - pow-daily-state: STATE rollup + Parquet compact + trim at 00:30 UTC
-- pow-site: consumer site on :8795 (token-gated, loopback)
-- pow-tunnel: Cloudflare pow.moltwork.com to :8795
+- pow-site: consumer site on :8795 (token-gated, loopback, systemd `pow-site.service`, token in `~/.config/powpowpow/site.env`)
+- pow-tunnel: BLOCKED — no cloudflared process running; `~/.cloudflared/config.yml` only routes agentcom.org. pow.moltwork.com not exposed. See BLOCKERS.md #1.
 - pow-pearld: pearld syncing (paused during disk triage, resumable)
 
 ## Site
 
-pow.moltwork.com, token-gated. Black/white/grey only, chunky borders, monospace numbers, no opinions. Style guide in site/STYLE.md. Left rail for HOME + coins + CHAT. Each coin: subtabs Overview/Epoch/Mining/Flow/Signals. Chat through Pi harness with garden context. Bottom panel auto-refreshes ops every 60s.
+Localhost :8795, token-gated (token in `~/.config/powpowpow/site.env`). Public pow.moltwork.com NOT exposed — tunnel missing, see BLOCKERS.md #1. Black/white/grey only, chunky borders, monospace numbers, no opinions. Style guide in site/STYLE.md. Left rail for HOME + coins + CHAT. Each coin: subtabs Overview/Epoch/Mining/Flow/Signals. Live ticker polls `/api/live` every 5s. XMR Mining tab shows security spend, $/MH/day hashprice, hardware profitability, security-spend chart. Chat through Pi harness with garden context. Bottom panel auto-refreshes ops every 60s.
+
+## API + MCP (what powops can query)
+
+REST (token-gated): `/api/health /api/live /api/signals /api/factors /api/state /api/state_series /api/history /api/cards /api/cards_history /api/chain /api/analysis /api/analytics /api/xmr_full /api/epoch_series /api/brief /api/page /api/ops`, POST `/api/chat`.
+MCP stdio (10 tools, via `opencode.json` → `mcp_server.py`): get_asset_state, get_signals, get_factors, compare_compute_routes, get_miner_pressure, get_brief, get_price_history, get_health, get_live, get_xmr_full. NOTE: MCP is stdio — do NOT run under systemd (`pow-mcp.service` disabled on purpose).
 
 ## Quick commands
 
-Check collectors: systemctl --user status pow-venue-l2 pow-chain-state pow-safetrade-l2
+Check collectors: systemctl --user status pow-venue-l2 pow-chain-state pow-safetrade-l2 pow-site
 View logs: journalctl --user -u pow-chain-state -n 20
 View SafeTrade logs: journalctl --user -u pow-safetrade-l2 -n 20
-Run tests: /home/ubuntu/.venvs/powpowpow/bin/python -m pytest tests/ -q
-Rebuild state: /home/ubuntu/.venvs/powpowpow/bin/python scripts/build_daily_state.py --date 2026-09-19
-Compact parquet: /home/ubuntu/.venvs/powpowpow/bin/python scripts/compact_stream.py --all-seeds
-Refresh QUBIC analytics: /home/ubuntu/.venvs/powpowpow/bin/python scripts/qubic_analytics.py
-Site token: grep POW_SITE_TOKEN /home/ubuntu/.config/systemd/user/pow-site.service
+Run tests: /home/box/powpowpow/.venv/bin/python -m pytest tests/ -q
+Rebuild state: /home/box/powpowpow/.venv/bin/python scripts/build_daily_state.py --date 2026-09-23
+Compact parquet: /home/box/powpowpow/.venv/bin/python scripts/compact_stream.py --all-seeds
+Refresh QUBIC analytics: /home/box/powpowpow/.venv/bin/python scripts/qubic_analytics.py
+Refresh XMR analytics: /home/box/powpowpow/.venv/bin/python scripts/xmr_analytics.py
+Site token: cat ~/.config/powpowpow/site.env
+Live API: curl "http://127.0.0.1:8795/api/live?token=$(cat ~/.config/powpowpow/site.token)"
+MCP tools: /home/box/powpowpow/.venv/bin/python -c "import sys; sys.path.insert(0,'.'); import mcp_server; print([t.name for t in mcp_server.mcp._tool_manager.list_tools()])"
 
 ## File structure (what matters)
 
@@ -44,10 +52,11 @@ Collectors:
 - venue_l2.py: REST L2 CoinEx+Gate+MEXC discovery gap-safe
 - venue_ws.py: WebSocket tick archive CoinEx+Gate
 - chain_state.py: QUBIC/XMR/KAS/AKT/Nockscan poller
-- l2_archival.py: SafeTrade STAGED geo-blocked
-- prl_collector.py: PRL PearlTrack derived labels
-- qubic_collector.py: QUBIC RPC tick+status
-- xmr_collector.py: XMR localmonero+CoinGecko
+- l2_archival.py: SafeTrade WS depth+trades RUNNING as pow-safetrade-l2 (was STAGED)
+- prl_collector.py: PRL PearlTrack derived labels (Phase-1 one-shot, superseded for chain by pearld plan)
+- qubic_collector.py: QUBIC RPC tick+status (Phase-1 one-shot, superseded by chain_state + epoch engine)
+- xmr_collector.py: XMR localmonero+CoinGecko (one-shot legacy, superseded by chain_state normalized tables)
+- remaining collectors/ (akt, clore, flux, gnk, kas, nock, nos, pha, qrl, quan, tao, theta, tig, tsc, la, mcm, external, compute_benchmark, coinex, gate): one-shot/parked — see BLOCKERS.md #5. Focus is XMR+QUBIC.
 
 Scripts:
 - qubic_epoch.py: burn schedule net emission
