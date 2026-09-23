@@ -1,5 +1,25 @@
 # Agents Reference
 
+## PowPowPow — start here (coding agents)
+
+Working in this repo? Read in order: `audit.md` (what exists + what's
+stale and why) → `threads.md` (what to do next, ordered) → `HANDOVER.md`
+(ops commands) → `BLOCKERS.md` (what's blocked and why).
+
+Binding rules:
+- Numbers only. Never directional language (bullish/bearish/buy/sell) in
+  code output, UI, briefs, or commits. Z-scores, magnitudes, ratios.
+- Provenance on every derived number (record IDs, versions, dates).
+- Missing data stays missing: disclose, never default or fabricate.
+- `core/` shadows `core.py` — the re-export in `core/__init__.py` is
+  load-bearing. Test every importer if you touch it.
+- Quote curl URLs with query strings (shell `&` backgrounds the call).
+- Cloudflare UA matrix: SafeTrade needs browser UA, p2pool needs short
+  `Mozilla/5.0`, mempool.space is blocked (use Blockstream).
+- Run `pytest tests/ -q` (system pytest; 1 pre-existing failure in
+  test_garden.py). New modules ship with tests.
+- Never delete parked code/docs — annotate `# STALE reason` (audit §4-5).
+
 ## Cloudflare Account Access (Email Routing / Email Workers)
 
 ### Credentials Location
