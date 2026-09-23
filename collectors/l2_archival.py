@@ -62,8 +62,9 @@ WS_HEADERS = {
     "Sec-WebSocket-Protocol": "chat, superchat",
 }
 # Seed universe (SafeTrade market ids are lowercase-concatenated).
+# btcusdt verified live on SafeTrade 2026-09-23 (venue-of-truth L2 for BTC).
 SEED_MARKETS = ['qubicusdt', 'prlusdt', 'xmrusdt', 'nockusdt', 'kasusdt',
-                'xelusdt', 'xtmusdt', 'nosusdt', 'aktusdt']
+                'xelusdt', 'xtmusdt', 'nosusdt', 'aktusdt', 'btcusdt']
 PID_FILE = os.path.join(BASE_DIR, 'warehouse', 'safetrade_l2.pid')
 HEARTBEAT_FILE = os.path.join(BASE_DIR, 'warehouse', 'safetrade_l2_heartbeat.json')
 
@@ -157,7 +158,8 @@ def discover_seed_markets():
         if isinstance(data, list):
             ids = [m.get('id') for m in data if isinstance(m, dict) and m.get('id')]
             ours = [i for i in ids if any(i.startswith(s) for s in
-                    ('qubic', 'prl', 'xmr', 'nock', 'kas', 'xel', 'xtm', 'nos', 'akt'))]
+                    ('qubic', 'prl', 'xmr', 'nock', 'kas', 'xel', 'xtm', 'nos', 'akt',
+                     'btc', 'quan', 'tsc', 'gnk', 'npt', 'qtc'))]
             if ours:
                 return ours
     except Exception:

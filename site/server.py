@@ -407,7 +407,8 @@ class Handler(BaseHTTPRequestHandler):
         if u.path == '/api/live':
             live = {}
             for sym_full in ('xmrusdt', 'qubicusdt', 'prlusdt', 'nockusdt',
-                             'kasusdt', 'xelusdt', 'xtmusdt', 'xmrbtc'):
+                             'kasusdt', 'xelusdt', 'xtmusdt', 'xmrbtc',
+                             'btcusdt'):
                 rows = [r for r in _rows('daily_state')
                         if (r.get('symbol') or '').lower() == sym_full]
                 if not rows:

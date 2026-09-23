@@ -286,9 +286,10 @@ def poll_btc(ns):
             'height': st.get('n_blocks_total'),
             'difficulty': st.get('difficulty'),
             'network_hashrate': st.get('hash_rate'),
-            'hashrate_unit': 'H/s (blockchain.info estimate)',
+            'hashrate_unit': 'GH/s ASSUMED from scale (~825 EH/s matches charts; UNCONFIRMED — verify)',
             'price_usd': st.get('market_price_usd'),
-            'miners_revenue_usd': st.get('miners_revenue_usd'),
+            # miners_revenue_usd omitted: API returns 0.0 (untrustworthy,
+            # like total_fees_btc negatives). Revenue truth = charts history.
             'next_retarget': st.get('nextretarget'),
             'minutes_between_blocks': st.get('minutes_between_blocks'),
             'source_role': 'derived', 'source_id': 'blockchaininfo-stats'})

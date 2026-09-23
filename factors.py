@@ -99,9 +99,23 @@ def compute_factors(date=None):
         a['gaps'] += s.get('gap_events') or 0
 
     factors = {}
+    try:
+        _netstate = json.load(open(os.path.join(BASE_DIR, 'chains', 'network_state.json')))
+    except OSError:
+        _netstate = {}
     for sym, a in sorted(by_sym.items()):
         fund = fund_all.get(sym, {}) or {}
         emission = fund.get('daily_emission')
+        emission_src = f"chain_fundamentals.json:{sym}.daily_emission" if emission else None
+        if not emission:
+            # Fallback order mirrors signals.load_emission: live measured
+            # deltas first (KAS/AKT supply-delta, BTC deterministic).
+            live = (_netstate.get(sym, {}) or {})
+            for key in ('daily_emission_delta', 'daily_emission'):
+                if live.get(key):
+                    emission = live[key]
+                    emission_src = f"network_state.json:{sym}.{key}"
+                    break
         price = a['close']
         emission_usd = emission * price if emission and price else None
         sig = sigs.get(sym, {})
@@ -126,6 +140,7 @@ def compute_factors(date=None):
             'gap_events_24h': a['gaps'],
             # Emission-joined (needs fundamentals price coverage)
             'daily_emission_native': emission,
+            'emission_source': emission_src,
             'issuance_usd_24h': round(emission_usd, 2) if emission_usd else None,
             'burden_vs_book': round(emission_usd / a['bid'], 3)
             if emission_usd and a['bid'] > 0 else None,

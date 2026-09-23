@@ -33,7 +33,7 @@ sys.path.insert(0, BASE_DIR)
 from core import fetch_json, store_normalized, utcnow  # noqa: E402
 
 UNIVERSE = ['PRL', 'QUBIC', 'XMR', 'KAS', 'NOCK', 'XEL', 'XTM', 'NOS', 'AKT',
-            'QUAN', 'CLORE', 'TAO', 'FLUX', 'TSC', 'GNK']
+            'QUAN', 'CLORE', 'TAO', 'FLUX', 'TSC', 'GNK', 'BTC']
 
 STATE_FILE = os.path.join(BASE_DIR, 'warehouse', 'venue_l2_state.json')
 PID_FILE = os.path.join(BASE_DIR, 'warehouse', 'venue_l2.pid')

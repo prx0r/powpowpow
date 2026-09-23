@@ -5,6 +5,8 @@
 
 ## FIXED today (cont.)
 
+- ASIC scope decision: NO ASICs in registry/cards/opportunity. BTC mining economics are fully covered (emission, burden, signals, hashprice, pools) but per-rig miner cards stay CPU/GPU/rental-only. Rationale: POW's hardware lens is homelab-relevant + rentable compute; ASICs are single-purpose datacenter gear with no homelab overlap, and adding theoretical specs without measured benchmarks would violate the ladder. Revisit if fleet hardware ever includes ASICs.
+
 - snapshot_cards market→asset bug: passed raw `xmrusdt` into `generate_card`, wrote nothing usable. Shared `asset_of()` moved to `v1_live_cards.py`; cards + opportunity both use it. miner_card history flowing (10 rows, 7 assets); `/api/cards_history` live.
 - Provenance timers: `pow-miner-cards` (01:30), `pow-daily-brief` (02:00), `pow-provenance` manifest+universe (02:30) — all verified with first runs (manifest 2026-09-23, universe 2026-09-23, brief 2026-09-23 served via API). Full nightly chain: STATE 00:30 → opportunity 01:00 → cards 01:30 → brief 02:00 → provenance 02:30.
 
