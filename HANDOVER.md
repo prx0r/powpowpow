@@ -7,7 +7,7 @@ Live, continuously-collecting compute economics garden. Every derived number lin
 - pow-venue-l2: REST polls 19 markets CoinEx+Gate+MEXC every 60s
 - pow-venue-ws: WebSocket tick archive for same venues
 - pow-safetrade-l2: SafeTrade WS depth+trades (25 streams, all tracked markets)
-- pow-chain-state: QUBIC RPC + XMR localmonero + KAS + Nockscan + BTC (blockchain.info/Blockstream) every 5min
+- pow-chain-state: QUBIC RPC + XMR localmonero + KAS + Nockscan + BTC (blockchain.info/Blockstream) every 5min. BTC poll writes chain_snapshot + fee_market + mempool_snapshot + pool_snapshot (5d concentration).
 - pow-qubic-epoch: epoch engine every 10min (burn schedule, net emission)
 - pow-qubic-computors: computor set + Doge tasks every hour
 - pow-daily-state: STATE rollup + Parquet compact + trim at 00:30 UTC

@@ -29,6 +29,12 @@ CHARTS = {
     'difficulty': ('difficulty', 'absolute difficulty'),
     'miners-revenue': ('miners_revenue_usd', 'USD/day coinbase+fees'),
     'transaction-fees-usd': ('fees_usd_day', 'USD/day fees only'),
+    'n-transactions': ('tx_count_day', 'confirmed tx/day'),
+    'estimated-transaction-volume-usd': ('tx_volume_usd_day', 'USD/day on-chain volume est'),
+    'total-bitcoins': ('circulating_supply', 'BTC in circulation'),
+    'avg-block-size': ('avg_block_size_mb', 'MB'),
+    'n-unique-addresses': ('unique_addresses_day', 'addresses used/day'),
+    'cost-per-transaction': ('cost_per_tx_usd', 'miner revenue / tx'),
 }
 
 

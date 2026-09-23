@@ -446,7 +446,10 @@ class Handler(BaseHTTPRequestHandler):
             for r in _rows('chain_snapshot'):
                 has_btc_field = any(r.get(k) is not None for k in (
                     'network_hashrate_ths', 'difficulty', 'miners_revenue_usd',
-                    'fees_usd_day', 'price_usd', 'height'))
+                    'fees_usd_day', 'price_usd', 'height',
+                    'tx_count_day', 'tx_volume_usd_day',
+                    'circulating_supply', 'avg_block_size_mb',
+                    'unique_addresses_day', 'cost_per_tx_usd'))
                 if not has_btc_field:
                     continue
                 d = (r.get('event_time') or '')[:10] or (r.get('observed_at') or '')[:10]
@@ -455,7 +458,10 @@ class Handler(BaseHTTPRequestHandler):
                 a = by_date.setdefault(d, {})
                 for k in ('network_hashrate_ths', 'difficulty',
                           'miners_revenue_usd', 'fees_usd_day',
-                          'price_usd', 'height', 'next_retarget'):
+                          'price_usd', 'height', 'next_retarget',
+                          'tx_count_day', 'tx_volume_usd_day',
+                          'circulating_supply', 'avg_block_size_mb',
+                          'unique_addresses_day', 'cost_per_tx_usd'):
                     if r.get(k) is not None and (k not in a or r.get('source_role') == 'history-backfill'):
                         a[k] = r[k]
             series = [{'date': d, **v} for d, v in sorted(by_date.items())]

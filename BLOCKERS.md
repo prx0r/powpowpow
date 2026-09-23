@@ -5,6 +5,9 @@
 
 ## FIXED today (cont.)
 
+- p2pool Cloudflare block: `pool_snapshot` was writing zero rows (p2pool.observer challenges the browser UA SafeTrade needs). Per-source UA override in `core.fetch_json`; table live. p2pool ≈6.5% of XMR network.
+- BTC normalized like XMR/QUBIC: fee_market + mempool_snapshot + pool_snapshot (5d HHI) live via Blockstream + blockchain.info pools; 10-chart 1yr history backfill (4725 rows: hashrate, difficulty, revenue, fees, tx/day, volume, supply, block size, addresses, cost/tx); btc_context extended (halving countdown, 365d position, pools, retarget); dashboard BTC Mining tab has pools table + fee share. Dropped blockchain.info `total_fees_btc` (returns negative values — untrustworthy, documented in code).
+
 - Opportunity snapshots live: `scripts/snapshot_opportunity.py` writes one row per (date, hardware) in `opportunity_snapshot` with full ranked routes, best_action, model_version, code_hash, prediction_hash. 6 hardware archetypes, daily `pow-opportunity.timer` at 01:00 UTC. Exposed via `/api/opportunity` + MCP `get_opportunity`. First finding: 7950X XMR nets -$0.03/day → idle wins (honest, disclosed).
 - `snapshot_cards.py` market→asset mapping bug found (passes `xmrusdt` into `generate_card`, writes nothing usable). Opportunity script maps to asset first. `snapshot_cards.py` left as-is (miner_card history still valuable once fixed — queued).
 

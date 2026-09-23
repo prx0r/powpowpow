@@ -81,10 +81,46 @@ def main():
         print(f"[BTC CONTEXT] insufficient BTC history ({len(btc)} closes)")
         return {}
     btc_rets = log_returns(btc)
+    prices = [c for _, c in btc]
+    lo, hi, cur = min(prices), max(prices), prices[-1]
+    try:
+        net = json.load(open(os.path.join(BASE_DIR, 'chains', 'network_state.json'))).get('BTC', {})
+    except OSError:
+        net = {}
+    height = net.get('height') or net.get('tip_height_crosscheck') or 0
+    epoch = height // 210000 if height else None
     ctx = {'computed_at': utcnow(), 'btc_closes': len(btc),
            'btc_price': btc[-1][1], 'btc_date': btc[-1][0],
            'btc_emission_day': BTC_EMISSION_DAY,
            'btc_security_spend_usd_day': round(BTC_EMISSION_DAY * btc[-1][1], 0),
+           'price_position_365d': {
+               'current': cur, 'low': lo, 'high': hi,
+               'percentile': round(sum(1 for p in prices if p <= cur) / len(prices) * 100, 1),
+               'range': f"${lo:,.0f} - ${hi:,.0f}",
+           },
+           'halving': {
+               'height': height,
+               'epoch': epoch,
+               'subsidy': round(50 / 2**epoch, 4) if epoch is not None else None,
+               'next_halving_height': (epoch + 1) * 210000 if epoch is not None else None,
+               'blocks_remaining': (epoch + 1) * 210000 - height if epoch is not None else None,
+           },
+           'retarget': {
+               'next_retarget': net.get('next_retarget'),
+               'progress': round((height % 2016) / 2016, 3) if height else None,
+           },
+           'fees': {
+               # NOTE: blockchain.info stats total_fees_btc returns negative
+               # values (verified 2026-09-23) — untrustworthy, dropped.
+               # Fee truth = transaction-fees-usd chart history + live estimates.
+               'mempool_txs': net.get('mempool_txs'),
+               'fee_next_block_satvb': net.get('fee_next_block_satvb'),
+           },
+           'pools_5d': {
+               'leader': net.get('pool_leader_5d'),
+               'top3_share': net.get('pool_top3_share_5d'),
+               'hhi_known': net.get('pool_hhi_known_5d'),
+           },
            'assets': {}}
     for sym in ('XMR', 'QUBIC'):
         closes = load_closes(sym)

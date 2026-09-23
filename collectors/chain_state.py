@@ -288,7 +288,6 @@ def poll_btc(ns):
             'network_hashrate': st.get('hash_rate'),
             'hashrate_unit': 'H/s (blockchain.info estimate)',
             'price_usd': st.get('market_price_usd'),
-            'fees_btc_day': (st.get('total_fees_btc') or 0) / 1e8,
             'miners_revenue_usd': st.get('miners_revenue_usd'),
             'next_retarget': st.get('nextretarget'),
             'minutes_between_blocks': st.get('minutes_between_blocks'),
@@ -299,7 +298,6 @@ def poll_btc(ns):
             'difficulty': st.get('difficulty'),
             'network_hashrate': st.get('hash_rate'),
             'price_usd': st.get('market_price_usd'),
-            'fees_btc_day': round((st.get('total_fees_btc') or 0) / 1e8, 2),
             'miners_revenue_usd': st.get('miners_revenue_usd'),
             'next_retarget': st.get('nextretarget'),
             'daily_emission': 450.0,
@@ -318,6 +316,54 @@ def poll_btc(ns):
             e['tip_height_crosscheck'] = tip_h
             e['tip_source'] = 'blockstream.info (height cross-check)'
             ok += 1
+    # Blockstream mempool + fee estimates: BTC fee market (mirrors XMR
+    # fee_market/mempool_snapshot tables). Free, no key, 200 from here.
+    mp = fetch_json('https://blockstream.info/api/mempool',
+                    source_id='blockstream', chain_id='btc')
+    if mp and isinstance(mp, dict):
+        store_normalized('mempool_snapshot', 'btc', {
+            'tx_count': mp.get('count'), 'vsize_bytes': mp.get('vsize'),
+            'total_fee_sat': mp.get('total_fee'),
+            'fee_histogram': (mp.get('fee_histogram') or [])[:10],
+            'source_role': 'derived', 'source_id': 'blockstream-mempool'})
+        e = ns.setdefault('BTC', {})
+        e['mempool_txs'] = mp.get('count')
+        e['mempool_vsize'] = mp.get('vsize')
+        ok += 1
+    fe = fetch_json('https://blockstream.info/api/fee-estimates',
+                    source_id='blockstream', chain_id='btc')
+    if fe and isinstance(fe, dict):
+        store_normalized('fee_market', 'btc', {
+            'fee_estimates_satvb': {k: fe[k] for k in
+                                    ('2', '6', '24', '144', '504', '1008')
+                                    if k in fe},
+            'source_role': 'derived', 'source_id': 'blockstream-fees'})
+        e = ns.setdefault('BTC', {})
+        e['fee_next_block_satvb'] = fe.get('2')
+        e['fee_hour_satvb'] = fe.get('6')
+        ok += 1
+    # Pool distribution (5d window): concentration telemetry mirroring
+    # XMR p2pool / QUBIC computor concentration.
+    pools = fetch_json('https://api.blockchain.info/pools?timespan=5days&format=json',
+                       source_id='blockchaininfo-pools', chain_id='btc')
+    if pools and isinstance(pools, dict):
+        total = sum(v for v in pools.values() if isinstance(v, (int, float))) or 1
+        shares = sorted(((k, v / total) for k, v in pools.items()
+                         if isinstance(v, (int, float))),
+                        key=lambda kv: kv[1], reverse=True)
+        hhi = sum(s * s for _, s in shares if _.lower() != 'unknown')
+        store_normalized('pool_snapshot', 'btc', {
+            'pool': 'all', 'window': '5d',
+            'distribution': {k: round(v, 4) for k, v in shares},
+            'top3_share': round(sum(s for _, s in shares[:3]), 4),
+            'hhi_known': round(hhi, 4),
+            'note': 'Unknown = unlabelled coinbase, not one entity',
+            'source_role': 'derived', 'source_id': 'blockchaininfo-pools'})
+        e = ns.setdefault('BTC', {})
+        e['pool_top3_share_5d'] = round(sum(s for _, s in shares[:3]), 4)
+        e['pool_hhi_known_5d'] = round(hhi, 4)
+        e['pool_leader_5d'] = shares[0][0] if shares else None
+        ok += 1
     return ok
 
 
