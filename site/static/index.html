@@ -147,7 +147,7 @@ async function coinBody(sym){
   let h=`<h1>${sym}</h1>`;
   if(S==='Overview'){
     h+=`<div class="grid">`;
-    h+=stat('PRICE',$(card.price_usd),'venue mids');
+    h+=`<div class="st"><div class="k">PRICE ·LIVE</div><div class="v" id="live-price" data-asset="${sym}">${$(card.price_usd)}</div><div class="n">venue mids</div></div>`;
     if(sym==='QUBIC'){
       h+=stat('NET/DAY',ax2.emission?((ax2.emission.daily_emission||0)/1e9).toFixed(1)+'B QU':'—',`burn ${((ax2.network||{}).burn_rate||0)*100}%`);
       h+=stat('BURDEN',ax2.emission&&ax2.emission.burden_vs_book?ax2.emission.burden_vs_book+'x':'—','emission vs top-20 bids');
@@ -387,26 +387,46 @@ document.addEventListener('mouseup',()=>d=false);})();
 G('/api/health').then(h=>document.getElementById('health').textContent=h.ok?'● LIVE':'down').catch(()=>document.getElementById('health').textContent='off');
 home();bot('ops');autoRefreshBot();
 
-/* Live ticker — polls /api/live every 5s */
+/* Live ticker — SSE stream from /api/ticks (2s events), polling fallback */
 const TICKER_SYMBOLS=['btcusdt','xmrusdt','qubicusdt','prlusdt','nockusdt','kasusdt'];
 let _lastTicker={};
+function paintTicker(live){
+  _lastTicker=live||{};
+  const el=document.getElementById('ticker');if(!el)return;
+  el.innerHTML=TICKER_SYMBOLS.map(s=>{
+    const t=(live||{})[s];if(!t||t.mid==null)return'';
+    const sym=t.symbol||s.replace(/usdt$/,'').toUpperCase();
+    const price=t.mid<1&&t.mid>0?'$'+Number(t.mid).toPrecision(4):'$'+Number(t.mid).toLocaleString(undefined,{maximumFractionDigits:t.mid<1?6:2});
+    const spread=t.spread_bps!=null?t.spread_bps.toFixed(1)+'bp':'';
+    const age=t.age_s!=null?(t.age_s<60?t.age_s+'s':Math.round(t.age_s/60)+'m'):'';
+    return`<div class="ti"><span class="ts">${sym}</span><span class="tv">${price}</span><span class="tu">${spread} ${t.venue||''} ${age}</span></div>`;
+  }).join('');
+  const lp=document.getElementById('live-price');
+  if(lp&&lp.dataset.asset){
+    for(const s of Object.keys(live||{})){
+      const t=live[s];
+      if(t&&t.symbol===lp.dataset.asset&&t.mid!=null){
+        lp.textContent=t.mid<1&&t.mid>0?'$'+Number(t.mid).toPrecision(4):'$'+Number(t.mid).toLocaleString(undefined,{maximumFractionDigits:t.mid<1?6:2});
+        lp.title=`live via ${t.venue||'?'} ${t.age_s!=null?t.age_s+'s ago':''}`;
+      }
+    }
+  }
+}
+let _es=null;
 async function refreshTicker(){
   try{
-    const d=await G('/api/live');_lastTicker=d.live||{};
-    const el=document.getElementById('ticker');if(!el)return;
-    el.innerHTML=TICKER_SYMBOLS.map(s=>{
-      const t=(d.live||{})[s];if(!t)return'';
-      const sym=t.symbol||s.replace('usdt','').toUpperCase();
-      const price=t.mid!=null?'$'+Number(t.mid).toFixed(t.mid<1?6:2):'—';
-      const spread=t.spread_bps!=null?t.spread_bps.toFixed(1)+'bp':'';
-      const vol=t.buy_notional&&t.sell_notional?('$'+Math.round(t.buy_notional+t.sell_notional).toLocaleString()):'';
-      const ago=t.updated?Math.round((Date.now()-new Date(t.updated).getTime())/1000):null;
-      const age=ago!=null?(ago<60?ago+'s':Math.round(ago/60)+'m'):'';
-      return`<div class="ti"><span class="ts">${sym}</span><span class="tv">${price}</span><span class="tu">${spread} ${vol} ${age}</span></div>`;
-    }).join('');
+    const d=await G('/api/live');paintTicker(d.live);
   }catch(e){}
 }
-refreshTicker();setInterval(refreshTicker,5000);
+function startTicker(){
+  try{
+    if(_es)try{_es.close();}catch(_){}
+    _es=new EventSource('/api/ticks?token='+encodeURIComponent(T)+'&symbols='+TICKER_SYMBOLS.join(','));
+    _es.onmessage=e=>{try{paintTicker(JSON.parse(e.data).live);}catch(_){}};
+    _es.onerror=()=>{try{_es.close();}catch(_){}refreshTicker();setTimeout(startTicker,15000);};
+  }catch(e){refreshTicker();setInterval(refreshTicker,5000);}
+}
+refreshTicker();startTicker();
 </script>
 </body>
 </html>

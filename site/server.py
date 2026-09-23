@@ -404,6 +404,85 @@ class Handler(BaseHTTPRequestHandler):
             return self._send({'symbol': sym, 'network': net,
                                'fundamentals': fund,
                                'snapshots': len(snaps)})
+        if u.path == '/api/ticks':
+            # Live tick stream (SSE): freshest orderbook mid per symbol,
+            # sourced from continuous normalized rows (NOT daily STATE).
+            # EventSource auto-reconnects; each connection capped at 5min.
+            import time as _t
+            syms = [s.strip().lower() for s in
+                    (arg('symbols') or 'btcusdt,xmrusdt,qubicusdt').split(',') if s.strip()]
+
+            def _tail(path, n=400):
+                try:
+                    with open(path, 'rb') as f:
+                        f.seek(0, 2)
+                        size = f.tell()
+                        block, lines = 8192, []
+                        while len(lines) <= n and size > 0:
+                            step = min(block, size)
+                            size -= step
+                            f.seek(size)
+                            lines = f.read().splitlines() + lines
+                            block *= 2
+                    return [ln.decode('utf-8', 'replace') for ln in lines[-n:]]
+                except OSError:
+                    return []
+
+            def _latest_ticks():
+                import datetime as _dt
+                today = _dt.datetime.now(_dt.timezone.utc).strftime('%Y-%m-%d')
+                best = {}
+                for chain in ('safetrade', 'venue'):
+                    for f in glob.glob(os.path.join(
+                            ROOT, 'warehouse', 'normalized', 'orderbook_snapshot',
+                            f'chain={chain}', f'date={today}', 'hour=*.jsonl')):
+                        for ln in _tail(f):
+                            try:
+                                r = json.loads(ln)
+                            except ValueError:
+                                continue
+                            s = (r.get('symbol') or '').lower()
+                            if s in syms and r.get('mid') and (
+                                    s not in best or (r.get('receive_time', '') > best[s].get('receive_time', ''))):
+                                best[s] = r
+                out = {}
+                for s in syms:
+                    r = best.get(s)
+                    if not r:
+                        continue
+                    try:
+                        age = (_dt.datetime.now(_dt.timezone.utc) - _dt.datetime.fromisoformat(
+                            r['receive_time'].replace('Z', '+00:00'))).total_seconds()
+                    except Exception:
+                        age = None
+                    base = s
+                    for q in ('usdt', 'usdc', 'btc', 'xmr', 'safe'):
+                        if base.endswith(q) and len(base) > len(q):
+                            base = base[:-len(q)]
+                            break
+                    out[s] = {'symbol': base.upper(),
+                              'mid': r.get('mid'), 'spread_bps': r.get('spread_bps'),
+                              'venue': r.get('venue'), 'age_s': round(age) if age is not None else None,
+                              'updated': r.get('receive_time')}
+                return out
+
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/event-stream')
+            self.send_header('Cache-Control', 'no-cache')
+            self.send_header('Connection', 'keep-alive')
+            self.end_headers()
+            t0 = _t.time()
+            try:
+                while _t.time() - t0 < 300:
+                    body = json.dumps({'live': _latest_ticks(),
+                                       't': datetime.now(timezone.utc).isoformat()},
+                                      default=str)
+                    self.wfile.write(f"data: {body}\n\n".encode())
+                    self.wfile.flush()
+                    _t.sleep(2)
+            except (BrokenPipeError, ConnectionResetError):
+                pass
+            return
         if u.path == '/api/live':
             live = {}
             for sym_full in ('xmrusdt', 'qubicusdt', 'prlusdt', 'nockusdt',
