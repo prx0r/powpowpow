@@ -33,19 +33,8 @@ sys.path.insert(0, BASE_DIR)
 
 from core import store_normalized, utcnow  # noqa: E402
 from v1_live_cards import (  # noqa: E402
-    generate_card, V1_HARDWARE, CALCULATION_VERSION,
+    generate_card, V1_HARDWARE, CALCULATION_VERSION, ASSETS, asset_of,
 )
-
-# Market symbol -> asset (longest prefix wins; venue suffixes stripped).
-ASSETS = ('PRL', 'QUBIC', 'QUAN', 'XMR', 'KAS', 'CLORE', 'AKT', 'NOS')
-
-
-def asset_of(market_symbol):
-    s = (market_symbol or '').upper()
-    for a in sorted(ASSETS, key=len, reverse=True):
-        if s == a or s.startswith(a):
-            return a
-    return None
 
 
 def code_hash():

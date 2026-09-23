@@ -5,6 +5,9 @@
 
 ## FIXED today (cont.)
 
+- snapshot_cards market→asset bug: passed raw `xmrusdt` into `generate_card`, wrote nothing usable. Shared `asset_of()` moved to `v1_live_cards.py`; cards + opportunity both use it. miner_card history flowing (10 rows, 7 assets); `/api/cards_history` live.
+- Provenance timers: `pow-miner-cards` (01:30), `pow-daily-brief` (02:00), `pow-provenance` manifest+universe (02:30) — all verified with first runs (manifest 2026-09-23, universe 2026-09-23, brief 2026-09-23 served via API). Full nightly chain: STATE 00:30 → opportunity 01:00 → cards 01:30 → brief 02:00 → provenance 02:30.
+
 - p2pool Cloudflare block: `pool_snapshot` was writing zero rows (p2pool.observer challenges the browser UA SafeTrade needs). Per-source UA override in `core.fetch_json`; table live. p2pool ≈6.5% of XMR network.
 - BTC normalized like XMR/QUBIC: fee_market + mempool_snapshot + pool_snapshot (5d HHI) live via Blockstream + blockchain.info pools; 10-chart 1yr history backfill (4725 rows: hashrate, difficulty, revenue, fees, tx/day, volume, supply, block size, addresses, cost/tx); btc_context extended (halving countdown, 365d position, pools, retarget); dashboard BTC Mining tab has pools table + fee share. Dropped blockchain.info `total_fees_btc` (returns negative values — untrustworthy, documented in code).
 

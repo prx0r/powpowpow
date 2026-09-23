@@ -20,6 +20,21 @@ sys.path.insert(0, BASE_DIR)
 
 CALCULATION_VERSION = "2.0.0-network-share"
 
+# Canonical asset universe for market-symbol mapping. Market symbols
+# arrive as 'xmrusdt', 'xmrbtc', 'qubicusdt' (lowercase venue ids);
+# cards, factors and signals key on asset ('XMR'). Longest prefix wins.
+ASSETS = ('PRL', 'QUBIC', 'QUAN', 'XMR', 'KAS', 'CLORE', 'AKT', 'NOS')
+
+
+def asset_of(market_symbol):
+    """Map a venue market id to its canonical asset, or None."""
+    import re as _re
+    s = (market_symbol or '').upper()
+    for a in sorted(ASSETS, key=len, reverse=True):
+        if s == a or s.startswith(a):
+            return a
+    return None
+
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 
 
