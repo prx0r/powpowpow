@@ -4,12 +4,12 @@
 > Updated 2026-09-23. P0 = do next; P3 = do not touch yet.
 > Nothing here deletes anything — cleanups are annotations, see §5.
 
-## P0 — freshness automation (data rots without this)
+## P0 — freshness automation (DONE 2026-09-23 eve)
 
-- [ ] **T1. signals + factors timers.** Both rebuilt by hand; site/MCP serve them stale between runs. Add `pow-signals.timer` (~00:40 UTC) + `pow-factors.timer` (~00:50 UTC). 30 min work, removes the largest staleness vector. (audit §4, §8.2)
-- [ ] **T2. analytics timers.** `xmr_analytics`, `qubic_analytics`, `btc_context` run by hand. Fold into one `pow-analytics.timer` (~00:55 UTC) or extend the nightly chain. Without it the dashboard's numbers age daily.
-- [ ] **T3. Enable pow-r2-upload.timer.** Secrets moved, service verified — but the timer was never enabled. One command; turns the off-box doctrine real.
-- [ ] **T4. compact + trim timers.** `pow-daily-state.service` runs ONLY the builder (HANDOVER overclaims compact+trim). Warehouse grows ~1GB/day raw. Wire `compact_stream.py` + `trim_jsonl.py` before disk pressure forces triage again.
+- [x] **T1. signals + factors timers** (`pow-signals` 00:40, `pow-factors` 00:50, verified first runs).
+- [x] **T2. analytics timers** (`pow-analytics` 00:55 runs xmr+qubic+btc_context, verified).
+- [x] **T3. Enable pow-r2-upload.timer** (daily 00:00, secrets in 600 env file).
+- [x] **T4. compact + trim timers.** Folded into `pow-daily-state.service` as sequential ExecStarts (build → compact --all-seeds → trim). Full nightly chain now: STATE 00:30 → signals 00:40 → factors 00:50 → analytics 00:55 → opportunity 01:00 → cards 01:30 → brief 02:00 → provenance 02:30 (11 timers total).
 
 ## P1 — exposure + completeness
 

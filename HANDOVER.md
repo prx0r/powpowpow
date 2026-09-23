@@ -11,10 +11,14 @@ Live, continuously-collecting compute economics garden. Every derived number lin
 - pow-qubic-epoch: epoch engine every 10min (burn schedule, net emission)
 - pow-qubic-computors: computor set + Doge tasks every hour
 - pow-daily-state: STATE rollup + Parquet compact + trim at 00:30 UTC
+- pow-signals: derived signals at 00:40 UTC
+- pow-factors: factor table at 00:50 UTC
+- pow-analytics: XMR/QUBIC/BTC analytics at 00:55 UTC
 - pow-opportunity: ranked opportunity snapshots + prediction hashes at 01:00 UTC
 - pow-miner-cards: miner margin history at 01:30 UTC
 - pow-daily-brief: PowDaily brief at 02:00 UTC
 - pow-provenance: Merkle manifest + universe snapshot at 02:30 UTC
+- pow-r2-upload: off-box R2 backup daily 00:00 UTC
 - pow-site: consumer site on :8795 (token-gated, loopback, systemd `pow-site.service`, token in `~/.config/powpowpow/site.env`)
 - pow-tunnel: BLOCKED — no cloudflared process running; `~/.cloudflared/config.yml` only routes agentcom.org. pow.moltwork.com not exposed. See BLOCKERS.md #1.
 - pow-pearld: pearld syncing (paused during disk triage, resumable)
