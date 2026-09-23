@@ -138,9 +138,13 @@ def poll_xmr(ns):
         store_normalized('mempool_snapshot', 'xmr', {
             'txs_in_page': len(txs),
             'source_role': 'derived', 'source_id': 'xmrchain'})
-    # p2pool: decentralized supply-response telemetry (miners + hashrate)
+    # p2pool: decentralized supply-response telemetry (miners + hashrate).
+    # NOTE: p2pool.observer Cloudflare-challenges the browser UA that
+    # SafeTrade requires, but allows short Mozilla/5.0 (verified
+    # 2026-09-23: chrome+accept -> 403, short -> 200). Per-source UA.
     p2p = fetch_json('https://p2pool.observer/api/pool/stats',
-                     source_id='p2pool-observer', chain_id='xmr')
+                     source_id='p2pool-observer', chain_id='xmr',
+                     user_agent='Mozilla/5.0')
     if p2p and isinstance(p2p.get('pool_statistics'), dict):
         ps = p2p['pool_statistics']
         e['p2pool_hashrate'] = ps.get('hashRate')

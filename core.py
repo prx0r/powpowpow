@@ -95,6 +95,7 @@ def fetch_json(
     source_role: str = 'raw',
     event_type: Optional[str] = None,
     return_result: bool = False,
+    user_agent: Optional[str] = None,
 ) -> Optional[Any]:
     """
     Fetch JSON with automatic raw archival.
@@ -124,7 +125,7 @@ def fetch_json(
             url,
             params=params,
             headers={
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                'User-Agent': user_agent or 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
                 'Accept': 'application/json',
             },
             timeout=timeout,
