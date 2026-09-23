@@ -253,5 +253,22 @@ def get_xmr_full() -> dict:
             'network': net, 'closes': closes[-90:]}
 
 
+@mcp.tool()
+def get_opportunity(hardware: str = "", date: str = "") -> dict:
+    """Daily ranked opportunity set per hardware archetype: every route
+    (mine/rent/idle) with expected net, best_action, model version and
+    prediction hash. The counterfactual record — what an agent would
+    have done. Start here for 'what should this machine do'."""
+    rows = _rows('opportunity_snapshot')
+    if hardware:
+        rows = [r for r in rows if (r.get('hardware') or '').upper() == hardware.upper()]
+    if date:
+        rows = [r for r in rows if r.get('date') == date]
+    else:
+        rows = list(_latest(rows, 'hardware').values()) if not hardware else rows
+    rows.sort(key=lambda r: (r.get('date', ''), r.get('hardware', '')))
+    return {'snapshots': rows[-30:]}
+
+
 if __name__ == '__main__':
     mcp.run()

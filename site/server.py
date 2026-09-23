@@ -434,6 +434,15 @@ class Handler(BaseHTTPRequestHandler):
                 except OSError:
                     pass
             return self._send({'live': live, 'heartbeats': hb})
+        if u.path == '/api/opportunity':
+            hw, date = arg('hardware').upper(), arg('date')
+            rows = _rows('opportunity_snapshot')
+            if hw:
+                rows = [r for r in rows if (r.get('hardware') or '').upper() == hw]
+            if date:
+                rows = [r for r in rows if r.get('date') == date]
+            rows.sort(key=lambda r: (r.get('date', ''), r.get('hardware', '')))
+            return self._send({'snapshots': rows[-30:]})
         if u.path == '/api/xmr_full':
             try:
                 ax = json.load(open(os.path.join(

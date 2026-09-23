@@ -3,7 +3,10 @@
 > Updated 2026-09-23 16:20 +07. Everything below is a known issue with a clear path.
 > Focus is XMR + QUBIC only. Everything else is parked, not deleted.
 
-## FIXED today
+## FIXED today (cont.)
+
+- Opportunity snapshots live: `scripts/snapshot_opportunity.py` writes one row per (date, hardware) in `opportunity_snapshot` with full ranked routes, best_action, model_version, code_hash, prediction_hash. 6 hardware archetypes, daily `pow-opportunity.timer` at 01:00 UTC. Exposed via `/api/opportunity` + MCP `get_opportunity`. First finding: 7950X XMR nets -$0.03/day → idle wins (honest, disclosed).
+- `snapshot_cards.py` market→asset mapping bug found (passes `xmrusdt` into `generate_card`, writes nothing usable). Opportunity script maps to asset first. `snapshot_cards.py` left as-is (miner_card history still valuable once fixed — queued).
 
 - `core/` shadowing `core.py` → `core/__init__.py` re-exports. All imports work.
 - SafeTrade was Cloudflare bot-detection (not geo-block). Browser UA + `ssl=ssl_ctx` fixed. `pow-safetrade-l2` running, 25 streams.

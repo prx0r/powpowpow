@@ -21,8 +21,8 @@ Localhost :8795, token-gated (token in `~/.config/powpowpow/site.env`). Public p
 
 ## API + MCP (what powops can query)
 
-REST (token-gated): `/api/health /api/live /api/signals /api/factors /api/state /api/state_series /api/history /api/cards /api/cards_history /api/chain /api/analysis /api/analytics /api/xmr_full /api/epoch_series /api/brief /api/page /api/ops`, POST `/api/chat`.
-MCP stdio (10 tools, via `opencode.json` → `mcp_server.py`): get_asset_state, get_signals, get_factors, compare_compute_routes, get_miner_pressure, get_brief, get_price_history, get_health, get_live, get_xmr_full. NOTE: MCP is stdio — do NOT run under systemd (`pow-mcp.service` disabled on purpose).
+REST (token-gated): `/api/health /api/live /api/signals /api/factors /api/state /api/state_series /api/history /api/cards /api/cards_history /api/chain /api/analysis /api/analytics /api/xmr_full /api/opportunity /api/epoch_series /api/brief /api/page /api/ops`, POST `/api/chat`.
+MCP stdio (11 tools, via `opencode.json` → `mcp_server.py`): get_asset_state, get_signals, get_factors, compare_compute_routes, get_miner_pressure, get_brief, get_price_history, get_health, get_live, get_xmr_full, get_opportunity. NOTE: MCP is stdio — do NOT run under systemd (`pow-mcp.service` disabled on purpose).
 
 ## Quick commands
 
@@ -64,7 +64,8 @@ Scripts:
 - qubic_analytics.py: supply curve returns valuation
 - xmr_analytics.py: emission value miner benchmarks
 - build_daily_state.py: daily STATE rollup
-- snapshot_cards.py: nightly margin snapshots
+- snapshot_cards.py: nightly margin snapshots (has market→asset mapping bug — see BLOCKERS)
+- snapshot_opportunity.py: daily ranked opportunity set per hardware + prediction hashes (todo #13/#14)
 - compact_stream.py: Parquet compactor 25-30x
 - trim_jsonl.py: 7-day hot window
 - tardis_drip.py: monthly free-tier Tardis
