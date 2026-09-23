@@ -271,6 +271,18 @@ def get_opportunity(hardware: str = "", date: str = "") -> dict:
 
 
 @mcp.tool()
+def get_btc_context() -> dict:
+    """BTC baseline: 30d/90d betas, residual returns, security spend,
+    and the content hook ('X up N%, only M% explained by BTC').
+    M0 against which Seesaw variables must prove incremental value."""
+    try:
+        return json.load(open(os.path.join(
+            BASE_DIR, 'warehouse', 'btc_context.json')))
+    except (OSError, ValueError):
+        return {'error': 'no btc context (run scripts/btc_context.py)'}
+
+
+@mcp.tool()
 def recommend_homelab(electricity: float = 0.10) -> dict:
     """Detect THIS machine's hardware and join to the opportunity set:
     inventory with provenance, matched archetypes, ranked routes,

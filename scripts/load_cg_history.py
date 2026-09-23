@@ -35,6 +35,7 @@ CG_IDS = {
     'TAO': 'bittensor',
     'FLUX': 'flux',
     'CLORE': 'clore-ai',
+    'BTC': 'bitcoin',
 }
 
 

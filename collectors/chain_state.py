@@ -269,6 +269,58 @@ def poll_nock(ns):
     return ok
 
 
+def poll_btc(ns):
+    """BTC baseline cardinal data — free, no key, no node.
+
+    blockchain.info/stats: price, hashrate, difficulty, fees,
+    miners revenue, next retarget, block count in ONE call.
+    Emission is deterministic (3.125 BTC/block post-halving).
+    Blockstream tip is the height cross-check (mempool.space blocked
+    from this VPS, verified 2026-09-23).
+    """
+    ok = 0
+    st = fetch_json('https://api.blockchain.info/stats',
+                    source_id='blockchaininfo-stats', chain_id='btc')
+    if st and isinstance(st, dict):
+        store_normalized('chain_snapshot', 'btc', {
+            'height': st.get('n_blocks_total'),
+            'difficulty': st.get('difficulty'),
+            'network_hashrate': st.get('hash_rate'),
+            'hashrate_unit': 'H/s (blockchain.info estimate)',
+            'price_usd': st.get('market_price_usd'),
+            'fees_btc_day': (st.get('total_fees_btc') or 0) / 1e8,
+            'miners_revenue_usd': st.get('miners_revenue_usd'),
+            'next_retarget': st.get('nextretarget'),
+            'minutes_between_blocks': st.get('minutes_between_blocks'),
+            'source_role': 'derived', 'source_id': 'blockchaininfo-stats'})
+        e = ns.setdefault('BTC', {})
+        e.update({
+            'height': st.get('n_blocks_total'),
+            'difficulty': st.get('difficulty'),
+            'network_hashrate': st.get('hash_rate'),
+            'price_usd': st.get('market_price_usd'),
+            'fees_btc_day': round((st.get('total_fees_btc') or 0) / 1e8, 2),
+            'miners_revenue_usd': st.get('miners_revenue_usd'),
+            'next_retarget': st.get('nextretarget'),
+            'daily_emission': 450.0,
+            'emission_source': 'deterministic: 3.125 BTC/block x ~144 blocks/day (post-halving)',
+            'as_of': utcnow()})
+        ok += 1
+    tip = fetch_json('https://blockstream.info/api/blocks/tip/height',
+                     source_id='blockstream', chain_id='btc')
+    if tip is not None:
+        try:
+            tip_h = int(tip) if not isinstance(tip, dict) else None
+        except (TypeError, ValueError):
+            tip_h = None
+        if tip_h:
+            e = ns.setdefault('BTC', {})
+            e['tip_height_crosscheck'] = tip_h
+            e['tip_source'] = 'blockstream.info (height cross-check)'
+            ok += 1
+    return ok
+
+
 def run_pass(ns):
     """One pass over all chains. Callers must pass a FRESHLY LOADED ns
     each time (never a long-lived in-memory copy) — other writers
@@ -280,7 +332,8 @@ def run_pass(ns):
         ns.setdefault(sym, {}).update(base)
     stats = {}
     for name, fn in (('qubic', poll_qubic), ('xmr', poll_xmr),
-                     ('kas', poll_kas), ('akt', poll_akt), ('nock', poll_nock)):
+                      ('kas', poll_kas), ('akt', poll_akt), ('nock', poll_nock),
+                      ('btc', poll_btc)):
         try:
             stats[name] = fn(ns)
         except Exception as e:

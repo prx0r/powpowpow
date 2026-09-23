@@ -7,7 +7,7 @@ Live, continuously-collecting compute economics garden. Every derived number lin
 - pow-venue-l2: REST polls 19 markets CoinEx+Gate+MEXC every 60s
 - pow-venue-ws: WebSocket tick archive for same venues
 - pow-safetrade-l2: SafeTrade WS depth+trades (25 streams, all tracked markets)
-- pow-chain-state: QUBIC RPC + XMR localmonero + KAS + Nockscan every 5min
+- pow-chain-state: QUBIC RPC + XMR localmonero + KAS + Nockscan + BTC (blockchain.info/Blockstream) every 5min
 - pow-qubic-epoch: epoch engine every 10min (burn schedule, net emission)
 - pow-qubic-computors: computor set + Doge tasks every hour
 - pow-daily-state: STATE rollup + Parquet compact + trim at 00:30 UTC
@@ -21,8 +21,8 @@ Localhost :8795, token-gated (token in `~/.config/powpowpow/site.env`). Public p
 
 ## API + MCP (what powops can query)
 
-REST (token-gated): `/api/health /api/live /api/signals /api/factors /api/state /api/state_series /api/history /api/cards /api/cards_history /api/chain /api/analysis /api/analytics /api/xmr_full /api/opportunity /api/epoch_series /api/brief /api/page /api/ops`, POST `/api/chat`.
-MCP stdio (12 tools, via `opencode.json` → `mcp_server.py`): get_asset_state, get_signals, get_factors, compare_compute_routes, get_miner_pressure, get_brief, get_price_history, get_health, get_live, get_xmr_full, get_opportunity, recommend_homelab. NOTE: MCP is stdio — do NOT run under systemd (`pow-mcp.service` disabled on purpose).
+REST (token-gated): `/api/health /api/live /api/signals /api/factors /api/state /api/state_series /api/history /api/cards /api/cards_history /api/chain /api/analysis /api/analytics /api/xmr_full /api/opportunity /api/btc /api/epoch_series /api/brief /api/page /api/ops`, POST `/api/chat`.
+MCP stdio (13 tools, via `opencode.json` → `mcp_server.py`): get_asset_state, get_signals, get_factors, compare_compute_routes, get_miner_pressure, get_brief, get_price_history, get_health, get_live, get_xmr_full, get_opportunity, get_btc_context, recommend_homelab. NOTE: MCP is stdio — do NOT run under systemd (`pow-mcp.service` disabled on purpose).
 
 ## Quick commands
 
@@ -70,7 +70,9 @@ Scripts:
 - compact_stream.py: Parquet compactor 25-30x
 - trim_jsonl.py: 7-day hot window
 - tardis_drip.py: monthly free-tier Tardis
-- load_cg_history.py: CoinGecko 365d price
+- load_cg_history.py: CoinGecko 365d price (XMR/QUBIC/BTC loaded)
+- load_btc_history.py: 1yr BTC chain history via blockchain.info charts (hashrate/difficulty/revenue/fees, no key)
+- btc_context.py: M0 baseline — rolling BTC betas, residuals, security spend, content hooks
 - collect_releases.py: GitHub releases + commits
 - powdaily.py: daily brief generator
 - homelab.py: detect this machine + recommend from opportunity set (XMRBot-flow entry, read-only)

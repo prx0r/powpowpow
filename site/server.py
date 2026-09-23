@@ -434,6 +434,12 @@ class Handler(BaseHTTPRequestHandler):
                 except OSError:
                     pass
             return self._send({'live': live, 'heartbeats': hb})
+        if u.path == '/api/btc':
+            try:
+                ctx = json.load(open(os.path.join(ROOT, 'warehouse', 'btc_context.json')))
+            except (OSError, ValueError):
+                ctx = {'error': 'no btc context (run scripts/btc_context.py)'}
+            return self._send(ctx)
         if u.path == '/api/opportunity':
             hw, date = arg('hardware').upper(), arg('date')
             rows = _rows('opportunity_snapshot')
