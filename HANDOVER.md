@@ -6,6 +6,7 @@ Live, continuously-collecting compute economics garden. Every derived number lin
 
 - pow-venue-l2: REST polls 19 markets CoinEx+Gate+MEXC every 60s
 - pow-venue-ws: WebSocket tick archive for same venues
+- pow-safetrade-l2: SafeTrade WS depth+trades (25 streams, all tracked markets)
 - pow-chain-state: QUBIC RPC + XMR localmonero + KAS + Nockscan every 5min
 - pow-qubic-epoch: epoch engine every 10min (burn schedule, net emission)
 - pow-qubic-computors: computor set + Doge tasks every hour
@@ -20,8 +21,9 @@ pow.moltwork.com, token-gated. Black/white/grey only, chunky borders, monospace 
 
 ## Quick commands
 
-Check collectors: systemctl --user status pow-venue-l2 pow-chain-state
+Check collectors: systemctl --user status pow-venue-l2 pow-chain-state pow-safetrade-l2
 View logs: journalctl --user -u pow-chain-state -n 20
+View SafeTrade logs: journalctl --user -u pow-safetrade-l2 -n 20
 Run tests: /home/ubuntu/.venvs/powpowpow/bin/python -m pytest tests/ -q
 Rebuild state: /home/ubuntu/.venvs/powpowpow/bin/python scripts/build_daily_state.py --date 2026-09-19
 Compact parquet: /home/ubuntu/.venvs/powpowpow/bin/python scripts/compact_stream.py --all-seeds
@@ -74,7 +76,7 @@ Warehouse (NOT in git): raw/venue/, normalized/, parquet/, analytics JSONs
 
 ## What is blocked (needs action)
 
-- SafeTrade: REST + WS return HTTP 403 (geo-block from this VPS). Code ready, needs unblocked box or proxy. Domain was set up as fa87b046 tunnel.
+- SafeTrade: ~~REST + WS return HTTP 403 (geo-block from this VPS).~~ **FIXED 2026-09-23.** Issue was (1) `PowPowPow/1.0` User-Agent triggering Cloudflare bot detection — fixed to browser UA in core.py, (2) missing `ssl=ssl_ctx` in websockets.connect, (3) `core/` package shadowing `core.py` causing silent import fallback to None. Collector running as `pow-safetrade-l2` systemd service.
 - pearld: full node resyncing, paused during disk triage. Data extractable once synced. Needed for PRL miner graph.
 - KAS emission: supply-delta measurement running but units unconfirmed on hashrate endpoint
 - AKT/NOS/CLORE rental demand: endpoints unreachable from this box (DNS/SSL failures)

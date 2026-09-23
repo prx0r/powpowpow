@@ -36,8 +36,17 @@ sys.path.insert(0, BASE_DIR)
 
 try:
     from core import _archive_raw, store_normalized, utcnow, fetch_json
-except ImportError:  # replay tests without repo deps
-    _archive_raw = store_normalized = utcnow = fetch_json = None
+except (ImportError, AttributeError):
+    # core/ package shadows core.py — load it directly
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location('_core_py',
+            os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'core.py'))
+    _core = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_core)
+    _archive_raw = _core._archive_raw
+    store_normalized = _core.store_normalized
+    utcnow = _core.utcnow
+    fetch_json = _core.fetch_json
 
 try:
     import websockets
@@ -46,8 +55,11 @@ except ImportError:
 
 WS_URL = "wss://safe.trade/api/v2/websocket/public"
 WS_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-    "Origin": "https://safetrade.com",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "Origin": "https://safe.trade",
+    "Sec-WebSocket-Key": "dGhlIHNhbXBsZSBub25jZQ==",
+    "Sec-WebSocket-Version": "13",
+    "Sec-WebSocket-Protocol": "chat, superchat",
 }
 # Seed universe (SafeTrade market ids are lowercase-concatenated).
 SEED_MARKETS = ['qubicusdt', 'prlusdt', 'xmrusdt', 'nockusdt', 'kasusdt',
@@ -261,7 +273,8 @@ class L2Archival:
             return
         for m in markets:
             try:
-                data = fetch_json(
+                data = await asyncio.to_thread(
+                    fetch_json,
                     f'https://safe.trade/api/v2/trade/public/markets/{m}/depth',
                     source_id='safetrade-rest-checkpoint', chain_id='safetrade')
                 if data and store_normalized:
@@ -295,9 +308,11 @@ class L2Archival:
         try:
             while self.running:
                 try:
+                    import ssl as _ssl
                     async with websockets.connect(
                             WS_URL, additional_headers=WS_HEADERS,
-                            ping_interval=20, ping_timeout=10,
+                            ssl=_ssl.create_default_context(),
+                            ping_interval=None, close_timeout=5,
                             open_timeout=15) as ws:
                         self.ws = ws
                         print("[CONNECTED] SafeTrade WS")
@@ -308,7 +323,7 @@ class L2Archival:
                                                   "streams": streams}))
                         print(f"[SUBSCRIBED] {len(streams)} streams")
                         backoff = 5
-                        await self.rest_checkpoint(self.markets)
+                        asyncio.create_task(self.rest_checkpoint(self.markets))
                         while self.running:
                             try:
                                 msg = await asyncio.wait_for(ws.recv(), timeout=1.0)

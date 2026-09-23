@@ -260,7 +260,7 @@ Disclosed: limit add/cancel flow unmeasured at daily grain.
 
 | Blocker | Status | Unblocks |
 |---------|--------|----------|
-| SafeTrade geo-block | 403 from this VPS | venue-of-truth for PRL, QUBIC |
+| SafeTrade geo-block | **FIXED 2026-09-23** — was Cloudflare bot detection, not geo | venue-of-truth for PRL, QUBIC |
 | pearld sync | paused (disk triage) | PRL pool->miner->exchange graph |
 | KAS hashrate units | unconfirmed | KAS money math |
 | AKT/NOS/CLORE endpoints | unreachable from box | rental demand half |

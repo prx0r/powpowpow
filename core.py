@@ -16,6 +16,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RAW_DIR = os.path.join(BASE_DIR, 'warehouse', 'raw')
 os.makedirs(RAW_DIR, exist_ok=True)
 
+# Proxy support: set POW_PROXY=socks5h://127.0.0.1:9050 for Tor
+POW_PROXY = os.environ.get('POW_PROXY')
+if POW_PROXY:
+    try:
+        import socks  # noqa: F401 — enables SOCKS support in requests
+    except ImportError:
+        POW_PROXY = None
+
 # ============================================================
 # UTC-ONLY TIMESTAMP HELPER
 # ============================================================
@@ -111,14 +119,16 @@ def fetch_json(
         return parsed
 
     try:
+        proxies = {'http': POW_PROXY, 'https': POW_PROXY} if POW_PROXY else None
         resp = requests.get(
             url,
             params=params,
             headers={
-                'User-Agent': 'PowPowPow/1.0',
-                'Accept': 'application/json'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                'Accept': 'application/json',
             },
-            timeout=timeout
+            timeout=timeout,
+            proxies=proxies,
         )
 
         response_received = utcnow()

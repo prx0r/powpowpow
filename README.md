@@ -62,3 +62,4 @@ python -m pytest tests/ -q
 - Raw: append-only forever (auto-archived)
 - Chain bytes: extract-and-release (never hoarded)
 - Everything else: derived tables kept forever (KBs)
+- Off-box: R2 bucket `powpowpow-warehouse` (daily upload via `pow-r2-upload.timer`)

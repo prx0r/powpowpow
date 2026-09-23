@@ -99,13 +99,11 @@
 - [x] `scripts/compile_coins.py` → `pages/<SYM>.md` from registry +
   STATE + signals + factors. 15 pages. Rerun anytime.
 
-## 6. SafeTrade (blocked on egress, ready to run)
+## 6. SafeTrade — DONE (2026-09-23)
 
-- [x] `collectors/l2_archival.py` gap-safe, replay-verified
-  (parse/gap/discovery/backfill-proof). Needs unblocked box or proxy;
-  rsync `warehouse/` back here.
-- [x] Vault creds verified retrievable; signed requests still geo-403
-  (IP-level block, auth can't fix).
+- [x] Root cause: (1) `PowPowPow/1.0` UA → Cloudflare 403, (2) missing `ssl=ssl_ctx` in ws.connect, (3) `core/` pkg shadowing `core.py` → silent None import
+- [x] `collectors/l2_archival.py` running as systemd `pow-safetrade-l2`
+- [x] REST market list + WS depth/trades + REST depth checkpoints all live
 
 ## 7. Autoassigner (last — highest liability)
 
