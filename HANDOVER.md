@@ -82,6 +82,7 @@ Scripts:
 - load_btc_history.py: 1yr BTC chain history via blockchain.info charts (hashrate/difficulty/revenue/fees, no key)
 - backfill_btc_trades.py: BTC trade-flow history via Binance Vision daily aggTrades (hourly flow_bars; monthly zips stall on this egress, daily works)
 - btc_context.py: M0 baseline — rolling BTC betas, residuals, security spend, content hooks
+- btc_mining_backtest.py: BTC mining features vs 7d/30d forwards (in-sample, no recommendation)
 - collect_releases.py: GitHub releases + commits
 - powdaily.py: daily brief generator
 - homelab.py: detect this machine + recommend from opportunity set (XMRBot-flow entry, read-only)

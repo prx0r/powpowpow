@@ -22,7 +22,8 @@
 
 - [ ] **T9. Seesaw panel scaffold** (devmap step 3). Single canonical research table joining price/capacity/economics/liquidity. Thin with 1d STATE — build the shape now, fill with time.
 - [ ] **T10. M0-vs-M1 test** (devmap step 4, todo #20). BTC betas exist (`btc_context.py`); wire into factors and run the first incremental-value regression. First empirical claim the garden can make.
-- [ ] **T11. Backtest unlock watch.** Refuses until 2+ STATE days (~Sep 25 minimum, meaningful ~mid-Oct). No action — calendar item. Combined XMR/QUBIC/BTC once depth exists.
+- [x] **T11a. BTC mining backtest** (`scripts/btc_mining_backtest.py`, 364 joint days). revenue_wow→7d corr +0.29; hashprice→30d corr +0.41 (price-derived, disclosed); fee_share negative both horizons; difficulty/hashrate WoW ≈ 0. In-sample only, no recommendation.
+- [ ] **T11b. Backtest unlock watch.** Signal-bucket backtest refuses until 2+ STATE days (~Sep 25 minimum, meaningful ~mid-Oct). XMR/QUBIC mining-feature backtests blocked until chain history accumulates (hours today). No action — calendar item. Combined XMR/QUBIC/BTC once depth exists.
 - [ ] **T12. OFI/two_timescale rewire** (TODO §3). Stale file inputs → STATE tables. Queued behind panel (needs the same shape).
 - [ ] **T13. Hardware benchmarks measured** (todo #16). Registry still theoretical 09-18 seeds. First real measurement should come from a homelab box running the recommend loop, not a scraper.
 - [ ] **T14. BTC pool distribution depth.** Have 5d top3/HHI; miningpoolstats.io probe for per-pool history. Cheap probe, do when touching pools.
