@@ -48,6 +48,7 @@ def load_coin(sym, cg_id, days=365):
         print(f"  [{sym}] no data (wrong id? rate limit?)")
         return 0
     vols = {int(t): v for t, v in (data.get('total_volumes') or [])}
+    mcaps = {int(t): v for t, v in (data.get('market_caps') or [])}
     n = 0
     for t_ms, price in data['prices']:
         day = datetime.fromtimestamp(t_ms / 1000, tz=timezone.utc).strftime('%Y-%m-%d')
@@ -56,6 +57,7 @@ def load_coin(sym, cg_id, days=365):
             'exchange_time': datetime.fromtimestamp(
                 t_ms / 1000, tz=timezone.utc).isoformat(),
             'close_usd': price, 'volume_usd': vols.get(int(t_ms)),
+            'market_cap_usd': mcaps.get(int(t_ms)),
             'source_role': 'derived', 'source_id': 'coingecko',
         }, event_time=day)
         n += 1

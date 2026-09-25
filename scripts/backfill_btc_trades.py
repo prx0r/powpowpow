@@ -60,6 +60,28 @@ def days_in_month(ym):
     return [f"{ym}-{d:02d}" for d in range(1, calendar.monthrange(y, m)[1] + 1)]
 
 
+def existing_hours():
+    """(venue, symbol, hour) keys already stored — reruns skip them."""
+    import glob as _glob
+    import json as _json
+    out = set()
+    for f in _glob.glob(os.path.join(
+            BASE_DIR, 'warehouse', 'normalized', 'flow_bars',
+            'chain=*', 'date=*', 'hour=*.jsonl')):
+        try:
+            with open(f) as fh:
+                for line in fh:
+                    try:
+                        r = _json.loads(line)
+                    except ValueError:
+                        continue
+                    if r.get('hour'):
+                        out.add((r.get('venue'), r.get('symbol'), r['hour']))
+        except OSError:
+            continue
+    return out
+
+
 def fetch_daily(day, tmpdir, retries=3):
     import requests
     name = f'BTCUSDT-aggTrades-{day}.zip'
@@ -150,15 +172,23 @@ def main():
         if m == 0:
             m, y = 12, y - 1
         start = f"{y:04d}-{m:02d}"
-    total_bars = total_trades = total_days = 0
+    total_bars = total_trades = total_days = skipped_days = 0
+    have = existing_hours()
+    print(f"  [SKIP] {len(have)} hours already stored")
     with tempfile.TemporaryDirectory() as tmpdir:
         for ym in month_range(start, args.months):
             for day in days_in_month(ym):
+                day_hours = {f"{day}T{h:02d}" for h in range(24)}
+                if all(('binance-archive', 'BTCUSDT', h) in have for h in day_hours):
+                    skipped_days += 1
+                    continue
                 zp = fetch_daily(day, tmpdir)
                 if not zp:
                     continue
                 bars, n = parse_bars(zp)
                 for hour, b in sorted(bars.items()):
+                    if ('binance-archive', 'BTCUSDT', hour) in have:
+                        continue
                     tot = b['buy_n'] + b['sell_n']
                     store_normalized('flow_bars', 'binance-archive', {
                         'venue': 'binance-archive', 'symbol': 'BTCUSDT',
@@ -177,7 +207,8 @@ def main():
                 total_trades += n
                 if total_days % 7 == 0:
                     print(f"  ... {total_days}d {len(bars)}h bars ({day})")
-    print(f"[BTC BACKFILL] {total_days}d {total_bars} bars, {total_trades:,} trades at {utcnow()}")
+    print(f"[BTC BACKFILL] {total_days}d {total_bars} bars, {total_trades:,} trades "
+          f"({skipped_days}d skipped, already stored) at {utcnow()}")
 
 
 if __name__ == '__main__':

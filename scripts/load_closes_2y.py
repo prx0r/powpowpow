@@ -58,6 +58,7 @@ def store(sym, date, close, volume, source):
 
 
 def load_kraken(sym, pair):
+    """Daily gap-fill (interval=1440). See load_kraken_hourly for grain."""
     have = existing_dates(sym)
     data = fetch_json('https://api.kraken.com/0/public/OHLC',
                       params={'pair': pair, 'interval': 1440},
@@ -78,6 +79,38 @@ def load_kraken(sym, pair):
         if day not in have:
             n += store(sym, day, close, vol, 'kraken-ohlc')
     print(f"  [{sym}] kraken +{n} gap-fill closes ({len(rows)} candles scanned)")
+    return n
+
+
+def load_kraken_hourly(sym, pair):
+    """Recent ~30d hourly closes (interval=60, 720 candles). Hour-grain
+    rows for event studies; daily consumers dedupe by date."""
+    data = fetch_json('https://api.kraken.com/0/public/OHLC',
+                      params={'pair': pair, 'interval': 60},
+                      source_id='kraken-ohlc-1h', chain_id=sym.lower())
+    if not isinstance(data, dict):
+        print(f"  [{sym}] kraken hourly fetch failed")
+        return 0
+    key = [k for k in (data.get('result') or {}) if k != 'last']
+    rows = data['result'][key[0]] if key else []
+    n = 0
+    for r in rows:
+        try:
+            ts = datetime.fromtimestamp(int(r[0]), tz=timezone.utc)
+            close = float(r[4])
+        except (IndexError, ValueError, TypeError):
+            continue
+        if not close:
+            continue
+        store_normalized('price_history', sym.lower(), {
+            'symbol': sym, 'date': ts.strftime('%Y-%m-%d'),
+            'exchange_time': ts.isoformat(),
+            'close_usd': close,
+            'source_role': 'hour grain for event studies',
+            'source_id': 'kraken-ohlc-1h',
+        }, event_time=ts.strftime('%Y-%m-%d'))
+        n += 1
+    print(f"  [{sym}] kraken-1h +{n} hourly closes")
     return n
 
 
@@ -116,8 +149,10 @@ def main():
                 total += load_gate_qubic()
             elif sym == 'XMR':
                 total += load_kraken('XMR', 'XMRUSD')
+                total += load_kraken_hourly('XMR', 'XMRUSD')
             elif sym == 'BTC':
                 total += load_kraken('BTC', 'XBTUSD')
+                total += load_kraken_hourly('BTC', 'XBTUSD')
             else:
                 print(f"  [{sym}] no 2yr source mapped")
         except Exception as e:
