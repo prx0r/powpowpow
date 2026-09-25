@@ -1,3 +1,7 @@
+> **NEW AGENT?** Start at `ONBOARDING.md` — what actually runs, how it is
+> monitored (`/powops`), the commands you need, traps, and definition of done.
+> This file supplies the binding rules only.
+
 > **STALE / SAFETY 2026-09-25 — the Cloudflare credential paths below do not
 > exist.** `/home/box/Documents/safe/cloudflare3`, `/home/box/cloudflare` and
 > every `TOKEN=$(cat /home/box/...)` block are dead: those files are not on
