@@ -19,8 +19,51 @@ import os
 from datetime import datetime, date
 from typing import Dict, List, Optional
 
-MANIFEST_DIR = '/home/box/powpowpow/warehouse/manifests'
-WAREHOUSE_DIR = '/home/box/powpowpow/warehouse'
+try:
+    from core import classify_recoverability  # noqa: E402
+except (ImportError, AttributeError):
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location(
+        '_core_py', os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), 'core.py'))
+    _core = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_core)
+    classify_recoverability = _core.classify_recoverability
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+WAREHOUSE_DIR = os.path.join(BASE_DIR, 'warehouse')
+MANIFEST_DIR = os.path.join(WAREHOUSE_DIR, 'manifests')
+
+LAYER_BY_RECOVERABILITY = {
+    'ephemeral': 'ephemeral_archive',
+    'reconstructable': 'canonical_backfill',
+    'derived': 'derived',
+    'unknown': 'unknown',
+}
+
+
+def _layer_for_record(table, record, fallback_source_id=None):
+    """Layer of one warehouse object, from its recoverability tag.
+
+    Raw envelopes and normalized rows carry `recoverability` directly; rows
+    written before that tag existed fall back to the source/table registry.
+    """
+    value = None
+    if isinstance(record, dict):
+        value = record.get('recoverability') or classify_recoverability(
+            table, record.get('source_id') or fallback_source_id)
+    return LAYER_BY_RECOVERABILITY.get(value, 'unknown')
+
+
+def _first_jsonl_record(path):
+    try:
+        with open(path) as fh:
+            for line in fh:
+                if line.strip():
+                    return json.loads(line)
+    except (OSError, ValueError):
+        pass
+    return None
 
 
 def _hash_file(filepath: str) -> str:
@@ -68,19 +111,9 @@ def count_warehouse_objects() -> Dict[str, int]:
         if 'manifests' in root or '__pycache__' in root:
             continue
 
-        layer = 'unknown'
         rel = os.path.relpath(root, WAREHOUSE_DIR)
-        if rel.startswith('canonical_backfill'):
-            layer = 'canonical_backfill'
-        elif rel.startswith('ephemeral_archive'):
-            layer = 'ephemeral_archive'
-        elif rel.startswith('knowledge'):
-            layer = 'knowledge'
-        elif rel.startswith('derived'):
-            layer = 'derived'
-
-        if layer not in counts['by_layer']:
-            counts['by_layer'][layer] = {'files': 0, 'rows': 0, 'bytes': 0}
+        parts = [] if rel == '.' else rel.split(os.sep)
+        table = parts[1] if len(parts) > 1 and parts[0] == 'normalized' else None
 
         for f in files:
             fp = os.path.join(root, f)
@@ -89,23 +122,37 @@ def count_warehouse_objects() -> Dict[str, int]:
             except OSError:
                 continue
 
-            if f.endswith('.json'):
+            layer = 'unknown'
+            if parts and parts[0] == 'knowledge':
+                layer = 'knowledge'
+            elif f.endswith('.json'):
+                try:
+                    with open(fp) as fh:
+                        layer = _layer_for_record(None, json.load(fh))
+                except (OSError, ValueError):
+                    layer = 'unknown'
                 counts['raw_files'] += 1
                 counts['raw_bytes'] += size
-                counts['by_layer'][layer]['files'] += 1
-                counts['by_layer'][layer]['bytes'] += size
             elif f.endswith('.jsonl'):
+                layer = _layer_for_record(table, _first_jsonl_record(fp))
                 counts['jsonl_files'] += 1
                 counts['jsonl_bytes'] += size
-                counts['by_layer'][layer]['files'] += 1
-                counts['by_layer'][layer]['bytes'] += size
                 try:
                     with open(fp) as fh:
                         rows = sum(1 for line in fh if line.strip())
                     counts['jsonl_rows'] += rows
+                    counts['by_layer'].setdefault(
+                        layer, {'files': 0, 'rows': 0, 'bytes': 0})
                     counts['by_layer'][layer]['rows'] += rows
-                except Exception:
+                except OSError:
                     pass
+            else:
+                continue
+
+            bucket = counts['by_layer'].setdefault(
+                layer, {'files': 0, 'rows': 0, 'bytes': 0})
+            bucket['files'] += 1
+            bucket['bytes'] += size
 
     return counts
 

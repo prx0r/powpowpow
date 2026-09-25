@@ -174,6 +174,28 @@ def discover_seed_markets():
 # Live archival
 # ---------------------------------------------------------------------------
 
+def tracked_ticker_rows(payload, tracked):
+    """Flatten a venue ticker payload down to the markets we actually keep.
+
+    SafeTrade `global.tickers` arrives as {market: ticker} covering every
+    listing; storing it whole costs ~29KB/row for data nothing reads.
+    """
+    tracked_set = {str(m).lower() for m in tracked}
+    if isinstance(payload, dict):
+        pairs = list(payload.items())
+    elif isinstance(payload, list):
+        pairs = [(t.get('market') or t.get('id') or '', t)
+                 for t in payload if isinstance(t, dict)]
+    else:
+        pairs = []
+    rows = []
+    for market, ticker in pairs:
+        market = str(market).lower()
+        if market in tracked_set and isinstance(ticker, dict):
+            rows.append((market, ticker))
+    return rows
+
+
 class L2Archival:
     def __init__(self):
         self.running = False
@@ -261,22 +283,24 @@ class L2Archival:
                         'aggressor_side': side, 'raw_event_id': raw_id,
                     })
         elif entry['kind'] == 'tickers':
-            # Autonomous discovery: new USDT markets join the subscription.
-            payload = entry['payload']
-            tickers = payload if isinstance(payload, list) else [payload]
-            for t in tickers:
-                if not isinstance(t, dict):
-                    continue
-                mid = t.get('market') or t.get('id') or ''
-                if mid and mid not in self.markets and mid.endswith('usdt'):
-                    self.markets.append(mid)
-                    self.stats.setdefault(mid, {'depth': 0, 'trades': 0, 'gaps': 0})
-            if store_normalized:
-                store_normalized('ticker', 'safetrade', {
-                    'venue': 'safetrade', 'receive_time': receive_time,
-                    'snapshot_kind': 'ws_tick', 'tickers': tickers,
-                    'raw_event_id': raw_id,
-                })
+            for market, ticker in tracked_ticker_rows(entry['payload'], self.markets):
+                self.stats.setdefault(
+                    market, {'depth': 0, 'trades': 0, 'gaps': 0})
+                if store_normalized:
+                    store_normalized('ticker', 'safetrade', {
+                        'venue': 'safetrade', 'symbol': market,
+                        'receive_time': receive_time,
+                        'snapshot_kind': 'ws_tick',
+                        'last': ticker.get('last'),
+                        'volume': ticker.get('volume'),
+                        'amount': ticker.get('amount'),
+                        'high': ticker.get('high'),
+                        'low': ticker.get('low'),
+                        'open': ticker.get('open'),
+                        'avg_price': ticker.get('avg_price'),
+                        'price_change_percent': ticker.get('price_change_percent'),
+                        'raw_event_id': raw_id,
+                    })
 
     async def rest_checkpoint(self, markets):
         """REST depth snapshot per market to close any WS gap (archived raw)."""

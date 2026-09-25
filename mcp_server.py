@@ -6,7 +6,7 @@ live cards, briefs), never stale snapshots. Every answer carries
 provenance (record IDs, versions, dates).
 
 Transport: MCP stdio (FastMCP). Run:
-    /home/ubuntu/.venvs/powpowpow/bin/python mcp_server.py
+    /usr/bin/python3 mcp_server.py
 Wire into any MCP client as a stdio server with that command.
 """
 
@@ -19,7 +19,10 @@ from datetime import datetime, timezone
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
 
-from mcp.server.fastmcp import FastMCP  # noqa: E402
+try:
+    from fastmcp import FastMCP  # noqa: E402
+except ImportError:
+    from mcp.server.fastmcp import FastMCP  # noqa: E402
 
 mcp = FastMCP("powpowpow")
 

@@ -82,6 +82,38 @@ def raw_event_id(source_id: str, endpoint: str, observed_at: str, payload_hash: 
     return hashlib.sha256(key.encode('utf-8')).hexdigest()[:16]
 
 # ============================================================
+# RECOVERABILITY — backfill.md doctrine, made machine-readable
+# ============================================================
+
+# Backfillable public endpoints: re-fetch whenever needed (backfill.md).
+# Prefix match on source_id. Everything else defaults to 'ephemeral',
+# because unknown sources are assumed to vanish.
+RECONSTRUCTABLE_SOURCE_PREFIXES = (
+    'coingecko', 'kraken-ohlc', 'coinex-klines', 'gate-candles',
+    'blockchaininfo-charts', 'xmrclub-mining',
+    'qubic-rpc', 'qubic-query', 'qubic-analytics', 'doge-stats',
+)
+
+# Tables that are pure functions of stored rows — recompute, never hoard.
+DERIVED_TABLES = frozenset({'daily_state', 'derived_signal'})
+
+RECOVERABILITY_VALUES = ('ephemeral', 'reconstructable', 'derived', 'unknown')
+
+
+def classify_recoverability(table_name: Optional[str] = None,
+                   source_id: Optional[str] = None) -> str:
+    """Classify one row: ephemeral (vanishes), reconstructable (re-fetch),
+    derived (recompute), or unknown."""
+    if table_name in DERIVED_TABLES:
+        return 'derived'
+    if source_id:
+        sid = str(source_id)
+        for prefix in RECONSTRUCTABLE_SOURCE_PREFIXES:
+            if sid.startswith(prefix):
+                return 'reconstructable'
+    return 'ephemeral'
+
+# ============================================================
 # AUTO-ARCHIVING FETCH
 # ============================================================
 
@@ -225,6 +257,7 @@ def _archive_raw(
     transport: str = 'rest',
     source_role: str = 'raw',
     event_type: Optional[str] = None,
+    recoverability: Optional[str] = None,
 ):
     """Archive raw response to append-only storage.
 
@@ -270,6 +303,8 @@ def _archive_raw(
         'source_version': None,
         'collector_version': '1.0.0',
         'schema_version': '1.0',
+        'recoverability': recoverability or classify_recoverability(
+            source_id=source_id),
         'quality_flags': quality_flags or [],
     }
     
@@ -298,6 +333,7 @@ def store_normalized(
     data: Dict,
     raw_event_id: Optional[str] = None,
     event_time: Optional[str] = None,
+    recoverability: Optional[str] = None,
 ):
     """Store normalized data with lineage back to raw."""
     observed_at = utcnow()
@@ -315,6 +351,8 @@ def store_normalized(
         'normalizer_version': '1.0.0',
         **data,
     }
+    record['recoverability'] = recoverability or classify_recoverability(
+        table_name, data.get('source_id'))
     
     normalized_dir = os.path.join(BASE_DIR, 'warehouse', 'normalized', table_name)
     os.makedirs(normalized_dir, exist_ok=True)
