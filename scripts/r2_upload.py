@@ -231,7 +231,7 @@ class R2Sync:
         local_dir = Path(local_dir).expanduser().resolve()
         now = time.time()
         state = load_state(self.state_path)
-        next_state = {}
+        working = dict(state)
         summary = {
             "eligible": 0,
             "uploaded": 0,
@@ -242,23 +242,25 @@ class R2Sync:
             "failed": 0,
         }
 
-        paths = []
-        for path in local_dir.rglob("*"):
-            if not path.is_file():
-                continue
-            if path.suffix not in EXTENSIONS:
-                continue
-            if ".tmp" in path.name or ".lock" in path.name:
-                continue
-            paths.append(path)
+        def scan():
+            found = []
+            for path in local_dir.rglob("*"):
+                if not path.is_file():
+                    continue
+                if path.suffix not in EXTENSIONS:
+                    continue
+                if ".tmp" in path.name or ".lock" in path.name:
+                    continue
+                found.append(path)
+            return found
 
         def process(path):
             try:
                 age = now - path.stat().st_mtime
-                if age < self.min_age_seconds:
-                    return None
                 relative = path.relative_to(local_dir)
                 key = remote_key(self.prefix, relative)
+                if age < self.min_age_seconds:
+                    return (str(path), key, None, "skipped_young", False, None)
                 retention = self.retention.get(relative.parts[0])
                 force_check = retention is not None and age >= retention
                 entry, status = self.ensure_remote(
@@ -279,7 +281,7 @@ class R2Sync:
                         raise RuntimeError("pre-delete verification failed")
                     path.unlink()
                     deleted = True
-                return (str(path), key, entry, status, deleted)
+                return (str(path), key, entry, status, deleted, None)
             except (
                 BotoCoreError,
                 ClientError,
@@ -287,47 +289,79 @@ class R2Sync:
                 RuntimeError,
                 ValueError,
             ) as exc:
+                try:
+                    relative = path.relative_to(local_dir)
+                    key = remote_key(self.prefix, relative)
+                except ValueError:
+                    key = None
                 return (
                     str(path),
-                    None,
+                    key,
                     None,
                     "failed",
                     False,
                     f"{type(exc).__name__}: {exc}",
                 )
 
+        attempted = set()
         with ThreadPoolExecutor(max_workers=self.workers) as executor:
-            results = list(executor.map(process, sorted(paths)))
+            for pass_index in range(2):
+                pending = []
+                for path in sorted(scan()):
+                    try:
+                        key = remote_key(self.prefix, path.relative_to(local_dir))
+                    except ValueError:
+                        continue
+                    if key in attempted:
+                        continue
+                    attempted.add(key)
+                    pending.append(path)
+                if not pending:
+                    break
+                if pass_index:
+                    print(
+                        f"rescan: {len(pending)} files created during pass 1",
+                        flush=True,
+                    )
+                since_flush = 0
+                for result in executor.map(process, pending):
+                    if result is None:
+                        continue
+                    path_name, key, entry, status, deleted, error = result
+                    if status == "failed":
+                        summary["failed"] += 1
+                        if key:
+                            working.pop(key, None)
+                        print(f"  FAIL {path_name}: {error}", file=sys.stderr)
+                    elif status == "skipped_young":
+                        if key:
+                            attempted.discard(key)
+                        continue
+                    else:
+                        summary["eligible"] += 1
+                        if status == "deferred":
+                            summary["deferred"] += 1
+                            if key:
+                                working.pop(key, None)
+                        else:
+                            summary[status] += 1
+                            if key:
+                                working[key] = entry
+                        if deleted:
+                            summary["deleted"] += 1
+                    since_flush += 1
+                    if since_flush >= 1000:
+                        write_state(self.state_path, working)
+                        print(
+                            f"progress eligible={summary['eligible']} "
+                            f"uploaded={summary['uploaded']} "
+                            f"verified={summary['verified']} "
+                            f"failed={summary['failed']}",
+                            flush=True,
+                        )
+                        since_flush = 0
 
-        for result in results:
-            if result is None:
-                continue
-            if result[3] == "failed":
-                summary["failed"] += 1
-                print(f"  FAIL {result[0]}: {result[5]}", file=sys.stderr)
-                continue
-            _, key, entry, status, deleted = result
-            summary["eligible"] += 1
-            if status == "deferred":
-                summary["deferred"] += 1
-                continue
-            summary[status] += 1
-            if summary["eligible"] % 500 == 0:
-                print(
-                    f"progress eligible={summary['eligible']} "
-                    f"uploaded={summary['uploaded']} "
-                    f"verified={summary['verified']} "
-                    f"failed={summary['failed']}",
-                    flush=True,
-                )
-            if self.verbose and status in {"uploaded", "verified"}:
-                print(f"  {status.upper()} {key}")
-            next_state[key] = entry
-            if deleted:
-                next_state.pop(key, None)
-                summary["deleted"] += 1
-
-        write_state(self.state_path, next_state)
+        write_state(self.state_path, working)
         return summary
 
 

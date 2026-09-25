@@ -19,6 +19,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
 
 from core import utcnow  # noqa: E402
+from signals import chain_symbol  # noqa: E402
 
 CHAINS_DIR = os.path.join(BASE_DIR, 'chains')
 FACTORS_DIR = os.path.join(CHAINS_DIR, 'factors')
@@ -104,17 +105,18 @@ def compute_factors(date=None):
     except OSError:
         _netstate = {}
     for sym, a in sorted(by_sym.items()):
-        fund = fund_all.get(sym, {}) or {}
+        base = chain_symbol(sym)
+        fund = fund_all.get(base, {}) or {}
         emission = fund.get('daily_emission')
-        emission_src = f"chain_fundamentals.json:{sym}.daily_emission" if emission else None
+        emission_src = f"chain_fundamentals.json:{base}.daily_emission" if emission else None
         if not emission:
             # Fallback order mirrors signals.load_emission: live measured
             # deltas first (KAS/AKT supply-delta, BTC deterministic).
-            live = (_netstate.get(sym, {}) or {})
+            live = (_netstate.get(base, {}) or {})
             for key in ('daily_emission_delta', 'daily_emission'):
                 if live.get(key):
                     emission = live[key]
-                    emission_src = f"network_state.json:{sym}.{key}"
+                    emission_src = f"network_state.json:{base}.{key}"
                     break
         price = a['close']
         emission_usd = emission * price if emission and price else None
@@ -124,6 +126,7 @@ def compute_factors(date=None):
             'calculation_version': CALCULATION_VERSION,
             'date': date,
             'symbol': sym,
+            'chain_symbol': base,
             'name': fund.get('name'),
             'chain_type': fund.get('type'),
             'venues': sorted(a['venues']),
@@ -167,9 +170,39 @@ def compute_factors(date=None):
               f"[{','.join(row['venues'])}]")
 
     output_file = os.path.join(FACTORS_DIR, 'cross_chain_factors.json')
+    prior = {}
+    if os.path.exists(output_file):
+        try:
+            with open(output_file) as f:
+                prior = json.load(f)
+        except (OSError, ValueError):
+            prior = {}
+
+    aliases = {}
+    for sym, row in factors.items():
+        base = row.get('chain_symbol')
+        if not base or base == sym:
+            continue
+        preference = 3 if sym.endswith('USDT') else (2 if sym.endswith('USDC') else 1)
+        current = aliases.get(base)
+        if current is None or preference > current[0]:
+            aliases[base] = (preference, row)
+    for base, (_, row) in aliases.items():
+        factors.setdefault(base, dict(row, symbol=base,
+                                      venue_symbol=row.get('symbol')))
+
+    carried = 0
+    for base, row in prior.items():
+        if base in factors or not isinstance(row, dict):
+            continue
+        factors[base] = dict(row, carried_forward=True,
+                             carried_forward_at=row.get('timestamp'))
+        carried += 1
+
     with open(output_file, 'w') as f:
         json.dump(factors, f, indent=2, default=str)
-    print(f"\n[SAVED] {output_file} ({len(factors)} symbols)")
+    print(f"\n[SAVED] {output_file} ({len(factors)} symbols, "
+          f"{len(aliases)} chain aliases, {carried} carried forward)")
     return factors
 
 

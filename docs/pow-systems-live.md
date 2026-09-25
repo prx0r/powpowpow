@@ -52,6 +52,33 @@ Rollups are idempotent: `core.purge_normalized(table, field, value)` removes
 the previous output for that date before rebuilding, so an hourly rerun
 replaces rows instead of duplicating them.
 
+## powops monitoring
+
+`scripts/pipeline_status.py` emits the powops contract (see
+`/root/powstock/POWOPS_INTEGRATION.md`): a heartbeat artifact plus one
+`collector_run`-shaped row per source.
+
+| Artifact | Contract |
+|---|---|
+| `warehouse/powpowpow_heartbeat.json` | `heartbeat_at`, `mode`, `total_records`, `sources_run`, `sources_failed`, `results` |
+| `warehouse/collector_run.json` | `source_id`, `started_at`, `status`, `error`, `duration_seconds`, `source_records_new`, `raw_new` |
+
+Status values follow powops: `ok` · `stale` · `error` · `unknown` · `not_installed`.
+
+Ten sources are tracked: `safetrade_l2`, `chain_state`, `qubic_epoch`,
+`qubic_computors`, `daily_state`, `derived_signals`, `cross_chain_factors`,
+`mining_analytics`, `r2_sync`, `pow_site`.
+
+- `GET /powops` — human page (public, SSE-free, no token)
+- `GET /powops.json` — machine payload, cached 60s
+- Home tab → `PIPELINE` stat links to it
+
+`pow-health.service` runs `pipeline_status.py` **then** `health_check.py`, so a
+dead `pow-daily-state.timer` now fails the 5-minute health check instead of
+passing silently. `health_check.CHECKS` covers `daily_state`,
+`derived_signals`, `factors`, `computor_snapshot`, `pipeline_status` and
+`r2_sync` in addition to collector/analytics freshness.
+
 ## Systemd units (user scope)
 
 | Unit | Role | Schedule |
@@ -64,7 +91,7 @@ replaces rows instead of duplicating them.
 | `pow-mining-analytics.service/.timer` | XMR/QUBIC/BTC context + backtest | every 6 h |
 | `pow-r2-upload.service/.timer` | Verified R2 sync + retention | hourly |
 | `pow-warehouse-compact.service/.timer` | Closed-date Parquet compaction | daily 00:12 UTC |
-| `pow-health.service/.timer` | Freshness checks, fails loudly | every 5 min |
+| `pow-health.service/.timer` | pipeline status + freshness checks, fails loudly | every 5 min |
 | `pow-site.service` | Dashboard origin | always, restart |
 | `pow-cloudflared.service` | Tunnel daemon | always, restart |
 
@@ -103,7 +130,8 @@ Public checks (no token required for reads):
 - `GET https://pow.systems/api/health` → `{"ok": true, …}`.
 - `GET https://pow.systems/api/ticks?symbols=btcusdt,xmrusdt,qubicusdt` → SSE stream.
 - `GET https://pow.systems/api/chain?symbol=XMR|QUBIC|BTC` → 200 with fresh `as_of`.
-- `GET https://pow.systems/api/home` → 200 with `chains`, `ops`, `storage`, `signals`, `state`, `health`.
+- `GET https://pow.systems/api/home` → 200 with `chains`, `ops`, `storage`, `signals`, `state`, `health`, `pipeline`.
+- `GET https://pow.systems/powops` → 200 HTML pipeline page; `/powops.json` → 200 with 10 sources.
 - `POST https://pow.systems/api/chat` without token → 403 (chat remains gated).
 
 ## Troubleshooting

@@ -25,6 +25,7 @@ import json
 import os
 import secrets
 import sys
+import time
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
@@ -397,6 +398,7 @@ def _home():
         'signals': {'today': len(today_rows), 'all': len(signals), 'top': top},
         'state': {'date': today, 'rows': len(states)},
         'health': {'ok': not health_failures, 'failures': health_failures},
+        'pipeline': _powops_payload().get('heartbeat', {}),
     }
 
 
@@ -406,6 +408,78 @@ def _emission(symbol):
         return load_emission(symbol)
     except Exception:
         return None, 'unavailable'
+
+
+_POWOPS_CACHE = {'at': 0.0, 'payload': None}
+POWOPS_STALE = ('error', 'stale', 'unknown', 'not_installed')
+
+
+def _powops_payload():
+    if _POWOPS_CACHE['payload'] is not None and time.time() - _POWOPS_CACHE['at'] < 60:
+        return _POWOPS_CACHE['payload']
+    try:
+        from pipeline_status import collect
+        payload = collect()
+    except Exception as exc:
+        payload = {'heartbeat': {'error': str(exc)[:200]}, 'sources': []}
+    _POWOPS_CACHE['at'] = time.time()
+    _POWOPS_CACHE['payload'] = payload
+    return payload
+
+
+def _esc(value):
+    return (str(value if value is not None else '')
+            .replace('&', '&amp;').replace('<', '&lt;')
+            .replace('>', '&gt;').replace('"', '&quot;'))
+
+
+def _powops_html():
+    payload = _powops_payload()
+    heartbeat = payload.get('heartbeat', {})
+    rows = []
+    for source in payload.get('sources', []):
+        age = source.get('age_seconds')
+        status = source.get('status')
+        rows.append(
+            f"<tr><td><b>{_esc(source.get('source_id'))}</b></td>"
+            f"<td>{_esc(status)}</td>"
+            f"<td>{age if age is not None else '—'}s / "
+            f"{_esc(source.get('max_staleness'))}s</td>"
+            f"<td>{_esc(source.get('unit'))} "
+            f"<span class='dim'>{_esc(source.get('unit_state'))}</span></td>"
+            f"<td class='dim'>{_esc(source.get('error') or '')}</td></tr>")
+    failed = [s for s in payload.get('sources', []) if s.get('status') in POWOPS_STALE]
+    summary = (f"{heartbeat.get('sources_run', 0)} sources · "
+               f"{heartbeat.get('sources_failed', 0)} failing · "
+               f"{heartbeat.get('total_records', 0)} rows in newest partition")
+    state = 'OK' if not failed else f"{len(failed)} NEED ATTENTION"
+    body = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>powops · powpowpow pipeline</title>
+<style>
+*{{box-sizing:border-box;margin:0;padding:0}}
+body{{font:13px/1.5 Arial,sans-serif;background:#fff;color:#111;padding:24px}}
+h1{{font:700 20px/1.1 Arial;margin-bottom:4px}}
+.sub{{color:#555;font-size:11.5px;margin-bottom:14px}}
+.banner{{border:2px solid #111;padding:8px 11px;background:#111;color:#fff;
+ font:700 12px ui-monospace,monospace;letter-spacing:.5px;margin-bottom:14px}}
+table{{width:100%;border-collapse:collapse;font-size:12px}}
+th{{text-align:left;font:700 9px/1 Arial;color:#777;border-bottom:2px solid #111;
+ padding:6px 8px;text-transform:uppercase;letter-spacing:.5px}}
+td{{padding:6px 8px;border-bottom:1px solid #999;font-family:ui-monospace,monospace}}
+.dim{{color:#777;font-size:10.5px}}
+a{{color:#111}}
+</style></head><body>
+<h1>POWOPS · PIPELINE</h1>
+<div class="sub">{_esc(heartbeat.get('heartbeat_at'))} · {_esc(summary)} ·
+<a href="/powops.json">/powops.json</a></div>
+<div class="banner">{_esc(state)}</div>
+<table><tr><th>SOURCE</th><th>STATUS</th><th>AGE / MAX</th>
+<th>UNIT</th><th>ERROR</th></tr>{''.join(rows)}</table>
+<div class="dim">status: ok = fresh within max · stale = older than max ·
+unknown = no usable timestamp · not_installed = no data file and unit inactive</div>
+</body></html>"""
+    return body
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -420,6 +494,8 @@ class Handler(BaseHTTPRequestHandler):
             body = json.dumps(body, default=str).encode()
         elif isinstance(body, str):
             body = body.encode()
+        if 'charset' not in ctype:
+            ctype = ctype + '; charset=utf-8'
         self.send_response(code)
         self.send_header('Content-Type', ctype)
         self.send_header('Content-Length', str(len(body)))
@@ -434,6 +510,10 @@ class Handler(BaseHTTPRequestHandler):
         if u.path in ('/access.html', '/login'):
             return self._send(open(os.path.join(STATIC, 'access.html'), 'rb').read(),
                                'text/html')
+        if u.path in ('/powops', '/powops/'):
+            return self._send(_powops_html(), 'text/html')
+        if u.path == '/powops.json':
+            return self._send(_powops_payload())
 
         if u.path in ('/', '/index.html'):
             return self._send(open(os.path.join(STATIC, 'index.html'), 'rb').read(),

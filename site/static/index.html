@@ -168,6 +168,8 @@ async function home(){
   h+=stat('STATE ROWS',st.rows??'—',st.date||'');
   h+=stat('SIGNALS',sg.today??'—','derived '+st.date);
   h+=stat('HEALTH',hs.ok?'OK':'CHECK',(hs.failures||[]).length?(hs.failures.length+' failing'):'all freshness checks pass');
+  const pl=hd.pipeline||{}, pf=pl.sources_failed||0;
+  h+=`<div class="st"><div class="k">PIPELINE</div><div class="v"><a href="/powops" style="color:inherit">${pf?('CHECK '+pf):'OK'}</a></div><div class="n">${pl.sources_run||0} sources · <a href="/powops">/powops</a></div></div>`;
   h+='</div>';
 
   const mk=Object.values(FACT).filter(f=>f&&f.issuance_usd_24h!=null)

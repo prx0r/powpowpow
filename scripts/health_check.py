@@ -1,15 +1,38 @@
+import glob
 import json
 import os
 import time
 from datetime import UTC, datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+R2_STATE = os.path.expanduser("~/.local/state/powpowpow/r2-sync.json")
 
 CHECKS = [
     ("safetrade", "warehouse/safetrade_l2_heartbeat.json", "heartbeat_at", 300),
     ("chain_state", "warehouse/chain_state_heartbeat.json", "heartbeat_at", 900),
     ("qubic_epoch", "warehouse/qubic_epoch_state.json", "ts", 3600),
     ("network_state", "chains/network_state.json", None, 900),
+    (
+        "daily_state",
+        "warehouse/normalized/daily_state/chain=*/date=*/hour=*.jsonl",
+        "observed_at",
+        4500,
+    ),
+    (
+        "derived_signals",
+        "warehouse/normalized/derived_signal/chain=*/date=*/hour=*.jsonl",
+        "observed_at",
+        4500,
+    ),
+    ("factors", "chains/factors/cross_chain_factors.json", "timestamp", 4500),
+    (
+        "computor_snapshot",
+        "warehouse/normalized/computor_snapshot/chain=qubic/date=*/hour=*.jsonl",
+        "observed_at",
+        5400,
+    ),
+    ("pipeline_status", "warehouse/powpowpow_heartbeat.json", "heartbeat_at", 900),
+    ("r2_sync", "@r2_state", None, 10800),
     ("xmr_analytics", "warehouse/xmr_analytics.json", "computed_at", 43200),
     ("qubic_analytics", "warehouse/qubic_analytics.json", "computed_at", 43200),
     ("btc_context", "warehouse/btc_context.json", "computed_at", 43200),
@@ -31,23 +54,62 @@ def parse_time(value):
     return None
 
 
-def check_file(root, relative, field, max_age_seconds, now):
-    path = os.path.join(root, relative)
-    try:
-        mtime = os.path.getmtime(path)
-    except OSError:
-        return f"{relative} missing"
-    stamp = mtime
-    if field:
+def _resolve(root, relative):
+    if relative == "@r2_state":
+        return R2_STATE if os.path.exists(R2_STATE) else None
+    if "*" in relative:
+        matches = glob.glob(os.path.join(root, relative))
+        if not matches:
+            return None
+        return max(matches, key=os.path.getmtime)
+    path = relative if os.path.isabs(relative) else os.path.join(root, relative)
+    return path if os.path.exists(path) else None
+
+
+def _read_stamp(path, field):
+    if field is None:
+        return os.path.getmtime(path)
+    if path.endswith(".jsonl"):
+        last = None
         try:
             with open(path) as handle:
-                payload = json.load(handle)
-        except (OSError, ValueError):
-            return f"{relative} unreadable"
-        parsed = parse_time(payload.get(field))
-        if parsed is None:
-            return f"{relative} has no usable {field}"
-        stamp = parsed
+                for line in handle:
+                    if line.strip():
+                        last = line
+        except OSError:
+            return None
+        if not last:
+            return None
+        try:
+            payload = json.loads(last)
+        except ValueError:
+            return None
+        return parse_time(payload.get(field))
+    try:
+        with open(path) as handle:
+            payload = json.load(handle)
+    except (OSError, ValueError):
+        return None
+    direct = parse_time(payload.get(field)) if isinstance(payload, dict) else None
+    if direct is not None:
+        return direct
+    if isinstance(payload, dict):
+        found = [
+            parse_time(v.get(field)) for v in payload.values() if isinstance(v, dict)
+        ]
+        found = [value for value in found if value is not None]
+        if found:
+            return max(found)
+    return None
+
+
+def check_file(root, relative, field, max_age_seconds, now):
+    path = _resolve(root, relative)
+    if path is None:
+        return f"{relative} missing"
+    stamp = _read_stamp(path, field)
+    if stamp is None:
+        return f"{relative} has no usable {field}"
     if now - stamp > max_age_seconds:
         return f"{relative} stale by {int(now - stamp)}s"
     return None
