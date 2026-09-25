@@ -36,6 +36,13 @@ SOURCES = (
         3600,
     ),
     (
+        "qubic_stats",
+        "pow-qubic-stats",
+        "warehouse/qubic_stats_heartbeat.json",
+        "heartbeat_at",
+        900,
+    ),
+    (
         "qubic_computors",
         "pow-qubic-computors.timer",
         "warehouse/normalized/computor_snapshot/chain=qubic/date=*/hour=*.jsonl",

@@ -48,7 +48,7 @@ Every normalized row carries `raw_event_id` back to one raw envelope, plus
 
 | Kind | Units | Schedule |
 |---|---|---|
-| services (`Restart=always`, enabled) | `pow-safetrade-l2`, `pow-chain-state`, `pow-site`, `pow-cloudflared` | continuous |
+| services (`Restart=always`, enabled) | `pow-safetrade-l2`, `pow-chain-state`, `pow-qubic-stats`, `pow-site`, `pow-cloudflared` | continuous |
 | timers (enabled) | `pow-health` | every 5 min |
 | | `pow-qubic-epoch` | every 10 min |
 | | `pow-qubic-computors` | hourly :07 |
@@ -70,7 +70,7 @@ Every normalized row carries `raw_event_id` back to one raw envelope, plus
 
 | Route / artifact | Shape |
 |---|---|
-| `GET /powops` | public HTML, 10-source table |
+| `GET /powops` | public HTML, one row per tracked source |
 | `GET /powops.json` | `{heartbeat, sources[]}`, cached 60s |
 | `warehouse/powpowpow_heartbeat.json` | `heartbeat_at`, `mode`, `total_records`, `sources_run`, `sources_failed`, `results` |
 | `warehouse/collector_run.json` | `source_id`, `started_at`, `status`, `error`, `duration_seconds`, `source_records_new`, `raw_new` |
