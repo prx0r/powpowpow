@@ -77,6 +77,16 @@ def price_context(closes):
     return values[-1], percentile(values[-1], window), closes[-1][0]
 
 
+def _exchange_registry():
+    """Cached exchange registry size, for completeness checks."""
+    path = os.path.join(BASE_DIR, "warehouse", "knowledge", "qubic_exchanges.json")
+    try:
+        with open(path) as handle:
+            return json.load(handle).get("exchanges") or []
+    except (OSError, ValueError):
+        return []
+
+
 def qubic_holdings_metrics(stats_rows):
     """Exchange reserves and wealth concentration, from stored snapshots."""
     supply = None
@@ -97,8 +107,10 @@ def qubic_holdings_metrics(stats_rows):
             "version": TRANSFORM_VERSION,
         }]
 
+    expected = len(_exchange_registry())
     out = [exchange_reserve(list(latest.values()),
-                            circulating_supply=supply)]
+                            circulating_supply=supply,
+                            expected_entities=expected or None)]
     concentration = read_table("qubic_wealth_concentration", "qubic")
     concentration.sort(key=lambda row: row.get("observed_at") or "")
     snapshot = concentration[-1] if concentration else None

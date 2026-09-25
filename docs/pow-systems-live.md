@@ -68,6 +68,7 @@ replaces rows instead of duplicating them.
 | Tick quality | `tick_quality_ribbon` | `qubic_stats` snapshots (needs ≥13) |
 | Addresses | `active_address_growth` | `qubic_stats` snapshots |
 | Burns | `burn_epoch_total`, `burn_deviation_vs_schedule`, `burn_concentration_at_epoch_start`, `burn_trickle_rate` | `getEventLogs` `logType=8` |
+| Holdings | `exchange_reserve`, `wealth_concentration`, `exchange_share_of_top_holders` | `static.qubic.org` exchanges × `live/v1/balances`, `/v1/rich-list` |
 | Price fit | `metric_vs_price_corr` | metric series vs daily closes (needs ≥30) |
 
 Every metric carries `n`, `min_n`, `source`, `window` and `version`. When a

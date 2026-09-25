@@ -122,3 +122,15 @@ def test_snapshot_row_helpers():
 
     assert concentration_from_row(None)["refused"] is True
     assert exchange_share_from_row(None)["refused"] is True
+
+
+def test_exchange_reserve_marks_partial_when_incomplete():
+    rows = [{"name": "Gate.io", "balance": 100}]
+    out = exchange_reserve(rows, circulating_supply=1000, expected_entities=3)
+
+    assert out["refused"] is False
+    assert out["partial"] is True
+    assert out["expected_entities"] == 3
+    assert out["missing_entities"] == 2
+    assert "partial" in out["window"]
+    assert "share_of_supply" not in out

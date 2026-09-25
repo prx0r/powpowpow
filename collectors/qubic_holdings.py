@@ -196,8 +196,10 @@ def run_pass(concentration=False):
     stats["exchange_balances"] = "ok" if balances else f"ERR {err}"
     if balances and _exchange_snapshot:
         reserve = exchange_reserve(_exchange_snapshot,
-                                   circulating_supply=supply)
+                                   circulating_supply=supply,
+                                   expected_entities=len(_cached_exchanges))
         stats["exchange_reserve_qu"] = reserve.get("value")
+        stats["exchange_reserve_partial"] = reserve.get("partial")
         stats["exchange_share_of_supply_pct"] = reserve.get(
             "share_of_supply_pct")
 

@@ -30,7 +30,7 @@ def gini(values):
     return round((2 * weighted) / (n * total) - (n + 1) / n, 4)
 
 
-def exchange_reserve(rows, circulating_supply=None):
+def exchange_reserve(rows, circulating_supply=None, expected_entities=None):
     """Total QUs held by labelled exchange wallets, as share of supply."""
     metric = "exchange_reserve"
     usable = [row for row in rows if row.get("balance") is not None]
@@ -47,19 +47,25 @@ def exchange_reserve(rows, circulating_supply=None):
          "share": round(amount / total, 4) if total else None}
         for name, amount in sorted(amounts, key=lambda item: -item[1])
     ]
+    complete = expected_entities is None or len(amounts) >= expected_entities
     extra = {
         "entities": len(amounts),
+        "expected_entities": expected_entities,
+        "partial": not complete,
+        "missing_entities": (max(0, expected_entities - len(amounts))
+                             if expected_entities else 0),
         "largest": breakdown[0]["name"] if breakdown else None,
         "largest_balance": breakdown[0]["balance"] if breakdown else None,
     }
-    if circulating_supply:
+    if circulating_supply and complete:
         extra["circulating_supply"] = round(circulating_supply, 0)
         extra["share_of_supply"] = round(total / circulating_supply, 6)
         extra["share_of_supply_pct"] = round(total / circulating_supply * 100, 3)
     extra["breakdown"] = breakdown
     return result(metric, round(total, 0), "QU", len(amounts),
                   "qubic/static exchanges.json + live/v1/balances",
-                  window="point in time", extra=extra)
+                  window=("point in time" if complete
+                          else "point in time — partial fetch"), extra=extra)
 
 
 def wealth_concentration(balances, top_fractions=TOP_FRACTIONS, min_wallets=100):
