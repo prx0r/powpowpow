@@ -196,3 +196,4 @@ remainder are parked.
 | Live ops, units, tokens, Cloudflare | `docs/pow-systems-live.md` |
 | Moat vs re-fetchable storage policy | `docs/data-moat-policy.md` |
 | This session | `docs/build-progress-2026-09-25.md` |
+| What compounds + how to sell it + next dev steps | `docs/data-product-report-2026-09-25.md` |
