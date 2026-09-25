@@ -54,8 +54,9 @@ RULES:
 6. Explain jargon: "burden" = one day of fresh supply value vs resting bids.
    "spread" = gap between best buy and sell in basis points.
    "flow" = aggressive buy minus sell in a window.
-7. For Qubic: emphasize epoch = 7-day week, burn share = 78.75% since Aug 2026,
-   gross = 1T/week constant, net = what reaches market. Computors earn rewards.
+7. For Qubic: emphasize epoch = 7-day week, burn ceiling = 77.5% max since Epoch 227
+   (Aug 2026, Supply Watcher may run lower), gross = 1T/week constant,
+   effective = 225B/week max, minimum mineable = 181.64B/week. Computors earn rewards.
 8. For XMR: 0.6 XMR per 2-min block forever = 432/day, no halvings.
    Pool flows hidden by design — we measure drip vs demand, not wallet labels."""
 
@@ -133,27 +134,56 @@ def _chat(message):
                 'tools_called': r.get('tools_called', [])}
     except Exception as e:
         return {'reply': _data_answer(message, ctx),
-                'via': f'data-fallback (harness down: {str(e)[:100]})',
+                'via': f'offline-analyst (no LLM on this box: {str(e)[:80]})',
                 'tools_called': []}
 
 
 def _data_answer(message, ctx):
-    m = message.lower()
     sym = ctx.get('symbol', '')
-    net = ctx.get('network', {})
-    sig = ctx.get('signal', {})
+    net = ctx.get('network', {}) or {}
+    sig = ctx.get('signal', {}) or {}
+    fac = ctx.get('factor', {}) or {}
+
+    def _money():
+        em = net.get('daily_emission') or fac.get('daily_emission_native')
+        px = fac.get('price_usd')
+        if em and px:
+            return f"net {em/1e9:.1f}B/d (${em*px:,.0f}/d @ ${px:.8f})"
+        if em:
+            return f"net {em/1e9:.1f}B/d (no price)"
+        return 'emission unmeasured'
+
+    def _burden():
+        b = fac.get('burden_vs_book')
+        return f"burden {b:.2f}x book" if b is not None else 'burden unmeasured'
+
+    def _sig():
+        if sig:
+            return (f"signal {sig.get('signal')} {sig.get('direction')} "
+                    f"({sig.get('strength')}). Drivers: {', '.join(sig.get('drivers', []))}.")
+        return 'no signal yet'
+
     if sym == 'QUBIC' and net:
-        em = net.get('daily_emission')
-        net_str = f"{em/1e9:.1f}B/d" if em else 'unknown'
         return (f"QUBIC: epoch {net.get('epoch')} ({net.get('epoch_progress',0)*100:.1f}%), "
-                f"burn {net.get('burn_rate',0)*100:.2f}%, "
-                f"net {net_str}. "
-                f"{net.get('computors',0)} computors, {net.get('doge_tasks','?')} doge tasks. "
-                f"{net.get('total_transactions',0):,} transactions.")
-    if sig:
-        return f"{sym}: {sig.get('signal')} {sig.get('direction')} {sig.get('strength')}. Drivers: {', '.join(sig.get('drivers', []))}."
-    return (f'No deep data for "{sym}" yet. Try QUBIC or XMR.' if sym else
-            'Ask about a specific coin: QUBIC, XMR, PRL, KAS, NOCK, XEL.')
+                f"burn {net.get('burn_rate',0)*100:.2f}% max, {_money()}. "
+                f"{net.get('computors','?')} computors, {net.get('doge_tasks','?')} doge tasks, "
+                f"{net.get('total_transactions',0):,} tx total. {_burden()}. {_sig()}.")
+    if sym == 'XMR':
+        hr = net.get('network_hashrate')
+        hr_str = f"{hr/1e9:.1f} GH/s" if hr else 'hashrate unmeasured'
+        p2p = net.get('p2pool_miners')
+        p2p_hr = net.get('p2pool_hashrate')
+        p2p_str = ''
+        if p2p_hr and hr:
+            p2p_str = f" p2pool {p2p_hr/hr*100:.1f}% ({p2p} miners)."
+        return (f"XMR: 432/d tail emission forever. {hr_str}.{p2p_str} "
+                f"Fee {net.get('fee_per_kb','?')} atomic/kB. {_money()}. {_burden()}. {_sig()}.")
+    if sym == 'BTC':
+        return (f"BTC: 450/d subsidy (3.125 x ~144 blocks). Height {net.get('height')}, "
+                f"difficulty {net.get('difficulty')}. Security spend = 450 x price. {_sig()}.")
+    if sym:
+        return f"{sym}: {_money()}. {_burden()}. {_sig()}."
+    return 'Ask about a specific coin: QUBIC, XMR, BTC, PRL, KAS, NOCK.'
 
 
 def _analysis(symbol):
@@ -370,22 +400,59 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send({'error': f'no analytics for {sym} (run scripts/{sym.lower()}_analytics.py)'}, code=404)
         if u.path == '/api/ops':
             import subprocess as _sp
-            ops = {'heartbeats': {}, 'services': {}}
-            for name in ('venue_l2_heartbeat.json', 'venue_ws_heartbeat.json',
-                         'chain_state_heartbeat.json', 'safetrade_l2_heartbeat.json'):
+            from datetime import datetime as _dt, timezone as _tz
+
+            def _hb_age(hb):
                 try:
-                    ops['heartbeats'][name] = json.load(open(os.path.join(
-                        ROOT, 'warehouse', name)))
-                except OSError:
-                    pass
+                    ts = _dt.fromisoformat(str(hb.get('heartbeat_at', '')).replace('Z', '+00:00'))
+                    return int((_dt.now(_tz.utc) - ts).total_seconds())
+                except Exception:
+                    return None
+
+            def _hb_summ(hb):
+                if not hb:
+                    return 'no heartbeat'
+                if 'poll_id' in hb:
+                    return (f"poll={hb.get('poll_id')} books={hb.get('books')} "
+                            f"tickers={hb.get('tickers')} trades={hb.get('trades')} "
+                            f"err={hb.get('errors')}")
+                if 'frames' in hb:
+                    return (f"frames={hb.get('frames')} snaps={hb.get('snapshots')} "
+                            f"trades={hb.get('trades')} gaps={hb.get('gaps')} "
+                            f"recon={hb.get('reconnects')} err={hb.get('errors')}")
+                st = hb.get('stats')
+                if isinstance(st, dict):
+                    bad = [k for k, v in st.items()
+                           if isinstance(v, str) and v.startswith('ERR')]
+                    ok = len(st) - len(bad)
+                    s = f"{ok}/{len(st)} chains ok"
+                    return s + (f" ERR:{','.join(bad)}" if bad else "")
+                if isinstance(st, list):
+                    return f"results={len(st)}"
+                return str(hb.get('mode', '?') or '?')
+
+            hb_map = {'pow-venue-l2': 'venue_l2_heartbeat.json',
+                      'pow-venue-ws': 'venue_ws_heartbeat.json',
+                      'pow-chain-state': 'chain_state_heartbeat.json',
+                      'pow-safetrade-l2': 'safetrade_l2_heartbeat.json'}
+            ops = {'services': {}}
             for svc in ('pow-venue-l2', 'pow-venue-ws', 'pow-chain-state',
                         'pow-safetrade-l2', 'pow-pearld', 'pow-site'):
                 try:
                     r = _sp.run(['systemctl', '--user', 'is-active', svc + '.service'],
                                 capture_output=True, text=True, timeout=5)
-                    ops['services'][svc] = r.stdout.strip()
+                    state = r.stdout.strip()
                 except Exception:
-                    ops['services'][svc] = 'unknown'
+                    state = 'unknown'
+                hb = {}
+                if svc in hb_map:
+                    try:
+                        hb = json.load(open(os.path.join(ROOT, 'warehouse', hb_map[svc])))
+                    except (OSError, ValueError):
+                        pass
+                ops['services'][svc] = {'state': state,
+                                        'heartbeat_age_s': _hb_age(hb),
+                                        'detail': _hb_summ(hb)}
             return self._send(ops)
         if u.path == '/api/chain':
             sym = arg('symbol').upper()

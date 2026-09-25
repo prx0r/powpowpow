@@ -369,8 +369,7 @@ const b=await G('/api/brief');document.getElementById('ed').innerHTML=`<h1>DAILY
 let _bot='ops';async function bot(which){_bot=which;document.querySelectorAll('.bt div').forEach(d=>d.classList.toggle('a',d.dataset.b===which));
 const el=document.getElementById('bot');el.innerHTML='loading…';
 try{const d=await G('/api/ops');el.innerHTML='';if(which==='ops'){
-  Object.entries(d.services||{}).forEach(([s,v])=>el.innerHTML+=`<div>[${s}] ${v}</div>`);
-  Object.entries(d.heartbeats||{}).forEach(([f,h])=>el.innerHTML+=`<div>[${f}] poll=${h.poll_id??'?'} books=${h.books??'?'} trades=${h.trades??'?'} err=${h.errors??'?'}</div>`);}
+  Object.entries(d.services||{}).forEach(([s,v])=>{const age=v.heartbeat_age_s==null?'no hb':(v.heartbeat_age_s<90?v.heartbeat_age_s+'s ago':Math.round(v.heartbeat_age_s/60)+'m ago');el.innerHTML+=`<div>[${s}] ${v.state} · hb ${age} · ${v.detail||''}</div>`;});}
 if(which==='sig'){const d=await G('/api/signals');el.innerHTML='';(d.signals||[]).slice(0,10).forEach(g=>el.innerHTML+=`<div>[${g.asset} ${g.signal}] ${g.direction} ${g.strength}</div>`);}}catch(e){el.innerHTML=`<div>error: ${e.message}</div>`;}}
 function autoRefreshBot(){setInterval(()=>bot(_bot),60000);}
 document.querySelectorAll('.bt div').forEach(d=>d.onclick=()=>bot(d.dataset.b));
@@ -379,7 +378,7 @@ let _pt=null;async function ask(){const q=document.getElementById('cq');if(!q.va
 cm('you',q.value);const m=q.value;q.value='';const id='m'+Date.now();cm('…','asking the garden.',id);
 _pt=setInterval(()=>{const e=document.getElementById(id);if(!e)return clearInterval(_pt);const t=e.querySelector('.t').textContent,d=(t.match(/(\.*)$/)||[''])[0];e.querySelector('.t').textContent=d.length<5?t+'.':t.replace(/\.+$/,'');},600);
 try{const r=await P('/api/chat',{message:m},120000);clearInterval(_pt);const e=document.getElementById(id);if(e)e.remove();
-cm('analyst',r.reply+((r.tools_called||[]).length?`\n\n[tools: ${r.tools_called.join(', ')}]`:''));}catch(e){clearInterval(_pt);const el=document.getElementById(id);if(el)el.querySelector('.t').textContent='Error: '+e.message;}}
+cm('analyst',r.reply+((r.tools_called||[]).length?`\n\n[tools: ${r.tools_called.join(', ')}]`:'')+`\n\n[${r.via||'analyst'}]`);}catch(e){clearInterval(_pt);const el=document.getElementById(id);if(el)el.querySelector('.t').textContent='Error: '+e.message;}}
 document.getElementById('cq').addEventListener('keydown',e=>{if(e.key==='Enter')ask();});
 (function(){const cd=document.getElementById('cd');const p=document.querySelector('.cp');let d=false,sx,sw;
 cd.addEventListener('mousedown',e=>{d=true;sx=e.clientX;sw=p.offsetWidth;e.preventDefault();});
