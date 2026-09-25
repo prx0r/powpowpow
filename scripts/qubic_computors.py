@@ -14,6 +14,7 @@ Sources: rpc.qubic.org/query/v1 (official archive API),
 doge-stats.qubic.org/dispatcher.json.
 """
 
+import copy
 import json
 import os
 import sys
@@ -21,7 +22,14 @@ import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import fetch_json, store_normalized, utcnow
+from core import (
+    dict_delta,
+    fetch_json,
+    load_state_file,
+    save_state_delta,
+    store_normalized,
+    utcnow,
+)
 
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 
@@ -129,18 +137,13 @@ def main():
             raw_event_id=doge_id)
         print(f"[DOGE] tasks={doge.get('active_tasks')} sharers={len(vals)}")
 
-    try:
-        with open(NETSTATE_FILE) as handle:
-            ns = json.load(handle)
-    except (OSError, ValueError):
-        ns = {}
+    ns = load_state_file(NETSTATE_FILE)
+    snapshot = copy.deepcopy(ns)
     q = ns.setdefault('QUBIC', {})
     q.update({'computors': len(cur), 'computor_churn': churn,
               'doge_tasks': (doge or {}).get('active_tasks'),
               'as_of': utcnow()})
-    with open(NETSTATE_FILE + '.tmp', 'w') as f:
-        json.dump(ns, f, indent=2, default=str)
-    os.replace(NETSTATE_FILE + '.tmp', NETSTATE_FILE)
+    save_state_delta(NETSTATE_FILE, dict_delta(snapshot, ns))
 
 
 if __name__ == '__main__':

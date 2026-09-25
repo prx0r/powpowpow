@@ -5,13 +5,16 @@ Every network call automatically archives the raw response.
 Every observation has event_time + observed_at (both UTC).
 """
 
-import json
-import os
+import fcntl
 import glob
 import hashlib
-import requests
+import json
+import os
+import tempfile
 from datetime import datetime, timezone
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
+
+import requests
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RAW_DIR = os.path.join(BASE_DIR, 'warehouse', 'raw')
@@ -112,6 +115,91 @@ def classify_recoverability(table_name: Optional[str] = None,
             if sid.startswith(prefix):
                 return 'reconstructable'
     return 'ephemeral'
+
+
+def load_state_file(path, default=None):
+    """Read JSON tolerating absence and truncation."""
+    try:
+        with open(path) as handle:
+            return json.load(handle)
+    except (OSError, ValueError):
+        return {} if default is None else default
+
+
+def atomic_json_write(path, payload):
+    """Write JSON via a per-process temp file so concurrent writers cannot
+    interleave into one file."""
+    directory = os.path.dirname(path) or "."
+    os.makedirs(directory, exist_ok=True)
+    descriptor, temporary = tempfile.mkstemp(
+        dir=directory, prefix=os.path.basename(path) + ".", suffix=".tmp"
+    )
+    try:
+        with os.fdopen(descriptor, "w") as handle:
+            json.dump(payload, handle, indent=2, default=str)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        try:
+            os.unlink(temporary)
+        except OSError:
+            pass
+
+
+class state_lock:
+    """Exclusive, blocking lock around a short read-modify-write."""
+
+    def __init__(self, path):
+        self.path = path + ".lock"
+
+    def __enter__(self):
+        os.makedirs(os.path.dirname(self.path) or ".", exist_ok=True)
+        self._handle = open(self.path, "a")
+        fcntl.flock(self._handle.fileno(), fcntl.LOCK_EX)
+        return self
+
+    def __exit__(self, *exc):
+        try:
+            fcntl.flock(self._handle.fileno(), fcntl.LOCK_UN)
+        finally:
+            self._handle.close()
+        return False
+
+
+def dict_delta(before, after):
+    """Nested diff of the keys that actually changed.
+
+    Callers load the whole file, poll the network for seconds, then write.
+    Writing the whole snapshot would revert keys another process changed in
+    between; this returns only what this pass touched.
+    """
+    delta = {}
+    for key, new in after.items():
+        old = before.get(key)
+        if isinstance(new, dict) and isinstance(old, dict):
+            changed = {k: v for k, v in new.items() if old.get(k, object()) != v}
+            if changed:
+                delta[key] = changed
+        elif old != new:
+            delta[key] = new
+    return delta
+
+
+def save_state_delta(path, delta):
+    """Merge only the changed keys into the on-disk JSON, atomically."""
+    if not delta:
+        return 0
+    with state_lock(path):
+        current = load_state_file(path)
+        for key, value in delta.items():
+            if isinstance(value, dict) and isinstance(current.get(key), dict):
+                current[key] = {**current[key], **value}
+            else:
+                current[key] = value
+        atomic_json_write(path, current)
+    return len(delta)
+
 
 # ============================================================
 # AUTO-ARCHIVING FETCH

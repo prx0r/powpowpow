@@ -352,7 +352,7 @@ class R2Sync:
                         if deleted:
                             summary["deleted"] += 1
                     since_flush += 1
-                    if since_flush >= 1000:
+                    if since_flush >= 500:
                         write_state(self.state_path, working)
                         print(
                             f"progress eligible={summary['eligible']} "

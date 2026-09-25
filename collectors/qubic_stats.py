@@ -20,6 +20,7 @@ Usage:
 """
 
 import argparse
+import copy
 import json
 import os
 import signal
@@ -33,8 +34,11 @@ sys.path.insert(0, BASE_DIR)
 
 from core import (
     _archive_raw,
+    dict_delta,
     fetch_json,
+    load_state_file,
     purge_normalized,
+    save_state_delta,
     store_normalized,
     utcnow,
 )
@@ -99,18 +103,14 @@ def post_json(url, body, source_id, chain_id, request_params=None):
 
 
 def load_netstate():
-    try:
-        with open(NETSTATE_FILE) as handle:
-            return json.load(handle)
-    except (OSError, ValueError):
-        return {}
+    return load_state_file(NETSTATE_FILE)
 
 
-def save_netstate(ns):
-    tmp = NETSTATE_FILE + ".tmp"
-    with open(tmp, "w") as handle:
-        json.dump(ns, handle, indent=2, default=str)
-    os.replace(tmp, NETSTATE_FILE)
+def save_netstate(ns, snapshot=None):
+    """Write only the keys this pass changed — see core.save_state_delta."""
+    if snapshot is None:
+        raise ValueError("snapshot required to compute a delta")
+    save_state_delta(NETSTATE_FILE, dict_delta(snapshot, ns))
 
 
 def unwrap(payload):
@@ -282,6 +282,7 @@ def poll_rich_list(page_size=100):
 
 
 def run_pass(ns, rich_list=False):
+    snapshot = copy.deepcopy(ns)
     stats = {}
     stats_row, err = poll_latest_stats()
     stats["latest_stats"] = "ok" if stats_row else f"ERR {err}"
@@ -315,7 +316,7 @@ def run_pass(ns, rich_list=False):
         )
         if stats_row.get("price") and stats_row.get("market_cap"):
             entry["price_usd"] = stats_row["price"]
-        save_netstate(ns)
+        save_netstate(ns, snapshot)
     return stats
 
 

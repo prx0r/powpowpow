@@ -17,6 +17,7 @@ Usage:
 """
 
 import argparse
+import copy
 import json
 import os
 import shutil
@@ -27,7 +28,14 @@ import time
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import fetch_json, store_normalized, utcnow
+from core import (
+    dict_delta,
+    fetch_json,
+    load_state_file,
+    save_state_delta,
+    store_normalized,
+    utcnow,
+)
 
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 PID_FILE = os.path.join(BASE_DIR, 'warehouse', 'chain_state.pid')
@@ -53,17 +61,18 @@ def require_disk():
 
 
 def load_netstate():
-    try:
-        return json.load(open(NETSTATE_FILE))
-    except OSError:
-        return {}
+    return load_state_file(NETSTATE_FILE)
 
 
-def save_netstate(ns):
-    tmp = NETSTATE_FILE + '.tmp'
-    with open(tmp, 'w') as f:
-        json.dump(ns, f, indent=2, default=str)
-    os.replace(tmp, NETSTATE_FILE)
+def save_netstate(ns, snapshot=None):
+    """Persist only the keys this pass changed.
+
+    Four processes share this file. Replacing it wholesale reverts whatever a
+    concurrent writer added while this pass was polling the network.
+    """
+    if snapshot is None:
+        raise ValueError("snapshot required to compute a delta")
+    save_state_delta(NETSTATE_FILE, dict_delta(snapshot, ns))
 
 
 def poll_qubic(ns):
@@ -417,6 +426,7 @@ def run_pass(ns, only=None):
     selected = {name.strip().lower() for name in (only or []) if name.strip()}
     for sym, base in RUNTIME.items():
         ns.setdefault(sym, {}).update(base)
+    snapshot = copy.deepcopy(ns)
     stats = {}
     for name, fn in (('qubic', poll_qubic), ('xmr', poll_xmr),
                       ('kas', poll_kas), ('akt', poll_akt), ('nock', poll_nock),
@@ -433,7 +443,7 @@ def run_pass(ns, only=None):
         if e.get('prev_supply') is not None:
             RUNTIME[sym] = {'prev_supply': e['prev_supply'],
                             'prev_supply_ts': e.get('prev_supply_ts')}
-    save_netstate(ns)
+    save_netstate(ns, snapshot)
     return stats
 
 

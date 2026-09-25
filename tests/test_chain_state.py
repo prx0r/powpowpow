@@ -68,7 +68,7 @@ def test_poll_qubic_rows_carry_raw_event_ids(monkeypatch):
 
 def test_run_pass_only_selection_skips_other_chains(monkeypatch):
     called = []
-    monkeypatch.setattr(chain_state, "save_netstate", lambda ns: None)
+    monkeypatch.setattr(chain_state, "save_netstate", lambda *args, **kwargs: None)
     for name in (
         "poll_qubic",
         "poll_xmr",

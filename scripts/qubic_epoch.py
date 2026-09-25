@@ -21,6 +21,7 @@ Sources: qubic.org/blog-detail/qubic-second-halving-epoch-227,
 qubic.org/halving.
 """
 
+import copy
 import json
 import os
 import sys
@@ -29,7 +30,14 @@ import time
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import fetch_json, store_normalized, utcnow
+from core import (
+    dict_delta,
+    fetch_json,
+    load_state_file,
+    save_state_delta,
+    store_normalized,
+    utcnow,
+)
 
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 EPOCH_STATE_FILE = os.path.join(BASE_DIR, 'warehouse', 'qubic_epoch_state.json')
@@ -117,11 +125,8 @@ def main():
         'raw_status_id': status_id},
         raw_event_id=tick_id)
 
-    try:
-        with open(NETSTATE_FILE) as handle:
-            ns = json.load(handle)
-    except (OSError, ValueError):
-        ns = {}
+    ns = load_state_file(NETSTATE_FILE)
+    snapshot = copy.deepcopy(ns)
     q = ns.setdefault('QUBIC', {})
     q.update({'epoch': epoch, 'tick': cur, 'epoch_progress': progress,
               'tick_rate': tick_rate, 'ticks_per_epoch': ticks_per_epoch,
@@ -134,9 +139,7 @@ def main():
               'emission_confidence': 'medium-low',
               'gross_per_week': GROSS_PER_WEEK,
               'as_of': utcnow()})
-    with open(NETSTATE_FILE + '.tmp', 'w') as f:
-        json.dump(ns, f, indent=2, default=str)
-    os.replace(NETSTATE_FILE + '.tmp', NETSTATE_FILE)
+    save_state_delta(NETSTATE_FILE, dict_delta(snapshot, ns))
 
     print(f"[QUBIC] epoch={epoch} tick={cur} progress={progress} "
           f"rate={tick_rate}/s burn={burn} "

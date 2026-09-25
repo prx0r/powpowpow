@@ -176,23 +176,33 @@ def test_signals_refuse_thin_data(isolated, monkeypatch):
 
 
 def test_cowriters_survive_pass(isolated, monkeypatch):
-    """Regression (2026-09-19): a daemon pass must preserve keys written
-    by co-writers (epoch engine, computors)."""
+    """Regression: a pass must only persist the keys it changed.
+
+    Four writers share chains/network_state.json. Replacing the whole file
+    after seconds of polling reverted keys a co-writer had added meanwhile.
+    """
+    import copy as _copy
+
     import collectors.chain_state as cs
-    monkeypatch.setattr(cs, 'NETSTATE_FILE',
-                        str(isolated / 'network_state.json'))
-    base = {'QUBIC': {'epoch': 232, 'burn_rate': 0.775,
-                      'daily_emission': 32142857143.0,
-                      'computors': 676}}
-    with open(str(isolated / 'network_state.json'), 'w') as f:
-        json.dump(base, f)
-    monkeypatch.setattr(cs, 'fetch_json', lambda *a, **k: None)
-    import time as _t
-    monkeypatch.setattr(_t, 'sleep', lambda *a: None)
-    # run_pass must reload fresh, not clobber: simulate by calling the
-    # real pass with network dead (all polls no-op) and re-reading.
+
+    path = str(isolated / "network_state.json")
+    monkeypatch.setattr(cs, "NETSTATE_FILE", path)
+    core.atomic_json_write(path, {
+        "QUBIC": {"epoch": 232, "burn_rate": 0.775, "computors": 676},
+        "XMR": {"height": 100},
+    })
+
     ns = cs.load_netstate()
-    cs.save_netstate(ns)
-    after = json.load(open(str(isolated / 'network_state.json')))
-    assert after['QUBIC']['burn_rate'] == 0.775
-    assert after['QUBIC']['computors'] == 676
+    co_writer = _copy.deepcopy(ns)
+    co_writer["QUBIC"]["active_addresses"] = 671275
+    core.save_state_delta(path, core.dict_delta(ns, co_writer))
+
+    snapshot = _copy.deepcopy(ns)
+    ns.setdefault("XMR", {})["height"] = 123
+    cs.save_netstate(ns, snapshot)
+
+    after = json.load(open(path))
+    assert after["QUBIC"]["burn_rate"] == 0.775
+    assert after["QUBIC"]["computors"] == 676
+    assert after["QUBIC"]["active_addresses"] == 671275
+    assert after["XMR"]["height"] == 123
