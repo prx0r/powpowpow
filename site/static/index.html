@@ -113,7 +113,7 @@ x.fillStyle=v>=0?'#111':'#999';v>=0?x.fillRect(i*bw+2,H/2-h,bw-4,h):x.fillRect(i
 x.fillStyle='#111';x.fillRect(0,H/2-1,W,3);}
 function stat(k,v,n){return`<div class="st"><div class="k">${k}</div><div class="v">${v}</div><div class="n">${n||''}</div></div>`;}
 function N(v){return v==null?'—':v<1?v.toPrecision(3):Number(v).toLocaleString(undefined,{maximumFractionDigits:2});}
-function $(v){if(v==null)return'—';const n=Number(v);if(!n)return'$0';if(Math.abs(n)<0.01)return'$'+n.toPrecision(3);return'$'+n.toLocaleString(undefined,{maximumFractionDigits:n<1?6:0});}
+function $(v){if(v==null)return'—';const n=Number(v);if(!n)return'$0';if(Math.abs(n)<0.01){const d=Math.max(2,-Math.floor(Math.log10(Math.abs(n)))+2);return'$'+n.toFixed(d);}return'$'+n.toLocaleString(undefined,{maximumFractionDigits:n<1?6:0});}
 let FACT={};
 async function render(){if(V==='home')return home();if(V==='brief')return brief();return coin(V);}
 async function home(){
