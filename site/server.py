@@ -1,9 +1,15 @@
 """
 PowPowPow consumer site — forked from the qpbot dashboard setup.
 
-Same ops pattern: stdlib only, token gate (?token=), loopback bind,
-systemd supervised. Outside world arrives via Cloudflare tunnel
-(hostname -> 127.0.0.1:PORT, see ~/.cloudflared/*.yml pattern).
+Same ops pattern: stdlib only, loopback bind, systemd supervised. Outside
+world arrives via Cloudflare tunnel (hostname -> 127.0.0.1:PORT, see
+~/.cloudflared/*.yml pattern).
+
+STALE 2026-09-25: "token gate (?token=)" is now GETs-public /
+POST-only (`do_POST` -> `_gate()`), and "Chat routes through the Pi
+harness" has never loaded — `/home/ubuntu/qpbot` does not exist on this
+box, so `/api/chat` always falls back to `_data_answer`. Rest below is
+current. Authoritative ops doc: docs/pow-systems-live.md.
 
 Content is pure garden: STATE, derived signals, factors, live cards,
 briefs, compiled pages. Chat routes through the Pi harness

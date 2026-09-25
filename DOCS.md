@@ -1,3 +1,10 @@
+> **STALE 2026-09-25 — sections 1/2/6 still useful, ops sections are not.**
+> Venv path `:45,49` does not exist; the unit list `:55,68-69,72` names
+> `pow-venue-l2`/`pow-venue-ws`/`pow-pearld`, which are not installed; token
+> guidance `:61` greps a unit that has no secret; host is `pow.systems` not
+> `pow.moltwork.com`; SafeTrade `:101,136,275` is unblocked and running.
+> Current truth: `docs/pow-systems-live.md`.
+
 # PowPowPow — Complete Documentation
 
 ## 1. What is PowPowPow

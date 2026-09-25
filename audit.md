@@ -1,3 +1,13 @@
+> **STALE 2026-09-25 — verification lines are reversed in places.**
+> `pow-r2-upload.timer` is **enabled and hourly** (this file says disabled);
+> `derived_signal` **does** rebuild hourly (this says manual); `pow-venue-l2`
+> / `pow-venue-ws` are **not installed** (this says verified); the
+> `pow-opportunity`/`pow-miner-cards`/`pow-daily-brief`/`pow-provenance`
+> timers are **not armed**; `/home/box/powpowpow/.venv` and `r2.env` are
+> **not present** despite the ✓; "no off-box exposure" is false
+> (`pow.systems` is public); disk/warehouse numbers are from 09-23.
+> §4 code inventory and the "still accurate" notes remain valid.
+
 # PowPowPow Audit — full inventory 2026-09-23
 
 > Method: live inspection (systemd, warehouse, API responses, import graph,

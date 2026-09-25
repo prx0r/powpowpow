@@ -1,3 +1,11 @@
+> **STALE / SAFETY 2026-09-25 — the Cloudflare credential paths below do not
+> exist.** `/home/box/Documents/safe/cloudflare3`, `/home/box/cloudflare` and
+> every `TOKEN=$(cat /home/box/...)` block are dead: those files are not on
+> this box. Real credentials come from
+> `agent-vault vault credential get <KEY> --vault oracle` (see
+> `docs/pow-systems-live.md`). Do not hunt for secrets on `/home/box`.
+> Binding rules in this file still apply; the Cloudflare section does not.
+
 # Agents Reference
 
 ## PowPowPow — start here (coding agents)

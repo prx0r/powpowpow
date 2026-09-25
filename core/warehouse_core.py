@@ -11,7 +11,8 @@ import os
 from datetime import datetime
 from typing import Optional, Dict, List
 
-CORE_DIR = '/home/box/powpowpow/core/warehouse'
+CORE_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), 'warehouse')
 
 SUBDIRS = [
     'resources',

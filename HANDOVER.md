@@ -1,3 +1,12 @@
+> **STALE 2026-09-25 — the "Live services" and timer list are wrong.**
+> `pow-venue-l2`, `pow-venue-ws`, `pow-signals`, `pow-factors`,
+> `pow-analytics`, `pow-opportunity`, `pow-miner-cards`, `pow-daily-brief`,
+> `pow-provenance` are **not installed** (7 timers exist, not 11+); the
+> tunnel is **running** and serves `pow.systems` (not blocked, not
+> `pow.moltwork.com`); `/home/box/.../.venv/bin/python` commands all fail;
+> `site.token` does not exist (`site.env` does); the `_tool_manager` MCP
+> command raises AttributeError. Current truth: `docs/pow-systems-live.md`.
+
 # PowPowPow Handover
 
 Live, continuously-collecting compute economics garden. Every derived number links to immutable raw bytes.

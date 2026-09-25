@@ -1,3 +1,11 @@
+> **STALE 2026-09-25 — none of this API exists.** Base URL
+> `api.powpowpow.dev/v1`, `Authorization: Bearer`, the rate tiers and
+> `wss://.../v1/ws` are all fictional; there is no key system and no
+> WebSocket. The real surface is `http://127.0.0.1:8795` (public via
+> `pow.systems`) with SSE at `/api/ticks` and POST-only token gating.
+> Treat this file as endpoint brainstorming. Current truth:
+> `docs/pow-systems-live.md`.
+
 # PowPowPow API Documentation
 
 ## Base URL

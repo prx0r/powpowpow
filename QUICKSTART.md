@@ -1,3 +1,10 @@
+> **STALE 2026-09-25 — every command in this file is wrong for this box.**
+> Venv `/home/ubuntu/.venvs/powpowpow` and repo `/home/ubuntu/powpowpow` do
+> not exist (real path `/root/powpowpow`); `pow-venue-l2.service` is
+> not-found; SafeTrade is unblocked and running as `pow-safetrade-l2`, not
+> geo-blocked; the API entry point is `pow-site.service`, not `api/app.py:5000`.
+> Current truth: `docs/pow-systems-live.md`.
+
 # PowPowPow — Quick Start
 
 Venv: `/home/ubuntu/.venvs/powpowpow` (has `websockets`, `requests`).

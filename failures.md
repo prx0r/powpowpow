@@ -1,3 +1,10 @@
+> **STALE 2026-09-25 — §1's headline is superseded.** SafeTrade was not an
+> IP-level geo-fence: it was Cloudflare bot detection, fixed 2026-09-23
+> (browser UA + `ssl=` + `core/` shadowing). `pow-safetrade-l2` now runs
+> continuously on 7 markets. The probes below are still valid evidence for
+> what was tried. Also `pow-pearld` (§3) and the `/home/ubuntu` venv (§4)
+> do not exist here. Current truth: `docs/pow-systems-live.md`.
+
 # Failures — what was tried, what broke, what unblocks it
 
 > Every failure below was hit live from `vps-e94d5dea` on 2026-09-19.

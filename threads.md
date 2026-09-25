@@ -1,3 +1,11 @@
+> **STALE 2026-09-25 — P0/T3/T4/T5 status claims no longer match this box.**
+> "11 timers total" and `pow-signals`/`pow-factors`/`pow-analytics` as
+> separate units are wrong (7 timers; signals+factors run inside
+> `pow-daily-state.service` hourly at :25; analytics is
+> `pow-mining-analytics.timer`); compact+trim are **not** folded into
+> `pow-daily-state`; R2 is hourly at :37 with vault creds, not daily;
+> T5/B1 (no tunnel) is **closed**. See `docs/build-progress-2026-09-25.md`.
+
 # Threads — open work, ordered by opportunity cost
 
 > Companion to `audit.md` (the state) and `agents.md` (the rules).

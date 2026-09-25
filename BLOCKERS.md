@@ -1,3 +1,11 @@
+> **STALE 2026-09-25 — several blockers are already closed.** Blocker #1
+> (dashboard not exposed) is **fixed**: `pow-cloudflared.service` runs and
+> serves `pow.systems`. §9 (no local cleanup after upload) is **fixed**:
+> `pow-r2-upload.service` deletes only after a verified remote HEAD.
+> §11/§16/§17 claim timers and tables that do not exist; §22 names a
+> `r2.env` file that does not exist (credentials come from `agent-vault --vault oracle`).
+> Treat the fixed/absent items as historical. Current truth: `docs/pow-systems-live.md`.
+
 # Blockers — what's not wired up and why
 
 > Updated 2026-09-23 16:20 +07. Everything below is a known issue with a clear path.

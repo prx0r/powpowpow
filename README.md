@@ -1,3 +1,10 @@
+> **STALE 2026-09-25 — do not follow operationally.** Quick-start uses a
+> non-existent `/home/ubuntu/.venvs/...` venv (this box runs `/usr/bin/python3`,
+> no venv); "What runs" lists collectors and timers that are not installed;
+> the public host is `https://pow.systems` (not `pow.moltwork.com`); GETs are
+> public and the token only gates POST. Current truth: `docs/pow-systems-live.md`.
+> Left intact deliberately — see `docs/build-progress-2026-09-25.md`.
+
 # PowPowPow
 
 Continuously growing, provenance-preserving historical model of how computational resources are valued, allocated and transformed into economic output.

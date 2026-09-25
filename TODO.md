@@ -1,3 +1,11 @@
+> **STALE 2026-09-25 — header contradicts itself and the box.** SafeTrade
+> is **not** egress-blocked/geo-403 (unblocked 09-23, running as
+> `pow-safetrade-l2`); venue L2 (CoinEx/Gate/MEXC) is **not** live;
+> public host is `pow.systems`; R2 is hourly at :37 with vault creds, not
+> daily/env-file; `pages/` still does not exist so `/api/page` 404s;
+> the "(was 100+ /home/box hardcodes)" claim is false (~71 remain in 35
+> tracked files). Working list: `docs/build-progress-2026-09-25.md`.
+
 # PowPowPow — product-readiness work list
 
 > Review 2026-09-19 eve. Money math + pipes + first signals are landed.
