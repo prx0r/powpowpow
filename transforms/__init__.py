@@ -1,5 +1,6 @@
 """Pure, versioned insight transforms — no fetching, no state."""
 
+from transforms.activity import activity_metrics
 from transforms.common import (
     MIN_CORR_SAMPLES,
     MIN_PUELL_SAMPLES,
@@ -41,6 +42,7 @@ __all__ = [
     "MIN_RIBBON_SAMPLES",
     "TRANSFORM_VERSION",
     "active_address_growth",
+    "activity_metrics",
     "align",
     "burn_intensity",
     "burn_intensity_from_events",

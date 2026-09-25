@@ -69,6 +69,7 @@ replaces rows instead of duplicating them.
 | Addresses | `active_address_growth` | `qubic_stats` snapshots |
 | Burns | `burn_epoch_total`, `burn_deviation_vs_schedule`, `burn_concentration_at_epoch_start`, `burn_trickle_rate` | `getEventLogs` `logType=8` |
 | Holdings | `exchange_reserve`, `wealth_concentration`, `exchange_share_of_top_holders` | `static.qubic.org` exchanges × `live/v1/balances`, `/v1/rich-list` |
+| Activity | `measured_active_addresses`, `transfer_rate`, `exchange_netflow`, `whale_share_of_volume` | `getEventLogs` `logType=0` (`quTransfer`) |
 | Price fit | `metric_vs_price_corr` | metric series vs daily closes (needs ≥30) |
 
 Every metric carries `n`, `min_n`, `source`, `window` and `version`. When a
@@ -97,8 +98,8 @@ emission model in `network_state` is right.
 
 Status values follow powops: `ok` · `stale` · `error` · `unknown` · `not_installed`.
 
-Thirteen sources are tracked: `safetrade_l2`, `chain_state`, `qubic_epoch`,
-`qubic_stats`, `qubic_holdings`, `qubic_computors`, `daily_state`,
+Fourteen sources are tracked: `safetrade_l2`, `chain_state`, `qubic_epoch`,
+`qubic_stats`, `qubic_holdings`, `qubic_transfers`, `qubic_computors`, `daily_state`,
 `derived_signals`, `cross_chain_factors`, `insights`, `mining_analytics`,
 `r2_sync`, `pow_site`.
 
@@ -174,6 +175,7 @@ Not cloned: the repo containing `SOURCES.md`/`TRANSFORMS.md`/
 | `pow-qubic-stats.service` | QUBIC official stats: active addresses, tick quality, burned QUs, burn events, rich list | always, restart, 300s |
 | `pow-qubic-epoch.service/.timer` | Epoch, burn, tick rate | every 10 min |
 | `pow-qubic-holdings.service` | QUBIC exchange reserves + wealth concentration | always, restart, 300s (rich list every 6h) |
+| `pow-qubic-transfers.service` | QUBIC transfer activity: measured addresses, exchange netflow | always, restart, 300s |
 | `pow-qubic-computors.service/.timer` | Computor set + DOGE leg | hourly |
 | `pow-daily-state.service/.timer` | STATE + signals + factors rebuild | hourly :25 |
 | `pow-mining-analytics.service/.timer` | XMR/QUBIC/BTC context + backtest | every 6 h |
@@ -220,7 +222,7 @@ Public checks (no token required for reads):
 - `GET https://pow.systems/api/chain?symbol=XMR|QUBIC|BTC` → 200 with fresh `as_of`.
 - `GET https://pow.systems/api/home` → 200 with `chains`, `ops`, `storage`, `signals`, `state`, `health`, `pipeline`.
 - `GET https://pow.systems/api/insights` → 200 with `chains`, `summary` (`computed` / `refused`), `version`.
-- `GET https://pow.systems/powops` → 200 HTML pipeline page; `/powops.json` → 200 with 13 sources.
+- `GET https://pow.systems/powops` → 200 HTML pipeline page; `/powops.json` → 200 with 14 sources.
 - `POST https://pow.systems/api/chat` without token → 403 (chat remains gated).
 
 ## Troubleshooting

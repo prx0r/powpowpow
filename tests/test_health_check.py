@@ -28,6 +28,7 @@ def fresh(tmp_path):
     write(tmp_path / "warehouse/qubic_epoch_state.json", {"ts": now})
     write(tmp_path / "warehouse/qubic_stats_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/qubic_holdings_heartbeat.json", {"heartbeat_at": iso})
+    write(tmp_path / "warehouse/qubic_transfers_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "chains/network_state.json", {"QUBIC": {}})
     write(tmp_path / "warehouse/powpowpow_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/insights.json", {"generated_at": iso})

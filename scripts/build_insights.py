@@ -22,6 +22,7 @@ from core import utcnow
 from transforms import (
     TRANSFORM_VERSION,
     active_address_growth,
+    activity_metrics,
     burn_intensity,
     burn_profile,
     concentration_from_row,
@@ -240,6 +241,7 @@ def build(root=BASE_DIR):
                 )
             )
             metrics.append(burn_intensity(stats_rows))
+            metrics.extend(activity_metrics(read_table("qubic_transfer_window", "qubic")))
             metrics.extend(qubic_holdings_metrics(stats_rows))
             for name, field in (("epoch_tick_quality", "epoch_tick_quality"),):
                 metrics.append(

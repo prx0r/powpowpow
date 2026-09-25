@@ -28,6 +28,7 @@ Documented in `qubic/integration` (cloned at `/root/qubic-sources/integration`).
 | `rpc.qubic.org/live/v1/balances/{identity}` | GET | **200** | per-address balance (exchange reserves) |
 | `static.qubic.org/v1/general/data/exchanges.json` | GET | **200**, 18 entries | exchange address labels |
 | `rpc.qubic.org/query/v1/getEventLogs` (`logType=8`) | POST | **200** | per-tick BURNING events (beta) |
+| `rpc.qubic.org/query/v1/getEventLogs` (`logType=0`) | POST | **200**, newest-first, cap 10,000 | `quTransfer` records: source, destination, amount |
 | `rpc.qubic.org/query/v1/getComputorListsForEpoch` | POST | **200**, 676 identities | computor sets + churn |
 | `rpc.qubic.org/query/v1/getLastProcessedTick` | GET | **200** | archive progress |
 | `rpc.qubic.org/query/v1/getProcessedTickIntervals` | GET | **200** (epoch 104+) | per-epoch tick spans |
@@ -74,6 +75,7 @@ was described without a URL.
 | `qubic_exchange_balance` | 300s | `exchanges.json` × `live/v1/balances` |
 | `qubic_wealth_concentration` | every 72 passes (6h) | `/v1/rich-list` ×100 pages |
 | `qubic_burn_event` | 300s | `getEventLogs` `logType=8` |
+| `qubic_transfer_window` | 300s | `getEventLogs` `logType=0` (1,000 transfers/pass) |
 | `qubic_epoch` | 10 min | `tick-info` + `status` |
 | `computor_snapshot`, `external_mining` | hourly | `getComputorListsForEpoch`, `doge-stats` |
 | `chain_snapshot`, `network_demand` | 300s | `tick-info`, `status`, `analytics.qubic.li` |

@@ -13,6 +13,7 @@ CHECKS = [
     ("qubic_epoch", "warehouse/qubic_epoch_state.json", "ts", 3600),
     ("qubic_stats", "warehouse/qubic_stats_heartbeat.json", "heartbeat_at", 900),
     ("qubic_holdings", "warehouse/qubic_holdings_heartbeat.json", "heartbeat_at", 900),
+    ("qubic_transfers", "warehouse/qubic_transfers_heartbeat.json", "heartbeat_at", 900),
     ("network_state", "chains/network_state.json", None, 900),
     (
         "daily_state",

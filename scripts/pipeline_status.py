@@ -36,6 +36,13 @@ SOURCES = (
         3600,
     ),
     (
+        "qubic_transfers",
+        "pow-qubic-transfers",
+        "warehouse/qubic_transfers_heartbeat.json",
+        "heartbeat_at",
+        900,
+    ),
+    (
         "qubic_holdings",
         "pow-qubic-holdings",
         "warehouse/qubic_holdings_heartbeat.json",
