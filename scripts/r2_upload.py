@@ -56,6 +56,7 @@ def parse_retention(values):
 
 
 def load_state(path):
+    path = Path(path).expanduser()
     try:
         value = json.loads(path.read_text())
     except FileNotFoundError:
@@ -66,6 +67,7 @@ def load_state(path):
 
 
 def write_state(path, state):
+    path = Path(path).expanduser()
     path.parent.mkdir(parents=True, exist_ok=True)
     descriptor, temporary = tempfile.mkstemp(
         dir=path.parent,
@@ -364,6 +366,72 @@ class R2Sync:
         write_state(self.state_path, working)
         return summary
 
+    def prune(self, local_dir):
+        """Retention only: delete local files already verified remote.
+
+        Deliberately separate from `run()` so local disk keeps shrinking even
+        when the uploader is OOM-killed or otherwise failing. A file is only
+        removed if this run has a state entry for it AND a fresh remote HEAD
+        confirms size and SHA-256.
+        """
+        local_dir = Path(local_dir).expanduser().resolve()
+        now = time.time()
+        state = load_state(self.state_path)
+        summary = {"eligible": 0, "deleted": 0, "kept": 0, "failed": 0}
+
+        paths = []
+        for path in local_dir.rglob("*"):
+            if not path.is_file():
+                continue
+            if path.suffix not in EXTENSIONS:
+                continue
+            if ".tmp" in path.name or ".lock" in path.name:
+                continue
+            paths.append(path)
+
+        def consider(path):
+            try:
+                relative = path.relative_to(local_dir)
+            except ValueError:
+                return None, None, None
+            key = remote_key(self.prefix, relative)
+            entry = state.get(key)
+            if entry is None:
+                return key, "kept", "never verified remote"
+            age = now - path.stat().st_mtime
+            retention = self.retention.get(relative.parts[0])
+            if retention is None or age < retention:
+                return key, "kept", None
+            try:
+                size = entry["signature"][0]
+                sha256 = entry["sha256"]
+                head = self.head(key)
+                if not matches_remote(head, size, sha256):
+                    return key, "failed", "pre-delete verification failed"
+                latest = path.stat()
+                if [latest.st_size, latest.st_mtime_ns] != entry["signature"]:
+                    return key, "failed", "file changed before delete"
+                path.unlink()
+                return key, "deleted", None
+            except (BotoCoreError, ClientError, OSError) as exc:
+                return key, "failed", f"{type(exc).__name__}: {exc}"
+
+        with ThreadPoolExecutor(max_workers=min(self.workers, 4)) as executor:
+            for key, status, reason in executor.map(consider, paths):
+                if key is None:
+                    continue
+                if status == "failed":
+                    summary["failed"] += 1
+                    print(f"  KEEP {key}: {reason}", file=sys.stderr)
+                elif status == "deleted":
+                    summary["deleted"] += 1
+                    state.pop(key, None)
+                else:
+                    summary["kept"] += 1
+
+        write_state(self.state_path, state)
+        return summary
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -376,6 +444,11 @@ def main():
     parser.add_argument("--older-than", type=float, default=0)
     parser.add_argument("--min-age-minutes", type=float, default=0)
     parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument(
+        "--prune",
+        action="store_true",
+        help="retention only: verify then delete, no uploads",
+    )
     parser.add_argument(
         "--retention-hours",
         action="append",
@@ -468,7 +541,7 @@ def main():
 
     try:
         with upload_lock(lock_path):
-            summary = sync.run(local_dir)
+            summary = sync.prune(local_dir) if args.prune else sync.run(local_dir)
     except RuntimeError as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2

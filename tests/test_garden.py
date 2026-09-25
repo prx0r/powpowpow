@@ -19,6 +19,12 @@ import core
 def isolated(tmp_path, monkeypatch):
     monkeypatch.setattr(core, 'RAW_DIR', str(tmp_path / 'raw'))
     monkeypatch.setattr(core, 'BASE_DIR', str(tmp_path))
+    # core/ package shadows core.py, so patching the package namespace does not
+    # reach store_normalized / _archive_raw. Patch their own globals or tests
+    # write observations into the live warehouse.
+    for fn in (core.store_normalized, core._archive_raw):
+        monkeypatch.setitem(fn.__globals__, 'RAW_DIR', str(tmp_path / 'raw'))
+        monkeypatch.setitem(fn.__globals__, 'BASE_DIR', str(tmp_path))
     os.makedirs(str(tmp_path / 'raw'), exist_ok=True)
     return tmp_path
 

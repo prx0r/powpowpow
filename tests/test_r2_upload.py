@@ -7,7 +7,7 @@ import time
 
 from botocore.exceptions import ClientError
 
-from scripts.r2_upload import R2Sync, upload_lock
+from scripts.r2_upload import R2Sync, upload_lock, write_state
 
 
 class FakeS3:
@@ -184,4 +184,86 @@ def test_r2_sync_keeps_local_file_when_upload_fails(tmp_path):
 
     assert summary["failed"] == 1
     assert summary["deleted"] == 0
+    assert path.exists()
+
+
+def test_prune_deletes_only_verified_old_files(tmp_path):
+    local = tmp_path / "warehouse"
+    verified_old = local / "raw" / "safetrade" / "old.json"
+    young = local / "raw" / "safetrade" / "young.json"
+    unknown = local / "raw" / "safetrade" / "unknown.json"
+    for path in (verified_old, young, unknown):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text('{"id":1}\n')
+    make_old(verified_old)
+
+    s3 = FakeS3()
+    body = verified_old.read_bytes()
+    s3.objects["powpowpow/raw/safetrade/old.json"] = (
+        body,
+        {"sha256": hashlib.sha256(body).hexdigest()},
+    )
+    write_state(
+        str(tmp_path / "state.json"),
+        {
+            "powpowpow/raw/safetrade/old.json": {
+                "signature": [len(body), verified_old.stat().st_mtime_ns],
+                "sha256": hashlib.sha256(body).hexdigest(),
+                "verified_at": time.time(),
+            },
+            "powpowpow/raw/safetrade/young.json": {
+                "signature": [young.stat().st_size, young.stat().st_mtime_ns],
+                "sha256": "unused",
+                "verified_at": time.time(),
+            },
+        },
+    )
+
+    sync = R2Sync(
+        s3=s3,
+        bucket="bucket",
+        prefix="powpowpow",
+        state_path=tmp_path / "state.json",
+        retention={"raw": 3600},
+    )
+    summary = sync.prune(local)
+
+    assert summary["deleted"] == 1
+    assert summary["failed"] == 0
+    assert not verified_old.exists()
+    assert young.exists()
+    assert unknown.exists()
+
+
+def test_prune_keeps_file_when_remote_is_missing(tmp_path):
+    local = tmp_path / "warehouse"
+    path = local / "raw" / "safetrade" / "gone.json"
+    path.parent.mkdir(parents=True)
+    path.write_text('{"id":2}\n')
+    make_old(path)
+
+    s3 = FakeS3()
+    sync = R2Sync(
+        s3=s3,
+        bucket="bucket",
+        prefix="powpowpow",
+        state_path=tmp_path / "state.json",
+        retention={"raw": 3600},
+    )
+    # state claims the file is uploaded, but the object is absent
+    write_state(
+        str(tmp_path / "state.json"),
+        {
+            "powpowpow/raw/safetrade/gone.json": {
+                "signature": [path.stat().st_size, path.stat().st_mtime_ns],
+                "sha256": "bogus",
+                "verified_at": time.time(),
+            }
+        },
+    )
+
+    summary = sync.prune(local)
+
+    assert summary["deleted"] == 0
+    assert summary["failed"] == 1
     assert path.exists()

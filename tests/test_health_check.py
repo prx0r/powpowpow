@@ -97,3 +97,24 @@ def test_health_check_watches_every_pipeline_output():
         "pipeline_status",
         "r2_sync",
     } <= watched
+
+
+def test_health_check_fails_when_pipeline_reports_failure(
+    tmp_path, monkeypatch, capsys
+):
+    fresh(tmp_path)
+    monkeypatch.setattr(health_check, "R2_STATE", str(tmp_path / "r2-state.json"))
+    path = tmp_path / "warehouse" / "powpowpow_heartbeat.json"
+    path.write_text(
+        json.dumps(
+            {
+                "heartbeat_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "results": {"r2_sync": "error"},
+            }
+        )
+    )
+
+    assert health_check.main(str(tmp_path)) == 1
+    output = json.loads(capsys.readouterr().out)
+    assert output["ok"] is False
+    assert any(f["check"] == "pipeline:r2_sync" for f in output["failures"])

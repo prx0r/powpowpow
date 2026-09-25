@@ -119,6 +119,33 @@ def check_file(root, relative, field, max_age_seconds, now):
     return None
 
 
+FAILING_PIPELINE_STATES = {"error", "stale", "unknown", "not_installed"}
+
+
+def check_pipeline(root):
+    """Surface any source powops reported as not-ok.
+
+    `pipeline_status` exits non-zero, but its caller ignores that exit code
+    so health_check can run anyway — so the heartbeat is the channel these
+    failures must travel on. Without this, an OOM-killed R2 run still shows
+    `{"ok": true}`.
+    """
+    path = os.path.join(root, "warehouse", "powpowpow_heartbeat.json")
+    try:
+        with open(path) as handle:
+            payload = json.load(handle)
+    except (OSError, ValueError):
+        return []
+    results = payload.get("results") or {}
+    if not results:
+        return []
+    return [
+        {"check": f"pipeline:{name}", "failure": f"pipeline reports {status}"}
+        for name, status in sorted(results.items())
+        if status in FAILING_PIPELINE_STATES
+    ]
+
+
 def main(root=BASE_DIR):
     now = time.time()
     failures = []
@@ -126,6 +153,7 @@ def main(root=BASE_DIR):
         failure = check_file(root, relative, field, max_age, now)
         if failure:
             failures.append({"check": name, "failure": failure})
+    failures.extend(check_pipeline(root))
     print(json.dumps({"ok": not failures, "failures": failures}, indent=2))
     return 0 if not failures else 1
 

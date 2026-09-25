@@ -184,6 +184,29 @@ def _age(stamp):
     return max(0, int(time.time() - stamp))
 
 
+def _show(unit):
+    """systemctl show properties for one unit, or {} if unavailable."""
+    import subprocess
+
+    try:
+        result = subprocess.run(
+            ["systemctl", "--user", "show", unit,
+             "--property=ActiveState,Result,Type,SubState"],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=False,
+        )
+    except (OSError, ValueError):
+        return {}
+    props = {}
+    for line in result.stdout.splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            props[key.strip()] = value.strip()
+    return props
+
+
 def _unit_state(unit):
     import subprocess
 
@@ -200,6 +223,35 @@ def _unit_state(unit):
         return result.stdout.strip() or "unknown"
     except (OSError, ValueError):
         return "unknown"
+
+
+def _unit_health(unit):
+    """(display_state, failure_reason) — resolves timers to their service.
+
+    A timer-backed source is only healthy if the timer is armed AND the
+    service it triggers last finished with Result=success. This is what
+    catches OOM-killed runs that still refreshed their data file.
+    """
+    display = _unit_state(unit)
+    target = unit if unit.endswith((".timer", ".service")) else unit + ".service"
+    service = target[:-6] + ".service" if target.endswith(".timer") else target
+
+    props = _show(service)
+    result = props.get("Result", "")
+    state = props.get("ActiveState", "")
+    unit_type = props.get("Type", "simple")
+
+    if result and result != "success":
+        return display, f"{service} Result={result}"
+    if target.endswith(".timer"):
+        if display not in ("active", "running"):
+            return display, f"{target} not armed (state={display})"
+        return display, None
+    if unit_type in ("oneshot", "forking"):
+        return display, None
+    if state not in ("active", "running"):
+        return display, f"{service} is {state}"
+    return display, None
 
 
 def _site_probe():
@@ -267,11 +319,14 @@ def collect(root=None):
         newest = _newest(path)
         stamp = _freshest_stamp(newest, field) if newest else None
         age = _age(stamp)
-        unit_state = _unit_state(unit)
+        unit_state, unit_error = _unit_health(unit)
 
         status = "ok"
         error = None
-        if newest is None:
+        if unit_error:
+            status = "error"
+            error = unit_error
+        elif newest is None:
             status = (
                 "not_installed" if unit_state in ("inactive", "unknown") else "unknown"
             )
@@ -282,9 +337,6 @@ def collect(root=None):
         elif age > max_age:
             status = "stale"
             error = f"{age}s old, threshold {max_age}s"
-        elif not unit.endswith(".timer") and unit_state not in ("active", "running"):
-            status = "error"
-            error = f"{unit} is {unit_state}"
 
         sources.append(
             {

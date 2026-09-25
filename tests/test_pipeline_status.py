@@ -8,6 +8,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 
+import health_check
 import pipeline_status
 
 
@@ -62,6 +63,7 @@ def test_collect_returns_powops_contract(tmp_path, monkeypatch):
     monkeypatch.setattr(pipeline_status, "BASE_DIR", str(tmp_path))
     monkeypatch.setattr(pipeline_status, "R2_STATE", str(tmp_path / "r2-state.json"))
     monkeypatch.setattr(pipeline_status, "_unit_state", lambda unit: "active")
+    monkeypatch.setattr(pipeline_status, "_unit_health", lambda unit: ("active", None))
     monkeypatch.setattr(pipeline_status, "_site_probe", lambda: (200, time.time()))
 
     payload = pipeline_status.collect(str(tmp_path))
@@ -112,6 +114,9 @@ def test_collect_flags_missing_files(tmp_path, monkeypatch):
     monkeypatch.setattr(pipeline_status, "BASE_DIR", str(tmp_path))
     monkeypatch.setattr(pipeline_status, "R2_STATE", str(tmp_path / "absent.json"))
     monkeypatch.setattr(pipeline_status, "_unit_state", lambda unit: "inactive")
+    monkeypatch.setattr(
+        pipeline_status, "_unit_health", lambda unit: ("inactive", None)
+    )
     monkeypatch.setattr(pipeline_status, "_site_probe", lambda: (None, None))
 
     payload = pipeline_status.collect(str(tmp_path))
@@ -169,3 +174,81 @@ def test_freshest_stamp_falls_back_to_mtime_when_no_field(tmp_path):
     path.write_text("{}")
     stamp = pipeline_status._freshest_stamp(str(path), None)
     assert abs(stamp - path.stat().st_mtime) < 1
+
+
+def test_unit_health_catches_failed_service_result(monkeypatch):
+    monkeypatch.setattr(pipeline_status, "_unit_state", lambda unit: "active")
+    monkeypatch.setattr(
+        pipeline_status,
+        "_show",
+        lambda unit: {"Result": "oom-kill", "ActiveState": "failed", "Type": "simple"},
+    )
+
+    display, failure = pipeline_status._unit_health("pow-r2-upload.timer")
+
+    assert display == "active"
+    assert failure is not None
+    assert "oom-kill" in failure
+
+
+def test_unit_health_catches_unarmed_timer(monkeypatch):
+    monkeypatch.setattr(pipeline_status, "_unit_state", lambda unit: "inactive")
+    monkeypatch.setattr(
+        pipeline_status,
+        "_show",
+        lambda unit: {
+            "Result": "success",
+            "ActiveState": "inactive",
+            "Type": "oneshot",
+        },
+    )
+
+    display, failure = pipeline_status._unit_health("pow-warehouse-compact.timer")
+
+    assert display == "inactive"
+    assert failure is not None
+    assert "not armed" in failure
+
+
+def test_unit_health_ignores_oneshot_inactive_result(tmp_path, monkeypatch):
+    monkeypatch.setattr(pipeline_status, "_unit_state", lambda unit: "inactive")
+    monkeypatch.setattr(
+        pipeline_status,
+        "_show",
+        lambda unit: {
+            "Result": "success",
+            "ActiveState": "inactive",
+            "Type": "oneshot",
+        },
+    )
+
+    display, failure = pipeline_status._unit_health("pow-warehouse-compact.service")
+
+    assert failure is None
+
+
+def test_check_pipeline_surfaces_failing_sources(tmp_path):
+    path = tmp_path / "warehouse" / "powpowpow_heartbeat.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(
+            {
+                "heartbeat_at": "2026-09-25T19:00:00Z",
+                "results": {"r2_sync": "error", "chain_state": "ok"},
+            }
+        )
+    )
+
+    failures = health_check.check_pipeline(str(tmp_path))
+
+    assert len(failures) == 1
+    assert failures[0]["check"] == "pipeline:r2_sync"
+    assert "error" in failures[0]["failure"]
+
+
+def test_check_pipeline_returns_empty_when_all_ok(tmp_path):
+    path = tmp_path / "warehouse" / "powpowpow_heartbeat.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"results": {"r2_sync": "ok", "chain_state": "ok"}}))
+
+    assert health_check.check_pipeline(str(tmp_path)) == []
