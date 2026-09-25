@@ -1,4 +1,8 @@
 """
+
+STALE 2026-09-25: superseded by per-collector systemd units (see
+systemd/README.md). It supervises collectors that are now parked and
+serves an API on the old port 5000.
 PowPowPow Master Daemon
 Runs collectors continuously with supervision, schedules normalization,
 serves API. UTC-only. Writes daemon.pid for health checks.

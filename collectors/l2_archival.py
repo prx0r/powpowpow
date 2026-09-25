@@ -210,6 +210,12 @@ class L2Archival:
         if kind in self.stats[market]:
             self.stats[market][kind] += 1
 
+    def disk_low(self):
+        try:
+            return shutil.disk_usage(BASE_DIR).free < MIN_FREE_BYTES
+        except OSError:
+            return False
+
     def archive_raw(self, entry, receive_time, kind):
         if _archive_raw is None:
             return None
@@ -346,7 +352,7 @@ class L2Archival:
             f.write(str(os.getpid()))
         try:
             while self.running:
-                if shutil.disk_usage(BASE_DIR).free < MIN_FREE_BYTES:
+                if self.disk_low():
                     self.heartbeat()
                     print(f"[DISK] waiting for {MIN_FREE_BYTES} free bytes")
                     await asyncio.sleep(300)
@@ -368,7 +374,13 @@ class L2Archival:
                         print(f"[SUBSCRIBED] {len(streams)} streams")
                         backoff = 5
                         asyncio.create_task(self.rest_checkpoint(self.markets))
+                        last_disk_check = time.time()
                         while self.running:
+                            if time.time() - last_disk_check >= 60:
+                                last_disk_check = time.time()
+                                if self.disk_low():
+                                    print("[DISK] low during capture — closing stream")
+                                    break
                             try:
                                 msg = await asyncio.wait_for(ws.recv(), timeout=1.0)
                             except asyncio.TimeoutError:

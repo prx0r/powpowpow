@@ -20,7 +20,11 @@ R2 verified backup ◀── scripts/r2_upload.py ◀─────────
 - Origin stays on loopback; only Cloudflare Tunnel exposes it.
 - Reads (dashboard + market/mining APIs) are public; analyst chat is token-gated.
 - Chat token is remembered per browser via `access.html`.
-- Every normalized row carries `raw_event_id` back to an immutable raw observation.
+- Canonical rows carry `raw_event_id` back to an immutable raw observation.
+- Derived aggregates (`daily_state`, `derived_signal`, `cross_chain_factors`)
+  carry **evidence instead**: contributing record IDs, `emission_source`,
+  `poll_ids`, coverage windows — one aggregate row is built from thousands
+  of observations, so a single raw id would be misleading.
 
 ## Home tab (`/`)
 

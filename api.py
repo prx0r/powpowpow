@@ -1,4 +1,9 @@
 """
+
+STALE 2026-09-25: parked. Superseded by site/server.py on
+127.0.0.1:8795 (pow-site.service). The bind below was 0.0.0.0:5000 with
+no auth — anyone on the LAN could read it. It is loopback-only now.
+Endpoint ideas only; do not deploy.
 PowPowPow API v1
 REST + WebSocket for all V1 data.
 """
@@ -243,4 +248,4 @@ def index():
     })
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='127.0.0.1', port=5000, debug=False)

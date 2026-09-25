@@ -1,4 +1,9 @@
 """
+
+STALE 2026-09-25: duplicate of scripts/compact_stream.py. The
+pow-warehouse-compact unit runs compact_stream; this variant writes
+parquet without the chain= segment, so scripts/trim_jsonl.py will never
+match its output. Use compact_stream.
 Parquet compactor — keep every tick, pay ~nothing.
 
 Rolls warehouse/normalized JSONL tables into partitioned Parquet

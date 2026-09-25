@@ -118,3 +118,24 @@ def test_health_check_fails_when_pipeline_reports_failure(
     output = json.loads(capsys.readouterr().out)
     assert output["ok"] is False
     assert any(f["check"] == "pipeline:r2_sync" for f in output["failures"])
+
+
+def test_check_disk_reports_when_below_floor(tmp_path):
+    assert health_check.check_disk(str(tmp_path), floor=1) is None
+
+    failure = health_check.check_disk(str(tmp_path), floor=10**15)
+    assert failure is not None
+    assert "below floor" in failure
+    assert "collectors paused" in failure
+
+
+def test_health_check_fails_on_disk_pressure(tmp_path, monkeypatch, capsys):
+    fresh(tmp_path)
+    monkeypatch.setattr(health_check, "R2_STATE", str(tmp_path / "r2-state.json"))
+    monkeypatch.setattr(
+        health_check, "check_disk", lambda root, floor=None: "free 0.00 GiB below floor"
+    )
+
+    assert health_check.main(str(tmp_path)) == 1
+    output = json.loads(capsys.readouterr().out)
+    assert any(f["check"] == "disk" for f in output["failures"])

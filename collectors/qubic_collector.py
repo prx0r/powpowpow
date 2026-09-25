@@ -1,4 +1,8 @@
 """
+
+STALE 2026-09-25: Phase 1 one-shot, superseded by
+collectors/chain_state.py plus scripts/qubic_epoch.py. The static
+registry endpoint it used returns 403.
 QUBIC Data Collector — Phase 1
 Pulls from official Qubic RPC and static registry.
 """

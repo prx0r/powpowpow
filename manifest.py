@@ -48,8 +48,13 @@ def _layer_for_record(table, record, fallback_source_id=None):
     Raw envelopes and normalized rows carry `recoverability` directly; rows
     written before that tag existed fall back to the source/table registry.
     """
-    value = None
-    if isinstance(record, dict):
+    if not isinstance(record, dict):
+        # empty or unparseable file: fall back to the table's own class so a
+        # purged 0-byte JSONL reports as derived/ephemeral. With neither a
+        # table nor a source there is nothing to classify — leave it unknown.
+        value = (classify_recoverability(table, fallback_source_id)
+                 if (table or fallback_source_id) else None)
+    else:
         value = record.get('recoverability') or classify_recoverability(
             table, record.get('source_id') or fallback_source_id)
     return LAYER_BY_RECOVERABILITY.get(value, 'unknown')
@@ -103,6 +108,8 @@ def count_warehouse_objects() -> Dict[str, int]:
         'jsonl_files': 0,
         'jsonl_rows': 0,
         'jsonl_bytes': 0,
+        'parquet_files': 0,
+        'parquet_bytes': 0,
         'by_layer': {},
     }
 
@@ -125,6 +132,10 @@ def count_warehouse_objects() -> Dict[str, int]:
             layer = 'unknown'
             if parts and parts[0] == 'knowledge':
                 layer = 'knowledge'
+            elif len(parts) <= 1:
+                # warehouse-root JSON (insights, *_analytics, btc_context,
+                # heartbeats) is computed, never observed.
+                layer = 'derived'
             elif f.endswith('.json'):
                 try:
                     with open(fp) as fh:
@@ -146,6 +157,10 @@ def count_warehouse_objects() -> Dict[str, int]:
                     counts['by_layer'][layer]['rows'] += rows
                 except OSError:
                     pass
+            elif f.endswith('.parquet'):
+                layer = 'derived'
+                counts['parquet_files'] += 1
+                counts['parquet_bytes'] += size
             else:
                 continue
 

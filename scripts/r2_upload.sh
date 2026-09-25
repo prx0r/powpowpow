@@ -1,4 +1,7 @@
 #!/bin/bash
+# STALE 2026-09-25: cannot succeed — it sends the CF API token as an
+# S3 access key and a literal Signature=placeholder (line 65), so every
+# PUT is rejected. Use scripts/r2_upload.py instead.
 # Upload powpowpow warehouse to Cloudflare R2
 # Uses Cloudflare API directly (no AWS CLI needed)
 #

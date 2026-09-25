@@ -1,4 +1,8 @@
 """
+
+STALE 2026-09-25: parked orphan, superseded by site/server.py. The bind
+below was 0.0.0.0:5000 with no auth — loopback-only now. dashboard/index.html
+still tells you to start this; do not.
 PowPowPow API — Simple Flask API for live data and predictions.
 """
 
@@ -205,4 +209,4 @@ def status():
     })
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='127.0.0.1', port=5000, debug=False)

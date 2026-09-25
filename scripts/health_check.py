@@ -1,6 +1,7 @@
 import glob
 import json
 import os
+import shutil
 import time
 from datetime import UTC, datetime
 
@@ -119,6 +120,24 @@ def check_file(root, relative, field, max_age_seconds, now):
     return None
 
 
+def check_disk(root, floor=None):
+    """Refuse when free space falls below the collectors' pause floor.
+
+    Collectors already stop at POW_MIN_FREE_BYTES; without this check the
+    dashboard stays green while nothing is being written.
+    """
+    if floor is None:
+        floor = int(os.environ.get("POW_MIN_FREE_BYTES", str(2 * 1024 ** 3)))
+    try:
+        free = shutil.disk_usage(root).free
+    except OSError as exc:
+        return f"cannot stat filesystem: {exc}"
+    if free < floor:
+        return (f"free {free / 1024 ** 3:.2f} GiB below floor "
+                f"{floor / 1024 ** 3:.2f} GiB — collectors paused")
+    return None
+
+
 FAILING_PIPELINE_STATES = {"error", "stale", "unknown", "not_installed"}
 
 
@@ -154,6 +173,9 @@ def main(root=BASE_DIR):
         if failure:
             failures.append({"check": name, "failure": failure})
     failures.extend(check_pipeline(root))
+    disk_failure = check_disk(root)
+    if disk_failure:
+        failures.append({"check": "disk", "failure": disk_failure})
     print(json.dumps({"ok": not failures, "failures": failures}, indent=2))
     return 0 if not failures else 1
 

@@ -41,8 +41,11 @@ QUBIC epoch/computors timers ─────────────────
         pow-cloudflared.service ─► https://pow.systems
 ```
 
-Every normalized row carries `raw_event_id` back to one raw envelope, plus
-`recoverability` (`ephemeral` | `reconstructable` | `derived`).
+Canonical rows carry `raw_event_id` back to one raw envelope, plus
+`recoverability` (`ephemeral` | `reconstructable` | `derived`). Derived
+aggregates (`daily_state`, `derived_signal`, `cross_chain_factors`) carry
+**evidence instead** — contributing record IDs, `emission_source`, `poll_ids`,
+coverage — because one aggregate row is built from thousands of observations.
 
 ## 3. What is running (verified, not aspirational)
 
@@ -114,8 +117,9 @@ curl -s https://pow.systems/powops.json  # expect "sources_failed": 0
 git status --short --branch              # expect no "ahead/behind"
 ```
 
-Current receipts: **102 tests pass, 0 failures**, `health_check` `ok: true`,
-`pipeline_status` 14 sources / 0 failing.
+Current receipts: **121 tests pass, 0 failures**, `pipeline_status` 14 sources.
+`health_check` is currently **`ok: false`** — see trap 8: the disk is full and
+that is exactly the signal it is supposed to raise.
 
 ## 7. Traps
 
@@ -143,7 +147,13 @@ Current receipts: **102 tests pass, 0 failures**, `health_check` `ok: true`,
    heartbeats, `collector_run.json`). Tracked JSON
    (`chains/network_state.json`, `chains/factors/*`, `warehouse/*_analytics.json`)
    **is** dirty often — expect it.
-8. **Disk is tight** (~3.7 GiB free). Collectors pause below
+8. **Disk is FULL (0 bytes free).** Both collectors now refuse to write —
+   `chain_state` logs `ERR low disk`, SafeTrade logs `[DISK] waiting` (it
+   re-checks every60 s while connected, not only between reconnects) — and
+   `health_check` raises `check: disk`. Consumption is from **other projects**
+   (`powstock/data/raw` 4.8 GB, `opencode.db` 2.5 GB), not the warehouse
+   (859 MB). ~3.75 GiB must be freed to resume; ranked options in
+   `docs/audit-2026-09-25.md` §B4. Below that, collectors pause
    `POW_MIN_FREE_BYTES` (2 GiB) by design. Local retention: `raw` 24 h,
    `normalized` 30 h, `parquet` 168 h, `chains/` never — and only after a
    remote `HEAD` confirms size + SHA-256.

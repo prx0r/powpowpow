@@ -303,7 +303,26 @@ def _hb_summary(hb):
     return str(hb.get('mode', '?') or '?')
 
 
+_OPS_CACHE = {"at": 0.0, "payload": None}
+
+
 def _ops():
+    """Cached service/heartbeat probe.
+
+    Each call spawns up to six `systemctl` subprocesses. It used to run on
+    every `/api/ops` and `/api/home` request over an unbounded threading
+    server with logging disabled — an easy way to fork-bomb the box. 60s
+    matches how fast the states can meaningfully change.
+    """
+    if _OPS_CACHE["payload"] is not None and time.time() - _OPS_CACHE["at"] < 60:
+        return _OPS_CACHE["payload"]
+    payload = _ops_probe()
+    _OPS_CACHE["at"] = time.time()
+    _OPS_CACHE["payload"] = payload
+    return payload
+
+
+def _ops_probe():
     import subprocess as _sp
     hb_map = {'pow-venue-l2': 'venue_l2_heartbeat.json',
               'pow-venue-ws': 'venue_ws_heartbeat.json',
