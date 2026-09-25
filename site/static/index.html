@@ -62,6 +62,14 @@ canvas.g{width:100%;height:150px;border:2px solid #111;background:#fff;margin:6p
 .box{border:2px solid #111;padding:7px 9px;margin:6px 0;background:#f5f5f5;font-size:11.5px}
 .dim{color:#777;font-size:10.5px}
 pre{white-space:pre-wrap;font-size:11.5px;border:2px solid #111;padding:10px;background:#f5f5f5}
+.card{border:2px solid #111;background:#fff;padding:9px 11px;display:flex;flex-direction:column;gap:4px}
+.card .ct{font:900 10px/1 Arial;text-transform:uppercase;letter-spacing:1px;color:#777;border-bottom:2px solid #111;padding-bottom:5px}
+.card .cbig{font:700 20px/1 ui-monospace,monospace}
+.card .cln{display:flex;justify-content:space-between;gap:8px;font:700 11px ui-monospace,monospace}
+.card .cln span:first-child{font:400 9.5px/1.4 Arial;color:#777;text-transform:uppercase;letter-spacing:.5px;align-self:center}
+.card .cf{font-size:9.5px;color:#777;font-family:ui-monospace,monospace;word-break:break-all}
+.chip{display:inline-block;border:2px solid #111;padding:1px 5px;font:700 9px/1.4 Arial;text-transform:uppercase;letter-spacing:.5px}
+.chip.off{background:#fff;color:#777;border-color:#999}
 </style>
 </head>
 <body>
@@ -118,18 +126,78 @@ function stat(k,v,n){return`<div class="st"><div class="k">${k}</div><div class=
 function N(v){return v==null?'—':v<1?v.toPrecision(3):Number(v).toLocaleString(undefined,{maximumFractionDigits:2});}
 function $(v){if(v==null)return'—';const n=Number(v);if(!n)return'$0';if(Math.abs(n)<0.01){const d=Math.max(2,-Math.floor(Math.log10(Math.abs(n)))+2);return'$'+n.toFixed(d);}return'$'+n.toLocaleString(undefined,{maximumFractionDigits:n<1?6:0});}
 let FACT={};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const age=s=>s==null?'—':s<60?s+'s':s<3600?Math.round(s/60)+'m':s<86400?Math.round(s/3600)+'h':Math.round(s/86400)+'d';
 async function render(){if(V==='home')return home();if(V==='brief')return brief();return coin(V);}
 async function home(){
   document.getElementById('sht').textContent='SCREENER';
-  const d=await G('/api/factors');FACT=d.factors||{};
+  const [hd,fd]=await Promise.all([G('/api/home'),G('/api/factors')]);
+  FACT=fd.factors||{};
+  const cb=(hd.chains||{}), ops=(hd.ops||{}), svcs=ops.services||{};
   const rows=CORE.filter(c=>c[0]!=='home').map(c=>FACT[c[0]]).filter(Boolean);
-  document.getElementById('sbc').innerHTML=rows.sort((a,b)=>(b.burden_vs_book||0)-(a.burden_vs_book||0)).map(f=>
+  document.getElementById('sbc').innerHTML=rows.slice().sort((a,b)=>(b.burden_vs_book||0)-(a.burden_vs_book||0)).map(f=>
     `<button class="btn" onclick="go('${f.symbol}')">${f.symbol}<br><span class="dim">${N(f.burden_vs_book)}x burden</span></button>`).join('');
-  let h=`<h1>MONEY SUPPLY VS THE MARKET</h1><div class="sub">Fresh tokens per day, valued, against resting top-20 buy orders.</div>`;
-  h+=`<table><tr><th>COIN</th><th>PRICE</th><th>NEW $/DAY</th><th>BURDEN</th></tr>`;
-  rows.sort((a,b)=>(b.burden_vs_book||0)-(a.burden_vs_book||0)).forEach(f=>{
-    h+=`<tr><td><b>${f.symbol}</b></td><td>${$(f.price_usd)}</td><td>${f.issuance_usd_24h?'$'+Math.round(f.issuance_usd_24h).toLocaleString():'—'}</td><td>${f.burden_vs_book??'—'}×</td></tr>`;});
-  document.getElementById('ed').innerHTML=h+`</table>`;}
+
+  let h=`<h1>POW OVERVIEW</h1><div class="sub">Updated ${esc(hd.generated_at||'—')} · provenance: chains/network_state.json, chains/factors, daily_state, derived_signal</div>`;
+
+  h+='<h2>NETWORKS</h2><div class="grid">';
+  [['XMR','Monero'],['QUBIC','Qubic'],['BTC','Bitcoin']].forEach(([s,label])=>{
+    const c=cb[s]||{};
+    let key,val;
+    if(s==='XMR'){key='HASHRATE';val=c.network_hashrate?N(Math.round(c.network_hashrate/1e9))+' GH/s':'—';}
+    else if(s==='QUBIC'){key='EPOCH / TICK';val=(c.epoch?c.epoch:'—')+' · '+(c.tick?N(c.tick):'—');}
+    else {key='HEIGHT';val=c.height?N(c.height):'—';}
+    h+=`<div class="card"><div class="ct">${s} · ${label}</div>`+
+       `<div class="cbig">${$(c.price_usd)}</div>`+
+       `<div class="cln"><span>new $/day</span><span>${c.emission_usd_day?'$'+Math.round(c.emission_usd_day).toLocaleString():'—'}</span></div>`+
+       `<div class="cln"><span>${key}</span><span>${val}</span></div>`+
+       `<div class="cln"><span>observed</span><span>${age(c.age_seconds)} ago</span></div>`+
+       `<div class="cf">${esc(c.emission_source||'')}</div></div>`;
+  });
+  h+='</div>';
+
+  const active=Object.values(svcs).filter(v=>v&&v.state==='active').length;
+  const st=(hd.state||{}), sg=(hd.signals||{}), hs=(hd.health||{}), stg=(hd.storage||{});
+  const sa=(svcs['pow-safetrade-l2']||{}).heartbeat_age_s;
+  const ca=(svcs['pow-chain-state']||{}).heartbeat_age_s;
+  h+='<h2>COLLECTION</h2><div class="grid">';
+  h+=stat('SERVICES',active+'/'+Object.keys(svcs).length,'user systemd units');
+  h+=stat('SAFE TRADE',age(sa)+' ago','ws depth+trades');
+  h+=stat('CHAIN POLL',age(ca)+' ago','qubic/xmr/btc ·300s');
+  h+=stat('DISK FREE',stg.free_bytes?(stg.free_bytes/1e9).toFixed(1)+' GB':'—',stg.used_ratio!=null?Math.round(stg.used_ratio*100)+'% used':'');
+  h+=stat('STATE ROWS',st.rows??'—',st.date||'');
+  h+=stat('SIGNALS',sg.today??'—','derived '+st.date);
+  h+=stat('HEALTH',hs.ok?'OK':'CHECK',(hs.failures||[]).length?(hs.failures.length+' failing'):'all freshness checks pass');
+  h+='</div>';
+
+  const mk=Object.values(FACT).filter(f=>f&&f.issuance_usd_24h!=null)
+    .sort((a,b)=>(b.burden_vs_book||0)-(a.burden_vs_book||0)).slice(0,16);
+  h+='<h2>MARKET</h2><table><tr><th>COIN</th><th>PRICE</th><th>NEW $/DAY</th><th>BURDEN</th></tr>';
+  mk.forEach(f=>{
+    h+=`<tr><td><b>${esc(f.symbol)}</b></td><td>${$(f.price_usd)}</td>`+
+       `<td>$${Math.round(f.issuance_usd_24h).toLocaleString()}</td>`+
+       `<td>${f.burden_vs_book!=null?N(f.burden_vs_book)+'×':'—'}</td></tr>`;});
+  h+='</table><div class="dim">burden = fresh supply valued ÷ resting top-20 buy notional. source: chains/factors/cross_chain_factors.json</div>';
+
+  h+=`<h2>SIGNALS · ${esc(st.date||'')}</h2>`;
+  if(!(sg.top||[]).length){
+    h+='<div class="box">No signals yet — daily STATE needs ≥4 markets with measured emission and price. The hourly STATE chain rebuilds this automatically.</div>';
+  }else{
+    h+='<table><tr><th>ASSET</th><th>SIGNAL</th><th>Z</th><th>STRENGTH</th><th>SOURCE</th></tr>';
+    sg.top.forEach(r=>{
+      const ev=r.evidence||{};
+      const src=ev.emission_source||(ev.daily_state_records?('daily_state · '+ev.daily_state_records.length+' recs'):'');
+      h+=`<tr><td><b>${esc(r.asset)}</b></td><td>${esc(r.signal)}</td>`+
+         `<td>${r.z!=null?(r.z>0?'+':'')+N(r.z):'—'}</td>`+
+         `<td>${r.strength!=null?N(r.strength):'—'}</td>`+
+         `<td class="dim">${esc(src)}</td></tr>`;});
+    h+='</table><div class="dim">z = cross-sectional z-score of the measured composite. version: '+esc((sg.top[0]||{}).version||'')+'</div>';
+  }
+  document.getElementById('ed').innerHTML=h;
+  if(hs.ok){const e=document.getElementById('health');if(e)e.textContent='● LIVE';}
+}
+let _homeTimer=null;
+function autoRefreshHome(){if(_homeTimer)clearInterval(_homeTimer);_homeTimer=setInterval(()=>{if(V==='home')home().catch(()=>{});},60000);}
 const SUBS=['Overview','Epoch','Flow','Mining','Signals'];
 async function coin(sym){
   document.getElementById('sht').textContent=sym;
@@ -387,9 +455,9 @@ document.getElementById('cq').addEventListener('keydown',e=>{if(e.key==='Enter')
 cd.addEventListener('mousedown',e=>{d=true;sx=e.clientX;sw=p.offsetWidth;e.preventDefault();});
 document.addEventListener('mousemove',e=>{if(!d)return;p.style.width=Math.max(200,Math.min(500,sw-(e.clientX-sx)))+'px';});
 document.addEventListener('mouseup',()=>d=false);})();
-if(!T){const h=document.getElementById('health');if(h)h.textContent='● LIVE';home();bot('ops');autoRefreshBot();}
+if(!T){const h=document.getElementById('health');if(h)h.textContent='● LIVE';home();bot('ops');autoRefreshBot();autoRefreshHome();}
 else{G('/api/health').then(h=>document.getElementById('health').textContent=h.ok?'● LIVE':'down').catch(()=>document.getElementById('health').textContent='off');
-home();bot('ops');autoRefreshBot();}
+home();bot('ops');autoRefreshBot();autoRefreshHome();}
 
 /* Live ticker — SSE stream from /api/ticks (2s events), polling fallback */
 const TICKER_SYMBOLS=['btcusdt','xmrusdt','qubicusdt','prlusdt','nockusdt','kasusdt'];

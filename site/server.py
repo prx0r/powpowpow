@@ -25,6 +25,7 @@ from urllib.parse import parse_qs, urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
+sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 sys.path.insert(0, '/home/ubuntu/qpbot')  # pi harness (same as qpbot dash)
 
 # Fix core/ package shadowing core.py
@@ -249,6 +250,158 @@ def _analysis(symbol):
     return out
 
 
+def _json(path, default=None):
+    try:
+        with open(path) as handle:
+            return json.load(handle)
+    except (OSError, ValueError):
+        return default if default is not None else {}
+
+
+def _age_seconds(value):
+    if isinstance(value, (int, float)):
+        return None if value > 1e12 else max(0, int(datetime.now(timezone.utc).timestamp() - value))
+    if not isinstance(value, str) or not value:
+        return None
+    text = value[:-1] + '+00:00' if value.endswith('Z') else value
+    try:
+        stamp = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if stamp.tzinfo is None:
+        stamp = stamp.replace(tzinfo=timezone.utc)
+    return max(0, int((datetime.now(timezone.utc) - stamp).total_seconds()))
+
+
+def _hb_summary(hb):
+    if not hb:
+        return 'no heartbeat'
+    if 'poll_id' in hb:
+        return (f"poll={hb.get('poll_id')} books={hb.get('books')} "
+                f"tickers={hb.get('tickers')} trades={hb.get('trades')} "
+                f"err={hb.get('errors')}")
+    if 'frames' in hb:
+        return (f"frames={hb.get('frames')} snaps={hb.get('snapshots')} "
+                f"trades={hb.get('trades')} gaps={hb.get('gaps')} "
+                f"recon={hb.get('reconnects')} err={hb.get('errors')}")
+    stats = hb.get('stats')
+    if isinstance(stats, dict):
+        bad = [k for k, v in stats.items()
+               if isinstance(v, str) and v.startswith('ERR')]
+        ok = len(stats) - len(bad)
+        summary = f"{ok}/{len(stats)} chains ok"
+        return summary + (f" ERR:{','.join(bad)}" if bad else "")
+    if isinstance(stats, list):
+        return f"results={len(stats)}"
+    return str(hb.get('mode', '?') or '?')
+
+
+def _ops():
+    import subprocess as _sp
+    hb_map = {'pow-venue-l2': 'venue_l2_heartbeat.json',
+              'pow-venue-ws': 'venue_ws_heartbeat.json',
+              'pow-chain-state': 'chain_state_heartbeat.json',
+              'pow-safetrade-l2': 'safetrade_l2_heartbeat.json'}
+    ops = {'services': {}, 'heartbeats': {}}
+    for svc in ('pow-venue-l2', 'pow-venue-ws', 'pow-chain-state',
+                'pow-safetrade-l2', 'pow-pearld', 'pow-site'):
+        try:
+            r = _sp.run(['systemctl', '--user', 'is-active', svc + '.service'],
+                        capture_output=True, text=True, timeout=5)
+            state = r.stdout.strip()
+        except Exception:
+            state = 'unknown'
+        hb = {}
+        if svc in hb_map:
+            hb = _json(os.path.join(ROOT, 'warehouse', hb_map[svc]))
+            if hb:
+                ops['heartbeats'][hb_map[svc]] = hb
+        ops['services'][svc] = {
+            'state': state,
+            'heartbeat_age_s': _age_seconds(hb.get('heartbeat_at')),
+            'detail': _hb_summary(hb),
+        }
+    return ops
+
+
+def _home():
+    net = _json(os.path.join(ROOT, 'chains', 'network_state.json'))
+    factors = _json(os.path.join(ROOT, 'chains', 'factors', 'cross_chain_factors.json'))
+    ops = _ops()
+
+    chains = {}
+    for sym in ('XMR', 'QUBIC', 'BTC'):
+        entry = net.get(sym) or {}
+        factor = factors.get(sym) or {}
+        price = factor.get('price_usd') or entry.get('price_usd')
+        emission, emission_source = _emission(sym)
+        chains[sym] = {
+            'price_usd': price,
+            'price_source': 'chains/factors/cross_chain_factors.json',
+            'daily_emission': emission,
+            'emission_source': emission_source,
+            'emission_usd_day': round(emission * price, 2) if (emission and price) else None,
+            'height': entry.get('height'),
+            'tick': entry.get('tick'),
+            'epoch': entry.get('epoch'),
+            'epoch_progress': entry.get('epoch_progress'),
+            'difficulty': entry.get('difficulty'),
+            'network_hashrate': entry.get('network_hashrate'),
+            'hashrate_unit': 'H/s' if sym == 'XMR' else ('GH/s (assumed, unconfirmed)' if sym == 'BTC' else None),
+            'as_of': entry.get('as_of'),
+            'age_seconds': _age_seconds(entry.get('as_of')),
+        }
+
+    try:
+        import shutil
+        usage = shutil.disk_usage(ROOT)
+        storage = {'total_bytes': usage.total, 'free_bytes': usage.free,
+                   'used_ratio': round(usage.used / usage.total, 4)}
+    except OSError:
+        storage = None
+
+    rows = _rows('derived_signal')
+    signals = [r for r in rows if r.get('date')]
+    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    today_rows = [r for r in signals if r.get('date') == today]
+    for r in signals:
+        r['z'] = (r.get('burden_z') if r.get('burden_z') is not None
+                  else r.get('imbalance_z') if r.get('imbalance_z') is not None
+                  else r.get('coverage_z'))
+    top = sorted(today_rows, key=lambda r: abs(r.get('z') or 0), reverse=True)[:8]
+
+    states = [r for r in _rows('daily_state') if r.get('date') == today]
+
+    health_failures = []
+    try:
+        from health_check import CHECKS, check_file
+        now = datetime.now(timezone.utc).timestamp()
+        for name, relative, field, max_age in CHECKS:
+            failure = check_file(ROOT, relative, field, max_age, now)
+            if failure:
+                health_failures.append({'check': name, 'failure': failure})
+    except Exception as exc:
+        health_failures.append({'check': 'health_check', 'failure': str(exc)[:120]})
+
+    return {
+        'generated_at': datetime.now(timezone.utc).isoformat(),
+        'chains': chains,
+        'ops': ops,
+        'storage': storage,
+        'signals': {'today': len(today_rows), 'all': len(signals), 'top': top},
+        'state': {'date': today, 'rows': len(states)},
+        'health': {'ok': not health_failures, 'failures': health_failures},
+    }
+
+
+def _emission(symbol):
+    try:
+        from signals import load_emission
+        return load_emission(symbol)
+    except Exception:
+        return None, 'unavailable'
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = 'PowSite/1.0'
 
@@ -401,61 +554,9 @@ class Handler(BaseHTTPRequestHandler):
             except (OSError, ValueError):
                 return self._send({'error': f'no analytics for {sym} (run scripts/{sym.lower()}_analytics.py)'}, code=404)
         if u.path == '/api/ops':
-            import subprocess as _sp
-            from datetime import datetime as _dt, timezone as _tz
-
-            def _hb_age(hb):
-                try:
-                    ts = _dt.fromisoformat(str(hb.get('heartbeat_at', '')).replace('Z', '+00:00'))
-                    return int((_dt.now(_tz.utc) - ts).total_seconds())
-                except Exception:
-                    return None
-
-            def _hb_summ(hb):
-                if not hb:
-                    return 'no heartbeat'
-                if 'poll_id' in hb:
-                    return (f"poll={hb.get('poll_id')} books={hb.get('books')} "
-                            f"tickers={hb.get('tickers')} trades={hb.get('trades')} "
-                            f"err={hb.get('errors')}")
-                if 'frames' in hb:
-                    return (f"frames={hb.get('frames')} snaps={hb.get('snapshots')} "
-                            f"trades={hb.get('trades')} gaps={hb.get('gaps')} "
-                            f"recon={hb.get('reconnects')} err={hb.get('errors')}")
-                st = hb.get('stats')
-                if isinstance(st, dict):
-                    bad = [k for k, v in st.items()
-                           if isinstance(v, str) and v.startswith('ERR')]
-                    ok = len(st) - len(bad)
-                    s = f"{ok}/{len(st)} chains ok"
-                    return s + (f" ERR:{','.join(bad)}" if bad else "")
-                if isinstance(st, list):
-                    return f"results={len(st)}"
-                return str(hb.get('mode', '?') or '?')
-
-            hb_map = {'pow-venue-l2': 'venue_l2_heartbeat.json',
-                      'pow-venue-ws': 'venue_ws_heartbeat.json',
-                      'pow-chain-state': 'chain_state_heartbeat.json',
-                      'pow-safetrade-l2': 'safetrade_l2_heartbeat.json'}
-            ops = {'services': {}}
-            for svc in ('pow-venue-l2', 'pow-venue-ws', 'pow-chain-state',
-                        'pow-safetrade-l2', 'pow-pearld', 'pow-site'):
-                try:
-                    r = _sp.run(['systemctl', '--user', 'is-active', svc + '.service'],
-                                capture_output=True, text=True, timeout=5)
-                    state = r.stdout.strip()
-                except Exception:
-                    state = 'unknown'
-                hb = {}
-                if svc in hb_map:
-                    try:
-                        hb = json.load(open(os.path.join(ROOT, 'warehouse', hb_map[svc])))
-                    except (OSError, ValueError):
-                        pass
-                ops['services'][svc] = {'state': state,
-                                        'heartbeat_age_s': _hb_age(hb),
-                                        'detail': _hb_summ(hb)}
-            return self._send(ops)
+            return self._send(_ops())
+        if u.path == '/api/home':
+            return self._send(_home())
         if u.path == '/api/chain':
             sym = arg('symbol').upper()
             try:

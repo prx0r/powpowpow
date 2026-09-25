@@ -7,6 +7,7 @@ Every observation has event_time + observed_at (both UTC).
 
 import json
 import os
+import glob
 import hashlib
 import requests
 from datetime import datetime, timezone
@@ -328,6 +329,44 @@ def store_normalized(
         f.write(json.dumps(record, default=str) + '\n')
     
     return hour_file
+
+
+def purge_normalized(table_name: str, field: str, value: Any) -> int:
+    """Remove normalized rows whose ``field`` equals ``value``.
+
+    Idempotent rollups (daily STATE, signals) call this before writing so a
+    rerun replaces its own prior output instead of duplicating it.
+    Returns the number of rows removed.
+    """
+    removed = 0
+    root = os.path.join(BASE_DIR, 'warehouse', 'normalized', table_name)
+    if not os.path.isdir(root):
+        return 0
+    for path in glob.glob(os.path.join(root, 'chain=*', 'date=*', 'hour=*.jsonl')):
+        with open(path) as fh:
+            lines = fh.readlines()
+        kept = []
+        changed = False
+        for line in lines:
+            try:
+                row = json.loads(line)
+            except ValueError:
+                kept.append(line)
+                continue
+            if row.get(field) == value:
+                removed += 1
+                changed = True
+            else:
+                kept.append(line)
+        if not changed:
+            continue
+        tmp = path + '.purge.tmp'
+        with open(tmp, 'w') as fh:
+            fh.writelines(kept)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+    return removed
 
 # ============================================================
 # BACKWARD COMPATIBILITY

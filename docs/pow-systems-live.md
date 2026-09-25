@@ -22,6 +22,36 @@ R2 verified backup ◀── scripts/r2_upload.py ◀─────────
 - Chat token is remembered per browser via `access.html`.
 - Every normalized row carries `raw_event_id` back to an immutable raw observation.
 
+## Home tab (`/`)
+
+Rendered from a single `GET /api/home` payload:
+
+| Section | Source |
+|---|---|
+| NETWORKS (price, new $/day, hashrate/epoch/height, freshness) | `chains/network_state.json` + `chains/factors/cross_chain_factors.json` + `signals.load_emission` |
+| COLLECTION (services, heartbeat age, disk, STATE/signals counts, health) | `systemctl --user`, `warehouse/*_heartbeat.json`, `shutil.disk_usage`, `scripts/health_check.py` |
+| MARKET (price, new $/day, burden) | `chains/factors/cross_chain_factors.json` |
+| SIGNALS (asset, signal, z, strength, source) | `warehouse/normalized/derived_signal/` |
+
+The home view refreshes every 60s while active. Signals are shown as numeric
+z-scores with their evidence source — no directional language in the UI.
+
+## Daily STATE chain
+
+`pow-daily-state.timer` runs hourly at :25 UTC:
+
+```bash
+python3 scripts/build_daily_state.py --date $YESTERDAY
+python3 scripts/build_daily_state.py --date $TODAY
+python3 signals.py --date $YESTERDAY
+python3 signals.py --date $TODAY
+python3 factors.py --date $TODAY
+```
+
+Rollups are idempotent: `core.purge_normalized(table, field, value)` removes
+the previous output for that date before rebuilding, so an hourly rerun
+replaces rows instead of duplicating them.
+
 ## Systemd units (user scope)
 
 | Unit | Role | Schedule |
@@ -30,6 +60,7 @@ R2 verified backup ◀── scripts/r2_upload.py ◀─────────
 | `pow-chain-state.service` | QUBIC/XMR/BTC polls, 300s cadence | always, restart |
 | `pow-qubic-epoch.service/.timer` | Epoch, burn, tick rate | every 10 min |
 | `pow-qubic-computors.service/.timer` | Computor set + DOGE leg | hourly |
+| `pow-daily-state.service/.timer` | STATE + signals + factors rebuild | hourly :25 |
 | `pow-mining-analytics.service/.timer` | XMR/QUBIC/BTC context + backtest | every 6 h |
 | `pow-r2-upload.service/.timer` | Verified R2 sync + retention | hourly |
 | `pow-warehouse-compact.service/.timer` | Closed-date Parquet compaction | daily 00:12 UTC |
@@ -72,6 +103,7 @@ Public checks (no token required for reads):
 - `GET https://pow.systems/api/health` → `{"ok": true, …}`.
 - `GET https://pow.systems/api/ticks?symbols=btcusdt,xmrusdt,qubicusdt` → SSE stream.
 - `GET https://pow.systems/api/chain?symbol=XMR|QUBIC|BTC` → 200 with fresh `as_of`.
+- `GET https://pow.systems/api/home` → 200 with `chains`, `ops`, `storage`, `signals`, `state`, `health`.
 - `POST https://pow.systems/api/chat` without token → 403 (chat remains gated).
 
 ## Troubleshooting

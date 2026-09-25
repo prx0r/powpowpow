@@ -35,10 +35,21 @@ from datetime import datetime, timezone
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
 
-from core import store_normalized  # noqa: E402
+from core import purge_normalized, store_normalized  # noqa: E402
 
 SIGNAL_VERSION = "miner_pressure_v1"
 CALCULATION_VERSION = "signals-v1.0"
+
+QUOTE_SUFFIXES = ('USDT', 'USDC', 'SAFE', 'BTC', 'XMR', 'USD')
+
+
+def chain_symbol(symbol):
+    """XMRUSDT / PRLBTC / NOCKUSDC -> XMR / PRL / NOCK (lookup key)."""
+    s = (symbol or '').upper()
+    for quote in QUOTE_SUFFIXES:
+        if s.endswith(quote) and len(s) > len(quote):
+            return s[:-len(quote)]
+    return s
 
 
 def read_states(date, chain='venue'):
@@ -60,26 +71,27 @@ def read_states(date, chain='venue'):
 def load_emission(symbol):
     """Daily native emission lookup. Order: live network_state (engines,
     measured deltas) -> fundamentals -> researched schedules."""
+    base = chain_symbol(symbol)
     try:
         live = json.load(open(os.path.join(BASE_DIR, 'chains', 'network_state.json')))
-        entry = (live.get(symbol.upper(), {}) or {})
         for key in ('daily_emission_delta', 'daily_emission'):
+            entry = (live.get(base, {}) or {})
             if entry.get(key):
-                return entry[key], f"network_state.json:{symbol}.{key}"
+                return entry[key], f"network_state.json:{base}.{key}"
     except OSError:
         pass
     try:
         fund = json.load(open(os.path.join(BASE_DIR, 'chains', 'chain_fundamentals.json')))
     except OSError:
         fund = {}
-    e = (fund.get(symbol, {}) or {}).get('daily_emission')
+    e = (fund.get(base, {}) or {}).get('daily_emission')
     if e:
-        return e, f"chain_fundamentals.json:{symbol}.daily_emission"
+        return e, f"chain_fundamentals.json:{base}.daily_emission"
     try:
         from emission import estimate as emission_estimate
-        est, prov = emission_estimate(symbol)
+        est, prov = emission_estimate(base)
         if est:
-            return est, f"emission.py:{symbol} ({prov.get('source', '')} [{prov.get('confidence', '')}])"
+            return est, f"emission.py:{base} ({prov.get('source', '')} [{prov.get('confidence', '')}])"
     except Exception:
         pass
     return None, "unknown"
@@ -321,6 +333,9 @@ def main():
     ap.add_argument('--date', default=None)
     args = ap.parse_args()
     date = args.date or datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    purged = purge_normalized('derived_signal', 'date', date)
+    if purged:
+        print(f"[SIGNALS {date}] purged {purged} prior rows for idempotent rebuild")
     sigs = build_signals(date)
     for s in sigs:
         print(f"  {s['asset']:6} {s['signal']:14} {s['direction']:8} {s['strength']:.2f} "
