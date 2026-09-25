@@ -51,14 +51,15 @@ install them on a fresh box.
 
 | Kind | Units | Schedule |
 |---|---|---|
-| services (`Restart=always`, enabled) | `pow-safetrade-l2`, `pow-chain-state`, `pow-qubic-stats`, `pow-site`, `pow-cloudflared` | continuous |
+| services (`Restart=always`, enabled) | `pow-safetrade-l2`, `pow-chain-state`, `pow-qubic-stats`, `pow-qubic-holdings`, `pow-qubic-transfers`, `pow-site`, `pow-cloudflared` | continuous |
 | timers (enabled) | `pow-health` | every 5 min |
 | | `pow-qubic-epoch` | every 10 min |
 | | `pow-qubic-computors` | hourly :07 |
 | | `pow-daily-state` | hourly :25 |
-| | `pow-r2-upload` | hourly :37 |
+| | `pow-r2-upload` | `OnUnitInactiveSec=3600` (1 h after each run, cannot overlap) |
 | | `pow-mining-analytics` | 00/06/12/18:20 |
-| | `pow-warehouse-compact` | daily 00:15 |
+| | `pow-warehouse-compact` | daily 00:12 |
+| | `pow-r2-retention` | `OnUnitInactiveSec=1800` (30 min after each run) |
 
 `Linger=yes` is set, so all of it survives reboot.
 
@@ -80,7 +81,7 @@ install them on a fresh box.
 
 `pow-health.service` runs `pipeline_status` **then** `health_check`, so a dead
 timer now fails health instead of passing silently. `health_check.CHECKS`
-(13 entries) covers collector heartbeats, `daily_state`, `derived_signals`,
+(17 entries) covers collector heartbeats, `daily_state`, `derived_signals`,
 `factors`, `computor_snapshot`, `pipeline_status`, `r2_sync`, analytics.
 
 Status vocabulary: `ok` · `stale` · `error` · `unknown` · `not_installed`.
@@ -113,9 +114,8 @@ curl -s https://pow.systems/powops.json  # expect "sources_failed": 0
 git status --short --branch              # expect no "ahead/behind"
 ```
 
-Current receipts: **57 tests pass**, 1 known failure
-(`test_garden.py::test_lineage_resolves` — `core/` package shadows `core.py`,
-fixture patches the wrong namespace).
+Current receipts: **102 tests pass, 0 failures**, `health_check` `ok: true`,
+`pipeline_status` 14 sources / 0 failing.
 
 ## 7. Traps
 
@@ -127,7 +127,8 @@ fixture patches the wrong namespace).
    `core.py`. To patch module globals in tests use
    `monkeypatch.setitem(fn.__globals__, "BASE_DIR", ...)`, **not**
    `monkeypatch.setattr(core, "BASE_DIR", ...)` — that changes a different
-   namespace and the test passes/fails for the wrong reason.
+   namespace. This caused the `isolated` fixture to write observations into the
+   live warehouse — fixed in `tests/test_garden.py`, but the rule still holds.
 3. **Do not rewrite stale files.** Annotate them with a `STALE` banner that
    says exactly what is wrong and points at current truth (`agents.md` §5).
    Authoritative docs live in `docs/`.
