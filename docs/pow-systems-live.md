@@ -70,6 +70,7 @@ replaces rows instead of duplicating them.
 | Burns | `burn_epoch_total`, `burn_deviation_vs_schedule`, `burn_concentration_at_epoch_start`, `burn_trickle_rate` | `getEventLogs` `logType=8` |
 | Holdings | `exchange_reserve`, `wealth_concentration`, `exchange_share_of_top_holders` | `static.qubic.org` exchanges × `live/v1/balances`, `/v1/rich-list` |
 | Activity | `measured_active_addresses`, `transfer_rate`, `exchange_netflow`, `whale_share_of_volume` | `getEventLogs` `logType=0` (`quTransfer`) |
+| Activity × price | `activity_vs_price_corr` (intraday, 5-min buckets) | `quTransfer` × SafeTrade `qubicusdt` ticker |
 | Price fit | `metric_vs_price_corr` | metric series vs daily closes (needs ≥30) |
 
 Every metric carries `n`, `min_n`, `source`, `window` and `version`. When a

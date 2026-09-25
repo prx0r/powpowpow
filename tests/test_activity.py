@@ -79,3 +79,46 @@ def test_activity_metrics_refuses_window_without_address_count():
     out = activity_metrics([window_row(unique_addresses=None)])
     assert out[0]["refused"] is True
     assert out[0]["reason"] == "window has no address count"
+
+
+def test_intraday_price_correlation_refuses_until_enough_buckets():
+    from transforms import activity
+
+    price_rows = [
+        {"observed_at": f"2026-09-25T18:{i:02d}:10Z", "mid": 1.0 + i}
+        for i in range(0, 60, 5)
+    ]
+    activity_rows = [{"observed_at": "2026-09-25T18:00:30Z", "unique_addresses": 10}]
+    out = activity.intraday_price_correlation(activity_rows, price_rows)
+    assert out["refused"] is True
+    assert out["n"] == 1
+    assert out["min_n"] == 12
+
+
+def test_intraday_price_correlation_computes_on_aligned_buckets():
+    from transforms import activity
+
+    base = 1790362500
+    activity_rows, price_rows = [], []
+    for index in range(16):
+        stamp = base + index * 300
+        activity_rows.append(
+            {
+                "observed_at": str(stamp),
+                "unique_addresses": 50 + index * 3,
+            }
+        )
+        price_rows.append(
+            {
+                "observed_at": str(stamp + 12),
+                "mid": 1.0 + index * 0.05,
+            }
+        )
+
+    out = activity.intraday_price_correlation(activity_rows, price_rows, min_samples=12)
+    assert out["refused"] is False
+    assert out["metric"] == "activity_vs_price_corr"
+    assert out["n"] == 12  # correlation uses the trailing window
+    assert out["unit"] == "r"
+    assert abs(out["value"] - 1.0) < 1e-9
+    assert out["activity_field"] == "unique_addresses"

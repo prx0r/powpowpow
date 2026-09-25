@@ -74,3 +74,79 @@ def activity_metrics(rows, previous_count=1):
                    "whale_volume": row.get("whale_volume"),
                    "threshold_qu": 1_000_000_000}))
     return out
+
+
+def _bucket_seconds(key, bucket=300):
+    """Fold an ISO timestamp or unix seconds into a fixed time bucket."""
+    import datetime as _dt
+
+    if isinstance(key, (int, float)):
+        seconds = float(key)
+        if seconds > 1e12:
+            seconds /= 1000
+    elif isinstance(key, str):
+        stripped = key.strip()
+        if stripped.isdigit():
+            seconds = float(stripped)
+            if seconds > 1e12:
+                seconds /= 1000
+            return int(seconds // bucket) * bucket
+        text = stripped[:-1] + "+00:00" if stripped.endswith("Z") else stripped
+        try:
+            seconds = _dt.datetime.fromisoformat(text).timestamp()
+        except ValueError:
+            return None
+    else:
+        return None
+    return int(seconds // bucket) * bucket
+
+
+def intraday_price_correlation(activity_rows, price_rows, bucket=300,
+                               min_samples=12, activity_field="unique_addresses"):
+    """Correlation of network activity with price inside the same time buckets.
+
+    QUBIC hashrate is not exposed by any public endpoint, so we correlate the
+    activity we can measure (transfers, unique addresses) against venue mids
+    over 5-minute buckets. This needs only hours of history, not days.
+    """
+    metric = "activity_vs_price_corr"
+    activity = {}
+    for row in activity_rows:
+        value = row.get(activity_field)
+        if value is None:
+            continue
+        key = _bucket_seconds(row.get("observed_at"), bucket)
+        if key is not None:
+            activity[key] = float(value)
+    prices = {}
+    for row in price_rows:
+        mid = row.get("mid")
+        if mid is None:
+            continue
+        key = _bucket_seconds(row.get("observed_at") or row.get("receive_time"),
+                              bucket)
+        if key is not None:
+            prices[key] = float(mid)
+    joined = [(key, activity[key], prices[key]) for key in sorted(activity)
+              if key in prices]
+    if len(joined) < min_samples:
+        return refusal(metric, "not enough overlapping time buckets",
+                       len(joined), min_samples)
+    window = joined[-min_samples:]
+    xs = [row[1] for row in window]
+    ys = [row[2] for row in window]
+    n = len(window)
+    mean_x, mean_y = sum(xs) / n, sum(ys) / n
+    cov = sum((x - mean_x) * (y - mean_y) for x, y in zip(xs, ys))
+    var_x = sum((x - mean_x) ** 2 for x in xs)
+    var_y = sum((y - mean_y) ** 2 for y in ys)
+    denom = (var_x * var_y) ** 0.5
+    if denom < 1e-12 or var_x < 1e-12 or var_y < 1e-12:
+        return refusal(metric, "zero variance inside window", n, min_samples)
+    return result(
+        metric, round(cov / denom, 4), "r", n,
+        "qubic-eventlog × SafeTrade orderbook mid",
+        window=f"{len(window)} × {bucket}s buckets",
+        extra={"activity_field": activity_field,
+               "first_bucket": window[0][0], "last_bucket": window[-1][0]},
+    )

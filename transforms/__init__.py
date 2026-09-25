@@ -1,6 +1,6 @@
 """Pure, versioned insight transforms — no fetching, no state."""
 
-from transforms.activity import activity_metrics
+from transforms.activity import activity_metrics, intraday_price_correlation
 from transforms.common import (
     MIN_CORR_SAMPLES,
     MIN_PUELL_SAMPLES,
@@ -54,6 +54,7 @@ __all__ = [
     "exchange_share_from_row",
     "exchange_share_of_top_holders",
     "gini",
+    "intraday_price_correlation",
     "metric_vs_price_corr",
     "pct_change",
     "pearson",

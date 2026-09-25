@@ -29,6 +29,7 @@ from transforms import (
     daily_closes,
     exchange_reserve,
     exchange_share_from_row,
+    intraday_price_correlation,
     metric_vs_price_corr,
     percentile,
     price_hashrate_divergence,
@@ -241,7 +242,19 @@ def build(root=BASE_DIR):
                 )
             )
             metrics.append(burn_intensity(stats_rows))
-            metrics.extend(activity_metrics(read_table("qubic_transfer_window", "qubic")))
+            transfer_rows = read_table("qubic_transfer_window", "qubic")
+            metrics.extend(activity_metrics(transfer_rows))
+            # SafeTrade depth deltas often carry one side only, so `mid` is
+            # sparse (489 of 16,810 rows). The ticker table has a complete
+            # `last` for the same market and is the better intraday price.
+            qubic_mids = [
+                {"observed_at": row.get("observed_at") or row.get("receive_time"),
+                 "mid": row.get("last")}
+                for row in read_table("ticker", "safetrade")
+                if (row.get("symbol") or "").lower() == "qubicusdt"
+                and row.get("last") not in (None, 0)
+            ]
+            metrics.append(intraday_price_correlation(transfer_rows, qubic_mids))
             metrics.extend(qubic_holdings_metrics(stats_rows))
             for name, field in (("epoch_tick_quality", "epoch_tick_quality"),):
                 metrics.append(
