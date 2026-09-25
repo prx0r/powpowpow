@@ -46,11 +46,42 @@ python3 scripts/build_daily_state.py --date $TODAY
 python3 signals.py --date $YESTERDAY
 python3 signals.py --date $TODAY
 python3 factors.py --date $TODAY
+python3 scripts/build_insights.py --date $TODAY
 ```
 
 Rollups are idempotent: `core.purge_normalized(table, field, value)` removes
 the previous output for that date before rebuilding, so an hourly rerun
 replaces rows instead of duplicating them.
+
+## Insight metrics vs price
+
+`transforms/` holds pure, versioned, I/O-free metric functions;
+`scripts/build_insights.py` reads the warehouse, computes them and writes
+`warehouse/insights.json`. Served at `GET /api/insights` and rendered as the
+**INSIGHT VS PRICE** table on the home tab.
+
+| Family | Metric | Source history |
+|---|---|---|
+| Miner revenue | `puell_multiple` | `price_history` × daily emission, 365d window |
+| Security | `security_spend_ratio` | `blockchain.info` supply × price × emission |
+| Divergence | `price_hashrate_divergence` | `price_history` vs `chain_snapshot` hashrate |
+| Tick quality | `tick_quality_ribbon` | `qubic_stats` snapshots (needs ≥13) |
+| Addresses | `active_address_growth` | `qubic_stats` snapshots |
+| Burns | `burn_epoch_total`, `burn_deviation_vs_schedule`, `burn_concentration_at_epoch_start`, `burn_trickle_rate` | `getEventLogs` `logType=8` |
+| Price fit | `metric_vs_price_corr` | metric series vs daily closes (needs ≥30) |
+
+Every metric carries `n`, `min_n`, `source`, `window` and `version`. When a
+metric cannot be computed honestly it returns `refused: true` with a reason
+instead of a number — the dashboard renders those rows as `REFUSED` with the
+reason, never as `—`.
+
+Burn structure discovered while building this: the epoch's burn is two large
+contract burns at the first tick of the epoch (≈99.8% of the total) followed by
+a long trickle of small deductions. A uniform QU-per-tick average would be
+meaningless, which is why burn is reported as four separate metrics.
+`burn_deviation_vs_schedule` currently reads ~0.996×, i.e. observed burn is
+within 0.4% of `gross_per_week × burn_rate` — an independent check that the
+emission model in `network_state` is right.
 
 ## powops monitoring
 
@@ -179,7 +210,8 @@ Public checks (no token required for reads):
 - `GET https://pow.systems/api/ticks?symbols=btcusdt,xmrusdt,qubicusdt` → SSE stream.
 - `GET https://pow.systems/api/chain?symbol=XMR|QUBIC|BTC` → 200 with fresh `as_of`.
 - `GET https://pow.systems/api/home` → 200 with `chains`, `ops`, `storage`, `signals`, `state`, `health`, `pipeline`.
-- `GET https://pow.systems/powops` → 200 HTML pipeline page; `/powops.json` → 200 with 10 sources.
+- `GET https://pow.systems/api/insights` → 200 with `chains`, `summary` (`computed` / `refused`), `version`.
+- `GET https://pow.systems/powops` → 200 HTML pipeline page; `/powops.json` → 200 with 12 sources.
 - `POST https://pow.systems/api/chat` without token → 403 (chat remains gated).
 
 ## Troubleshooting

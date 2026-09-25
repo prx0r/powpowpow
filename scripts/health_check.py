@@ -26,6 +26,7 @@ CHECKS = [
         4500,
     ),
     ("factors", "chains/factors/cross_chain_factors.json", "timestamp", 4500),
+    ("insights", "warehouse/insights.json", "generated_at", 4500),
     (
         "computor_snapshot",
         "warehouse/normalized/computor_snapshot/chain=qubic/date=*/hour=*.jsonl",

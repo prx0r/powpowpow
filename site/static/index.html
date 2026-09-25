@@ -131,7 +131,8 @@ const age=s=>s==null?'—':s<60?s+'s':s<3600?Math.round(s/60)+'m':s<86400?Math.r
 async function render(){if(V==='home')return home();if(V==='brief')return brief();return coin(V);}
 async function home(){
   document.getElementById('sht').textContent='SCREENER';
-  const [hd,fd]=await Promise.all([G('/api/home'),G('/api/factors')]);
+  const [hd,fd,ins]=await Promise.all([G('/api/home'),G('/api/factors'),
+    G('/api/insights').catch(()=>({}))]);
   FACT=fd.factors||{};
   const cb=(hd.chains||{}), ops=(hd.ops||{}), svcs=ops.services||{};
   const rows=CORE.filter(c=>c[0]!=='home').map(c=>FACT[c[0]]).filter(Boolean);
@@ -180,6 +181,33 @@ async function home(){
        `<td>$${Math.round(f.issuance_usd_24h).toLocaleString()}</td>`+
        `<td>${f.burden_vs_book!=null?N(f.burden_vs_book)+'×':'—'}</td></tr>`;});
   h+='</table><div class="dim">burden = fresh supply valued ÷ resting top-20 buy notional. source: chains/factors/cross_chain_factors.json</div>';
+
+  const iv=(ins&&ins.chains)||{}, ivsum=(ins&&ins.summary)||{};
+  h+='<h2>INSIGHT VS PRICE</h2>';
+  if(!Object.keys(iv).length){
+    h+='<div class="box">No insights yet — run <code>scripts/build_insights.py</code>.</div>';
+  }else{
+    h+='<table><tr><th>CHAIN</th><th>METRIC</th><th>VALUE</th><th>UNIT</th>'+
+       '<th>PRICE</th><th>PCTL 365D</th><th>N</th><th>SOURCE / REFUSAL</th></tr>';
+    Object.keys(iv).forEach(chain=>{
+      const block=iv[chain]||{};
+      (block.metrics||[]).forEach(m=>{
+        const price=block.price_usd!=null?$(block.price_usd):'—';
+        const pctl=block.price_percentile_365d!=null?block.price_percentile_365d+'%':'—';
+        const val=m.refused?'REFUSED':(m.value==null?'—':N(m.value));
+        const unit=m.refused?'':(m.unit||'');
+        const note=esc(m.refused?(m.reason||''):(m.source||''));
+        h+=`<tr><td><b>${esc(chain)}</b></td><td>${esc(m.metric)}</td>`+
+           `<td>${val}</td><td class="dim">${esc(unit)}</td>`+
+           `<td>${price}</td><td>${pctl}</td><td>${m.n==null?'—':m.n}</td>`+
+           `<td class="dim">${note}</td></tr>`;
+      });
+    });
+    h+='</table><div class="dim">'+(ivsum.computed==null?0:ivsum.computed)+
+       ' computed · '+(ivsum.refused==null?0:ivsum.refused)+
+       ' refused and shown with their reason · PCTL 365D is where the latest close sits in the trailing 365 closes · version '+
+       esc(ins.version||'')+'</div>';
+  }
 
   h+=`<h2>SIGNALS · ${esc(st.date||'')}</h2>`;
   if(!(sg.top||[]).length){

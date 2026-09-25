@@ -27,6 +27,8 @@ def build_tree(tmp_path, iso):
     write(tmp_path / "warehouse/qubic_epoch_state.json", {"ts": now})
     write(tmp_path / "warehouse/qubic_stats_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/xmr_analytics.json", {"computed_at": iso})
+    write(tmp_path / "warehouse/powpowpow_heartbeat.json", {"heartbeat_at": iso})
+    write(tmp_path / "warehouse/insights.json", {"generated_at": iso})
     write(
         tmp_path / "chains/factors/cross_chain_factors.json",
         {"BTC": {"timestamp": iso}},
@@ -83,6 +85,7 @@ def test_collect_returns_powops_contract(tmp_path, monkeypatch):
         "daily_state",
         "derived_signals",
         "cross_chain_factors",
+        "insights",
         "mining_analytics",
         "r2_sync",
         "pow_site",
@@ -143,7 +146,7 @@ def test_write_artifacts_emits_heartbeat_and_run(tmp_path, monkeypatch):
 
 
 def test_freshest_stamp_reads_last_jsonl_line(tmp_path):
-    from datetime import datetime, timezone
+    from datetime import UTC, datetime
 
     path = tmp_path / "hour=00.jsonl"
     path.write_text(
@@ -153,7 +156,7 @@ def test_freshest_stamp_reads_last_jsonl_line(tmp_path):
         + "\n"
     )
     stamp = pipeline_status._freshest_stamp(str(path), "observed_at")
-    expected = datetime(2026, 9, 25, 11, 30, tzinfo=timezone.utc).timestamp()
+    expected = datetime(2026, 9, 25, 11, 30, tzinfo=UTC).timestamp()
     assert int(stamp) == int(expected)
 
 

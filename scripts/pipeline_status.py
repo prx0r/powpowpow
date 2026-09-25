@@ -71,6 +71,13 @@ SOURCES = (
         4500,
     ),
     (
+        "insights",
+        "pow-daily-state.timer",
+        "warehouse/insights.json",
+        "generated_at",
+        4500,
+    ),
+    (
         "mining_analytics",
         "pow-mining-analytics.timer",
         "warehouse/xmr_analytics.json",

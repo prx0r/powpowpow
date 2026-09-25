@@ -639,6 +639,13 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(json.load(open(f)))
             except (OSError, ValueError):
                 return self._send({'error': f'no analytics for {sym} (run scripts/{sym.lower()}_analytics.py)'}, code=404)
+        if u.path == '/api/insights':
+            try:
+                with open(os.path.join(ROOT, 'warehouse', 'insights.json')) as handle:
+                    return self._send(json.load(handle))
+            except (OSError, ValueError):
+                return self._send({'error': 'no insights (run scripts/build_insights.py)'},
+                                   code=404)
         if u.path == '/api/ops':
             return self._send(_ops())
         if u.path == '/api/home':
