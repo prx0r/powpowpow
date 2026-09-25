@@ -17,7 +17,7 @@ REGISTRY = {
         'supplier_type': 'computor',
         'github': 'qubic/core',
         'api': 'https://rpc.qubic.org',
-        'max_supply': 200_000_000_000,
+        'max_supply': 200_000_000_000_000,
     },
     'PRL': {
         'name': 'Pearl',

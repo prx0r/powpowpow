@@ -25,7 +25,7 @@ from core import fetch_json, store_normalized, utcnow  # noqa: E402
 
 CHARTS = {
     # chart-name: (field, unit-note)
-    'hash-rate': ('network_hashrate_ths', 'TH/s as reported'),
+    'hash-rate': ('network_hashrate_ghs', 'GH/s as reported'),
     'difficulty': ('difficulty', 'absolute difficulty'),
     'miners-revenue': ('miners_revenue_usd', 'USD/day coinbase+fees'),
     'transaction-fees-usd': ('fees_usd_day', 'USD/day fees only'),

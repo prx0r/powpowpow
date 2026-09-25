@@ -17,25 +17,25 @@ os.makedirs(METRICS_DIR, exist_ok=True)
 COINS = {
     'QUBIC': {
         'coingecko': 'qubic',
-        'emission_per_day': 1_728_000_000,  # Approximate
-        'max_supply': 200_000_000_000,
+        'emission_per_day': 32_142_857_143,  # Approximate
+        'max_supply': 200_000_000_000_000,
         'consensus': 'useful-pow',
     },
     'PRL': {
         'coingecko': 'pearl',
         'emission_per_day': 500_000,
-        'max_supply': 10_000_000,
+        'max_supply': 2_100_000_000,
         'consensus': 'proof-of-useful-work',
     },
     'NOCK': {
         'coingecko': 'nockchain',
         'emission_per_day': 50_000,
-        'max_supply': 21_000_000,
+        'max_supply': 4_294_967_296,
         'consensus': 'zk-pow',
     },
     'XMR': {
         'coingecko': 'monero',
-        'emission_per_day': 2_844,  # Current Monero emission
+        'emission_per_day': 432,  # Current Monero emission
         'max_supply': None,  # Tail emission
         'consensus': 'randomx',
     },

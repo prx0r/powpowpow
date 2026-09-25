@@ -84,8 +84,9 @@ pre{white-space:pre-wrap;font-size:11.5px;border:2px solid #111;padding:10px;bac
    Old-school terminal feel. No gradients, no rounded corners, no emojis in content.
    Keep this forever — it IS the PowPowPow style. */
 const T=new URLSearchParams(location.search).get('token')||'';
-const G=(p)=>fetch(p+'?token='+encodeURIComponent(T)).then(r=>r.json());
-const P=(p,b)=>fetch(p+'?token='+encodeURIComponent(T),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
+const TK=p=>(p.includes('?')?'&token=':'?token=')+encodeURIComponent(T);
+const G=(p)=>fetch(p+TK(p)).then(r=>r.json());
+const P=(p,b)=>fetch(p+TK(p),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
 const CORE=[['HOME','home'],['BTC','Bitcoin'],['QUBIC','Qubic'],['XMR','Monero'],['PRL','Pearl'],['KAS','Kaspa'],['NOCK','Nock'],['XEL','Xelis']];
 let V='home',S='Overview';
 setInterval(()=>{const e=document.getElementById('clk');if(e)e.textContent=new Date().toISOString().slice(11,19)+'Z'},1000);
@@ -112,7 +113,7 @@ x.fillStyle=v>=0?'#111':'#999';v>=0?x.fillRect(i*bw+2,H/2-h,bw-4,h):x.fillRect(i
 x.fillStyle='#111';x.fillRect(0,H/2-1,W,3);}
 function stat(k,v,n){return`<div class="st"><div class="k">${k}</div><div class="v">${v}</div><div class="n">${n||''}</div></div>`;}
 function N(v){return v==null?'—':v<1?v.toPrecision(3):Number(v).toLocaleString(undefined,{maximumFractionDigits:2});}
-function $(v){return v==null?'—':'$'+Number(v).toLocaleString(undefined,{maximumFractionDigits:v<1?6:0});}
+function $(v){if(v==null)return'—';const n=Number(v);if(!n)return'$0';if(Math.abs(n)<0.01)return'$'+n.toPrecision(3);return'$'+n.toLocaleString(undefined,{maximumFractionDigits:n<1?6:0});}
 let FACT={};
 async function render(){if(V==='home')return home();if(V==='brief')return brief();return coin(V);}
 async function home(){
@@ -167,12 +168,12 @@ async function coinBody(sym){
     if(sym==='BTC'){
       const bc=await G('/api/btc').catch(()=>({}));
       const bs=await G('/api/btc_series').catch(()=>({series:[]}));
-      const last=(bs.series||[]).filter(r=>r.network_hashrate_ths).pop()||{};
-      const hrTHS=last.network_hashrate_ths||net.network_hashrate||0;
+      const last=(bs.series||[]).filter(r=>r.network_hashrate_ghs||r.network_hashrate_ths).pop()||{};
+      const hrGHS=last.network_hashrate_ghs||last.network_hashrate_ths||net.network_hashrate||0;
       const sec=450*((bc.btc_price)||0);
       h+=stat('PRICE',bc.btc_price?$(bc.btc_price):$(card.price_usd),'CoinGecko close');
       h+=stat('SECURITY SPEND',sec?'$'+Math.round(sec).toLocaleString()+'/day':'—','450 BTC/day × price + fees');
-      h+=stat('HASHRATE',hrTHS?(hrTHS/1e6).toFixed(0)+' EH/s':'—','network total');
+      h+=stat('HASHRATE',hrGHS?(hrGHS/1e9).toFixed(0)+' EH/s':'—','network total');
       h+=stat('DIFFICULTY',net.difficulty?(net.difficulty/1e12).toFixed(2)+'T':'—',net.next_retarget?('retarget @ '+net.next_retarget):'');
       h+=stat('HEIGHT',net.height?net.height.toLocaleString():'—','tip cross-checked');
       h+=stat('FEES/DAY',last.fees_usd_day?'$'+Math.round(last.fees_usd_day).toLocaleString():'—','miner fee revenue');
@@ -183,7 +184,7 @@ async function coinBody(sym){
       const ph=await G(`/api/history?symbol=${sym}`);
       const closes=(ph.closes||[]).map(r=>[r.date,r.close]);
       line('g-px',closes,'last $'+(((ph.closes||[]).pop()||{}).close??'—'));
-      line('g-btc-hr',(bs.series||[]).filter(r=>r.network_hashrate_ths).map(r=>[r.date,r.network_hashrate_ths/1e6]),'EH/s');
+      line('g-btc-hr',(bs.series||[]).filter(r=>r.network_hashrate_ghs||r.network_hashrate_ths).map(r=>[r.date,(r.network_hashrate_ghs||r.network_hashrate_ths)/1e9]),'EH/s');
       return;
     }
     h+=`</div><h2>PRICE 365D</h2><canvas class="g" id="g-px"></canvas>`;
@@ -254,15 +255,15 @@ async function coinBody(sym){
     if(sym==='BTC'){
       const bs=await G('/api/btc_series').catch(()=>({series:[]}));
       const S0=(bs.series||[]);
-      const last=S0.filter(r=>r.network_hashrate_ths).pop()||{};
-      const hrTHS=last.network_hashrate_ths||0;
+      const last=S0.filter(r=>r.network_hashrate_ghs||r.network_hashrate_ths).pop()||{};
+      const hrGHS=last.network_hashrate_ghs||last.network_hashrate_ths||0;
       const rev=last.miners_revenue_usd||0;
-      const hpPH=hrTHS&&rev?(rev/(hrTHS/1e3)):null;
+      const hpPH=hrGHS&&rev?(rev/(hrGHS/1e6)):null;
       const feeShare=rev&&last.fees_usd_day?(last.fees_usd_day/rev*100):null;
       h+=`<div class="grid">`;
       h+=stat('EMISSION','450 BTC/day','3.125/block × ~144, halvings to 2140');
       h+=stat('SECURITY SPEND',rev?'$'+Math.round(rev).toLocaleString()+'/day':'—','subsidy + fees');
-      h+=stat('HASHRATE',hrTHS?(hrTHS/1e6).toFixed(0)+' EH/s':'—','network total');
+      h+=stat('HASHRATE',hrGHS?(hrGHS/1e9).toFixed(0)+' EH/s':'—','network total');
       h+=stat('HASHPRICE',hpPH?'$'+hpPH.toFixed(2)+'/PH/day':'—','revenue per petahash (Luxor index)');
       h+=stat('DIFFICULTY',last.difficulty?(last.difficulty/1e12).toFixed(2)+'T':'—','auto-retarget ~2016 blocks');
       h+=stat('FEE SHARE',feeShare!=null?feeShare.toFixed(1)+'%':'—','fees as share of revenue — the 2140 question');
@@ -282,7 +283,7 @@ async function coinBody(sym){
       const ph=await G(`/api/history?symbol=BTC`);
       const px={};(ph.closes||[]).forEach(r=>px[r.date]=r.close);
       line('g-btc-sec',S0.filter(r=>r.miners_revenue_usd).map(r=>[r.date,r.miners_revenue_usd]),'revenue $/day');
-      line('g-btc-hr',S0.filter(r=>r.network_hashrate_ths).map(r=>[r.date,r.network_hashrate_ths/1e6]),'EH/s');
+      line('g-btc-hr',S0.filter(r=>r.network_hashrate_ghs||r.network_hashrate_ths).map(r=>[r.date,(r.network_hashrate_ghs||r.network_hashrate_ths)/1e9]),'EH/s');
       line('g-btc-diff',S0.filter(r=>r.difficulty).map(r=>[r.date,r.difficulty/1e12]),'difficulty T');
       return;
     }

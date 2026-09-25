@@ -12,7 +12,7 @@ COINS = {
         'consensus': 'Useful PoW',
         'venue': 'safetrade',
         'github': 'qubic/core',
-        'max_supply': 200_000_000_000,
+        'max_supply': 200_000_000_000_000,
     },
     'PRL': {
         'name': 'Pearl',

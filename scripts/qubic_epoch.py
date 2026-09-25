@@ -3,20 +3,22 @@ Qubic epoch engine — validated inflation, not tick soup.
 
 Reads rpc.qubic.org tick-info + status, derives epoch progress, tick
 rate, and empirical ticks-per-epoch, then applies the documented
-halving schedule to produce NET emission (gross is constant 1T/week;
-burn share is what halves):
+halving schedule to produce MAXIMUM EFFECTIVE emission (gross is
+constant 1T/week; the burn ceiling is what halves):
 
   epoch < 123 : burn   0% (pre-SWATCH)
   123 - 174   : burn  15%
   175 - 226   : burn  55%   (halving 1, Aug 2025)
-  227+        : burn  78.75% (halving 2, Aug 19 2026)
+  227+        : burn  77.5% maximum (halving 2, Aug 19 2026)
 
-Net/week = 1e12 * (1 - burn). Writes chains/network_state.json QUBIC
-section (daily_emission, burn_rate, epoch, progress, tick_rate), which
-money math + signals prefer over static seeds.
+Max net/week = 1e12 * (1 - burn ceiling). The Supply Watcher may run
+below that ceiling, so these are projected maximum values rather than
+measured burns. Writes chains/network_state.json QUBIC section
+(daily_emission, burn_rate, epoch, progress, tick_rate), which money
+math + signals prefer over static seeds.
 
-Sources: qubic.org/halving, qubic.org blog (41.5T burned, May 2026),
-docs.qubic.org/learn/emission-mechanism.
+Sources: qubic.org/blog-detail/qubic-second-halving-epoch-227,
+qubic.org/halving.
 """
 
 import json
@@ -32,6 +34,9 @@ from core import fetch_json, store_normalized, utcnow  # noqa: E402
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 EPOCH_STATE_FILE = os.path.join(BASE_DIR, 'warehouse', 'qubic_epoch_state.json')
 GROSS_PER_WEEK = 1e12
+POST_227_MAX_BURN = 0.775
+POST_227_MAX_NET_PER_WEEK = 225e9
+POST_227_MINIMUM_MINEABLE_PER_WEEK = 181.64e9
 
 
 def burn_rate_for_epoch(epoch):
@@ -43,7 +48,7 @@ def burn_rate_for_epoch(epoch):
         return 0.15
     if epoch < 227:
         return 0.55
-    return 0.7875
+    return POST_227_MAX_BURN
 
 
 def load_prev():
@@ -96,8 +101,10 @@ def main():
         'epoch': epoch, 'tick': cur, 'initial_tick': initial,
         'ticks_per_epoch_empirical': ticks_per_epoch,
         'epoch_progress': progress, 'tick_rate': tick_rate,
-        'burn_rate': burn, 'net_emission_week': net_week,
+        'burn_rate': burn, 'burn_ceiling': burn,
+        'net_emission_week': net_week,
         'net_emission_day': net_day,
+        'emission_basis': 'projected maximum effective emission',
         'source_role': 'canonical', 'source_id': 'qubic-rpc'})
 
     try:
@@ -107,10 +114,13 @@ def main():
     q = ns.setdefault('QUBIC', {})
     q.update({'epoch': epoch, 'tick': cur, 'epoch_progress': progress,
               'tick_rate': tick_rate, 'ticks_per_epoch': ticks_per_epoch,
-              'burn_rate': burn, 'daily_emission': net_day,
+              'burn_rate': burn, 'burn_ceiling': burn,
+              'daily_emission': net_day,
+              'emission_basis': 'projected maximum effective emission',
               'emission_source': 'qubic epoch engine: 1T gross/week net of '
-                                 f'{burn} burn (post-227 schedule)',
-              'emission_confidence': 'medium',
+                                 f'{burn} maximum burn (post-227 schedule; '
+                                 'Supply Watcher may run lower)',
+              'emission_confidence': 'medium-low',
               'gross_per_week': GROSS_PER_WEEK,
               'as_of': utcnow()})
     with open(NETSTATE_FILE + '.tmp', 'w') as f:

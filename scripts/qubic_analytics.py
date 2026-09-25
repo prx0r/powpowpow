@@ -2,10 +2,10 @@
 Qubic analytics engine — concrete numbers, not opinions.
 
 Computes from live data:
-  - net emission (from epoch engine burn schedule)
-  - supply projection (extrapolated emission over 1-52 weeks)
+  - maximum effective emission (from epoch engine burn ceiling)
+  - new-issuance projection (extrapolated emission over 1-52 weeks)
   - emission-to-book ratio (burden per day)
-  - miner reward per computor (1T gross / 676 computors × burn share)
+  - miner reward per computor (post-227 minimum mineable supply ÷ computors)
   - epoch return series (from CG closes)
   - demand per epoch (tx volume per epoch tick range)
 
@@ -25,6 +25,9 @@ from core import utcnow  # noqa: E402
 
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 EPOCH_STATE_FILE = os.path.join(BASE_DIR, 'warehouse', 'qubic_epoch_state.json')
+POST_227_MAX_BURN = 0.775
+POST_227_EFFECTIVE_PER_WEEK = 225e9
+POST_227_MINIMUM_MINEABLE_PER_WEEK = 181.64e9
 
 
 def load_netstate():
@@ -87,14 +90,16 @@ def load_demand_snapshots():
 
 
 def supply_curve(net):
-    """Project total supply over future weeks given current burn rate."""
-    if not net.get('burn_rate'):
+    """Project new issuance over future weeks given the current burn ceiling."""
+    burn = net.get('burn_rate')
+    if not burn:
         return []
     weeks = []
     gross = 1e12  # constant
-    burn = net['burn_rate']
-    daily = gross * (1 - burn) / 7
-    cumulative_supply = net.get('total_transactions', 0)  # proxy for existing supply proxy
+    if abs(burn - POST_227_MAX_BURN) < 1e-12:
+        weekly_new = POST_227_EFFECTIVE_PER_WEEK
+    else:
+        weekly_new = gross * (1 - burn)
     price = None
     try:
         closes = load_cg_closes()
@@ -103,15 +108,18 @@ def supply_curve(net):
     except Exception:
         pass
     for w in range(1, 53):
-        net_new = gross * (1 - burn) * w
-        net_usd = net_new * price if price else None
+        new_supply = weekly_new * w
+        new_supply_usd = new_supply * price if price else None
         weeks.append({
             'week': w,
             'gross': gross * w,
             'burned': gross * burn * w,
-            'net': net_new,
-            'net_usd': net_usd,
+            'new_supply': new_supply,
+            'net': new_supply,
+            'net_usd': new_supply_usd,
             'price_assumed': price,
+            'burn_rate': burn,
+            'emission_basis': 'projected new issuance, not cumulative supply',
         })
     return weeks
 
@@ -166,22 +174,30 @@ def emission_valuation(net):
 
 
 def computor_economics(net):
-    """Reward per computor per epoch, and per-day equivalent."""
+    """Minimum mineable reward per computor per epoch, and per-day equivalent."""
     gross = 1e12
     burn = net.get('burn_rate', 0)
     computors = net.get('computors', 0)
     if not computors:
         return {}
-    net_per_epoch = gross * (1 - burn)
-    per_computor = net_per_epoch / computors
+    if abs(burn - POST_227_MAX_BURN) < 1e-12:
+        effective_per_epoch = POST_227_EFFECTIVE_PER_WEEK
+        mineable_per_epoch = POST_227_MINIMUM_MINEABLE_PER_WEEK
+    else:
+        effective_per_epoch = gross * (1 - burn)
+        mineable_per_epoch = None
+    per_computor = mineable_per_epoch / computors if mineable_per_epoch else None
     return {
         'gross_per_epoch': gross,
         'burn_rate': burn,
-        'net_per_epoch': net_per_epoch,
+        'effective_per_epoch': effective_per_epoch,
+        'net_per_epoch': effective_per_epoch,
+        'mineable_per_epoch': mineable_per_epoch,
         'computors': computors,
         'reward_per_computor': per_computor,
-        'reward_per_computor_per_day': per_computor / 7,
-        'source': 'epoch engine + Query API computor count',
+        'reward_per_computor_per_day': per_computor / 7 if per_computor else None,
+        'source': 'Qubic Epoch 227 allocation table + Query API computor count',
+        'emission_basis': 'minimum mineable supply after CCF and QEarn allocations',
     }
 
 
@@ -254,6 +270,8 @@ if __name__ == '__main__':
     pr = a['price_range_365d']
     print(f"  emission ${em_usd:,.0f}/day")
     print(f"  burden {burden}x")
-    print(f"  computors {ce.get('computors')} reward/epoch {ce.get('reward_per_computor'):,.0f}")
+    reward = ce.get('reward_per_computor')
+    print(f"  computors {ce.get('computors')} reward/epoch "
+          f"{reward:,.0f}" if reward else "  computors reward/epoch unavailable")
     print(f"  365d range ${pr.get('low', 0):.8f} → ${pr.get('high', 0):.8f}")
     print(f"  {len(a['epoch_returns'])} epoch-equivalent return periods")

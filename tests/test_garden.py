@@ -121,8 +121,8 @@ def test_cowriters_survive_pass(isolated, monkeypatch):
     import collectors.chain_state as cs
     monkeypatch.setattr(cs, 'NETSTATE_FILE',
                         str(isolated / 'network_state.json'))
-    base = {'QUBIC': {'epoch': 231, 'burn_rate': 0.7875,
-                      'daily_emission': 30357142857.0,
+    base = {'QUBIC': {'epoch': 232, 'burn_rate': 0.775,
+                      'daily_emission': 32142857143.0,
                       'computors': 676}}
     with open(str(isolated / 'network_state.json'), 'w') as f:
         json.dump(base, f)
@@ -134,5 +134,5 @@ def test_cowriters_survive_pass(isolated, monkeypatch):
     ns = cs.load_netstate()
     cs.save_netstate(ns)
     after = json.load(open(str(isolated / 'network_state.json')))
-    assert after['QUBIC']['burn_rate'] == 0.7875
+    assert after['QUBIC']['burn_rate'] == 0.775
     assert after['QUBIC']['computors'] == 676

@@ -23,8 +23,8 @@ COINS = {
             'bitget': 'QUBIC/USDT',
         },
         'chain': {
-            'max_supply': 200_000_000_000,
-            'emission_per_day': 1_728_000_000,
+            'max_supply': 200_000_000_000_000,
+            'emission_per_day': 32_142_857_143,
             'block_time': None,
             'consensus': 'useful-pow',
         },
@@ -97,7 +97,7 @@ COINS = {
         },
         'chain': {
             'max_supply': None,  # Tail emission
-            'emission_per_day': 2_844,
+            'emission_per_day': 432,
             'block_time': 120,
             'consensus': 'randomx',
         },

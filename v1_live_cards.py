@@ -56,6 +56,8 @@ NETWORK = {
         'network_hashrate': 21.9e18,         # H/s, prlscan 2026-09-18 (docs)
         'hashrate_source': 'prlscan 2026-09-18, re-measure via pearld',
         'emission_source': 'chain_fundamentals.json daily_emission',
+        'emission_confidence': 'low-unverified',
+        'hashrate_confidence': 'low-unverified',
         'as_of': '2026-09-18',
     },
     'XMR': {
@@ -67,9 +69,11 @@ NETWORK = {
     },
     # QUBIC is epoch/computor-based, not hashrate-proportional. Needs live
     # computor count + epoch emission from Qubic RPC before revenue is valid.
-    'QUBIC': {'daily_emission': 1728000000.0, 'network_hashrate': None,
-              'hashrate_source': None, 'emission_source': 'chain_fundamentals.json',
-              'as_of': '2026-09-18',
+    'QUBIC': {'daily_emission': 32142857143.0, 'network_hashrate': None,
+              'hashrate_source': None,
+              'emission_source': '225B maximum effective epoch emission ÷ 7',
+              'emission_basis': 'projected maximum effective emission',
+              'as_of': '2026-09-25',
               'needs': 'active_computors + epoch emission from rpc.qubic.org'},
     'QUAN': {'daily_emission': None, 'network_hashrate': None,
              'needs': 'emission schedule + network hashrate from Quantus telemetry'},
@@ -245,7 +249,8 @@ def generate_card(chain, price, network_data=None, electricity=0.10):
         'electricity_usd_kwh': electricity,
         'network': {k: net.get(k) for k in
                     ('daily_emission', 'network_hashrate', 'hashrate_source',
-                     'emission_source', 'as_of', 'needs', 'gated', 'gate_reason')},
+                     'emission_source', 'emission_basis', 'emission_confidence',
+                     'hashrate_confidence', 'as_of', 'needs', 'gated', 'gate_reason')},
         'fundamentals': None,  # filled below; None only if no STATE yet
         'hardware': {},
     }
