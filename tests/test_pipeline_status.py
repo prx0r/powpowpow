@@ -25,6 +25,7 @@ def build_tree(tmp_path, iso):
     now = time.time()
     write(tmp_path / "warehouse/safetrade_l2_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/chain_state_heartbeat.json", {"heartbeat_at": iso})
+    write(tmp_path / "warehouse/depth_snapshots_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/qubic_epoch_state.json", {"ts": now})
     write(tmp_path / "warehouse/qubic_stats_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/qubic_holdings_heartbeat.json", {"heartbeat_at": iso})
@@ -83,6 +84,7 @@ def test_collect_returns_powops_contract(tmp_path, monkeypatch):
     assert set(heartbeat["results"]) == {
         "safetrade_l2",
         "chain_state",
+        "depth_snapshots",
         "qubic_epoch",
         "qubic_stats",
         "qubic_holdings",

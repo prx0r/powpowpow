@@ -39,13 +39,13 @@ It is kept as endpoint brainstorming only — this file is what is real.
 | `GET /api/home` | — | network cards, ops, storage, signals, state, health, `pipeline` |
 | `GET /api/insights` | — | `chains`, `summary`, `version` — insight metrics vs price |
 | `GET /api/ops` | — | service states + heartbeats (also `/powops.json`) |
-| `GET /api/factors` | — | `cross_chain_factors.json` (burden, issuance, spread) |
+| `GET /api/factors` | — | `cross_chain_factors.json` — chain rows aggregate every pair in USD; `burden_vs_book`/`issuance_to_volume` are `null` when `market_coverage_refusal` is set |
 | `GET /api/ticks` | `symbols` (comma list) | **SSE** freshest mid/spread per symbol |
 | `GET /api/live` | — | latest `daily_state` rows + heartbeats |
 | `GET /api/chain` | `symbol` | `network_state[symbol]` + fundamentals + row count |
 | `GET /api/state` | `symbol`, `date` | daily STATE rows |
 | `GET /api/state_series` | `symbol` | cross-venue daily aggregates |
-| `GET /api/signals` | `symbol`, `date` | `derived_signal` rows |
+| `GET /api/signals` | `symbol`, `date` | `derived_signal` rows — `asset` is the **chain** symbol (QUBIC, XMR), so `symbol=` filters match |
 | `GET /api/epoch_series` | — | last 30 QUBIC epoch rows |
 | `GET /api/analysis` | `symbol` | price vs difficulty correlation |
 | `GET /api/analytics` | `symbol` | `<symbol>_analytics.json` |

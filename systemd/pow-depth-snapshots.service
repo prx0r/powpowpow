@@ -1,0 +1,27 @@
+[Unit]
+Description=PowPowPow depth snapshots (Coinbase/Kraken) for chains whose market is not SafeTrade
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=10
+
+[Service]
+Type=simple
+WorkingDirectory=/root/powpowpow
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=POW_MIN_FREE_BYTES=2147483648
+Environment=POW_DEPTH_CADENCE=300
+ExecStart=/usr/bin/python3 collectors/depth_snapshots.py
+Restart=always
+RestartSec=10
+TimeoutStopSec=30
+KillSignal=SIGINT
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/root/powpowpow/warehouse
+UMask=0077
+
+[Install]
+WantedBy=default.target

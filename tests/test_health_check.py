@@ -25,6 +25,7 @@ def fresh(tmp_path):
     now = time.time()
     write(tmp_path / "warehouse/safetrade_l2_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/chain_state_heartbeat.json", {"heartbeat_at": iso})
+    write(tmp_path / "warehouse/depth_snapshots_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/qubic_epoch_state.json", {"ts": now})
     write(tmp_path / "warehouse/qubic_stats_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/qubic_holdings_heartbeat.json", {"heartbeat_at": iso})

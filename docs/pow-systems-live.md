@@ -177,6 +177,7 @@ Not cloned: the repo containing `SOURCES.md`/`TRANSFORMS.md`/
 |---|---|---|
 | `pow-safetrade-l2.service` | SafeTrade WS depth/trades/tickers | always, restart |
 | `pow-chain-state.service` | QUBIC/XMR/BTC polls, 300s cadence | always, restart |
+| `pow-depth-snapshots.service` | Coinbase BTC + Kraken XMR/BTC depth, 300s — feeds `burden_vs_book` | always, restart |
 | `pow-qubic-stats.service` | QUBIC official stats: active addresses, tick quality, burned QUs, burn events, rich list | always, restart, 300s |
 | `pow-qubic-epoch.service/.timer` | Epoch, burn, tick rate | every 10 min |
 | `pow-qubic-holdings.service` | QUBIC exchange reserves + wealth concentration | always, restart, 300s (rich list every 6h) |

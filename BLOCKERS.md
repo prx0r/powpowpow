@@ -81,6 +81,11 @@
 
 **Rule:** Don't wire a collector unless it feeds a named transformation. XMR + QUBIC only until signals have scars.
 
+**Exception wired 2026-09-25:** `collectors/depth_snapshots.py` (Coinbase/Kraken
+REST depth snapshots, 300s) — feeds `burden_vs_book` directly, because SafeTrade's
+BTC/XMR books are $168/$29 deep and therefore not the market. Snapshots only,
+~1 MB/day; full multi-venue tick archival (`venue_l2`/`venue_ws`) stays parked.
+
 ## 6. pearld sync — paused
 
 **What:** PRL pool→miner→exchange graph needs own pearld node. Paused during disk triage.

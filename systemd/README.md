@@ -23,7 +23,7 @@ Always-on services (`Restart=always`):
 
 ```bash
 systemctl --user enable --now \
-  pow-safetrade-l2.service pow-chain-state.service \
+  pow-safetrade-l2.service pow-chain-state.service pow-depth-snapshots.service \
   pow-qubic-stats.service pow-qubic-holdings.service pow-qubic-transfers.service \
   pow-site.service pow-cloudflared.service
 ```
@@ -51,6 +51,7 @@ systemctl --user list-timers 'pow-*' --no-pager
 |---|---|---|
 | `pow-safetrade-l2` | service | continuous, SafeTrade WS depth/trades/tickers |
 | `pow-chain-state` | service | continuous, QUBIC/XMR/BTC every 300s |
+| `pow-depth-snapshots` | service | continuous, Coinbase/Kraken depth every 300s |
 | `pow-qubic-stats` | service | continuous, official stats every 300s |
 | `pow-qubic-holdings` | service | continuous, exchange reserves + rich list every 6h |
 | `pow-qubic-transfers` | service | continuous, transfer windows every 300s |

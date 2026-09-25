@@ -29,6 +29,13 @@ SOURCES = (
         900,
     ),
     (
+        "depth_snapshots",
+        "pow-depth-snapshots",
+        "warehouse/depth_snapshots_heartbeat.json",
+        "heartbeat_at",
+        900,
+    ),
+    (
         "qubic_epoch",
         "pow-qubic-epoch.timer",
         "warehouse/qubic_epoch_state.json",

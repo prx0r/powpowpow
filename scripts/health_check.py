@@ -11,6 +11,8 @@ R2_STATE = os.path.expanduser("~/.local/state/powpowpow/r2-sync.json")
 CHECKS = [
     ("safetrade", "warehouse/safetrade_l2_heartbeat.json", "heartbeat_at", 300),
     ("chain_state", "warehouse/chain_state_heartbeat.json", "heartbeat_at", 900),
+    ("depth_snapshots", "warehouse/depth_snapshots_heartbeat.json",
+     "heartbeat_at", 900),
     ("qubic_epoch", "warehouse/qubic_epoch_state.json", "ts", 3600),
     ("qubic_stats", "warehouse/qubic_stats_heartbeat.json", "heartbeat_at", 900),
     ("qubic_holdings", "warehouse/qubic_holdings_heartbeat.json", "heartbeat_at", 900),

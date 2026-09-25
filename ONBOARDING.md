@@ -117,9 +117,9 @@ curl -s https://pow.systems/powops.json  # expect "sources_failed": 0
 git status --short --branch              # expect no "ahead/behind"
 ```
 
-Current receipts: **121 tests pass, 0 failures**, `pipeline_status` 14 sources.
-`health_check` is currently **`ok: false`** — see trap 8: the disk is full and
-that is exactly the signal it is supposed to raise.
+Current receipts: **138 tests pass, 0 failures**, `pipeline_status` 15 sources
+/ 0 failing, `health_check` `ok: true`.
+
 
 ## 7. Traps
 
@@ -147,16 +147,16 @@ that is exactly the signal it is supposed to raise.
    heartbeats, `collector_run.json`). Tracked JSON
    (`chains/network_state.json`, `chains/factors/*`, `warehouse/*_analytics.json`)
    **is** dirty often — expect it.
-8. **Disk is FULL (0 bytes free).** Both collectors now refuse to write —
-   `chain_state` logs `ERR low disk`, SafeTrade logs `[DISK] waiting` (it
-   re-checks every60 s while connected, not only between reconnects) — and
-   `health_check` raises `check: disk`. Consumption is from **other projects**
-   (`powstock/data/raw` 4.8 GB, `opencode.db` 2.5 GB), not the warehouse
-   (859 MB). ~3.75 GiB must be freed to resume; ranked options in
-   `docs/audit-2026-09-25.md` §B4. Below that, collectors pause
-   `POW_MIN_FREE_BYTES` (2 GiB) by design. Local retention: `raw` 24 h,
-   `normalized` 30 h, `parquet` 168 h, `chains/` never — and only after a
-   remote `HEAD` confirms size + SHA-256.
+8. **Disk headroom is a hard floor, and it has been hit.** Collectors refuse
+   to write below `POW_MIN_FREE_BYTES` (2 GiB): `chain_state` logs
+   `ERR low disk`, SafeTrade logs `[DISK] waiting` and re-checks **while
+   connected** (not only between reconnects), and `health_check` raises
+   `check: disk` instead of staying green. The box hit 0 bytes on 2026-09-25 —
+   the cause was **other projects** (`powstock/data/raw` 4.8 GB,
+   `opencode.db` 2.5 GB), not the warehouse. Reclaiming npm caches, a stale
+   venv and Playwright restored 1.068 -> 3.341 GiB and both collectors
+   resumed on their next poll without a restart. Ranked candidate list and
+   full story: `docs/audit-2026-09-25.md` section B4.
 
 ## 8. Where things are
 
