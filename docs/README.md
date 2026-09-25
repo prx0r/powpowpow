@@ -18,6 +18,7 @@ anything at the root.
 | `data-moat-policy.md` | What is ephemeral vs reconstructable vs derived, and why |
 | `build-progress-2026-09-25.md` | What shipped this session, receipts, open threads |
 | `data-product-report-2026-09-25.md` | What compounds over 60 days, gaps, ranked next steps |
+| `audit-2026-09-25.md` | **Current audit** — blockers, ranked next dev steps, and what is deliberately not next |
 
 ## Ledgers — current but volatile
 
@@ -25,7 +26,7 @@ These are maintained and still useful; they change often.
 
 | File | Content |
 |---|---|
-| `../audit.md` | full inventory (individual lines drift; banner explains which) |
+| `../audit.md` | older full inventory (drift banner; superseded by `audit-2026-09-25.md` for current state) |
 | `../threads.md` | ranked work threads |
 | `../BLOCKERS.md` | known blockers |
 | `../HANDOVER.md` | file map + key invariants |
