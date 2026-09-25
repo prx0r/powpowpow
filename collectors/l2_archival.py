@@ -27,6 +27,7 @@ import argparse
 import asyncio
 import json
 import os
+import shutil
 import sys
 import time
 from datetime import datetime, timezone
@@ -67,6 +68,7 @@ SEED_MARKETS = ['qubicusdt', 'prlusdt', 'xmrusdt', 'nockusdt', 'kasusdt',
                 'xelusdt', 'xtmusdt', 'nosusdt', 'aktusdt', 'btcusdt']
 PID_FILE = os.path.join(BASE_DIR, 'warehouse', 'safetrade_l2.pid')
 HEARTBEAT_FILE = os.path.join(BASE_DIR, 'warehouse', 'safetrade_l2_heartbeat.json')
+MIN_FREE_BYTES = int(os.environ.get('POW_MIN_FREE_BYTES', 2 * 1024 ** 3))
 
 
 def utc_now():
@@ -160,8 +162,9 @@ def discover_seed_markets():
             ours = [i for i in ids if any(i.startswith(s) for s in
                     ('qubic', 'prl', 'xmr', 'nock', 'kas', 'xel', 'xtm', 'nos', 'akt',
                      'btc', 'quan', 'tsc', 'gnk', 'npt', 'qtc'))]
-            if ours:
-                return ours
+            tracked = [market for market in SEED_MARKETS if market in ours]
+            if tracked:
+                return tracked
     except Exception:
         pass
     return list(SEED_MARKETS)
@@ -188,7 +191,7 @@ class L2Archival:
     def archive_raw(self, entry, receive_time, kind):
         if _archive_raw is None:
             return None
-        return _archive_raw(
+        observation = _archive_raw(
             chain_id='safetrade', source_id='safetrade-ws',
             endpoint=WS_URL, event_time=entry['event_time'],
             observed_at=receive_time, response_received=receive_time,
@@ -196,7 +199,13 @@ class L2Archival:
             parsed_payload={'stream': entry['stream'], 'seq': entry['seq']},
             request_params={'stream': entry['stream']},
             quality_flags=['ws', kind],
+            transport='websocket',
+            source_role='raw_venue',
+            event_type=entry['stream'],
         )
+        if isinstance(observation, dict):
+            return observation.get('observation_id')
+        return observation
 
     def handle_entry(self, entry, receive_time):
         market = entry['market'] or 'global'
@@ -275,10 +284,13 @@ class L2Archival:
             return
         for m in markets:
             try:
-                data = await asyncio.to_thread(
+                result = await asyncio.to_thread(
                     fetch_json,
                     f'https://safe.trade/api/v2/trade/public/markets/{m}/depth',
-                    source_id='safetrade-rest-checkpoint', chain_id='safetrade')
+                    source_id='safetrade-rest-checkpoint', chain_id='safetrade',
+                    return_result=True)
+                data = result.get('parsed') if result else None
+                raw_event_id = result.get('observation_id') if result else None
                 if data and store_normalized:
                     depth = data if isinstance(data, dict) else {}
                     mid, spread, nb, na = depth_metrics(depth)
@@ -290,6 +302,7 @@ class L2Archival:
                         'bid_levels': nb, 'ask_levels': na,
                         'bids': (depth.get('bids') or [])[:50],
                         'asks': (depth.get('asks') or [])[:50],
+                        'raw_event_id': raw_event_id,
                         'source_role': 'raw_venue',
                     })
             except Exception as e:
@@ -309,6 +322,11 @@ class L2Archival:
             f.write(str(os.getpid()))
         try:
             while self.running:
+                if shutil.disk_usage(BASE_DIR).free < MIN_FREE_BYTES:
+                    self.heartbeat()
+                    print(f"[DISK] waiting for {MIN_FREE_BYTES} free bytes")
+                    await asyncio.sleep(300)
+                    continue
                 try:
                     import ssl as _ssl
                     async with websockets.connect(

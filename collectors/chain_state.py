@@ -19,6 +19,7 @@ Usage:
 import argparse
 import json
 import os
+import shutil
 import signal
 import sys
 import time
@@ -26,13 +27,29 @@ import time
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import fetch_json, store_normalized, utcnow  # noqa: E402
+from core import fetch_json, store_normalized, utcnow
 
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 PID_FILE = os.path.join(BASE_DIR, 'warehouse', 'chain_state.pid')
 HEARTBEAT_FILE = os.path.join(BASE_DIR, 'warehouse', 'chain_state_heartbeat.json')
 
 RUNNING = True
+MIN_FREE_BYTES = int(os.environ.get('POW_MIN_FREE_BYTES', str(2 * 1024 ** 3)))
+
+
+def poll_fetch(url, source_id, chain_id, **kwargs):
+    result = fetch_json(url, source_id=source_id, chain_id=chain_id,
+                        return_result=True, **kwargs)
+    if not isinstance(result, dict):
+        return None, None
+    return result.get('parsed'), result.get('observation_id')
+
+
+def require_disk():
+    try:
+        return shutil.disk_usage(BASE_DIR).free >= MIN_FREE_BYTES
+    except OSError:
+        return True
 
 
 def load_netstate():
@@ -50,37 +67,42 @@ def save_netstate(ns):
 
 
 def poll_qubic(ns):
+    if not require_disk():
+        return 'ERR low disk'
     ok = 0
-    tick = fetch_json('https://rpc.qubic.org/v1/tick-info',
-                      source_id='qubic-rpc', chain_id='qubic')
+    tick, tick_id = poll_fetch('https://rpc.qubic.org/v1/tick-info',
+                               source_id='qubic-rpc', chain_id='qubic')
     if tick and isinstance(tick, dict):
         ti = tick.get('tickInfo', tick)
         store_normalized('chain_snapshot', 'qubic', {
             'height': ti.get('tick'), 'epoch': ti.get('epoch'),
-            'source_role': 'canonical', 'source_id': 'qubic-rpc'})
+            'source_role': 'canonical', 'source_id': 'qubic-rpc'},
+            raw_event_id=tick_id)
         ns.setdefault('QUBIC', {}).update({
             'epoch': ti.get('epoch'), 'tick': ti.get('tick'),
             'tick_source': 'rpc.qubic.org/v1/tick-info', 'as_of': utcnow()})
         ok += 1
-    status = fetch_json('https://rpc.qubic.org/v1/status',
-                        source_id='qubic-rpc', chain_id='qubic')
+    status, status_id = poll_fetch('https://rpc.qubic.org/v1/status',
+                                     source_id='qubic-rpc', chain_id='qubic')
     if status and isinstance(status, dict):
         lp = status.get('lastProcessedTick', {}) or {}
         store_normalized('chain_snapshot', 'qubic', {
             'height': lp.get('tickNumber'), 'epoch': lp.get('epoch'),
             'peers': status.get('numberOfConnectedPeers'),
-            'source_role': 'canonical', 'source_id': 'qubic-rpc'})
+            'source_role': 'canonical', 'source_id': 'qubic-rpc'},
+            raw_event_id=status_id)
         ok += 1
     # analytics.qubic.li: network demand totals (deltas = demand growth)
-    qli = fetch_json('https://analytics.qubic.li/api/stats',
-                     source_id='qubic-analytics', chain_id='qubic')
+    qli, qli_id = poll_fetch('https://analytics.qubic.li/api/stats',
+                               source_id='qubic-analytics', chain_id='qubic')
     if qli and isinstance(qli, dict):
         store_normalized('network_demand', 'qubic', {
             'tick': qli.get('latestTick'), 'epoch': qli.get('currentEpoch'),
             'total_transactions': qli.get('totalTransactions'),
             'total_transfers': qli.get('totalTransfers'),
             'total_volume': qli.get('totalVolume'),
-            'source_role': 'derived', 'source_id': 'qubic-analytics'})
+            'source_role': 'derived', 'source_id': 'qubic-analytics'},
+            raw_event_id=qli_id)
         ns.setdefault('QUBIC', {}).update({
             'demand_tick': qli.get('latestTick'),
             'demand_epoch': qli.get('currentEpoch'),
@@ -94,29 +116,36 @@ def poll_qubic(ns):
 
 
 def poll_xmr(ns):
-    data = fetch_json('https://localmonero.co/blocks/api/get_stats',
-                      source_id='localmonero', chain_id='xmr')
+    if not require_disk():
+        return 'ERR low disk'
+    data, data_id = poll_fetch('https://localmonero.co/blocks/api/get_stats',
+                               source_id='localmonero', chain_id='xmr')
     if not data or not isinstance(data, dict):
         return 0
     try:
         total_em = int(data.get('total_emission', 0)) / 1e12
     except (TypeError, ValueError):
         total_em = None
+    try:
+        last_reward = int(data.get('last_reward')) / 1e12 if data.get('last_reward') else None
+    except (TypeError, ValueError):
+        last_reward = None
     store_normalized('chain_snapshot', 'xmr', {
         'height': data.get('height'), 'difficulty': data.get('difficulty'),
         'hashrate': data.get('hashrate'),
         'hashrate_unit': 'H/s (as reported)',
         'total_emission': total_em,
-        'last_reward': (lambda v: int(v) / 1e12 if v else None)(data.get('last_reward')),
-        'source_role': 'derived', 'source_id': 'localmonero'})
+        'last_reward': last_reward,
+        'source_role': 'derived', 'source_id': 'localmonero'},
+        raw_event_id=data_id)
     e = ns.setdefault('XMR', {})
     e.update({'network_hashrate': data.get('hashrate'),
               'hashrate_source': 'localmonero 1 poll (H/s as reported)',
               'height': data.get('height'), 'difficulty': data.get('difficulty'),
               'as_of': utcnow()})
     # xmrchain.net: fee market + mempool pressure + canonical difficulty
-    net = fetch_json('https://xmrchain.net/api/networkinfo',
-                     source_id='xmrchain', chain_id='xmr')
+    net, net_id = poll_fetch('https://xmrchain.net/api/networkinfo',
+                               source_id='xmrchain', chain_id='xmr')
     if net and isinstance(net.get('data'), dict):
         nd = net['data']
         e['fee_per_kb'] = nd.get('fee_per_kb')
@@ -129,22 +158,24 @@ def poll_xmr(ns):
             'fee_estimate': nd.get('fee_estimate'),
             'block_size_median': nd.get('block_size_median'),
             'difficulty': nd.get('difficulty'),
-            'source_role': 'derived', 'source_id': 'xmrchain'})
-    pool = fetch_json('https://xmrchain.net/api/mempool?limit=1',
-                      source_id='xmrchain', chain_id='xmr')
+            'source_role': 'derived', 'source_id': 'xmrchain'},
+            raw_event_id=net_id)
+    pool, pool_id = poll_fetch('https://xmrchain.net/api/mempool?limit=1',
+                                 source_id='xmrchain', chain_id='xmr')
     if pool and isinstance(pool.get('data'), dict):
         txs = pool['data'].get('txs', [])
         e['mempool_txs_sampled'] = len(txs)
         store_normalized('mempool_snapshot', 'xmr', {
             'txs_in_page': len(txs),
-            'source_role': 'derived', 'source_id': 'xmrchain'})
+            'source_role': 'derived', 'source_id': 'xmrchain'},
+            raw_event_id=pool_id)
     # p2pool: decentralized supply-response telemetry (miners + hashrate).
     # NOTE: p2pool.observer Cloudflare-challenges the browser UA that
     # SafeTrade requires, but allows short Mozilla/5.0 (verified
     # 2026-09-23: chrome+accept -> 403, short -> 200). Per-source UA.
-    p2p = fetch_json('https://p2pool.observer/api/pool/stats',
-                     source_id='p2pool-observer', chain_id='xmr',
-                     user_agent='Mozilla/5.0')
+    p2p, p2p_id = poll_fetch('https://p2pool.observer/api/pool/stats',
+                               source_id='p2pool-observer', chain_id='xmr',
+                               user_agent='Mozilla/5.0')
     if p2p and isinstance(p2p.get('pool_statistics'), dict):
         ps = p2p['pool_statistics']
         e['p2pool_hashrate'] = ps.get('hashRate')
@@ -156,7 +187,8 @@ def poll_xmr(ns):
             'miners': ps.get('miners'),
             'last_block': ps.get('lastBlockFound'),
             'total_blocks': ps.get('totalBlocksFound'),
-            'source_role': 'derived', 'source_id': 'p2pool-observer'})
+            'source_role': 'derived', 'source_id': 'p2pool-observer'},
+            raw_event_id=p2p_id)
     return 1
 
 
@@ -278,9 +310,11 @@ def poll_btc(ns):
     Blockstream tip is the height cross-check (mempool.space blocked
     from this VPS, verified 2026-09-23).
     """
+    if not require_disk():
+        return 'ERR low disk'
     ok = 0
-    st = fetch_json('https://api.blockchain.info/stats',
-                    source_id='blockchaininfo-stats', chain_id='btc')
+    st, st_id = poll_fetch('https://api.blockchain.info/stats',
+                           source_id='blockchaininfo-stats', chain_id='btc')
     if st and isinstance(st, dict):
         store_normalized('chain_snapshot', 'btc', {
             'height': st.get('n_blocks_total'),
@@ -292,7 +326,8 @@ def poll_btc(ns):
             # like total_fees_btc negatives). Revenue truth = charts history.
             'next_retarget': st.get('nextretarget'),
             'minutes_between_blocks': st.get('minutes_between_blocks'),
-            'source_role': 'derived', 'source_id': 'blockchaininfo-stats'})
+            'source_role': 'derived', 'source_id': 'blockchaininfo-stats'},
+            raw_event_id=st_id)
         e = ns.setdefault('BTC', {})
         e.update({
             'height': st.get('n_blocks_total'),
@@ -306,8 +341,8 @@ def poll_btc(ns):
             'emission_source': 'deterministic: 3.125 BTC/block x ~144 blocks/day (post-halving)',
             'as_of': utcnow()})
         ok += 1
-    tip = fetch_json('https://blockstream.info/api/blocks/tip/height',
-                     source_id='blockstream', chain_id='btc')
+    tip, _ = poll_fetch('https://blockstream.info/api/blocks/tip/height',
+                          source_id='blockstream', chain_id='btc')
     if tip is not None:
         try:
             tip_h = int(tip) if not isinstance(tip, dict) else None
@@ -320,34 +355,36 @@ def poll_btc(ns):
             ok += 1
     # Blockstream mempool + fee estimates: BTC fee market (mirrors XMR
     # fee_market/mempool_snapshot tables). Free, no key, 200 from here.
-    mp = fetch_json('https://blockstream.info/api/mempool',
-                    source_id='blockstream', chain_id='btc')
+    mp, mp_id = poll_fetch('https://blockstream.info/api/mempool',
+                             source_id='blockstream', chain_id='btc')
     if mp and isinstance(mp, dict):
         store_normalized('mempool_snapshot', 'btc', {
             'tx_count': mp.get('count'), 'vsize_bytes': mp.get('vsize'),
             'total_fee_sat': mp.get('total_fee'),
             'fee_histogram': (mp.get('fee_histogram') or [])[:10],
-            'source_role': 'derived', 'source_id': 'blockstream-mempool'})
+            'source_role': 'derived', 'source_id': 'blockstream-mempool'},
+            raw_event_id=mp_id)
         e = ns.setdefault('BTC', {})
         e['mempool_txs'] = mp.get('count')
         e['mempool_vsize'] = mp.get('vsize')
         ok += 1
-    fe = fetch_json('https://blockstream.info/api/fee-estimates',
-                    source_id='blockstream', chain_id='btc')
+    fe, fe_id = poll_fetch('https://blockstream.info/api/fee-estimates',
+                               source_id='blockstream', chain_id='btc')
     if fe and isinstance(fe, dict):
         store_normalized('fee_market', 'btc', {
             'fee_estimates_satvb': {k: fe[k] for k in
                                     ('2', '6', '24', '144', '504', '1008')
                                     if k in fe},
-            'source_role': 'derived', 'source_id': 'blockstream-fees'})
+            'source_role': 'derived', 'source_id': 'blockstream-fees'},
+            raw_event_id=fe_id)
         e = ns.setdefault('BTC', {})
         e['fee_next_block_satvb'] = fe.get('2')
         e['fee_hour_satvb'] = fe.get('6')
         ok += 1
     # Pool distribution (5d window): concentration telemetry mirroring
     # XMR p2pool / QUBIC computor concentration.
-    pools = fetch_json('https://api.blockchain.info/pools?timespan=5days&format=json',
-                       source_id='blockchaininfo-pools', chain_id='btc')
+    pools, pools_id = poll_fetch('https://api.blockchain.info/pools?timespan=5days&format=json',
+                                 source_id='blockchaininfo-pools', chain_id='btc')
     if pools and isinstance(pools, dict):
         total = sum(v for v in pools.values() if isinstance(v, (int, float))) or 1
         shares = sorted(((k, v / total) for k, v in pools.items()
@@ -360,7 +397,8 @@ def poll_btc(ns):
             'top3_share': round(sum(s for _, s in shares[:3]), 4),
             'hhi_known': round(hhi, 4),
             'note': 'Unknown = unlabelled coinbase, not one entity',
-            'source_role': 'derived', 'source_id': 'blockchaininfo-pools'})
+            'source_role': 'derived', 'source_id': 'blockchaininfo-pools'},
+            raw_event_id=pools_id)
         e = ns.setdefault('BTC', {})
         e['pool_top3_share_5d'] = round(sum(s for _, s in shares[:3]), 4)
         e['pool_hhi_known_5d'] = round(hhi, 4)
@@ -369,19 +407,22 @@ def poll_btc(ns):
     return ok
 
 
-def run_pass(ns):
-    """One pass over all chains. Callers must pass a FRESHLY LOADED ns
+def run_pass(ns, only=None):
+    """One pass over the selected chains. Callers must pass a FRESHLY LOADED ns
     each time (never a long-lived in-memory copy) — other writers
     (epoch engine, computors) update the same file, and saving a stale
     copy would silently delete their keys (lost-update bug, found
     2026-09-19). Runtime-only baselines (prev_supply) live in RUNTIME
     and are merged in here."""
+    selected = {name.strip().lower() for name in (only or []) if name.strip()}
     for sym, base in RUNTIME.items():
         ns.setdefault(sym, {}).update(base)
     stats = {}
     for name, fn in (('qubic', poll_qubic), ('xmr', poll_xmr),
                       ('kas', poll_kas), ('akt', poll_akt), ('nock', poll_nock),
                       ('btc', poll_btc)):
+        if selected and name not in selected:
+            continue
         try:
             stats[name] = fn(ns)
         except Exception as e:
@@ -401,24 +442,26 @@ RUNTIME = {}
 
 
 def main():
-    global RUNNING
     ap = argparse.ArgumentParser()
     ap.add_argument('--once', action='store_true')
     ap.add_argument('--cadence', type=int, default=300)
+    ap.add_argument('--only', default='',
+                    help='comma-separated chains, e.g. qubic,xmr,btc')
     args = ap.parse_args()
+    only = [name.strip().lower() for name in args.only.split(',') if name.strip()]
     for sig in (signal.SIGINT, signal.SIGTERM):
         signal.signal(sig, lambda *_: globals().update(RUNNING=False))
 
     ns = load_netstate()
     if args.once:
-        print(run_pass(ns))
+        print(run_pass(ns, only))
         return
     with open(PID_FILE, 'w') as f:
         f.write(str(os.getpid()))
     print(f"[CHAIN_STATE] loop cadence={args.cadence}s pid={os.getpid()}")
     try:
         while RUNNING:
-            stats = run_pass(load_netstate())  # fresh each pass: never
+            stats = run_pass(load_netstate(), only)  # fresh each pass: never
             # overwrite co-writers (epoch engine, computors)
             with open(HEARTBEAT_FILE, 'w') as f:
                 json.dump({'heartbeat_at': utcnow(), 'mode': 'daemon',

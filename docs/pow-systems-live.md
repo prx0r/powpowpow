@@ -1,0 +1,83 @@
+# pow.systems — live runbook
+
+Public dashboard for XMR / BTC / QUBIC live tick pricing and mining data.
+
+- Public URL: `https://pow.systems/` — no token needed for reads.
+- Analyst chat (POST `/api/chat`) still requires a site token.
+- Token source (server only, mode 600): `~/.config/powpowpow/site.env`
+- Legacy token page (only needed if you want to use chat): `https://pow.systems/access.html`
+
+## Architecture
+
+```
+SafeTrade WS ──▶ collectors/l2_archival.py ──┐
+QUBIC/XMR/BTC REST ─▶ collectors/chain_state.py ─┼─▶ warehouse/ ──▶ site/server.py (127.0.0.1:8795)
+QUBIC epoch/computors timers ────────────────────┘         │                │
+R2 verified backup ◀── scripts/r2_upload.py ◀──────────────┘                ▼
+                                                      Cloudflare Tunnel ─▶ pow.systems
+```
+
+- Origin stays on loopback; only Cloudflare Tunnel exposes it.
+- Reads (dashboard + market/mining APIs) are public; analyst chat is token-gated.
+- Chat token is remembered per browser via `access.html`.
+- Every normalized row carries `raw_event_id` back to an immutable raw observation.
+
+## Systemd units (user scope)
+
+| Unit | Role | Schedule |
+|---|---|---|
+| `pow-safetrade-l2.service` | SafeTrade WS depth/trades/tickers | always, restart |
+| `pow-chain-state.service` | QUBIC/XMR/BTC polls, 300s cadence | always, restart |
+| `pow-qubic-epoch.service/.timer` | Epoch, burn, tick rate | every 10 min |
+| `pow-qubic-computors.service/.timer` | Computor set + DOGE leg | hourly |
+| `pow-mining-analytics.service/.timer` | XMR/QUBIC/BTC context + backtest | every 6 h |
+| `pow-r2-upload.service/.timer` | Verified R2 sync + retention | hourly |
+| `pow-warehouse-compact.service/.timer` | Closed-date Parquet compaction | daily 00:12 UTC |
+| `pow-health.service/.timer` | Freshness checks, fails loudly | every 5 min |
+| `pow-site.service` | Dashboard origin | always, restart |
+| `pow-cloudflared.service` | Tunnel daemon | always, restart |
+
+## R2 backup and retention
+
+- Bucket `powpowpow-warehouse`, prefix `powpowpow/`; `chains/` snapshots under `powpowpow/chains/`.
+- Uploads are SHA-256 + size verified after PUT; byte-identical objects get server-side metadata copies.
+- Local deletion happens only after a fresh remote HEAD check:
+  `raw` 24h, `normalized` 30h, `parquet` 168h. `chains/` is never deleted.
+- Credentials live in the `oracle` vault (`CLOUDFLARE_R2_*`); units fetch names only, never embed values.
+
+## Cloudflare
+
+- Tunnel ID `2131eb3e-f087-44c2-bde5-fdc32d9f98bb`, config `/root/.cloudflared/config.yml`.
+- Ingress: `pow.systems → http://127.0.0.1:8795`.
+- DNS: apex `CNAME @ → <tunnel-id>.cfargotunnel.com`, proxied.
+- TLS is terminated by Cloudflare; origin is plain HTTP on loopback only.
+
+## Token handling
+
+- Tokens are per-boot random unless `POW_SITE_TOKEN` is set in `site.env`.
+- After any suspected leak: generate a new token, `chmod 600` the file, restart `pow-site`.
+- Never commit tokens; keep the repo secret-scan pattern enabled (token prefixes).
+
+## Verification
+
+```bash
+systemctl --user list-units 'pow-*' --all --no-pager
+python3 scripts/health_check.py
+python3 -m pytest tests/ -q
+```
+
+Public checks (no token required for reads):
+
+- `GET https://pow.systems/` → 200 dashboard.
+- `GET https://pow.systems/api/health` → `{"ok": true, …}`.
+- `GET https://pow.systems/api/ticks?symbols=btcusdt,xmrusdt,qubicusdt` → SSE stream.
+- `GET https://pow.systems/api/chain?symbol=XMR|QUBIC|BTC` → 200 with fresh `as_of`.
+- `POST https://pow.systems/api/chat` without token → 403 (chat remains gated).
+
+## Troubleshooting
+
+- Chat rejected: open `/access.html`, paste the current token from `site.env`; the browser remembers it. Rotate the token if it was ever shared or leaked, then restart `pow-site`.
+- Reads return 403: a token requirement regressed — GET must stay public. Only `do_POST` may be gated.
+- Stale mining numbers: check `pow-health.service` output and `chains/network_state.json` `as_of` timestamps.
+- Disk pressure: collectors pause below `POW_MIN_FREE_BYTES` (2 GiB); R2 sync must be completing hourly.
+- Known test failure: `test_garden.py::test_lineage_resolves` (isolation bug, pre-existing).

@@ -29,7 +29,7 @@ import time
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import fetch_json, store_normalized, utcnow  # noqa: E402
+from core import fetch_json, store_normalized, utcnow
 
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 EPOCH_STATE_FILE = os.path.join(BASE_DIR, 'warehouse', 'qubic_epoch_state.json')
@@ -37,6 +37,14 @@ GROSS_PER_WEEK = 1e12
 POST_227_MAX_BURN = 0.775
 POST_227_MAX_NET_PER_WEEK = 225e9
 POST_227_MINIMUM_MINEABLE_PER_WEEK = 181.64e9
+
+
+def fetch_result(url, source_id, chain_id):
+    result = fetch_json(url, source_id=source_id, chain_id=chain_id,
+                        return_result=True)
+    if not isinstance(result, dict):
+        return None, None
+    return result.get('parsed'), result.get('observation_id')
 
 
 def burn_rate_for_epoch(epoch):
@@ -65,10 +73,10 @@ def save_prev(d):
 
 
 def main():
-    tick = fetch_json('https://rpc.qubic.org/v1/tick-info',
-                      source_id='qubic-rpc', chain_id='qubic')
-    status = fetch_json('https://rpc.qubic.org/v1/status',
-                        source_id='qubic-rpc', chain_id='qubic')
+    tick, tick_id = fetch_result('https://rpc.qubic.org/v1/tick-info',
+                                 source_id='qubic-rpc', chain_id='qubic')
+    status, status_id = fetch_result('https://rpc.qubic.org/v1/status',
+                                     source_id='qubic-rpc', chain_id='qubic')
     ti = (tick or {}).get('tickInfo', tick or {})
     epoch, cur, initial = ti.get('epoch'), ti.get('tick'), ti.get('initialTick')
     if not epoch or not cur:
@@ -105,10 +113,13 @@ def main():
         'net_emission_week': net_week,
         'net_emission_day': net_day,
         'emission_basis': 'projected maximum effective emission',
-        'source_role': 'canonical', 'source_id': 'qubic-rpc'})
+        'source_role': 'canonical', 'source_id': 'qubic-rpc',
+        'raw_status_id': status_id},
+        raw_event_id=tick_id)
 
     try:
-        ns = json.load(open(NETSTATE_FILE))
+        with open(NETSTATE_FILE) as handle:
+            ns = json.load(handle)
     except (OSError, ValueError):
         ns = {}
     q = ns.setdefault('QUBIC', {})

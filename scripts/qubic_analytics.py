@@ -268,7 +268,7 @@ if __name__ == '__main__':
     burden = a['emission'].get('burden_vs_book')
     ce = a['computor_economics']
     pr = a['price_range_365d']
-    print(f"  emission ${em_usd:,.0f}/day")
+    print(f"  emission {f'${em_usd:,.0f}/day' if em_usd else 'unavailable'}")
     print(f"  burden {burden}x")
     reward = ce.get('reward_per_computor')
     print(f"  computors {ce.get('computors')} reward/epoch "

@@ -107,6 +107,60 @@ def test_l2_gap_detection():
     assert g.check('s', None) == 'unknown'
 
 
+def test_safetrade_discovery_stays_bounded(monkeypatch):
+    import importlib
+    l2 = importlib.import_module('l2_archival')
+    markets = [{'id': market} for market in l2.SEED_MARKETS]
+    markets.extend([{'id': 'btcusdt'}, {'id': 'extrausdt'}])
+    monkeypatch.setattr(l2, 'fetch_json', lambda *args, **kwargs: markets)
+    assert l2.discover_seed_markets() == l2.SEED_MARKETS
+
+
+def test_safetrade_websocket_lineage(monkeypatch):
+    import importlib
+    l2 = importlib.import_module('l2_archival')
+    captured = {}
+
+    def archive(**kwargs):
+        captured.update(kwargs)
+        return {'observation_id': 'ws-observation'}
+
+    monkeypatch.setattr(l2, '_archive_raw', archive)
+    entry = {
+        'stream': 'btcusdt.trades',
+        'payload': [{'id': 1}],
+        'event_time': '2026-09-25T13:00:00Z',
+        'seq': 7,
+    }
+    collector = l2.L2Archival()
+    assert collector.archive_raw(entry, '2026-09-25T13:00:01Z', 'trades') == 'ws-observation'
+    assert captured['transport'] == 'websocket'
+    assert captured['source_role'] == 'raw_venue'
+    assert captured['event_type'] == 'btcusdt.trades'
+
+
+def test_safetrade_rest_checkpoint_lineage(monkeypatch):
+    import asyncio
+    import importlib
+    l2 = importlib.import_module('l2_archival')
+    rows = []
+
+    def fetch(*args, **kwargs):
+        return {
+            'parsed': {'bids': [['1', '2']], 'asks': [['2', '2']]},
+            'observation_id': 'rest-observation',
+        }
+
+    monkeypatch.setattr(l2, 'fetch_json', fetch)
+    monkeypatch.setattr(
+        l2,
+        'store_normalized',
+        lambda table, chain, data: rows.append(data),
+    )
+    asyncio.run(l2.L2Archival().rest_checkpoint(['btcusdt']))
+    assert rows[0]['raw_event_id'] == 'rest-observation'
+
+
 def test_signals_refuse_thin_data(isolated, monkeypatch):
     import signals
     monkeypatch.setattr(signals, 'BASE_DIR', str(isolated))
