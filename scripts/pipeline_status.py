@@ -3,7 +3,7 @@ import json
 import os
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
@@ -34,6 +34,13 @@ SOURCES = (
         "warehouse/qubic_epoch_state.json",
         "ts",
         3600,
+    ),
+    (
+        "qubic_holdings",
+        "pow-qubic-holdings",
+        "warehouse/qubic_holdings_heartbeat.json",
+        "heartbeat_at",
+        900,
     ),
     (
         "qubic_stats",
@@ -159,7 +166,7 @@ def _stamp(payload, field):
         except ValueError:
             return None
         if parsed.tzinfo is None:
-            parsed = parsed.replace(tzinfo=timezone.utc)
+            parsed = parsed.replace(tzinfo=UTC)
         return parsed.timestamp()
     return None
 
@@ -181,19 +188,22 @@ def _unit_state(unit):
             capture_output=True,
             text=True,
             timeout=5,
+            check=False,
         )
         return result.stdout.strip() or "unknown"
-    except Exception:
+    except (OSError, ValueError):
         return "unknown"
 
 
 def _site_probe():
     try:
         import requests
-
+    except ImportError:
+        return None, None
+    try:
         response = requests.get("http://127.0.0.1:8795/api/health", timeout=10)
-        return response.status_code, datetime.now(timezone.utc).timestamp()
-    except Exception:
+        return response.status_code, datetime.now(UTC).timestamp()
+    except (requests.exceptions.RequestException, OSError, ValueError):
         return None, None
 
 
@@ -232,7 +242,7 @@ def collect(root=None):
                     "unit": unit,
                     "unit_state": _unit_state(unit),
                     "started_at": datetime.fromtimestamp(
-                        stamp, tz=timezone.utc
+                        stamp, tz=UTC
                     ).isoformat()
                     if stamp
                     else None,
@@ -274,7 +284,7 @@ def collect(root=None):
                 "source_id": source_id,
                 "unit": unit,
                 "unit_state": unit_state,
-                "started_at": datetime.fromtimestamp(stamp, tz=timezone.utc).isoformat()
+                "started_at": datetime.fromtimestamp(stamp, tz=UTC).isoformat()
                 if stamp
                 else None,
                 "status": status,
@@ -288,7 +298,7 @@ def collect(root=None):
         )
 
     heartbeat = {
-        "heartbeat_at": datetime.now(timezone.utc).isoformat(),
+        "heartbeat_at": datetime.now(UTC).isoformat(),
         "mode": "pipeline_status",
         "total_records": sum(s["source_records_new"] or 0 for s in sources),
         "sources_run": len(sources),

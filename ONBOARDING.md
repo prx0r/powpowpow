@@ -152,6 +152,7 @@ fixture patches the wrong namespace).
 | operate the live system | `docs/pow-systems-live.md` |
 | see what shipped and what's open | `docs/build-progress-2026-09-25.md` |
 | see the commercial position | `docs/data-product-report-2026-09-25.md` |
+| find a QUBIC endpoint | `docs/qubic-sources.md` (verified live) |
 | read the binding rules | `agents.md` (banner is current) |
 | write a collector | `collectors/chain_state.py` (model), `core.fetch_json` |
 | change a signal | `signals.py` (every row carries evidence + assumptions) |

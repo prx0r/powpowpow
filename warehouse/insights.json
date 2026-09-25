@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T18:05:45.664854Z",
+  "generated_at": "2026-09-25T18:30:30.118182Z",
   "version": "insights-v1",
   "chains": {
     "BTC": {
@@ -120,11 +120,19 @@
         },
         {
           "metric": "tick_quality_ribbon",
-          "refused": true,
-          "reason": "not enough tick-quality snapshots yet",
-          "n": 8,
-          "min_n": 13,
-          "version": "insights-v1"
+          "value": 99.79,
+          "unit": "percent",
+          "n": 13,
+          "window": "13 snapshots",
+          "source": "rpc.qubic.org/v1/latest-stats",
+          "refused": false,
+          "version": "insights-v1",
+          "mean": 99.7,
+          "spread": 0.09,
+          "above_mean": true,
+          "crosses_in_window": 1,
+          "percentile": 100.0,
+          "as_of": "2026-09-25T18:28:16.805116Z"
         },
         {
           "metric": "active_address_growth",
@@ -140,7 +148,7 @@
           "step_mean": 0.0,
           "step_z": 0.0,
           "percentile_of_delta": 100.0,
-          "as_of": "2026-09-25T18:03:10.830186Z"
+          "as_of": "2026-09-25T18:28:16.805116Z"
         },
         {
           "metric": "burn_epoch_total",
@@ -206,10 +214,150 @@
           "refused": false,
           "version": "insights-v1",
           "burned_delta": 0.0,
-          "tick_delta": 1406.0,
+          "tick_delta": 2213.0,
           "step_z": 0.0,
           "percentile": 100.0,
-          "as_of": "2026-09-25T18:03:10.830186Z"
+          "as_of": "2026-09-25T18:28:16.805116Z"
+        },
+        {
+          "metric": "exchange_reserve",
+          "value": 16903013414475.0,
+          "unit": "QU",
+          "n": 17,
+          "window": "point in time",
+          "source": "qubic/static exchanges.json + live/v1/balances",
+          "refused": false,
+          "version": "insights-v1",
+          "entities": 17,
+          "largest": "Gate.io",
+          "largest_balance": 16078813641705.0,
+          "circulating_supply": 177566139365105,
+          "share_of_supply": 0.095193,
+          "share_of_supply_pct": 9.519,
+          "breakdown": [
+            {
+              "name": "Gate.io",
+              "balance": 16078813641705.0,
+              "share": 0.9512
+            },
+            {
+              "name": "CoinEx",
+              "balance": 331962648687.0,
+              "share": 0.0196
+            },
+            {
+              "name": "Bitget 1",
+              "balance": 284485902041.0,
+              "share": 0.0168
+            },
+            {
+              "name": "Safetrade 1",
+              "balance": 140150828429.0,
+              "share": 0.0083
+            },
+            {
+              "name": "Seven Seas",
+              "balance": 46233600727.0,
+              "share": 0.0027
+            },
+            {
+              "name": "Bitget 2",
+              "balance": 21363866858.0,
+              "share": 0.0013
+            },
+            {
+              "name": "Safetrade 2",
+              "balance": 2272979.0,
+              "share": 0.0
+            },
+            {
+              "name": "Safetrade 5",
+              "balance": 429524.0,
+              "share": 0.0
+            },
+            {
+              "name": "Safetrade 4",
+              "balance": 223522.0,
+              "share": 0.0
+            },
+            {
+              "name": "Safetrade 3",
+              "balance": 3.0,
+              "share": 0.0
+            },
+            {
+              "name": "Tradeogre 1",
+              "balance": 0.0,
+              "share": 0.0
+            },
+            {
+              "name": "Tradeogre 2",
+              "balance": 0.0,
+              "share": 0.0
+            },
+            {
+              "name": "Tradeogre 3",
+              "balance": 0.0,
+              "share": 0.0
+            },
+            {
+              "name": "Tradeogre 4",
+              "balance": 0.0,
+              "share": 0.0
+            },
+            {
+              "name": "Tradeogre 5",
+              "balance": 0.0,
+              "share": 0.0
+            },
+            {
+              "name": "Tradeogre 6",
+              "balance": 0.0,
+              "share": 0.0
+            },
+            {
+              "name": "Bit2Me",
+              "balance": 0.0,
+              "share": 0.0
+            }
+          ]
+        },
+        {
+          "metric": "wealth_concentration",
+          "value": 0.8745,
+          "unit": "gini",
+          "n": 10000,
+          "window": "top 10000 holders",
+          "source": "warehouse/normalized/qubic_wealth_concentration",
+          "refused": false,
+          "version": "insights-v1",
+          "epoch": 232,
+          "total_held": 174152966511043.0,
+          "mean_balance": 17415296651.0,
+          "median_balance": 2082267550.0,
+          "mean_to_median": 8.3636,
+          "shares": {
+            "top_1pct": 0.6445,
+            "top_1pct_n": 100,
+            "top_10pct": 0.8388,
+            "top_10pct_n": 1000,
+            "top_20pct": 0.8985,
+            "top_20pct_n": 2000,
+            "top_50pct": 0.9657,
+            "top_50pct_n": 5000
+          }
+        },
+        {
+          "metric": "exchange_share_of_top_holders",
+          "value": 0.0007,
+          "unit": "share of rich list",
+          "n": 10000,
+          "window": "top 10000 holders",
+          "source": "warehouse/normalized/qubic_wealth_concentration",
+          "refused": false,
+          "version": "insights-v1",
+          "labelled_in_top": 7,
+          "registry": "static.qubic.org/v1/general/data/exchanges.json"
         },
         {
           "metric": "epoch_tick_quality_vs_price_corr",
@@ -223,8 +371,8 @@
     }
   },
   "summary": {
-    "metrics": 15,
-    "computed": 12,
-    "refused": 3
+    "metrics": 18,
+    "computed": 16,
+    "refused": 2
   }
 }

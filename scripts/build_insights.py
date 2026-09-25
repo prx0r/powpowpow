@@ -24,7 +24,10 @@ from transforms import (
     active_address_growth,
     burn_intensity,
     burn_profile,
+    concentration_from_row,
     daily_closes,
+    exchange_reserve,
+    exchange_share_from_row,
     metric_vs_price_corr,
     percentile,
     price_hashrate_divergence,
@@ -72,6 +75,36 @@ def price_context(closes):
     values = [value for _, value in closes]
     window = values[-365:] if len(values) >= 365 else values
     return values[-1], percentile(values[-1], window), closes[-1][0]
+
+
+def qubic_holdings_metrics(stats_rows):
+    """Exchange reserves and wealth concentration, from stored snapshots."""
+    supply = None
+    if stats_rows:
+        rows = sorted(stats_rows, key=lambda row: row.get("observed_at") or "")
+        supply = rows[-1].get("circulating_supply")
+    supply = int(supply) if supply else None
+
+    balances = read_table("qubic_exchange_balance", "qubic")
+    latest = {}
+    for row in balances:
+        if row.get("address"):
+            latest[row["address"]] = row
+    if not latest:
+        return [{
+            "metric": "exchange_reserve", "refused": True,
+            "reason": "no exchange balances collected yet", "n": 0,
+            "version": TRANSFORM_VERSION,
+        }]
+
+    out = [exchange_reserve(list(latest.values()),
+                            circulating_supply=supply)]
+    concentration = read_table("qubic_wealth_concentration", "qubic")
+    concentration.sort(key=lambda row: row.get("observed_at") or "")
+    snapshot = concentration[-1] if concentration else None
+    out.append(concentration_from_row(snapshot))
+    out.append(exchange_share_from_row(snapshot))
+    return out
 
 
 def build(root=BASE_DIR):
@@ -195,6 +228,7 @@ def build(root=BASE_DIR):
                 )
             )
             metrics.append(burn_intensity(stats_rows))
+            metrics.extend(qubic_holdings_metrics(stats_rows))
             for name, field in (("epoch_tick_quality", "epoch_tick_quality"),):
                 metrics.append(
                     metric_vs_price_corr(

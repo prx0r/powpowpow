@@ -96,9 +96,10 @@ emission model in `network_state` is right.
 
 Status values follow powops: `ok` · `stale` · `error` · `unknown` · `not_installed`.
 
-Eleven sources are tracked: `safetrade_l2`, `chain_state`, `qubic_epoch`,
-`qubic_stats`, `qubic_computors`, `daily_state`, `derived_signals`,
-`cross_chain_factors`, `mining_analytics`, `r2_sync`, `pow_site`.
+Thirteen sources are tracked: `safetrade_l2`, `chain_state`, `qubic_epoch`,
+`qubic_stats`, `qubic_holdings`, `qubic_computors`, `daily_state`,
+`derived_signals`, `cross_chain_factors`, `insights`, `mining_analytics`,
+`r2_sync`, `pow_site`.
 
 - `GET /powops` — human page (public, SSE-free, no token)
 - `GET /powops.json` — machine payload, cached 60s
@@ -141,6 +142,12 @@ Burn rows are **purged and re-written per epoch** so each pass is idempotent
 - Per-epoch burn/deduction summaries are blocked upstream
   (`qubic/integration#102`); we reconstruct from `BURNING` (logType 8) events.
 
+### Canonical source registry
+
+Full list of every QUBIC endpoint probed today, what works, what is dead and
+what is collected — including exchange-label and balance endpoints — lives in
+`docs/qubic-sources.md`.
+
 ### Cloned sources
 
 `/root/qubic-sources/` (outside this repo, not committed):
@@ -165,6 +172,7 @@ Not cloned: the repo containing `SOURCES.md`/`TRANSFORMS.md`/
 | `pow-chain-state.service` | QUBIC/XMR/BTC polls, 300s cadence | always, restart |
 | `pow-qubic-stats.service` | QUBIC official stats: active addresses, tick quality, burned QUs, burn events, rich list | always, restart, 300s |
 | `pow-qubic-epoch.service/.timer` | Epoch, burn, tick rate | every 10 min |
+| `pow-qubic-holdings.service` | QUBIC exchange reserves + wealth concentration | always, restart, 300s (rich list every 6h) |
 | `pow-qubic-computors.service/.timer` | Computor set + DOGE leg | hourly |
 | `pow-daily-state.service/.timer` | STATE + signals + factors rebuild | hourly :25 |
 | `pow-mining-analytics.service/.timer` | XMR/QUBIC/BTC context + backtest | every 6 h |
@@ -211,7 +219,7 @@ Public checks (no token required for reads):
 - `GET https://pow.systems/api/chain?symbol=XMR|QUBIC|BTC` → 200 with fresh `as_of`.
 - `GET https://pow.systems/api/home` → 200 with `chains`, `ops`, `storage`, `signals`, `state`, `health`, `pipeline`.
 - `GET https://pow.systems/api/insights` → 200 with `chains`, `summary` (`computed` / `refused`), `version`.
-- `GET https://pow.systems/powops` → 200 HTML pipeline page; `/powops.json` → 200 with 12 sources.
+- `GET https://pow.systems/powops` → 200 HTML pipeline page; `/powops.json` → 200 with 13 sources.
 - `POST https://pow.systems/api/chat` without token → 403 (chat remains gated).
 
 ## Troubleshooting

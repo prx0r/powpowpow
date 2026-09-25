@@ -26,6 +26,7 @@ def build_tree(tmp_path, iso):
     write(tmp_path / "warehouse/chain_state_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/qubic_epoch_state.json", {"ts": now})
     write(tmp_path / "warehouse/qubic_stats_heartbeat.json", {"heartbeat_at": iso})
+    write(tmp_path / "warehouse/qubic_holdings_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/xmr_analytics.json", {"computed_at": iso})
     write(tmp_path / "warehouse/powpowpow_heartbeat.json", {"heartbeat_at": iso})
     write(tmp_path / "warehouse/insights.json", {"generated_at": iso})
@@ -81,6 +82,7 @@ def test_collect_returns_powops_contract(tmp_path, monkeypatch):
         "chain_state",
         "qubic_epoch",
         "qubic_stats",
+        "qubic_holdings",
         "qubic_computors",
         "daily_state",
         "derived_signals",
