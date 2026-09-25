@@ -221,7 +221,7 @@ export.** Everything else is packaging on top.
 | 4 | **Parquet/CSV export endpoint** from existing `warehouse/parquet` | Data buyers need files, not JSON; compactor already exists | S |
 | 5 | **`known_at` / `superseded_at` on entity + signal writes** | Makes §2-B sellable as point-in-time; currently unimplemented | M |
 | 6 | **Pick one canonical box / stop tracking regenerated artifacts** | The two-box race already clobbered analytics once (open thread §1) | S |
-| 7 | **Rebuild `API_DOCUMENTATION.md` from the live routes** (replace the fictional one; keep it STALE-annotated, add `docs/api-v1.md`) | Nothing is handable to a developer today | M |
+| 7 | ~~Rebuild `API_DOCUMENTATION.md` from the live routes~~ **DONE** — `docs/api.md` is the live reference; the fictional file is STALE-annotated, not deleted | Handable API reference now exists | ✅ |
 | 8 | **Decide the paid product** — record the answer in `unsure.md` Q13/Q15 instead of "decide later" | Everything above is packaging; the decision is still open on the record | S |
 | 9 | **Name a buyer** and validate Tier 1 against them before building Tier 2 | No named buyer exists for this data anywhere in-repo | S |
 | 10 | **Protect the 60-day clock** — disk headroom (drop raw retention to 12 h while tight), R2 job cadence vs 1 h timer, single-box push | The value in §2 only accrues if collection does not stop | S |

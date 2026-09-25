@@ -1,6 +1,6 @@
 # Build progress — session of 2026-09-25
 
-Range: `d09cc12` → `HEAD`. Commits landed this session:
+Range: `d09cc12` → `6b2fe48`. Commits landed this session:
 
 | Commit | What |
 |---|---|
@@ -8,9 +8,20 @@ Range: `d09cc12` → `HEAD`. Commits landed this session:
 | `f8d94f2` | Live home dashboard + hourly STATE/signals chain |
 | `ce13ee8` | Refresh analytics after a handover snapshot reset freshness |
 | `f2a98d4` | Recoverability tagging, layer manifests, ticker trim, MCP outlet |
+| `55ae4c4` | `ONBOARDING.md` — entry point for a new agent |
+| `ab0ede7` | Restore `burden_vs_book`, `/powops` monitoring, health + R2 hardening |
+| `c8d6b9b` | QUBIC official stats: tick quality, active addresses, burns, rich list |
+| `7963768` | QUBIC exchange reserves, wealth concentration, source registry |
+| `a9ba027` | Insight metrics vs price: Puell, divergence, ribbons, burn profile |
+| `bff5668` | Disclose partial exchange-reserve fetches |
+| `0f4c299` | Measured QUBIC address activity + exchange netflow |
+| `6b2fe48` | Intraday activity-vs-price correlation for QUBIC |
 
 (Interleaved with four pushes from a second box: `5444798`, `34e28bc`,
 `4623274`, `6890454` — see *Open threads* §1.)
+
+> **Receipts below are the midpoint of the session** (through `f2a98d4`).
+> Current end-of-session receipts are in *Part 2* at the bottom of this file.
 
 ## What is working now
 
@@ -91,6 +102,119 @@ installed `mcp` 2.1.1 has no `mcp.server.fastmcp`). Fixed: imports `fastmcp`
 | Services running | site, chain-state, safetrade-l2, cloudflared |
 
 ---
+
+
+---
+
+## Part 2 — monitoring, insights, and QUBIC depth
+
+Commits `ab0ede7` → `6b2fe48`. Part 1 built the storage and the pipeline;
+Part 2 built the layer that turns storage into numbers, and the monitoring
+that tells you when it stops.
+
+### P0: `burden_vs_book` was blank on the live dashboard
+
+`factors.py` looked up `chain_fundamentals.json[BTCUSDT]` and
+`network_state.json[BTCUSDT]` — but those are keyed by **chain** (`BTC`).
+Emission resolved to `None`, so issuance and burden resolved to `None`, and
+the home sidebar went from 7 buttons to 0. The hourly `pow-daily-state.timer`
+re-broke it every run.
+
+Fixed by reusing `signals.chain_symbol()` plus chain-key aliases (`BTCUSDT`
+and `XMRBTC` both publish as `BTC`/`XMR`, USDT preferred) and a carry-forward
+for chains with no SafeTrade market (KAS, AKT, CLORE, FLUX, TAO, NOS) so the
+screener keeps its breadth without fabricating values.
+
+### Monitoring — `/powops`
+
+`scripts/pipeline_status.py` emits the powops contract documented in
+`/root/powstock/POWOPS_INTEGRATION.md`:
+
+- `warehouse/powpowpow_heartbeat.json` — `heartbeat_at`, `mode`,
+  `total_records`, `sources_run`, `sources_failed`, `results`
+- `warehouse/collector_run.json` — one row per source with `source_id`,
+  `started_at`, `status`, `error`, `duration_seconds`, `source_records_new`
+
+Exposed at `GET /powops` (HTML) and `GET /powops.json` (cached 60s), linked
+from a `PIPELINE` stat on the home tab. `pow-health.service` now runs
+`pipeline_status.py` **then** `health_check.py`, so a dead timer fails health
+instead of passing silently. `health_check.CHECKS` grew from 7 to 14 entries.
+
+### Insight layer
+
+| Piece | Role |
+|---|---|
+| `transforms/common.py` | series helpers, refusal records, `TRANSFORM_VERSION = insights-v1` |
+| `transforms/puell.py` | `puell_multiple`, `security_spend_ratio` |
+| `transforms/ribbons.py` | tick-quality ribbon, address growth, burn profile, price×hashrate divergence |
+| `transforms/holdings.py` | exchange reserve, Gini/top-share concentration |
+| `transforms/activity.py` | measured addresses, transfer rate, exchange netflow, intraday correlation |
+| `scripts/build_insights.py` | reads the warehouse, writes `warehouse/insights.json` |
+| `GET /api/insights` | serves it; rendered as the **INSIGHT VS PRICE** table |
+
+Every metric carries `value`, `unit`, `n`, `min_n`, `source`, `window`,
+`version`. Anything that cannot be computed honestly returns
+`refused: true` with a reason — never a placeholder number.
+
+**23 metrics: 20 computed, 3 refused.**
+
+### QUBIC network depth
+
+Four new collectors, all unauthenticated, all `ephemeral` (our own
+point-in-time observations, never pruned as "re-fetchable"):
+
+| Collector | Service | Metric families |
+|---|---|---|
+| `qubic_stats.py` | `pow-qubic-stats` | active addresses, epoch + last-10k tick quality, burned QUs, supply, mcap |
+| `qubic_holdings.py` | `pow-qubic-holdings` | exchange reserves (18 labelled wallets), wealth concentration (Gini over top 10k) |
+| `qubic_transfers.py` | `pow-qubic-transfers` | measured addresses, transfer rate, exchange netflow, whale share |
+| `qubic_epoch` / `qubic_computors` | existing timers | epoch economics, computor churn |
+
+Source registry: `docs/qubic-sources.md`.
+
+### Bugs found while building
+
+1. **SafeTrade depth deltas often carry one side only** — `mid` is present in
+   **489 of 16,810** qubicusdt orderbook rows. Intraday price correlation
+   uses the ticker table instead, which is complete.
+2. **Exchange reserve silently understated by 42%** — the first run missed
+   MEXC's balance (16.9T reported vs 29.3T actual). `exchange_reserve` now
+   takes `expected_entities`, flags `partial`, and withholds
+   `share_of_supply` until the fetch is complete.
+3. **Burn is not uniform.** Two contract burns at the epoch's first tick are
+   **99.83%** of the epoch total, then a trickle. A single QU-per-tick average
+   would be meaningless — burn ships as four metrics, with
+   `burn_deviation_vs_schedule = 0.996×` independently validating the
+   emission model in `network_state`.
+4. **`activeAddresses` and `burned_qus` are coarse counters** — unchanged
+   across 16 minutes of 5-minute snapshots. Activity is now measured from
+   `getEventLogs` `logType=0` instead.
+5. **HTML had no `charset`** — every `—` and `·` on the live dashboard was
+   rendering as mojibake.
+
+### End-of-session receipts
+
+| Check | Result |
+|---|---|
+| `pytest tests/ -q` | **90 passed, 1 failed** (pre-existing `test_lineage_resolves`) |
+| `ruff` on files touched this session | clean |
+| `scripts/health_check.py` | `{"ok": true, "failures": []}` |
+| `/powops.json` | **14 sources, 0 failing** |
+| `/api/insights` | **23 metrics: 20 computed, 3 refused** |
+| Services running | site, chain-state, safetrade-l2, qubic-stats, qubic-holdings, qubic-transfers, cloudflared |
+| R2 backfill | 24,460 files, 21,956 uploaded, 2,504 verified, **0 failed** |
+
+### Open threads added in Part 2
+
+11. **`activity_vs_price_corr` refused until 12 buckets exist** — needs ~1 h
+    of `pow-qubic-transfers` history; self-resolving.
+12. **`epoch_tick_quality_vs_price_corr` needs 30 overlapping daily points** —
+    QUBIC stats started today, so this waits ~30 days.
+13. **QUBIC hashrate is not exposed by any public endpoint** (checked
+    `analytics.qubic.li` and `rpc.qubic.org/v1/status`). The activity
+    correlation is the substitute; if a hashrate source appears, wire it.
+14. **`R2Sync` progress logs only every 1,000 files**, and the hourly job can
+    exceed one hour (Part 1 §2) — measured run: 1h27m cold.
 
 ## Open threads
 
@@ -193,7 +317,11 @@ remainder are parked.
 
 | Topic | File |
 |---|---|
+| **Start here (new agent)** | `ONBOARDING.md` |
+| **API reference (live routes)** | `docs/api.md` |
+| **Doc index** | `docs/README.md` |
 | Live ops, units, tokens, Cloudflare | `docs/pow-systems-live.md` |
 | Moat vs re-fetchable storage policy | `docs/data-moat-policy.md` |
 | This session | `docs/build-progress-2026-09-25.md` |
 | What compounds + how to sell it + next dev steps | `docs/data-product-report-2026-09-25.md` |
+| QUBIC endpoints, verified live | `docs/qubic-sources.md` |

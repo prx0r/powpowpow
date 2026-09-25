@@ -1,3 +1,6 @@
+> **NEW HERE?** Start at `ONBOARDING.md`, then `docs/README.md` for the full
+> document index.
+>
 > **STALE 2026-09-25 — do not follow operationally.** Quick-start uses a
 > non-existent `/home/ubuntu/.venvs/...` venv (this box runs `/usr/bin/python3`,
 > no venv); "What runs" lists collectors and timers that are not installed;
