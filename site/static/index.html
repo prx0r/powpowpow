@@ -83,10 +83,13 @@ pre{white-space:pre-wrap;font-size:11.5px;border:2px solid #111;padding:10px;bac
    Chunky borders (2px), monospace numbers, dense data tables.
    Old-school terminal feel. No gradients, no rounded corners, no emojis in content.
    Keep this forever — it IS the PowPowPow style. */
-const T=new URLSearchParams(location.search).get('token')||'';
+const _qtok=new URLSearchParams(location.search).get('token')||'';
+const _savedtok=(()=>{try{return localStorage.getItem('pow_token')||'';}catch(_){return'';}})();
+if(!_qtok&&_savedtok){location.replace(location.pathname+'?token='+encodeURIComponent(_savedtok));}
+const T=_qtok||'';
 const TK=p=>(p.includes('?')?'&token=':'?token=')+encodeURIComponent(T);
-const G=(p)=>fetch(p+TK(p)).then(r=>r.json());
-const P=(p,b)=>fetch(p+TK(p),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
+const G=async(p)=>{const r=await fetch(p+TK(p));let d={};try{d=await r.json();}catch(_){}if(d&&d.error==='bad token'){throw new Error('bad token');}return d;};
+const P=async(p,b)=>{const r=await fetch(p+TK(p),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});let d={};try{d=await r.json();}catch(_){}if(d&&d.error==='bad token'){throw new Error(T?'session token rejected':'analyst chat requires a site token');}return d;};
 const CORE=[['HOME','home'],['BTC','Bitcoin'],['QUBIC','Qubic'],['XMR','Monero'],['PRL','Pearl'],['KAS','Kaspa'],['NOCK','Nock'],['XEL','Xelis']];
 let V='home',S='Overview';
 setInterval(()=>{const e=document.getElementById('clk');if(e)e.textContent=new Date().toISOString().slice(11,19)+'Z'},1000);
@@ -384,8 +387,9 @@ document.getElementById('cq').addEventListener('keydown',e=>{if(e.key==='Enter')
 cd.addEventListener('mousedown',e=>{d=true;sx=e.clientX;sw=p.offsetWidth;e.preventDefault();});
 document.addEventListener('mousemove',e=>{if(!d)return;p.style.width=Math.max(200,Math.min(500,sw-(e.clientX-sx)))+'px';});
 document.addEventListener('mouseup',()=>d=false);})();
-G('/api/health').then(h=>document.getElementById('health').textContent=h.ok?'● LIVE':'down').catch(()=>document.getElementById('health').textContent='off');
-home();bot('ops');autoRefreshBot();
+if(!T){const h=document.getElementById('health');if(h)h.textContent='● LIVE';home();bot('ops');autoRefreshBot();}
+else{G('/api/health').then(h=>document.getElementById('health').textContent=h.ok?'● LIVE':'down').catch(()=>document.getElementById('health').textContent='off');
+home();bot('ops');autoRefreshBot();}
 
 /* Live ticker — SSE stream from /api/ticks (2s events), polling fallback */
 const TICKER_SYMBOLS=['btcusdt','xmrusdt','qubicusdt','prlusdt','nockusdt','kasusdt'];

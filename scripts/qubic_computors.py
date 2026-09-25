@@ -21,7 +21,7 @@ import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
-from core import fetch_json, store_normalized, utcnow  # noqa: E402
+from core import fetch_json, store_normalized, utcnow
 
 NETSTATE_FILE = os.path.join(BASE_DIR, 'chains', 'network_state.json')
 
@@ -46,9 +46,23 @@ def load_prev_identities(epoch):
         (best or {}).get('epoch')
 
 
+def observation_id(observation):
+    if isinstance(observation, dict):
+        return observation.get('observation_id')
+    return observation
+
+
+def fetch_result(url, source_id, chain_id):
+    result = fetch_json(url, source_id=source_id, chain_id=chain_id,
+                        return_result=True)
+    if not isinstance(result, dict):
+        return None, None
+    return result.get('parsed'), result.get('observation_id')
+
+
 def main():
-    tick = fetch_json('https://rpc.qubic.org/v1/tick-info',
-                      source_id='qubic-rpc', chain_id='qubic')
+    tick, _ = fetch_result('https://rpc.qubic.org/v1/tick-info',
+                           source_id='qubic-rpc', chain_id='qubic')
     epoch = ((tick or {}).get('tickInfo', tick or {})).get('epoch')
     if not epoch:
         print("[COMPUTORS] no epoch from tick-info")
@@ -67,17 +81,17 @@ def main():
     try:
         data = json.loads(urllib.request.urlopen(req, timeout=20).read())
         from core import _archive_raw
-        _archive_raw(chain_id='qubic', source_id='qubic-query',
-                     endpoint='POST getComputorListsForEpoch',
-                     event_time=None, observed_at=utcnow(),
-                     response_received=utcnow(), http_status=200,
-                     raw_body=json.dumps(data, default=str),
-                     parsed_payload={'epoch': epoch,
-                                     'n_identities': sum(
-                                         len(l.get('identities', []))
-                                         for l in data.get('computorsLists', []))},
-                     request_params={'epoch': epoch},
-                     quality_flags=['post'])
+        observation = _archive_raw(chain_id='qubic', source_id='qubic-query',
+                                   endpoint='POST getComputorListsForEpoch',
+                                   event_time=None, observed_at=utcnow(),
+                                   response_received=utcnow(), http_status=200,
+                                   raw_body=json.dumps(data, default=str),
+                                   parsed_payload={'epoch': epoch,
+                                                   'n_identities': sum(
+                                                       len(l.get('identities', []))
+                                                       for l in data.get('computorsLists', []))},
+                                   request_params={'epoch': epoch},
+                                   quality_flags=['post'])
     except Exception as e:
         print(f"[COMPUTORS] query API ERR {str(e)[:120]}")
         return
@@ -95,12 +109,13 @@ def main():
              'vs_epoch': prev_epoch}
     store_normalized('computor_snapshot', 'qubic', {
         **churn, 'identities': identities,
-        'source_role': 'canonical', 'source_id': 'qubic-query'})
+        'source_role': 'canonical', 'source_id': 'qubic-query'},
+        raw_event_id=observation_id(observation))
     print(f"[COMPUTORS] epoch={epoch} n={len(cur)} "
           f"+{churn['new']}/-{churn['dropped']} vs {prev_epoch}")
 
-    doge = fetch_json('https://doge-stats.qubic.org/dispatcher.json',
-                      source_id='doge-stats', chain_id='qubic')
+    doge, doge_id = fetch_result('https://doge-stats.qubic.org/dispatcher.json',
+                                 source_id='doge-stats', chain_id='qubic')
     if doge and isinstance(doge, dict):
         shares = doge.get('computor_shares', {}) or {}
         vals = [float(v) for v in shares.values()
@@ -110,11 +125,13 @@ def main():
             'computors_sharing': len(vals),
             'share_mean': sum(vals) / len(vals) if vals else None,
             'share_max': max(vals) if vals else None,
-            'source_role': 'derived', 'source_id': 'doge-stats'})
+            'source_role': 'derived', 'source_id': 'doge-stats'},
+            raw_event_id=doge_id)
         print(f"[DOGE] tasks={doge.get('active_tasks')} sharers={len(vals)}")
 
     try:
-        ns = json.load(open(NETSTATE_FILE))
+        with open(NETSTATE_FILE) as handle:
+            ns = json.load(handle)
     except (OSError, ValueError):
         ns = {}
     q = ns.setdefault('QUBIC', {})

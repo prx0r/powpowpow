@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>powpowpow access</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:13px/1.5 Arial,sans-serif;background:#fff;color:#111;display:flex;flex-direction:column;align-items:center;padding:60px 16px}
+h1{font:700 22px/1.1 Arial;margin-bottom:6px}
+.sub{color:#555;font-size:12px;margin-bottom:14px}
+.box{border:2px solid #111;padding:12px;background:#f5f5f5;width:100%;max-width:460px}
+input{width:100%;border:2px solid #111;padding:8px;font-size:13px;margin-bottom:10px}
+button{width:100%;background:#111;color:#fff;border:none;padding:9px;font:700 12px Arial;cursor:pointer}
+.err{color:#111;font-weight:700;margin-top:8px;display:none}
+.dim{color:#777;font-size:11px;margin-top:10px;max-width:460px}
+</style>
+</head>
+<body>
+<h1>POWPOWPOW</h1>
+<div class="sub">Enter the site token to view live data.</div>
+<div class="box">
+<input id="tok" type="password" placeholder="paste site token" autocomplete="off">
+<button onclick="saveTok()">SAVE + OPEN DASHBOARD</button>
+<div class="err" id="err">Token rejected. Check the value and try again.</div>
+</div>
+<div class="dim">The token is stored only in this browser. Find it in ~/.config/powpowpow/site.env on the server.</div>
+<script>
+async function saveTok(){
+  const v=(document.getElementById('tok').value||'').trim();
+  if(!v)return;
+  try{
+    const r=await fetch('/api/health?token='+encodeURIComponent(v));
+    const d=await r.json();
+    if(!d.ok)throw new Error('bad');
+  }catch(_){document.getElementById('err').style.display='block';return;}
+  try{localStorage.setItem('pow_token',v);}catch(_){}
+  location.href='/?token='+encodeURIComponent(v);
+}
+document.getElementById('tok').addEventListener('keydown',e=>{if(e.key==='Enter')saveTok();});
+</script>
+</body>
+</html>

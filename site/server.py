@@ -268,11 +268,13 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        if not self._gate():
-            return self._send({'error': 'bad token'}, code=403)
         u = urlparse(self.path)
         q = parse_qs(u.query)
         arg = lambda k, d='': q.get(k, [d])[0]
+
+        if u.path in ('/access.html', '/login'):
+            return self._send(open(os.path.join(STATIC, 'access.html'), 'rb').read(),
+                               'text/html')
 
         if u.path in ('/', '/index.html'):
             return self._send(open(os.path.join(STATIC, 'index.html'), 'rb').read(),
@@ -669,6 +671,5 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    print(f"powpowpow site token: {TOKEN}", flush=True)
-    print(f"http://localhost:{PORT}/?token={TOKEN}", flush=True)
+    print(f"powpowpow site listening on 127.0.0.1:{PORT}", flush=True)
     ThreadingHTTPServer(('127.0.0.1', PORT), Handler).serve_forever()

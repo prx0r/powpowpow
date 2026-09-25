@@ -179,7 +179,9 @@ def build_xmr_analytics():
 
 if __name__ == '__main__':
     a = build_xmr_analytics()
-    print(f"  emission ${a['emission'].get('daily_emission_usd'):,.0f}/day ({a['emission']['daily_emission']} XMR)")
+    emission_usd = a['emission'].get('daily_emission_usd')
+    emission_text = f"${emission_usd:,.0f}/day" if emission_usd else "unavailable"
+    print(f"  emission {emission_text} ({a['emission']['daily_emission']} XMR)")
     print(f"  365d position: {a['price_position_365d'].get('percentile')}th percentile "
           f"(${a['price_position_365d'].get('low')} – ${a['price_position_365d'].get('high')})")
     hr = a['network'].get('hashrate')

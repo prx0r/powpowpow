@@ -123,6 +123,7 @@ def main():
     dates = SEED_DATES if args.all_seeds else [args.date or '2026-09-19']
     norm = os.path.join(BASE_DIR, 'warehouse', 'normalized')
     tables = [args.table] if args.table else sorted(os.listdir(norm))
+    failed = False
     for date in dates:
         for table in tables:
             if not os.path.isdir(os.path.join(norm, table)):
@@ -131,7 +132,10 @@ def main():
                 try:
                     compact_dir(table, chain, date, args.drop_source)
                 except Exception as e:
+                    failed = True
                     print(f"  ERR {table}/{chain}/{date}: {str(e)[:150]}")
+    if failed:
+        raise SystemExit(1)
 
 
 if __name__ == '__main__':

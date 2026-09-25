@@ -27,9 +27,9 @@ python scripts/compact_stream.py --all-seeds
 
 ## Live
 
-Consumer site: https://pow.moltwork.com/?token=5tlDsoYg1Akp9e_0CAIUHzpLWwLEMfts
+Consumer site: `https://pow.systems/?token=$POW_SITE_TOKEN`
 
-Token stored in systemd: `grep POW_SITE_TOKEN ~/.config/systemd/user/pow-site.service`
+Token stored in `~/.config/powpowpow/site.env` (mode 600, never committed).
 
 ## What runs
 
