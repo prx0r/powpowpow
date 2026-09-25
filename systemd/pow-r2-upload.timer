@@ -1,0 +1,11 @@
+[Unit]
+Description=Run PowPowPow R2 synchronization after each previous run finishes
+Requires=pow-r2-upload.service
+
+[Timer]
+OnBootSec=10min
+OnUnitInactiveSec=3600
+Unit=pow-r2-upload.service
+
+[Install]
+WantedBy=timers.target

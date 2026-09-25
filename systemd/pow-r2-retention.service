@@ -1,0 +1,22 @@
+[Unit]
+Description=PowPowPow local retention — verify in R2, then prune locally
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/powpowpow
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/bin/bash -lc 'set -euo pipefail; export CF_ACCOUNT_ID="$(agent-vault vault credential get CLOUDFLARE_ACCOUNT_ID --vault oracle)"; export CF_R2_ACCESS_KEY="$(agent-vault vault credential get CLOUDFLARE_R2_ACCESS_KEY --vault oracle)"; export CF_R2_SECRET_KEY="$(agent-vault vault credential get CLOUDFLARE_R2_SECRET_KEY --vault oracle)"; export CLOUDFLARE_R2_ENDPOINT="$(agent-vault vault credential get CLOUDFLARE_R2_ENDPOINT --vault oracle)"; /usr/bin/python3 scripts/r2_upload.py --prune --dir /root/powpowpow/warehouse --remote powpowpow --bucket powpowpow-warehouse --retention-hours raw=24 --retention-hours normalized=30 --retention-hours parquet=168 --lock-file ~/.local/state/powpowpow/r2-retention.lock'
+TimeoutStartSec=600
+TimeoutStopSec=60
+Nice=19
+IOSchedulingClass=idle
+MemoryHigh=512M
+MemoryMax=768M
+OOMScoreAdjust=800
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/root/powpowpow/warehouse /root/.local/state/powpowpow
+UMask=0077

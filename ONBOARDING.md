@@ -46,6 +46,9 @@ Every normalized row carries `raw_event_id` back to one raw envelope, plus
 
 ## 3. What is running (verified, not aspirational)
 
+Unit files are committed under `systemd/` — see `systemd/README.md` to
+install them on a fresh box.
+
 | Kind | Units | Schedule |
 |---|---|---|
 | services (`Restart=always`, enabled) | `pow-safetrade-l2`, `pow-chain-state`, `pow-qubic-stats`, `pow-site`, `pow-cloudflared` | continuous |

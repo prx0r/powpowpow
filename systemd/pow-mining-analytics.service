@@ -1,0 +1,19 @@
+[Unit]
+Description=Refresh PowPowPow mining analytics and context
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/powpowpow
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/bin/bash -lc 'set -euo pipefail; /usr/bin/python3 scripts/xmr_analytics.py; /usr/bin/python3 scripts/qubic_analytics.py; /usr/bin/python3 scripts/btc_context.py; /usr/bin/python3 scripts/btc_mining_backtest.py'
+TimeoutStartSec=900
+TimeoutStopSec=60
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/root/powpowpow/warehouse
+UMask=0077

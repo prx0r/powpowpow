@@ -1,0 +1,17 @@
+[Unit]
+Description=Compact PowPowPow closed warehouse partitions
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/powpowpow
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/bin/bash -lc 'set -euo pipefail; y=$(/usr/bin/date -u -d yesterday +%%F); for table in trade orderbook_snapshot ticker; do /usr/bin/python3 scripts/compact_stream.py --date "$y" --table "$table"; done'
+TimeoutStartSec=infinity
+TimeoutStopSec=120
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/root/powpowpow/warehouse
+UMask=0077

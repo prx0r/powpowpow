@@ -1,0 +1,19 @@
+[Unit]
+Description=Rebuild PowPowPow daily STATE, signals, and factors
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/powpowpow
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/bin/bash -lc 'set -euo pipefail; Y=$(/usr/bin/date -u -d yesterday +%%F); D=$(/usr/bin/date -u +%%F); /usr/bin/python3 scripts/build_daily_state.py --date "$Y"; /usr/bin/python3 scripts/build_daily_state.py --date "$D"; /usr/bin/python3 signals.py --date "$Y"; /usr/bin/python3 signals.py --date "$D"; /usr/bin/python3 factors.py --date "$D"; /usr/bin/python3 scripts/build_insights.py --date "$D"'
+TimeoutStartSec=900
+TimeoutStopSec=60
+Nice=10
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/root/powpowpow/warehouse /root/powpowpow/chains
+UMask=0077
