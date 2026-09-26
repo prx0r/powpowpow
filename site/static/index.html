@@ -432,6 +432,8 @@ async function coinBody(sym){
         line('g-xmr-sec',secSeries,'$'+Math.round(secSeries[secSeries.length-1][1]).toLocaleString()+'/day');
       }
     }else{
+      const mb=await G('/api/burns').catch(()=>({}));
+      const meas=mb.measured_burn||null;
       h+=`<div class="grid">`;
       h+=stat('NET SUPPLY',ax2.emission?((ax2.emission.daily_emission||0)/1e9).toFixed(1)+'B QU/day':'—','what reaches market after burn');
       h+=stat('EMISSION USD',ax2.emission.daily_emission_usd?'$'+Math.round(ax2.emission.daily_emission_usd).toLocaleString():'—','at current price');
@@ -446,6 +448,14 @@ async function coinBody(sym){
       h+=`<tr><td>Net per computor/day</td><td>${(ax2.computor_economics.reward_per_computor_per_day/1e9).toFixed(2)}B QU</td></tr>`;
       h+=`<tr><td>DOGE mining tasks</td><td>${net.doge_tasks}</td></tr>`;
       h+=`</table><h2>SUPPLY PROJECTION (52 weeks)</h2><canvas class="g" id="g-sup"></canvas>`;
+      if(meas){
+        const mpd=meas.burn_per_day_measured;
+        h+=`<h2>MEASURED ON-CHAIN BURN (BURNING events)</h2>`;
+        h+=`<div class="grid">${stat('TX-BURN/DAY',mpd?(mpd/1e9).toFixed(2)+'B QU':'—','from event logs, genesis excluded')}${stat('EVENTS',meas.events_live?meas.events_live.toLocaleString():'—','as of '+String(meas.as_of||'').slice(0,10))}${stat('VS VIRAL CLAIM',mpd?(mpd/225e9*100).toFixed(1)+'% of 225B/d':'—','the rest is SupplyWatcher donations (transfers, not burns)')}</div>`;
+        h+=`<table><tr><th>CONTRACT</th><th>BURNED QU</th></tr>`;
+        Object.entries(meas.by_contract||{}).forEach(([k,v])=>{h+=`<tr><td>${k}</td><td>${(v/1e9).toFixed(3)}B</td></tr>`;});
+        h+=`</table><div class="box">Measured = BURNING event logs (contract fees: QEARN penalties, QSWAP fees). The viral 225B/day is mostly SupplyWatcher revenue donations, which move as transfers — tracked separately, not counted here.</div>`;
+      }
       h+=`<h2>PRICE 365D DISTRIBUTION</h2>`;
       const pr=ax2.price_range_365d||{};h+=`<div class="grid">${stat('LOW',$(pr.low),'('+pr.low_date+')')}${stat('HIGH',$(pr.high),'('+pr.high_date+')')}${stat('NOW',$(pr.current),'')}</div>`;
       ed.innerHTML=h;

@@ -705,9 +705,15 @@ class Handler(BaseHTTPRequestHandler):
             comps = sorted(
                 [r for r in _rows('ann_computor') if r.get('rank') is not None],
                 key=lambda r: r.get('rank', 0))[:10]
+            try:
+                measured = json.load(open(os.path.join(
+                    ROOT, 'warehouse', 'epoch_burn.json')))
+            except (OSError, ValueError):
+                measured = None
             return self._send({'latest': sup[-1] if sup else None,
                                'snapshots': len(sup),
                                'burn_per_day': rate,
+                               'measured_burn': measured,
                                'epochs': epochs,
                                'top_computors': comps})
         if u.path == '/api/ticks':
