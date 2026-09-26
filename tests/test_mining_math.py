@@ -57,7 +57,8 @@ def test_btc_hashprice_uses_petahashes():
     assert btc_mining_backtest.hashrate_ghs(
         {"network_hashrate_ghs": 1e9, "network_hashrate_ths": 2e9}
     ) == 1e9
-    assert btc_mining_backtest.hashrate_ghs({"network_hashrate_ths": 2e9}) == 2e9
+    assert btc_mining_backtest.hashrate_ghs({"network_hashrate_ths": 2e9}) == 2e12
+    assert btc_mining_backtest.hashrate_ghs({}) is None
 
 
 def test_network_share_revenue_formula():

@@ -67,7 +67,7 @@ def load_btc_daily():
     rows = []
     for d in dates:
         r = {'date': d, 'close': closes[d], **feats[d]}
-        hashrate_ghs = r.get('network_hashrate_ghs', r.get('network_hashrate_ths'))
+        hashrate_ghs = hashrate_ghs(r)
         r['hashprice_ph_day'] = hashprice_ph_day(
             r.get('miners_revenue_usd'), hashrate_ghs)
         if r.get('fees_usd_day') and r.get('miners_revenue_usd'):
@@ -77,7 +77,10 @@ def load_btc_daily():
 
 
 def hashrate_ghs(row):
-    return row.get('network_hashrate_ghs', row.get('network_hashrate_ths'))
+    if row.get('network_hashrate_ghs'):
+        return row['network_hashrate_ghs']
+    ths = row.get('network_hashrate_ths')
+    return ths * 1000 if ths else None
 
 
 def pct(series, lag):
