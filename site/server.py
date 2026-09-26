@@ -686,6 +686,30 @@ class Handler(BaseHTTPRequestHandler):
             return self._send({'symbol': sym, 'network': net,
                                'fundamentals': fund,
                                'snapshots': len(snaps)})
+        if u.path == '/api/burns':
+            sup = sorted(
+                [r for r in _rows('supply_snapshot') if r.get('burned_total')],
+                key=lambda r: str(r.get('observed_at', '')))
+            rate = None
+            if len(sup) >= 2:
+                try:
+                    b1, t1 = int(sup[-1]['burned_total']), int(sup[-1]['timestamp'])
+                    b0, t0 = int(sup[-2]['burned_total']), int(sup[-2]['timestamp'])
+                    if t1 > t0 and b1 >= b0:
+                        rate = (b1 - b0) / ((t1 - t0) / 86400)
+                except (KeyError, TypeError, ValueError):
+                    pass
+            epochs = sorted(
+                [r for r in _rows('ann_epoch') if r.get('epoch') is not None],
+                key=lambda r: r.get('epoch', 0), reverse=True)[:5]
+            comps = sorted(
+                [r for r in _rows('ann_computor') if r.get('rank') is not None],
+                key=lambda r: r.get('rank', 0))[:10]
+            return self._send({'latest': sup[-1] if sup else None,
+                               'snapshots': len(sup),
+                               'burn_per_day': rate,
+                               'epochs': epochs,
+                               'top_computors': comps})
         if u.path == '/api/ticks':
             # Live tick stream (SSE): freshest orderbook mid per symbol,
             # sourced from continuous normalized rows (NOT daily STATE).

@@ -1,0 +1,9 @@
+[Unit]
+Description=PowPowPow QUBIC burn + supply snapshot
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/box/powpowpow
+ExecStart=/home/box/powpowpow/.venv/bin/python scripts/burn_snapshot.py --once
+Environment=PYTHONUNBUFFERED=1
