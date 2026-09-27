@@ -21,8 +21,9 @@ def test_flag_scores():
 def test_latest_before():
     rows = [{"observed_at": "2026-09-26T00:00:00Z", "v": 1},
             {"observed_at": "2026-09-27T00:00:00Z", "v": 2}]
-    assert latest_before(rows, 1_789_000_000)["v"] == 2
-    assert latest_before(rows, 1_780_000_000) is None
+    assert latest_before(rows, 1_790_500_000)["v"] == 2
+    assert latest_before(rows, 1_790_400_000)["v"] == 1
+    assert latest_before(rows, 1_790_300_000) is None
     assert latest_before([], 99) is None
 
 
